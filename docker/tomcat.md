@@ -1,0 +1,1 @@
+docker run --name tomcat -p 7001:8080 --restart always -v /dockerv/tomcat/webapps:/usr/local/tomcat/webapps -d tomcat  

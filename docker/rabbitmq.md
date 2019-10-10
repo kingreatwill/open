@@ -15,3 +15,9 @@ docker run -d --name rabbitmq3.8.0 -p 5672:5672 -p 15672:15672 -v /d/dockerv/rab
 docker exec -it rabbitmq3.8.0 /bin/bash
 
 ```
+
+其他：
+```
+docker run -d -p 4369:4369 -p 5671:5671 -p 5672:5672  -p 15672:15672 -p 15671:15671  -p 25672:25672  --restart always rabbitmq:3.6.12-management
+docker run -d  -p 4369:4369 -p 5671:5671 -p 5672:5672  -p 15672:15672 -p 15671:15671  -p 25672:25672  -v /dockerv/rabbitmq/data/:/var/rabbitmq/lib  rabbitmq:3.6.12
+```
