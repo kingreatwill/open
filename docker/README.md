@@ -108,6 +108,8 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
                 no -  容器退出时，不重启容器；
                 on-failure - 只有在非0状态退出时才从新启动容器；
                 always - 无论退出状态是如何，都重启容器
+
+--privileged=true 管理权限
 ```
 docker info : 显示 Docker 系统信息，包括镜像和容器数。
 docker version :显示 Docker 版本信息。 -f :指定返回值的模板文件。
