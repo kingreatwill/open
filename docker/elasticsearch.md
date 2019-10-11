@@ -8,6 +8,8 @@ docker pull kibana:7.4.0     #1.1GB
 docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" --restart always -v /d/dockerv/elasticsearch/data/:/usr/share/elasticsearch/data/ --name es7.4 elasticsearch:7.4.0
 
 
+可以加下 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" 参数
+
 如果你是在服务器上安装，想要对外访问还必须打开你服务器的9200端口，然后将localhost换成你服务器的ip地址即可。
 
 修改配置，解决跨域访问问题
