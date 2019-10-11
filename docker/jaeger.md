@@ -19,23 +19,18 @@ docker run -d --name jaeger-collector --restart=always --link es7.4:elasticsearc
 安装界面:
 docker pull jaegertracing/jaeger-query:1.14.0  #44MB
 
-docker run -d --name jaeger-query --restart=always --link es7.4:elasticsearch -e SPAN_STORAGE_TYPE=elasticsearch -e ES_SERVER_URLS=http://elasticsearch:9200 -p 16686:16686/tcp jaegertracing/jaeger-query
+docker run -d --name jaeger-query --restart=always --link es7.4:elasticsearch -e SPAN_STORAGE_TYPE=elasticsearch -e ES_SERVER_URLS=http://elasticsearch:9200 -p 16686:16686/tcp jaegertracing/jaeger-query:1.14.0
 
 
-安装agent:
+安装agent:[参考](https://www.jaegertracing.io/docs/1.14/deployment/#discovery-system-integration)
 docker pull jaegertracing/jaeger-agent:1.14.0 #27MB
 
-docker run  -d  --name jaeger-agent --restart=always  --link jaeger-collector:jaegercollector -p 5775:5775/udp   -p 6831:6831/udp   -p 6832:6832/udp   -p 5778:5778/tcp   jaegertracing/jaeger-agent   /go/bin/agent-linux --collector.host-port=jaegercollector:14267
+docker run  -d  --name jaeger-agent --restart=always  --link jaeger-collector:jaegercollector -p 5775:5775/udp   -p 6831:6831/udp   -p 6832:6832/udp   -p 5778:5778/tcp   jaegertracing/jaeger-agent:1.14.0   --reporter.grpc.host-port=jaegercollector:14250
 
 安装服务依赖:[参考](https://hub.docker.com/r/jaegertracing/spark-dependencies)
 docker pull jaegertracing/spark-dependencies   #210MB
 
-
-
-docker run \
-  -e SPAN_STORAGE_TYPE=elasticsearch \
-  -e ES_SERVER_URLS=<...> \
-  jaegertracing/jaeger-collector:1.14
+docker run -d --name  spark-dependencies --restart=always --link es7.4:elasticsearch   --env STORAGE=elasticsearch --env ES_NODES=http://elasticsearch:9200 jaegertracing/spark-dependencies
 ```
 
 端口说明:
@@ -66,4 +61,4 @@ query 暴露如下端口
 
 端口号|	协议|	功能
 -|-|-
-16686|	HTTP|	1. /api/* - API 端口路径 2. / - Jaeger UI 路径
+16686| HTTP |	1. /api/* - API 端口路径 2. / - Jaeger UI 路径
