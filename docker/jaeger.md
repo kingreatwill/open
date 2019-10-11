@@ -30,7 +30,11 @@ docker run  -d  --name jaeger-agent --restart=always  --link jaeger-collector:ja
 安装服务依赖:[参考](https://hub.docker.com/r/jaegertracing/spark-dependencies)
 docker pull jaegertracing/spark-dependencies   #210MB
 
-docker run -d --name  spark-dependencies --restart=always --link es7.4:elasticsearch   --env STORAGE=elasticsearch --env ES_NODES=http://elasticsearch:9200 jaegertracing/spark-dependencies
+docker run --rm -d --name  spark-dependencies --link es7.4:elasticsearch   --env STORAGE=elasticsearch --env ES_NODES=http://elasticsearch:9200 jaegertracing/spark-dependencies
+
+--rm  跑完删除容器
+
+这里要做一个定时任务
 ```
 
 端口说明:
