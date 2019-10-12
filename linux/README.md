@@ -6,6 +6,10 @@ systemctl start docker & systemctl enable docker
 2. 关闭防火墙
 ```
 systemctl stop firewalld & systemctl disable firewalld
+
+开放端口
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 2379 -j ACCEPT
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 2380 -j ACCEPT
 ```
 3. 关闭selinux
 ```

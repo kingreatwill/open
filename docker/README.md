@@ -138,3 +138,6 @@ docker rm ：删除一个或多少容器
 docker pause :暂停容器中所有的进程。
 
 docker unpause :恢复容器中所有的进程。
+
+
+# docker三剑客  docker-machine compose swarm
