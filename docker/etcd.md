@@ -7,10 +7,12 @@ https://github.com/etcd-io/etcd/releases/tag/v3.4.2
 
 docker pull quay.io/coreos/etcd:v3.4.2 # docker pull gcr.io/etcd-development/etcd:v3.4.2
 
- docker run -d -p 2379:2379 -p 2380:2380  --name etcd3  --restart always quay.io/coreos/etcd:v3.4.2  /usr/local/bin/etcd  --name s1  --data-dir /etcd-data  --listen-client-urls http://0.0.0.0:2379  --advertise-client-urls http://0.0.0.0:2379  --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380  --initial-cluster s1=http://0.0.0.0:2380  --initial-cluster-token tkn  --initial-cluster-state new
+docker volume create --name=etcd-data
+
+ docker run -d -p 2379:2379 -p 2380:2380 -v etcd-data:/etcd-data --name etcd3  --restart always quay.io/coreos/etcd:v3.4.2  /usr/local/bin/etcd  --name s1  --data-dir /etcd-data  --listen-client-urls http://0.0.0.0:2379  --advertise-client-urls http://0.0.0.0:2379  --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380  --initial-cluster s1=http://0.0.0.0:2380  --initial-cluster-token tkn  --initial-cluster-state new
 
 
-  -v /d/dockerv/etcd/data/:/etcd-data/ -v 目前有bug，还没有找到解决方案
+  
 
 docker exec etcd3 /bin/sh -c "/usr/local/bin/etcd --version"
 docker exec etcd3 /bin/sh -c "/usr/local/bin/etcdctl version"
