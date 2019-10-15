@@ -1,14 +1,15 @@
 param(
-    [string] $IstioVersion = "1.2.7"
+    [string] $IstioVersion = "1.0.3"
 )
 
-$url = "https://github.com/istio/istio/releases/download/$($IstioVersion)/istio_$($IstioVersion)_win.zip"
+$url = "https://github.com/istio/istio/releases/download/$($IstioVersion)/istio-$($IstioVersion)-win.zip"
 $Path = Get-Location
-$output = [IO.Path]::Combine($Path, "istio_$($IstioVersion)_win.zip‚Äù)
+$output = [IO.Path]::Combine($Path, "istio-$($IstioVersion)-win.zip°±)
     
 Write-Host "Downloading Istio from $url to path " $Path -ForegroundColor Green 
     
 #Download file
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 (New-Object System.Net.WebClient).DownloadFile($url, $output)
     
 # Unzip the Archive
