@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zipkin
+  namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin
+        ports:
+          - containerPort: 9411
+            hostPort: 9411
+        env:
+          - name: STORAGE_TYPE
+            value: elasticsearch
+          - name: ES_HOSTS
+            value: http://elasticsearch-logging:9200
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+  namespace: kube-system
+  labels:
+    k8s-app: zipkin
+spec:
+  type: NodePort   # NodePort   LoadBalancer
+  ports:
+  - port: 9411
+    targetPort: 9411
+    nodePort: 30002
+  selector:
+    k8s-app: zipkin
