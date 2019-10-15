@@ -225,6 +225,9 @@ helm del --purge istio
 kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
 ```
 
+# Minikube 安装k8s
+https://yq.aliyun.com/articles/221687
+
 # centos7 安装单机版k8s
 
 # 安装集群：手动安装
