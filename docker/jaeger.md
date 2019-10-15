@@ -66,3 +66,7 @@ query 暴露如下端口
 端口号|	协议|	功能
 -|-|-
 16686| HTTP |	1. /api/* - API 端口路径 2. / - Jaeger UI 路径
+
+![jaeger](../img/jaeger-architecture.png)
+![jaeger](../img/jaeger-architecture-v1.png)
+![jaeger](../img/jaeger-architecture-v2.png)
