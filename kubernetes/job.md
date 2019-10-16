@@ -1,0 +1,2 @@
+查看api是否支持batch/v2alpha1
+kubectl api-versions

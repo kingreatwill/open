@@ -51,9 +51,9 @@ cd k8s-for-docker-desktop
 4. 开启 Kubernetes
 
 5. 配置 Kubernetes
-可选操作: 切换Kubernetes运行上下文至 docker-for-desktop
+可选操作: 切换Kubernetes运行上下文至 docker-desktop
 ```
-kubectl config use-context docker-for-desktop
+kubectl config use-context docker-desktop
 ```
 验证 Kubernetes 集群状态
 ```
@@ -76,9 +76,9 @@ kubectl proxy
 
 
 配置 kubeconfig 
-```
+```powershell
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
-kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+kubectl config set-credentials docker-desktop --token="${TOKEN}"
 
 
 config 路径

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: zipkin-dependencies
+  namespace: kube-system
+spec:
+  template:
+    metadata:
+      name: job-demo
+    spec:
+      restartPolicy: Never #只支持OnFailure和Never，不支持Always
+      containers:
+      - name: zipkin-dependencies
+        image: openzipkin/zipkin-dependencies:2.3.2
+        env:
+        - name: STORAGE_TYPE
+          value: elasticsearch
+        - name: ES_HOSTS
+          value: http://elasticsearch-logging:9200
