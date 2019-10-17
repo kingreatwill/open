@@ -1,3 +1,6 @@
+查看centos版本
+cat /etc/redhat-release
+
 1. 常用命令
 ```
 启动Docker服务并激活开机启动：
@@ -48,4 +51,24 @@ swapoff -a #临时关闭
 vi /etc/fstab #注释掉swap即可永久关闭
 或
 sed -i '/ swap / s/^/#/' /etc/fstab #永久关闭
+```
+
+5. 设置固定IP
+```
+cd /etc/sysconfig/network-scripts
+vi ifcfg-eth0
+
+主要修改如下信息，这里我设置静态IP地址为192.168.137.200
+
+BOOTPROTO=static
+DEVICE=eth0
+ONBOOT=yes
+IPADDR=192.168.137.200
+GATEWAY=192.168.137.1
+DNS1=192.168.137.1
+NETMASK=255.255.255.0
+
+
+重启网络服务，使设置生效：
+systemctl restart network
 ```
