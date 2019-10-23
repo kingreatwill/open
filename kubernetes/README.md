@@ -93,6 +93,9 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 2. 如果config文件中有token，则复制token，点击令牌登录
 ```
 7. 配置 Ingress
+
+https://www.cnblogs.com/linuxk/p/9706720.html
+
 说明：如果测试 Istio，不需要安装 Ingress
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
