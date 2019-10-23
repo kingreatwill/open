@@ -2,6 +2,8 @@
 [教程](https://hub.docker.com/_/redis)
 [参考](https://www.mgchen.com/268.html)
 
+多线程版本:
+https://hub.docker.com/r/eqalpha/keydb
 安装5.0.6
 ```
 docker pull redis:5.0.6   #98M

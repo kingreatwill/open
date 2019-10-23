@@ -1,4 +1,4 @@
-# 非语言学习笔记
+# 学习笔记
 1. kubernetes
 
 中文文档1：https://kubernetes.io/zh/docs/
