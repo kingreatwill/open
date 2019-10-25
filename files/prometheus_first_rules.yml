@@ -1,0 +1,11 @@
+groups:
+- name: test-rule
+  rules:
+  - alert: clients
+    expr: go_goroutines > 1
+    for: 1m
+    labels:
+      severity: warning 
+    annotations:
+      summary: "{{$labels.instance}}: Too many clients detected"
+      description: "{{$labels.instance}}: Client num is above 80% (current value is: {{ $value }}"

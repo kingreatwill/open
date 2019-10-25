@@ -1,0 +1,18 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.exmail.qq.com:25'
+  smtp_from: 'service@lingcb.com'
+  smtp_auth_username: 'service@lingcb.com' 
+  smtp_auth_password: '123456@Lcb' 
+  smtp_require_tls: false
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'email.enter'
+receivers:
+- name: 'email.enter'
+  email_configs:
+  - to: '350840291@qq.com'
