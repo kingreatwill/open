@@ -44,14 +44,17 @@ https://github.com/josephmisiti/awesome-machine-learning
 
 中文 | 英文
 -|-
-计算机视觉    |      Computer Vision
-自然语言处理   |     Natural Language Processing
+计算机视觉    |      Computer Vision 无人驾驶识别红绿灯
+自然语言处理   |     Natural Language Processing(NLP) 语音识别，智能对话 属于 自然语言处理
 机器学习        |    General-Purpose Machine Learning
 数据分析/数据可视化 | Data Analysis / Data Visualization
 语音识别 |          Speech Recognition
 空间分析和几何 |  Spatial analysis and geometry
 手势检测 | Gesture Detection
 序列分析 | Sequence Analysis
+
+CV教他认识他看到的一切，NLP教他更好理解我们的意思
+
 应用：
 * 物联网
 物联网（Internet of Things），或者说IOT
@@ -61,3 +64,7 @@ slack
 
 * 自动驾驶
 Uber和Tsla
+
+* 推荐系统
+
+* 风控
