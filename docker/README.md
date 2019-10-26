@@ -140,4 +140,21 @@ docker pause :暂停容器中所有的进程。
 docker unpause :恢复容器中所有的进程。
 
 
+
+docker ps
+等价于
+docker container ps
+等价于
+docker container ls
+
+容器中到底运行了哪些进程：
+docker top container_name
+如果想要看到更多信息比如状态、启动时间等等，可以加上-au：（当然可以参阅Linux ps命令的参数加上更多参数显示特定信息）
+
+每个容器对于各种资源的使用情况：
+docker stats
+实时变化的列表，以显示每个容器实例的CPU使用率、内存使用量以及可用量等等。
+docker stats exceptionless_api_1 
+查看具体的容器　　
+
 # docker三剑客  docker-machine compose swarm
