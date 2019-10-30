@@ -111,6 +111,26 @@ kubeadm reset
 # 只在 master 节点执行
 kubectl delete node demo-worker-x-x
 ```
+k8s集群slave节点使用kubectl命令时The connection to the server localhost:8080 was refused - did you specify the right host or port?
+
+解决方案1：
+/etc/kubernetes/admin.conf 可以从主节点拷贝
+```
+[k8s@server1 ~]# mkdir -p $HOME/.kube
+[k8s@server1 ~]# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+[k8s@server1 ~]# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+解决方案2
+```
+出现这个问题的原因是kubectl命令需要使用kubernetes-admin来运行，解决方法如下，将主节点中的【/etc/kubernetes/admin.conf】文件拷贝到从节点相同目录下，然后配置环境变量：
+
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+立即生效
+
+source ~/.bash_profile
+```
+
+
 
 6. 安装 Ingress Controller
 ```

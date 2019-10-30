@@ -92,6 +92,31 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 2. 如果config文件中有token，则复制token，点击令牌登录
 ```
+Kuboard 是基于一款基于 Kubernetes 的微服务管理面板
+```
+安装
+kubectl apply -f https://kuboard.cn/install-script/kuboard.yaml
+
+获取token（所以权限）通过git执行命令
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kuboard-user | awk '{print $1}') 
+
+只读用户 的 Token 通过git执行命令
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kuboard-viewer | awk '{print $1}')
+
+访问Kuboard
+
+1. Kuboard Service 使用了 NodePort 的方式暴露服务，NodePort 为 32567；您可以按如下方式访问 Kuboard。
+http://任意一个Worker节点的IP地址:32567/
+
+2. 或者
+kubectl port-forward service/kuboard 8080:80 -n kube-system
+
+在浏览器打开链接 （请使用 kubectl 所在机器的IP地址）
+
+http://localhost:8080
+```
+
+
 7. 配置 Ingress
 
 https://www.cnblogs.com/linuxk/p/9706720.html
