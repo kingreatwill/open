@@ -88,8 +88,10 @@ config 路径
 
 1. 网上
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
 配置kube的config文件，将刚才生成的token: 放在最后。（ token: 后面有个空格 ，不然会报:错误）
 
+kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 2. 如果config文件中有token，则复制token，点击令牌登录
 ```
 Kuboard 是基于一款基于 Kubernetes 的微服务管理面板
