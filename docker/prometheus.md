@@ -3,6 +3,8 @@
 docker pull prom/prometheus:v2.13.1
 ```
 # [安装grafana](https://grafana.com/docs/installation/docker/)
+https://www.jianshu.com/p/7e7e0d06709b
+默认用户:admin/admin
 ```
 docker pull grafana/grafana:6.4.3
 
@@ -19,19 +21,22 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 docker volume create grafana-storage
 
 # start grafana
+
+docker pull grafana/grafana:6.4.3
+
 docker run \
   -d \
   -p 3000:3000 \
   --name=grafana \
   -v grafana-storage:/var/lib/grafana \
-  grafana/grafana
+  grafana/grafana:6.4.3
 
 或者
 mkdir data # creates a folder for your data
 ID=$(id -u) # saves your user id in the ID variable
 
 # starts grafana with your user id and using the data folder
-docker run -d --user $ID --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 grafana/grafana:5.1.0
+docker run -d --user $ID --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 grafana/grafana:6.4.3
 
 
 --user root
@@ -48,7 +53,7 @@ docker run \
   -p 3000:3000 \
   --name=grafana \
   -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" \
-  grafana/grafana
+  grafana/grafana:6.4.3
 
 
 从源码安装
