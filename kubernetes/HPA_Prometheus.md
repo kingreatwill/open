@@ -20,6 +20,20 @@ https://segmentfault.com/a/1190000018141551?utm_source=tag-newest
 
 # 安装[jq](https://stedolan.github.io/jq/download/)命令
 https://www.jianshu.com/p/6de3cfdbdb0e
+```
+windows:
+chocolatey install jq
+centos:
+安装EPEL源：
+yum install epel-release
+
+安装完EPEL源后，可以查看下jq包是否存在：
+yum list jq
+
+安装jq：
+yum install -y jq
+```
+
 # 1部署 Metrics Server
 ```
 1. 修改image 为 registry.cn-hangzhou.aliyuncs.com/google_containers/metrics-server-amd64:v0.3.6
@@ -38,7 +52,7 @@ $ kubectl edit deploy -n kube-system metrics-server
 
 
 
-部署
+部署(k8s 1.16版本将metrics-server-deployment.yaml的api版本改为apps/v1，1.14不用)
 kubectl create -f yml/metrics-server/0.3.6/deploy/1.8+/
 
 kubectl get pod -n kube-system
@@ -81,7 +95,73 @@ spec:
 # 2部署 Custom Metrics Server
 https://github.com/DirectXMan12/k8s-prometheus-adapter
 ```
+您将在专用命名空间中部署Prometheus和适配器。
 
+创建monitoring命名空间：
+
+kubectl create -f ./namespaces.yaml
+在monitoring命名空间中部署Prometheus v2：
+
+kubectl create -f ./prometheus
+生成Prometheus适配器所需的TLS证书：
+
+make certs
+生成以下几个文件：
+
+# ls output
+apiserver.csr  apiserver-key.pem  apiserver.pem
+部署Prometheus自定义指标API适配器：
+
+kubectl create -f ./custom-metrics-api
+列出Prometheus提供的自定义指标：
+
+kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1" | jq .
+
+```
+部署测试应用
+```
+kubectl create -f ./podinfo/podinfo-svc.yaml,./podinfo/podinfo-dep.yaml
+
+podinfo-dep.yaml 1.16版本要加上
+api版本改成apps/v1
+  selector:
+    matchLabels:
+      app: podinfo
+
+获取自定义指标
+kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests" | jq .
+
+
+```
+部署自定义HPA
+```
+修改
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+为
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+
+kubectl create -f ./podinfo/podinfo-hpa-custom.yaml
+如果请求数超过每秒10个，将扩展podinfo部署
+
+
+查看HPA
+kubectl get hpa
+
+并发测试
+hey -n 10000 -q 5 -c 5 http://192.168.1.120:31198/healthz
+
+几分钟后，HPA开始扩展部署：
+kubectl describe hpa
+能看到什么原因扩容的
+
+查看pod是否增加
+kubectl get pod
+
+负载测试结束后几分钟 pod会降到2个
 ```
 
 # 原理讲解
