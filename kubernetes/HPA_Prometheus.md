@@ -144,7 +144,7 @@ api版本改成apps/v1
 
 获取自定义指标
 kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests" | jq .
-
+java 版本：javapodinfo.yaml
 
 ```
 部署自定义HPA
@@ -206,6 +206,11 @@ annotations:
     prometheus.io/scrape，为true则会将pod作为监控目标。
     prometheus.io/path，默认为/metrics
     prometheus.io/port , 端口
+
+根据prometheus.io/scrape: 'true'获知对应的endpoint是需要被scrape的
+根据prometheus.io/app-metrics: 'true'获知对应的endpoint中有应用进程暴露的metrics
+根据prometheus.io/app-metrics-port: '8080'获知进程暴露的metrics的端口号
+根据prometheus.io/app-metrics-path: '/metrics'获知进程暴露的metrics的具体路径
 
 3. 获取指标
 ```shell

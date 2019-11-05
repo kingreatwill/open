@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javapodinfo
+spec:
+  selector:
+    matchLabels:
+      app: javapodinfo
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: javapodinfo
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9999'
+    spec:
+      containers:
+        - name: javapodinfod
+          image: kingreatwill/javapodinfo:0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 9999
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 3
+            failureThreshold: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javapodinfo
+  labels:
+    app: javapodinfo
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      name: 'apiport'
+      targetPort: 8080
+      nodePort: 31888
+      protocol: TCP
+    - port: 9999
+      name: 'metricport'
+      targetPort: 9999
+      nodePort: 31999
+      protocol: TCP
+  selector:
+    app: javapodinfo
