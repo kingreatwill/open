@@ -229,10 +229,14 @@ hey --help
 
 5. 安装Grafana
 ```
+kubectl create -f yml/pv/pv_10G.yaml
+kubectl create -f yml/grafana/grafana_pvc.yaml
 kubectl create -f yml/grafana/grafana.yaml
+
+```
 访问 http://192.168.1.120:32333/  admin  admin
 配置 prometheus地址 http://prometheus.monitoring.svc:9090
-```
+
 
 QPS（TPS）：每秒钟request/事务 数量
 并发数： 系统同一时候处理的request/事务数
