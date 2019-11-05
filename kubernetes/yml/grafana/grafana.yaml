@@ -17,12 +17,28 @@ spec:
       containers:
       - name: grafana
         image: grafana/grafana:6.4.3
+        env:
+          - name: GF_PATHS_PROVISIONING
+            value: /var/lib/grafana/provisioning
+        volumeMounts:
+        - name: grafana-storage
+          mountPath: /var/lib/grafana/
         ports:
         - containerPort: 3000
-          protocol: TCP 
+          protocol: TCP
+      initContainers:
+      - name: "init-chown-data"
+        image: "busybox:latest"
+        imagePullPolicy: "IfNotPresent"
+        command: ["chown", "-R", "472:472", "/var/lib/grafana/"]
+        volumeMounts:
+        - name: grafana-storage
+          mountPath: /var/lib/grafana/
+          subPath: "" 
       volumes:
       - name: grafana-storage
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: monitoring-grafana-claim
 ---
 apiVersion: v1
 kind: Service
