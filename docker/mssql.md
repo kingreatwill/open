@@ -1,8 +1,15 @@
 # docker 安装sqlserver 2019
-[教程](https://docs.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sqlallproducts-allversions&pivots=cs1-bash)
+[中文教程](https://docs.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sqlallproducts-allversions&pivots=cs1-bash)
+
+[英文的可能更新的快](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
+
+[版本列表](https://mcr.microsoft.com/v2/mssql/server/tags/list)
+[hub](https://hub.docker.com/_/microsoft-mssql-server)
 
 ```
 docker pull mcr.microsoft.com/mssql/rhel/server:2019-CTP3.2 #1.77G 有点大，比较慢
+
+docker pull mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04 # 2019-11-02 正式版
 
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=123456@lcb" -v /d/dockerv/mssql/data/:/var/opt/mssql/data/ -p 1433:1433 --name sql2019 --restart always -itd mcr.microsoft.com/mssql/rhel/server:2019-CTP3.2
 
