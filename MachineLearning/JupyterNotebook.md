@@ -50,3 +50,6 @@ https://blog.51cto.com/853056088/2162189
 
 
 ### 三、docker运行
+
+### 四、VS Code
+https://zhuanlan.zhihu.com/p/87887002

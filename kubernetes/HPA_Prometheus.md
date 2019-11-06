@@ -257,3 +257,7 @@ heapster已经被官方废弃（k8s 1.11版本中，HPA已经不再从hepaster�
 CPU内存、HPA指标： 改为[metrics-server](https://github.com/kubernetes-incubator/metrics-server)
 基础监控：集成到prometheus中，kubelet将metric信息暴露成prometheus需要的格式，使用[Prometheus Operator](https://github.com/coreos/prometheus-operator)
 事件监控：集成到https://github.com/heptiolabs/eventrouter
+
+
+#  cAdvisor
+cAdvisor并不是被部署在每个pod中，而是在节点级别上。它能够自动发现计算机上所有正在运行的容器，并收集到诸如内存、CPU等系统网络指标。
