@@ -66,7 +66,7 @@ TOC（Technical Oversight Committee）的主要成员有9位，包括阿里的Li
 --|--|--|--
 Kubernetes|[2018.03.06](https://www.cncf.io/announcement/2018/03/06/cloud-native-computing-foundation-announces-kubernetes-first-graduated-project/)|[golang](https://github.com/kubernetes/kubernetes)|编排调度
 Prometheus|[2018.08.09](https://www.cncf.io/announcement/2018/08/09/prometheus-graduates/)|[golang](https://github.com/prometheus/prometheus)|监控
-Envoy|[2019.11.28](https://www.cncf.io/announcement/2018/11/28/cncf-announces-envoy-graduation/)|[C++](https://github.com/envoyproxy/envoy)|服务代理
+Envoy|[2018.11.28](https://www.cncf.io/announcement/2018/11/28/cncf-announces-envoy-graduation/)|[C++](https://github.com/envoyproxy/envoy)|服务代理
 CoreDNS|[2019.01.24](https://www.cncf.io/announcement/2019/01/24/coredns-graduation/)|[golang](https://github.com/coredns/coredns)|协同与服务发现
 containerd|[2019.02.28](https://www.cncf.io/announcement/2019/02/28/cncf-announces-containerd-graduation/)|[golang](https://github.com/containerd/containerd)|容器运行环境
 Fluentd|[2019.04.11](https://www.cncf.io/announcement/2019/04/11/cncf-announces-fluentd-graduation/)|[Ruby](https://github.com/fluent/fluentd)|日志
