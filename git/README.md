@@ -31,7 +31,7 @@ GIT的架构，可以分为几个部分：
 
 - 本地工作区(working directory)
 - 暂存区(stage area, 又称为索引区, index)
-- 本地仓库(local repository)
+- 本地仓库(local repository,.git directory)
 - 远程仓库(remote repository)
 
 ![](../img/git/git_1.png) 
@@ -47,7 +47,7 @@ GIT的架构，可以分为几个部分：
 
 3. 本地仓库(local repository)
 
-版本控制系统的仓库，存在于本地。当执行git commit命令后，会将暂存区内容提交到仓库之中。在工作区下面有.git的目录，这个目录下的内容不属于工作区，里面便是仓库的数据信息，暂存区相关内容也在其中。
+版本控制系统的仓库，存在于本地。当执行git commit命令后，会将暂存区内容提交到仓库之中。在工作区下面有.git的目录，这个目录下的内容不属于工作区，里面便是仓库的数据信息，暂存区相关内容也在其中。Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
 
 4. 远程版本库(remote repository)
 
