@@ -266,10 +266,23 @@ https://www.jianshu.com/p/acd5fc63895d
 https://blog.csdn.net/qq_39240512/article/details/94858115
 Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议
 - 防火墙要开启22端口
+- 去配置里增加一行：START_SSH_SERVER = true 保存后重启gitea.exe
 1. 生产密钥对
-```
+1.本地电脑上生成并部署SSH key：
+
+```bash
 ssh-keygen -t rsa -C "your_email@youremail.com"
 ```
+创建密码（如果不需要密码则直接回车）；
+一路回车即可生成ssh私钥（id_rsa）和公钥（id_rsa.pub）
+一般在用户目录/.ssh下
+
+id_rsa.pub公钥给到gitea管理员，管理员将其添加到gitea.
+
+测试：
+ssh -t git@github.com #github
+ssh -t DESKTOP-PK520IC@localhost.lingcb.com # gitea
+注意：网页上显示的ssh库地址有个$，需要删除。
 
 ## Git常用的GUI工具
 1. SourceTree:一个开源的Git GUI工具，有一个重要的点是它提供了对git flow的支持。
