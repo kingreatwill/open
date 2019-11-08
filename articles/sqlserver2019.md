@@ -1,6 +1,6 @@
-[选择SQL Server 2019的十大原因](../img/sqlserver/SQL_Server_2019_Top_10_Reasons_to_Choose_ZH_CN.pdf)
-[数据分析](../img/sqlserver/SQL_Server_2019_Transform-Data_into_Insights_Infographic_ZH_CN.pdf)
-[白皮书](../img/sqlserver/EN-US-CNTNT-white-paper-DBMod-Microsoft-SQL-Server-2019-Technical-white-paper.pdf)
+[选择SQL Server 2019的十大原因](../files/sqlserver/SQL_Server_2019_Top_10_Reasons_to_Choose_ZH_CN.pdf)
+[数据分析](../files/sqlserver/SQL_Server_2019_Transform-Data_into_Insights_Infographic_ZH_CN.pdf)
+[白皮书](../files/sqlserver/EN-US-CNTNT-white-paper-DBMod-Microsoft-SQL-Server-2019-Technical-white-paper.pdf)
 
 [SQL Server 2019深度解读：微软数据平台的野望](https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651021946&idx=2&sn=73e80b1cf61c9d01c861fe3b8a2069a9&chksm=bdbe9a298ac9133f48b7c56580be4b2e890a0b4583dfe788fec0747fc3647c0f86de7c581e67&mpshare=1&scene=1&srcid=&sharer_sharetime=1573034039525&sharer_shareid=16697c4af176d0bae6f144be947679f7#rd)
 ![架构](../img/sqlserver/sqlserver2019.webp)
