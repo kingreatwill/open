@@ -28,7 +28,7 @@ PATH     = E:/git/gitea/data/gitea.db
 ```
 sc create gitea start= auto binPath= ""E:\git\gitea\gitea.exe" web --config "E:\git\gitea\custom\conf\app.ini""
 ```
-- 打开windows服务，开启gitea: services.msc   (sc delete gitea 删除)
+- 打开windows服务，开启gitea: services.msc   (sc delete gitea 删除)(或者net start gitea)
 - open http://127.0.0.1:3000/
 
 
