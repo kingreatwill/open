@@ -159,6 +159,10 @@ http 每次push或者pull的时候都要求输入账号和密码
 ```
 git config --global credential.helper store
 ```
+git 警告: LF will be replaced by CRLF in readme.txt. The file will have its original line endings in your working directory.
+```
+git config --global core.autocrlf false  //禁用自动转换
+```
 
 #### 从命令行创建一个新的仓库
 git init
