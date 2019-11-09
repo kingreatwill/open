@@ -196,6 +196,119 @@ git cat-file –p/-t key #获取指定key的对象信息，-p打印详细信息�
 ```
 利用该命令可以查看已经key-value化的Git对象的详细信息。
 
+##### 实验：利用plumbing命令来进行git add的实践
+- 首先，新建一个Git仓库，通过在新建的文件夹中利用git init命令来初始化
+```cmd
+git init
+```
+- 初始化之后，会在当前目录下生成.git目录，进入该目录，就会发现我们上述的目录结构。然后，我们新建一个version.txt文件并在文件中写入"version 1"字符串，这是version.txt的第一个版本，然后利用git hash-object –w命令将该文件转换为Git的对象并存储：
+```cmd
+echo "version 1" > version.txt
+git hash-object –w version.txt # 输出：83baae61804e65cc73a7201a7252750c76066a30
+```
+这里hash-objec命令会返回该Git对象的key值，这时到.git目录的objects目录下会发现，多了一个83子目录，该目录中的文件名称为baae61804e65cc73a7201a7252750c76066a30，也就是该key值的后38位。
+
+- 记下key值，因为我们要根据该key值将该对象加入索引库。接着，我们利用update-index命令进行索引化操作
+```
+git update-index --add --cacheinfo 100644 83baae61804e65cc73a7201a7252750c76066a30 version.txt
+```
+注意，这里一定要带上--dd选项，而--cacheinfo选项则指出该文件的文件类型，100644表示普通文件，与之相关的还有可执行文件等等；并且，除了指定key值，还需要指定文件名，表明要把哪个文件的哪个版本加入索引库。该命令执行完成后，可以发现.git目录下多了index文件，并且在以后每次update-index命令执行之后，该index文件的内容都会发生变化。
+
+- 至此，git add的主要过程也便完成了。
+index是一个索引文件，存放的是暂存区的整个目录树的信息，并且为目录树中的每个文件都保存了时间戳和长度。如果用UltraEdit打开使用过程中的index文件，可以发现index的格式为以下形式：
+```
+Index魔数（DIRC） + 版本号 + 暂存的文件个数 + 每个文件的时间戳和长度
+```
+Index索引库记录从项目初始化到目前为止，项目仓库中所有文件最后一次修改时刻的时间戳以及对应的长度信息，因此随着加入仓库中的文件不断增多，index文件也会不断增大。每次调用git add命令，都会把add的文件的索引信息（时间戳和大小）进行更新，而我们所使用的git status命令，则会把每一个文件的索引信息和上次提交的索引信息进行比较，如果发生了变化，就会显示出来。Pro git 中是这样描述暂存操作的：暂存操作会对每一个文件计算校验和（即第一章中提到的 SHA-1 哈希字串），然后把当前版本的文件快照保存到 Git 仓库中（Git 使用 blob 类型的对象存储这些快照），并将校验和加入暂存区域。意思很明确，也就是每个文件对应的当前版本的key也会加入到index文件中，这个我没有进行验证，不过理论上讲应该是正确的。
+
+查看文件内容：
+```
+git ls-files --stage
+```
+
+##### 实验：创建树节点
+在Git中，所有的内容以tree或者BLOB对象进行存储，如果把Git比作UNIX的文件系统，则tree对象对应于UNIX文件系统中的目录，而BLOB对象则对应于inodes或文件内容。在Git对象小节中，我们大致猜想了tree对象的存储格式。其实，一个单独的tree对象包含一条或多条tree记录，每一条记录含有一个指向BLOB对象或子tree对象的sha-1指针（也就是一个40位的key值），并附有该对象的权限模式 、类型和文件名信息，因此，我们的猜想也是八九不离十的。为什么要创建tree对象呢？我们都知道，在Git中，我们add完已修改的文件之后，一般就直接commit暂存区中的内容到本地仓库了，似乎并没有tree这个概念。其实，创建tree对象只是add和commit中间的一个缓冲步骤，因为commit对象要根据tree对象来创建。那么如何创建tree对象呢？只需要如下命令即可：
+```
+git write-tree #根据索引库中的信息创建tree对象,输出：02a6e226d025420f33e6ec18bf2cc1be5d275e9f
+```
+该命令返回所创建的tree对象的key值，通过git cat-file可以查看该对象的详细信息
+```
+git cat-file -p 02a6e226d025420f33e6ec18bf2cc1be5d275e9f
+
+输出：
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    222.txt
+040000 tree 636d98efd76784b612a0f9651386464fea3ad952    xxx1目录
+040000 tree 6bdba1067b6f0eb9f8f74d9249b6a040cc13a3b3    xxx2目录
+040000 tree 113145f38e532570d0d3acac368ac2c885278217    xxx3目录
+100644 blob d800886d9c86731ae5c4a62b0b77c437015e00d2    panda.txt
+100644 blob 83baae61804e65cc73a7201a7252750c76066a30    version.txt
+
+git cat-file -t 02a6e226d025420f33e6ec18bf2cc1be5d275e9f 输出：tree
+```
+cat-file –t显示该对象的类型为tree，表明该tree对象创建成功了，至此，树节点便创建完成了。
+
+实际上，由于index暂存区包括了项目仓库中所有的文件，因此commit对象所对应的tree对象，永远都是工作目录的根tree对象。也就是说，**每次commit，都是把工作目录的根目录所对应的tree对象，链接给此次的commit对象；而且，在Git中，每个子目录都对应一个tree对象，每个文件对应一个BLOB对象，因此整个工作目录对应一棵Git对象树，根节点就是commit对象所引用的tree节点，而每个子文件夹又分别对应一棵子树。所以任何一个文件的更改，都会导致其上层所有父对象的更改和重新存储。这里不再进行演示，你可以通过git add和git commit进行多次提交，并在每次提交之后使用git log查看commit对象的key，使用cat-file获取对应的tree对象的key，并再次使用cat-file获取该tree对象下所有的子对象，这时你可以发现，子文件夹都对应一个tree节点，文件都对应一个BLOB节点。**
 
 
-[原文](https://www.cnblogs.com/yelbosh/p/7471979.html)
+##### 实验：Commit对象
+在Git中，每一次commit都对应一个commit对象，而一个commit对象对应一个tree对象。为了创建commit对象，需要使用如下命令：
+```
+git commit-tree key –p key2 #根据tree对象创建commit对象，-p表示前继commit对象
+```
+该方法有点类似于数据结构中树的增加节点操作：都是向父节点中增加子节点。其中，-p选项指明了前继commit对象的key值，也就是父节点的key值，这样，这两个commit节点便连接在了一起，而不断的连接便构成了一棵树，也就是我们接下来要讲的提交树。Commit对象的创建过程如下所示：
+```cmd
+echo "commit test" | git commit-tree 02a6e2 #输出：19ea8818f430568f6f26084a7431dd6558fd8452
+
+
+```
+```
+git cat-file -p 19ea8818f430568f6f26084a7431dd6558fd8452
+输出:
+tree 02a6e226d025420f33e6ec18bf2cc1be5d275e9f
+author kingreatwill <350840291@qq.com> 1573265481 +0800
+committer kingreatwill <350840291@qq.com> 1573265481 +0800
+
+"commit test"
+```
+```
+git log --stat 19ea8818f430568f6f26084a7431dd6558fd8452
+```
+在该命令中，我们只需要指定key的前六位即可，由于这是第一次提交，因此不需要带上-p选项来指明父节点。通过cat-file命令可以看到，commit对象已创建成功，该commit对象中包含了与之关联的tree对象的key值，以及author和committer的信息。如果要查看完整的提交记录，可以通过git log –stat key命令，该命令会打印指定commit对象之前的所有提交记录。至此，commit对象已经创建完成，而我们也利用plumbing命令，完整的实现了Git的add和commit操作
+
+到目前为止，所创建的所有对象的关系如下图所示：第一次提交后Git对象关系图
+![](../img/git/git-commit-1.png)
+
+##### 实验：提交树Commit Tree
+接下来，我们在第一次提交的基础上完成第二次提交和第三次提交。第二次提交我们会提交version.txt的第二个版本，并增加一个新的文件；第三次提交会演示在tree对象中构造子tree对象并提交。在下面的每一次提交中，我们还需要指定每一次提交的前继提交对象，这样commit对象便连接在一起，形成一棵提交树。首先，我们进行第二个版本的修改和提交。如下图，修改version.txt并添加一个new.txt文件，然后利用上面的方法进行key-value化和索引更新：
+```
+echo "version 2" > version.txt
+echo "new" > new.txt
+
+git hash-object -w version.txt  输出：823xxxxx
+git hash-object -w new.txt  输出：03ccxxxxx
+```
+然后进行索引的更新：
+```
+git update-index --add --cacheinfo 100644 823xxx  version.txt
+
+git update-index --add --cacheinfo 100644 03ccxxxxx  new.txt
+```
+然后我们利用暂存区创建tree对象，并根据该tree对象创建commit对象，如下图所示。注意，本次commit需要利用-p选项指定此次commit对象的前继commit对象，可以看到，通过git log命令打印出来的commit对象，连接在了一起。
+![](../img/git/git-commit-2.png)
+本次提交完成后，Git中的对象关系如下图所示：第二次提交后Git对象关系图
+![](../img/git/git-commit-s2.png)
+紧接着，我们来进行第三次提交。首先，利用read-tree命令将第一个版本中的tree对象读入暂存区。如下图所示：
+![](../img/git/git-commit-cmd-2.png)
+注意，在读取的过程中，需要加上—prefix选项，否则无法成功读取，这是因为在index中相同路径的文件只能出现一次，由于version.txt已经存在于index索引库了，因此如果想把第一个版本的tree对象读取进来，需要将该版本的version.txt放在文件夹bak中。然后创建tree对象并进行第三次提交，如下图所示：
+![](../img/git/git-commit-cmd-3.png)
+通过git log可以查看所有的commit对象。这个时候，通过cat-file命令查看此次创建的tree对象所包含的内容：
+![](../img/git/git-commit-cmd-4.png)
+可以看到，所创建的tree对象还不仅包括以上的两个BLOB对象，还包括刚才读取的子tree对象，这个时候如果把这个tree再导出成工作目录的话，则在根目录会多出一个bak子文件夹。经过第三次提交后，Git中的所有对象的关系如下图所示。
+
+第三次提交后Git对象关系图
+![](../img/git/git-commit-t3.png)
+注意，这里加上这样的步骤只是为了让大家明白tree对象中的子tree对象的存在，正如上面上节所说的，整个工作目录对应一个tree对象，并且其下的每一个子文件夹都是一个tree对象，每次的commit对象都对应着根tree对象，而任何一个对象的改变都会导致其上层所有tree对象的重新存储。
+
+以上，便是我们利用plumbing命令完成的三次提交的过程，希望通过这几个步骤，能让你简单的理解porcelain命令和plumbing命令之间的联系，为接下来的Git学习做铺垫。
+
+[参考](https://www.cnblogs.com/yelbosh/p/7471979.html)
