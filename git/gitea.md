@@ -1,3 +1,4 @@
+gitlab gogs  gitea
 [gitea是gogs的clone版本](https://blog.gitea.io/2016/12/welcome-to-gitea/)
 选择gitea的原因:
 1. 更新更快
@@ -64,12 +65,12 @@ ROOT = E:/git/gitea/repositories
 
 [server]
 PROTOCOL         = http
-DOMAIN           = localhost.lingcb.com
-ROOT_URL         = http://localhost.lingcb.com:3000/
+DOMAIN           = localhost.xxx.com
+ROOT_URL         = http://localhost.xxx.com:3000/
 HTTP_ADDR        = 0.0.0.0
 HTTP_PORT        = 3000
 START_SSH_SERVER = false
-SSH_DOMAIN       = localhost.lingcb.com
+SSH_DOMAIN       = localhost.xxx.com
 DISABLE_SSH      = false
 SSH_PORT         = 22
 LFS_START_SERVER = true
@@ -119,6 +120,20 @@ ROOT_PATH = E:/git/gitea/log
 
 
 ```
+
+## https配置
+```
+./gitea cert -ca=true -duration=8760h0m0s -host=localhost.xxx.com
+```
+配置文件:
+```
+[server]
+PROTOCOL         = https
+ROOT_URL         = https://localhost.xxx.com/
+HTTP_PORT        = 443
+CERT_FILE = E:/git/gitea/custom/https/cert.pem
+KEY_FILE = E:/git/gitea/custom/https/key.pem
+```
 https://docs.gitea.io/zh-cn/config-cheat-sheet/
 https://docs.gitea.io/en-us/config-cheat-sheet/
 
@@ -162,16 +177,21 @@ git config --global credential.helper store
 git 警告: LF will be replaced by CRLF in readme.txt. The file will have its original line endings in your working directory.
 ```
 git config --global core.autocrlf false  //禁用自动转换
+
+```
+解决 git SSL certificate problem: self signed certificate
+```
+git config --global http.sslVerify false 
 ```
 
 #### 从命令行创建一个新的仓库
 git init
 git add -A .
 git commit -m "init"
-git remote add origin http://localhost.lingcb.com:3000/erp/Kernel4g-SVN.git
+git remote add origin http://localhost.xxx.com:3000/erp/Kernel4g-SVN.git
 git push -u origin master
 #### 从命令行推送已经创建的仓库
-git remote add origin http://localhost.lingcb.com:3000/erp/Kernel4g-SVN.git
+git remote add origin http://localhost.xxx.com:3000/erp/Kernel4g-SVN.git
 git push -u origin master
 
 #### 输入用户名和密码
@@ -190,7 +210,7 @@ git commit -m "init panda"
 git push origin panda
 
 
-#### 远程仓库合并到 master
+#### 远程仓库branch合并到 master
 git checkout master  //切换到 master
 git merge origin/panda  //选择要合并到 master 的分支
 git push origin master   //push 即可 
@@ -285,7 +305,7 @@ id_rsa.pub公钥给到gitea管理员，管理员将其添加到gitea.
 
 测试：
 ssh -t git@github.com #github
-ssh -t DESKTOP-PK520IC@localhost.lingcb.com # gitea
+ssh -t DESKTOP-PK520IC@localhost.xxx.com # gitea
 注意：网页上显示的ssh库地址有个$，需要删除。
 
 ## Git常用的GUI工具
@@ -302,6 +322,18 @@ ssh -t DESKTOP-PK520IC@localhost.lingcb.com # gitea
 - git reset –-hard   系统就会回滚到那个合并开始前的状态
 
 以上三个命令基本上能解决一般的冲突了
+
+## GO mod
+- go get
+```
+go get -insecure localhost.xxx.com/erp/erp_golang@v0.3.0
+```
+- 请问如何让 go mod 对某些私有 module 跳过 GOPROXY 代理？
+```
+go env -w GOPROXY=https://goproxy.io,direct
+# Set environment variable allow bypassing the proxy for selected modules
+go env -w GOPRIVATE=*.xxx.com
+```
 
 
 
