@@ -502,3 +502,38 @@ SumDBs = ["https://sum.golang.google.cn"]
 # Env override: ATHENS_GONOSUM_PATTERNS
 NoSumPatterns = ["git.xx.com/mycompany/*"]
 ```
+
+# 如果nexus开启了匿名用户不能访问
+https://github.com/golang/go/blob/master/src/cmd/go/internal/get/vcs.go
+
+src/cmd/go/internal/modfetch/proxy.go
+
+从源码得知：必须是https
+GOPROXY =
+https://admin:pwd@127.0.0.1:8081/repository/go-proxy/
+
+# 为Nexus开启https
+https://blog.csdn.net/michaelwubo/article/details/80691594
+1. 生成keystore文件
+在项目的 $install-dir/etc/ssl/ 目录下，执行命令
+```
+#{NEXUS_DOMAIN} = nexus为服务器域名
+#{NEXUS_IP} = 192.168.59.1 为服务器IP
+$ cd $install-dir/etc/ssl/
+$ keytool -genkeypair -keystore keystore.jks -storepass nexus3 -keypass nexus3 -alias jetty -keyalg RSA -keysize 2048 -validity 5000 -dname "CN=*.{NEXUS_DOMAIN}, OU=Example, O=Sonatype, L=Unspecified, ST=Unspecified, C=US" -ext "SAN=DNS:{NEXUS_DOMAIN},IP:{NEXUS_IP}" -ext "BC=ca:true"
+```
+2. 添加SSL端口
+$data-dir/etc/nexus.properties
+添加
+application-port-ssl=8443
+3. 添加HTTPS支持配置文件
+修改 $data-dir/etc/nexus.properties 文件，修改Key为 nexus-args 所在行的值，在后面添加,${jetty.etc}/jetty-https.xml,${jetty.etc}/jetty-http-redirect-to-https.xml
+4. 修改HTTPS配置文件
+修改 ${jetty.etc}/jetty-https.xml 文件中keystore和truststore的配置部分
+```
+<Set name="KeyStorePath"><Property name="ssl.etc"/>/keystore.jks</Set>
+<Set name="KeyStorePassword">nexus3</Set>
+<Set name="KeyManagerPassword">nexus3</Set>
+<Set name="TrustStorePath"><Property name="ssl.etc"/>/keystore.jks</Set>
+<Set name="TrustStorePassword">nexus3</Set>
+```
