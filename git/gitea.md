@@ -177,12 +177,40 @@ git config --global credential.helper store
 git 警告: LF will be replaced by CRLF in readme.txt. The file will have its original line endings in your working directory.
 ```
 git config --global core.autocrlf false  //禁用自动转换
+```
+- 情况一：
+Git 可以在你提交时自动地把回车（CR）和换行（LF）转换成换行（LF），而在检出代码时把换行（LF）转换成回车（CR）和换行（LF）。 你可以用git config --global core.autocrlf true 来打开此项功能。 如果是在 Windows 系统上，把它设置成 true，这样在检出代码时，换行会被转换成回车和换行：
+```
+#提交时转换为LF，检出时转换为CRLF
+$ git config --global core.autocrlf true
+```
+- 情况二：
+如果使用以换行（LF）作为行结束符的 Linux 或 Mac，你不需要 Git 在检出文件时进行自动的转换。然而当一个以回车（CR）和换行（LF）作为行结束符的文件不小心被引入时，你肯定想让 Git 修正。 所以，你可以把 core.autocrlf 设置成 input 来告诉 Git 在提交时把回车和换行转换成换行，检出时不转换：（这样在 Windows 上的检出文件中会保留回车和换行，而在 Mac 和 Linux 上，以及版本库中会保留换行。）
+```
+#提交时转换为LF，检出时不转换
+$ git config --global core.autocrlf input
+```
+- 情况三：
+如果你是 Windows 程序员，且正在开发仅运行在 Windows 上的项目，可以设置 false 取消此功能，把回车保留在版本库中：
+```
+#提交检出均不转换
+$ git config --global core.autocrlf false
+```
+你也可以在文件提交时进行safecrlf检查
+```
+#拒绝提交包含混合换行符的文件
+git config --global core.safecrlf true   
 
+#允许提交包含混合换行符的文件
+git config --global core.safecrlf false   
+
+#提交包含混合换行符的文件时给出警告
+git config --global core.safecrlf warn
 ```
-解决 git SSL certificate problem: self signed certificate
-```
-git config --global http.sslVerify false 
-```
+###### 通俗解释
+- git 的 Windows 客户端基本都会默认设置 core.autocrlf=true，设置core.autocrlf=true, 只要保持工作区都是纯 CRLF 文件，编辑器用 CRLF 换行，就不会出现警告了；
+- Linux 最好不要设置 core.autocrlf，因为这个配置算是为 Windows 平台定制；
+- Windows 上设置 core.autocrlf=false，仓库里也没有配置 .gitattributes，很容易引入 CRLF 或者混合换行符（Mixed Line Endings，一个文件里既有 LF 又有CRLF）到版本库，这样就可能产生各种奇怪的问题。
 
 #### 从命令行创建一个新的仓库
 git init
