@@ -361,6 +361,9 @@ go get -insecure localhost.xxx.com/erp/erp_golang@v0.3.0
 go env -w GOPROXY=https://goproxy.io,direct
 # Set environment variable allow bypassing the proxy for selected modules
 go env -w GOPRIVATE=*.xxx.com
+# GONOSUMDB=github.com/mycompany/*
+# go env-w GOSUMDB=off
+# GOSUMDB="sum.golang.google.cn"
 ```
 
 

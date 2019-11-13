@@ -428,3 +428,77 @@ mvn deploy:deploy-file  -Dfile=G:\5jar\edu.mit.jwi_2.3.3_jdk.jar -DgroupId=local
 # 部署到本地仓库
 mvn install:install-file -Dfile=g:\edu.mit.jwi_2.3.3_jdk.jar -DgroupId=local.edu.stanford -DartifactId=edu.mit.jwi_jdk -Dversion=2.3.3 -Dpackaging=jar  -DpomFile=g:\pom.xml
 ```
+
+
+# go-proxy 搭建
+https://opsx.alibaba.com/mirror
+
+1. Proxy -> Remote storage
+https://goproxy.io
+
+2. Storage -> Strlct Content Type Vaildation 取消勾选（内容校验）Validate that all content uploaded to this repository is of a MIME type appropriate for the repository format
+
+3. Negative Cache ->  Not found cache enabled: 取消勾选（自动阻止无法访问资源的再次重试）Cache responses for content not present in the proxied repository
+
+代理地址
+http://IP:8081/repository/go-proxy/
+
+
+阿里云
+配置如下：
+ 
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+nexus社区提供的
+配置如下：
+export GOPROXY=https://gonexus.dev
+goproxy.io 的
+配置如下：
+export GOPROXY=https://goproxy.io/
+基于athens的公共服务
+配置如下：
+export GOPROXY=https://athens.azurefd.net
+
+官方提供的(jfrog,golang)
+export GOPROXY=https://gocenter.io
+export GOPROXY=https://proxy.golang.org
+
+七牛云赞助支持的
+export GOPROXY=https://goproxy.cn
+
+# 如何使用自己搭建的git服务VCS
+![](../img/mvn/go+example+(2).png)
+gomods/athens
+```powershell
+git clone https://github.com/gomods/athens
+cd athens
+$env:GO111MODULE="on"
+$env:GOPROXY="https://proxy.golang.org"
+$version = "0.2.0"
+$date = (Get-Date).ToUniversalTime()
+go build -ldflags "-X github.com/gomods/athens/pkg/build.version=$version -X github.com/gomods/athens/pkg/build.buildDate=$date" -o athens ./cmd/proxy
+```
+https://github.com/gomods/athens/blob/master/docs/content/configuration/authentication.md#altassian-bitbucket-and-ssh-secured-git-vcss
+```
+docker pull gomods/athens:v0.7.0
+
+docker run -d -p 3000:3000 --name athens --restart always gomods/athens:v0.7.0
+
+
+docker run -d  -v "E:/git/athens/storage:/var/lib/athens"   -v "E:/git/athens/gitconfig/.gitconfig:/root/.gitconfig" -v "E:/git/athens/config/config.toml:/config/config.toml"   -e ATHENS_DISK_STORAGE_ROOT=/var/lib/athens -e ATHENS_STORAGE_TYPE=disk --name athens-proxy -p 3000:3000 --restart always gomods/athens:v0.7.0
+```
+gitea token http://git.xxx.com/user/settings/applications 生成令牌
+```.gitconfig
+[url "https://root:token@git.xxx.com/"]
+    insteadOf = https://git.xxx.com/
+```
+config.toml
+```
+SumDBs = ["https://sum.golang.google.cn"]
+
+# NoSumPatterns specifies a list of patterns that will make the 
+# Sum DB proxy return a 403 if any of those patterns match. 
+# This will enforce the client to run GONOSUMDB
+# Example pattern: NoSumPatterns = ["github.com/mycompany/*"]
+# Env override: ATHENS_GONOSUM_PATTERNS
+NoSumPatterns = ["git.xx.com/mycompany/*"]
+```
