@@ -787,6 +787,8 @@ mvn clean install : 调用clean生命周期的clean阶段和default的install阶
 
 mvn clean install -Dmaven.test.skip=true : 调用clean生命周期的clean阶段和default的install阶段，实际执行pre-clean和clean，install以及之前所有阶段,但跳过test阶段
 
+#### 插件
+https://www.jianshu.com/p/6d72c5090e80
 
 ## Maven settings文件详解
 1. **文件概览**
