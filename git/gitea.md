@@ -351,6 +351,11 @@ ssh -t DESKTOP-PK520IC@localhost.xxx.com # gitea
 
 以上三个命令基本上能解决一般的冲突了
 
+## git 添加外部项目地址
+git submodule add https://git.xxx.com/org/test.git common/test
+提交
+
+
 ## GO mod
 - go get
 ```
