@@ -341,7 +341,7 @@ ssh -t DESKTOP-PK520IC@localhost.xxx.com # gitea
 2. GitHub For Desktop:GitHub的GUI客户端，可以通过它直接提交pull request(GitHub的PullRequest)。
 
 3. [更多](https://git-scm.com/download/gui/win)
-
+4. tortoisegit
 ## 处理合并冲突
 - git status  查看状态
 
