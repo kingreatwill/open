@@ -352,9 +352,33 @@ ssh -t DESKTOP-PK520IC@localhost.xxx.com # gitea
 以上三个命令基本上能解决一般的冲突了
 
 ## git 添加外部项目地址
+```
+cd projectA
+git submodule add projectB.git projectB
+```
 git submodule add https://git.xxx.com/org/test.git common/test
 提交
 
+当别人git clone包含子模块的代码仓库
+```
+git clone projectA.git
+cd projectA
+git submodule init
+git submodule update
+```
+或者在使用git clone命令时，加上–recurse-submodules或–recursive 这样的递归参数
+git clone --recursive projectA.git
+
+当projectB中添加内容时，git status会发现，
+
+```
+我们要做的就是在[submodule “projectB”]中添加一个ignore子项，这个ignore子项可以有上个可选的值，untracked, dirty和all, 它们的意思分别是：
+
+untracked ：忽略 在子模块B(也就是projectB目录)新添加的，未受版本控制内容
+dirty ： 忽略对projectB目录下受版本控制的内容进行了修改
+all ： 同时忽略untracked和dirty
+这里我们先选择dirty(至少先保证不提交对子模块B的任何修改)，其他的可以根据具体需求来进行选择。
+```
 
 ## GO mod
 - go get
