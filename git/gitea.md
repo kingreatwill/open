@@ -1,5 +1,7 @@
 gitlab gogs  gitea
 [gitea是gogs的clone版本](https://blog.gitea.io/2016/12/welcome-to-gitea/)
+
+[比较](https://www.toutiao.com/a6759755783925137927/)
 选择gitea的原因:
 1. 更新更快
 2. 参与的人员更多更活跃
