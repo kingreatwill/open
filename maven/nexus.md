@@ -1,3 +1,4 @@
+[TOC]
 # Maven仓库
 ## 作用
 仓库用来存储所有项目使用到构件，在maven项目需要依赖时就从该仓库中获取需要的依赖添加到classpath供其使用。
@@ -44,9 +45,10 @@ mvn install:install-file -Dfile=g:\edu.mit.jwi_2.3.3_jdk.jar -DgroupId=local.edu
     </repository>
   </repositories>
  ```
- 使用id=central对仓库进行唯一标识；name仓库名称；url仓库地址；layout=default指定仓库的布局，default也就是上面提到布局规则；**enabled=false表示不从该中央仓库下载快照版本的构件**。
+ 使用id=central对仓库进行唯一标识；name仓库名称；url仓库地址；layout=default指定仓库的布局规则；**enabled=false表示不从该中央仓库下载快照版本的构件**。
  - 2. 私服
 私服是一种特殊的远程仓库，为了节省带宽时间，应该在局域网内假设一个私有的仓库服务器，用其代理所有外部的远程仓库，内部项目在本地找不到时就到私服上下载，因为是公司内部网络下载起来就好很快，如果私服上没有，私服就会通过代理去下载。内部的项目还能部署到私服上供其他项目使用。
+
 架设私服的好处:
 - **节省资金的外网带宽**，利用私服代理外部仓库之后，对外的重复构件下载便得以下手，降低外网带宽压力。
 
@@ -85,7 +87,7 @@ https://help.aliyun.com/document_detail/102512.html
 </repositories>
 ```
 - updataPolicy:配置maven从远程仓库检查更新的频率，对同一个版本（如：log4j.1.2.15.jar）的构件如果发现有更新（如：对log4j.1.2.15.jar进行了内容修复但是版本都不变）会下载最新的。默认daily-maven每天检查一次
-never-从不检查；always-每次构件都要检查更新；interval:X -每隔X分钟检查一次更新（X为整数）
+- never-从不检查；always-每次构件都要检查更新；interval:X -每隔X分钟检查一次更新（X为整数）
 当然：用户可以使用参数-U,强制检查更新，使用参数后，maven就会忽略updatePolicy的配置。
 
 - checksumPolicy:用来配置Maven检查校验和文件失败后的策略。构件被部署到maven仓库中时会同时部署对应的校验和文件，maven会验证校验和文件以确定下载的构件是否完整，如果校验失败，怎么办？策略有3中：(默认值)warn-maven会执行构建时输出警告信息；fail-maven遇到校验和错处就让构建失败；ignore-使maven完全忽略校验和错误。
@@ -175,11 +177,13 @@ mirror相当于一个拦截器，它会拦截maven对remote repository的相关�
 
 
 ## Maven私服比较
-产品|厂商|备注
+https://github.com/binary-repositories-comparison/binary-repositories-comparison.github.io/blob/master/docs/content/_index.md
+产品|厂商|备注 |VS
 --|--|--|--
 Apache|Archiva|https://github.com/apache/archiva
-JFrog|Artifactory|最早的仓库管理软件 [开源版本](https://www.jfrogchina.com/open-source/),[官网](https://jfrog.com/artifactory/) 
-Sonatype|Nexus |最流行 [oss版本开源](https://github.com/sonatype/nexus-public) , [官网](https://www.sonatype.com/nexus-repository-oss)
+JFrog|Artifactory|[开源版本](https://www.jfrogchina.com/open-source/),[官网](https://jfrog.com/artifactory/) |https://jfrog.com/blog/artifactory-vs-nexus-integration-matrix/
+Sonatype|Nexus |[oss版本开源](https://github.com/sonatype/nexus-public) , [官网](https://www.sonatype.com/nexus-repository-oss)|https://www.sonatype.com/nexus-vs-artifactory
+CloudRepo ||https://www.cloudrepo.io/
 
 ## Nexus功能点
 - **代理远程仓库**。配置Nexus代理中央仓库，其它任何公开的Maven仓库，将你组织内部的Maven配置指向Nexus，这样所有构件都将从Nexus下载，如果Nexus没有你要的构件，它会自动先去外部仓库下载到本地，仅一次。
@@ -523,11 +527,11 @@ $ cd $install-dir/etc/ssl/
 $ keytool -genkeypair -keystore keystore.jks -storepass nexus3 -keypass nexus3 -alias jetty -keyalg RSA -keysize 2048 -validity 5000 -dname "CN=*.{NEXUS_DOMAIN}, OU=Example, O=Sonatype, L=Unspecified, ST=Unspecified, C=US" -ext "SAN=DNS:{NEXUS_DOMAIN},IP:{NEXUS_IP}" -ext "BC=ca:true"
 ```
 2. 添加SSL端口
-$data-dir/etc/nexus.properties
+`$data-dir/etc/nexus.properties`
 添加
 application-port-ssl=8443
 3. 添加HTTPS支持配置文件
-修改 $data-dir/etc/nexus.properties 文件，修改Key为 nexus-args 所在行的值，在后面添加,${jetty.etc}/jetty-https.xml,${jetty.etc}/jetty-http-redirect-to-https.xml
+修改 `$data-dir/etc/nexus.properties` 文件，修改Key为 nexus-args 所在行的值，在后面添加,`${jetty.etc}`/jetty-https.xml,`${jetty.etc}`/jetty-http-redirect-to-https.xml
 4. 修改HTTPS配置文件
 修改 ${jetty.etc}/jetty-https.xml 文件中keystore和truststore的配置部分
 ```

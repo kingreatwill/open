@@ -1,14 +1,3 @@
-https://github.com/binary-repositories-comparison/binary-repositories-comparison.github.io/blob/master/docs/content/_index.md
-产品|厂商|备注 |VS
---|--|--|--
-Apache|Archiva|https://github.com/apache/archiva
-JFrog|Artifactory|[开源版本](https://www.jfrogchina.com/open-source/),[官网](https://jfrog.com/artifactory/) |https://jfrog.com/blog/artifactory-vs-nexus-integration-matrix/
-Sonatype|Nexus |[oss版本开源](https://github.com/sonatype/nexus-public) , [官网](https://www.sonatype.com/nexus-repository-oss)|https://www.sonatype.com/nexus-vs-artifactory
-CloudRepo ||https://www.cloudrepo.io/
-
-
-https://www.jianshu.com/c/1690baadc10f
-
 
 # Maven
 [TOC]
@@ -560,6 +549,7 @@ Runtime  |       【运行时范围 运行和测试时生效，编译时不
 - classifier : 用来定义构建输出的一些附属构建。如下情况：有的时候会有jdk版本，这时候就需要<classifier>jdk13</classifier>指定对应jdk版本
 
 - scope : 依赖范围,有以下值:
+
 名称|解释
 --|--
 compile | 默认值，适用于所有阶段，会随着项目一起发布
@@ -567,6 +557,8 @@ provided | 编译和测试的有用，在运行时无效，如servlet-api，在�
 runtime |只在运行时使用，如JDBC驱动，适用运行和测试阶段
 test | 只在测试时使用，用于编译和运行测试代码。不会随项目发布
 system | 类似provided，需要再使用systemPath元素显示制定依赖文件路径，如下。（由于绑定本地文件，在其他计算机不一定存在，所以尽量不要使用）
+systemPath | 仅用于范围为system。提供相应的路径     
+optional | 当项目自身被依赖时，标注依赖是否传递。用于连续依赖时使用
 ```xml
 <scope>system</scope>
 <systemPath>${java.home}/lib/rt.jar</systemPath>
@@ -589,6 +581,7 @@ system | 类似provided，需要再使用systemPath元素显示制定依赖文�
 测试阶段（test）|该范围表明相关依赖只在测试编译阶段和执行阶段，只对测试classpath有效。典型范例：Junit
 系统阶段（system）|该范围表明你需要提供一个系统路径
 导入阶段（import）|该范围只在依赖是一个pom里定义的依赖时使用。同时，当前工程的POM 文件的部分定义的依赖关系可以取代某特定的POM。它不会对三种实际的classpath产生影响
+
 ![](../img/mvn/mvn-dependency.webp)
 
 ## Maven 依赖传递
@@ -615,13 +608,13 @@ mvn dependency:analyze分析当前当前项目的依赖，该命令执行结果�
 1. 情景一：我们在项目中分别引入了2个依赖A和B，A又依赖的C，C又依赖了D，B也依赖了D，但是这个时候C依赖的D和B依赖的D的版本是不同的：
 项目----A---C----D
 项目----B---D
-也就是说，当前项目引入了2次D依赖，那么这时，Maven将采用第一原则：路径最近原则
+也就是说，当前项目引入了2次D依赖，那么这时，Maven将采用**第一原则：路径最近原则**
 
 2. 情景二：我们在项目中分别引入了2个依赖A和B，而A和B又都引入了C，但是，此时A依赖的C和B依赖的C版本是不一致的，那么这个时候Maven如何处理呢？
 这时，第一原则已经不起作用了，
 在Maven2.0.8及之前的版本中和Maven2.0.9之后的版本Maven对于这种情况的处理方式是不一致的,确切的说：
 在Maven2.0.8及之前的版本中Maven究竟会解析哪个版本的依赖，这是不确定的
-在Maven2.0.9之后的版本中，制定了第二原则：第一声明者优先；就是说，它取决于在POM中依赖声明的顺序
+在Maven2.0.9之后的版本中，制定了**第二原则：第一声明者优先**；就是说，它取决于在POM中依赖声明的顺序
 
 - **可选依赖**
 ```xml
@@ -901,6 +894,10 @@ telnet 218.14.227.197 3128 来查看代理地址以及端口是否畅通
 ```
 - id：用于继承和直接查找，唯一
 - mirrorOf：镜像所包含的仓库的Id
+   - *匹配所有的仓库
+   - external:*匹配所有远程仓库，使用localhost的除外，使用file://协议的除外。也就是说，匹配所有不在本机上的远程仓库。
+   - 多个仓库可以使用英文逗号分隔
+   - 使用感叹号排除指定的仓库(*,!repo1匹配除了repo1的所有)
 - name：唯一标识，用于区分镜像站
 - url：镜像路径
 9. **profiles**
@@ -911,7 +908,8 @@ telnet 218.14.227.197 3128 来查看代理地址以及端口是否畅通
 - settings.xml中的信息有repositories、pluginRepositories和properties。定义在properties的值可以在pom.xml中使用。
 
 下面的例子是从官网翻译的，大家有疑问还可以去官网查看
-##### Activation
+##### Activation 
+profile的激活条件，满足条件则激活。
 ```xml
 <profiles>
     <profile>
@@ -999,8 +997,23 @@ Repositories是远程项目集合maven用来移植到本地仓库用于构建系
 - releases，snapshots：这是各种构件的策略，release或者snapshot。这两个集合，POM就可以根据独立仓库任意类型的依赖改变策略。如：一个人可能只激活下载snapshot用来开发。
 - enable：true或者false，决定仓库是否对于各自的类型激活(release 或者 snapshot)。
 - updatePolicy: 这个元素决定更新频率。maven将比较本地pom的时间戳（存储在仓库的maven数据文件中）和远程的. 有以下选择: always, daily (默认), interval:X (x是代表分钟的整型) ， never.
-- checksumPolicy：当Maven向仓库部署文件的时候，它也部署了相应的校验和文件。可选的为：ignore，fail，warn，或者不正确的校验和。
-- layout：在上面描述仓库的时候，提到他们有统一的布局。Maven 2有它仓库默认布局。然而，Maven 1.x有不同布局。使用这个元素来表明它是default还是legacy。
+- checksumPolicy：当Maven向仓库部署文件的时候，它也部署了相应的校验和文件。可选的为：ignore，fail，warn(默认)，或者不正确的校验和。
+- layout：在上面描述仓库的时候，提到他们有统一的布局。Maven 2有它仓库默认布局。然而，Maven 1.x有不同布局。使用这个元素来表明它是default还是legacy。layout在Maven 2/3中都是default，只有在Maven 1.x中才是legacy，所以也不太用管。
+  - legacy的目录结构
+  ```
+  groupId
+  |--artifactId
+    |--jars
+      `--artifact
+  ```
+  - default的目录结构
+  ```
+  groupId
+  |--artifactId
+     |--version
+     |  `---artifact
+     |---metadata
+  ```
 
 10. **activeProfiles**
 ```xml
@@ -1011,6 +1024,8 @@ Repositories是远程项目集合maven用来移植到本地仓库用于构建系
 ```
 每个activeProfile元素对应一个profile id的值，任何profile id被定义到activeProfile的profile将被激活。
 [参考](http://maven.apache.org/settings.html)
+[参考2](https://segmentfault.com/a/1190000020534274)
+[参考3](https://www.jianshu.com/c/1690baadc10f)
 ## Maven仓库
 详见仓库章节
 
