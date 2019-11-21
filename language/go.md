@@ -6,3 +6,34 @@ https://www.cnblogs.com/shijingxiang/articles/11466957.html
 
 pprof
 https://www.cnblogs.com/qcrao-2018/p/11832732.html
+
+
+
+GO
+用于让出CPU时间片
+runtime.Gosched()
+
+
+.net
+Thread.Sleep()方法：是强制放弃CPU的时间片，然后重新和其他线程一起参与CPU的竞争。
+用Sleep()方法是会让线程放弃CPU的使用权。
+用SpinWait()方法是不会放弃CPU的使用权。
+
+.net
+await Task.Yield();// 让出时间片
+Thread.SpinWait();// 不让出时间片
+
+AsyncLocal 4.6+
+
+4.5
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Messaging;
+CallContext
+
+
+
+java
+Thread.yield(); //让出当前剩余的CPU时间片
+Thread.onSpinWait();// 不让出时间片
+
+TransmittableThreadLocal
