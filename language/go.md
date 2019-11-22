@@ -8,6 +8,15 @@ pprof
 https://www.cnblogs.com/qcrao-2018/p/11832732.html
 
 
+编译出dll
+https://www.cnblogs.com/timeddd/p/11731160.html
+
+go build --buildmode=c-shared -o Test.dll
+dotnet 
+[DllImport(DLL_NAME, EntryPoint = "Test")]
+
+
+
 
 GO
 用于让出CPU时间片
