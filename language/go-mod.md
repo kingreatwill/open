@@ -79,6 +79,38 @@ By excluding the properly-versioned (but not working) code it causes go mod to f
 - go list -m -versions github.com/gin-gonic/gin ：列出该模块的所有版本。
 - go mod verify ：验证哈希。
 
+We do this by using our good old friend go get:
+- run go get -u to use the latest minor or patch releases (i.e. it would update from 1.0.0 to, say, 1.0.1 or, if available, 1.1.0)
+- run go get -u=patch to use the latest patch releases (i.e., would update to 1.0.1 but not to 1.1.0)
+- run go get package@version to update to a specific version (say, github.com/robteix/testmod@v1.0.1)
+
+version 1.0.1. go get -u will not get version 2.0.0.
+
+## Module dependencies
+![](../img/go/module_gopath.png)
+
+修改mod文件
+```
+# require a new dependency
+go mod edit -require one/thing@version
+
+# drop a requirement
+go mod edit -droprequire one/thing
+
+# exclude a dependency
+go mod edit -exclude bad/thing@version
+
+# drop an exclusion
+go mod edit -dropexclude bad/thing@version
+
+# replace a dependency
+go mod edit -replace src/thing@version=dst/thing@version
+
+# drop a replacement
+go mod edit -dropreplace src/thing@version
+```
+
+
 #### go env
 ```
 set GONOPROXY=
