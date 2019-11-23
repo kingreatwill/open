@@ -21,3 +21,5 @@ npx webpack client.js
 ```
 dotnet serve
 ```
+
+https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2

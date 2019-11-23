@@ -1,5 +1,7 @@
 go mod 1.13
 
+https://github.com/golang/go/wiki/Modules
+https://github.com/golang/proposal/blob/master/design/24301-versioned-go.md
 
 ## 核心文件：go.mod
 ```
@@ -31,7 +33,30 @@ Go 命令行工具会自动处理 go.mod 中指定的模块版本。当源代码
 
 前面部分为语义化版本号，用于标记版本；中间部分为 UTC 的提交时间，用于比较两个伪版本以其确定先后顺序；后面部分是 commit 哈希的前缀，用于标记该版本位于哪个 commit。
 
+所有前导动词的作用如下：
 
+module：定义模块路径。
+go：设置预期的语言版本。
+require：要求给定版本或更高版本的特定模块。
+exclude：排除特定版本模块的使用，不允许的模块版本被视为不可用，并且查询无法返回。
+replace：使用不同的模块版本替换原有模块版本。
+
+```
+module github.com/example/project
+
+require (
+    github.com/SermoDigital/jose v0.0.0-20180104203859-803625baeddc
+    github.com/google/uuid v1.1.0
+)
+
+exclude github.com/SermoDigital/jose v0.9.1
+
+replace github.com/google/uuid v1.1.0 => git.coolaj86.com/coolaj86/uuid.go v1.1.1
+```
+exclude
+In the case of the github.com/SermoDigital/jose package, it has a proper git tag for v0.9.1, but the current version is v1.1, which is NOT a proper git tag (missing the "patch" version).
+
+By excluding the properly-versioned (but not working) code it causes go mod to fetch from master instead (which is not properly versioned, but has the working code).
 
 ## 版本管理文件：go.sum
 每行由模块导入路径、模块的特定版本和预期哈希组成。
