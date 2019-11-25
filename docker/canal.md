@@ -25,4 +25,6 @@ canal:Canal 是mysql数据库binlog的增量订阅&消费组件。
 
 也可以通过[ClientAdapter](https://github.com/alibaba/canal/wiki/ClientAdapter) 同步到其它存储
 
+如es:https://github.com/alibaba/canal/wiki/Sync-ES
+
 docker pull canal/canal-server:v1.1.4
