@@ -70,3 +70,55 @@ query 暴露如下端口
 ![jaeger](../img/jaeger-architecture.png)
 ![jaeger](../img/jaeger-architecture-v1.png)
 ![jaeger](../img/jaeger-architecture-v2.png)
+
+
+```
+# agent收集器 (1.15 客户端)
+docker run -itd \
+  --name=jaeger-agent \
+  -p6831:6831/udp \
+  -p6832:6832/udp \
+  -p5778:5778/tcp \
+  -p5775:5775/udp \
+  -p14271:14271/tcp \
+  --restart=always \
+  jaegertracing/jaeger-agent:1.15 \
+  --admin-http-port=14271 \
+  --reporter.grpc.host-port=192.168.110.253:14250
+
+
+# collector集成 (1.15)
+docker run -itd \
+    --name=jaeger-collector \
+    -p 14250:14250\
+    -p 14267:14267 \
+    -p 14268:14268 \
+    -p 9411:9411 \
+	-p 14269:14269 \
+    -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
+    -e SPAN_STORAGE_TYPE=elasticsearch \
+    -e ES_SERVER_URLS=http://192.168.110.253:9200 \
+    --restart=always \
+    jaegertracing/jaeger-collector:1.15 \
+	--admin-http-port=14269 
+	
+	
+--reporter.grpc.host-port=192.168.110.253:14250  (加了就起不来)
+
+单连接，无负载平衡。如果指定单个，则为默认设置host:port。（例如：--reporter.grpc.host-port=jaeger-collector.jaeger-infra.svc:14250）
+主机名和循环负载均衡的静态列表。这是用逗号分隔的地址列表得到的。（例如：reporter.grpc.host-port=jaeger-collector1:14250,jaeger-collector2:14250,jaeger-collector3:14250）
+动态DNS解析和循环负载平衡。要获得此行为，请在地址dns:///前面加上，并且gRPC将尝试使用SRV记录（用于外部负载平衡），TXT记录（用于服务配置）和A记录来解析主机名。有关更多信息，请参阅gRPC名称解析文档和dns_resolver.go实现。（例如：--reporter.grpc.host-port=dns:///jaeger-collector.jaeger-infra.svc:14250）
+
+
+
+# queryUI界面 (1.15)
+docker run -dit  \
+  --name=jaeger-query \
+  -p 16686:16686 \
+  -p 16687:16687 \
+  -e SPAN_STORAGE_TYPE=elasticsearch \
+  -e ES_SERVER_URLS=http://192.168.110.253:9200 \
+  --restart=always \
+  jaegertracing/jaeger-query:1.15 \
+  --admin-http-port=16687
+```
