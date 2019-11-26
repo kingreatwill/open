@@ -1,3 +1,5 @@
+![](../img/k8s/pod-info.jpeg)
+
 中文文档: https://rootsongjc.gitbooks.io/kubernetes-handbook
 中文文档: https://jimmysong.io/kubernetes-handbook/
 中文文档: https://github.com/rootsongjc/kubernetes-handbook

@@ -240,12 +240,15 @@ git commit -m "init panda"
 git push origin panda
 
 
+同步 远程分支master 到 本地分支es7
+git branch --set-upstream-to=origin/master es7
+
 #### 远程仓库branch合并到 master
 git checkout master  //切换到 master
 git merge origin/panda  //选择要合并到 master 的分支
 git push origin master   //push 即可 
 
-git merge panda // 合并本地分支
+git merge panda // 合并本地分支panda 到当前分支
 
 #### 删除分支
 git branch -d panda 对分支本地分支panda 进行删除

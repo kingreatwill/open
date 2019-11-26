@@ -1,5 +1,14 @@
 https://github.com/hwholiday/learning_tools
 
+
+go runtime
+深入浅出Golang Runtime
+https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&mid=2653373399&idx=1&sn=041f3efab73730e7c5e3ef3e1d10f20d
+
+练识课堂——Go内存详解.pdf
+
+
+
 go内存模型
 https://cloud.tencent.com/developer/article/1359184
 https://www.cnblogs.com/shijingxiang/articles/11466957.html
