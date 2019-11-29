@@ -170,3 +170,5 @@ git checkout v1.4
 
 我们在使用git pull命令的时候，可以使用--rebase参数，即git pull --rebase。这里表示把你的本地当前分支里的每个提交取消掉，并且把它们临时保存为补丁（这些补丁放到.git/rebase目录中），然后把本地当前分支更新为最新的origin分支，最后把保存的这些补丁应用到本地当前分支上。在使用tortoise的pull的过程中，如果你留意tortoiseGit的日志的话，你就会发现，它使用的就是这种方式来pull最新的提交的。
 
+# git grep
+

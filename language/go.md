@@ -7,7 +7,11 @@ https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&mid=2653373399&idx=1&sn=041f3e
 
 练识课堂——Go内存详解.pdf
 
+[译]Go：内存管理与内存分配
+https://juejin.im/post/5ddcdc5df265da05c33fcad2
 
+带你领略Go源码的魅力----Go内存原理详解
+https://juejin.im/post/5ddcf31751882572d8212481
 
 go内存模型
 https://cloud.tencent.com/developer/article/1359184
