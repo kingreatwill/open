@@ -42,3 +42,41 @@ GET /_template
 ```
 DELETE /_template/template_1
 ```
+
+
+index-1-01和index-2-01都将从它们匹配的模板中继承foo字段。
+```
+PUT _template/template1
+{
+  "index_patterns":[ "index-1-*" ],
+  "mappings": {
+    "properties": {
+      "foo": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+
+PUT index-1-01
+{
+  "mappings": {
+    "properties": {
+      "bar": {
+        "type": "long"
+      }
+    }
+  }
+}
+
+PUT index-2-01
+{
+  "mappings": {
+    "properties": {
+      "bar": {
+        "type": "long"
+      }
+    }
+  }
+}
+```

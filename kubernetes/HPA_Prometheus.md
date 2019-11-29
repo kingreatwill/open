@@ -261,3 +261,22 @@ CPU内存、HPA指标： 改为[metrics-server](https://github.com/kubernetes-in
 
 #  cAdvisor
 cAdvisor并不是被部署在每个pod中，而是在节点级别上。它能够自动发现计算机上所有正在运行的容器，并收集到诸如内存、CPU等系统网络指标。
+
+# prometheus-operator
+
+## CustomResourceDefinitions
+The Operator acts on the following [custom resource definitions (CRDs):](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/)
+
+- **Prometheus**, which defines a desired Prometheus deployment. The Operator ensures at all times that a deployment matching the resource definition is running.
+
+- **ServiceMonitor**, which declaratively specifies how groups of services should be monitored. The Operator automatically generates Prometheus scrape configuration based on the definition.
+
+- **PodMonitor**, which declaratively specifies how groups of pods should be monitored. The Operator automatically generates Prometheus scrape configuration based on the definition.
+
+- **PrometheusRule**, which defines a desired Prometheus rule file, which can be loaded by a Prometheus instance containing Prometheus alerting and recording rules.
+
+- **Alertmanager**, which defines a desired Alertmanager deployment. The Operator ensures at all times that a deployment matching the resource definition is running.
+
+To learn more about the CRDs introduced by the Prometheus Operator have a look at the [design doc](https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md).
+
+https://blog.csdn.net/ygqygq2/article/details/83655552

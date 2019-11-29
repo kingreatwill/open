@@ -1,0 +1,203 @@
+[TOC]
+
+# Elasticsearch中的一些基本概念
+## 索引词(term)
+
+在Elasticsearch中索引词(term)是一个能够被索引的精确值。foo，Foo Foo几个单词是不相同的索引词。索引词(term)是可以通过term查询进行准确的搜索。
+
+## 文本(text)
+
+文本是一段普通的非结构化文字，通常，文本会被分析称一个个的索引词，存储在Elasticsearch的索引库中，为了让文本能够进行搜索，文本字段需要事先进行分析；当对文本中的关键词进行查询的时候，搜索引擎应该根据搜索条件搜索出原文本。
+
+## 分析(analysis)
+
+分析是将文本转换为索引词的过程，分析的结果依赖于分词器，比如： FOO BAR, Foo-Bar, foo bar这几个单词有可能会被分析成相同的索引词foo和bar，这些索引词存储在Elasticsearch的索引库中。当用 FoO:bAR进行全文搜索的时候，搜索引擎根据匹配计算也能在索引库中搜索出之前的内容。这就是Elasticsearch的搜索分析。
+
+## 集群(cluster)
+
+一个集群由一个或多个共享相同的群集名称的节点组成。每个群集有一个单独的主节点，这是由程序自动选择，如果当前主节点失败，程序会自动选择其他节点作为主节点。
+
+## 节点(node)
+
+一个节点属于一个集群。通常情况下一个服务器有一个节点，但有时候为了测试方便，一台服务器也可以有多个节点。在启动时，一个节点将使用广播来发现具有相同群集名称的现有群集，并将尝试加入该群集。
+
+## 路由(routing)
+
+当存储一个文档的时候，他会存储在一个唯一的主分片中，具体哪个分片是通过散列值的进行选择。默认情况下，这个值是由文档的id生成。如果文档有一个指定的父文档，从父文档ID中生成，该值可以在存储文档的时候进行修改。
+
+## 分片(shard)
+
+分片是一个单一的Lucene实例。这个是由Elasticsearch管理的比较底层的功能。索引是指向主分片和副本分片的逻辑空间。对于使用，只需要指定分片的数量，其他不需要做过多的事情。在开发使用的过程中，我们对应的对象都是索引，Elasticsearch会自动管理集群中所有的分片，当发生故障的时候，一个Elasticsearch会把分片移动到不同的节点或者添加新的节点。
+
+## 主分片(primary shard)
+
+每个文档都存储在一个分片中，当你存储一个文档的时候，系统会首先存储在主分片中，然后会复制到不同的副本中。默认情况下，一个索引有5个主分片。你可以在事先制定分片的数量，当分片一旦建立，分片的数量则不能修改。
+
+## 副本分片(replica shard)
+
+每一个分片有零个或多个副本。副本主要是主分片的复制，其中有两个目的：
+
+1、增加高可用性：当主分片失败的时候，可以从副本分片中选择一个作为主分片。
+
+2、提高性能：当查询的时候可以到主分片或者副本分片中进行查询。默认情况下，一个主分配有一个副本，但副本的数量可以在后面动态的配置增加。副本必须部署在不同的节点上，不能部署在和主分片相同的节点上。
+
+## 索引(index)
+
+索引就像关系数据库中的数据库，每个索引有不同字段，可以对应不同的类型；每个索引都可以有一个或者多个主索引片，同时每个索引还可以有零个或者多个副本索引片。
+
+正排索引(forward index)：从文档角度看其中的单词，表示每个文档（用文档ID标识）都含有哪些单词，以及每个单词出现了多少次（词频）及其出现位置（相对于文档首部的偏移量）。倒排索引(inverted index，或inverted files)：从单词角度看文档，标识每个单词分别在那些文档中出现(文档ID)，以及在各自的文档中每个单词分别出现了多少次（词频）及其出现位置（相对于该文档首部的偏移量）。
+简单记为：
+正排索引：文档 ---> 单词
+倒排索引：单词 ---> 文档
+
+
+## 类型(type)
+
+类型类似关系数据库中的表。每种类型都可以指定不同的列。映射定义文档中的每个字段的类型，并可以指定如何分析。
+
+## 文档(document)
+
+一个文档是一个JSON格式的字符串存储在Elasticsearch中。它就像在关系数据库中的表中的一行。每个存储在索引中的一个文件都有一个类型和一个id，每个文件都是一个json对象，存储了零个或者多个字段，或者键值对。原始的json文档被存储在一个叫做_source的字段中。当搜索文档的时候默认返回的就是这个字段。
+
+## 映射(mapping)
+
+映射像关系数据库中的表结构，每一个索引都有一个映射，它定义了索引中的每一个字段类型，以及一个索引范围内的设置。一个映射可以事先被定义，或者在第一次存储文档的时候自动识别。
+
+## 字段(field)
+
+一个文档中包含零个或者多个字段，字段可以是一个简单的值（例如字符串、整数、日期），也可以是一个数组或对象的嵌套结构。字段类似于关系数据库中的表中的列。每个字段都对应一个字段类型，例如整数、字符串、对象等。字段还可以指定如何分析该字段的值。
+
+## 来源字段(source field)
+
+默认情况下，你的原文档将被存储在_source这个字段中，当你查询的时候也是返回这个字段。这允许您可以从搜索结果中访问原始的对象，这个对象返回一个精确的json字符串，这个对象不显示索引分析后的其他任何数据。
+
+## 主键(id)
+
+id是一个文件的唯一标识，如果在存库的时候没有提供id，系统会自动生成一个id，文档的index/type/id必须是唯一的。
+在elasticsearch 无法设置多主键，只有唯一ID
+但是我们可以设置ID的规则，来实现多主键。
+比如本来想设置两个主键，分别是NAME 和 AGE 。
+ID的生成规则就可以写成 NAME_AGE，这样就实现了MYSQL数据库中的联合主键。
+
+1. 手动指定ID
+```
+put /index/type/id
+```
+2. 自动生成document id
+```
+post /index/type
+```
+
+# 对应关系
+RDBMS | Elasticsearch
+--|--
+数据库 Database|索引 Index
+表 Table|类型 Type 6.0.0 废弃
+行 Row|文档 Document
+列 Column|字段 Feild
+表结构 Schema|映射 Mapping
+索引 Index| 反向索引(倒排索引) Everything is indexed
+SQL|查询DSL Query DSL
+SELECT * FROM table | GET /index/type 7.0 {index}/_doc
+UPDATE table SET | PUT /index/type 7.0 {index}/_doc
+DELETE|DELETE /index
+
+## 抛弃type
+```
+PUT twitter
+{
+  "mappings": {
+    "user": {
+      "properties": {
+        "name": { "type": "text" },
+        "user_name": { "type": "keyword" },
+        "email": { "type": "keyword" }
+      }
+    },
+    "tweet": {
+      "properties": {
+        "content": { "type": "text" },
+        "user_name": { "type": "keyword" },
+        "tweeted_at": { "type": "date" }
+      }
+    }
+  }
+}
+
+PUT twitter/user/kimchy
+{
+  "name": "Shay Banon",
+  "user_name": "kimchy",
+  "email": "shay@kimchy.com"
+}
+
+PUT twitter/tweet/1
+{
+  "user_name": "kimchy",
+  "tweeted_at": "2017-10-24T09:00:00Z",
+  "content": "Types are going away"
+}
+
+GET twitter/tweet/_search
+{
+  "query": {
+    "match": {
+      "user_name": "kimchy"
+    }
+  }
+}
+```
+
+```
+PUT twitter
+{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "type": { "type": "keyword" }, 
+        "name": { "type": "text" },
+        "user_name": { "type": "keyword" },
+        "email": { "type": "keyword" },
+        "content": { "type": "text" },
+        "tweeted_at": { "type": "date" }
+      }
+    }
+  }
+}
+
+
+PUT twitter/_doc/user-kimchy
+{
+  "type": "user", 
+  "name": "Shay Banon",
+  "user_name": "kimchy",
+  "email": "shay@kimchy.com"
+}
+
+// 自定义type tweet
+PUT twitter/_doc/tweet-1
+{
+  "type": "tweet", 
+  "user_name": "kimchy",
+  "tweeted_at": "2017-10-24T09:00:00Z",
+  "content": "Types are going away"
+}
+
+GET twitter/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "user_name": "kimchy"
+        }
+      },
+      "filter": {
+        "match": {
+          "type": "tweet" 
+        }
+      }
+    }
+  }
+}
+```
