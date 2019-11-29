@@ -1,6 +1,6 @@
 https://blog.csdn.net/cloudvtech/article/details/80277960
 https://www.jianshu.com/p/0d10121ab283
-
+https://www.jianshu.com/p/cc7eea6dd1fb
 [TOC]
 ## 一、前言
 Kubernetes平台对于分布式服务部署的很多重要的模块都有系统性的支持，借助如下一些平台资源可以满足大多数分布式系统部署和管理的需求：

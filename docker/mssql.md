@@ -1,3 +1,5 @@
+
+https://www.toutiao.com/i6740421545098740237/
 # docker 安装sqlserver 2019
 [中文教程](https://docs.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sqlallproducts-allversions&pivots=cs1-bash)
 
