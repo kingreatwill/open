@@ -154,6 +154,12 @@ get/ack/rollback协议介绍：
 *   进行ack时，需要按照mark的顺序进行数序ack，不能跳跃ack. ack会删除当前的mark标记，并将对应的mark位置更新为last ack cusor
 *   一旦出现异常情况，客户端可发起rollback情况，重新置位：删除所有的mark, 清理get请求位置，下次请求会从last ack cursor继续往后取
 
+流式api带来的异步响应模型：
+![](img/canal-client-stream-api.jpg)
+
+
+
+
 ## 数据格式
 
 canal采用protobuff:
@@ -217,6 +223,27 @@ canal采用protobuff:
      END ----> transaction id: 308
     ================> binlog[mysql-bin.000003:6550] , executeTime : 1473234846000 , delay : 12240ms
     
+
+## Client使用例子
+### 创建Connector
+a. 创建SimpleCanalConnector (直连ip，不支持server/client的failover机制)
+```
+CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(),11111), destination, "", "");
+```
+b. 创建ClusterCanalConnector (基于zookeeper获取canal server ip，支持server/client的failover机制)
+```
+CanalConnector connector = CanalConnectors.newClusterConnector("10.20.144.51:2181", destination, "", "");
+```
+c. 创建ClusterCanalConnector (基于固定canal server的地址，支持固定的server ip的failover机制，不支持client的failover机制
+```
+CanalConnector connector = CanalConnectors.newClusterConnector(Arrays.asList(new InetSocketAddress(AddressUtils.getHostIp(),11111)), destination,"", "");
+```
+
+### get/ack/rollback使用
+![](img/client-use.jpg)
+
+### RowData数据处理
+![](img/client-get-data.jpg)
 
 ## HA机制设计
 
