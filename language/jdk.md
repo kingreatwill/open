@@ -12,3 +12,7 @@ export PATH=$PATH:$JAVA_HOME/bin
 source /etc/profile
 ```
 输入java -version 返回版本信息则安装正常。
+
+
+jpackage
+https://jdk.java.net/jpackage/

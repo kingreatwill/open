@@ -1,6 +1,7 @@
 [TOC]
 ## linux命令或者工具
-
+Linux最常用命令：简单易学，但能解决95%以上的问题
+https://www.toutiao.com/a6763990899924926989/
 ### ag (ack)
 比grep、ack更快的递归搜索文件内容。
 https://github.com/ggreer/the_silver_searcher

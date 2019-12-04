@@ -1,3 +1,7 @@
+
+机器学习google手册
+https://developers.google.cn/machine-learning/crash-course/
+
 # 机器学习
 https://github.com/ujjwalkarn/Machine-Learning-Tutorials
 

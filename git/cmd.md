@@ -172,3 +172,6 @@ git checkout v1.4
 
 # git grep
 
+# git blame 找到谁动了某行代码
+git blame -L 50,50 init/main.c
+
