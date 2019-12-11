@@ -334,3 +334,209 @@ search_quote_analyzer | The analyzer that should be used at search time when a p
 similarity | Which scoring algorithm or similarity should be used. Defaults to BM25.
 term_vector | Whether term vectors should be stored for an analyzed field. Defaults to no.
 
+
+## Dynamic Mapping
+- 在写入文档的时候，如果索引不存在，会自动创建索引
+- Dynamic Mapping 的机制，使得我们无需手动定义 Mappings。Elasticsearch 会自动根据文档信息，推算出字段的类型
+- 但是会有时候推算不对。例如地理位置信息
+- 当类型如果设置不对时，会导致一些功能无法正常运行，例如 Range 查询
+### 类型的自动识别
+JSON 类型 |	Elasticsearch 类型
+--|--
+字符串 |	1 匹配日期格式设置成 Date;2 设置数字设置为 float 或者 long，该选项默认关闭;3 设置为 Text, 并增加 keyword 子字段
+布尔值|	boolean
+浮点数|	float
+整数|	long
+对象|	Object
+数组|	由第一个非空数值的类型所决定
+空值|	忽略
+
+```
+//写入文档
+    PUT mapping_test/_doc/1
+    {
+      "firstName":"Lee",
+      "lastName":"Crazy",
+      "loginDate":"2019-10-22T21:08:48"
+    }
+    //查看Mapping 文件
+    GET mapping_test/_mapping
+    {
+      "mapping_test" : {
+        "mappings" : {
+          "properties" : {
+            "firstName" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            },
+            "lastName" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            },
+            "loginDate" : {
+              "type" : "date"
+            }
+          }
+        }
+      }
+    }
+```
+
+```
+//dynamic mapping 推断字符的类型
+PUT mapping_test/_doc/1
+{
+  "uid":"123",
+  "isVip": false,
+  "isAdmin":"true",
+  "age": 18,
+  "heigh" : 180
+}
+//返回结果
+{
+  "mapping_test" : {
+    "mappings" : {
+      "properties" : {
+        "age" : {
+          "type" : "long"
+        },
+        "heigh" : {
+          "type" : "long"
+        },
+        "isAdmin" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "isVip" : {
+          "type" : "boolean"
+        },
+        "uid" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+### 能否更改 Mapping 的字段类型
+1. 新增字段
+  - Dynamic 设置为 true 时，一定有新增字段的文档写入，Mapping 也同时被更新
+  - Dynamic 设为 false，Mapping 不会被更新，自增字段的数据无法被索引，但是信息会出现在_source 中
+  - Dynamic 设置成 Strict 文档写入失败
+2. 对已有字段，一旦已经有数据写入，就不在支持修改字段定义
+  - Luene 实现的倒排索引，一旦生成后，就不允许修改
+
+
+如果希望改变字段类型，必须 Reindex API，重建索引
+如果修改了字段的数据类型，会导致已被索引的属于无法被搜索
+但是如果是增加新的字段，就不会有这样的影响
+
+### 新增字段
+```
+PUT /mytest_user/_mapping
+{
+  "properties": {
+    "add_new2": {
+      "type": "date"
+    }
+  }
+}
+```
+### 控制 Dynamic Mappings
+d	|true|	false|	strict
+  --|--|--|--
+文档可索引|	YES|	YES|	NO
+字段可索引|	YES|	NO|	NO
+Mapping 被更新|	YES|	NO|	NO
+
+- 当 dynamic 被设置成 false 时候，存在新增字段的数据写入，该数据可以被索引，当时新增字段被废弃
+- 当设置成 Strict 模式的时候，数据写入直接出错
+
+```
+//默认Mapping支持dynamic，写入的文档加入新的字段
+PUT dynamic_mapping_test/_doc/1
+{
+  "newField":"someValue"
+}
+//能被搜索到
+POST dynamic_mapping_test/_search
+{
+  "query": {
+    "match": {
+      "newField": "someValue"
+    }
+  }
+}
+//修改为dynamic false
+PUT dynamic_mapping_test/_mapping
+{
+  "dynamic":false
+}
+//新增anotherField 成功
+PUT dynamic_mapping_test/_doc/10
+{
+  "anotherField":"someValue"
+}
+//重新去查询，但是anotherField 未被搜索到
+POST dynamic_mapping_test/_search
+{
+  "query": {
+    "match": {
+      "newField": "someValue"
+    }
+  }
+}
+//查看mapping
+GET dynamic_mapping_test/_mapping
+{
+  "dynamic_mapping_test" : {
+    "mappings" : {
+      "dynamic" : "false",
+      "properties" : {
+        "newField" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//修改为dynamic strict
+PUT dynamic_mapping_test/_mapping
+{
+  "dynamic": "strict"
+}
+//新增newField 报错
+PUT dynamic_mapping_test/_doc/12
+{
+  "newField":"value"
+}
+```
+
+

@@ -3,6 +3,10 @@ https://github.com/operator-framework/awesome-operators
 https://www.toutiao.com/i6760845939163791876/
 https://www.toutiao.com/i6738200403835355661/
 
+# 自己开发
+https://www.toutiao.com/a6696782409343435275/
+https://github.com/cnych/opdemo
+
 # Kubernetes Operator 介绍
 https://blog.csdn.net/ygqygq2/article/details/83655552
 在 Kubernetes 的支持下，管理和伸缩 Web 应用、移动应用后端以及 API 服务都变得比较简单了。其原因是这些应用一般都是无状态的，所以 Deployment 这样的基础 Kubernetes API 对象就可以在无需附加操作的情况下，对应用进行伸缩和故障恢复了。

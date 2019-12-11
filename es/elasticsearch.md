@@ -143,6 +143,21 @@ GET blog/_doc/1?routing=hardon
 简单记为：
 正排索引：文档 ---> 单词
 倒排索引：单词 ---> 文档
+![](img/inverted-index.png)
+### 倒排索引的核心组成
+倒排索引包含两个部分
+
+- 单词词典（Term Dictionary） ，记录所有文档的单词，记录单词到倒排列表的关联关系
+单词词典比较大，可以通过 B + 树 或者 哈希拉链法实现，以满足高性能的插入与查询
+- 倒排列表（Postion List）- 记录了单词对应的文档结合，由倒排索引项组成
+  - 倒排索引
+  - 文档 ID
+  - 词频 TF - 单词在文档中的分词的位置。用于语句搜索（phrase query）
+  - 偏移（Offset） - 记录单词的开始结束时间，实现高亮显示
+
+![](img/inverted-index-2.png)
+Elasticsearch 的 JSON 文档中的每个字段，都有自己的倒排索引
+可以指定对某些字段不做索引(优点：节省储存空间,缺点：字段无法被搜索)
 
 
 ## 类型(type)
@@ -186,8 +201,29 @@ curl -XPOST localhost:8305/_aliases -d '
     ]
 }
 '
+
 ```
-3. 索引删掉
+3. reindex
+```
+# 将原索引全部放入新索引中，_id冲突的以原索引为准
+# 虽然新索引中只有两个字段(原索引中有三个)，也会将原索引中的数据插入新索引中，并覆盖_id相同的数据。
+POST _reindex
+{
+  "source": {"index": "store_v1"},
+  "dest": {"index": "store_v2"}
+}
+
+# 将原索引放入新索引中，_id冲突的以新索引为准
+# 虽然新索引中只有两个字段(原索引中有三个)，也会将原索引中的数据插入新索引中，但不覆盖_id相同的数据。
+POST _reindex
+{
+  "conflicts": "proceed",
+  "source": {"index": "store_v1"},
+  "dest": {"index": "store_v2","op_type": "create"}
+}
+```
+
+4. 索引删掉
 ```
 curl -XDELETE localhost:8303/store_v1
 ```

@@ -59,3 +59,13 @@ Thread.yield(); //让出当前剩余的CPU时间片
 Thread.onSpinWait();// 不让出时间片
 
 TransmittableThreadLocal
+
+grpc
+conn, err := grpc.Dial(
+    "",
+    grpc.WithInsecure(),
+    grpc.WithBalancer(grpc.RoundRobin(resolver.NewPseudoResolver([]string{
+        "10.0.0.1:10000",
+        "10.0.0.2:10000",
+    }))),
+)
