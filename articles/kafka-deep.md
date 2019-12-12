@@ -261,3 +261,6 @@ transaction.state.log.min.isr=1
 https://mp.weixin.qq.com/s/QRNb4Az5HKvo0seGHTBvww
 
 
+## KSQL
+KSQL是Apache Kafka的SQL流引擎。它提供了易于使用但功能强大的交互式SQL界面，用于在Kafka上进行流处理，而无需使用Java或Python之类的编程语言编写代码。KSQL具有可伸缩性，弹性和容错性。它支持各种流操作，包括数据过滤，转换，聚合，联接，窗口和会话化。
+https://docs.confluent.io/current/ksql/docs/index.html

@@ -195,3 +195,6 @@ watch支持 | 	全量/支持long polling | 	支持 | 	支持 long polling	 | 支
 自身监控 | 	metrics | 	—	 | metrics | 	metrics
 安全 | 	acl /https | 	acl	 | https支持（弱） | 	—
 spring cloud集成 | 	已支持 | 	已支持 | 	已支持 | 	已支持
+
+
+
