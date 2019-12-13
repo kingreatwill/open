@@ -1,0 +1,198 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kong
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: kong
+  name: kong
+  labels:
+    app: kong
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: kong
+  name: kong
+  labels:
+    app: kong
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  namespace: kong
+  name: kong
+  labels:
+    app: kong
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kong
+subjects:
+- kind: ServiceAccount
+  namespace: kong
+  name: kong
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kong
+  name: kong-control-plane
+  labels:
+    app: kong-control-plane
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kong-control-plane
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        k8s.konghq.com/sidecar-inject: "false"
+        prometheus.io/port: "8001"
+        prometheus.io/scrape: "true"
+      labels:
+        app: kong-control-plane
+    spec:
+      serviceAccountName: kong
+      initContainers:
+      - name: wait-for-postgres
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: KONG_PG_PORT
+            value: "5432"
+          - name: KONG_PG_HOST
+            value: 192.168.110.201
+        command: [ "/bin/sh", "-c", "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
+      - name: kong-migration-up
+        image: kong
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: KONG_PG_PASSWORD
+            value: kong
+          - name: KONG_PG_HOST
+            value: 192.168.110.201
+          - name: KONG_NGINX_WORKER_PROCESSES
+            value: "1"
+        command: [ "/bin/sh", "-c", "kong migrations up && kong migrations finish" ]
+      containers:
+      - name: kong-control-plane
+        image: kong
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: KONG_PG_PASSWORD
+            value: kong
+          - name: KONG_PG_HOST
+            value: 192.168.110.201
+          - name: KONG_LOG_LEVEL
+            value: notice
+          - name: KONG_ADMIN_ACCESS_LOG
+            value: /dev/stdout
+          - name: KONG_PROXY_ERROR_LOG
+            value: /dev/stderr
+          - name: KONG_ADMIN_ERROR_LOG
+            value: /dev/stderr
+          - name: KONG_ADMIN_LISTEN
+            value: 0.0.0.0:8001,0.0.0.0:8444 ssl
+          - name: KONG_PROXY_LISTEN
+            value: 0.0.0.0:8000,0.0.0.0:8443 ssl
+          - name: KONG_NGINX_WORKER_PROCESSES
+            value: "1"
+        ports:
+        - name: admin-http
+          containerPort: 8001
+        - name: admin-https
+          containerPort: 8444
+        - name: kongproxy
+          containerPort: 8000
+        - name: kongproxyssl
+          containerPort: 8443
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: 8001
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: 8001
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kong
+  name: kong-control-plane
+spec:
+  type: NodePort
+  ports:
+    - name: kongproxy
+      port: 8000
+      nodePort: 30080
+    - name: admin-http
+      port: 8001
+      nodePort: 30081
+  selector:
+    app: kong-control-plane
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: kong
+  name: kong-control-plane-bootstrap
+  labels:
+    app: kong-control-plane-bootstrap
+spec:
+  template:
+    metadata:
+      name: kong-control-plane-bootstrap
+      labels:
+        app: kong-control-plane
+    spec:
+      initContainers:
+      - name: wait-for-postgres
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: KONG_PG_PORT
+            value: "5432"
+          - name: KONG_PG_HOST
+            value: 192.168.110.201
+        command: [ "/bin/sh", "-c", "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
+      containers:
+      - name: kong-migration-boostrap
+        image: kong
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: KONG_PG_PASSWORD
+            value: kong
+          - name: KONG_PG_HOST
+            value: 192.168.110.201
+          - name: KONG_NGINX_WORKER_PROCESSES
+            value: "1"
+        command: [ "kong", "migrations", "bootstrap" ]
+      restartPolicy: OnFailure

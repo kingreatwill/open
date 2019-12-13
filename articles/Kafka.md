@@ -1,12 +1,28 @@
-https://www.jianshu.com/p/b4cccc6b6a45
-https://www.jianshu.com/p/599b0b7ed21d
-https://www.cnblogs.com/qingyunzong/p/9004509.html
-https://www.toutiao.com/a6746186631276921357/
-https://www.toutiao.com/a6760913909265203719
-https://www.toutiao.com/a6768817833418686988
-https://www.toutiao.com/a6741255916940706316
-https://www.toutiao.com/a6768856487977550343
+Kafka总结（一）：Kafka概述
+https://blog.csdn.net/qq_36807862/article/details/81283142
+Kafka总结（二）：Kafka核心组件
+https://blog.csdn.net/qq_36807862/article/details/81283229
 
+Kafka总结（三）：Kafka核心流程分析
+https://blog.csdn.net/qq_36807862/article/details/81283286 
+
+Kafka总结（四）：Kafka命令操作
+https://blog.csdn.net/qq_36807862/article/details/81283397 
+
+Kafka总结（五）：API编程详解
+https://blog.csdn.net/qq_36807862/article/details/81283460 
+
+Kafka总结（六）：Kafka Stream详解
+https://blog.csdn.net/qq_36807862/article/details/81283491 
+
+Kafka总结（七）：数据采集应用
+https://blog.csdn.net/qq_36807862/article/details/81283546 
+
+Kafka总结（八）：KafKa与ELK整合应用
+https://blog.csdn.net/qq_36807862/article/details/81283568 
+
+Kafka总结（九）：KafKa 与Spark整合应用
+https://blog.csdn.net/qq_36807862/article/details/81283606 
 
 [TOC]
 
