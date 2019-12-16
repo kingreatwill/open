@@ -43,22 +43,16 @@ subjects:
   name: kong
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   namespace: kong
   name: kong-control-plane
   labels:
     app: kong-control-plane
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: kong-control-plane
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
   template:
     metadata:
       annotations:
@@ -77,16 +71,16 @@ spec:
           - name: KONG_PG_PORT
             value: "5432"
           - name: KONG_PG_HOST
-            value: 192.168.110.201
+            value: 192.168.110.231
         command: [ "/bin/sh", "-c", "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
       - name: kong-migration-up
         image: kong
         imagePullPolicy: IfNotPresent
         env:
           - name: KONG_PG_PASSWORD
-            value: kong
+            value: postgres
           - name: KONG_PG_HOST
-            value: 192.168.110.201
+            value: 192.168.110.231
           - name: KONG_NGINX_WORKER_PROCESSES
             value: "1"
         command: [ "/bin/sh", "-c", "kong migrations up && kong migrations finish" ]
@@ -96,9 +90,9 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: KONG_PG_PASSWORD
-            value: kong
+            value: postgres
           - name: KONG_PG_HOST
-            value: 192.168.110.201
+            value: 192.168.110.231
           - name: KONG_LOG_LEVEL
             value: notice
           - name: KONG_ADMIN_ACCESS_LOG
@@ -108,9 +102,9 @@ spec:
           - name: KONG_ADMIN_ERROR_LOG
             value: /dev/stderr
           - name: KONG_ADMIN_LISTEN
-            value: 0.0.0.0:8001,0.0.0.0:8444 ssl
+            value: 0.0.0.0:8001,0.0.0.0:8444 http2 ssl
           - name: KONG_PROXY_LISTEN
-            value: 0.0.0.0:8000,0.0.0.0:8443 ssl
+            value: 0.0.0.0:8000,0.0.0.0:8443 ssl,0.0.0.0:8445 http2
           - name: KONG_NGINX_WORKER_PROCESSES
             value: "1"
         ports:
@@ -156,6 +150,12 @@ spec:
     - name: admin-http
       port: 8001
       nodePort: 30081
+    - name: kongproxys
+      port: 8445
+      nodePort: 30445
+    - name: admin-https
+      port: 8444
+      nodePort: 30444
   selector:
     app: kong-control-plane
 ---
@@ -181,7 +181,7 @@ spec:
           - name: KONG_PG_PORT
             value: "5432"
           - name: KONG_PG_HOST
-            value: 192.168.110.201
+            value: 192.168.110.231
         command: [ "/bin/sh", "-c", "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
       containers:
       - name: kong-migration-boostrap
@@ -189,10 +189,64 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: KONG_PG_PASSWORD
-            value: kong
+            value: postgres
           - name: KONG_PG_HOST
-            value: 192.168.110.201
+            value: 192.168.110.231
           - name: KONG_NGINX_WORKER_PROCESSES
             value: "1"
         command: [ "kong", "migrations", "bootstrap" ]
       restartPolicy: OnFailure
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kong
+  name: konga
+  labels:
+    app: konga
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konga
+  template:
+    metadata:
+      labels:
+        app: konga
+    spec:
+      serviceAccountName: kong
+      containers:
+      - name: konga
+        image: pantsel/konga
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: TOKEN_SECRET
+            value: development
+          - name: DB_ADAPTER
+            value: postgres
+          - name: DB_HOST
+            value: 192.168.110.231
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_USER
+            value: postgres
+          - name: DB_PASSWORD
+            value: postgres
+          - name: DB_DATABASE
+            value: konga
+          - name: NODE_ENV
+            value: development
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kong
+  name: konga
+spec:
+  type: NodePort
+  ports:
+    - port: 1337
+      nodePort: 31337
+  selector:
+    app: konga
+---
