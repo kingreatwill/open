@@ -2,6 +2,9 @@
 
 ![](../img/k8s故障排除指南.jpeg)
 
+和我一步步部署 kubernetes 集群
+https://github.com/opsnull/follow-me-install-kubernetes-cluster
+
 中文文档: https://rootsongjc.gitbooks.io/kubernetes-handbook
 中文文档: https://jimmysong.io/kubernetes-handbook/
 中文文档: https://github.com/rootsongjc/kubernetes-handbook

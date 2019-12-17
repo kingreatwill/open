@@ -50,6 +50,11 @@
 
 这些版本也是免费的、完全无品牌的 OpenJDK 版本，基于 GPL 开源协议（+Classpath Extension），以免费软件的形式提供社区版的 OpenJDK 二进制包，公司也可安全且放心使用。与由 Oracle 的 OpenJDK 构建版本不同，这些版本会提供更长的支持，像 Java 11 一样，至少提供 4 年的免费长期支持(LTS)计划。AdoptOpenJDK 是一个由社区驱动的项目，如果其他群组在 OpenJDK 的源码仓库中创建和发布了安全修复程序，它们也会提供构建。 IBM 和 Red Hat 也曾表示他们打算提供这些安全补丁。
 
+说明：2019 年 10 月，微软宣布加入 OpenJDK 参与开发
+微软的 Bruno Borges 在 OpenJDK 邮件列表中发布了一条消息，内容包含接下来发生的事情以及微软如何开始将其团队整合到 OpenJDK 社区。在邮件中，Bruno Borges 提到，微软已正式签署《Oracle 贡献者协议》。同时，他重申了微软对 Java 的承诺，以及微软团队对回馈 Java 社区的期待。
+
+Borges 曾经是 Oracle 开发人员，现在担任微软 Java 的首席产品经理。他向大家介绍了 Java 工程团队负责人 Martijn Verburg，Verburg 同时也是 jClarity 的首席执行官，而 jClarity 是 AdoptOpenJDK 的主要贡献者，于2019年 8 月被微软收购。
+
 ## AdoptOpenJDK OpenJ9 builds
 除了标准的 OpenJDK 构建外，AdoptOpenJDK 还提供了使用 OpenJ9 而非 HotSpot 的版本。OpenJ9 最初是由 IBM 实现的 JVM，现在已开源并交由 Eclipse 运作。
 
