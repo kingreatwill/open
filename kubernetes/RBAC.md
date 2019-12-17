@@ -2,6 +2,7 @@
 # Kubernetes RBAC角色权限控制
 
 [RBAC——基于角色的访问控制](https://jimmysong.io/kubernetes-handbook/concepts/rbac.html)
+[Kubernetes RBAC角色权限控制](https://www.toutiao.com/a6764673033236906499/)
 
 ## 什么是 Kubernetes RBAC
 
@@ -68,6 +69,27 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 上面例子中的 ClusterRole 定义可用于授予用户对某一特定命名空间，或者所有命名空间中的 secret（取决于其绑定方式）的读访问权限
+
+**Kubernetes还提供了四个预先定义好的ClusterRole来提供用户直接使用**
+- cluster-admin
+- admin
+- edit
+- view
+
+其中cluster-admin角色，对应的是整个Kubernetes项目中最高权限(verbs=*)
+
+我们可以通过下面的命令查看clusterrole的权限
+```
+[root@node1 ~]# kubectl describe clusterrole cluster-admin -n kube-system
+Name:         cluster-admin
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  *.*        []                 []              [*]
+             [*]                []              [*]
+```
 
 ## ClusterRoleBinding 与 RoleBinding
 
@@ -161,9 +183,163 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
+## ServiceAccount
+ServiceAccount主要负责kubernetes内置用户，下面简单定义一个ServiceAccount
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ namespace: mynamespace
+ name: example-sa
+```
+我们定义了一个serverAccount对象，只需要name以及namespace最基础字段就可以。然后通过编写rolebinding的yaml文件，来为这个serviceAccount分配权限
+```yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+ name: example-rolebinding
+ namespace: mynamespace
+subjects:
+- kind: ServiceAccount
+ name: example-sa
+ namespace: mynamespace
+roleRef:
+ kind: Role
+ name: example-role
+ apiGroup: rbac.authorization.k8s.io
+```
+在Rolebinding对象里，subject字段的类型(kind)，不在是一个User，而是一个名叫example-sa的ServerAccount。而roleRef引用的Role对象，依然名叫example-role。也就是我们上面定义的
+
+## User && Group
+Kubernetes除了有用户(User)，还拥有用户组(Group)概念，如果我们Kubernetes配置了外部认证服务的话，这个用户组的概念就由外部认证服务提供
+一个ServiceAccount在Kubernetes对应的用户的名字是
+```
+system:serviceaccount:<ServiceAccount名字>
+```
+而对应的用户组则是
+```
+system:serviceaccounts:<Namespace名字>
+```
+
+
+比如，我们可以在RoleBinding中定义如下subjects
+```
+subjects:
+- kind: Group
+ name: system:serviceaccounts:mynamespace
+ apiGroup: rbac.authorization.k8s.io
+```
+这就意味着role的规则权限，作用于mynamespace里的所有ServiceAccount，这就用到了用户组的概念
+
+
+```
+subjects:
+- kind: Group
+ name: system:serviceaccounts
+ apiGroup: rbac.authorization.k8s.io
+```
+这个role的规则权限，则作用于整个系统里ServiceAccount
+
+
+在Kubernetes中已经内置了很多歌为系统保留的ClusterRole，它们的名字都以system:开头，可以使用kubectl get clusterroles查找到
+```
+[root@node1 ~]# kubectl get clusterroles
+NAME                                                                   AGE
+admin                                                                  3d21h
+cluster-admin                                                          3d21h
+custom-metrics-resource-reader                                         3h22m
+custom-metrics-server-resources                                        3h22m
+edit                                                                   3d21h
+flannel                                                                3d21h
+prometheus                                                             3h23m
+system:aggregate-to-admin                                              3d21h
+system:aggregate-to-edit                                               3d21h
+system:aggregate-to-view                                               3d21h
+system:auth-delegator                                                  3d21h
+system:basic-user                                                      3d21h
+system:certificates.k8s.io:certificatesigningrequests:nodeclient       3d21h
+system:certificates.k8s.io:certificatesigningrequests:selfnodeclient   3d21h
+system:controller:attachdetach-controller                              3d21h
+system:controller:certificate-controller                               3d21h
+system:controller:clusterrole-aggregation-controller                   3d21h
+system:controller:cronjob-controller                                   3d21h
+system:controller:daemon-set-controller                                3d21h
+system:controller:deployment-controller                                3d21h
+system:controller:disruption-controller                                3d21h
+system:controller:endpoint-controller                                  3d21h
+system:controller:expand-controller                                    3d21h
+system:controller:generic-garbage-collector                            3d21h
+system:controller:horizontal-pod-autoscaler                            3d21h
+system:controller:job-controller                                       3d21h
+system:controller:namespace-controller                                 3d21h
+system:controller:node-controller                                      3d21h
+system:controller:persistent-volume-binder                             3d21h
+system:controller:pod-garbage-collector                                3d21h
+system:controller:pv-protection-controller                             3d21h
+system:controller:pvc-protection-controller                            3d21h
+system:controller:replicaset-controller                                3d21h
+system:controller:replication-controller                               3d21h
+system:controller:resourcequota-controller                             3d21h
+system:controller:route-controller                                     3d21h
+system:controller:service-account-controller                           3d21h
+system:controller:service-controller                                   3d21h
+system:controller:statefulset-controller                               3d21h
+system:controller:ttl-controller                                       3d21h
+system:coredns                                                         3d21h
+system:csi-external-attacher                                           3d21h
+system:csi-external-provisioner                                        3d21h
+system:discovery                                                       3d21h
+system:heapster                                                        3d21h
+system:kube-aggregator                                                 3d21h
+system:kube-controller-manager                                         3d21h
+system:kube-dns                                                        3d21h
+system:kube-scheduler                                                  3d21h
+system:kubelet-api-admin                                               3d21h
+system:metrics-server                                                  3h25m
+system:node                                                            3d21h
+system:node-bootstrapper                                               3d21h
+system:node-problem-detector                                           3d21h
+system:node-proxier                                                    3d21h
+system:persistent-volume-provisioner                                   3d21h
+system:public-info-viewer                                              3d21h
+system:volume-scheduler                                                3d21h
+view                                                                   3d21h
+
+```
+现在我们可以理解，所谓的角色(Role)，其实就是一组规则权限列表，而我们分配这些权限的方式，就是通过创建RoleBinding对象，将被用者(subject)和权限列表绑定。
+
+而对应的ClusterRole和ClusterRoleBinding，则是Kubernetes集群级别的Role和RoleBinding，它们不受namespace限制
+
 ## 对资源的引用
 
-在Kubernets中，主要的资源包括：Pods、Nodes、Services、Deployment、Replicasets、Statefulsets、Namespace、Persistents、Secrets和ConfigMaps等
+### RBAC API对象
+Kubernetes有一个很基本的特性就是它的所有资源都是模型化的API对象，允许执行CRUD(Create、Read、Update、Delete)操作。资源如下
+
+主要的资源包括：
+- Pods
+- Nodes
+- Services
+- Deployment
+- Replicasets
+- Statefulsets
+- Namespace
+- Persistents
+- Secrets
+- ConfigMaps
+- ...
+
+资源对象可能存在的操作有如下:
+- create
+- get
+- delete
+- list
+- update
+- edit
+- watch
+- exec
+
+**这些资源和API Group进行关联，比如Pods属于Core API Group，而Deployment属于apps API Group，要在kubernetes中进行RBAC授权**
+
 
 大多数资源由代表其名字的字符串表示，例如 ”pods”，就像它们出现在相关API endpoint 的URL中一样。然而，有一些Kubernetes API还 包含了”子资源”，比如 pod 的 logs。在Kubernetes中，pod logs endpoint的URL格式为：
 ```
