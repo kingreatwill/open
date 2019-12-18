@@ -126,7 +126,9 @@ Istio通过其可动态配置代理的网格提供了一系列用于处理和控
 Istio的优势在于可以让你在不修改微服务源代码的情况之下，很轻松地给微服务加上诸如负载均衡、身份验证、监控等等的功能。而且目前它正在快速发展迭代，频繁发布新版本，并且积极征求用户反馈。尽管目前Envoy还有很多局限，但是随着Istio持续发展，它也会积极开发和完善自己的功能。
 
 ## 配置控制平面
-
+![](../img/k8s/plane.jpg)
+![](../img/k8s/istio.jpg)
+![](../img/k8s/istio-control-plane.jpg)
 在Kubernetes集群中，一个典型的Istio部署应该包含以下服务：
 
 Pilot，在Istio网络自定义资源中集合流量管理规范配置，并将该配置交付到istio-proxy sidecar。
@@ -138,6 +140,8 @@ Citadel，这个是Istio的公钥基础设施（PKI）服务，它可以生成�
 Galley，它是大多数Istio CRD的Kubernetes controller，使用户可以更改自定义资源并将内容分配到其他Istio服务中。
 
 ## 数据平面
+
+可以认为数据平面是有状态的，也就是说组成数据平面的软件维护着应用状态。
 
 数据平面由Envoy服务代理提供支持，该代理使用Istio扩展构建。Proxy会拦截到pod服务端口的传入流量，并默认拦截来自pod其他容器的所有创出TCP流量。在大部分情况下，无需更改应用程序代码，仅对应用程序的Kubernetes部署和服务资源规范进行较小的更改，proxy sidecar 就可以在pod中运行。Proxy sidecar的配置由在Istio 控制面板中的服务进行动态管理。
 
