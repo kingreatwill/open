@@ -239,6 +239,33 @@ kubectl create -f yml/grafana/grafana_pvc.yaml
 kubectl create -f yml/grafana/grafana.yaml
 
 ```
+
+5.1. 安装Grafana
+```
+[database]
+# You can configure the database connection by specifying type, host, name, user and password
+# as separate properties or as on string using the url properties.
+
+# Either "mysql", "postgres" or "sqlite3", it's your choice
+type = postgres
+host = 192.168.110.231:5432
+name = grafana
+user = postgres
+# If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
+password = postgres
+``` 
+
+5.2 创建configmap grafana-etc
+```
+kubectl create configmap "grafana-etc" --from-file=grafana.ini --namespace=monitoring
+# 完成后，查看创建结果。
+kubectl -n monitoring get configmap
+```
+
+5.3 
+kubectl apply -f grafana-mysql.yaml
+
+
 访问 http://192.168.1.120:32333/  admin  admin
 配置 prometheus地址 http://prometheus.monitoring.svc:9090
 

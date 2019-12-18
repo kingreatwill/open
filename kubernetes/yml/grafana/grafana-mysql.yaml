@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoring-grafana
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: grafana
+  template:
+    metadata:
+      labels:
+        task: monitoring
+        k8s-app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:6.5.2
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        volumeMounts:
+        - name: grafana-etc-volume
+          mountPath: /etc/grafana/ 
+      volumes:
+      - name: grafana-etc-volume
+        configMap:
+          name: grafana-etc
+          items:
+          - key: grafana.ini
+            path: grafana.ini
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    kubernetes.io/cluster-service: 'true'
+    kubernetes.io/name: monitoring-grafana
+  name: monitoring-grafana
+  namespace: monitoring
+spec:  
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 3000
+    nodePort: 32333
+  selector:
+    k8s-app: grafana

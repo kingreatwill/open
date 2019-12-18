@@ -2,6 +2,18 @@
 ## linux命令或者工具
 Linux最常用命令：简单易学，但能解决95%以上的问题
 https://www.toutiao.com/a6763990899924926989/
+
+### bash-completion 自动补齐
+yum install -y bash-completion
+安装成功后，得到文件为 /usr/share/bash-completion/bash_completion，如果没有这个文件，则说明系统上没有安装这个工具。
+source /usr/share/bash-completion/bash_completion
+
+docker:
+source /usr/share/bash-completion/completions/docker
+
+kubectl:
+source <(kubectl completion bash)
+
 ### ag (ack)
 比grep、ack更快的递归搜索文件内容。
 https://github.com/ggreer/the_silver_searcher

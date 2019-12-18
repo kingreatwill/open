@@ -2235,6 +2235,13 @@ https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-
 
 ### 模块系统：
 模块是一个包的容器，Java 9 最大的变化之一是引入了模块系统（Jigsaw 项目）。
+
+java9以前 ：package => class/interface。
+
+java9以后 ：module => package => class/interface。
+
+那么JDK被拆为了哪些模块呢？打开终端执行java --list-modules查看。
+
 https://www.runoob.com/java/java9-module-system.html
 https://zhuanlan.zhihu.com/p/31104953
 
@@ -2499,6 +2506,19 @@ http://openjdk.java.net/projects/jdk/15/
 http://openjdk.java.net/projects/jdk/16/
 ## JDK17
 http://openjdk.java.net/projects/jdk/17/
+
+
+## 9-11移除内容
+- com.sun.awt.AWTUtilities。
+- sun.misc.Unsafe.defineClass 使用java.lang.invoke.MethodHandles.Lookup.defineClass来替代。
+- Thread.destroy() 以及 Thread.stop(Throwable) 方法。
+- sun.nio.ch.disableSystemWideOverlappingFileLockCheck 属性。
+- sun.locale.formatasdefault 属性。
+- jdk snmp 模块。
+- javafx，openjdk 是从java10版本就移除了，oracle java10还尚未移除javafx ，而java11版本将javafx也移除了。
+- Java Mission Control，从JDK中移除之后，需要自己单独下载。
+- Root Certificates ：Baltimore Cybertrust Code Signing CA，SECOM ，AOL and Swisscom。
+- 在java11中将java9标记废弃的Java EE及CORBA模块移除掉。
 
 
 
