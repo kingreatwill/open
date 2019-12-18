@@ -270,6 +270,33 @@ kubectl apply -f grafana-mysql.yaml
 配置 prometheus地址 http://prometheus.monitoring.svc:9090
 
 
+## 时间同步
+1. 安装ntpdate工具
+yum -y install ntp ntpdate
+2. 设置系统时间与网络时间同步
+ntpdate cn.pool.ntp.org
+3. 将系统时间写入硬件时间
+hwclock --systohc
+
+4. 查看系统时间
+timedatectl
+
+```
+
+#得到
+      Local time: 四 2017-09-21 13:54:09 CST
+  Universal time: 四 2017-09-21 05:54:09 UTC
+        RTC time: 四 2017-09-21 13:54:09
+       Time zone: Asia/Shanghai (CST, +0800)
+     NTP enabled: no
+NTP synchronized: no
+ RTC in local TZ: yes
+
+```
+如果没有执行步骤3，则Local time与RTC time显示的值可能不一样
+
+
+
 QPS（TPS）：每秒钟request/事务 数量
 并发数： 系统同一时候处理的request/事务数
 响应时间：  一般取平均响应时间
@@ -284,6 +311,10 @@ heapster已经被官方废弃（k8s 1.11版本中，HPA已经不再从hepaster�
 CPU内存、HPA指标： 改为[metrics-server](https://github.com/kubernetes-incubator/metrics-server)
 基础监控：集成到prometheus中，kubelet将metric信息暴露成prometheus需要的格式，使用[Prometheus Operator](https://github.com/coreos/prometheus-operator)
 事件监控：集成到https://github.com/heptiolabs/eventrouter
+
+
+
+
 
 
 #  cAdvisor
