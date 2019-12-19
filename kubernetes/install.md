@@ -1,18 +1,20 @@
 参考：https://github.com/eip-work/kuboard-press
+[TOC]
 
+### 准备工作
 k8s集群安装: k8s v1.16.1
 环境准备：3台centos7.7  2核心4G
 node1.centos7.com  192.168.1.135
 node2.centos7.com  192.168.1.120
 node3.centos7.com  192.168.1.110
 
-准备工作
-1. 设置 hostname 解析
+
+### 1. 设置 hostname 解析
 echo "127.0.0.1   $(hostname)" >> /etc/hosts
 
-2. 设置固定IP
+### 2. 设置固定IP
 
-3. 安装 docker / kubelet
+### 3. 安装 docker / kubelet
 ```
 curl -sSL https://kuboard.cn/install-script/v1.16.1/install_kubelet.sh | sh
 
@@ -24,7 +26,7 @@ yum -y install wget
 ```
 
 
-4. 初始化 master 节点
+### 4. 初始化 master 节点
 ```
 # 只在 master 节点执行
 # 替换 x.x.x.x 为 master 节点实际 IP（请使用内网 IP）
@@ -71,7 +73,7 @@ kubectl taint nodes k8s node-role.kubernetes.io/master=true:NoSchedule
 
 ```
 
-5. 初始化 worker节点
+### 5. 初始化 worker节点
 ```
 # 只在 master 节点执行
 kubeadm token create --print-join-command
@@ -132,7 +134,7 @@ source ~/.bash_profile
 
 
 
-6. 安装 Ingress Controller
+### 6. 安装 Ingress Controller
 ```
 # 只在 master 节点执行
 kubectl apply -f https://kuboard.cn/install-script/v1.16.2/nginx-ingress.yaml
@@ -143,12 +145,225 @@ kubectl apply -f https://kuboard.cn/install-script/v1.16.2/nginx-ingress.yaml
 kubectl delete -f https://kuboard.cn/install-script/v1.16.2/nginx-ingress.yaml
 ```
 
+### 7. 安装Dashboard
+
+1. 官网
+
+```
+kubectl delete ns kubernetes-dashboard
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
+
+修改
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  type: NodePort
+  ports:
+    - port: 443
+      targetPort: 8443
+      nodePort: 31801
+  selector:
+    k8s-app: kubernetes-dashboard
+
+---
+
+
+kubectl apply -f recommended.yaml
 
 
 
+kubectl get pod -n kubernetes-dashboard
+
+删除pod
+kubectl -n kubernetes-dashboard delete $(kubectl -n kubernetes-dashboard get pod -o name | grep dashboard)
+```
+
+2.
+https://www.toutiao.com/a6761285771505697288
+```
+1. 
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+2.
+#image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+image: mirrorgooglecontainers/kubernetes-dashboard-amd64:v1.10.1
+
+3. 
+NodePort
+
+kubectl apply -f kubernetes-dashboard.yaml
 
 
+kubectl get pod -n kube-system
+
+kubectl -n kube-system get service -o wide
+```
+
+3. Dashboard V2.0(beta8)
+https://www.cnblogs.com/bluersw/p/11747161.html
 
 
+```
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
+```
+修改recommended.yaml文件内容(vi recommended.yaml)：
 
+```
+---
+#增加直接访问端口
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  type: NodePort #增加
+  ports:
+    - port: 443
+      targetPort: 8443
+      nodePort: 31801 #增加
+  selector:
+    k8s-app: kubernetes-dashboard
 
+---
+#因为自动生成的证书很多浏览器无法使用，所以我们自己创建，注释掉kubernetes-dashboard-certs对象声明
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  labels:
+#    k8s-app: kubernetes-dashboard
+#  name: kubernetes-dashboard-certs
+#  namespace: kubernetes-dashboard
+#type: Opaque
+
+---
+```
+
+创建证书
+```
+mkdir dashboard-certs
+
+cd dashboard-certs/
+
+#创建命名空间
+kubectl create namespace kubernetes-dashboard
+
+# 创建key文件
+openssl genrsa -out dashboard.key 2048
+
+#证书请求
+openssl req -days 36000 -new -out dashboard.csr -key dashboard.key -subj '/CN=dashboard-cert'
+
+#自签证书
+openssl x509 -req -in dashboard.csr -signkey dashboard.key -out dashboard.crt
+
+#创建kubernetes-dashboard-certs对象
+kubectl create secret generic kubernetes-dashboard-certs --from-file=dashboard.key --from-file=dashboard.crt -n kubernetes-dashboard
+```
+
+安装Dashboard
+```
+#安装
+kubectl create -f  ~/recommended.yaml
+
+#检查结果
+kubectl get pods -A  -o wide
+
+kubectl get service -n kubernetes-dashboard  -o wide
+```
+
+创建dashboard管理员
+创建账号：
+```
+vi dashboard-admin.yaml
+```
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: dashboard-admin
+  namespace: kubernetes-dashboard
+```
+保存退出后执行
+```
+kubectl create -f dashboard-admin.yaml
+```
+为用户分配权限：
+```
+vi dashboard-admin-bind-cluster-role.yaml
+```
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dashboard-admin-bind-cluster-role
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: dashboard-admin
+  namespace: kubernetes-dashboard
+```
+保存退出后执行
+```
+kubectl create -f dashboard-admin-bind-cluster-role.yaml
+```
+
+查看并复制用户Token：
+```
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep dashboard-admin | awk '{print $1}')
+```
+说明 ：创建账号和为用户分配权限 我放入yml文件里了
+#### 7.x 总结
+1. 创建证书
+```
+mkdir dashboard-certs
+
+cd dashboard-certs/
+
+#创建命名空间
+kubectl create namespace kubernetes-dashboard
+
+# 创建key文件
+openssl genrsa -out dashboard.key 2048
+
+#证书请求
+openssl req -days 36000 -new -out dashboard.csr -key dashboard.key -subj '/CN=dashboard-cert'
+
+#自签证书
+openssl x509 -req -in dashboard.csr -signkey dashboard.key -out dashboard.crt
+
+#创建kubernetes-dashboard-certs对象
+kubectl create secret generic kubernetes-dashboard-certs --from-file=dashboard.key --from-file=dashboard.crt -n kubernetes-dashboard
+```
+2. 安装
+```
+kubectl apply -f  recommended.yaml
+```
+
+3. 查看token
+```
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep dashboard-admin | awk '{print $1}')
+```
+
+4. 登录
+https://192.168.1.135:31801/
+
+5. 说明
+如果不安装metrics-server  ，dashboard是看不到CPU和内存使用情况 的。

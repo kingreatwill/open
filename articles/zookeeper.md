@@ -45,6 +45,14 @@ Zookeeper会每次选举最小编号的作为Master，如果Master挂了，自�
 
 ### Master 选举
 ### 分布式锁
+![](../img/zk/lock.png)
+步骤1: 如图，根据zookeeper有序临时节点的特性，每个进程对应连接一个有序临时节点（进程1对应节点/znode/00000001，进程2对应节点/znode/00000002…如此类推）。每个进程监听对应的上一个节点的变化。编号最小的节点对应的进程获得锁，可以操作资源。
+![](../img/zk/lock-2.png)
+步骤2: 当进程1完成业务后，删除对应的子节点/znode/00000001，释放锁。此时，编号最小的锁便获得锁（即/znode/00000002对应进程）。
+重复以上步骤，保证了多个进程获取的是同一个锁，且只有一个进程能获得锁，就是zookeeper分布式锁的实现原理。
+
+---
+
 系统A、B、C都去访问/locks节点
 
 访问的时候会创建带顺序号的临时/短暂(EPHEMERAL_SEQUENTIAL)节点，比如，系统A创建了id_000000节点，系统B创建了id_000002节点，系统C创建了id_000001节点。
@@ -66,11 +74,28 @@ Zookeeper会每次选举最小编号的作为Master，如果Master挂了，自�
 
 ### 分布式队列
 ### 注册中心
-Dubbo 官方推荐使用 ZooKeeper注册中心
+在比较流行的微服务框架Dubbo、Spring Cloud都可以使用Zookeeper作为服务发现与组册中心。Dubbo 官方推荐使用 ZooKeeper注册中心.
+
+#### 背景
+![](../img/zk/reg-c.png)
+在微服务中，服务提供方把服务注册到zookeeper中心去如图中的Member服务，但是每个应用可能拆分成多个服务对应不同的Ip地址，zookeeper注册中心可以动态感知到服务节点的变化。
+服务消费方（Order 服务）需要调用提供方（Member 服务）提供的服务时，从zookeeper中获取提供方的调用地址列表，然后进行调用。这个过程称为服务的订阅。
+
+#### 服务注册原理
+![](../img/zk/reg-c-2.png)
+rpc框架会在zookeeper的注册目录下，为每个应用创建一个持久节点，如order应用创建order持久节点，member应用创建member持久节点。
+然后在对应的持久节点下，为每个微服务创建一个临时节点，记录每个服务的URL等信息。
+#### 服务动态发现原理
+![](../img/zk/reg-c-3.png)
+由于服务消费方向zookeeper订阅了（监听）服务提供方，一旦服务提供方有变动的时候（增加服务或者减少服务），zookeeper就会把最新的服务提供方列表（member list）推送给服务消费方，这就是服务动态发现的原理。
+
+
 ### 配置中心
 配置文件的集中管理
 系统A、B、C监听着这个Znode节点有无变更，如果变更了，及时响应。
 https://blog.csdn.net/u011320740/article/details/78742625
+
+
 
 ## ZooKeeper 重要概念
 
@@ -98,9 +123,15 @@ Session 指的是 ZooKeeper 服务器与客户端会话。在 ZooKeeper 中，�
 在为客户端创建会话之前，服务端首先会为每个客户端都分配一个sessionID。由于 sessionID 是 Zookeeper 会话的一个重要标识，许多与会话相关的运行机制都是基于这个 sessionID 的，因此，无论是哪台服务器为客户端分配的 sessionID，都务必保证全局唯一。
 
 ### Znode
+![](../img/zk/tree-znode.jpg)
+如上图，Zookeeper是一个树状的文件目录结构，有点想应用系统中的文件系统的概念。每个子目录（如App）被称为znode，我们可以对每个znode进行增删改查。
 #### 短暂/临时(Ephemeral)：
-当客户端和服务端断开连接后，所创建的Znode(节点)会自动删除
-#### 持久(Persistent)：
+![](../img/zk/znode-ephemeral.jpg)
+当客户端和服务端断开连接后，所创建的Znode(节点)会自动删除,临时节点下，不存在子节点。
+##### 临时有序节点(Ephemeral_sequential)
+在临时节点基础上，由zookeeper给该节点名称进行有序编号，如0000001，0000002。
+#### 持久节点(Persistent)：
+![](../img/zk/znode-persistent.jpg)
 当客户端和服务端断开连接后，所创建的Znode(节点)不会删除
 
 在谈到分布式的时候，我们通常说的“节点"是指组成集群的每一台机器。然而，在Zookeeper中，“节点"分为两类，第一类同样是指构成集群的机器，我们称之为机器节点；第二类则是指数据模型中的数据单元，我们称之为数据节点一一ZNode。
@@ -108,11 +139,19 @@ Session 指的是 ZooKeeper 服务器与客户端会话。在 ZooKeeper 中，�
 Zookeeper将所有数据存储在内存中，数据模型是一棵树（Znode Tree)，由斜杠（/）的进行分割的路径，就是一个Znode，例如/foo/path1。每个上都会保存自己的数据内容，同时还会保存一系列属性信息。
 
 在Zookeeper中，node可以分为持久节点和临时节点两类。所谓持久节点是指一旦这个ZNode被创建了，除非主动进行ZNode的移除操作，否则这个ZNode将一直保存在Zookeeper上。而临时节点就不一样了，它的生命周期和客户端会话绑定，一旦客户端会话失效，那么这个客户端创建的所有临时节点都会被移除。另外，ZooKeeper还允许用户为每个节点添加一个特殊的属性：SEQUENTIAL.一旦节点被标记上这个属性，那么在这个节点被创建的时候，Zookeeper会自动在其节点名后面追加上一个整型数字，这个整型数字是一个由父节点维护的自增数字。
+##### 持久有序节点(Persistent_sequential)
+在持久节点基础上，由zookeeper给该节点名称进行有序编号，如0000001，0000002。
 
 ### 版本
 在前面我们已经提到，Zookeeper 的每个 ZNode 上都会存储数据，对应于每个ZNode，Zookeeper 都会为其维护一个叫作 Stat 的数据结构，Stat中记录了这个 ZNode 的三个数据版本，分别是version（当前ZNode的版本）、cversion（当前ZNode子节点的版本）和 cversion（当前ZNode的ACL版本）。
 
-### Watcher
+### 节点监听Watcher
+![](../img/zk/znode-watcher.jpg)
+客户端2注册监听它关心的临时节点SubApp1的变化，当临时节点SubApp1发生变化时（如图中被删除的时候），zookeeper会通知客户端2。
+该机制是zookeeper实现分布式协调的重要特性。我们可以通过get，exists，getchildren三种方式对某个节点进行监听。但是该事件只会通知一次。
+
+
+
 Watcher（事件监听器），是Zookeeper中的一个很重要的特性。Zookeeper允许用户在指定节点上注册一些Watcher，并且在一些特定事件触发的时候，ZooKeeper服务端会将事件通知到感兴趣的客户端上去，该机制是Zookeeper实现分布式协调服务的重要特性。
 常见的监听场景有以下两项：
 - **监听Znode节点的数据变化**
@@ -180,6 +219,62 @@ ZAB（ZooKeeper Atomic Broadcast 原子广播） 协议是为分布式协调服�
 ZAB协议包括两种基本的模式，分别是 崩溃恢复和消息广播。当整个服务框架在启动过程中，或是当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB 协议就会进人恢复模式并选举产生新的Leader服务器。当选举产生了新的 Leader 服务器，同时集群中已经有过半的机器与该Leader服务器完成了状态同步之后，ZAB协议就会退出恢复模式。其中，所谓的状态同步是指数据同步，用来保证集群中存在过半的机器能够和Leader服务器的数据状态保持一致。
 
 当集群中已经有过半的Follower服务器完成了和Leader服务器的状态同步，那么整个服务框架就可以进人消息广播模式了。 当一台同样遵守ZAB协议的服务器启动后加人到集群中时，如果此时集群中已经存在一个Leader服务器在负责进行消息广播，那么新加人的服务器就会自觉地进人数据恢复模式：找到Leader所在的服务器，并与其进行数据同步，然后一起参与到消息广播流程中去。正如上文介绍中所说的，ZooKeeper设计成只允许唯一的一个Leader服务器来进行事务请求的处理。Leader服务器在接收到客户端的事务请求后，会生成对应的事务提案并发起一轮广播协议；而如果集群中的其他机器接收到客户端的事务请求，那么这些非Leader服务器会首先将这个事务请求转发给Leader服务器。
+
+
+## ZooKeeper客户端 zkCli.sh 节点的增删改查
+
+在 bin 目录下的  zkCli.sh  就是ZooKeeper客户端
+
+./zkCli.sh -timeout 5000  -server 127.0.0.1:2181 　　客户端与ZooKeeper建立链接
+
+timeout：超时时间，单位毫秒
+
+r：只读模式，当节点坏掉的时候，还可以提供读服务
+### 常见命令
+命令基本语法|功能描述
+--|--
+help                |显示所有操作命令
+ls path [watch]     |使用 ls 命令来查看当前znode中所包含的内容
+stat                |查看节点状态
+ls2 path [watch]    |查看当前节点数据及状态信息，相当于ls+stat
+get path [watch]    |获得节点的值
+create              |普通创建 <br/>-s  创建一个带sequnence（递增序号）的目录 <br/>-e  临时（session关闭后消失）
+set path data [dataVersion] |设置节点的具体值
+delete          |删除节点
+rmr             |递归删除节点
+
+### Stat状态说明
+Stat | 状态说明
+--|--
+czxid |节点创建的事务zxid。每次修改ZooKeeper状态都会收到一个zxid形式的时间戳，也就是ZooKeeper事务ID。<br/>事务ID是ZooKeeper中所有修改总的次序。每个修改都有唯一的zxid，如果zxid1小于zxid2，那么zxid1在zxid2之前发生。(数据节点创建时的事务ID)
+ctime  | znode被创建的毫秒数(从1970年开始) (数据节点创建时的时间)
+mzxid  | znode最后修改的zxid(数据节点最后一次更新时的事务ID)
+mtime  | znode最后修改的毫秒数(从1970年开始)(数据节点最后一次更新时的时间)
+pZxid  | znode最后更新的子节点zxid(数据节点的子节点列表最后一次被修改（是子节点列表变更，而不是子节点内容变更）时的事务ID)
+cversion  | znode子节点变化号，每变化一次就自增1
+dataversion  | znode数据变化号，数据每变化一次就自增1（每次更新读取最新的值，可用于实现类似数据库乐观锁功能）
+aclVersion  | znode访问控制列表的变化号(数据节点的ACL版本号 )
+ephemeralOwner  | 如果是临时节点，这个是znode拥有者的session id。如果不是临时节点则是0
+dataLength  | znode的数据长度
+numChildren  | znode子节点数量
+
+#### Zxid
+致使ZooKeeper节点状态改变的每一个操作都将使节点接收到一个Zxid格式的时间戳，并且这个时间戳全局有序。也就是说，也就是说，每个对节点的改变都将产生一个唯一的Zxid。如果Zxid1的值小于Zxid2的值，那么Zxid1所对应的事件发生在Zxid2所对应的事件之前。实际上，ZooKeeper的每个节点维护者三个Zxid值，为别为：cZxid、mZxid、pZxid。
+
+- cZxid： 是节点的创建时间所对应的Zxid格式时间戳（Create）。
+
+- mZxid：是节点的修改时间所对应的Zxid格式时间戳（Mofify）。
+
+- pZxid：这个节点就和子节点有关啦！是与 该节点的子节点（或该节点）的最近一次 创建 / 删除 的时间戳对应。（注：只与 本节点 / 该节点的子节点，有关；与孙子节点无关）
+
+实现中Zxid是一个64为的数字，它高32位是epoch用来标识leader关系是否改变，每次一个leader被选出来，它都会有一个 新的epoch。低32位是个递增计数。
+
+
+#### 版本号
+- version：节点数据版本号
+- cversion：子节点版本号
+- aversion：节点所拥有的ACL版本号
+
 
 ## Consul vs Zookeeper vs Etcd vs Eureka
 
