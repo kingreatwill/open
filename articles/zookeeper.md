@@ -278,7 +278,7 @@ numChildren  | znode子节点数量
 
 ## Consul vs Zookeeper vs Etcd vs Eureka
 
-Feature	 | Consul	 |zookeeper|	etcd|	euerka
+Feature	 | Consul	 |zookeeper|	etcd|	Eureka
 --|--|--|--|--
 服务健康检查 | 	服务状态，内存，硬盘等 | 	(弱)长连接，keepalive | 	连接心跳 | 	可配支持
 多数据中心 | 	支持 | 	—	 | — | 	—
@@ -290,6 +290,19 @@ watch支持 | 	全量/支持long polling | 	支持 | 	支持 long polling	 | 支
 自身监控 | 	metrics | 	—	 | metrics | 	metrics
 安全 | 	acl /https | 	acl	 | https支持（弱） | 	—
 spring cloud集成 | 	已支持 | 	已支持 | 	已支持 | 	已支持
+Star | 18.1k| 7.5K| 28.7k|8.7k
 
 
 
+benchmarked
+
+Zookeeper : “读”多于“写”
+ETCD : 10,000 writes/sec
+
+整体etcd性能较好
+
+https://blog.csdn.net/github_32521685/article/details/89953710
+https://coreos.com/blog/performance-of-etcd.html
+
+## zetcd: running ZooKeeper apps without ZooKeeper
+https://coreos.com/blog/introducing-zetcd
