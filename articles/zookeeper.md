@@ -158,6 +158,19 @@ Watcher（事件监听器），是Zookeeper中的一个很重要的特性。Zook
 ![](../img/zk/zk-data.jpg)
 - **监听子节点的增减变化**
 ![](../img/zk/zk-node.jpg)
+
+触发watch事件的条件有4种，create，delete，change，child（子节点事件）
+
+watch的重要特性
+1. 仅一次性：watch触发后会立即删除，要持续监听变化的话就要持续提供设置watch，这也是watch的注意事项
+2. 有序性：客户端先得到watch通知才可查看变化结果
+
+watch的注意事项
+1. 刚刚提及到的它的仅一次性
+2. 获取事件和发送watch，获取watch，这些请求有可能存在延时，所以不能绝对可靠得到每个节点发生的每个更改
+3. 一个watch对象只会被通知一次，如果一个watch同时注册了多个接口（exists,getData）,如果此时删除节点，虽然这个事件对exists和getData都有效，但是watch只会被调用一次
+
+
 ### ACL
 Zookeeper采用ACL（AccessControlLists）策略来进行权限控制，类似于 UNIX 文件系统的权限控制。Zookeeper 定义了如下5种权限。
 ![](../img/zk/zk-acl.jpg)
