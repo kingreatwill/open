@@ -1710,10 +1710,363 @@ processLoop的框架也很简单，它运行了DeltaFIFO.Pop函数，用于消�
 #### SharedInformerFactory 源码
 ##### 介绍
 SharedInformerFactory就是构造各种Informer的地方,每个SharedInformer其实只负责一种对象，在构造SharedInformer的时候指定了对象类型。SharedInformerFactory可以构造Kubernetes里所有对象的Informer，而且主要用在controller-manager这个服务中。因为controller-manager负责管理绝大部分controller，每类controller不仅需要自己关注的对象的informer，同时也可能需要其他对象的Informer(比如ReplicationController也需要PodInformer,否则他无法感知Pod的启动和关闭，也就达不到监控的目的了)，所以一个SharedInformerFactory可以让所有的controller共享使用同一个类对象的Informer。
+![](img/client-go-informers.png)
+虽然有同名的，但是他们在不同的包中，虽然代码上有很多相似的地方，但是确实是完全独立的对象。
+##### SharedInformerFactory
+```go
+// 代码源自client-go/informers/factory.go
+// SharedInformerFactory是个interfaces，所以肯定有具体的实现类 
+type SharedInformerFactory interface {
+    // 在informers这个包中又定义了一个SharedInformerFactory，这个主要是包内抽象，所以此处继承了这个接口
+    internalinterfaces.SharedInformerFactory
+    // 这个暂时不知道干啥用，所以我也不介绍他了
+    ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
+    // 等待所有的Informer都已经同步完成，这里同步其实就是遍历调用SharedInformer.HasSynced()
+    // 所以函数需要周期性的调用指导所有的Informer都已经同步完毕
+    WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
+ 
+    Admissionregistration() admissionregistration.Interface // 返回admissionregistration相关的Informer组
+    Apps() apps.Interface                                   // 返回app相关的Informer组
+    Autoscaling() autoscaling.Interface                     // 返回autoscaling相关的Informer组
+    Batch() batch.Interface                                 // 返回job相关的Informer组
+    Certificates() certificates.Interface                   // 返回certificates相关的Informer组
+    Coordination() coordination.Interface                   // 返回coordination相关的Informer组
+    Core() core.Interface                                   // 返回core相关的Informer组
+    Events() events.Interface                               // 返回event相关的Informer组
+    Extensions() extensions.Interface                       // 返回extension相关的Informer组
+    Networking() networking.Interface                       // 返回networking相关的Informer组
+    Policy() policy.Interface                               // 返回policy相关的Informer组
+    Rbac() rbac.Interface                                   // 返回rbac相关的Informer组
+    Scheduling() scheduling.Interface                       // 返回scheduling相关的Informer组
+    Settings() settings.Interface                           // 返回settings相关的Informer组
+    Storage() storage.Interface                             // 返回storage相关的Informer组
+}
+
+// 代码源自client-go/informers/internalinterfaces/factory_interfaces.go 
+type SharedInformerFactory interface {
+    // 核心逻辑函数，类似于很多类的Run()函数
+    Start(stopCh <-chan struct{})
+    // 这个很关键，通过对象类型，返回SharedIndexInformer，这个SharedIndexInformer管理的就是指定的对象
+    // NewInformerFunc用于当SharedInformerFactory没有这个类型的Informer的时候创建使用
+    InformerFor(obj runtime.Object, newFunc NewInformerFunc) cache.SharedIndexInformer
+}
+// 创建Informer的函数定义，这个函数需要apiserver的客户端以及同步周期，这个同步周期在SharedInformers反复提到
+type NewInformerFunc func(kubernetes.Interface, time.Duration) cache.SharedIndexInformer
 
 
+// 代码源自client-go/informers/factory.go
+type sharedInformerFactory struct {
+    // apiserver的客户端，暂时不用关心怎么实现的，只要知道他能列举和监听资源就可以了
+    client           kubernetes.Interface
+    // 哈哈，这样看来每个namesapce需要一个SharedInformerFactory，那cache用namespace建索引还有啥用呢？
+    // 并不是所有的使用者都需要指定namesapce，比如kubectl，他就可以列举所有namespace的资源，所以他没有指定namesapce               
+    namespace        string
+    // 这是个函数指针，用来调整列举选项的，这个选项用来client列举对象使用
+    tweakListOptions internalinterfaces.TweakListOptionsFunc
+    // 互斥锁
+    lock             sync.Mutex
+    // 默认的同步周期，这个在SharedInformer需要用
+    defaultResync    time.Duration
+    // 每个类型的Informer有自己自定义的同步周期
+    customResync     map[reflect.Type]time.Duration
+    // 每类对象一个Informer，但凡使用SharedInformerFactory构建的Informer同一个类型其实都是同一个Informer
+    informers map[reflect.Type]cache.SharedIndexInformer
+    // 各种Informer启动的标记
+    startedInformers map[reflect.Type]bool
+}
+// 代码源自client-go/tools/cache/shared_informer.go
+// 这是一个通用的构造SharedInformerFactory的接口函数，没有任何其他的选项，只包含了apiserver的client以及同步周期
+func NewSharedInformerFactory(client kubernetes.Interface, defaultResync time.Duration) SharedInformerFactory {
+    // 最终是调用NewSharedInformerFactoryWithOptions()实现的，无非没有选项而已
+    return NewSharedInformerFactoryWithOptions(client, defaultResync)
+}
+// 相比于上一个通用的构造函数，这个构造函数增加了namesapce过滤和调整列举选项
+func NewFilteredSharedInformerFactory(client kubernetes.Interface, defaultResync time.Duration, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) SharedInformerFactory {
+    // 最终是调用NewSharedInformerFactoryWithOptions()实现的，无非选项是2个
+    // WithNamespace()和WithTweakListOptions()会在后文讲解
+    return NewSharedInformerFactoryWithOptions(client, defaultResync, WithNamespace(namespace), WithTweakListOptions(tweakListOptions))
+}
+// 到了构造SharedInformerFactory核心函数了，其实SharedInformerOption是个有意思的东西
+// 我们写程序喜欢Option是个结构体，但是这种方式的扩展很麻烦，这里面用的是回调函数，这个让我get到新技能了
+func NewSharedInformerFactoryWithOptions(client kubernetes.Interface, defaultResync time.Duration, options ...SharedInformerOption) SharedInformerFactory {
+    // 默认只有apiserver的client以及同步周期是需要外部提供的其他的都是可以有默认值的
+    factory := &sharedInformerFactory{
+        client:           client,
+        namespace:        v1.NamespaceAll,
+        defaultResync:    defaultResync,
+        informers:        make(map[reflect.Type]cache.SharedIndexInformer),
+        startedInformers: make(map[reflect.Type]bool),
+        customResync:     make(map[reflect.Type]time.Duration),
+    }
+ 
+    //逐一遍历各个选项函数，opt是选项函数，下面面有详细介绍
+    for _, opt := range options {
+        factory = opt(factory)
+    }
+ 
+    return factory
+}
+// 代码源自client-go/informers/factory.go
+// 这个是SharedInformerFactory构造函数的选项，是一个函数指针，传入的是工厂指针，返回也是工厂指针
+// 很明显，选项函数直接修改工厂对象，然后把修改的对象返回就可以了
+type SharedInformerOption func(*sharedInformerFactory) *sharedInformerFactory
+// 把每个对象类型的同步周期这个参数转换为SharedInformerOption类型
+func WithCustomResyncConfig(resyncConfig map[v1.Object]time.Duration) SharedInformerOption {
+    // 这个实现很简单了，我就不多解释了
+    return func(factory *sharedInformerFactory) *sharedInformerFactory {
+        for k, v := range resyncConfig {
+            factory.customResync[reflect.TypeOf(k)] = v
+        }
+        return factory
+    }
+}
+// 这个选项函数用于使用者自定义client的列举选项的
+func WithTweakListOptions(tweakListOptions internalinterfaces.TweakListOptionsFunc) SharedInformerOption {
+    return func(factory *sharedInformerFactory) *sharedInformerFactory {
+        factory.tweakListOptions = tweakListOptions
+        return factory
+    }
+}
+// 这个选项函数用来设置namesapce过滤的
+func WithNamespace(namespace string) SharedInformerOption {
+    return func(factory *sharedInformerFactory) *sharedInformerFactory {
+        factory.namespace = namespace
+        return factory
+    }
+}
 
+// 代码源自client-go/informers/factory.go
+// 其实sharedInformerFactory的Start()函数就是启动所有具体类型的Informer的过程
+// 因为每个类型的Informer都是SharedIndexInformer，需要需要把每个SharedIndexInformer都要启动起来
+func (f *sharedInformerFactory) Start(stopCh <-chan struct{}) {
+    // 加锁操作
+    f.lock.Lock()
+    defer f.lock.Unlock()
+    // 遍历informers这个map
+    for informerType, informer := range f.informers {
+        // 看看这个Informer是否已经启动过
+        if !f.startedInformers[informerType] {
+            // 如果没启动过，那就启动一个协程执行SharedIndexInformer的Run()函数，我们在分析SharedIndexInformer的时候
+            // 我们知道知道Run()是整个Informer的启动入口点，看了《深入浅出kubernetes之client-go的SharedInformer》
+            // 的同学应该会想Run()是谁调用的呢？这里面应该给你们答案了吧？
+            go informer.Run(stopCh)
+            // 设置Informer已经启动的标记
+            f.startedInformers[informerType] = true
+        }
+    }
+}
 
+// 代码源自client-go/informers/factory.go
+// InformerFor()相当于每个类型Informer的构造函数了，即便具体实现构造的地方是使用者提供的
+// 这个函数需要使用者传入对象类型，因为在sharedInformerFactory里面是按照对象类型组织的Informer
+// 更有趣的是这些Informer不是sharedInformerFactory创建的，需要使用者传入构造函数
+// 这样做既保证了每个类型的Informer只构造一次，同时又保证了具体Informer构造函数的私有化能力
+func (f *sharedInformerFactory) InformerFor(obj runtime.Object, newFunc internalinterfaces.NewInformerFunc) cache.SharedIndexInformer {
+    // 加锁操作
+    f.lock.Lock()
+    defer f.lock.Unlock()
+    // 通过反射获取obj的类型
+    informerType := reflect.TypeOf(obj)
+    // 看看这个类型的Informer是否已经创建了？
+    informer, exists := f.informers[informerType]
+    // 如果Informer已经创建，那么就复用这个Informer
+    if exists {
+        return informer
+    }
+    // 获取这个类型定制的同步周期，如果定制的同步周期那就用统一的默认周期
+    resyncPeriod, exists := f.customResync[informerType]
+    if !exists {
+        resyncPeriod = f.defaultResync
+    }
+    // 调用使用者提供构造函数，然后把创建的Informer保存起来
+    informer = newFunc(f.client, resyncPeriod)
+    f.informers[informerType] = informer
+ 
+    return informer
+}
+// 代码源自client-go/informers/internalinterfaces/factory_interfaces.go
+// 这个函数定义就是具体类型Informer的构造函数，后面会有地方说明如何使用
+type NewInformerFunc func(kubernetes.Interface, time.Duration) cache.SharedIndexInformer
+```
+##### 例子：PodInformer
+```go
+// 代码源自client-go/informers/core/v1/pod.go
+// 这个PodInformer是抽象类，Informer()就是获取SharedIndexInformer的接口函数
+type PodInformer interface {
+    Informer() cache.SharedIndexInformer
+    Lister() v1.PodLister
+}
+// 这个是PodInformer的实现类，看到了没，他需要工厂对象的指针，貌似明细了很多把？
+type podInformer struct {
+    factory          internalinterfaces.SharedInformerFactory
+    tweakListOptions internalinterfaces.TweakListOptionsFunc
+    namespace        string
+}
+// 这个就是要传入工厂的构造函数了
+func (f *podInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
+    return NewFilteredPodInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+}
+// 这个是实现Informer()的地方，看到了把，这里面调用了工厂的InformerFor把自己注册进去
+func (f *podInformer) Informer() cache.SharedIndexInformer {
+    return f.factory.InformerFor(&corev1.Pod{}, f.defaultInformer)
+}
+
+也就是说SharedInformerFactory的使用者使用Core().Pod() 这个接口构造了PodInformer，但是需要调用PodInformer.Informer()才能获取到的SharedIndexInformer，而正是这个接口实现了向工厂注册自己。既然已经涉及到了具体的Informer，我们就开始看看每个都是干啥的吧？
+
+```
+
+##### 各种group之Core
+client-go为了方便管理，把Informer分类管理，具体的分类在开篇那个图里面已经展示了
+
+```go
+// 代码源自client-go/informers/factory.go
+func (f *sharedInformerFactory) Core() core.Interface {
+    // 调用了内核包里面的New()函数，详情见下文分析
+    return core.New(f, f.namespace, f.tweakListOptions)
+}
+// 代码源自client-go/informers/core/interface.go
+// Interface又是一个被玩坏的名字，如果没有报名，根本不知道干啥的
+type Interface interface {
+    V1() v1.Interface // 只有V1一个版本
+}
+// 这个是Interface的实现类，从名字上没任何关联吧？其实开发者命名也是挺有意思的，Interface定义的是接口
+// 供外部使用，group也有意义，因为Core确实是内核Informer的分组
+type group struct {
+    // 需要工厂对象的指针
+    factory          internalinterfaces.SharedInformerFactory
+    // 这两个变量决定了Core这个分组对于SharedInformerFactory来说只有以下两个选项
+    namespace        string
+    tweakListOptions internalinterfaces.TweakListOptionsFunc
+}
+// 构造Interface的接口
+func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
+    // 代码也挺简单的，不多说了
+    return &group{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+}
+// 实现V1()这个接口的函数
+func (g *group) V1() v1.Interface {
+    // 通过调用v1包的New()函数实现的，下面会有相应代码的分析
+    return v1.New(g.factory, g.namespace, g.tweakListOptions)
+}
+
+// 代码源自client-go/informers/core/v1/interface.go
+// 还是抽象类
+type Interface interface {
+    // 获取ComponentStatusInformer
+    ComponentStatuses() ComponentStatusInformer
+    // 获取ConfigMapInformer
+    ConfigMaps() ConfigMapInformer
+    // 获取EndpointsInformer
+    Endpoints() EndpointsInformer
+    // 获取EventInformer
+    Events() EventInformer
+    // 获取LimitRangeInformer
+    LimitRanges() LimitRangeInformer
+    // 获取NamespaceInformer
+    Namespaces() NamespaceInformer
+    // 获取NodeInformer
+    Nodes() NodeInformer
+    // 获取PersistentVolumeInformer
+    PersistentVolumes() PersistentVolumeInformer
+    // 获取PersistentVolumeClaimInformer
+    PersistentVolumeClaims() PersistentVolumeClaimInformer
+    // 获取PodInformer
+    Pods() PodInformer
+    // 获取PodTemplateInformer
+    PodTemplates() PodTemplateInformer
+    // 获取ReplicationControllerInformer
+    ReplicationControllers() ReplicationControllerInformer
+    // 获取ResourceQuotaInformer
+    ResourceQuotas() ResourceQuotaInformer
+    // 获取SecretInformer
+    Secrets() SecretInformer
+    // 获取ServiceInformer
+    Services() ServiceInformer
+    // 获取ServiceAccountInformer
+    ServiceAccounts() ServiceAccountInformer
+}
+// 这个就是上面抽象类的实现了，这个和Core分组的命名都是挺有意思，分组用group作为实现类名
+// 这个用version作为实现类名，确实这个是V1版本
+type version struct {
+    // 工厂的对象指针
+    factory          internalinterfaces.SharedInformerFactory
+    // 两个选项，不多说了，说了好多遍了
+    namespace        string
+    tweakListOptions internalinterfaces.TweakListOptionsFunc
+}
+// 这个就是Core分组V1版本的构造函数啦
+func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
+    // 应该好理解吧？
+    return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+}
+```
+Core分组有管理了很多Informer，每一个Informer负责获取相应类型的对象。
+##### Core分组之PodInformer
+PodInformer是通过Core分组Pods()创建的
+```go
+// 代码源自client-go/informers/core/v1/interface.go
+// 上面我们已经说过了version是v1.Interface的实现
+func (v *version) Pods() PodInformer {
+    // 返回了podInformer的对象，说明podInformer是PodInformer 实现类
+    return &podInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// 代码源自client-go/informers/core/v1/pod.go
+// PodInformer定义了两个接口，分别为Informer()和Lister()，Informer()用来获取SharedIndexInformer对象
+// Lister()用来获取PodLister对象，这个后面会有说明，当前可以不用关心
+type PodInformer interface {
+    Informer() cache.SharedIndexInformer
+    Lister() v1.PodLister
+}
+// PodInformer的实现类，参数都是上面层层传递下来的，这里不说了
+type podInformer struct {
+    factory          internalinterfaces.SharedInformerFactory
+    tweakListOptions internalinterfaces.TweakListOptionsFunc
+    namespace        string
+}
+// 这个就是需要传递给SharedInformerFactory的构造函数啦，前面也提到了
+func (f *podInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
+    // NewFilteredPodInformer下面有代码注释
+    return NewFilteredPodInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+}
+// 实现了PodInformer.Informer()接口函数
+func (f *podInformer) Informer() cache.SharedIndexInformer {
+    // 此处调用了工厂实现了Informer的创建
+    return f.factory.InformerFor(&corev1.Pod{}, f.defaultInformer)
+}
+// 实现了PodInformer.Lister()接口函数
+func (f *podInformer) Lister() v1.PodLister {
+    return v1.NewPodLister(f.Informer().GetIndexer())
+}
+// 真正创建PodInformer的函数
+func NewFilteredPodInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
+    // 还有谁记得构造SharedIndexInformer需要写啥？自己温习《深入浅出kubernetes之client-go的SharedInformer》
+    return cache.NewSharedIndexInformer(
+        // 需要ListWatch两个函数，就是用apiserver的client实现的，此处不重点解释每个代码什么意思
+        // 读者应该能够看懂是利用client实现了Pod的List和Watch
+        &cache.ListWatch{
+            ListFunc: func(options metav1.ListOptions) (runtime.Object, error) {
+                if tweakListOptions != nil {
+                    tweakListOptions(&options)
+                }
+                return client.CoreV1().Pods(namespace).List(options)
+            },
+            WatchFunc: func(options metav1.ListOptions) (watch.Interface, error) {
+                if tweakListOptions != nil {
+                    tweakListOptions(&options)
+                }
+                return client.CoreV1().Pods(namespace).Watch(options)
+            },
+        },
+        // 这个是要传入对象的类型，肯定是Pod了
+        &corev1.Pod{},
+        // 同步周期
+        resyncPeriod,
+        // 对象键的计算函数
+        indexers,
+    )
+}
+```
 ##### SharedInformerFactory使用
 下面以(Core，v1，podInformer)为例结合client-go中提供的代码进行讲解。代码如下，在调用informers.Core().V1().Pods().Informer()的时候会同时调用informers.InformerFor注册到sharedInformerFactory，后续直接调用informers.Start启动注册的informer。
 ```go
@@ -2938,12 +3291,4 @@ func TestRateLimitingQueue(t *testing.T) {
 obj, exists, err := c.indexer.GetByKey(key)
 ```
 
-
-[参考](https://so.csdn.net/so/search/s.do?q=%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAkubernetes%E4%B9%8Bclient-go&t=blog&u=weixin_42663840)
-
-[参考](https://www.cnblogs.com/charlieroro/p/10330390.html)
-
-[参考](https://github.com/stakater/Reloader)
-
-[参考](https://github.com/kubernetes/sample-controller)
 
