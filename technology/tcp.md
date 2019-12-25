@@ -11,6 +11,8 @@
 
 [接地气讲解UDP协议和网络程序设计（深度好文）](https://cloud.tencent.com/developer/article/1535962)
 
+[3000字讲讲TCP协议，握手挥手不是你想的那么简单](https://www.toutiao.com/a6773950320000107016)
+
 ![](../img/tcp/网络通讯协议图.jpeg)
 
 
