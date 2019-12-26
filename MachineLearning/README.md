@@ -1,8 +1,11 @@
 
 机器学习google手册
 https://developers.google.cn/machine-learning/crash-course/
+数据科学教育
+https://www.kaggle.com/learn/overview
 
 ![](../img/机器学习.jpeg)
+
 [TOC]
 
 # 机器学习

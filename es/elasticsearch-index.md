@@ -316,6 +316,7 @@ POST twitter/_flush
 ```
 
 ### Force merge 强制段合并
+https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html
 ```
 POST /kimchy/_forcemerge?only_expunge_deletes=false&max_num_segments=100&flush=true
 ```
