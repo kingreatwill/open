@@ -3,3 +3,8 @@ Go 特意模糊堆和栈之后，你对 Goroutine 栈了解多少？
 https://www.toutiao.com/a6764649154305065475/
 协程与通道
 https://www.toutiao.com/a6769878961003430414
+深入理解Golang之channel
+https://juejin.im/post/5decff136fb9a016544bce67
+
+goroutine究竟占用多少内存？
+https://juejin.im/post/5d9ff459f265da5b8a5160f5

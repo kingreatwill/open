@@ -1,6 +1,122 @@
 [TOC]
 # Go语言内存详解
 
+## 常用命令
+### size
+size filename
+### readelf
+https://man.linuxde.net/readelf
+readelf命令，一般用于查看ELF格式的文件信息，常见的文件如在Linux上的可执行文件，动态库(*.so)或者静态库(*.a) 等包含ELF格式的文件。以下命令的使用是基于android编译出来的so文件上面去运行。
+
+选项 -h(elf header)，显示elf文件开始的文件头信息。
+选项 -l(program headers),segments 显示程序头（段头）信息(如果有数据的话)。
+选项 -S(section headers),sections 显示节头信息(如果有数据的话)。
+选项 -g(section groups),显示节组信息(如果有数据的话)。
+选项 -t,section-details 显示节的详细信息(-S的)。
+选项 -s,symbols 显示符号表段中的项（如果有数据的话）。
+选项 -e,headers 显示全部头信息，等价于: -h -l -S 。
+选项 -n,notes 显示note段（内核注释）的信息 。
+选项 -r,relocs 显示可重定位段的信息。
+选项 -u,unwind 显示unwind段信息。当前只支持IA64 ELF的unwind段信息。
+选项 -d,dynamic 显示动态段的信息。
+选项 -V,version-info 显示版本段的信息。
+选项 -A,arch-specific 显示CPU构架信息。
+选项 -I,histogram 显示符号的时候，显示bucket list长度的柱状图。
+选项 -x,hex-dump=`<number or name>` 以16进制方式显示指定段内内容。number指定段表中段的索引,或字符串指定文件中的段名
+选项 -D,use-dynamic 使用动态段中的符号表显示符号，而不是使用符号段 。
+选项 -a，all 显示全部信息,等价于 -h -l -S -s -r -d -V -A -I。
+选项 -v，version 显示readelf的版本信息。
+选项 -H，help 显示readelf所支持的命令行选项。
+
+readelf -a filename
+readelf -h filename 来进行对Header的解析
+![](img/readelf-h.webp)
+
+https://www.jianshu.com/p/863b279c941e
+
+### go tool compile
+go tool compile -S -m -l cmd.go
+go tool compile -S main.go
+
+### go build -gcflags "-m -l"
+加-l是为了不让foo函数被内联
+我们只需要通过go build -gcflags '- m'命令来观察变量逃逸情况就行了。
+```go
+package main
+
+import "fmt"
+
+func foo() *int {
+	t := 3
+
+	return &t
+}
+
+func main() {
+
+	x := foo()
+
+	fmt.Println(*x)
+
+}
+
+```
+go build -gcflags "-m -l" cmd.go
+```go1.13
+# command-line-arguments
+.\cmd.go:6:2: moved to heap: t
+.\cmd.go:15:13: main ... argument does not escape
+.\cmd.go:15:14: *x escapes to heap
+
+```
+```go<1.13
+# command-line-arguments
+
+src/main.go:7:9: &t escapes to heap
+
+src/main.go:6:7: moved to heap: t
+
+src/main.go:12:14: *x escapes to heap
+
+src/main.go:12:13: main ... argument does not escape
+```
+foo函数里的变量t逃逸了，和我们预想的一致。让我们不解的是为什么main函数里的x也逃逸了？这是因为有些函数参数为interface类型，比如fmt.Println(a ...interface{})，编译期间很难确定其参数的具体类型，也会发生逃逸。
+
+使用反汇编命令也可以看出变量是否发生逃逸。
+go tool compile -S main.go
+
+发现 runtime.newobject(xx)基本上是分配到堆上了.
+
+### objdump
+https://man.linuxde.net/objdump
+-d 从objfile中反汇编那些特定指令机器码的section。
+objdump -x -s -d go.exe | grep .bss
+
+### nm 
+https://man.linuxde.net/nm
+nm filename
+显示二进制目标文件的符号表，包括符号地址、符号类型、符号名等
+
+### 逃逸分析是怎么完成的
+
+Go中逃逸分析最基本的原则是：如果一个函数返回对一个变量的引用，那么它就发生逃逸。
+
+简单来说，编译器会分析代码的特性和代码的生命周期，GO中变量只有在编译器可以证明在函数返回后不会再被引用的，才分配到栈上，其他情况都是分配到堆上。
+
+GO语言没有一个关键字或者函数可以直接让变量被编译器分配到堆上，相反，编译器通过代码分析来决定将变量分配到何处。
+
+对一个变量取地址，可能被分配到堆上。但是如果编译器进行逃逸分析后，如果考察到在函数返回后，此变量不会被引用，那么还是会被分配到栈上。
+
+简单来说，编译器会根据变量是否被外部引用来决定是否逃逸：
+
+1、如果函数外部没有引用，则优先放到栈中；
+
+2、如果函数外部存在引用，则必定放到堆中;
+
+针对第一条，可能放到堆上的情形：定义了一个很大的数组，需要申请的内存过大，超过了栈的存储能力。
+
+通过逃逸分析，可以尽量把那些不需要分配到堆上的变量直接分配到栈上，堆上的变量少了，会减轻分配堆内存的开销，同时减轻gc的压力，提高程序的原型速度。
+
 ## 1、内存分区
 
 > 代码经过预处理、编译、汇编、链接4步后生成一个可执行程序。
@@ -12,6 +128,74 @@
 > 通过上图可以得知，在没有运行程序前，也就是说程序没有加载到内存前，可执行程序内部已经分好三段信息，分别为**代码区（text）**、**数据区（data）**和**未初始化数据区（bss）**3 个部分。
 >
 > 有些人直接把data和bss合起来叫做**静态区**或**全局区**。  
+
+> 
+```
+# windows 编译exe
+E:\研发人员项目文件\kernel4g.com\x\cpcn>size cpcn.exe
+   text    data     bss     dec     hex filename
+1439505   81844       0 1521349  1736c5 cpcn.exe
+# linux 编译linux
+E:\研发人员项目文件\kernel4g.com\x\cpcn>size go
+   text    data     bss     dec     hex filename
+1340655   82152  122840 1545647  1795af go
+
+# windows 编译linux
+E:\研发人员项目文件\kernel4g.com\x\cpcn>size cpcn
+   text    data     bss     dec     hex filename
+1339859   82248  122840 1544947  1792f3 cpcn
+
+# linux 编译linux
+[root@etcd-node02 go]# size go
+   text	   data	    bss	    dec	    hex	filename
+1340655	  82152	 122840	1545647	 1795af	go
+
+# linux 编译windows
+[root@etcd-node02 cpcn]# size cpcn.exe
+   text	   data	    bss	    dec	    hex	filename
+1440863	  81844	      0	1522707	 173c13	cpcn.exe
+
+```
+> 结论：windows 的bss才是0
+
+**可以同过StudyPE+ x64.exe查看exe文件的bss区(go编译出来的是没有bss区)；也可以objdump -h 查看**
+
+#### 为什么linux的bss不为0
+https://stackoverflow.com/questions/51968080/linux-size-command-why-are-bss-and-data-sections-not-zero
+
+In fact, if you are compiling with the libc attached to the binary, there are functions that are added before (and after) the main() function. They are here mostly to load dynamic libraries (even if you do not need it in your case) and unload it properly once main() end.
+
+These functions have global variables that require storage; uninitialized (zero initialized) global variables in the BSS segment and initialized global variables in the DATA segment.
+
+This is why, you will always see BSS and DATA in all the binaries compiled with the libc. If you want to get rid of this, then you should write your own assembly program, like this (asm.s):
+```
+.globl _start
+ _start:
+    mov %eax, %ebx
+
+```
+And, then compile it without the libc:
+```
+$> gcc -nostdlib -o asm asm.s
+```
+You should reduce your footprint to the BSS and DATA segment on this ELF binary.
+
+---
+
+int main(){return 0;} puts data in .text only.
+```
+$ echo 'int main(){return 0;}' | gcc -xc - -c -o main.o && size main.o
+   text    data     bss     dec     hex filename
+     67       0       0      67      43 main.o
+```
+You're probably sizeing a fully linked executable.
+```
+$ gcc main.o -o main && size main
+   text    data     bss     dec     hex filename
+   1415     544       8    1967     7af main
+```
+
+- o就是在成功编译之后，就进入了链接阶段。链接就是将目标文件、启动代码、库文件链接成可执行文件的过程，这个文件可被加载或拷贝到存储器执行。
 
 ### 1、1 代码区（text）
 
