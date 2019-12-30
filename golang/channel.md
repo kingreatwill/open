@@ -8,3 +8,9 @@ https://juejin.im/post/5decff136fb9a016544bce67
 
 goroutine究竟占用多少内存？
 https://juejin.im/post/5d9ff459f265da5b8a5160f5
+
+Golang 的 goroutine 是如何实现的？
+https://www.zhihu.com/question/20862617/answer/921061289
+
+goroutine背后的系统知识
+http://www.sizeofvoid.net/goroutine-under-the-hood/
