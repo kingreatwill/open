@@ -1,6 +1,9 @@
 [The Go Memory Model](https://golang.org/ref/mem)
 [译：内存管理与内存分配](https://juejin.im/post/5ddcdc5df265da05c33fcad2)
 [原文](https://medium.com/a-journey-with-go/go-memory-management-and-allocation-a7396d430f44)
+
+[Go 内存分配器可视化指南](https://github.com/coldnight/go-memory-allocator-visual-guide)
+
 [TOC]
 # Go 1.13 内存管理与内存分配
 当内存不再被使用时，标准库就会自动执行Go内存管理，即从内存分配到Go自己的集合中（from allocation of the memory to its collection）。
