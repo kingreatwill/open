@@ -28,6 +28,8 @@ Job,cron job |	用于运行结束就要删除的应用。其他 Controller 中�
 
 #### Services 一般有两种访问 对集群内部的访问， 集群外部的访问
 [外部访问 kubernetes，知道这 3 种模式就够了](https://mp.weixin.qq.com/s?__biz=MzI1OTY2MzMxOQ==&mid=2247486903&idx=1&sn=6fa7aa2cffe22570032010ecf73ac418)
+[浅谈Kubernetes Service负载均衡实现机制](https://xigang.github.io/2019/07/21/kubernetes-service/)
+[Kubernetes之服务发现及负载Services](https://www.cnblogs.com/xzkzzz/p/9559362.html)
 Service Type | 说明
 -|-
 ClusterIP  | 集群内部容器访问地址，会生成一个虚拟IP 与pod不在一个网段。只是给集群内部和pod之间访问的，外部无法访问，网段通过配置文件指定，在Node上kube-proxy通过设置的Iptables规则进行转发。ClusterIP也是Kubernetes service的默认类型。

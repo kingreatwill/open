@@ -1,6 +1,15 @@
 ![](../img/k8s/pod-info.jpeg)
 
-![](../img/k8s故障排除指南.jpeg)
+
+https://learnk8s.io/troubleshooting-deployments
+[k8s故障排除指南.pdf](../files/k8s/troubleshooting-kubernetes.pdf)
+![](../img/k8s/k8s故障排除指南.png)
+
+
+中文文档：https://kubernetes.io/zh/docs/
+
+Kubernetes Handbook （Kubernetes指南）
+https://github.com/feiskyer/kubernetes-handbook
 
 和我一步步部署 kubernetes 集群
 https://github.com/opsnull/follow-me-install-kubernetes-cluster
