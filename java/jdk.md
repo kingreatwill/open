@@ -2499,6 +2499,7 @@ cacerts密钥存储库是JDK的一部分，它的目的是包含一组root证书
 > 355:[Text Blocks (Preview)](https://openjdk.java.net/jeps/355)
 
 ### 350:Dynamic CDS Archives
+
 了解这个特性之前，需要先了解一下跟它有很大关联的特性JEP310：Application Class-Data Sharing，简称AppCDS。这个特性简介就是为了改善JVM应用的启动速度和内存占用，并且扩展了CDS（Class-Data Sharing）特性从而允许应用的类也可以被放置在共享的归档类（archived classes）文件中。这个JEP310的主要目标如下：
 
 - 通过共享不同Java进程之间通用的类元数据从而减少内存占用；
@@ -2530,7 +2531,9 @@ bin/java -XX:ArchiveClassesAtExit=hello.jsa -cp hello.jar Hello
 
 bin/java -XX:SharedArchiveFile=hello.jsa -cp hello.jar Hello
 ```
+
 ### 351: ZGC: Uncommit Unused Memory
+
 增强ZGC特性，将没有使用的堆内存归还给操作系统。ZGC当前不能把内存归还给操作系统，即使是那些很久都没有使用的内存，有点像貔貅一样，只进不出，哈哈。这种行为并不是对任何应用和环境都是友好的，尤其是那些内存占用敏感的服务，例如：
 
 - 按需付费使用的容器环境；
@@ -2548,6 +2551,7 @@ ZGC的堆又若干个Region组成，每个Region被称之为ZPage。每个Zpage�
 uncommit能力默认是开启的，但是无论指定何种策略，ZGC都不能把堆内存降到低于Xms。这就意味着，如果Xmx和Xms相等的话，这个能力就失效了，-XX:-ZUncommit这个参数也能让这个内存管理能力失效。
 
 ### 353: Reimplement the Legacy Socket API
+
 用一个易于维护和Debug的，更简单、更现代的实现来取代java.net.Socket和java.net.ServerSocket。Socket和ServerSocket可以追溯到JDK1.0，它们的实现混合了Java和C代码，维护和调试都非常痛苦。而且其实现用线程栈来进行IO buffer，导致某些场景需要调大Xss。
 
 全新实现的NioSocketImpl，用来取代PlainSocketImpl，它的优点如下：
@@ -2556,7 +2560,9 @@ uncommit能力默认是开启的，但是无论指定何种策略，ZGC都不能
 - 直接使用JDK的NIO实现，不需要自己的本地代码；
 - 结合了buffer cache机制，所以不需要用线程栈来进行IO操作；
 - 用JUC的锁取代synchronized修饰的方法；
+
 ### 354: Switch Expressions (Preview)
+
 扩展Switch表达式，既能用陈述的方式，也能用表达式的方式。并且这两种形式都可以用传统方式（case ... : labels），或者新的方式（case ... -> labels），并且还准备引入表达式匹配（JEP305），类似这种玩法：
 ```java
 if (obj instanceof String s && s.length() > 5) {
@@ -2594,6 +2600,7 @@ case WEDNESDAY -> 9;
 ```
 
 ### 355: Text Blocks (Preview)
+
 即文本块。文本块就是指多行字符串，例如一段格式化后的xml、json等。用户不需要转义，Java能自动搞定。这个需求是承接自JEP326，JEP326已经废弃。
 
 JEP326使用`这个符号，例如：
@@ -2606,6 +2613,7 @@ String html = `<html>
  `;
 ```
 JEP355使用"""这个符号，例如：
+
 ```java
 String html = """
 
@@ -2636,6 +2644,7 @@ because while raw string literals could easily span multiple lines of source cod
 
 - HTML示例
 一维表达方式（旧）：
+
 ```java
 String html = "<html>\n" +
 
@@ -2672,8 +2681,28 @@ String query = """
  ORDER BY `EMP_ID`, `LAST_NAME`;
  """;
 ```
+
 ## JDK14
+
 http://openjdk.java.net/projects/jdk/14/
+
+> 305:[Pattern Matching for instanceof (Preview)](https://openjdk.java.net/jeps/305)
+> 343:[Packaging Tool (Incubator)](https://openjdk.java.net/jeps/343)
+> 345:[NUMA-Aware Memory Allocation for G1](https://openjdk.java.net/jeps/345)
+> 349:[JFR Event Streaming](https://openjdk.java.net/jeps/349)
+> 352:[Non-Volatile Mapped Byte Buffers](https://openjdk.java.net/jeps/352)
+> 358:[Helpful NullPointerExceptions](https://openjdk.java.net/jeps/358)
+> 359:[Records (Preview)](https://openjdk.java.net/jeps/359)
+> 361:[Switch Expressions (Standard)](https://openjdk.java.net/jeps/361)
+> 362:[Deprecate the Solaris and SPARC Ports](https://openjdk.java.net/jeps/362)
+> 363:[Remove the Concurrent Mark Sweep (CMS) Garbage Collector](https://openjdk.java.net/jeps/363)
+> 364:[ZGC on macOS](https://openjdk.java.net/jeps/364)
+> 365:[ZGC on Windows](https://openjdk.java.net/jeps/365)
+> 366:[Deprecate the ParallelScavenge + SerialOld GC Combination](https://openjdk.java.net/jeps/366)
+> 367:[Remove the Pack200 Tools and API](https://openjdk.java.net/jeps/367)
+> 368:[Text Blocks (Second Preview)](https://openjdk.java.net/jeps/368)
+> 370:[Foreign-Memory Access API (Incubator)](https://openjdk.java.net/jeps/370)
+
 ## JDK15
 http://openjdk.java.net/projects/jdk/15/
 ## JDK16

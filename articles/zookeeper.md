@@ -5,6 +5,8 @@ https://zookeeper.apache.org/
 
 http://zookeeper.apache.org/doc/current/recipes.html
 
+[深入浅出Zookeeper--Zookeeper架构及FastLeaderElection机制](https://www.toutiao.com/a6776964861369778699)
+
 [TOC]
 
 # ZooKeeper
