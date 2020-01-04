@@ -57,6 +57,7 @@ HBase针对读取操作进行了优化，得到单次写入master的支持，支
 实际应用：Facebook Messanger
 
 ## Cassandra:
+[Cassandra 的过去、现在、未来](https://developer.aliyun.com/article/741499)
 
 宽列式数据库，基于BigTable和DynamoDB的概念。
 

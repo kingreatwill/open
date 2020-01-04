@@ -6,3 +6,4 @@ https://github.com/domchristie/turndown http://domchristie.github.io/turndown/
 [文件同步工具](https://freefilesync.org/)
 [语言在线](https://repl.it/languages)
 
+chcp 65001 cmd 显示中文

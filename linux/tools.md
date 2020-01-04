@@ -20,6 +20,7 @@ https://github.com/ggreer/the_silver_searcher
 
 yum install the_silver_searcher
 choco install ag
+choco install ack
 
 ### tig
 字符模式下交互查看git项目，可以替代git命令。
