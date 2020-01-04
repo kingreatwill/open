@@ -150,3 +150,5 @@ object SocketWindowWordCount {
 - DataSet
 
 ![](img/flink-api.png)
+
+![](img/flink-stack.png)
