@@ -76,4 +76,7 @@ Yarn |√|√
 Mesos |√|√
 Kubernetes |√|√
 
-
+Flink 流处理
+Storm 流处理
+Spark 微批处理
+Hadoop 批处理
