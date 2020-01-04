@@ -65,3 +65,15 @@ Custom: addSource
 https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/connectors/index.html#bundled-connectors
 
 
+### 开始第一个例子
+```
+# yum install -y nc
+nc -l -p 9000
+
+./bin/flink run examples/streaming/SocketWindowWordCount.jar --hostname 127.0.0.1 --port 9000
+
+tail -f log/flink-*-taskexecutor-*.out
+
+
+./bin/stop-cluster.sh
+```
