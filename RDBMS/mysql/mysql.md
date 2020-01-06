@@ -1,10 +1,11 @@
-https://segmentfault.com/a/1190000019619667
 
 
+[MySQL 一些内部原理](https://www.cnblogs.com/keme/p/10243333.html)
+[可能是全网最好的MySQL重要知识点/面试题总结](https://segmentfault.com/a/1190000019619667)
 ## 页
 MySQL的基本存储结构是页 (记录都存在页里边) ：
-![](../img/mysql/mysql-page-1.webp)
-![](../img/mysql/mysql-record-1.jpg)
+![](../../img/mysql/mysql-page-1.webp)
+![](../../img/mysql/mysql-record-1.jpg)
 
 - 各个数据页可以组成一个双向链表
 - 每个数据页中的记录又可以组成一个单向链表
@@ -19,10 +20,10 @@ select * from user where indexname = 'xxx'这样没有进行任何优化的sql�
 
 
 ## 索引
-![](../img/mysql/mysql-index-1.jpg)
+![](../../img/mysql/mysql-index-1.jpg)
 
 要找到id为8的记录简要步骤：
-![](../img/mysql/mysql-index-2.jpg)
+![](../../img/mysql/mysql-index-2.jpg)
 很明显的是：没有用索引我们是需要遍历双向链表来定位对应的页，现在通过 “目录” 就可以很快地定位到对应的页上了！（二分查找，时间复杂度近似为O(logn)）
 
 ### 注意避免冗余索引
@@ -61,7 +62,7 @@ MySQLS.7 版本后，可以通过查询 sys 库的 schema_redundant_indexes 表�
 
 它是为实现保护共享资源而提出一种锁机制。其实，自旋锁与互斥锁比较类似，它们都是为了解决对某项资源的互斥使用。无论是互斥锁，还是自旋锁，在任何时刻，最多只能有一个保持者，也就说，在任何时刻最多只能有一个执行单元获得锁。但是两者在调度机制上略有不同。对于互斥锁，如果资源已经被占用，资源申请者只能进入睡眠状态。但是自旋锁不会引起调用者睡眠，如果自旋锁已经被别的执行单元保持，调用者就一直循环在那里看是否该自旋锁的保持者已经释放了锁，”自旋”一词就是因此而得名。
 
-https://blog.csdn.net/qq_34337272/article/details/81252853
+[深入理解自旋锁](https://blog.csdn.net/qq_34337272/article/details/81252853)
 
 
 
