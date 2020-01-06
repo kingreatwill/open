@@ -151,3 +151,34 @@ mysql> select index_name,count(*) from information_schema.INNODB_BUFFER_PAGE whe
 
 为了在每次重启时确保清空buffer pool，我们需要关闭innodb_buffer_pool_dump_at_shutdown和innodb_buffer_pool_load_at_startup，这两个选项能够控制数据库关闭时dump出buffer pool中的数据和在数据库开启时载入在磁盘上备份buffer pool的数据。
 
+ 
+## SQL查询优化2 小表驱动大表
+![](../../img/db/slelect-2.jpg)
+第一张表是全表索引(要以此关联其他表)，其余表的查询类型type为range(索引区间获得)，也就是6 * 1 * 1，共遍历查询6次即可;
+
+建议使用left join时，以小表关联大表，因为使用join的话，第一张表是必须全扫描的，以少关联多就可以减少这个扫描次数.
+
+> 这里所说的表的type，指的是explain执行计划中的结果字段。详情点击查看，explain的属性详解与提速百倍的优化示例
+
+### 实时获取有性能问题的SQL
+
+利用information_schema数据库的processlist表，实时查看执行时间过长的线程，定位需要优化的SQL。
+
+例如下面的SQL的作用是查看正在执行的线程，并按Time倒排序，查看执行时间过长的线程。
+
+select * from information_schema.processlist where Command != 'Sleep' order by Time desc;
+
+### 拆分执行时间长的DELETE或INSERT语句 拆分大SQL
+避免在生产环境上执行会锁表的DELETE或INSERT的操作。一定把其拆分，或者使用LIMIT条件也是一个好的方法。
+```
+while (1) {
+ //每次只做1000条
+ mysql_query("DELETE FROM logs WHERE log_date <= '2009-11-01' LIMIT 1000");
+ if (mysql_affected_rows() == 0) {
+ // 没得可删了，退出！
+ break;
+ }
+ // 每次都要休息一会儿
+ usleep(50000);
+}
+```
