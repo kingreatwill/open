@@ -3,6 +3,8 @@ https://github.com/alibaba/Alink
 [仅1年GitHub Star数翻倍，Flink 做了什么？](https://www.jianshu.com/p/3e83f76b8f4f)
 [在 Flink 算子中使用多线程如何保证不丢数据？](https://developer.aliyun.com/article/740572)
 
+[Flink入门（一）——Apache Flink介绍](https://www.cnblogs.com/tree1123/p/11880563.html)
+
 ## 安装Flink
 
 ### centos7 关闭防火墙
