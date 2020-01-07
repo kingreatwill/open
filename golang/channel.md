@@ -14,3 +14,6 @@ https://www.zhihu.com/question/20862617/answer/921061289
 
 goroutine背后的系统知识
 http://www.sizeofvoid.net/goroutine-under-the-hood/
+
+深度解密Go语言之channel
+https://mp.weixin.qq.com/s/90Evbi5F5sA1IM5Ya5Tp8w
