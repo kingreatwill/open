@@ -2,6 +2,10 @@
 
 excel to markdown http://www.tablesgenerator.com/markdown_tables
 
+技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++ https://cyc2018.github.io/CS-Notes
+
+https://github.com/CyC2018/CS-Notes
+
 1. kubernetes
 
 中文文档1：https://kubernetes.io/zh/docs/
