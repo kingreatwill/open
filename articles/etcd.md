@@ -53,3 +53,136 @@ etcd领导者的延迟是要跟踪的最重要的指标，并且内置仪表板�
 - 快速：基准为每个实例1000次写入/秒
 - 可选的TTL用于密钥过期
 - 可靠：通过Raft协议正确分发
+
+
+## ETCD在k8s上的应用
+ETCD 存储 k8s 所有数据信息
+
+ETCD 是k8s集群极为重要的一块服务，存储了集群所有的数据信息。同理，如果发生灾难或者 etcd 的数据丢失，都会影响集群数据的恢复。
+
+### ETCD 一些查询操作
+
+- 查看集群状态
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379,https://192.168.1.37:2379,https://192.168.1.38:2379 endpoint health
+
+https://192.168.1.36:2379 is healthy: successfully committed proposal: took = 1.698385ms
+https://192.168.1.37:2379 is healthy: successfully committed proposal: took = 1.577913ms
+https://192.168.1.38:2379 is healthy: successfully committed proposal: took = 5.616079ms
+```
+- 获取某个 key 信息
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379,https://192.168.1.37:2379,https://192.168.1.38:2379 get /registry/apiregistration.k8s.io/apiservices/v1.apps
+```
+
+- 获取 etcd 版本信息
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379,https://192.168.1.37:2379,https://192.168.1.38:2379 version
+```
+-获取 ETCD 所有的 key
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379,https://192.168.1.37:2379,https://192.168.1.38:2379 get / --prefix --keys-only
+```
+
+### ETCD 备份
+> ETCD 不同的版本的 etcdctl 命令不一样，但大致差不多，本文备份使用 napshot save , 每次备份一个节点就行。
+
+- 命令备份（k8s-master1 机器上备份）：
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379 snapshot save /data/etcd_backup_dir/etcd-snapshot-`date +%Y%m%d`.db
+```
+- 备份脚本（k8s-master1 机器上备份）：
+```sh
+#!/usr/bin/env bash
+
+date;
+
+CACERT="/opt/kubernetes/ssl/ca.pem"
+CERT="/opt/kubernetes/ssl/server.pem"
+EKY="/opt/kubernetes/ssl/server-key.pem"
+ENDPOINTS="192.168.1.36:2379"
+
+ETCDCTL_API=3 etcdctl \
+--cacert="${CACERT}" --cert="${CERT}" --key="${EKY}" \
+--endpoints=${ENDPOINTS} \
+snapshot save /data/etcd_backup_dir/etcd-snapshot-`date +%Y%m%d`.db
+
+# 备份保留30天
+find /data/etcd_backup_dir/ -name *.db -mtime +30 -exec rm -f {} \;
+```
+
+### ETCD 恢复
+#### 准备工作
+- 停止所有 Master 上 kube-apiserver 服务
+```
+$ systemctl stop kube-apiserver
+
+# 确认 kube-apiserver 服务是否停止
+$ ps -ef | grep kube-apiserver
+```
+- 停止集群中所有 ETCD 服务
+```
+$ systemctl stop etcd
+```
+- 移除所有 ETCD 存储目录下数据
+```
+$ mv /var/lib/etcd/default.etcd /var/lib/etcd/default.etcd.bak
+```
+- 拷贝 ETCD 备份快照
+```
+# 从 k8s-master1 机器上拷贝备份
+$ scp /data/etcd_backup_dir/etcd-snapshot-20191222.db root@k8s-master2:/data/etcd_backup_dir/
+$ scp /data/etcd_backup_dir/etcd-snapshot-20191222.db root@k8s-master3:/data/etcd_backup_dir/
+```
+
+#### 恢复备份
+```sh
+# k8s-master1 机器上操作
+$ ETCDCTL_API=3 etcdctl snapshot restore /data/etcd_backup_dir/etcd-snapshot-20191222.db \
+  --name etcd-0 \
+  --initial-cluster "etcd-0=https://192.168.1.36:2380,etcd-1=https://192.168.1.37:2380,etcd-2=https://192.168.1.38:2380" \
+  --initial-cluster-token etcd-cluster \
+  --initial-advertise-peer-urls https://192.168.1.36:2380 \
+  --data-dir=/var/lib/etcd/default.etcd
+  
+# k8s-master2 机器上操作
+$ ETCDCTL_API=3 etcdctl snapshot restore /data/etcd_backup_dir/etcd-snapshot-20191222.db \
+  --name etcd-1 \
+  --initial-cluster "etcd-0=https://192.168.1.36:2380,etcd-1=https://192.168.1.37:2380,etcd-2=https://192.168.1.38:2380"  \
+  --initial-cluster-token etcd-cluster \
+  --initial-advertise-peer-urls https://192.168.1.37:2380 \
+  --data-dir=/var/lib/etcd/default.etcd
+  
+# k8s-master3 机器上操作
+$ ETCDCTL_API=3 etcdctl snapshot restore /data/etcd_backup_dir/etcd-snapshot-20191222.db \
+  --name etcd-2 \
+  --initial-cluster "etcd-0=https://192.168.1.36:2380,etcd-1=https://192.168.1.37:2380,etcd-2=https://192.168.1.38:2380"  \
+  --initial-cluster-token etcd-cluster \
+  --initial-advertise-peer-urls https://192.168.1.38:2380 \
+  --data-dir=/var/lib/etcd/default.etcd
+```
+- 上面三台 ETCD 都恢复完成后，依次登陆三台机器启动 ETCD
+```
+systemctl start etcd
+```
+- 三台 ETCD 启动完成，检查 ETCD 集群状态
+```
+ETCDCTL_API=3 etcdctl --cacert=/opt/kubernetes/ssl/ca.pem --cert=/opt/kubernetes/ssl/server.pem --key=/opt/kubernetes/ssl/server-key.pem --endpoints=https://192.168.1.36:2379,https://192.168.1.37:2379,https://192.168.1.38:2379 endpoint health
+```
+- 三台 ETCD 全部健康，分别到每台 Master 启动 kube-apiserver
+```
+systemctl start kube-apiserver
+```
+- 检查 Kubernetes 集群是否恢复正常
+```
+$ kubectl get cs
+```
+### 总结
+Kubernetes 集群备份主要是备份 ETCD 集群。而恢复时，主要考虑恢复整个顺序：
+
+停止kube-apiserver --> 停止ETCD --> 恢复数据 --> 启动ETCD --> 启动kube-apiserve
+
+> 注意：备份ETCD集群时，只需要备份一个ETCD就行，恢复时，拿同一份备份数据恢复。
+
+[锻骨境-第6层 k8s集群数据备份与恢复](https://www.jianshu.com/p/8b483ed49f26)
+[k8s安装之etcd备份还原yaml](https://www.cnblogs.com/aguncn/p/10905564.html)

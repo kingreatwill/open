@@ -8,4 +8,12 @@ https://github.com/domchristie/turndown http://domchristie.github.io/turndown/
 
 Cygwin，让你拥有Windows下的Linux环境
 
+
+[视频下载1](https://github.com/soimort/you-get)
+pip3 install you-get
+you-get "https://www.bilibili.com/video/av77403752?from=search&seid=8721276388614459679"
+[视频下载2](https://github.com/ytdl-org/youtube-dl)
+pip install --upgrade youtube-dl
+youtube-dl "https://www.bilibili.com/video/av77403752?from=search&seid=8721276388614459679"
+
 chcp 65001 cmd 显示中文

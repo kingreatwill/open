@@ -17,3 +17,15 @@ http://www.sizeofvoid.net/goroutine-under-the-hood/
 
 深度解密Go语言之channel
 https://mp.weixin.qq.com/s/90Evbi5F5sA1IM5Ya5Tp8w
+
+
+coroutine/协程,fiber/纤程,thread/线程,process/进程
+
+goroutine是golang中的coroutine
+
+goroutine是强制加上scheduler的纤程
+
+纤程和协程的差异点在于，fiber/goroutine多了一个调度器，而这个调度器会把callback后的代码调度到其他线程去执行
+
+如果还是原来线程在执行，那么就是coroutine
+如果存在有被其他线程所执行的可能，那就是fiber
