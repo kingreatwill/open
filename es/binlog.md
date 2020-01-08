@@ -1,3 +1,70 @@
+[TOC]
+# binlog浅析
+
+## binlog浅析
+
+### 什么是binlog？
+全称：Binary Log （二进制日志）,包含描述数据库更改的“ 事件 ”，例如表创建操作或对表数据的更改。二进制日志不用于诸如select或 show不修改数据的语句 。要记录所有语句（例如，标识问题查询），请使用常规查询日志。 
+
+我们都知道MYSQL有两层结构，第一层：server层，里面包含连接器、查询缓存、解析器、优化器、执行器，第二次是存储引擎层，例如：InnoDB、MyISAM、Memory 等多个存储引擎
+![](img/sql.png)
+binlog产生于mysql中的server层。
+
+若是mysql采用的为innodb引擎（这里是经典的两阶段提交）：
+![](img/mysql-innerdb.png)
+
+### binlog文件都有什么？
+
+binlog文件包含两种类型：
+
+- 索引文件（文件名后缀为.index）用于记录哪些日志文件正在被使用
+- 日志文件（文件名后缀为.00000*）记录数据库所有的DDL和DML(除了数据查询语句)语句事件。
+
+1. 索引文件大小：我们可以通过 max_binlog_size  参数设置binlog文件的大小。Binlog最大值，最大和默认值是1GB，该设置并不能严格控制Binlog的大小，尤其是Binlog比较靠近最大值而又遇到一个比较大事务时，为了保证事务的完整性，不可能做切换日志的动作，只能将该事务的所有SQL都记录进当前日志，直到事务结束
+
+2. 索引文件删除：binlog的删除可以手工删除或自动删除。通过设置 expire_logs_days 实现自动删除 
+
+手动删除需登录mysql后执行如下命令：
+```
+mysql> reset master;        //删除master的binlog，即手动删除所有的binlog日志
+mysql> reset slave;          //删除slave的中继日志
+mysql> purge master logs before '2019-07-07 17:20:00';         //删除指定日期以前的日志索引中binlog日志文件
+mysql> purge master logs to 'binlog.000003';       //删除指定日志文件的日志索引中binlog日志文件
+```
+可以通过如下命令确认目前正在使用binlog文件：
+```
+-- 通过这句话查询到目前写入的是哪个binlog文件
+show master status;
+```
+然后可以跟踪下日志的内容了
+```
+-- 然后看下记录的内容
+show binlog events in 'binlogs.000003';
+```
+binlog是否开启：
+```
+show variables like 'log_bin';
+```
+binlog 大小：
+```
+show variables like 'max_binlog_size'
+```
+
+[binlog浅析](https://www.cnblogs.com/fengtingxin/p/11104758.html)
+
+
+## 其它
+### 什么时候切换binlog
+手动切换：
+flush logs 或者flush binary logs
+
+被动触发：
+show variables like 'max_binlog_size'
+
+达到1G，自动切换，但是并不是准确的1G,要保证每个事务在一个日志中，要等到最后一个事务做完再Rotate。
+
+
+### canal
 https://dev.mysql.com/doc/refman/5.5/en/binary-log.html
 
 - mysql的binlog是多文件存储，定位一个LogEvent需要通过binlog filename + binlog position，进行定位
@@ -5,7 +72,7 @@ https://dev.mysql.com/doc/refman/5.5/en/binary-log.html
 show variables like 'binlog_format';
 
 目前canal支持所有模式的增量订阅(但配合同步时，因为statement只有sql，没有数据，无法获取原始的变更日志，所以一般建议为ROW模式)
-
+# binlog的格式都有什么？
 ## Statement
 ### Statement 优点
 历史悠久，技术成熟；

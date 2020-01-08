@@ -6,6 +6,10 @@ excel to markdown http://www.tablesgenerator.com/markdown_tables
 
 https://github.com/CyC2018/CS-Notes
 
+开源技术 * IBM 微讲堂：Kubernetes 系列
+https://developer.ibm.com/cn/tv/2018/opentec-k8s/
+欢迎参加 Istio 系列课程
+https://developer.ibm.com/cn/os-academy-istio/
 1. kubernetes
 
 中文文档1：https://kubernetes.io/zh/docs/

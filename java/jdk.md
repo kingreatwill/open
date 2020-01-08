@@ -2138,6 +2138,8 @@ https://www.runoob.com/java/java8-base64.html
 ## JDK9 
 https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6
 
+http://www.oracle.com/technetwork/java/javase/9-relnotes-3622618.html
+
 > 102: [Process API Updates](https://openjdk.java.net/jeps/102)  
 > 110: [HTTP 2 Client](https://openjdk.java.net/jeps/110)  
 > 143: [Improve Contended Locking](https://openjdk.java.net/jeps/143)  
@@ -2323,6 +2325,8 @@ https://www.cnblogs.com/peter1018/p/9209951.html
 ## JDK10
 http://cr.openjdk.java.net/~iris/se/10/latestSpec/
 
+http://www.oracle.com/technetwork/java/javase/10-relnote-issues-4108729.html#NewFeature
+
 > 286: [Local-Variable Type Inference](https://openjdk.java.net/jeps/286)  
 > 296: [Consolidate the JDK Forest into a Single Repository](https://openjdk.java.net/jeps/296)  
 > 304: [Garbage-Collector Interface](https://openjdk.java.net/jeps/304)  
@@ -2461,6 +2465,8 @@ cacerts密钥存储库是JDK的一部分，它的目的是包含一组root证书
 
 
 ## JDK11
+http://www.oracle.com/technetwork/java/javase/11-relnote-issues-5012449.html#NewFeature
+
 > 181: [Nest-Based Access Control](https://openjdk.java.net/jeps/181)  
 > 309: [Dynamic Class-File Constants](https://openjdk.java.net/jeps/309)  
 > 315: [Improve Aarch64 Intrinsics](https://openjdk.java.net/jeps/315)  
@@ -2481,6 +2487,7 @@ cacerts密钥存储库是JDK的一部分，它的目的是包含一组root证书
 > 336: [Deprecate the Pack200 Tools and API](https://openjdk.java.net/jeps/336)
 
 ## JDK12
+https://www.oracle.com/technetwork/java/javase/12-relnote-issues-5211422.html#NewFeature
 
 > 189: [Shenandoah: A Low-Pause-Time Garbage Collector (Experimental)](https://openjdk.java.net/jeps/189)
 > 230: [Microbenchmark Suite](https://openjdk.java.net/jeps/230)
@@ -2491,6 +2498,8 @@ cacerts密钥存储库是JDK的一部分，它的目的是包含一组root证书
 > 344: [Abortable Mixed Collections for G1](https://openjdk.java.net/jeps/344)
 > 346: [Promptly Return Unused Committed Memory from G1](https://openjdk.java.net/jeps/346)
 ## JDK13
+
+https://www.oracle.com/technetwork/java/javase/13-relnote-issues-5460548.html#NewFeature
 
 > 350:[Dynamic CDS Archives](https://openjdk.java.net/jeps/350)
 > 351:[ZGC: Uncommit Unused Memory](https://openjdk.java.net/jeps/351)
