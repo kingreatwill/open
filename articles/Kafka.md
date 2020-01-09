@@ -24,6 +24,8 @@ https://blog.csdn.net/qq_36807862/article/details/81283568
 Kafka总结（九）：KafKa 与Spark整合应用
 https://blog.csdn.net/qq_36807862/article/details/81283606 
 
+大数据中台之Kafka，到底好在哪里？
+https://blog.csdn.net/csdn_bang/article/details/103797920
 [TOC]
 
 # Kafka

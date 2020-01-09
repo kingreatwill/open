@@ -31,6 +31,11 @@ mysql> reset slave;          //删除slave的中继日志
 mysql> purge master logs before '2019-07-07 17:20:00';         //删除指定日期以前的日志索引中binlog日志文件
 mysql> purge master logs to 'binlog.000003';       //删除指定日志文件的日志索引中binlog日志文件
 ```
+查看所有二进制日志
+```
+show binary logs;
+```
+
 可以通过如下命令确认目前正在使用binlog文件：
 ```
 -- 通过这句话查询到目前写入的是哪个binlog文件
@@ -38,6 +43,8 @@ show master status;
 ```
 然后可以跟踪下日志的内容了
 ```
+-- 查看第一个
+show binlog events;
 -- 然后看下记录的内容
 show binlog events in 'binlogs.000003';
 ```
