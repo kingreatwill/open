@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # binlog浅析
 

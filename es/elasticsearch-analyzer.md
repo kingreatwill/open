@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # 认识 ElasticSearch Analyzer 分析器
 做全文搜索就需要对文档分析、建索引。从文档中提取词元（Token）的算法称为分词器（Tokenizer），在分词前预处理的算法称为字符过滤器（Character Filter），进一步处理词元的算法称为词元过滤器（Token Filter），最后得到词（Term）。这整个分析算法称为分析器（Analyzer）。

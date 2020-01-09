@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # k8s部署策略
 https://github.com/ContainerSolutions/k8s-deployment-strategies

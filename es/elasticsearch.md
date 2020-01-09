@@ -49,6 +49,7 @@ https://www.toutiao.com/a6749080730841645580
 Elasticsearch 创建索引前必须要了解的知识，提前避坑
 https://www.toutiao.com/a6765232723524059659
 
+<!-- toc -->
 [TOC]
 
 # Elasticsearch中的一些基本概念

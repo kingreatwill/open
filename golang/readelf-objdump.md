@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # 使用readelf和objdump解析目标文件
 ## 引言

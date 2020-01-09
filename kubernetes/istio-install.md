@@ -1,5 +1,6 @@
 https://istio.io/docs/setup/getting-started/
 
+<!-- toc -->
 [TOC]
 
 # 安装

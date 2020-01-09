@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # High Performance Go Workshop（Part7）
 

@@ -1,4 +1,5 @@
 参考：https://github.com/eip-work/kuboard-press
+<!-- toc -->
 [TOC]
 
 ### 准备工作

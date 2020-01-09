@@ -2,6 +2,7 @@
 https://redis.io/documentation
 https://www.toutiao.com/a6773538740674494987
 
+<!-- toc -->
 [TOC]
 ## 数据结构
 ### 普通数据结构

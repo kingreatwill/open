@@ -4,6 +4,7 @@
 
 [Go 内存分配器可视化指南](https://github.com/coldnight/go-memory-allocator-visual-guide)
 
+<!-- toc -->
 [TOC]
 # Go 1.13 内存管理与内存分配
 当内存不再被使用时，标准库就会自动执行Go内存管理，即从内存分配到Go自己的集合中（from allocation of the memory to its collection）。

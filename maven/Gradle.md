@@ -1,4 +1,5 @@
 https://www.w3cschool.cn/gradle/ms7n1hu2.html
+<!-- toc -->
 [TOC]
 
 << 操作符 是 doLast 的简写方式。

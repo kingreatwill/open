@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 https://www.oracle.com/technetwork/java/javase/jdk-relnotes-index-2162236.html
 

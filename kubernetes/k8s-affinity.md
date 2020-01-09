@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # [Kubernetes中的亲和性与反亲和性](https://www.cnblogs.com/cocowool/p/kubernetes_affinity.html)
 

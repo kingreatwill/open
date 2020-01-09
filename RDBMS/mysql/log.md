@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # 详解MySQL的Redo日志与Undo日志
 ## 概念与理解

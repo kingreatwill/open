@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # GC
 [GC 基础](https://www.toutiao.com/a6769524011689837069/)

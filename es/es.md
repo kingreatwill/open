@@ -1,5 +1,6 @@
 字段类型：https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
 
+<!-- toc -->
 [TOC]
 
 ## Dynamic Mapping

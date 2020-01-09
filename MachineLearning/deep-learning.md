@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # 深度学习算法优化系列一 | ICLR 2017《Pruning Filters for Efficient ConvNets》
 

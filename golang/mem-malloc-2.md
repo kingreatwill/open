@@ -1,3 +1,4 @@
+<!-- toc -->
 [TOC]
 # [golang内存分配](https://www.cnblogs.com/33debug/p/12068699.html)
 

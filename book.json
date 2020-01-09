@@ -1,4 +1,86 @@
 {
     "gitbook": "3.2.3",
-    "plugins": ["livereload","highlight","search","lunr","sharing","fontsettings","theme-default","toc"]
+    "title": "Kingreatwill's Blog",
+    "author": "Kingreatwill",
+    "links": {
+        "sidebar": {
+            "学习笔记 ": "https://github.com/openjw/open",
+            "GitHub": "https://github.com/BuiltCloud"
+        }
+    },
+    "plugins": [
+        "-sharing", "sharing-plus",
+        "-lunr", "-search", "search-pro",       
+        "page-footer",
+        "github-buttons",
+        "anchor-navigation-ex",
+        "insert-logo",
+        "custom-favicon",
+        "code",
+        "popup",
+        "hide-element"
+    ],
+    "pluginsConfig": {
+        "favicon": "./img/logo/favicon.ico",
+        "insert-logo": {
+            "url": "../img/logo/logo.png",
+            "style": "background: none; max-height: 30px; min-height: 30px"
+        },
+        "github-buttons": {
+            "buttons": [{
+                "user": "openjw",
+                "repo": "open",
+                "type": "star",
+                "size": "small",
+                "count": true
+                }
+            ]
+        },
+        "page-footer": {
+            "description": "modified at",
+            "signature": "Kingreatwill",
+            "wisdom": "More than a coder, more than a designer",
+            "format": "yyyy-MM-dd hh:mm:ss",
+            "copyright": "Copyright &#169; kingreatwill",
+            "timeColor": "#666",
+            "copyrightColor": "#666",
+            "utcOffset": "8",
+            "isShowQRCode": true,
+            "baseUri": "http://localhost:4000/",
+            "isShowIssues": true,
+            "repo": "openjw/open",
+            "issueNum": "8",
+            "token": "",
+            "style": "normal"
+        },
+        "hide-element": {
+            "elements": [".gitbook-link"]
+        },
+        "sharing": {
+            "douban": false,
+            "facebook": false,
+            "google": false,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": false,
+            "messenger": false,
+            "pocket": false,
+            "qq": false,
+            "qzone": false,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": false,
+            "whatsapp": false,
+            "all": [
+                "google", "facebook", "weibo", "twitter",
+                "qq", "qzone", "linkedin", "pocket"
+            ]
+        },
+        "anchor-navigation-ex": {
+            "showLevel": true
+        }
+    }
 }

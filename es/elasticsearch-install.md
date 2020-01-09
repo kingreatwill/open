@@ -1,4 +1,5 @@
 
+<!-- toc -->
 [TOC]
 # es7.4.2 安装
 ## 安装并运行Elasticsearch集群
