@@ -1,0 +1,4 @@
+{
+    "gitbook": "3.2.3",
+    "plugins": ["livereload","highlight","search","lunr","sharing","fontsettings","theme-default","toc"]
+}

@@ -18,5 +18,3 @@ youtube-dl "https://www.bilibili.com/video/av77403752?from=search&seid=872127638
 
 chcp 65001 cmd 显示中文
 
-在线文档管理系统
-gitbook  BookStack MinDoc
