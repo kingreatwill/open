@@ -399,6 +399,8 @@ gitbook默认只有Facebook、Google+、Twiter、Weibo、Instapaper
 }
 ```
 
+### gitalk 评论插件
+
 ## 插件开发
 GitBook 插件是在 npm 上发布的遵循传统定义的 node 包,除了标准的 node 规范外还有一些 Gitbook 自身定义的相关规范.
 
@@ -478,7 +480,7 @@ $ npm link
 $ npm link gitbook-plugin-<name>
 ```
 ### 单元测试插件
-gitbook-tester可以方便地为你的插件编写`Node.js/Mocha`单元测试.
+[gitbook-tester](https://github.com/todvora/gitbook-tester)可以方便地为你的插件编写`Node.js/Mocha`单元测试.
 
 使用Travis.可以对每个提交/标签运行测试.
 

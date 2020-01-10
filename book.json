@@ -9,22 +9,25 @@
         }
     },
     "plugins": [
-        "-sharing", "sharing-plus",
-        "-lunr", "-search", "search-pro",       
-        "page-footer",
-        "github-buttons",
+        "-sharing",
+        "-lunr", "-search", "search-pro",   
         "anchor-navigation-ex",
-        "insert-logo",
-        "custom-favicon",
-        "code",
-        "popup",
-        "hide-element"
+        "built@git+https://github.com/BuiltCloud/gitbook-plugin-built.git"
     ],
     "pluginsConfig": {
+        "img-popup": true,
         "favicon": "./img/logo/favicon.ico",
-        "insert-logo": {
+        "logo": {
             "url": "../img/logo/logo.png",
-            "style": "background: none; max-height: 30px; min-height: 30px"
+            "style": "background: none; max-height: 30px; min-height: 30px",
+            "href": "./"
+        },
+        "hide-element": {
+            "elements": [".gitbook-link"]
+        },
+        "code": {
+            "line": true,
+            "copyButton": true
         },
         "github-buttons": {
             "buttons": [{
@@ -35,13 +38,13 @@
                 "count": true
                 }
             ]
-        },
+        },       
         "page-footer": {
             "description": "modified at",
             "signature": "Kingreatwill",
             "wisdom": "More than a coder, more than a designer",
             "format": "yyyy-MM-dd hh:mm:ss",
-            "copyright": "Copyright &#169; kingreatwill",
+            "copyright": "Copyright &#169; BuiltCloud all right reserved, powered by <a href='https://github.com/BuiltCloud' target='_blank'>kingreatwill</a>",
             "timeColor": "#666",
             "copyrightColor": "#666",
             "utcOffset": "8",
@@ -52,32 +55,6 @@
             "issueNum": "8",
             "token": "",
             "style": "normal"
-        },
-        "hide-element": {
-            "elements": [".gitbook-link"]
-        },
-        "sharing": {
-            "douban": false,
-            "facebook": false,
-            "google": false,
-            "hatenaBookmark": false,
-            "instapaper": false,
-            "line": false,
-            "linkedin": false,
-            "messenger": false,
-            "pocket": false,
-            "qq": false,
-            "qzone": false,
-            "stumbleupon": false,
-            "twitter": false,
-            "viber": false,
-            "vk": false,
-            "weibo": false,
-            "whatsapp": false,
-            "all": [
-                "google", "facebook", "weibo", "twitter",
-                "qq", "qzone", "linkedin", "pocket"
-            ]
         },
         "anchor-navigation-ex": {
             "showLevel": true
