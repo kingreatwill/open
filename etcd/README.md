@@ -1,6 +1,7 @@
-https://etcd.io/docs
 <!-- toc -->
 [TOC]
+
+https://etcd.io/docs
 # ETCD
 用于分布式系统最关键数据的分布式可靠键值存储
 
@@ -187,3 +188,5 @@ Kubernetes 集群备份主要是备份 ETCD 集群。而恢复时，主要考虑
 
 [锻骨境-第6层 k8s集群数据备份与恢复](https://www.jianshu.com/p/8b483ed49f26)
 [k8s安装之etcd备份还原yaml](https://www.cnblogs.com/aguncn/p/10905564.html)
+
+[为 Kubernetes 运行 etcd 集群](https://kubernetes.io/zh/docs/tasks/administer-cluster/configure-upgrade-etcd/)
