@@ -101,4 +101,22 @@ CGO_ENABLED=0 go build -a -installsuffix cgo -v -mod=vendor \
 ```
 
 本质上是用 -ldflags 参数注入了的外部参数到go的变量当中go的更多build参数帮助可以通过 go help build获取
+
 > windows用Git Bash终端
+
+## Demo
+```go
+package main
+
+import "fmt"
+
+var AppName string // 应用名称
+func main() {
+
+	fmt.Println("AppName=", AppName)
+}
+
+```
+```
+go build -ldflags "-s -X 'main.AppName=XXX'" cmd.go
+```
