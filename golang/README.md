@@ -17,6 +17,13 @@
 
 [Go性能优化之路.pdf](../files/go/Go性能优化之路.pdf)
 
+[编写和优化Go代码](https://github.com/dgryski/go-perfbook/blob/master/performance-zh.md)
+
+[编写可维护的Go程序的建议](https://dave.cheney.net/practical-go/presentations/qcon-china.html)
+
+[Go工具概述](https://www.alexedwards.net/blog/an-overview-of-go-tooling)
+
+[Go性能提升快速指南](https://stephen.sh/posts/quick-go-performance-improvements)
 ![](img/go.jpg)
 
 
