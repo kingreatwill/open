@@ -1,7 +1,7 @@
 # Summary
 
 * [说明](README.md)
-* [文章]()
+* [文章](articles/README.md)
     * [分布式系统](articles/分布式系统.md)
     * [内存屏障](articles/Memory-Barrier.md)
     * [CAP](articles/CAP.md)
@@ -9,6 +9,7 @@
 * [java](java/README.md)
     * [Java内存模型FAQ](java/memory-model-faq.md)
 * [golang](golang/README.md)
+    * [Golang编译信息注入程序](golang/build-a-installsuffix.md)
     * [Go内存详解](golang/Go内存详解.md)
     * [Go pprof](golang/pprof.md)
     * [Golang 笔记之深入浮点数](golang/float.md)
