@@ -16,9 +16,9 @@
     ],
     "pluginsConfig": {
         "img-popup": true,
-        "favicon": "./img/logo/favicon.ico",
+        "favicon": "/img/logo/favicon.ico",
         "logo": {
-            "url": "../img/logo/logo.png",
+            "url": "/img/logo/logo.png",
             "style": "background: none; max-height: 30px; min-height: 30px",
             "href": "./"
         },

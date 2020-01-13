@@ -15,6 +15,8 @@
 
 [Go 的内存对齐和指针运算详解和实践](https://learnku.com/articles/39255)
 
+[Go性能优化之路.pdf](../files/go/Go性能优化之路.pdf)
+
 ![](img/go.jpg)
 
 

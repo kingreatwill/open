@@ -1,6 +1,9 @@
+<!-- toc -->
+[TOC]
+# ES优化
 https://learnku.com/elasticsearch
 
-分片个数计算
+## 分片个数计算
 
 SN(分片数) = IS(索引大小) / 30
 
@@ -18,7 +21,7 @@ NN(节点数) = SN(分片数) + MNN(主节点数[无数据]) + NNN(负载节点�
 
 一个Lucene索引包含多个segments，一个segment包含多个文档，每个文档包含多个字段，每个字段经过分词后形成一个或多个term。
 
-### 优化
+## ES优化1
 https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html
 
 1. 关闭不需要字段的doc values。
@@ -139,3 +142,119 @@ scroll 用于大结果集查询，缺陷是需要维护scroll_id
 （3）当候选数量为两个时，只能修改为唯一的一个 master 候选，其他作为 data节点，避免脑裂问题。
 
 其实是个脑裂问题，也是不存在的，至少要11个节点投票才能选出master
+
+## ES优化2
+### 查看profile
+在原有参数中加入"profile": true，查看ES处理搜索请求的耗时分布情况；
+
+```json
+GET single-a/_search
+{
+  "query": { "match_all": {} },
+  "profile": true
+}
+
+"profile" : {
+    "shards" : [
+      {
+        "id" : "[CwFkz48MS_mJ_qivr8vghw][security-user-single-a][0]",
+        "searches" : [
+          {
+            "query" : [
+              {
+                "type" : "MatchAllDocsQuery",
+                "description" : "*:*",
+                "time_in_nanos" : 76916,
+                "breakdown" : {
+                  "set_min_competitive_score_count" : 2,
+                  "match_count" : 0,
+                  "shallow_advance_count" : 0,
+                  "set_min_competitive_score" : 3871,
+                  "next_doc" : 5861,
+                  "match" : 0,
+                  "next_doc_count" : 10,
+                  "score_count" : 10,
+                  "compute_max_score_count" : 0,
+                  "compute_max_score" : 0,
+                  "advance" : 2813,
+                  "advance_count" : 2,
+                  "score" : 23293,
+                  "build_scorer_count" : 4,
+                  "create_weight" : 13220,
+                  "shallow_advance" : 0,
+                  "create_weight_count" : 1,
+                  "build_scorer" : 27829
+                }
+              }
+            ],
+            "rewrite_time" : 2444,
+            "collector" : [
+              {
+                "name" : "CancellableCollector",
+                "reason" : "search_cancelled",
+                "time_in_nanos" : 109386,
+                "children" : [
+                  {
+                    "name" : "SimpleTopScoreDocCollector",
+                    "reason" : "search_top_hits",
+                    "time_in_nanos" : 68751
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "aggregations" : [ ]
+      }
+    ]
+  }
+```
+### 查看segment
+索引文件是由多个segment组成，这里是读取多个segment到内存进行查询匹配，打开segment分布情况发现一个索引节点有多个小的segment，判断是由于打开多个文件随机读写提升了读取索引数据耗时；
+
+```
+http://xx:9200/_cat/segments/single-a?v&h=shard,segment,size,size.memory
+
+shard segment    size size.memory
+0     _0        1.1mb        5454
+0     _b      695.1kb        3812
+0     _c        3.2kb         953
+0     _d        3.2kb         953
+0     _e        3.2kb         953
+0     _1        1.1mb        5357
+0     _b      698.3kb        3693
+```
+#### 手动合并segment
+几分钟后合并完成，并进行搜索，性能显著提升，问题解决；
+```
+curl -XPOST 'http://xxxx:9200/_forcemerge?max_num_segments=1'
+```
+
+#### 永久解决
+加配置项index.merge.policy.floor_segment=设置每个segment最小值，index.merge.scheduler.max_thread_count=ES集群负载较低时，后台合并segment线程数，一般=核数/2；
+```
+curl -XPUT http://xxxx:9200/index_name/_settings -d '{"index.merge.policy.floor_segment":"100mb"}'
+curl -XPUT http://xx:9200/index_name/_settings -d '{"index.merge.scheduler.max_thread_count":"2"}'
+```
+
+每个segment是一个包含正排（空间占比90~95%）+倒排（空间占比5~10%）的完整索引文件，每次搜索请求会将所有segment中的倒排索引部分加载到内存，进行查询和打分，然后将命中的文档号拿到正排中召回完整数据记录；如果不对segment做配置，提交又特别频繁的话，就会导致查询性能下降
+### 总结
+#### 搜索性能优化建议：
+1. segment合并；索引节点粒度配置index.merge.policy.floor_segment=xx mb；segment默认最小值2M
+2. 索引时不需要做打分的字段，关闭norms选项，减少倒排索引内存占用量；字段粒度配置omit_norms=true；
+3. BoolQuery 优于 TermQuery；目前需求场景全部不需要用到分词，所以尽可能用BoolQuery；
+4. 避免使用对象嵌套结构组建document，建议优化为一个扁平化结构，查询多个扁平化结构在内存做聚合关联；
+5. 设定字符串类型为不分词，可以用于字符串排序，但是比起数字排序会消耗cpu，搜索效率更低，慎用；
+6. cache设置，就目前数据业务类型，保持默认配置即可，设值fielddata.cache之类的缓存命中率低，反而吃掉了ES集群的一部分内存；
+
+#### 索引性能优化建议：
+1. 调小索引副本数；针对索引节点粒度：`curl -XPUT http://xxxx:9200/m_pd_cu_id_gps_2es_inc_hi_out/_settings -d '{"number_of_replicas":1}'`
+2. 设置延迟提交，延迟提交意味着数据提交到搜索可见，有延迟，需要结合业务配置；针对索引节点粒度：`curl -XPUT http://xxxx:9200/m_pd_cu_id_gps_2es_inc_hi_out/_settings -d '{"index.refresh_interval":"10s"}'`；默认值1s；
+3. 设置索引缓冲buffer，最大512m，默认值是jvm的10%；ES集群粒度config/elasticsearch.yml ：`indices.memory.index_buffer_size = 10%`
+
+4. 适当减少备份数，必要字段只需要提供搜索，不需要返回则将stored设为false；
+
+如果ES提交索引请求达到瓶颈，一般任务队列task-queue为50，可以设置task-queue队列，提升搜索集群索引能力；
+
+
+以上涉及到索引节点/字段 粒度的配置，均可在创建时代码指定；

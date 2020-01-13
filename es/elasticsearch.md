@@ -1,58 +1,46 @@
-elasticSearch同步mysql数据
-https://www.jianshu.com/p/bfa841df5fee
-Elasticsearch顶尖高手系列：高手进阶篇（最新第二版）
-https://zhuanlan.zhihu.com/p/88975745
-
-Elasticsearch在日志分析领域应用和运维实践
-https://zhuanlan.zhihu.com/p/90080383
-
-Elasticsearch从入门到放弃：索引基本使用方法
-https://zhuanlan.zhihu.com/p/87981545
-
-Elasticsearch从入门到放弃：文档CRUD要牢记
-https://zhuanlan.zhihu.com/p/93667559
-
-ES之概念
-https://zhuanlan.zhihu.com/p/94246622
-ES分词器简介
-https://zhuanlan.zhihu.com/p/91604790
-
-Elasticsearch 7 探索之路】（二）文档的 CRUD 和批量操作
-https://zhuanlan.zhihu.com/p/91825818
-
-【Elasticsearch 7 探索之路】（三）倒排索引
-https://zhuanlan.zhihu.com/p/92811103
-
-Elasticsearch 7 探索之路】（四）Analyzer 分析
-https://zhuanlan.zhihu.com/p/94162301
-
-终于有人把Elasticsearch原理讲透了！
-https://zhuanlan.zhihu.com/p/62892586
-
-Elasticsearch Mapping设置相关
-https://zhuanlan.zhihu.com/p/93894700
-
-
-Elasticsearch索引字段类型简介
-https://zhuanlan.zhihu.com/p/93895253
-
-
-新一代海量数据搜索引擎 TurboSearch 来了
-https://zhuanlan.zhihu.com/p/94186243
-
-从Elasticsearch来看分布式系统架构设计
-https://www.toutiao.com/a6765085585309696520
-
-Elasticsearch太快了：一文详解其原理应用
-https://www.toutiao.com/a6749080730841645580
-
-Elasticsearch 创建索引前必须要了解的知识，提前避坑
-https://www.toutiao.com/a6765232723524059659
-
 <!-- toc -->
 [TOC]
 
 # Elasticsearch中的一些基本概念
+## 文章
+[elasticSearch同步mysql数据](https://www.jianshu.com/p/bfa841df5fee)
+
+[Elasticsearch顶尖高手系列：高手进阶篇（最新第二版）](https://zhuanlan.zhihu.com/p/88975745)
+
+[Elasticsearch在日志分析领域应用和运维实践](https://zhuanlan.zhihu.com/p/90080383)
+
+[Elasticsearch从入门到放弃：索引基本使用方法](https://zhuanlan.zhihu.com/p/87981545)
+
+[Elasticsearch从入门到放弃：文档CRUD要牢记](https://zhuanlan.zhihu.com/p/93667559)
+
+[ES之概念](https://zhuanlan.zhihu.com/p/94246622)
+
+[ES分词器简介](https://zhuanlan.zhihu.com/p/91604790)
+
+[Elasticsearch 7 探索之路】（二）文档的 CRUD 和批量操作](https://zhuanlan.zhihu.com/p/91825818)
+
+[【Elasticsearch 7 探索之路】（三）倒排索引](https://zhuanlan.zhihu.com/p/92811103)
+
+[Elasticsearch 7 探索之路】（四）Analyzer 分析](https://zhuanlan.zhihu.com/p/94162301)
+
+
+[终于有人把Elasticsearch原理讲透了！](https://zhuanlan.zhihu.com/p/62892586)
+
+
+[Elasticsearch Mapping设置相关](https://zhuanlan.zhihu.com/p/93894700)
+
+[Elasticsearch索引字段类型简介](https://zhuanlan.zhihu.com/p/93895253)
+
+[新一代海量数据搜索引擎 TurboSearch 来了](https://zhuanlan.zhihu.com/p/94186243)
+
+[从Elasticsearch来看分布式系统架构设计](https://www.toutiao.com/a6765085585309696520)
+
+[Elasticsearch太快了：一文详解其原理应用](https://www.toutiao.com/a6749080730841645580)
+
+[Elasticsearch 创建索引前必须要了解的知识，提前避坑](https://www.toutiao.com/a6765232723524059659)
+
+[How to manage nested objects in Elasticsearch documents](https://iridakos.com/programming/2019/05/02/add-update-delete-elasticsearch-nested-objects)
+
 ## 索引词(term)
 
 在Elasticsearch中索引词(term)是一个能够被索引的精确值。foo，Foo Foo几个单词是不相同的索引词。索引词(term)是可以通过term查询进行准确的搜索。
@@ -190,6 +178,7 @@ Elasticsearch 的 JSON 文档中的每个字段，都有自己的倒排索引
 1. 新增新索引store_v2
 
 2. 修改alias别名的指向
+
 ```
 curl -XPOST localhost:8305/_aliases -d '
 {
@@ -205,9 +194,10 @@ curl -XPOST localhost:8305/_aliases -d '
     ]
 }
 '
-
 ```
+
 3. reindex
+
 ```
 # 将原索引全部放入新索引中，_id冲突的以原索引为准
 # 虽然新索引中只有两个字段(原索引中有三个)，也会将原索引中的数据插入新索引中，并覆盖_id相同的数据。
@@ -228,6 +218,7 @@ POST _reindex
 ```
 
 4. 索引删掉
+
 ```
 curl -XDELETE localhost:8303/store_v1
 ```
