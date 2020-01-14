@@ -11,6 +11,8 @@
 * [golang](golang/README.md)
     * [Golang编译信息注入程序](golang/build-a-installsuffix.md)
     * [Go内存详解](golang/Go内存详解.md)
+    * [Golang 的内存管理](golang/go-mem.md)
+    * [Go Memory Management](golang/go-memory-management.md)
     * [Go pprof](golang/pprof.md)
     * [Golang 笔记之深入浮点数](golang/float.md)
     * [Go-Questions](golang/Go-Questions/README.md)

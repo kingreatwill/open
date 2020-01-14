@@ -34,3 +34,5 @@ https://github.com/XiaoMi/soar
 [soar-web](https://github.com/xiyangxixian/soar-web)
 
 [基于Inception & SQLAdvisor & SOAR SQL审核平台WEB](https://github.com/myide/see)
+
+[Cheat Engine 内存修改器](https://www.cheatengine.org/)
