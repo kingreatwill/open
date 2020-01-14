@@ -10,6 +10,8 @@
     * [Java内存模型FAQ](java/memory-model-faq.md)
 * [golang](golang/README.md)
     * [Golang编译信息注入程序](golang/build-a-installsuffix.md)
+    * [Go语言代码建议](golang/Real-world-advice-for-writing-maintainable-Go-programs.md)
+    * [Go 语言内存分配可视化指南](golang/go-memory-allocator-visual-guide.md)
     * [Go内存详解](golang/Go内存详解.md)
     * [Golang 的内存管理](golang/go-mem.md)
     * [Go Memory Management](golang/go-memory-management.md)
