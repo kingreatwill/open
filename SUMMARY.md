@@ -21,6 +21,7 @@
     * [日常翻译](golang/watermelo/README.md)
 * [kubernetes](kubernetes/README.md)
     * [k8s安装(kuboard)](kubernetes/install.md)
+    * [docker for desktop](kubernetes/docker-for-desktop.md)
 * [ETCD](etcd/README.md)
 * [ElasticSearch 优化](es/README.md)
     * [Elasticsearch中的一些基本概念](es/elasticsearch.md)
