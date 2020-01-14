@@ -1,4 +1,13 @@
 
+https://go.dev/
+
+https://godoc.org/
+
+[Go 101](https://go101.org/article/101.html)
+[Go 101 Github](https://github.com/go101/go101)
+[Go 101 中文](https://gfw.go101.org)
+[Go 101 中文Github](https://github.com/golang101/golang101)
+
 [golang参考GO知识图谱](https://www.toutiao.com/a1653862521797643)
 
 [Go内存泄漏？不是那么简单!](https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/)
@@ -14,6 +23,9 @@
 [高频 golang 服务接口超时排查&性能调优](https://mp.weixin.qq.com/s/rDjTqqR0q4VTSQrYFzbR7w)
 
 [Go 的内存对齐和指针运算详解和实践](https://learnku.com/articles/39255)
+
+[内存布局](https://gfw.go101.org/article/memory-layout.html)
+[Memory Blocks](https://go101.org/article/memory-block.html)
 
 [Go性能优化之路.pdf](../files/go/Go性能优化之路.pdf)
 

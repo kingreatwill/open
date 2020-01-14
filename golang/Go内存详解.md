@@ -159,7 +159,7 @@ E:\研发人员项目文件\kernel4g.com\x\cpcn>size cpcn
 ```
 > 结论：windows 的bss才是0
 
-**可以同过StudyPE+ x64.exe查看exe文件的bss区(go编译出来的是没有bss区)；也可以objdump -h 查看**
+**可以同过StudyPE+ x64.exe(或者LordPE)查看exe文件的bss区(go编译出来的是没有bss区)；也可以objdump -h 查看**
 
 #### 为什么linux的bss不为0
 https://stackoverflow.com/questions/51968080/linux-size-command-why-are-bss-and-data-sections-not-zero
