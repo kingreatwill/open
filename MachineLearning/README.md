@@ -1,15 +1,16 @@
 
-机器学习google手册
-https://developers.google.cn/machine-learning/crash-course/
-数据科学教育
-https://www.kaggle.com/learn/overview
-
-![](../img/机器学习.jpeg)
 
 <!-- toc -->
 [TOC]
-
 # 机器学习
+
+## 学习地址
+
+[机器学习google手册](https://developers.google.cn/machine-learning/crash-course/)
+
+[数据科学教育](https://www.kaggle.com/learn/overview)
+
+
 https://github.com/ujjwalkarn/Machine-Learning-Tutorials
 
 https://github.com/deeplearning-ai/machine-learning-yearning-cn
@@ -17,6 +18,61 @@ https://github.com/deeplearning-ai/machine-learning-yearning-cn
 https://www.jianshu.com/c/5aca64d148d5
 
 https://github.com/josephmisiti/awesome-machine-learning
+
+![](../img/机器学习.jpeg)
+
+
+## 机器学习框架
+
+- 在工业界Tensorflow依旧无可取代
+- 在学术界Pytorch已经超越Tensorflow
+
+https://chillee.github.io/pytorch-vs-tensorflow/
+
+### Google 的 Tensorflow 2015 年在 GitHub 上开源 140K+
+[论文](../files/ml/Tensorflow-whitepaper2015.pdf)
+
+![](img/tf-1.png)
+
+TensorFlow 顶级项目
+- Magenta：一个探索将机器学习用作创造过程的工具的开源研究项目：https://magenta.tensorflow.org/
+
+- Sonnet：这是一个基于 TensorFlow 的软件库，可用于构建复杂的神经网络：https://sonnet.dev/
+
+- Ludwig：这是一个无需写代码就能训练和测试深度学习模型的工具箱：https://uber.github.io/ludwig/
+
+### Facebook 的 PyTorch 2017 年在 GitHub 上开源 35K+
+[论文](../files/ml/automatic_differentiation_in_pytorch.pdf)
+
+```
+pip install torch 报错
+https://pytorch.org/
+https://blog.csdn.net/cxyj666/article/details/97617358
+```
+
+
+PyTorch 顶级项目
+
+- CheXNet：使用深度学习来分析胸部 X 光照片，能实现放射科医生水平的肺炎监测：https://stanfordmlgroup.github.io/projects/chexnet/
+
+- PYRO：这是一种用 Python 编写的通用概率编程语言（PPL），后端由 PyTorch 支持：https://pyro.ai (https://pyro.ai/)
+
+- Horizon：一个用于应用强化学习（Applied RL）的平台：https://horizonrl.com (https://horizonrl.com/)
+
+### Scikit-learn 35K+
+Scikit-learn是一个完全用Python编写的机器学习框架。 它使你可以使用已建立的模型对数据运行分类，回归，聚类和降维过程，同时支持有监督和无监督的学习方法。
+
+Scikit-learn是仅Python的实现，因此尽管它对Java / Javascript框架的移植性不强，但仍可以在所有现代桌面操作系统上使用。
+
+Scikit-learn之所以与众不同，是因为它提供了庞大的高质量文档，以及所有部分的一致API。
+
+### Microsoft Cognitive Toolkit(CNTK) 15K+
+https://github.com/microsoft/CNTK
+
+CNTK与Torch和PyTorch一样，支持NVIDIA的CUDA技术。 它也与.NET标准兼容，因此可用于通过.NET框架（甚至在Linux上）编写跨平台应用程序。 它支持ONNX格式（这是神经网络的开源格式）。
+
+### Accord.NET 1.7K+
+https://github.com/accord-net/framework
 
 ## 线性代数、微积分、概率和统计
 ### 线性代数概念：

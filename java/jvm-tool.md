@@ -13,7 +13,7 @@
 
 这些问题在日常开发、维护中可能被很多人忽视（比如有的人遇到上面的问题只是重启服务器或者调大内存，而不会深究问题根源），但能够理解并解决这些问题是Java程序员进阶的必备要求。本文将对一些常用的JVM性能调优监控工具进行介绍，希望能起抛砖引玉之用。  
 
-## 一、 jps(Java Virtual Machine Process Status Tool) ： 基础工具
+## 一、 jps (Java Virtual Machine Process Status Tool) -- 基础工具
 jps主要用来输出JVM中运行的进程状态信息。语法格式如下：  
 
     jps [options] [hostid]  
@@ -25,6 +25,13 @@ jps主要用来输出JVM中运行的进程状态信息。语法格式如下：
     -m 输出传入main方法的参数
     -l 输出main类或Jar的全限名
     -v 输出传入JVM的参数
+---
+    jps -q (只查询虚拟机进程ID)
+    jps -m (启动时传递main()的参数)
+    jps -l(输出类全名，或者jar路径)
+    jps -v(输出虚拟机进程启动参数)
+
+
 比如下面：
 
     root@ubuntu:/# jps -m -l
@@ -36,7 +43,7 @@ jps主要用来输出JVM中运行的进程状态信息。语法格式如下：
 
   
 
-## 二、 jstack
+## 二、 jstack (Stack Trace for Java) -- 显示虚拟机线程快照
 
   
 
@@ -51,6 +58,11 @@ jstack主要用来查看某个Java进程内的线程堆栈信息。语法格式�
     -l long listings，会打印出额外的锁信息，
     在发生死锁时可以用jstack -l pid来观察锁持有情况-m mixed mode，
     不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如Native方法）  
+举例
+1. 显示关于锁的附加信息
+jstack -l 21888
+2. 显示本地方法C/C++的堆栈
+jstack -m 21888
 
 jstack可以定位到线程堆栈，根据堆栈信息我们可以定位到具体代码，所以它在JVM性能调优中使用得非常多。下面我们来一个实例找出某个Java进程中最耗费CPU的Java线程并定位堆栈信息，用到的命令有ps、top、printf、jstack、grep。  
 
@@ -94,13 +106,29 @@ OK，下一步终于轮到jstack上场了，它用来输出进程21711的堆栈�
 
 它是轮询任务的空闲等待代码，上面的sigLock.wait(timeUntilContinue)就对应了前面的Object.wait()。
   
+举例：
+1. 每秒查询1次进程21888垃圾收集情况，一共查询20次
+jstat -gc 21888 1000 20
+jstat -gccapacity 21888 1000 20 (最大最小空间)
+jstat -gcutil 21888 1000 20 (占的百分比)
+jstat -gccause 21888 1000 20 (额外输出导致上一次CG产生的原因)
+2. 被JIT编译过的方法
+jstat -printcompilation 21888 1000 20
 
-## 三、 jmap（Memory Map）和 jhat（Java Heap Analysis Tool）：  
+## 三、 jmap（Memory Map）-- 生成虚拟机内存快照 和 jhat（Java Heap Analysis Tool）-- 分析heapdump文件  
 
 jmap导出堆内存，然后使用jhat来进行分析 
 jmap语法格式如下：  
 
     jmap [option] pidjmap [option] executable corejmap [option] [server-id@]remote-hostname-or-ip  
+
+举例：
+1. 导出虚拟机进程的dump文件（MemoryAnalyzer，jhat查看）
+jmap -dump:live,format=b,file=d:/jvm.bin 21888
+2. 打印进程堆信息
+jmap -heap 21888
+3. 显示堆中的对象的统计的前10条
+jmap -histo 21888 | head 10
 
 如果运行在64位JVM上，可能需要指定-J-d64命令选项参数。  
 
@@ -244,8 +272,14 @@ Started HTTP server on port 9998Server is ready.
 
 上面红线框出来的部分大家可以自己去摸索下，最后一项支持OQL（对象查询语言）。
   
+jhat(Java Heap Dump Browser)--分析heapdump文件
 
-## 四、jstat（JVM统计监测工具）:  
+举例：
+1. 查看dump文件
+jhat d:\\jvm.bin(在浏览器查看，默认端口7000)
+
+
+## 四、jstat(JVM Statistics MOnitoring Toll) -- JVM统计监测工具 
 
 看看各个区内存和GC的情况  
 
@@ -284,7 +318,7 @@ S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU  
     FGC、FGCT：Full GC次数和Full GC耗时
     GCT：GC总耗时  
 
-## 五、hprof（Heap/CPU Profiling Tool）  
+## 五、hprof（Heap/CPU Profiling Tool）-- CPU使用率，统计堆内存使用情况 
 
 hprof能够展现CPU使用率，统计堆内存使用情况。  
 
@@ -338,4 +372,10 @@ Heap Dump(heap=dump)的例子，它比上面的Heap Allocation Profiling能生�
 
 虽然在JVM启动参数中加入-Xrunprof:heap=sites参数可以生成CPU/Heap Profile文件，但对JVM性能影响非常大，不建议在线上服务器环境使用
 
-  
+## 六、jinfo (Configuration Info for java) -- 显示虚拟机配置
+
+举例：
+1. 查看CMSInitiatingOccupancyFraction的参数值
+jinfo -flag CMSInitiatingOccupancyFraction 21888 (1.6以上java -XX:PrintFlagsFinal)
+2. 查询虚拟机进程系统属性
+jinfo -sysprops 21888
