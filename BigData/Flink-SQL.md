@@ -181,3 +181,5 @@ $ docker run --name mysqldb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 
 ## 结尾
 本文带大家搭建基础集群环境，并使用 SqlSubmit 提交纯 SQL 任务来学习了解如何连接外部系统。flink-sql-submit/src/main/resources/q1.sql 中还有一些注释掉的调优参数，感兴趣的同学可以将参数打开，观察对作业的影响。关于这些调优参数的原理
+
+[原文](http://wuchong.me/blog/2019/09/02/flink-sql-1-9-read-from-kafka-write-into-mysql/?utm_source=tuicool&utm_medium=referral)

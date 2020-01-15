@@ -21,6 +21,22 @@ https://github.com/josephmisiti/awesome-machine-learning
 
 ![](../img/机器学习.jpeg)
 
+## Reddit 票选：2019 年绝对不能错过的机器学习论文
+### 1. 理论研究 
+[借助欠平滑 HAL，有效估计路径可微分目标参数](https://arxiv.org/pdf/1908.05607.pdf)
+### 2. 计算机视觉 
+[BA-Net：密集捆绑调整网络](https://openreview.net/pdf?id=B1gabhRcYX)
+http://dwz.win/wmQ
+
+### 3. 计算机视觉 
+[MoCo：无监督视觉表示学习方法](https://arxiv.org/pdf/1911.05722.pdf)
+
+### 4. 无监督学习 
+[通过隐藏单元对抗进行无监督学习](https://www.pnas.org/content/pnas/116/16/7723.full.pdf)
+http://dwz.win/wuJ
+
+### 5. 理论研究 
+[N-BEATS：可用于可解释时间序列预测的神经基础扩展分析](https://arxiv.org/pdf/1905.10437.pdf)
 
 ## 机器学习框架
 

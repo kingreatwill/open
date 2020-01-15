@@ -379,3 +379,9 @@ Heap Dump(heap=dump)的例子，它比上面的Heap Allocation Profiling能生�
 jinfo -flag CMSInitiatingOccupancyFraction 21888 (1.6以上java -XX:PrintFlagsFinal)
 2. 查询虚拟机进程系统属性
 jinfo -sysprops 21888
+
+## 七、visualvm 监控jvm利器
+https://visualvm.github.io/download.html
+
+## 八、jprofiler
+https://www.ej-technologies.com/products/jprofiler/overview.html
