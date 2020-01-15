@@ -8,6 +8,8 @@
     * [ZooKeeper](articles/zookeeper.md)
 * [java](java/README.md)
     * [Java内存模型FAQ](java/memory-model-faq.md)
+    * [JDK介绍](java/JDK-Info.md)
+    * [JDK新特性](java/jdk.md)
 * [golang](golang/README.md)
     * [Golang编译信息注入程序](golang/build-a-installsuffix.md)
     * [Go语言代码建议](golang/Real-world-advice-for-writing-maintainable-Go-programs.md)

@@ -41,20 +41,41 @@
 总的来说，OpenJDK + 变种版本的提供者将一个源码库转换为许多不同的变种构建版本。
 在将 OpenJDK 源码转换为变种版本的过程中，提供者可能会添加一些额外的标记或实用程序，但注意不要影响后面的认证程序。例如，提供者无法为 API 添加一个新的公共方法，或一项新的语言特性。
 
+
 ## Oracle JDK
 从 Java 11 开始，这是一个提供付费支持的品牌商业版本。当然个人使用和非商业使用仍可继续享受免费支持（Oracle JDK 仍将为开发、测试、原型或展示目的的使用提供免费支持），不需要商业支持或企业管理工具的人可以选择使用 Oracle 的 OpenJDK 构建。Oracle 计划在 2026 年后提供全额付费的服务支持。要注意的是，与过去不同，Oracle JDK 并不比 OpenJDK “更好”（前提是两者都处于相同的安全补丁级别）。
 
+
 ## OpenJDK builds by Oracle
 这些是免费的、完全无品牌的 OpenJDK 版本，基于 GPL 开源协议（+Classpath Extension），公司可安全且放心使用。这些版本仅在发布后的六个月内可以使用。要继续使用由 Oracle 的 OpenJDK 构建版本和安全补丁，需要在发布新版本后的一个月内升级至新版本。
+```
+openjdk version "11" 2018-09-25
+OpenJDK Runtime Environment 18.9 (build 11+28)
+OpenJDK 64-Bit Server VM 18.9 (build 11+28, mixed mode)
+```
+
+## OpenJDK builds by Oracle GraalVM
+Graal OpenJDK项目源自[Maxine VM](https://community.oracle.com/community/groundbreakers/java/java_hotspot_virtual_machine/maxine-vm)项目。
+```
+[root@izj6c9hcysthc08ik6c89lz ~]# java -version
+openjdk version "11.0.5" 2019-10-15
+OpenJDK Runtime Environment GraalVM CE 19.3.0.2 (build 11.0.5+10-jvmci-19.3-b06)
+OpenJDK 64-Bit Server VM GraalVM CE 19.3.0.2 (build 11.0.5+10-jvmci-19.3-b06, mixed mode, sharing)
+
+```
 
 ## AdoptOpenJDK builds
-
 这些版本也是免费的、完全无品牌的 OpenJDK 版本，基于 GPL 开源协议（+Classpath Extension），以免费软件的形式提供社区版的 OpenJDK 二进制包，公司也可安全且放心使用。与由 Oracle 的 OpenJDK 构建版本不同，这些版本会提供更长的支持，像 Java 11 一样，至少提供 4 年的免费长期支持(LTS)计划。AdoptOpenJDK 是一个由社区驱动的项目，如果其他群组在 OpenJDK 的源码仓库中创建和发布了安全修复程序，它们也会提供构建。 IBM 和 Red Hat 也曾表示他们打算提供这些安全补丁。
 
 说明：2019 年 10 月，微软宣布加入 OpenJDK 参与开发
 微软的 Bruno Borges 在 OpenJDK 邮件列表中发布了一条消息，内容包含接下来发生的事情以及微软如何开始将其团队整合到 OpenJDK 社区。在邮件中，Bruno Borges 提到，微软已正式签署《Oracle 贡献者协议》。同时，他重申了微软对 Java 的承诺，以及微软团队对回馈 Java 社区的期待。
 
 Borges 曾经是 Oracle 开发人员，现在担任微软 Java 的首席产品经理。他向大家介绍了 Java 工程团队负责人 Martijn Verburg，Verburg 同时也是 jClarity 的首席执行官，而 jClarity 是 AdoptOpenJDK 的主要贡献者，于2019年 8 月被微软收购。
+```
+openjdk version "11.0.5" 2019-10-15
+OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.5+10)
+OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.5+10, mixed mode)
+```
 
 ## AdoptOpenJDK OpenJ9 builds
 除了标准的 OpenJDK 构建外，AdoptOpenJDK 还提供了使用 OpenJ9 而非 HotSpot 的版本。OpenJ9 最初是由 IBM 实现的 JVM，现在已开源并交由 Eclipse 运作。
@@ -69,6 +90,8 @@ Red Hat 通过 Red Hat Enterprise Linux (RHEL) 提供了 OpenJDK 的变种构建
 
 Zulu 是 OpenJDK 的免费版本，但同时提供商业付费支持。当然不购买收费的技术支持的话，Azul 也有为 Zulu 提供免费的社区技术支持。Azul 有一个广泛的计划以支持 Zulu 商业化，包括支持 Java 9,13 和 15，这点与其他的提供者有不同之处。
 
+https://github.com/zulu-openjdk/zulu-openjdk
+
 ## IBM
 IBM 为 Java 8 及更早版本提供并支持 JDK。他们还使用 OpenJ9 为 AdoptOpenJDK 构建提供商业付费支持。
 
@@ -79,8 +102,20 @@ SAP 使用 GPL + CE 许可证为 Java 10 及更高版本提供 JDK。他们还�
 https://aws.amazon.com/cn/corretto/
 https://github.com/corretto
 
+## BellSoft Liberica
+https://bell-sw.com/pages/java-13.0.1/
+https://github.com/SAP/SapMachine
+
+## SAP SE SapMachine
+https://sap.github.io/SapMachine/
+
 ## Alibaba Dragonwell
 https://github.com/alibaba/dragonwell8
+https://github.com/alibaba/dragonwell11
+
+## Tencent TencentKona
+不更新的jdk~
+https://github.com/Tencent/TencentKona-8
 
 ## 总结
 
