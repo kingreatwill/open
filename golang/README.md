@@ -51,7 +51,9 @@ https://godoc.org/
 
 [Go性能提升快速指南](https://stephen.sh/posts/quick-go-performance-improvements)
 
-[深入浅出Golang Runtime](https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&mid=2653373399&idx=1&sn=041f3efab73730e7c5e3ef3e1d10f20d)
+[深入浅出Golang Runtime.ppt](../files/go/gopher-meetup-深入浅出Golang-Runtime-yifhao-full.pptx)
+
+[深入浅出Golang Runtime](https://www.acao.cn/course/program/402.html)
 
 [编译出dll C# 结合 Golang 开发](https://www.cnblogs.com/timeddd/p/11731160.html)
 
