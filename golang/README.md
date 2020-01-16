@@ -27,7 +27,17 @@ https://godoc.org/
 [Go 的内存对齐和指针运算详解和实践](https://learnku.com/articles/39255)
 
 [内存布局](https://gfw.go101.org/article/memory-layout.html)
+
 [Memory Blocks](https://go101.org/article/memory-block.html)
+
+[[译]Go：内存管理与内存分配](https://juejin.im/post/5ddcdc5df265da05c33fcad2)
+
+[带你领略Go源码的魅力----Go内存原理详解](https://juejin.im/post/5ddcf31751882572d8212481)
+
+[go内存模型](https://cloud.tencent.com/developer/article/1359184)
+
+[Go内存分配那些事，就这么简单！](https://www.cnblogs.com/shijingxiang/articles/11466957.html)
+
 
 [Go性能优化之路.pdf](../files/go/Go性能优化之路.pdf)
 
@@ -37,7 +47,15 @@ https://godoc.org/
 
 [Go工具概述](https://www.alexedwards.net/blog/an-overview-of-go-tooling)
 
+[Go 学习、Go 进阶、Go 实用工具类](https://github.com/hwholiday/learning_tools)
+
 [Go性能提升快速指南](https://stephen.sh/posts/quick-go-performance-improvements)
+
+[深入浅出Golang Runtime](https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&mid=2653373399&idx=1&sn=041f3efab73730e7c5e3ef3e1d10f20d)
+
+[编译出dll C# 结合 Golang 开发](https://www.cnblogs.com/timeddd/p/11731160.html)
+
+
 ![](img/go.jpg)
 
 

@@ -1,5 +1,7 @@
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
 
+[深度解密Go语言之 pprof](https://www.cnblogs.com/qcrao-2018/p/11832732.html)
+
 
 堆的信息
 ```

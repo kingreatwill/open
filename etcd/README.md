@@ -1,7 +1,10 @@
 <!-- toc -->
 [TOC]
 
-https://etcd.io/docs
+[中文文档](http://etcd.doczh.cn/)
+
+[官网文档](https://etcd.io/docs)
+
 # ETCD
 用于分布式系统最关键数据的分布式可靠键值存储
 

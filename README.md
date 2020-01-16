@@ -1,16 +1,14 @@
 # 学习笔记
 
-excel to markdown http://www.tablesgenerator.com/markdown_tables
+[技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++ https://cyc2018.github.io/CS-Notes](https://github.com/CyC2018/CS-Notes)
 
-技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++ https://cyc2018.github.io/CS-Notes
+[2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总。](https://github.com/0voice/interview_internal_reference)
 
-https://github.com/CyC2018/CS-Notes
+[开源技术 * IBM 微讲堂：Kubernetes 系列](https://developer.ibm.com/cn/tv/2018/opentec-k8s/)
 
-开源技术 * IBM 微讲堂：Kubernetes 系列
-https://developer.ibm.com/cn/tv/2018/opentec-k8s/
-欢迎参加 Istio 系列课程
-https://developer.ibm.com/cn/os-academy-istio/
-1. kubernetes
+[欢迎参加 Istio 系列课程](https://developer.ibm.com/cn/os-academy-istio/)
+
+## kubernetes
 
 中文文档1：https://kubernetes.io/zh/docs/
 
@@ -50,11 +48,8 @@ kubernetes相关的工具：https://github.com/kubernetes-sigs/ （你会发现
 
 这里介绍Terraform 管理 EKS：https://www.hashicorp.com/blog/hashicorp-announces-terraform-support-aws-kubernetes
 
-2. jenkins
 
- 中文文档： https://jenkins-x.io/zh/
-
-3. istio
+## istio
 
 中文文档：https://istio.io/zh/
 
@@ -64,29 +59,22 @@ kubernetes相关的工具：https://github.com/kubernetes-sigs/ （你会发现
 
 中文论坛：http://www.servicemesh.cn
 
-4. etcd 
 
-中文文档：http://etcd.doczh.cn/
-
-5. prometheus
-
-中文文档：https://github.com/yunlzheng/prometheus-book
-
-6. gitlab
-
-中文文档：https://docs.gitlab.com.cn
-
-7. helm
+## helm
 
 中文文档：https://whmzsu.github.io/helm-doc-zh-cn/
 
 helm工具集合：https://github.com/helm/charts/tree/master/stable  
 
-8. elk
+## gitlab
+
+中文文档：https://docs.gitlab.com.cn
+
+## elk
 
 中文社区：https://elasticsearch.cn
 
-9. AWS 中国区文档
+## AWS 中国区文档
 
 官方文档：https://docs.amazonaws.cn
 
@@ -94,7 +82,7 @@ helm工具集合：https://github.com/helm/charts/tree/master/stable  
 
 aws真实云场景的动手练习网站：https://amazonaws-china.com/cn/training/self-paced-labs/
 
-10. python 基础教程
+## python 基础教程
 
 python2: https://www.runoob.com/python/python-tutorial.html
 
@@ -102,8 +90,3 @@ python3: https://www.runoob.com/python3/python3-tutorial.html
 
 Python - 100天从新手到大师: https://github.com/jackfrued/Python-100-Days
 
-11. emacs 
-
-中文论坛：https://emacs-china.org/
-
-book: http://book.emacs-china.org/
