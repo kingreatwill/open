@@ -41,3 +41,5 @@ https://github.com/maemual/raft-zh_cn/blob/master/raft-zh_cn.md
 [raft 论文](../files/raft.pdf)
 
 https://raft.github.io/
+
+[raft算法与paxos算法相比有什么优势，使用场景有什么差异？](https://www.zhihu.com/question/36648084)
