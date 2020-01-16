@@ -48,5 +48,6 @@ Leslie Lamport（Paxos之父）论文《The Part-Time Parliament》、《Paxos M
 
 [>> Raft一致性算法论文译文](https://github.com/archessay/raft-zh_cn/blob/master/raft-zh_cn.md)
 
+https://raft.github.io/
 
 [On the Parallels between Paxos and Raft, and how to Port Optimizations](./On-the-Parallels-between-Paxos-and-Raft-and-how-to-Port.pdf)

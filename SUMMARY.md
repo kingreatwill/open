@@ -39,6 +39,9 @@
     * [tensorflow](MachineLearning/tensorflow.md)
 * [文件](files/README.md)
     * [分布式一致性协议](files/paxos_raft_protocol/README.md)
+        * [raft](files/paxos_raft_protocol/raft/raft.md)
+        * [Raft一致性算法论文的中文翻译](files/paxos_raft_protocol/raft/raft-zh_cn.md)
+        * [基于hashicorp/raft的分布式一致性实战](files/paxos_raft_protocol/raft/raft-demo.md)
 * [工具](tools/README.md)
     * [wireshark](tools/wireshark.md)
 
