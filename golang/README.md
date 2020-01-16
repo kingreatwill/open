@@ -3,6 +3,8 @@ https://go.dev/
 
 https://godoc.org/
 
+[推荐算法、相似度算法、布隆过滤器、均值算法、一致性Hash、数据结构、leetcode练习](https://github.com/hwholiday/algorithm_coding)
+
 [Go 101](https://go101.org/article/101.html)
 [Go 101 Github](https://github.com/go101/go101)
 [Go 101 中文](https://gfw.go101.org)
@@ -37,7 +39,6 @@ https://godoc.org/
 [go内存模型](https://cloud.tencent.com/developer/article/1359184)
 
 [Go内存分配那些事，就这么简单！](https://www.cnblogs.com/shijingxiang/articles/11466957.html)
-
 
 [Go性能优化之路.pdf](../files/go/Go性能优化之路.pdf)
 

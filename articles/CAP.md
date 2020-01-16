@@ -32,7 +32,7 @@ Paxos算法是莱斯利·兰伯特(Leslie Lamport)1990年提出的一种基于�
 Paxos的发展分类：Basic Paxos、Multi Paxos、Fast Paxos
 
 [众协议 Paxos/ZAB/Raft/VR 值得注意的细节](https://www.jianshu.com/p/4dcf3325269d)
-
+[分布式系统理论进阶 - Raft、Zab](https://zhuanlan.zhihu.com/p/23279196)
 ZAB
 ZAB随着Zookeeper诞生于2007年，此时Raft协议还没有发明，根据ZAB的论文，之所以Zookeeper没有直接使用Paxos而是自己造轮子，是因为他们认为Paxos并不能满足他们的要求。比如Paxos允许多个proposer，可能会造成客户端提交的多个命令没法按照FIFO次序执行。同时在恢复过程中，有一些follower的数据不全。这些断论都是基于最原始的Paxos协议的，实际上后来一些Paxos的变种，比如Multi-Paxos已经解决了这些问题。当然我们只能站在历史的角度去看待这个问题，由于当时的Paxos并不能很好的解决这些问题，因此Zookeeper的开发者创造了一个新的一致性协议ZAB。（但其实心里要明白它们其实是一回事。）
 
