@@ -75,6 +75,7 @@ Md2All支持云图床，设置好云图床后，能把本地图片自动上传�
 [请参考云图床教程:https://www.cnblogs.com/garyyan/p/9181809.html](https://www.cnblogs.com/garyyan/p/9181809.html)
 
 ###Latex数学公式(能正确复制到公众号等平台）:
+https://khan.github.io/KaTeX/docs/supported.html
 “复制”时会自动把Latex数学公式转换为图片，并自动上传到云图床（如果在“图片”设置了“...,自动上传到云图床”）。
 [请参考：Md2All,让公众号完美显示Latex数学公式](https://www.cnblogs.com/garyyan/p/9228994.html)
 ####行内公式：$...$

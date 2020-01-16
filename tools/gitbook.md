@@ -400,6 +400,8 @@ gitbook默认只有Facebook、Google+、Twiter、Weibo、Instapaper
 ```
 
 ### gitalk 评论插件
+### mermaid 使用流程图。
+
 
 ## 插件开发
 GitBook 插件是在 npm 上发布的遵循传统定义的 node 包,除了标准的 node 规范外还有一些 Gitbook 自身定义的相关规范.

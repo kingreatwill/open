@@ -12,6 +12,7 @@
         "-sharing",
         "-lunr", "-search", "search-pro",   
         "anchor-navigation-ex",
+        "mermaid-v8",
         "built@git+https://github.com/BuiltCloud/gitbook-plugin-built.git#0.0.3"
     ],
     "pluginsConfig": {
