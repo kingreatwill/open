@@ -8,6 +8,8 @@ https://godoc.org/
 [Go 101 中文](https://gfw.go101.org)
 [Go 101 中文Github](https://github.com/golang101/golang101)
 
+[《Go语言编程》高清完整版电子书.pdf](../files/go/《Go语言编程》高清完整版电子书.pdf)
+
 [golang参考GO知识图谱](https://www.toutiao.com/a1653862521797643)
 
 [Go内存泄漏？不是那么简单!](https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/)
