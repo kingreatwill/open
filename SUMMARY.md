@@ -6,6 +6,7 @@
     * [内存屏障](articles/Memory-Barrier.md)
     * [CAP](articles/CAP.md)
     * [ZooKeeper](articles/zookeeper.md)
+* [计算机相关](computer/README.md)
 * [java](java/README.md)
     * [Java内存模型FAQ](java/memory-model-faq.md)
     * [JDK介绍](java/JDK-Info.md)
