@@ -1,5 +1,34 @@
 [Mermaid](https://mermaid-js.github.io/mermaid/#/)
 https://unpkg.com/browse/mermaid@8.4.5/dist/
+
+## 说明
+第一行的graph LR中graph指定是一个图，第二个LR指定图的方向，所有的方向关键词为:
+TB - top bottom
+BT - bottom top
+RL - right left
+LR - left right
+TD - same as TB
+
+
+节点默认只显示标识,但也可以通过如下方法控制其显示
+
+A[aa bb] 显示字符串aa bb的方框
+B(wo) 显示字符串wo的圆角框
+C((我是C)) 显示我是C字符串的圆圈
+D>我是D] 显示我是D的半方框
+E{我是E} 显示我是E的正方形框
+
+连线可以选择如下形式:
+A-->B 箭头
+A--B 无箭头线
+A--hh dd--B或者A--|hh dd|B 线之间可以添加注释
+A-.->B 虚线箭头
+A-. hh .->B 添加了注释的虚线箭头
+A==>B 加粗的箭头
+A== hh ==>B 加注释加粗的箭头
+
+子图可以使用subgraph id定义
+
 ```mermaid
     info
 ```
@@ -125,7 +154,7 @@ https://unpkg.com/browse/mermaid@8.4.5/dist/
 ```mermaid
       graph TD
       A[Christmas] -->|Get money| B(Go shopping)
-      B --> C{Let me thinksssssx<br/>sssssssssssssssssssuuu<br />tttsssssssssssssssssssssss}
+      B --> C{Let me thinksssssx<br/>sssssssssssssssssssuuu<br/>tttsssssssssssssssssssssss}
       C -->|One| D[Laptop]
       C -->|Two| E[iPhone]
       C -->|Three| F[Car]
@@ -239,6 +268,20 @@ graph TB
 ```
 
 ```mermaid
+graph TB
+         subgraph one
+         a1-->a2
+         end
+         subgraph two
+         b1-->b2
+         end
+         subgraph three
+         c1-->c2
+         end
+         c1-->a2
+```
+
+```mermaid
   graph TB
   A
   B
@@ -287,7 +330,7 @@ graph TB
 ```mermaid
 graph TD
 A[Christmas] -->|Get money| B(Go shopping)
-B --> C(Let me think...<br />Do I want something for work,<br />something to spend every free second with,<br />or something to get around?)
+B --> C(Let me think...<br/>Do I want something for work,<br/>something to spend every free second with,<br/>or something to get around?)
 C -->|One| D[Laptop]
 C -->|Two| E[iPhone]
 C -->|Three| F[Car]
@@ -298,10 +341,41 @@ class A someclass;
 ```
 
 ```mermaid
-    graph TD
+graph TD;
+
+subgraph Line breaks <br/> don't work in <br/> Subgraphs
+    inset[Line breaks <br/>work in <br/>Insets]
+end
+
+    inset-->A
+
+  A(Line breaks<br/>work in<br/>rounded rec nodes)
+  B{Line breaks <br/>work in<br/>decision nodes}
+  C[Line breaks<br/>work in<br/> rectangles]
+  D((Line breaks <br/>work in <br/>circles))
+  E>Line breaks <br/>work in <br/>flag nodes]
+
+
+    A-->B
+    B--yes-->C
+    B--no-->E
+    C-->D
+ 
+
+
+style A fill:#ed6,stroke:#333,stroke-width:2px;
+style B fill:#ed6,stroke:#333,stroke-width:2px;
+style C fill:#ed6,stroke:#333,stroke-width:2px;
+style D fill:#ed6,stroke:#333,stroke-width:2px;
+style E fill:#ed6,stroke:#333,stroke-width:2px;
+style inset fill:#ed6,stroke:#333,stroke-width:2px;
+```
+
+```mermaid
+graph TD
     A([stadium shape test])
     A -->|Get money| B([Go shopping])
-    B --> C([Let me think...<br />Do I want something for work,<br />something to spend every free second with,<br />or something to get around?])
+    B --> C([Let me think...<br/>Do I want something for work,<br/>something to spend every free second with,<br/>or something to get around?])
     C -->|One| D([Laptop])
     C -->|Two| E([iPhone])
     C -->|Three| F([Car<br/>wroom wroom])
@@ -313,11 +387,11 @@ class A someclass;
 
 ```mermaid
     graph LR
-    A[(cylindrical<br />shape<br />test)]
+    A[(cylindrical<br/>shape<br/>test)]
     A -->|Get money| B1[(Go shopping 1)]
     A -->|Get money| B2[(Go shopping 2)]
     A -->|Get money| B3[(Go shopping 3)]
-    C[(Let me think...<br />Do I want something for work,<br />something to spend every free second with,<br />or something to get around?)]
+    C[(Let me think...<br/>Do I want something for work,<br/>something to spend every free second with,<br/>or something to get around?)]
     B1 --> C
     B2 --> C
     B3 --> C
@@ -334,10 +408,10 @@ class A someclass;
     graph LR
     A1[Multi<br>Line] -->|Multi<br>Line| B1(Multi<br>Line)
     C1[Multi<br/>Line] -->|Multi<br/>Line| D1(Multi<br/>Line)
-    E1[Multi<br />Line] -->|Multi<br />Line| F1(Multi<br />Line)
+    E1[Multi<br/>Line] -->|Multi<br/>Line| F1(Multi<br/>Line)
     A2[Multi<br>Line] -->|Multi<br>Line| B2(Multi<br>Line)
     C2[Multi<br/>Line] -->|Multi<br/>Line| D2(Multi<br/>Line)
-    E2[Multi<br />Line] -->|Multi<br />Line| F2(Multi<br />Line)
+    E2[Multi<br/>Line] -->|Multi<br/>Line| F2(Multi<br/>Line)
     linkStyle 0 stroke:DarkGray,stroke-width:2px
     linkStyle 1 stroke:DarkGray,stroke-width:2px
     linkStyle 2 stroke:DarkGray,stroke-width:2px
@@ -377,14 +451,14 @@ end
     sequenceDiagram
     participant 1 as multiline<br>using #lt;br#gt;
     participant 2 as multiline<br/>using #lt;br/#gt;
-    participant 3 as multiline<br />using #lt;br /#gt;
+    participant 3 as multiline<br/>using #lt;br /#gt;
     participant 4 as multiline<br 	/>using #lt;br 	/#gt;
     1->>2: multiline<br>using #lt;br#gt;
     note right of 2: multiline<br>using #lt;br#gt;
     2->>3: multiline<br/>using #lt;br/#gt;
     note right of 3: multiline<br/>using #lt;br/#gt;
-    3->>4: multiline<br />using #lt;br /#gt;
-    note right of 4: multiline<br />using #lt;br /#gt;
+    3->>4: multiline<br/>using #lt;br /#gt;
+    note right of 4: multiline<br/>using #lt;br /#gt;
     4->>1: multiline<br 	/>using #lt;br 	/#gt;
     note right of 1: multiline<br 	/>using #lt;br 	/#gt;
 ```
@@ -450,12 +524,12 @@ Add another diagram to demo page    : 48h
     Create tests for renderer           : 2d
     Add to mermaid                      : 1d
 
-    section Documentation<br />multiline
+    section Documentation<br/>multiline
     Describe gantt syntax               : active, a1, after des1, 3d
     Add gantt diagram to demo page      : after a1, 20h
     Add another diagram to demo page    : doc1, after a1, 48h
 
-    section Last section<br	/>multiline
+    section Last section<br/>multiline
     Describe gantt syntax               : after doc1, 3d
     Add gantt diagram to demo page      : 20h
     Add another diagram to demo page    : 48h
@@ -481,7 +555,64 @@ commit
 merge newbranch
 ```
 
+```mermaid
+classDiagram
+Class01 <|-- AveryLongClass : Cool
+&lt;&lt;interface&gt;&gt; Class01
+Class03 "0" *-- "0..n" Class04
+Class05 "1" o-- "many" Class06
+Class07 .. Class08
+Class09 "many" --> "1" C2  : Where am i?
+Class09 "0" --* "1..n" C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : #size()
+Class01 : -int chimp
+Class01 : +int gorilla
+Class08 <--> C2: Cool label
+class Class10 {
+  &lt;&lt;service&gt;&gt;
+  int id
+  size()
+}
+```
 
+```mermaid
+classDiagram
+    class Class01~T~
+    Class01 : #size()
+    Class01 : -int chimp
+    Class01 : +int gorilla
+    class Class10~T~ {
+      &lt;&lt;service&gt;&gt;
+      int id
+      size()
+    }
+```
+
+```mermaid
+classDiagram
+        Class01~T~ <|-- AveryLongClass : Cool
+        &lt;&lt;interface&gt;&gt; Class01
+        Class03~T~ "0" *-- "0..n" Class04
+        Class05 "1" o-- "many" Class06
+        Class07~T~ .. Class08
+        Class09 "many" --> "1" C2  : Where am i?
+        Class09 "0" --* "1..n" C3
+        Class09 --|> Class07
+        Class07 : equals()
+        Class07 : Object[] elementData
+        Class01 : #size()
+        Class01 : -int chimp
+        Class01 : +int gorilla
+        Class08 <--> C2: Cool label
+        class Class10 {
+          &lt;&lt;service&gt;&gt;
+          int id
+          size()
+        }
+```
 
 ```mermaid
     stateDiagram

@@ -32,6 +32,8 @@ https://godoc.org/
 
 [Memory Blocks](https://go101.org/article/memory-block.html)
 
+[Go的内存对齐和指针运算详解和实践](https://www.cnblogs.com/sy270321/p/12205435.html)
+
 [[译]Go：内存管理与内存分配](https://juejin.im/post/5ddcdc5df265da05c33fcad2)
 
 [带你领略Go源码的魅力----Go内存原理详解](https://juejin.im/post/5ddcf31751882572d8212481)

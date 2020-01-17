@@ -225,7 +225,7 @@ simple analyzer
 stop analyzer
 keyword analyzer
 pattern analyzer
-language analyzers
+[language analyzers](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html)
 snowball analyzer
 custom analyzer
 ## ES内置分析器

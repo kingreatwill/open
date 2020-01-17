@@ -12,7 +12,7 @@
         "-sharing",
         "-lunr", "-search", "search-pro",   
         "anchor-navigation-ex",
-        "built@git+https://github.com/BuiltCloud/gitbook-plugin-built.git#0.0.6"
+        "built@git+https://github.com/BuiltCloud/gitbook-plugin-built.git#0.0.7"
     ],
     "pluginsConfig": {
         "img-popup": true,
