@@ -44,6 +44,7 @@
         * [基于hashicorp/raft的分布式一致性实战](files/paxos_raft_protocol/raft/raft-demo.md)
 * [工具](tools/README.md)
     * [wireshark](tools/wireshark.md)
+    * [mermaid流程图](tools/mermaid.md)
 * [Markdown 示例](MARKDOWN.md)
 
 

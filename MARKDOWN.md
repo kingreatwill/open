@@ -65,8 +65,8 @@ function DisplayWindowSize(){
 ###图片显示
 
 下面的是我的公众号二维码图片，欢迎关注。
-![图注:大少公众号](http://img.blog.csdn.net/20171012163602706) 
-注：markdown对图片链接的语法是:`![]()`,如：`![这里写图片描述](http://img.blog.csdn.net/20171012163602706)`,
+
+注：markdown对图片链接的语法是:`![]()`,
 可直接把网络图片地址添加到markdown中，
 默认为图片居中，如果想居左时，请打开"一键排版"下的css样式中的`img{margin:0 0;}`,
 `[这里写图片描述]`中对图片的描述内容会自动生成在图片的底部，对应样式`figcaption{}`
@@ -317,7 +317,7 @@ hack方法就是利用markdown的解析原理来实现注释的。
 [flowchat](http://flowchart.js.org/)
 [Sequence](https://bramp.github.io/js-sequence-diagrams/)
 [Mermaid](https://mermaid-js.github.io/mermaid/#/)
-
+[PlantUML](https://plantuml.com/zh/)
 
 ```flow
 st=>start: 开始
@@ -384,8 +384,9 @@ Active task               :active,  des2, 2014-01-09, 3d
 Future task               :         des3, after des2, 5d
 Future task2               :         des4, after des3, 5d
 ```
+
 类图-：实验性
-```mermaid
+```
 classDiagram
 Class01 <|-- AveryLongClass : Cool
 Class03 *-- Class04
