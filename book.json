@@ -25,6 +25,18 @@
         "hide-element": {
             "elements": [".gitbook-link"]
         },
+        "katex":{
+            "mathInlineDelimiters":{
+                "parsers": ["markdown", "asciidoc", "restructuredtext"],
+				"start": "$$",
+				"end": "$$"
+            },
+            "mathBlockDelimiters":{
+                "parsers": ["markdown", "asciidoc", "restructuredtext"],
+				"start": "$$$",
+				"end": "$$$"
+            }
+        },
         "code": {
             "line": true,
             "copyButton": true
