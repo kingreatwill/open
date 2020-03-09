@@ -108,6 +108,7 @@ venv.bak/
 
 # gitbook
 _book
+_output
 
 # npm
 node_modules
