@@ -1,4 +1,5 @@
 
+[多图文，详细介绍mysql各个集群方案](https://www.cnblogs.com/lgx211/p/12456859.html)
 
 [MySQL 一些内部原理](https://www.cnblogs.com/keme/p/10243333.html)
 [可能是全网最好的MySQL重要知识点/面试题总结](https://segmentfault.com/a/1190000019619667)
