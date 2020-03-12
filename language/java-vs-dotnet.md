@@ -1,5 +1,8 @@
 # Java vs. C#
 
+## 多线程
+[对比Java和.NET多线程编程](https://mp.weixin.qq.com/s/HesvRgE9IozUmh1xDGathw)
+
 ![](../img/java-vs-net.webp)
 
 -|Java | .NET
