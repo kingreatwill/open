@@ -12,6 +12,9 @@ https://github.com/lmenezes/cerebro
 
 https://github.com/mobz/elasticsearch-head
 
+## ElasticHD
+https://github.com/360EntSecGroup-Skylar/ElasticHD
+
 ## dejavu
 
 https://github.com/appbaseio/dejavu/
