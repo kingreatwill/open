@@ -542,3 +542,116 @@ application-port-ssl=8443
 <Set name="TrustStorePath"><Property name="ssl.etc"/>/keystore.jks</Set>
 <Set name="TrustStorePassword">nexus3</Set>
 ```
+
+
+# Maven settings.xml配置
+## 第一步 <servers>配置连接私服(拉取和发布)
+  ```xml
+  <servers>    
+	<!--配置nexus仓库认证信息--> 
+    <server>  
+        <id>nexus-releases</id>  
+        <username>xxx</username>  
+        <password>xxx</password>  
+    </server>  
+    <server>  
+        <id>nexus-snapshots</id>  
+        <username>xxx</username>  
+        <password>xxx</password>  
+    </server>   
+  </servers>
+  ```
+## 第二步 方案一< profiles>配置访问私服(推荐)
+```xml
+<profiles>	
+<profile>
+      <id>nexus</id>
+      <repositories>        
+        <repository>
+          <id>nexus-release</id>
+          <name>nexus-release</name>
+          <url>http://xxx.com/repository/maven-releases/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>        
+        <repository>
+          <id>nexus-snapshots</id>
+          <name>nexus-snapshots</name>
+          <url>http://xxx.com/repository/maven-snapshots/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+</profiles>
+<activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+  ```
+https://cloud.tencent.com/developer/article/1492820
+方案二 配置项目pom.xml 访问私服
+```xml
+<repositories>
+        <repository>
+            <id>xxxid</id>
+            <name>xxx repo name</name>
+            <url>http://192.168.xxx.xxx:8081/nexus/content/groups/public/</url>
+        </repository>
+</repositories>
+```xml
+方案三 settings.mxl配置镜像访问私服
+………
+项目pom.xml配置
+根pom.xml
+Repository.id 对应 setting.xml 中的server.id
+```xml
+<!--配置项目生成的构件部署到Nexus私服上 -->
+<distributionManagement>
+    <repository>
+        <id>nexus-releases</id>
+        <name>Nexus ReleaseRepository</name>
+        <url>http://xxx.com/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>nexus-snapshots</id>
+        <name>Nexus SnapshotsRepository</name>
+        <url>http://xxx.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
+```
+排除发布模块
+发布命令
+mvn clean deploy
+
+方案一(不推荐)
+删除不需要的module
+```xml
+<modules>
+    <module>xxx</module>
+    <module>xxx</module>
+</modules>
+```
+方案二(推荐)
+在需要排除的模块pom.xml中加入
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.0.0-M1</version>
+            <configuration>
+                <skip>true</skip>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
