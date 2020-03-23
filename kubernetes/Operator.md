@@ -4,8 +4,9 @@ https://www.toutiao.com/i6760845939163791876/
 https://www.toutiao.com/i6738200403835355661/
 
 # 自己开发
-https://www.toutiao.com/a6696782409343435275/
 https://github.com/cnych/opdemo
+
+[Kubernetes Operator 快速入门教程（Operator 101）](https://www.toutiao.com/a6696782409343435275)
 
 # Kubernetes Operator 介绍
 https://blog.csdn.net/ygqygq2/article/details/83655552
