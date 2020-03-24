@@ -1,3 +1,9 @@
+<!--toc-->
+
+[TOC]
+
+# 高性能-GC
+https://www.cnblogs.com/ccaa/p/12556080.html
 # CLR的Garbage Collection
 
 https://www.cnblogs.com/dacc123/p/10980718.html

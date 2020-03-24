@@ -30,3 +30,25 @@ https://github.com/structurizr/dotnet
 
 ## dotnetbook
 https://github.com/sidristij/dotnetbook
+
+## dumps
+Microsoft.Diagnostics.Runtime is a set of APIs for introspecting processes and dumps.
+
+https://github.com/microsoft/clrmd
+
+## code analyzer
+A source code analyzer built for surfacing features of interest and other characteristics to answer the question 'what's in it' using static analysis with a json based rules engine. Ideal for scanning components before use or detecting feature level changes.
+https://github.com/microsoft/ApplicationInspector
+
+
+## WebRTC
+https://github.com/microsoft/MixedReality-WebRTC
+
+## DI DynamicProxy
+- Fody
+
+- Castle 
+
+- Emit 操作IL
+
+- NET Remoting中可以利用后门进行拦截，但是必须显示的继承ContextBoundObject
