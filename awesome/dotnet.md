@@ -52,3 +52,12 @@ https://github.com/microsoft/MixedReality-WebRTC
 - Emit 操作IL
 
 - NET Remoting中可以利用后门进行拦截，但是必须显示的继承ContextBoundObject
+
+## reporting
+PdfReport.Core is a code first reporting engine, which is built on top of the iTextSharp.LGPLv2.Core and EPPlus.Core libraries
+https://github.com/VahidN/PdfReport.Core
+
+
+
+##  CI Build
+https://github.com/dotnetcore/FlubuCore

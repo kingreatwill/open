@@ -25,3 +25,6 @@ https://github.com/uber-go/dig
 运行时依赖注入
 https://github.com/facebookarchive/inject
 
+## spinal-case(脊柱) or snake_case(蛇形) or CamelCase(驼峰式) or KebabCase(短横线) or PascalCase(帕斯卡命名法) or PascalSnakeCase
+https://github.com/iancoleman/strcase
+
