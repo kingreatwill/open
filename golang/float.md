@@ -896,3 +896,273 @@ JavaScript console 双精度浮点数
 这就是为什么9.4在机器内被表示为：9.4+0.2×2<sup>-49</sup>
 
 同理，0.4在机器内被表示为：0.4+0.1×2<sup>-52</sup>
+
+
+## BigDecimal是如何解决这个问题的
+BigDecimal的解决方案就是，不使用二进制，而是使用十进制（BigInteger）+小数点位置(scale)来表示小数，
+```java
+public static void main(String[] args) {
+      BigDecimal bd = new BigDecimal("100.001");
+      System.out.println(bd.scale());
+      System.out.println(bd.unscaledValue());
+}
+
+output:
+3
+100001
+```
+也就是100.001 = 100001 * 0.1^3。这种表示方式下，避免了小数的出现，当然也就不会有精度问题了。十进制，也就是整数部分使用了BigInteger来表示，小数点位置只需要一个整数scale来表示就OK了。
+当使用BigDecimal来进行运算时，也就可以分解成两部分，BigInteger间的运算，以及小数点位置scale的更新，下面先看下运算过程中scale的更新。
+
+### scale
+加法运算时，根据下面的公式scale更新为两个BigDecimal中较大的那个scale即可。
+
+
+X * 0.1 <sup>n</sup> + Y * 0.1<sup>m</sup> == X * 0.1<sup>n</sup> + (Y * 0.1 <sup>m-n</sup>) * 0.1<sup>n</sup> == (X + Y * 0.1 <sup>m-n</sup>) * 0.1<sup>n</sup>
+其中n>m
+
+相应的代码如下
+
+```java
+/**
+     * Returns a {@code BigDecimal} whose value is {@code (this +
+     * augend)}, and whose scale is {@code max(this.scale(),
+     * augend.scale())}.
+     *
+     * @param  augend value to be added to this {@code BigDecimal}.
+     * @return {@code this + augend}
+     */
+    public BigDecimal add(BigDecimal augend) {
+        long xs = this.intCompact;
+        long ys = augend.intCompact;
+        BigInteger fst = (xs != INFLATED) ? null : this.intVal;
+        BigInteger snd = (ys != INFLATED) ? null : augend.intVal;
+        int rscale = this.scale;
+
+        long sdiff = (long)rscale - augend.scale;
+        if (sdiff != 0) {
+            if (sdiff < 0) {
+                int raise = checkScale(-sdiff);
+                rscale = augend.scale;
+                if (xs == INFLATED ||
+                    (xs = longMultiplyPowerTen(xs, raise)) == INFLATED)
+                    fst = bigMultiplyPowerTen(raise);
+            } else {
+                int raise = augend.checkScale(sdiff);
+                if (ys == INFLATED ||
+                    (ys = longMultiplyPowerTen(ys, raise)) == INFLATED)
+                    snd = augend.bigMultiplyPowerTen(raise);
+            }
+        }
+        if (xs != INFLATED && ys != INFLATED) {
+            long sum = xs + ys;
+            // See "Hacker's Delight" section 2-12 for explanation of
+            // the overflow test.
+            if ( (((sum ^ xs) & (sum ^ ys))) >= 0L) // not overflowed
+                return BigDecimal.valueOf(sum, rscale);
+        }
+        if (fst == null)
+            fst = BigInteger.valueOf(xs);
+        if (snd == null)
+            snd = BigInteger.valueOf(ys);
+        BigInteger sum = fst.add(snd);
+        return (fst.signum == snd.signum) ?
+            new BigDecimal(sum, INFLATED, rscale, 0) :
+            new BigDecimal(sum, rscale);
+    }
+```
+乘法运算根据下面的公式也可以确定scale更新为两个scale之和。
+
+X * 0.1<sup>n</sup> * Y * 0.1<sup>m</sup> == (X * Y) * 0.1<sup>n+m</sup>
+
+相应的代码
+```java
+/**
+     * Returns a {@code BigDecimal} whose value is <tt>(this &times;
+     * multiplicand)</tt>, and whose scale is {@code (this.scale() +
+     * multiplicand.scale())}.
+     *
+     * @param  multiplicand value to be multiplied by this {@code BigDecimal}.
+     * @return {@code this * multiplicand}
+     */
+    public BigDecimal multiply(BigDecimal multiplicand) {
+        long x = this.intCompact;
+        long y = multiplicand.intCompact;
+        int productScale = checkScale((long)scale + multiplicand.scale);
+
+        // Might be able to do a more clever check incorporating the
+        // inflated check into the overflow computation.
+        if (x != INFLATED && y != INFLATED) {
+            /*
+             * If the product is not an overflowed value, continue
+             * to use the compact representation.  if either of x or y
+             * is INFLATED, the product should also be regarded as
+             * an overflow. Before using the overflow test suggested in
+             * "Hacker's Delight" section 2-12, we perform quick checks
+             * using the precision information to see whether the overflow
+             * would occur since division is expensive on most CPUs.
+             */
+            long product = x * y;
+            long prec = this.precision() + multiplicand.precision();
+            if (prec < 19 || (prec < 21 && (y == 0 || product / y == x)))
+                return BigDecimal.valueOf(product, productScale);
+            return new BigDecimal(BigInteger.valueOf(x).multiply(y), INFLATED,
+                                  productScale, 0);
+        }
+        BigInteger rb;
+        if (x == INFLATED && y == INFLATED)
+            rb = this.intVal.multiply(multiplicand.intVal);
+        else if (x != INFLATED)
+            rb = multiplicand.intVal.multiply(x);
+        else
+            rb = this.intVal.multiply(y);
+        return new BigDecimal(rb, INFLATED, productScale, 0);
+    }
+```
+
+### BigInteger
+BigInteger可以表示任意精度的整数。当你使用long类型进行运算，可能会产生溢出时就要考虑使用BigInteger了。BigDecimal就使用了BigInteger作为backend。
+那么BigInteger是如何做到可以表示任意精度的整数的？答案是使用数组来表示，看下面这个栗子就很直观了
+```java
+public static void main(String[] args) {
+        byte[] mag = {
+                2, 1 // 10 00000001 == 513
+        };
+        System.out.println(new BigInteger(mag));
+    }
+```
+通过byte[]来当作底层的二进制表示，例如栗子中的[2, 1]，也就是[00000010B, 00000001B]，就是表示二进制的10 00000001B这个数，也就是513了。
+BigInteger内部会将这个`byte[]`转换成`int[]`保存，代码在[stripLeadingZeroBytes](http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/file/70e3553d9d6e/src/share/classes/java/math/BigInteger.java#l2832)方法
+
+```java
+/**
+     * Translates a byte array containing the two's-complement binary
+     * representation of a BigInteger into a BigInteger.  The input array is
+     * assumed to be in <i>big-endian</i> byte-order: the most significant
+     * byte is in the zeroth element.
+     *
+     * @param  val big-endian two's-complement binary representation of
+     *         BigInteger.
+     * @throws NumberFormatException {@code val} is zero bytes long.
+     */
+    public BigInteger(byte[] val) {
+        if (val.length == 0)
+            throw new NumberFormatException("Zero length BigInteger");
+
+        if (val[0] < 0) {
+            mag = makePositive(val);
+            signum = -1;
+        } else {
+            mag = stripLeadingZeroBytes(val);
+            signum = (mag.length == 0 ? 0 : 1);
+        }
+    }
+
+     /**
+     * Returns a copy of the input array stripped of any leading zero bytes.
+     */
+    private static int[] stripLeadingZeroBytes(byte a[]) {
+        int byteLength = a.length;
+        int keep;
+
+        // Find first nonzero byte
+        for (keep = 0; keep < byteLength && a[keep]==0; keep++)
+            ;
+
+        // Allocate new array and copy relevant part of input array
+        int intLength = ((byteLength - keep) + 3) >>> 2;
+        int[] result = new int[intLength];
+        int b = byteLength - 1;
+        for (int i = intLength-1; i >= 0; i--) {
+            result[i] = a[b--] & 0xff;
+            int bytesRemaining = b - keep + 1;
+            int bytesToTransfer = Math.min(3, bytesRemaining);
+            for (int j=8; j <= (bytesToTransfer << 3); j += 8)
+                result[i] |= ((a[b--] & 0xff) << j);
+        }
+        return result;
+    }
+```
+
+上面也可以看到这个byte[]应该是big-endian two's-complement binary representation。
+那么为什么构造函数不直接让我们扔一个int[]进去就得了呢，还要这么转换一下？答案是因为Java的整数都是有符号整数，举个栗子，int类型没办法表示2<sup>32</sup> -1，也就是32位上全都是1这个数的，这时候用byte[]得这么写，(byte)255,(byte)255,(byte)255,(byte)255，这样才能表示32个1。
+
+最后来看看BigInteger间的加法与乘法运算。
+
+#### add
+```java
+private static int[] add(int[] x, int[] y) {
+        // If x is shorter, swap the two arrays
+        if (x.length < y.length) {
+            int[] tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        int xIndex = x.length;
+        int yIndex = y.length;
+        int result[] = new int[xIndex];
+        long sum = 0;
+
+        // Add common parts of both numbers
+        while(yIndex > 0) {
+            // 最低位对齐再开始加
+            sum = (x[--xIndex] & LONG_MASK) +
+                  (y[--yIndex] & LONG_MASK) + (sum >>> 32); // sum>>>32 是高32位，也就是进位
+            result[xIndex] = (int)sum; // 低32位直接保存
+        }
+
+        // Copy remainder of longer number while carry propagation is required
+        boolean carry = (sum >>> 32 != 0);
+        while (xIndex > 0 && carry) // x比y长，且最后还有进位
+            carry = ((result[--xIndex] = x[xIndex] + 1) == 0); // 一位一位往前进位，直到没有产生进位
+
+        // Copy remainder of longer number
+        while (xIndex > 0)
+            result[--xIndex] = x[xIndex];
+
+        // Grow result if necessary
+        if (carry) {
+            int bigger[] = new int[result.length + 1];
+            System.arraycopy(result, 0, bigger, 1, result.length);
+            bigger[0] = 0x01;
+            return bigger;
+        }
+        return result;
+    }
+```
+加法运算比较简单，就是模拟十进制加法运算的过程，从两个加数的最低位开始加，如果有进位就进位。
+#### multiply
+```java
+private int[] multiplyToLen(int[] x, int xlen, int[] y, int ylen, int[] z) {
+        int xstart = xlen - 1;
+        int ystart = ylen - 1;
+
+        if (z == null || z.length < (xlen+ ylen))
+            z = new int[xlen+ylen];
+
+        long carry = 0;
+        for (int j=ystart, k=ystart+1+xstart; j>=0; j--, k--) {
+            long product = (y[j] & LONG_MASK) *
+                           (x[xstart] & LONG_MASK) + carry;
+            z[k] = (int)product;
+            carry = product >>> 32;
+        }
+        z[xstart] = (int)carry;
+
+        for (int i = xstart-1; i >= 0; i--) {
+            carry = 0;
+            for (int j=ystart, k=ystart+1+i; j>=0; j--, k--) {
+                long product = (y[j] & LONG_MASK) *
+                               (x[i] & LONG_MASK) +
+                               (z[k] & LONG_MASK) + carry;
+                z[k] = (int)product;
+                carry = product >>> 32;
+            }
+            z[i] = (int)carry;
+        }
+        return z;
+    }
+```
+乘法运算要复杂一点，不过也一样是模拟十进制乘法运算，也就是一个乘数的每一位与另一个乘数的每一位相乘再相加（乘法运算可以拆成加法运算），所以才有那个双重的for循环。
+最后的最后，想说的一点是，其实BigInteger可以看成是2<sup>32</sup>进制的计数表示，这样就比较容易理解上面的加法跟乘法运算了。
