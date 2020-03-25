@@ -57,7 +57,10 @@ https://github.com/microsoft/MixedReality-WebRTC
 PdfReport.Core is a code first reporting engine, which is built on top of the iTextSharp.LGPLv2.Core and EPPlus.Core libraries
 https://github.com/VahidN/PdfReport.Core
 
+## docx
+https://github.com/egonl/SharpDocx
 
-
+## Network
+https://github.com/chmorgan/packetnet
 ##  CI Build
 https://github.com/dotnetcore/FlubuCore

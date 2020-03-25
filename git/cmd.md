@@ -89,6 +89,25 @@ git log 的常用选项
 --pretty |使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和
 format（后跟指定格式）。
 
+查看文件历史
+```shell
+# see the changes of a file, works even
+# if the file was deleted
+git log --full-history -- x\xx\.gitkeep
+
+# limit the output of Git log to the
+# last commit, i.e. the commit which delete the file
+# -1 to see only the last commit
+# use 2 to see the last 2 commits etc
+git log --full-history -1 -- x\xx\.gitkeep
+
+
+# include stat parameter to see
+# some statics, e.g., how many files were
+# deleted
+git log --full-history -1 --stat -- x\xx\.gitkeep
+```
+
 
 # git reset
 在使用Git的过程中，由于操作不当，作为初学者的我们可能经常要去解决冲突。某些时候，当你不小心改错了内容，或者错误地提交了某些commit，我们就需要进行版本的回退。版本回退最常用的命令包括git reset和git revert。这两个命令允许我们在版本的历史之间穿梭。

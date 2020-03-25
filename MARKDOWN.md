@@ -1,6 +1,9 @@
 Markdown 目录：
 <!-- toc -->
 [TOC]
+[Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
+
+[emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md)
 
 >微信公众号：**[颜家大少](#jump_10)**
 关注可了解更多的教程及排版技巧。问题或建议，请公众号留言;

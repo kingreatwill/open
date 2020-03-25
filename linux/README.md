@@ -1,3 +1,5 @@
+[Linux学习教程，Linux入门教程（超详细）](http://c.biancheng.net/linux_tutorial/)
+
 查看centos版本
 cat /etc/redhat-release
 
