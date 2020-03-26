@@ -4,7 +4,7 @@
 
 
 磁盘扇区、文件系统、InnoDB存储引擎都有各自的最小存储单元。
-![](../../img/db/min-size.png)
+![](../../../img/db/min-size.png)
 
 
 

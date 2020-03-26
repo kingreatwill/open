@@ -154,7 +154,7 @@ mysql> select index_name,count(*) from information_schema.INNODB_BUFFER_PAGE whe
 
  
 ## SQL查询优化2 小表驱动大表
-![](../../img/db/slelect-2.jpg)
+![](../../../img/db/slelect-2.jpg)
 第一张表是全表索引(要以此关联其他表)，其余表的查询类型type为range(索引区间获得)，也就是6 * 1 * 1，共遍历查询6次即可;
 
 建议使用left join时，以小表关联大表，因为使用join的话，第一张表是必须全扫描的，以少关联多就可以减少这个扫描次数.

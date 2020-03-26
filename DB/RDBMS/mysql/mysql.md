@@ -5,8 +5,8 @@
 [可能是全网最好的MySQL重要知识点/面试题总结](https://segmentfault.com/a/1190000019619667)
 ## 页
 MySQL的基本存储结构是页 (记录都存在页里边) ：
-![](../../img/mysql/mysql-page-1.webp)
-![](../../img/mysql/mysql-record-1.jpg)
+![](../../../img/mysql/mysql-page-1.webp)
+![](../../../img/mysql/mysql-record-1.jpg)
 
 - 各个数据页可以组成一个双向链表
 - 每个数据页中的记录又可以组成一个单向链表
@@ -21,10 +21,10 @@ select * from user where indexname = 'xxx'这样没有进行任何优化的sql�
 
 
 ## 索引
-![](../../img/mysql/mysql-index-1.jpg)
+![](../../../img/mysql/mysql-index-1.jpg)
 
 要找到id为8的记录简要步骤：
-![](../../img/mysql/mysql-index-2.jpg)
+![](../../../img/mysql/mysql-index-2.jpg)
 很明显的是：没有用索引我们是需要遍历双向链表来定位对应的页，现在通过 “目录” 就可以很快地定位到对应的页上了！（二分查找，时间复杂度近似为O(logn)）
 
 ### 注意避免冗余索引
