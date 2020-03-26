@@ -110,6 +110,7 @@
 
 ## 算法复杂度 / Big-O / 渐进分析法
 - 并不需要实现
+- [ ] [Harvard's CS50](https://cs50.harvard.edu/x/2020/)
 - [ ] [Harvard CS50 —— 渐进表示（视频）](https://www.youtube.com/watch?v=iOq5kSKqeR4)
 - [ ] [Big O 记号（通用快速教程）（视频）](https://www.youtube.com/watch?v=V6mKVRU1evU)
 - [ ] [Big O 记号（以及 Omega 和 Theta）——  最佳数学解释（视频）](https://www.youtube.com/watch?v=ei-A_wy5Yxw&index=2&list=PL1BaGV1cIH4UhkL8a9bJGG356covJ76qN)
