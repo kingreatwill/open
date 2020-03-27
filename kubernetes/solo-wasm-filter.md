@@ -7,8 +7,9 @@ https://github.com/envoyproxy/envoy-wasm
 https://www.servicemesher.com/envoy/intro/arch_overview.html
 
 
+https://istio.io/blog/2020/deploy-wasm-declarative/
 
-
+![](../img/k8s/wasm-how-it-works.png)
 ---
 title: 重新定义代理的扩展性：Envoy 和 Istio 引入 WebAssembly
 subtitle: 一种针对代理服务扩展的新接口，可以把 Istio 的扩展从控制平面迁移到 sidecar 代理中

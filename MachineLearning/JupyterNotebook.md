@@ -19,6 +19,62 @@ Jupyter Notebook是一个开源的Web应用程序，允许用户创建和共享�
 
 首先，下载[Anaconda](https://www.anaconda.com/distribution/)。建议下载Anaconda的最新Python 3版本。其次，请按照下载页面上的说明安装下载的Anaconda版本。最后，安装成功！
 
+
+
+###### miniconda 无界面版本
+
+1. 安装miniconda
+在安装过程中需要勾选“Add Anaconda to the system PATH environment variable”选项
+
+https://conda.io/en/master/miniconda.html
+
+2. 使用conda创建虚拟（运行）环境。conda和pip默认使用国外站点来下载软件，我们可以配置国内镜像来加速下载（国外用户无须此操作）。
+```
+# 配置清华PyPI镜像（如无法运行，将pip版本升级到>=10.0.0）
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+3. 创建环境和安装环境依赖
+
+environment.yml 文件内容
+```
+name: gluon
+dependencies:
+- python=3.6
+- pip:
+  - mxnet==1.5.0
+  - d2lzh==1.0.0
+  - jupyter==1.0.0
+  - matplotlib==2.2.2
+  - pandas==0.23.4
+
+```
+```
+conda env create -f environment.yml
+```
+
+4. 激活创建的环境
+```
+conda activate gluon
+```
+退出虚拟环境
+```
+conda deactivate
+```
+更新运行环境
+```
+conda env update -f environment.yml
+```
+
+5. 打开Jupyter记事本
+```
+jupyter notebook
+
+set MXNET_GLUON_REPO=https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/ jupyter notebook
+```
+
+
+
+
 ##### 2.2使用pip命令安装
 对于有经验的Python用户，可以使用Python的包管理器pip而不是Anaconda 来安装Jupyter 。 
 如果已经安装了Python 3：

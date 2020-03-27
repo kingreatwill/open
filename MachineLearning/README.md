@@ -4,7 +4,12 @@
 [TOC]
 # 机器学习
 
+
+
 ## 学习地址
+
+[动手学深度学习](https://github.com/d2l-ai/d2l-zh)
+深度学习框架也在传播深度学习思想的过程中扮演了重要角色。Caffe、 Torch和Theano这样的第一代框架使建模变得更简单。许多开创性的论文都用到了这些框架。如今它们已经被TensorFlow（经常是以高层API Keras的形式被使用）、CNTK、 Caffe 2 和Apache MXNet所取代。第三代，即命令式深度学习框架，是由用类似NumPy的语法来定义模型的 Chainer所开创的。这样的思想后来被 PyTorch和MXNet的Gluon API 采用，后者也正是本书用来教学深度学习的工具
 
 [机器学习google手册](https://developers.google.cn/machine-learning/crash-course/)
 

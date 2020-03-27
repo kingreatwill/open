@@ -4,6 +4,11 @@ https://istio.io/docs/setup/getting-started/
 [TOC]
 
 # 安装
+
+## kiali
+istio的管理界面
+https://github.com/kiali/kiali
+
 ## 1. 下载
 ```
 curl -L https://istio.io/downloadIstio | sh -

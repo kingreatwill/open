@@ -2,8 +2,21 @@
 [教程](https://hub.docker.com/_/redis)
 [参考](https://www.mgchen.com/268.html)
 
+
+
+
 多线程版本:
 https://hub.docker.com/r/eqalpha/keydb
+
+
+安装6.0版本
+docker pull redis:6.0-rc2-alpine3.11
+https://github.com/antirez/redis/blob/6.0/redis.conf
+
+docker run -p 6379:6379 -v /d/dockerv/redis6/conf/redis.conf:/redis.conf -v /d/dockerv/redis6/data:/data --restart always --name redis6 -d redis:6.0-rc2-alpine3.11 redis-server /redis.conf
+
+
+
 安装5.0.6
 ```
 docker pull redis:5.0.6   #98M

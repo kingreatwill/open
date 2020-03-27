@@ -1,6 +1,11 @@
 [awesome-go](https://github.com/avelino/awesome-go)
 
+
+## x
+golang.org/x/time/rate
+该限流器是基于Token Bucket(令牌桶)实现的。
 ## DI
+
 ### Google wire 3.3k
 https://github.com/google/wire
 
@@ -28,3 +33,23 @@ https://github.com/facebookarchive/inject
 ## spinal-case(脊柱) or snake_case(蛇形) or CamelCase(驼峰式) or KebabCase(短横线) or PascalCase(帕斯卡命名法) or PascalSnakeCase
 https://github.com/iancoleman/strcase
 
+## GUI
+
+
+Cross platform GUI in Go based on Material Design https://fyne.io/
+https://github.com/fyne-io/fyne
+
+
+请注意，默认情况下，Windows应用程序是从命令提示符加载的，这意味着，如果单击图标，则可能会看到命令窗口。 要解决此问题，请在运行或构建命令中添加参数-ldflags -H = windowsgui。
+
+
+
+Prerequisites
+https://fyne.io/develop/
+Windows
+1. Download Go from the download page and follow instructions
+2. Install one of the available C compilers for windows, the following are tested with Go and Fyne:
+    - MSYS2 with MingW-w64 - msys2.org
+    - TDM-GCC - tdm-gcc.tdragon.net
+    - Cygwin - cygwin.com
+3. In Windows your graphics driver will already be installed, but it is recommended to ensure they are up to date.

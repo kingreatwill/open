@@ -2,6 +2,9 @@
 [TOC]
 # kong
 
+kong 2.0 开始支持go开发插件。
+https://docs.konghq.com/2.0.x/go/
+
 ## 本地
 
 kong migrations bootstrap -c /mnt/e/kong/centos/kong.conf
