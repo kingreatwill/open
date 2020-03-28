@@ -112,3 +112,5 @@ _output
 
 # npm
 node_modules
+
+.idea
