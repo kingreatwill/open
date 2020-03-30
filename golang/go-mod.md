@@ -2,6 +2,7 @@ go mod 1.13
 
 https://github.com/golang/go/wiki/Modules
 https://github.com/golang/proposal/blob/master/design/24301-versioned-go.md
+[goproxy.cn 现已推出首个 Go 模块代理统计数据 API](https://mp.weixin.qq.com/s/ZtQJE-Vv_Ke8SjhrzBoGcw)
 
 ## 核心文件：go.mod
 ```
