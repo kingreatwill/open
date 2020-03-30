@@ -14,6 +14,9 @@ https://www.jianshu.com/p/dde56c521078
 
 https://www.cnblogs.com/JoZSM/p/10902306.html
 
+# architecture1.5
+![](../img/k8s/istio-arch-1.5.svg)
+
 ## Security
 ![](../img/k8s/Istio-security-overview.svg)
 
