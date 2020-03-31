@@ -3,11 +3,86 @@ https://istio.io/docs/setup/getting-started/
 <!-- toc -->
 [TOC]
 
-# 安装
-
-## kiali
+# kiali
 istio的管理界面
 https://github.com/kiali/kiali
+
+# 安装1.5
+
+## 安装istioctl
+```
+curl -L https://istio.io/downloadIstio | sh -
+or 
+自己下载
+tar -zxvf istio-1.5.1-linux.tar.gz
+
+cd istio-1.5.1
+
+将istioctl客户端添加到您的路径（Linux或macOS）：
+当前终端有效 export PATH=$PWD/bin:$PATH
+
+
+vi ~/.bashrc
+export PATH=/root/istio-1.5.1/bin:$PATH
+
+source ~/.bashrc
+```
+## 安装 istio
+```
+istioctl manifest apply --set profile=demo
+```
+x|default|	demo|	minimal|	remote
+---|---|---|---|---
+**Core components** |
+istio-egressgateway	|	|X		
+istio-ingressgateway |X|X		
+istio-pilot |	X|	X	|X	
+**Addons** |
+grafana	||	X		
+istio-tracing	||	X		
+kiali	||	X		
+prometheus |	X|	X||		X
+
+
+## 面板UI
+```
+istioctl dashboard --help
+
+istioctl dashboard kiali
+istioctl dashboard grafana
+istioctl dashboard jaeger
+istioctl dashboard controlz
+
+不能访问
+```
+
+方式二
+```
+kubectl get services -n istio-system -o wide
+
+grafana           3000
+jaeger-query             16686/TCP 
+kiali                 20001/TCP 
+prometheus             9090/TCP 
+zipkin                     9411/TCP 
+
+kubectl --namespace istio-system  port-forward --address 0.0.0.0 svc/kiali 20001
+默认 admin admin
+
+kubectl --namespace istio-system  port-forward --address 0.0.0.0 svc/jaeger-query 16686
+
+kubectl --namespace istio-system  port-forward --address 0.0.0.0 svc/grafana 3000
+```
+
+## 卸载
+```
+istioctl manifest generate --set profile=demo | kubectl delete -f -
+```
+
+
+
+
+# 安装 1.4
 
 ## 1. 下载
 ```

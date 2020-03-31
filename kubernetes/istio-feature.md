@@ -79,7 +79,7 @@ spec:
 ```
 上面的网关规范描述了负载均衡器的L4-L6属性。VirtualService然后，可以将A 绑定到网关，以控制到达特定主机或网关端口的流量的转发。
 
-例如，下面的VirtualService分裂流量 https://uk.bookinfo.com/reviews，https://eu.bookinfo.com/reviews， http://uk.bookinfo.com:9080/reviews， http://eu.bookinfo.com:9080/reviews插入端口9080除了内部的评论服务的两个版本（PROD和QA），包含cookie“用户：DEV-123”的请求将被发送到特定的端口7777在qa版本中。网格中的相同规则也适用于对“ reviews.prod.svc.cluster.local”服务的请求。此规则适用于端口443、9080。请注意，http://uk.bookinfo.com 重定向到https://uk.bookinfo.com（即80重定向到443）。
+例如，下面的VirtualService分裂流量 `https://uk.bookinfo.com/reviews，https://eu.bookinfo.com/reviews， http://uk.bookinfo.com:9080/reviews， http://eu.bookinfo.com:9080/reviews` 插入端口9080除了内部的评论服务的两个版本（PROD和QA），包含cookie“用户：DEV-123”的请求将被发送到特定的端口7777在qa版本中。网格中的相同规则也适用于对“ reviews.prod.svc.cluster.local”服务的请求。此规则适用于端口443、9080。请注意，http://uk.bookinfo.com 重定向到https://uk.bookinfo.com（即80重定向到443）。
 ```yaml
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
