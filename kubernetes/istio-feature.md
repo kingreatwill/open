@@ -22,6 +22,8 @@
 Istio提供了一些可以预配置的网关代理部署（istio-ingressgateway和istio-egressgateway）
 https://istio.io/docs/reference/config/networking/gateway/
 
+
+以下网关配置将代理设置为负载均衡器，以暴露端口80和9080（http），443（https），9443（https）和端口2379（TCP）进行入口。该网关将应用于带有标签的Pod上运行的代理app: my-gateway-controller。虽然Istio将配置代理以侦听这些端口，但用户有责任确保允许到这些端口的外部流量进入网状网络。
 ```yaml
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
@@ -75,6 +77,46 @@ spec:
     - "*"
 
 ```
+上面的网关规范描述了负载均衡器的L4-L6属性。VirtualService然后，可以将A 绑定到网关，以控制到达特定主机或网关端口的流量的转发。
+
+例如，下面的VirtualService分裂流量 https://uk.bookinfo.com/reviews，https://eu.bookinfo.com/reviews， http://uk.bookinfo.com:9080/reviews， http://eu.bookinfo.com:9080/reviews插入端口9080除了内部的评论服务的两个版本（PROD和QA），包含cookie“用户：DEV-123”的请求将被发送到特定的端口7777在qa版本中。网格中的相同规则也适用于对“ reviews.prod.svc.cluster.local”服务的请求。此规则适用于端口443、9080。请注意，http://uk.bookinfo.com 重定向到https://uk.bookinfo.com（即80重定向到443）。
+```yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bookinfo-rule
+  namespace: bookinfo-namespace
+spec:
+  hosts:
+  - reviews.prod.svc.cluster.local
+  - uk.bookinfo.com
+  - eu.bookinfo.com
+  gateways:
+  - some-config-namespace/my-gateway
+  - mesh # applies to all the sidecars in the mesh
+  http:
+  - match:
+    - headers:
+        cookie:
+          exact: "user=dev-123"
+    route:
+    - destination:
+        port:
+          number: 7777
+        host: reviews.qa.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /reviews/
+    route:
+    - destination:
+        port:
+          number: 9080 # can be omitted if it's the only port for reviews
+        host: reviews.prod.svc.cluster.local
+      weight: 80
+    - destination:
+        host: reviews.qa.svc.cluster.local
+      weight: 20
+```
 
 
 ### Ingress Gateways
@@ -84,6 +126,9 @@ spec:
 https://istio.io/docs/reference/config/networking/service-entry/
 ## EnvoyFilter  CRD资源 （不推荐使用）
 https://istio.io/docs/reference/config/networking/envoy-filter/
+https://istio.io/docs/reference/config/telemetry/telemetry_v2_with_wasm/
+
+其实就是filter.wasm 或者 Lua filter
 
 EnvoyFilter提供了一种自定义Istio Pilot生成的Envoy配置的机制。使用EnvoyFilter修改某些字段的值，添加特定的过滤器，甚至添加全新的侦听器，群集等。**必须谨慎使用此功能，因为不正确的配置可能会破坏整个网格的稳定性**。与其他Istio网络对象不同，EnvoyFilters是附加应用的。对于特定名称空间中的给定工作负载，可以存在任意数量的EnvoyFilter。**这些EnvoyFilters的应用顺序如下：配置根名称空间中的所有EnvoyFilters ，然后是工作负载名称空间中所有匹配的EnvoyFilters。**
 
@@ -92,6 +137,8 @@ EnvoyFilter提供了一种自定义Istio Pilot生成的Envoy配置的机制。�
 - 注意2：当多个EnvoyFilters绑定到给定名称空间中的相同工作负载时，将按创建时间顺序依次处理所有补丁。如果多个EnvoyFilter配置相互冲突，则该行为是不确定的。
 
 - 注意3：* _要将EnvoyFilter资源应用于系统中的所有工作负载（边车和网关），请在config 根名称空间中定义资源，而不需要工作负载选择器。
+
+
 
 
 ## Sidecar CRD资源 

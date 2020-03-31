@@ -61,3 +61,8 @@ func Test_oschina(t *testing.T) {
 	do("https://www.oschina.net/news/114446/benchmark-openjdk-corretto-graalvm", "", "")
 	// html2md.exe https://www.oschina.net/news/114446/benchmark-openjdk-corretto-graalvm
 }
+
+func Test_cloud_tencent(t *testing.T) {
+	do("https://cloud.tencent.com/developer/article/1548200", "", "")
+	// html2md.exe https://cloud.tencent.com/developer/article/1548200
+}
