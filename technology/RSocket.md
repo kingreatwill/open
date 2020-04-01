@@ -3,9 +3,15 @@
 https://rsocket.io/
 https://github.com/rsocket
 
+
+
+## RSocket介绍0
+Netflix：RSocket同样诞生于微服务老祖Netflix，同样它家出品的微服务框架Spring现在已经集成了RSocket支持响应式的微服务编程
+
 [RSocket 基于消息传递的反应式应用层网络协议](https://zhuanlan.zhihu.com/p/100511637)
 
-RSocket介绍:
+
+## RSocket介绍1
 RSocket 是一个 OSL 七层模型中 5/6 层的协议，是 TCP/IP 之上的应用层协议。RSocket 可以使用不同的底层传输层，包括 TCP、WebSocket 和 Aeron。RSocket 使用二进制格式，保证了传输的高效,它是一种基于Reactive Streams背压的双向，多路复用，基于消息的二进制协议.
 
 RSocket 交互模式:
@@ -15,7 +21,7 @@ RSocket 交互模式:
 4. 通道模式（channel）
 
 
-
+## RSocket介绍2
 传统的HTTP如果指的是HTTP/1.1，那么区别很大了。HTTP/1.1 连多路复用都不支持, 只有请求响应模式。等等等。如果指HTTP/2.0, 有区别但其实不算太大。
 
 HTTP/2.0 虽然支持了链接复用，但仍然主要只支持request/response 模型。网上很多人说HTTP2支持stream，不对，HTTP2对用户来说没有stream这个概念。它只是通过multiplex实现高效的request/response。另外H2提供Server Push的功能，但是功能和应用场景很有限。相反RSocket 是一个真正的bi-directional。 当client 和server建立链接之后，就不存在谁请求谁的问题了。任何一方都可以是requester 或者responder。

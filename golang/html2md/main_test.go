@@ -66,3 +66,8 @@ func Test_cloud_tencent(t *testing.T) {
 	do("https://cloud.tencent.com/developer/article/1548200", "", "")
 	// html2md.exe https://cloud.tencent.com/developer/article/1548200
 }
+
+func Test_zhuanlan_zhihu(t *testing.T) {
+	do("https://zhuanlan.zhihu.com/p/100511637", "", "")
+	// html2md.exe https://zhuanlan.zhihu.com/p/100511637
+}
