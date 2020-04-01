@@ -1,3 +1,19 @@
+# docker私有仓库
+## Harbor
+Habor是由VMWare公司开源的容器镜像仓库。事实上，Habor是在Docker Registry上进行了相应的企业级扩展，从而获得了更加广泛的应用，这些新的企业级特性包括：管理用户界面，基于角色的访问控制 ，AD/LDAP集成以及审计日志等，足以满足基本企业需求。
+官方地址：https://vmware.github.io/harbor/cn/
+https://goharbor.io/
+https://github.com/goharbor/harbor
+
+## 官方registry
+docker pull registry
+docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 --restart=always --name registry registry:latest 
+
+https://github.com/docker/distribution
+
+UI
+https://hub.docker.com/r/joxit/docker-registry-ui
+
 # centos7 安装docker
 yum 包更新到最新:
 ```
