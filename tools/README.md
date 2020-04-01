@@ -20,6 +20,10 @@ Cygwin，让你拥有Windows下的Linux环境
 
 [文件同步工具](https://freefilesync.org/)
 
+[PDF ORC](https://lightpdf.com/zh/ocr)
+[ABBYY FineReader 14] PDF ORC
+Adobe Acrobat
+
 [语言在线](https://repl.it/languages)
 
 [Protoman](https://github.com/spluxx/Protoman)

@@ -9,13 +9,38 @@
 > 4. JVM的常用参数调优你了解吗？
 > 5. 内存快照抓取和MAT分析hprof文件干过吗？
 
-> 1）StackOverflowError和 OutofMemoryError，谈谈你的理解
+> 1）StackOverflowError和 OutOfMemoryError，谈谈你的理解
 
+JVM堆栈(stacks)
 > - If the computation in a thread requires a larger Java Virtual Machine stack than is permitted, the Java Virtual Machine throws a StackOverflowError.
 > 如果线程中的计算需要比允许的更大的 Java 虚拟机堆栈，则 Java 虚拟机抛出 StackOverflowError。
 
 > - If Java Virtual Machine stacks can be dynamically expanded, and expansion is attempted but insufficient memory can be made available to effect the expansion, or if insufficient memory can be made available to create the initial Java Virtual Machine stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError.
 > 如果 Java 虚拟机堆栈可以动态扩展，并且尝试扩展，但是没有足够的内存来实现扩展，或者如果没有足够的内存来为新线程创建初始的 Java 虚拟机堆栈，Java 虚拟机抛出 OutOfMemoryError。
+
+堆heap
+> - If a computation requires more heap than can be made available by the automatic storage management system, the Java Virtual Machine throws an OutOfMemoryError.
+> 如果计算需要比自动存储管理系统所能提供的更多的堆，那么 Java 虚拟机将抛出 OutOfMemoryError。
+
+方法区 Method Area
+
+> - If memory in the method area cannot be made available to satisfy an allocation request, the Java Virtual Machine throws an OutOfMemoryError.
+> 如果方法区域中的内存不能用于满足分配请求，则 Java 虚拟机抛出 OutOfMemoryError。
+
+Run-Time Constant Pool 运行时常量池
+> - When creating a class or interface, if the construction of the run-time constant pool requires more memory than can be made available in the method area of the Java Virtual Machine, the Java Virtual Machine throws an OutOfMemoryError.
+> 在创建类或接口时，如果运行时常量池的构造需要比 Java 虚拟机的方法区域可用的内存更多，则 Java 虚拟机抛出 OutOfMemoryError。
+
+Native Method Stacks  本地方法栈
+> - If the computation in a thread requires a larger native method stack than is permitted, the Java Virtual Machine throws a StackOverflowError.
+> 如果线程中的计算需要比允许的更大的本机方法堆栈，那么 Java 虚拟机抛出一个 StackOverflowError。
+
+> - If native method stacks can be dynamically expanded and native method stack expansion is attempted but insufficient memory can be made available, or if insufficient memory can be made available to create the initial native method stack for a new thread, the Java Virtual Machine throws an OutOfMemoryError.
+> 如果本机方法堆栈可以动态扩展，本机方法堆栈扩展可以尝试，但是没有足够的内存可用，或者如果没有足够的内存可用来为新线程创建初始的本机方法堆栈，Java 虚拟机将抛出 OutOfMemoryError。
+
+Linking 链接
+> - Because linking involves the allocation of new data structures, it may fail with an OutOfMemoryError.
+> 因为链接涉及到新数据结构的分配，所以可能会出现 OutOfMemoryError 错误。
 
 
 > 2）一般什么时候会发生GC？如何处理？
