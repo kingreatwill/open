@@ -6,13 +6,46 @@ https://github.com/rsocket
 
 
 ## RSocket介绍0
-Netflix：RSocket同样诞生于微服务老祖Netflix，同样它家出品的微服务框架Spring现在已经集成了RSocket支持响应式的微服务编程
+
+RSocket RSocket是一个二进制的协议，以异步消息的方式提供4种对等的交互模型，以字节流的方式运行在TCP, WebSockets, Aeron等传输层之上。RSocket专门设计用于与Reactive风格应用配合使用，这些应用程序基本上是非阻塞的，并且通常（但不总是）与异步行为配对。它是传输无关的，支持 TCP、WebSocket和Aeron UDP协议，并支持无语义损失的混合传输协议——回压和流量控制仍然有效。
+它还支持连接恢复。当你建立 RSocket 连接时，你可以指定前一个连接的 ID，如果流仍然在服务器的内存中，则你可以继续消费你的流。
+
+- Netflix：RSocket同样诞生于微服务老祖Netflix，同样它家出品的微服务框架Spring现在已经集成了RSocket支持响应式的微服务编程
+
+- Facebook：2017年上下开始在一些Facebook production案列中得到运用，今年开始了Thrit RPC和RSocket的集成工作。以后Facebook内部的Thrift会主要基于RSocket实现（于是Thrift也会支持streaming了）。
+
+- 阿里巴巴：集成Dubbo RPC和RSocket，在IOT中运用RSocket Broker
+
+- Netifi: 基于RSocket Broker做微服务的startup，（宣称基于RSocket broker的微服务架构比istio省钱10x）https://www.netifi.com/
+
+- 其他：Pivotal, LightBend(原名Typesafe，Scala背后的公司)
 
 [RSocket 基于消息传递的反应式应用层网络协议](https://zhuanlan.zhihu.com/p/100511637)
 
+[Introduction to RSocket](https://www.baeldung.com/rsocket)
+
+[从微服务治理的角度看RSocket、. Envoy和. Istio](https://my.oschina.net/yunqi/blog/3000351)
+![](../img/tcp/alibaba-rsocket-broker-structure.png)
+RSocket应用通过RSocket Broker联结而形成的Mesh
+RSocket Service Mesh方案是通过一个中心化的Broker完成的
+RSocket的主要障碍是应用程序之间必须要用RSocket通讯
+
+关于RSocket Service Mesh的更多资料可以参考 The New Service Mesh with RSocket: https://www.netifi.com/solutions-servicemesh
+
+[RSocket架构方案](http://rsocketbyexample.info/)
+
+[Alibaba RSocket Broker](https://www.ctolib.com/alibaba-alibaba-rsocket-broker.html)
+
+RSocket: http://rsocket.io/
+RSocket Java SDK: https://github.com/rsocket/rsocket-java
+Spring RSocket: https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#rsocket
+Spring Boot RSocket Starter: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-rsocket
+Project Reactor: http://projectreactor.io/
+Reactive Foundation: https://reactive.foundation/
+
 
 ## RSocket介绍1
-RSocket 是一个 OSL 七层模型中 5/6 层的协议，是 TCP/IP 之上的应用层协议。RSocket 可以使用不同的底层传输层，包括 TCP、WebSocket 和 Aeron。RSocket 使用二进制格式，保证了传输的高效,它是一种基于Reactive Streams背压的双向，多路复用，基于消息的二进制协议.
+RSocket 是一个 OSL 七层模型中 5/6 层的协议，是 TCP/IP(or UDP) 之上的应用层协议。RSocket 可以使用不同的底层传输层，包括 TCP、WebSocket 和 Aeron。RSocket 使用二进制格式，保证了传输的高效,它是一种基于Reactive Streams背压的双向，多路复用，基于消息的二进制协议.
 
 RSocket 交互模式:
 1. 请求-响应（request/response）
