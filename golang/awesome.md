@@ -4,7 +4,15 @@
 ## x
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
+
+## goweight 分析模块大小
+```
+$ cd current-project
+$ goweight
+```
+
 ## DI
+
 
 ### Google wire 3.3k
 https://github.com/google/wire
