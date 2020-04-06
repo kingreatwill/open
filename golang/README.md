@@ -5,8 +5,9 @@ https://pkg.go.dev/golang.org/dl
 go get golang.org/dl/go1.10.7
 go get golang.org/dl/go1.13.6
 
-
-go1.13.6 version
+1. go get github.com/golang/dl/go1.13.9
+2. go1.13.9 download 
+3. go1.13.6 version
 
 https://go.dev/
 

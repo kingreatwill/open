@@ -64,9 +64,9 @@ goroutine 是coroutine吗？ 答：不完全是
 
 安装其它版本go
 https://pkg.go.dev/golang.org/dl
-go get golang.org/dl/go1.13.6
-
-go1.13.6 version
+1. go get golang.org/dl/go1.13.6
+2. go1.13.6.exe download
+3. go1.13.6 version
 
 ## 独占CPU导致其它Goroutine饿死
 
