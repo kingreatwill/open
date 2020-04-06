@@ -19,6 +19,7 @@ Privacy Enhanced Mail Certificate
 
 CA, Certificate Authority 证书颁发机构
 
+[证书](https://kubernetes.io/zh/docs/concepts/cluster-administration/certificates/)
 
 <!--toc-->
 

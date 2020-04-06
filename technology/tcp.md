@@ -13,6 +13,8 @@
 
 [3000字讲讲TCP协议，握手挥手不是你想的那么简单](https://www.toutiao.com/a6773950320000107016)
 
+[TCP/IP、UDP、HTTP、MQTT、CoAP这五种物联网协议概述](https://www.toutiao.com/a6748413680527884813)
+
 ![](../img/tcp/网络通讯协议图.jpeg)
 
 

@@ -73,3 +73,16 @@ https://github.com/XiaoMi/soar
 
 chrome 插件
 彩云小译 翻译 保留原文
+
+## IDE 
+```
+docker run -it --init -p 3000:3000 -v "%cd%:/home/project:cached" theiaide/theia-full:1.0.0
+
+docker run -it -d --init -p 3000:3000 -v "/root/code:/home/project:cached" theiaide/theia-full:1.0.0
+
+# Linux or macOS
+docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "$(pwd):/home/project:cached" theiaide/theia:next --inspect=0.0.0.0:9229
+
+# Windows
+docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/project:cached" theiaide/theia:next --inspect=0.0.0.0:9229
+```

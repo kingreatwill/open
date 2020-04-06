@@ -61,6 +61,13 @@ goroutine 是coroutine吗？ 答：不完全是
 
 
 [Go语言常见坑](https://studygolang.com/articles/16949?fr=sidebar)
+
+安装其它版本go
+https://pkg.go.dev/golang.org/dl
+go get golang.org/dl/go1.13.6
+
+go1.13.6 version
+
 ## 独占CPU导致其它Goroutine饿死
 
 Goroutine是协作式调度, Goroutine本身不会主动放弃CPU:

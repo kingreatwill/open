@@ -1,4 +1,13 @@
 
+
+在现有go版本中安装其他版本
+https://pkg.go.dev/golang.org/dl
+go get golang.org/dl/go1.10.7
+go get golang.org/dl/go1.13.6
+
+
+go1.13.6 version
+
 https://go.dev/
 
 https://godoc.org/
