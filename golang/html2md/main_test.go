@@ -31,6 +31,10 @@ func Test_md(t *testing.T) {
 	println(md_str)
 }
 
+func Test_default(t *testing.T) {
+	do("https://www.xx.com/a6746056891136213515", "", "")
+	// html2md.exe https://www.xx.com/a6746056891136213515
+}
 
 func Test_segmentfault(t *testing.T) {
 	do("https://segmentfault.com/a/1190000014395186", "", "")
@@ -70,4 +74,9 @@ func Test_cloud_tencent(t *testing.T) {
 func Test_zhuanlan_zhihu(t *testing.T) {
 	do("https://zhuanlan.zhihu.com/p/100511637", "", "")
 	// html2md.exe https://zhuanlan.zhihu.com/p/100511637
+}
+
+func Test_toutiao(t *testing.T) {
+	do("https://www.toutiao.com/a6746056891136213515", "", "")
+	// html2md.exe https://www.toutiao.com/a6746056891136213515
 }

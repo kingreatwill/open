@@ -99,3 +99,6 @@ System.out.println(ChronoUnit.MILLIS.between(nowStream, Instant.now())); // 9130
 # 压缩20M文件从30秒到1秒的优化过程
 https://www.jianshu.com/p/25b328753017
 https://github.com/modouxiansheng/Doraemon
+
+# Linux中零拷贝原理 | NIO零拷贝技术实践
+https://blog.csdn.net/david_lua/article/details/102735550
