@@ -9,6 +9,15 @@ go get golang.org/dl/go1.13.6
 2. go1.13.9 download 
 3. go1.13.6 version
 
+原理：go get github.com/golang/dl 库
+每个版本install
+
+会在 go/bin 下安装github.com/golang/dl/go1.13.9 并生成 go1.13.9.exe
+go1.13.9 download 下载源码到用户目录下的sdk/go1.13.9 下
+
+运行go1.13.6 version 相当于运行 sdk/go1.13.9/bin/go.exe version
+
+
 https://go.dev/
 
 https://godoc.org/

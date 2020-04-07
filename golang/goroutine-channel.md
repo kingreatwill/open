@@ -1,3 +1,4 @@
+
 https://mp.weixin.qq.com/s/qDFgMzF1onowF33_pczP-Q
 Go 特意模糊堆和栈之后，你对 Goroutine 栈了解多少？
 https://www.toutiao.com/a6764649154305065475/
@@ -19,6 +20,9 @@ http://www.sizeofvoid.net/goroutine-under-the-hood/
 https://mp.weixin.qq.com/s/90Evbi5F5sA1IM5Ya5Tp8w
 
 
+
+[What Are JVM Fibers and Threads?](https://www.jrebel.com/blog/jvm-fibers-and-threads)
+
 coroutine/协程,fiber/纤程,thread/线程,process/进程
 
 goroutine是golang中的coroutine
@@ -29,6 +33,16 @@ goroutine是强制加上scheduler的纤程
 
 如果还是原来线程在执行，那么就是coroutine
 如果存在有被其他线程所执行的可能，那就是fiber
+
+
+
+分类 |	OS Schedule (multicore support)|	User Schedule (Language/Library)
+---|---|---
+Preemptive|	thread	| goroutine?
+Non-preemptive (cooperative)|	fiber	|coroutine
+
+
+最主要的区别是调度方式，一个是协作式，一个是抢占式，而且本质上协程做不到并行，只能是并发，还有就是协程并不需要同步原语：锁、信号量等这些，因为不存在临界区。
 
 ## 线程调度
 定义： 系统为线程分配处理器使用权的过程。
@@ -49,15 +63,87 @@ Go1.14.1 发布，修正抢占调度等重要 bug
 https://github.com/golang/go/issues?q=milestone%3AGo1.14.1+label%3ACherryPickApproved
 https://github.com/golang/go/issues/37833
 
-[goroutine 不是协程，项目描述不准确](https://github.com/panjf2000/ants/issues/60)
+## [goroutine 不是协程，项目描述不准确](https://github.com/panjf2000/ants/issues/60)
+
 首先，goroutine 不是我们通常说的协作式调度，绝大部分的 go 程序都是没有 runtime.Gosched 的。如果认为 go scheduler 内部的抢占调度目前不完善，那 linux 内核在 2.几 某个版本之前也没有完善的抢占调度，难道 linux 线程也是协程吗。
 
 另外，预期 Go 1.14 就有完全的抢占调度了，更跟协程不搭边了。
 
 [Is a Go goroutine a coroutine?](https://stackoverflow.com/questions/18058164/is-a-go-goroutine-a-coroutine)
 goroutine 是coroutine吗？ 答：不完全是
- [ Why goroutines instead of threads](https://golang.org/doc/faq#goroutines)
 
+
+## [Why called goroutines](https://golang.org/doc/effective_go.html?h=coroutine)
+```
+They're called goroutines because the existing terms—threads, coroutines, processes, and so on—convey inaccurate connotations. A goroutine has a simple model: it is a function executing concurrently with other goroutines in the same address space. It is lightweight, costing little more than the allocation of stack space. And the stacks start small, so they are cheap, and grow by allocating (and freeing) heap storage as required.
+
+Goroutines are multiplexed onto multiple OS threads so if one should block, such as while waiting for I/O, others continue to run. Their design hides many of the complexities of thread creation and management.
+
+Prefix a function or method call with the go keyword to run the call in a new goroutine. When the call completes, the goroutine exits, silently. (The effect is similar to the Unix shell's & notation for running a command in the background.)
+
+go list.Sort()  // run list.Sort concurrently; don't wait for it.
+
+A function literal can be handy in a goroutine invocation.
+
+func Announce(message string, delay time.Duration) {
+    go func() {
+        time.Sleep(delay)
+        fmt.Println(message)
+    }()  // Note the parentheses - must call the function.
+}
+In Go, function literals are closures: the implementation makes sure the variables referred to by the function survive as long as they are active.
+
+These examples aren't too practical because the functions have no way of signaling completion. For that, we need channels.
+```
+
+
+## Why goroutines instead of threads?
+[Why goroutines instead of threads](https://golang.org/doc/faq#goroutines)
+```
+Goroutines are part of making concurrency easy to use. The idea, which has been around for a while, is to multiplex independently executing functions—coroutines—onto a set of threads. 
+When a coroutine blocks, such as by calling a blocking system call, the run-time automatically moves other coroutines on the same operating system thread to a different, runnable thread so they won't be blocked. 
+The programmer sees none of this, which is the point. 
+The result, which we call goroutines, can be very cheap: they have little overhead beyond the memory for the stack, which is just a few kilobytes.
+
+To make the stacks small, Go's run-time uses resizable, bounded stacks. 
+A newly minted goroutine is given a few kilobytes, which is almost always enough. 
+When it isn't, the run-time grows (and shrinks) the memory for storing the stack automatically, allowing many goroutines to live in a modest amount of memory. 
+The CPU overhead averages about three cheap instructions per function call. It is practical to create hundreds of thousands of goroutines in the same address space. 
+If goroutines were just threads, system resources would run out at a much smaller number.
+```
+
+## Concurrency: goroutines and channels
+https://en.wanweibaike.com/wiki-Goroutine#Concurrency:_goroutines_and_channels
+https://en.wikipedia.org/wiki/Go_(programming_language)#Concurrency
+```
+The Go language has built-in facilities, as well as library support, for writing concurrent programs. Concurrency refers not only to CPU parallelism, but also to asynchrony: letting slow operations like a database or network read run while the program does other work, as is common in event-based servers.[79]
+
+The primary concurrency construct is the goroutine, a type of light-weight process. A function call prefixed with the go keyword starts a function in a new goroutine. The language specification does not specify how goroutines should be implemented, but current implementations multiplex a Go process's goroutines onto a smaller set of operating-system threads, similar to the scheduling performed in Erlang.[80]:10
+
+While a standard library package featuring most of the classical concurrency control structures (mutex locks, etc.) is available,[80]:151–152 idiomatic concurrent programs instead prefer channels, which provide send messages between goroutines.[81] Optional buffers store messages in FIFO order[64]:43 and allow sending goroutines to proceed before their messages are received.[citation needed]
+
+Channels are typed, so that a channel of type chan T can only be used to transfer messages of type T. Special syntax is used to operate on them; <-ch is an expression that causes the executing goroutine to block until a value comes in over the channel ch, while ch <- x sends the value x (possibly blocking until another goroutine receives the value). The built-in switch-like select statement can be used to implement non-blocking communication on multiple channels; see below for an example. Go has a memory model describing how goroutines must use channels or other operations to safely share data.[82]
+
+The existence of channels sets Go apart from actor model-style concurrent languages like Erlang, where messages are addressed directly to actors (corresponding to goroutines). The actor style can be simulated in Go by maintaining a one-to-one correspondence between goroutines and channels, but the language allows multiple goroutines to share a channel or a single goroutine to send and receive on multiple channels.[80]:147
+
+From these tools one can build concurrent constructs like worker pools, pipelines (in which, say, a file is decompressed and parsed as it downloads), background calls with timeout, "fan-out" parallel calls to a set of services, and others.[83] Channels have also found uses further from the usual notion of interprocess communication, like serving as a concurrency-safe list of recycled buffers,[84] implementing coroutines (which helped inspire the name goroutine),[85] and implementing iterators.[86]
+
+Concurrency-related structural conventions of Go (channels and alternative channel inputs) are derived from Tony Hoare's communicating sequential processes model. Unlike previous concurrent programming languages such as Occam or Limbo (a language on which Go co-designer Rob Pike worked),[87] Go does not provide any built-in notion of safe or verifiable concurrency.[88] While the communicating-processes model is favored in Go, it is not the only one: all goroutines in a program share a single address space. This means that mutable objects and pointers can be shared between goroutines; see § Lack of race condition safety, below.[citation needed]
+```
+
+## Coroutine comparison with threads
+https://en.wikipedia.org/wiki/Coroutine#Comparison_with_threads
+```
+
+Coroutines are very similar to threads. However, coroutines are cooperatively multitasked, whereas threads are typically preemptively multitasked. 
+This means that coroutines provide concurrency but not parallelism. The advantages of coroutines over threads are that they may be used in a hard-realtime context (switching between coroutines need not involve any system calls or any blocking calls whatsoever), there is no need for synchronisation primitives such as mutexes, semaphores, etc. 
+in order to guard critical sections, and there is no need for support from the operating system.
+
+It is possible to implement coroutines using preemptively-scheduled threads, in a way that will be transparent to the calling code, but some of the advantages (particularly the suitability for hard-realtime operation and relative cheapness of switching between them) will be lost.
+```
+
+
+[wiki-Goroutine](https://en.wanweibaike.com/wiki-Goroutine)
 
 
 [Go语言常见坑](https://studygolang.com/articles/16949?fr=sidebar)
