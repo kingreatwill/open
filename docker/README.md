@@ -173,4 +173,38 @@ docker stats
 docker stats exceptionless_api_1 
 查看具体的容器　　
 
+
+## docker push到私有仓库
+
+1. 修改/root/.docker/config.json
+{ "insecure-registries":["harbor.xxx.com"] }
+不添加报错，https证书问题
+
+2. docker login -u user harbor.xxx.com
+or docker login harbor.xxx.com
+
+git bash: winpty docker login -u demo images.lingcb.net
+需要添加winpty
+
+
+3. push
+```
+
+docker build -t xxxx:tag .
+docker tag xxxx:tag harbor.xxx.com/project/xxxx:tag
+docker push harbor.xxx.com/project/xxxx:tag
+
+
+#1.标记镜像
+docker tag {镜像名}:{tag} {Harbor地址}:{端口}/{Harbor项目名}/{自定义镜像名}:{自定义tag}
+#eg:docker tag vmware/harbor-adminserver:v1.1.0 192.168.2.108:5000/test/harbor-adminserver:v1.1.0
+
+#2.push 到Harbor
+docker push {Harbor地址}:{端口}/{自定义镜像名}:{自定义tag}
+#eg:docker push 192.168.2.108:5000/test/harbor-adminserver:v1.1.0
+
+3.pull 到本地
+docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
+```
+
 # docker三剑客  docker-machine compose swarm

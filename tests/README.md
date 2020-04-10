@@ -10,6 +10,14 @@ selenium 是一个 web 的自动化测试工具，不少学习功能自动化的
 - 支持多平台：windows、linux、MAC ，支持多浏览器：ie、ff、safari、opera、chrome
 - 支持分布式测试用例的执行，可以把测试用例分布到不同的测试机器的执行，相当于分发机的功能。
 
+#### Selenium Python
+
+http://www.testclass.net/selenium_python
+
+#### Selenium并行启动多个浏览器
+https://www.cnblogs.com/graceting/p/5034023.html
+
+
 ### Pytest
 pytest是一个非常成熟的全功能的Python测试框架，主要特点有以下几点：
 
@@ -25,3 +33,35 @@ pytest是一个非常成熟的全功能的Python测试框架，主要特点有�
 https://github.com/seleniumbase/SeleniumBase
 
 Selenium & pytest
+
+
+### appium
+[appium介绍](http://www.testclass.net/appium/appium-base-summary/)
+
+### Robot Framework
+https://github.com/robotframework/robotframework
+
+RIDE  
+RIDE是一款专门用来编辑Robot Framework用例的软件，用Python编写并且开源
+https://github.com/robotframework/RIDE
+
+[robotframework中RIDE的下载及安装](https://www.cnblogs.com/jiyanjiao-702521/p/9220358.html)
+
+
+[RobotFramework + Appium 移动自动化实现](https://www.cnblogs.com/leozhanggg/p/9687398.html)
+
+
+### 其它(以下跟前端更相关)
+
+#### puppeteer
+https://github.com/puppeteer/puppeteer
+Headless Chrome Node.js API https://pptr.dev/
+
+#### storybook
+https://github.com/storybookjs/storybook
+UI component dev & test: React, Vue, Angular, React Native, Ember, Web Components & more! https://storybook.js.org
+https://www.jianshu.com/p/c9ddb5e5bfc2
+
+#### Jest
+https://github.com/facebook/jest
+Delightful JavaScript Testing. https://jestjs.io

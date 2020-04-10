@@ -61,3 +61,7 @@ Windows
     - TDM-GCC - tdm-gcc.tdragon.net
     - Cygwin - cygwin.com
 3. In Windows your graphics driver will already be installed, but it is recommended to ensure they are up to date.
+
+
+## eval
+github.com/Knetic/govaluate
