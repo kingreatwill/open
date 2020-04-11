@@ -133,3 +133,25 @@ metadata:
 ```
 kubectl cordon $NODENAME
 ```
+
+## Patch修改
+kubectl apply -f https://run.linkerd.io/emojivoto.yml
+
+kubectl -n emojivoto patch -f https://run.linkerd.io/emojivoto.yml -p '
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        config.linkerd.io/trace-collector: oc-collector.tracing:55678
+'
+
+## set env
+kubectl -n emojivoto set env --all deploy OC_AGENT_HOST=oc-collector.tracing:55678
+
+## rollout status
+kubectl -n emojivoto rollout status deploy/web
+
+## port-forward
+kubectl -n tracing port-forward svc/jaeger 16686 --address=0.0.0.0 &
+#kubectl -n emojivoto port-forward svc/web-svc 8080:80

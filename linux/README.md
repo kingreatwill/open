@@ -78,6 +78,9 @@ systemctl restart network
 ```
 
 ## job
+
+nohup cmd &
+
 ctrl+z 转后台运行(暂停已经运行的进程)
 jobs 查看后台任务
 jobs -l

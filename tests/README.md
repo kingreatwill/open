@@ -18,9 +18,9 @@ http://www.testclass.net/selenium_python
 https://www.cnblogs.com/graceting/p/5034023.html
 
 
-### Pytest
+### Pytest 5.7k
 pytest是一个非常成熟的全功能的Python测试框架，主要特点有以下几点：
-
+https://github.com/pytest-dev/pytest
 1、简单灵活，容易上手，文档丰富；
 2、支持参数化，可以细粒度地控制要测试的测试用例；
 3、能够支持简单的单元测试和复杂的功能测试，还可以用来做selenium/appnium等自动化测试、接口自动化测试（pytest+requests）;
@@ -28,6 +28,7 @@ pytest是一个非常成熟的全功能的Python测试框架，主要特点有�
 5、测试用例的skip和xfail处理；
 6、可以很好的和CI工具结合，例如jenkins
 
+### u
 
 ### SeleniumBase
 https://github.com/seleniumbase/SeleniumBase
@@ -49,6 +50,9 @@ https://github.com/robotframework/RIDE
 
 
 [RobotFramework + Appium 移动自动化实现](https://www.cnblogs.com/leozhanggg/p/9687398.html)
+
+
+
 
 
 ### 其它(以下跟前端更相关)

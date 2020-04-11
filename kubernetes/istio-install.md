@@ -21,7 +21,6 @@ cd istio-1.5.1
 将istioctl客户端添加到您的路径（Linux或macOS）：
 当前终端有效 export PATH=$PWD/bin:$PATH
 
-
 vi ~/.bashrc
 export PATH=/root/istio-1.5.1/bin:$PATH
 

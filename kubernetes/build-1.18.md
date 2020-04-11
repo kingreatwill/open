@@ -54,6 +54,7 @@ Azure 中国镜像 https://gcr.azk8s.cn
 # docker pull gcr.azk8s.cn/google_containers/kube-cross:v1.13.9-2 好像不能用
 
 
+
 docker pull registry.aliyuncs.com/google_containers/kube-cross:v1.13.9-2 目前没有
 docker pull registry.aliyuncs.com/google_containers/debian-iptables-amd64:v12.0.1
 docker pull registry.aliyuncs.com/google_containers/debian-base-amd64:v2.0.0
@@ -447,6 +448,26 @@ kubectl apply -f k8s/kube-flannel.yml
 # kubeadm upgrade plan  # 检查集群是否处于可升级状态，并以用户友好的方式获取可升级的版本。
 # kubeadm upgrade apply v1.18.0  # 根据要求直接升级 y通过
 ```
+
+## 降级
+```
+yum -y remove kubelet kubeadm kubectl
+
+yum install -y kubelet-1.16.8 kubeadm-1.16.8 kubectl-1.16.8 --disableexcludes=kubernetes
+
+systemctl daemon-reload
+systemctl restart kubelet
+
+systemctl status kubelet
+
+# 如果不行这个
+kubeadm reset
+kubeadm init  --apiserver-advertise-address=192.168.110.213 --image-repository registry.aliyuncs.com/google_containers   --kubernetes-version v1.16.8  --service-cidr=10.96.0.0/12  --pod-network-cidr=10.244.0.0/16
+安装网络
+
+# ？主节点如果报错找不到6443。可以通过docker ps -a 手动把apiserver的容器启动起来
+```
+
 
 ## 参考
 ```
