@@ -38,6 +38,11 @@ Headless CluserIP   | 无头模式，无serviceip，即把spec.clusterip设置�
 LoadBalancer   | 使用外部负载均衡。要配合支持公有云负载均衡使用比如GCE、AWS。其实也是NodePort，只不过会把<NodeIP>:<NodePort>自动添加到公有云的负载均衡当中，需要在spec.status.loadBalancer字段指定外部负载均衡器的IP地址，并同时定义nodePort和clusterIP，用于公有云环境。
 ExternalName   |    创建一个dns别名指到service name上，主要是防止service name发生变化，要配合dns插件使用
 
+[k8s系列---Service之ExternalName用法](https://www.cnblogs.com/dribs/p/11676768.html)
+
+[妙用externalName Service](https://zhuanlan.zhihu.com/p/113195379)
+
+[Type ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
 
 #### 服务发现
 Kubernetes 支持2种基本的服务发现模式 —— 环境变量和 DNS。

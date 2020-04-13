@@ -155,3 +155,6 @@ kubectl -n emojivoto rollout status deploy/web
 ## port-forward
 kubectl -n tracing port-forward svc/jaeger 16686 --address=0.0.0.0 &
 #kubectl -n emojivoto port-forward svc/web-svc 8080:80
+
+## 查看具体容器
+kubectl logs deployment/oc-collector -c oc-collector -n tracing

@@ -188,6 +188,9 @@ linkerd.io/inject: enabled
 
 linkerd.io/inject: disabled
 
+kubectl annotate namespace test linkerd.io/inject=enabled
+
+
 手动注入
 linkerd inject 
 
@@ -234,6 +237,33 @@ kubectl apply -f https://run.linkerd.io/tracing/collector.yml
 等待安装完成
 kubectl -n tracing rollout status deploy/oc-collector
 
+
+github.com/census-instrumentation/opencensus-service
+
+ConfigMap ：将collector-endpoint改成collector_endpoint 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oc-collector-conf
+  namespace: tracing
+  labels:
+    app: opencensus
+    component: oc-collector-conf
+data:
+  oc-collector-config: |
+    receivers:
+      opencensus:
+        port: 55678
+      zipkin:
+        port: 9411
+    exporters:
+      jaeger:
+        collector_endpoint: "http://192.168.110.252:14268/api/traces"
+---
+
+
+
 安装 Jaeger
 kubectl apply -f https://run.linkerd.io/tracing/backend.yml
 等待安装完成
@@ -261,6 +291,36 @@ controller:
     zipkin-collector-host: oc-collector.tracing
 
 ```
+
+### 配置超时
+```
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: xxxx.default.svc.cluster.local
+  namespace: default
+spec:
+  # A service profile defines a list of routes.  Linkerd can aggregate metrics
+  # like request volume, latency, and success rate by route.
+  routes:
+  - name: '/xxx.xxx/xxx'
+    timeout: 25ms
+    # Each route must define a condition.  All requests that match the
+    # condition will be counted as belonging to that route.  If a request
+    # matches more than one route, the first match wins.
+    condition:
+      # The simplest condition is a path regular expression.
+      pathRegex: '/xxx/xxx'
+      # This is a condition that checks the request method.
+      method: POST
+```
+
+
+### 获取path指标
+linkerd routes svc/webapp
+linkerd routes deploy/webapp
+
+linkerd routes deploy/webapp --to svc/books
 
 
 ### 删除
