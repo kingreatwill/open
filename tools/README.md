@@ -86,3 +86,6 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "$(pwd):/home/p
 # Windows
 docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/project:cached" theiaide/theia:next --inspect=0.0.0.0:9229
 ```
+
+## Listary Pro
+好用的搜索工具

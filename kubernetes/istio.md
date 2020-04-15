@@ -12,6 +12,8 @@ Istio深度解析与项目实践: https://zhaohuabing.com/istio-practice/
 https://www.jianshu.com/p/dde56c521078
 
 
+[图解 Kubernetes Istio](https://www.toutiao.com/a6815292336231154183)
+
 [特性状态](https://istio.io/about/feature-stages/)
 
 https://www.cnblogs.com/JoZSM/p/10902306.html

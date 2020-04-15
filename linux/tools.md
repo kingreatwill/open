@@ -71,6 +71,8 @@ axel -n 20 http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minima
 
 ### sz/rz
 交互式文件传输，在多重跳板机下传输文件非常好用，不用一级一级传输。
+yum install lrzsz -y
+
 
 ### cloc
 代码统计工具，能够统计代码的空行数、注释行、编程语言。

@@ -10,6 +10,25 @@ selenium 是一个 web 的自动化测试工具，不少学习功能自动化的
 - 支持多平台：windows、linux、MAC ，支持多浏览器：ie、ff、safari、opera、chrome
 - 支持分布式测试用例的执行，可以把测试用例分布到不同的测试机器的执行，相当于分发机的功能。
 
+
+#### Selenium Grid
+https://blog.csdn.net/ouyanggengcheng/article/details/79935657
+
+这个时候WebDriver 就要使用RemoteWebDriver了
+
+https://testerhome.com/topics/20192
+
+![](img/selenium-grid.png)
+
+
+https://www.selenium.dev/documentation/en/grid/setting_up_your_own_grid/
+https://github.com/SeleniumHQ/selenium/blob/selenium-3.141.59/java/server/src/org/openqa/grid/common/defaults/DefaultNodeWebDriver.json
+
+
+node也可以跑在docker上
+https://github.com/SeleniumHQ/docker-selenium
+
+
 #### Selenium Python
 
 http://www.testclass.net/selenium_python
@@ -28,7 +47,32 @@ https://github.com/pytest-dev/pytest
 5、测试用例的skip和xfail处理；
 6、可以很好的和CI工具结合，例如jenkins
 
-### u
+```
+pip install pytest pytest-xdist
+
+$ pytest test/unit
+
+$ pytest -n 2 test/unit
+
+$ pytest test/functional/ios/find_by_ios_class_chain_tests.py
+```
+
+### unittest
+官方自带包
+
+https://docs.python.org/3/library/unittest.html
+
+
+#### Run tests
+```
+pip install tox
+```
+tox
+
+
+#### Release 
+使用twine包发布模块
+twine
 
 ### SeleniumBase
 https://github.com/seleniumbase/SeleniumBase
@@ -38,6 +82,113 @@ Selenium & pytest
 
 ### appium
 [appium介绍](http://www.testclass.net/appium/appium-base-summary/)
+
+appium的核心其实是一个暴露了一系列REST API的server。
+
+这个server的功能其实很简单：监听一个端口，然后接收由client发送来的command。翻译这些command，把这些command转成移动设备可以理解的形式发送给移动设备，然后移动设备执行完这些command后把执行结果返回给appium server，appium server再把执行结果返回给client。
+
+这样的设计思想带来了一些好处：
+1，可以带来多语言的支持；
+2，可以把server放在任意机器上，哪怕是云服务器都可以；（是的，appium和webdriver天生适合云测试）
+
+检查安装环境
+npm install -g appium-doctor
+appium-doctor  --android or --ios
+
+
+安装Android Studio
+https://developer.android.google.cn/studio/
+环境变量
+ANDROID_HOME 
+PATH   %ANDROID_HOME%/tools;%ANDROID_HOME%/platform-tools
+adb.exe
+
+ANDROID_SDK_ROOT  和 ANDROID_HOME 设置成一样的,tools可以拷贝到设置的地方，
+Android SDK Command-line Tools（支持jdk11） 可以覆盖过去，
+
+安装Appium Server -> appium-desktop(or npm install -g appium  运行appium) 
+https://github.com/appium/appium-desktop/releases
+Appium Server与设备要一一对应
+
+
+
+Failed to install android-sdk: “java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema”
+https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a
+
+
+Android SDK Command-line Tools
+https://developer.android.com/studio/command-line/sdkmanager
+
+
+
+appium 通过 uiautomatorviewer.bat 工具来查看控件的属性。该工具位于 Android SDK 的 /tools/bin/ 目录下。
+
+#### grid
+说起grid，了解selenium的人肯定知道，他就是分布式的核心。原理是简历中心hub，然后配置node，在hub上运行服务时，会去node上执行相关操作，类似于Jenkins上的节点操作。
+
+在一个server上搭建一台Selenium Hub，多台Appium Server连接到Selenium Hub，测试真机（或者模拟器）和Appium Server连接。
+测试脚本通过WebDriver JSONWireProtocol发送到Selenium Hub上，然后由Selenium Hub自动分发到对应的空闲Appium Server上进行执行。
+
+那么appium如何搭建grid环境呢，其实和selenium类似，首先搭建hub：
+
+
+##### 一、搭建hub
+首先下载selenium-server-standalone-<version>.jar文件，地址：http://selenium-release.storage.googleapis.com/index.html。这里使用的是selenium-server-standalone-3.4.0.jar
+
+yum install java-1.8.0-openjdk* -y
+
+下载完成后直接在jar目录下运行：java -jar selenium-server-standalone-3.4.0.jar -p 4444 -role hub。
+```
+java -jar selenium-server-standalone-2.53.1.jar -role hub -maxSession 10 -port 9999
+
+l -role hub表示启动运行hub；
+
+l -port是设置端口号，hub的默认端口是4444，这里使用的是默认的端口，当然可以自己配置；
+
+l -maxSession为最大会话请求，这个参数主要要用并发执行测试用例，默认是1，建议设置10及以上。
+
+```
+
+访问：127.0.0.1:4444/grid/console
+
+##### 二、启动node
+
+首先新建test.json文件，内容如下：
+```
+{
+  "capabilities": [
+    {
+      "deviceName": "test",
+      "version": "4.4.2",
+      "maxInstances": 3,
+      "platform": "ANDROID",
+      "browserName": "chrome"
+    }
+  ],
+  "configuration":
+    {
+        "cleanUpCycle":"2000",
+        "timeout":"30000",
+        "proxy":"org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+        "url":"http://127.0.0.1:4723/wd/hub",  //appiumserver地址,即node地址
+        "host":"127.0.0.1",
+        "port":"4723",           //节点机服务端口
+        "maxSession":"1",
+        "register":true,
+        "registerCycle":"5000",
+        "hubPort":"4444",     //hub端口
+        "hubHost":"192.168.4.41"      //hub地址
+    }
+}
+```
+然后执行命令：appium -p 4723 -bp 4724 --nodeconfig test.json。
+
+在hub的启动服务后台能看到注册信息
+
+
+#### appium-studio
+https://experitest.com/mobile-test-automation/appium-studio/
+
 
 ### Robot Framework
 https://github.com/robotframework/robotframework
@@ -50,6 +201,10 @@ https://github.com/robotframework/RIDE
 
 
 [RobotFramework + Appium 移动自动化实现](https://www.cnblogs.com/leozhanggg/p/9687398.html)
+https://github.com/serhatbolsu/robotframework-appiumlibrary
+
+
+[Robot Framework + SeleniumLibrary 实现web 自动化](https://github.com/robotframework/SeleniumLibrary)
 
 
 
