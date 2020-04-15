@@ -511,3 +511,5 @@ docker tag registry.aliyuncs.com/google_containers/pause:3.2 k8s.gcr.io/pause:3.
 
 [Compile Kubernetes binaries](https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/compiling-kubernetes-binaries)
 
+
+curl -s https://zhangguanzhang.github.io/bash/pull.sh | bash -s -- k8s.gcr.io/metrics-server-amd64:v0.3.6

@@ -188,8 +188,9 @@ linkerd.io/inject: enabled
 
 linkerd.io/inject: disabled
 
-kubectl annotate namespace test linkerd.io/inject=enabled
 
+kubectl annotate namespace test linkerd.io/inject=enabled
+kubectl annotate namespace test linkerd.io/inject-
 
 手动注入
 linkerd inject 
