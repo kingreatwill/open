@@ -11,6 +11,8 @@ docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 --restart=alway
 
 https://github.com/docker/distribution
 
+docker login --username=xx --password=xx xx.com
+
 UI
 https://hub.docker.com/r/joxit/docker-registry-ui
 

@@ -1,3 +1,5 @@
+UFT，QTP被惠普收购以后的新名称
+
 ### selenium
 https://github.com/SeleniumHQ/selenium
 https://www.selenium.dev/documentation/en/
@@ -122,6 +124,8 @@ https://developer.android.com/studio/command-line/sdkmanager
 
 
 appium 通过 uiautomatorviewer.bat 工具来查看控件的属性。该工具位于 Android SDK 的 /tools/bin/ 目录下。
+
+或者：Appium Inspector
 
 #### grid
 说起grid，了解selenium的人肯定知道，他就是分布式的核心。原理是简历中心hub，然后配置node，在hub上运行服务时，会去node上执行相关操作，类似于Jenkins上的节点操作。
