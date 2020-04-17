@@ -3,6 +3,9 @@
 
 # Elasticsearch中的一些基本概念
 ## 文章
+
+[十九种Elasticsearch字符串搜索方式终极介绍](https://www.cnblogs.com/sunshuyi/p/12716828.html)
+
 [elasticSearch同步mysql数据](https://www.jianshu.com/p/bfa841df5fee)
 
 [Elasticsearch顶尖高手系列：高手进阶篇（最新第二版）](https://zhuanlan.zhihu.com/p/88975745)

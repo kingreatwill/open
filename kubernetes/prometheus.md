@@ -6,6 +6,7 @@ Prometheus Alert是开源的运维告警中心消息转发系统,支持主流的
 https://github.com/feiyu563/PrometheusAlert
 
 
+[高可用 Prometheus：问题集锦](https://mp.weixin.qq.com/s/ob4NBl_P0TokMf5GYTcwZQ)
 
 ## PromQL 常用命令
 ### PromQL 用途

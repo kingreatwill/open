@@ -1,6 +1,7 @@
 <!--toc-->
 [TOC]
-#CMD
+[Kubectl 常用命令大全](https://mp.weixin.qq.com/s/yhRCs2HMizs7SBKbFGY7Pw)
+# CMD
 
 kubectl apply -f .   #  创建当前目录下所有的资源
 
