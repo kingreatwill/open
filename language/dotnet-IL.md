@@ -2,9 +2,25 @@
 [TOC]
 # IL
 
+
 [Microsoft .net IL 汇编语言程序设计指南](../files/dotnet/Microsoft-net-IL-汇编语言程序设计指南.chm)
 
 [汇编语言入门教程：汇编语言程序设计指南（精讲版）](http://c.biancheng.net/asm/)
+
+## IL Linker
+ASP.NET Core Blazor 链接器
+https://docs.microsoft.com/zh-cn/aspnet/core/host-and-deploy/blazor/configure-linker?view=aspnetcore-3.1
+
+https://github.com/mono/linker
+https://github.com/dotnet/core/blob/master/samples/linker-instructions.md
+https://www.cnblogs.com/linezero/p/7477233.html
+https://github.com/dotnet/core/blob/master/samples/linker-instructions-advanced.md
+
+IL链接程序扫描应用程序的IL，以检测实际需要哪些代码，并修剪未使用的框架库。 这可以大大减小某些应用程序的大小。 通常，像工具这样的小型控制台应用程序受益最大，因为它们倾向于使用框架的较小子集，并且通常更易于调整。 使用反射的应用程序可能无法与此方法一起使用。
+
+默认情况下，链接器将以保守的模式运行，该模式将保留所有不属于框架的托管程序集（它们保持完整，并且链接器仅复制它们）。 这意味着对非框架代码的任何反射调用都应继续起作用。 如果删除了调用目标，则对框架中代码的反射调用可能会中断。 任何预计不会在运行时使用的框架程序集都将从发布输出中删除。 用过的框架组件将完全保留。
+
+在.NET Core 3.0中，此软件包与SDK一起提供。
 
 ## IL基础
 ### 实例解析IL
