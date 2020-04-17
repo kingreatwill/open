@@ -120,6 +120,7 @@ https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-
 
 Android SDK Command-line Tools
 https://developer.android.com/studio/command-line/sdkmanager
+https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip?hl=ru
 
 
 

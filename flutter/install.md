@@ -5,7 +5,12 @@ https://flutter.dev/docs/get-started/install/windows
 ## flutter doctor
 flutter doctor
 
-flutter doctor --android-licenses
+
+
+
+### 当出错时 flutter doctor --android-licenses
+sdkmanager --sdk_root=${ANDROID_HOME}
+也可以在sdkmanager.bat中加上--sdk_root=D:\Android\SDK
 
 ## VS Code
 安装 Flutter 插件
