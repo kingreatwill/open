@@ -1,4 +1,8 @@
+
+[测试平台](https://www.processon.com/diagraming/5ddddca0e4b074c442e605de)
+
 UFT，QTP被惠普收购以后的新名称
+
 
 ### selenium
 https://github.com/SeleniumHQ/selenium
@@ -211,9 +215,14 @@ https://github.com/serhatbolsu/robotframework-appiumlibrary
 
 [Robot Framework + SeleniumLibrary 实现web 自动化](https://github.com/robotframework/SeleniumLibrary)
 
+### splinter 
+https://github.com/cobrateam/splinter
+
+### airtest
+UI自动化测试工具
 
 
-
+### Burp Suite
 
 ### 其它(以下跟前端更相关)
 

@@ -364,6 +364,7 @@ g / go |	All |	放行所有中断下来的请求	 |	g
 
 
 ## 参考
+[Fiddler的功能面板](https://www.cnblogs.com/poloyy/p/12129172.html)
 
-https://www.jianshu.com/p/e810f52fa71e
+[fiddler](https://www.jianshu.com/p/e810f52fa71e)
 [Fiddler抓包工具总结](https://www.cnblogs.com/yyhh/p/5140852.html)

@@ -1,5 +1,7 @@
 ![](../img/k8s/pod-info.jpeg)
 
+[Rancher](https://profile.zjurl.cn/rogue/ugc/profile/?version_code=769&version_name=70609&user_id=52042300867)
+
 
 https://learnk8s.io/troubleshooting-deployments
 [k8s故障排除指南.pdf](../files/k8s/troubleshooting-kubernetes.pdf)

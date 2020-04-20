@@ -1,0 +1,1 @@
+[K8S 1.18版本将内置支持SideCar容器](https://www.toutiao.com/a6791984088145199619)

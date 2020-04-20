@@ -2,6 +2,9 @@
 
 admission 入场
 
+webhook1.9beta   1.16 GA
+crd 1.7 beta   1.16 GA
+
 webhook 的本质是个 http server，因此，需要用代码实现这么一个 server，供 apiserver 调用
 
 admission webhook 的作用我简单的总结下，当用户的请求到达 k8s apiserver 后，apiserver 根据 MutatingWebhookConfiguration 和 ValidatingWebhookConfiguration 的配置，先调用 MutatingWebhookConfiguration 去修改用户请求的配置文件，最后会调用 ValidatingWebhookConfiguration 来验证这个修改后的配置文件是否合法。
@@ -14,7 +17,7 @@ admission webhook 的作用我简单的总结下，当用户的请求到达 k8s 
 
 3. 既是修改又是验证类型(mutating&validating)
 
-![](img/webhook01.jpeg)
+![](img/webhooks.png)
 api请求到达K8S API Server，请求要先经过认证，执行一连串的admission controller，包括MutatingAdmissionWebhook和ValidatingAdmissionWebhook, 先串行执行MutatingAdmission的Webhook list，对请求对象的schema进行校验，并行执行ValidatingAdmission的Webhook list，最后写入etcd
 
 
@@ -41,6 +44,9 @@ kubectl api-versions | grep admissionregistration.k8s.io/v1beta1
 
 
 https://github.com/morvencao/kube-mutating-webhook-tutorial
+
+
+[深入理解 Kubernetes Admission Webhook](https://www.toutiao.com/a6712393368413929995)
 
 [编译开源的 admission webhook](https://www.cnblogs.com/oolo/p/11778727.html)
 [玩转K8S AdmissionWebhook](https://cloud.tencent.com/developer/article/1445760)
