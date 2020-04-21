@@ -215,6 +215,9 @@ https://github.com/serhatbolsu/robotframework-appiumlibrary
 
 [Robot Framework + SeleniumLibrary 实现web 自动化](https://github.com/robotframework/SeleniumLibrary)
 
+
+### HttpRunner 
+HttpRunner 是一款面向 HTTP(S) 协议的通用测试框架，只需编写维护一份 YAML/JSON 脚本，即可实现自动化测试、性能测试、线上监控、持续集成等多种测试需求。
 ### splinter 
 https://github.com/cobrateam/splinter
 
@@ -223,6 +226,58 @@ UI自动化测试工具
 
 
 ### Burp Suite
+
+### Jmeter+ant+Jenkins
+看最终报告
+### Grafana+Jmeter+Influxdb
+看压测过程中参数的变化
+
+### bandit
+
+https://github.com/PyCQA/bandit
+### 11款常用的安全测试工具
+https://blog.csdn.net/lb245557472/article/details/88572607/
+- AppScan
+- Burp Suite
+- Acunetix
+- Nmap
+- sqlmap
+
+### Python安全测试工具合集
+https://www.cnblogs.com/xiaodi914/p/5176094.html
+
+
+https://github.com/topics/security-scanner?l=python
+
+
+本文列出13个python网络测试工具，共大家参考学习。
+
+1、Scapy，Scapy3k：发送，嗅探和剖析并伪造网络数据包，可以做交互式应用或单纯的作为库来使用。
+
+2、pypcap，pcapy和pylibpcap：几个不同的libpcap捆绑Python库
+
+3、libdnet：低级别的网络路由器，可用于接口查找和以太网帧转发
+
+4、dpkt：快速、轻量级的数据包创建、解析工具，适用于基本TCP/IP协议
+
+5、Impacket：探测和解码网络数据包，支持更高级别协议比如NMB和SMB
+
+6、pynids：libnids封装提供嗅探，IP碎片整理，TCP流重组和端口扫描检测
+
+7、Dirtbags py-pcap：无需libpcap即可读取pcap文件
+
+8、flowgrep：通过正则表达式查找数据包中的Payloads
+
+9、Knock Subdomain Scan：通过字典枚举目标域上的子域名
+
+10、SubBrute：可扩展的TCP/UDP中间代理，支持即时修改非标准协议
+
+11、Pytbull：灵活的IDS/IPS测试框架（配有300多个测试用例）
+
+12、Spoodle：大量子域名+Poodle漏洞扫描器
+
+13、SMBMap：枚举域中的Samba共享驱动器
+
 
 ### 其它(以下跟前端更相关)
 

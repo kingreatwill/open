@@ -3,7 +3,7 @@
 # Fiddler
 Fiddler 是Telerik公司用C#写出来的,它包含一个简单却功能强大的基于JScript .NET 事件脚本子系统，它的灵活性非常棒，可以支持众多的http调试任务，并且能够使用.net框架语言进行扩展。
 
-同类的工具有: httpwatch, firebug, wireshark。
+同类的工具有: httpwatch, firebug, wireshark, charles。
 
 ## Telerik
 Telerik 和 DevExpress 都是.net UI的专家

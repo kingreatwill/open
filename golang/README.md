@@ -22,6 +22,13 @@ https://go.dev/
 
 https://godoc.org/
 
+GolangCI-Lint 检查代码
+自带go vet命令 检查代码
+
+更严格的gofmt https://github.com/mvdan/gofumpt
+
+检查没有使用的函数https://github.com/mvdan/unparam
+
 [推荐算法、相似度算法、布隆过滤器、均值算法、一致性Hash、数据结构、leetcode练习](https://github.com/hwholiday/algorithm_coding)
 
 [Go 101](https://go101.org/article/101.html)

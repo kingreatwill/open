@@ -3,6 +3,9 @@ https://github.com/heibaiying/BigData-Notes
 
 https://blog.csdn.net/qq_32641659/article/details/98729045
 
+
+https://www.kaggle.com/
+
 框架 | 语言|当前版本(2019/12/19)|star
 --|--|--|--
 [Apache Hadoop](https://github.com/apache/hadoop) |java| v2.10|10k
