@@ -1,16 +1,33 @@
 <!--toc-->
 [TOC]
+
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs
+
+
+![](img/components-of-kubernetes.png)
+
 [Kubectl 常用命令大全](https://mp.weixin.qq.com/s/yhRCs2HMizs7SBKbFGY7Pw)
 # CMD
-
+kubectl cluster-info
 kubectl apply -f .   #  创建当前目录下所有的资源
 
+get -o # `[(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...]`
+# -o custom-columns=HOST-IP:.status.hostIP,POD-IP:.status.podIP
+# -o custom-columns=NAME:metadata.name,STATUS:.status.phase,RUNTIME_CLASS:.spec.runtimeClassName
 kubectl get po # 查看目前所有的pod
 kubectl get rs # 查看目前所有的replica set
 kubectl get deployment # 查看目前所有的deployment
 kubectl describe po my-nginx # 查看my-nginx pod的详细状态
 kubectl describe rs my-nginx # 查看my-nginx replica set的详细状态
 kubectl describe deployment my-nginx # 查看my-nginx deployment的详细状态
+
+
+
+## logs
+参数 --previous 检索之前的容器日志
+> 注意：
+当前，如果有其他系统机制执行日志轮转，那么 kubectl logs 仅可查询到最新的日志内容。 比如，一个 10MB 大小的文件，通过logrotate 执行轮转后生成两个文件，一个 10MB 大小，一个为空，所以 kubectl logs 将返回空。
+
 
 ## deployment
 

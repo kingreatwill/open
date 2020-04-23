@@ -132,4 +132,7 @@ ab :
 hey : https://github.com/rakyll/hey
 
 
+## netstat -lntup  
+说明： l:listening   n:num   t:tcp  u:udp  p:process
+
 ## securecrt ssh工具

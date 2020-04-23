@@ -22,7 +22,10 @@ mkdir -p /data/nfs
 vi /etc/exports
 /data/nfs 192.168.1.0/24(insecure,rw,sync,all_squash)
 
-systemctl start nfs-server.service
+systemctl enable rpcbind
+systemctl start rpcbind
+systemctl enable nfs-server
+systemctl start nfs-server
 
 showmount -e or exportfs
 
@@ -39,7 +42,21 @@ mkdir -p /data/nfs
 mount -t nfs 192.168.110.213:/data/nfs /data/nfs
 
 
+mount 重启失效
+永久挂载https://www.cnblogs.com/wqs-Time/p/11687237.html
+上面文章说/etc/fstab 最好不要挂载网络文件系统，可以挂载本地文件系统，实现永久挂载。
+
+vi /etc/rc.local
+/usr/bin/mount -t nfs 192.168.110.213:/data/nfs /data/nfs
+or
+vi /etc/fstab 
+192.168.110.213:/data/nfs /data/nfs    nfs     defaults        0 0
+
+
 可以做任何机器上的/data/nfs创建文件，去其它机器上查看
+
+
+
 ```
 
 

@@ -1,6 +1,6 @@
 # jmeter
 https://jmeter.apache.org/
-
+http://www.jmeter.com.cn/
 ## 下载安装
 JMETER_HOME
 
@@ -26,3 +26,10 @@ stoptest.cmd
 Run the Shutdown client to stop a CLI mode instance abruptly
 
 ## 使用
+
+[demo jmx](yml/登录获取token.jmx)
+
+## Grafana+Jmeter+Influxdb（推荐）
+
+看压测过程中参数的变化
+https://www.cnblogs.com/poloyy/p/12219145.html

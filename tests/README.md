@@ -132,6 +132,15 @@ appium 通过 uiautomatorviewer.bat 工具来查看控件的属性。该工具�
 
 或者：Appium Inspector
 
+#### WinAppDriver WIN10 UI自动化
+http://appium.io/docs/en/drivers/windows/
+https://zhuanlan.zhihu.com/p/63511229
+
+元素可以通过inspect.exe获取
+
+
+
+
 #### grid
 说起grid，了解selenium的人肯定知道，他就是分布式的核心。原理是简历中心hub，然后配置node，在hub上运行服务时，会去node上执行相关操作，类似于Jenkins上的节点操作。
 
@@ -197,6 +206,8 @@ l -maxSession为最大会话请求，这个参数主要要用并发执行测试�
 
 #### appium-studio
 https://experitest.com/mobile-test-automation/appium-studio/
+
+#### pywinauto  PC自动化
 
 
 ### Robot Framework
