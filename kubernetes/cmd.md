@@ -164,11 +164,70 @@ spec:
         config.linkerd.io/trace-collector: oc-collector.tracing:55678
 '
 
+kubectl patch deployment.v1.apps/nginx-deployment -p '{"spec":{"progressDeadlineSeconds":600}}'
+## set resources
+kubectl set resources deployment.v1.apps/nginx-deployment -c=nginx --limits=cpu=200m,memory=512Mi 更新其 resource 限制
+
+
 ## set env
 kubectl -n emojivoto set env --all deploy OC_AGENT_HOST=oc-collector.tracing:55678
 
-## rollout status
+## rollout 
+
+status 查看状态
 kubectl -n emojivoto rollout status deploy/web
+
+pause 暂停 Deployment
+kubectl rollout pause deployment.v1.apps/nginx-deployment 
+继续（resume）该 Deployment
+kubectl rollout resume deployment.v1.apps/nginx-deployment
+
+升级
+kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.91 --record=true
+查看历史
+kubectl rollout history deployment/nginx-deployment
+kubectl rollout history deployment.v1.apps/nginx-deployment 检查 Deployment 的历史版本
+
+查看 revision（版本）的详细信息
+kubectl rollout history deployment.v1.apps/nginx-deployment --revision=2
+
+回滚到前一个 revision（版本）
+kubectl rollout undo deployment.v1.apps/nginx-deployment
+
+您也可以使用 --to-revision 选项回滚到前面的某一个指定版本
+kubectl rollout undo deployment.v1.apps/nginx-deployment --to-revision=2
+
+> 通过 Deployment 中 .spec.revisionHistoryLimit 字段，可指定为该 Deployment 保留多少个旧的 ReplicaSet。超出该数字的将被在后台进行垃圾回收。该字段的默认值是 10。如果该字段被设为 0，Kubernetes 将清理掉该 Deployment 的所有历史版本（revision），因此，您将无法对该 Deployment 执行回滚操作 kubectl rollout undo。
+
+> 通过 Deployment 中 .spec.strategy 字段，可以指定使用 滚动更新 RollingUpdate 的部署策略还是使用 重新创建 Recreate 的部署策略,如果选择重新创建，Deployment将先删除原有副本集中的所有 Pod，然后再创建新的副本集和新的 Pod。如此，更新过程中将出现一段应用程序不可用的情况；
+
+>  maxSurge = 2  最大超出副本数      可以设置数字或百分比
+> 滚动更新过程中，可以超出期望副本数的最大值。
+该取值可以是一个绝对值（例如：5），也可以是一个相对于期望副本数的百分比（例如：10%）；
+如果填写百分比，则以期望副本数乘以该百分比后向上取整的方式计算对应的绝对值；
+当最大超出副本数 maxUnavailable 为 0 时，此数值不能为 0；默认值为 25%。
+例如：假设此值被设定为 30%，当滚动更新开始时，新的副本集（ReplicaSet）可以立刻扩容，
+但是旧 Pod 和新 Pod 的总数不超过 Deployment 期待副本数（spec.repilcas）的 130%。
+一旦旧 Pod 被终止后，新的副本集可以进一步扩容，但是整个滚动更新过程中，新旧 Pod 的总
+数不超过 Deployment 期待副本数（spec.repilcas）的 130%。
+
+> maxUnavailable =3 最大不可用副本数 可以设置数字或百分比
+> 滚动更新过程中，不可用副本数的最大值。
+该取值可以是一个绝对值（例如：5），也可以是一个相对于期望副本数的百分比（例如：10%）；
+如果填写百分比，则以期望副本数乘以该百分比后向下取整的方式计算对应的绝对值；
+当最大超出副本数 maxSurge 为 0 时，此数值不能为 0；默认值为 25%；
+例如：假设此值被设定为 30%，当滚动更新开始时，旧的副本集（ReplicaSet）可以缩容到期望
+副本数的 70%；在新副本集扩容的过程中，一旦新的 Pod 已就绪，旧的副本集可以进一步缩容，
+整个滚动更新过程中，确保新旧就绪副本数之和不低于期望副本数的 70%。
+
+## scale 
+kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
+
+自动伸缩，您就可以基于 CPU 的利用率在一个最大和最小的区间自动伸缩您的 Deployment：
+kubectl autoscale deployment.v1.apps/nginx-deployment --min=1 --max=15 --cpu-percent=80
+
+
+
 
 ## port-forward
 kubectl -n tracing port-forward svc/jaeger 16686 --address=0.0.0.0 &

@@ -4,6 +4,9 @@ https://www.toutiao.com/a6773538740674494987
 
 [Redis对象——有序集合(ZSet)](https://www.cnblogs.com/hunternet/p/12717643.html)
 https://www.cnblogs.com/hunternet/tag/Redis/
+
+
+[reids 集群](http://www.redis.cn/topics/cluster-tutorial.html)
 <!-- toc -->
 [TOC]
 

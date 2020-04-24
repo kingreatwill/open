@@ -2,10 +2,22 @@
 
 [Rancher](https://profile.zjurl.cn/rogue/ugc/profile/?version_code=769&version_name=70609&user_id=52042300867)
 
+https://kuboard.cn/learning
 
 https://learnk8s.io/troubleshooting-deployments
 [k8s故障排除指南.pdf](../files/k8s/troubleshooting-kubernetes.pdf)
 ![](../img/k8s/k8s故障排除指南.png)
+
+Kubernetes 中，0.5 代表请求半个 CPU 资源。表达式 0.1 等价于 表达式 100m （英文读作 one hundred millicpu 或 one hundred millicores）。在 API Server 中，表达式 0.1 将被转换成 100m，精度低于 1m 的请求是不受支持的。 CPU 的计量代表的是绝对值，而非相对值，例如，您请求了 0.1 个 CPU，无论您的节点是 单核、双核、48核，您得到的 CPU 资源都是 0.1 核。
+
+Mi表示（1Mi=1024x1024）,M表示（1M=1000x1000）
+
+
+在 top 命令查看CPU消耗，100% 代表 1核；4核为 400%；10% 代表 0.1 核 或者 100m
+
+污点和容忍
+亲和性和反亲和性
+
 
 
 中文文档：https://kubernetes.io/zh/docs/
