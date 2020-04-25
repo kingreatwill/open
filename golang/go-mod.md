@@ -214,3 +214,34 @@ index.golang.org-一个索引，用于提供新模块版本的供稿， proxy.go
 - 'since'：返回列表中模块版本的最早允许时间戳（RFC3339格式）。默认为时间的开始，例如 https://index.golang.org/index?since=2019-04-10T19:08:52.997264Z
 - 'limit'：返回列表的最大长度。默认值= 2000，最大值= 2000，例如 https://index.golang.org/index?limit=10
 
+
+## 
+go mod why
+go mod why github.com/coreos/etcd
+go mod graph 依赖输出
+
+go mod graph|grep github.com/coreos/etcd
+
+
+### 冲突
+https://github.com/cch123/gomod-conflict-detect
+
+编译成gomod-conflict-detect文件
+or
+go install github.com/cch123/gomod-conflict-detect
+
+执行
+go mod graph | gomod-conflict-detect
+
+
+### go mod graph 可视化
+安装 graphviz
+choco install graphviz.portable
+
+pcman安装 pacman -S mingw-w64-x86_64-graphviz
+
+go install github.com/poloxue/modv
+
+go mod graph | modv | dot -T svg -o graph.svg; start graph.svg
+
+TIP: 当包多了不是人看的
