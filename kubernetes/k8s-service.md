@@ -108,3 +108,14 @@ spec:
 
 https://kuboard.cn/learning/k8s-intermediate/service/np-example.html#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6
 
+
+## k8s中ResourceQuota与LimitRange的作用
+
+ResourceQuota
+ResourceQuota 用来限制 namespace 中所有的 Pod 占用的总的资源 request 和 limit
+
+LimitRange
+LimitRange 用来限制 namespace 中 单个Pod 默认资源 request 和 limit
+https://blog.csdn.net/qq_33235529/article/details/105194130
+
+

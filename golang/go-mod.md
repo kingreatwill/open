@@ -119,6 +119,7 @@ set GONOSUMDB=
 set GOPRIVATE=
 set GOPROXY=https://goproxy.cn,direct
 set GOSUMDB=off
+# export GOPROXY=https://gocenter.io
 ```
 
 设置GOPROXY代理：
