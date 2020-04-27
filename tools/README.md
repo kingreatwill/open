@@ -89,3 +89,22 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/pro
 
 ## Listary Pro
 好用的搜索工具
+
+## WinSCP
+https://github.com/winscp/winscp
+
+SFTP and FTP
+
+## Linux 神器：bashtop
+bashtop 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和状态。特征：
+
+易于使用，带有受游戏启发的菜单系统
+快速响应的 UI，带有 UP，DOWN 键可进行过程选择
+显示所选进程的详细统计信息
+可过滤流程
+在排序选项之间轻松切换
+将 SIGTERM，SIGKILL，SIGINT 发送到选定的进程
+可更改所有配置文件选项的 UI 菜单
+自动缩放图显示网络使用情况
+菜单直接显示是否有新版本可用
+GitHub 地址→https://github.com/aristocratos/bashtop

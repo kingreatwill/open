@@ -1,6 +1,10 @@
 # jmeter
 https://jmeter.apache.org/
 http://www.jmeter.com.cn/
+
+
+https://www.cnblogs.com/poloyy/tag/Jmeter/
+
 ## 下载安装
 JMETER_HOME
 

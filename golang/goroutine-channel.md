@@ -19,6 +19,13 @@ http://www.sizeofvoid.net/goroutine-under-the-hood/
 深度解密Go语言之channel
 https://mp.weixin.qq.com/s/90Evbi5F5sA1IM5Ya5Tp8w
 
+Go 中 goroutine 是如何协作与抢占
+https://mp.weixin.qq.com/s?__biz=MzAxMTA4Njc0OQ==&mid=2651439330&idx=3&sn=9ebccea18ceeb9e13474877c822c5ec0
+
+[6.7 协作与抢占](https://changkun.de/golang/zh-cn/part2runtime/ch06sched/preemption/)
+
+[Go 语言原本 基于1.14.0](https://github.com/changkun/go-under-the-hood)
+https://changkun.de/golang/
 
 
 [What Are JVM Fibers and Threads?](https://www.jrebel.com/blog/jvm-fibers-and-threads)
