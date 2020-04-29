@@ -2,6 +2,7 @@
 
 [深度解密Go语言之 pprof](https://www.cnblogs.com/qcrao-2018/p/11832732.html)
 
+https://github.com/golang/go/wiki/Performance
 
 堆的信息
 ```

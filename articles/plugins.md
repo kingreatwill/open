@@ -20,3 +20,6 @@ code --remote wsl+Ubuntu /home/jim/projects/c
 Ubuntu 是wsl的系统
 
 wsl -l 查看有哪些wsl系统
+vs code 调试远程程序
+https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/
+
