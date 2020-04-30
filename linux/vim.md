@@ -7,6 +7,7 @@ Vim Cheat Sheet for Programmers Vim 速查卡
 [Beautiful Vim Cheat Sheet](付费)
 
 [Vi / Vim Graphical Cheat Sheet](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html)
+![](img/vi-vim-cheat-sheet.gif)
 
 [Vi Cheat Sheet](https://www.gosquared.com/blog/vi-linux-terminal-help-sheet)
 
