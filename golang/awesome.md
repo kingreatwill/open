@@ -11,6 +11,17 @@ $ cd current-project
 $ goweight
 ```
 
+## json
+github.com/liamylian/json-hashids
+
+序列化自动加密
+
+## orm
+facebook开源的新的go语言orm模块，An entity framework for Go
+Simple, yet powerful ORM for modeling and querying data.
+https://github.com/facebookincubator/ent
+
+
 ## DI
 
 
