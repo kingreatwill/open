@@ -11,6 +11,14 @@ $ cd current-project
 $ goweight
 ```
 
+## godebug:一个跨平台的Go程序调试工具
+https://github.com/mailgun/godebug  已过时
+
+NEW
+https://github.com/derekparker/delve
+
+
+
 ## gops 分析机器上运行了哪些go进程
 go get -u github.com/google/gops
 

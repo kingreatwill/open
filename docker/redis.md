@@ -10,10 +10,11 @@ https://hub.docker.com/r/eqalpha/keydb
 
 
 安装6.0版本
-docker pull redis:6.0-rc2-alpine3.11
+docker pull redis:6.0.1
+
 https://github.com/antirez/redis/blob/6.0/redis.conf
 
-docker run -p 6379:6379 -v /d/dockerv/redis6/conf/redis.conf:/redis.conf -v /d/dockerv/redis6/data:/data --restart always --name redis6 -d redis:6.0-rc2-alpine3.11 redis-server /redis.conf
+docker run -p 6379:6379 -v /d/dockerv/redis6/conf/redis.conf:/redis.conf -v /d/dockerv/redis6/data:/data --restart always --name redis6 -d redis:6.0.1 redis-server /redis.conf
 
 
 

@@ -4,6 +4,25 @@
 
 https://github.com/golang/go/wiki/Performance
 
+
+gops 分析机器上运行了哪些go进程
+godebug:一个跨平台的Go程序调试工具
+go tool trace
+
+
+查看运行时间，详细
+/usr/bin/time -v go run test2.go
+
+
+go tool pprof -http=:1234 http://10.244.28.10:8080/debug/pprof/profile?seconds=30 
+go tool pprof -http=:1234 http://10.244.28.10:8080/debug/pprof/allocs?seconds=30
+
+- 分析工具：GODEBUG
+- 分析工具：go tool pprof
+- 分析工具：go tool trace
+[好东西 - 性能优化](file/gopher-meetup-2020-陈一枭.pdf)
+
+
 堆的信息
 ```
 go tool pprof -http :9090 http://ip:port/debug/pprof/heap
