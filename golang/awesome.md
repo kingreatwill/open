@@ -11,6 +11,40 @@ $ cd current-project
 $ goweight
 ```
 
+## gops 分析机器上运行了哪些go进程
+go get -u github.com/google/gops
+
+```
+C:\Users\35084>gops tree
+...
+├── 16712
+│   └── 5988 (gops.exe) {go1.14.1}
+├── 4728
+│   ├── 16028 (com.docker.backend.exe) {go1.12.16}
+│   └── 3708 (com.docker.proxy.exe) {go1.12.16}
+└── 5172
+    └── 12080 (gopls.exe) {go1.14.1}
+
+
+C:\Users\35084>gops
+18256 16712 gops.exe                go1.14.1  D:\go\bin\gops.exe
+16028 4728  com.docker.backend.exe  go1.12.16 C:\Program Files\Docker\Docker\resources\com.docker.backend.exe
+12080 5172  gopls.exe               go1.14.1  D:\go\bin\gopls.exe
+3708  4728  com.docker.proxy.exe    go1.12.16 C:\Program Files\Docker\Docker\resources\com.docker.proxy.exe
+
+C:\Users\35084>gops 3708
+parent PID:     4728
+threads:        12
+memory usage:   0.058%
+cpu usage:      0.001%
+username:       DESKTOP-PK520IC\35084
+cmd+args:       "com.docker.proxy.exe"  -dockerExe "C:\Program Files\Docker\Docker\resources\bin\docker.exe"  -host-names host.docker.internal,docker.for.win.host.internal,docker.for.win.localhost -gateway-names gateway.docker.internal,docker.for.win.gateway.internal,docker.for.win.http.internal -vm-names vm.docker.internal,docker-for-desktop,docker-desktop,kubernetes.docker.internal -host-ip 192.168.65.2 -gateway-ip 192.168.65.1 -vm-ip 192.168.65.3 -pki "C:\ProgramData\DockerDesktop\pki" -inject-hosts=True
+elapsed time:   02:45:26
+local/remote:   127.0.0.1:33499 <-> 0.0.0.0:0 (LISTEN)
+local/remote:   127.0.0.1:53974 <-> :0 ()
+```
+
+
 ## json
 github.com/liamylian/json-hashids
 

@@ -1,5 +1,8 @@
 <!--toc-->
 [TOC]
+
+[Redis 6.0.0 GA is out!](http://www.antirez.com/news/132)
+
 # Redis 6.0 ACL
 期待已久的ACL终于来了，大家知道在redis集群中只有一个db，在多项目操作时可以通过key前缀来区分，但是还是能获取其它key，这样就带来了安全风险.
 
