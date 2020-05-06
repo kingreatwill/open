@@ -67,3 +67,9 @@ https://github.com/dotnetcore/FlubuCore
 
 ## CMD
 https://github.com/Tyrrrz/CliWrap
+
+## Blazor
+https://github.com/oqtane/oqtane.framework
+https://github.com/enkodellc/blazorboilerplate
+
+https://github.com/sps014/BlazorML5

@@ -90,6 +90,23 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/pro
 ## Listary Pro
 好用的搜索工具
 
+## http://www.wox.one/
+想必用过mac的人都会知道一款效率神器Alfred，可快速启动、计算、查找等，使用起来非常的方便。Win上面也有类似的效率神器，比如Listary和WOX。
+
+## https://u.tools/
+比everything更好？
+
+
+## CMD
+https://www.jianshu.com/p/4b2b7074d9e2
+
+Windows Terminal
+Fluent Terminal
+Hyper
+Terminus
+
+
+
 ## WinSCP
 https://github.com/winscp/winscp
 

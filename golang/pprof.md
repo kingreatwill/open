@@ -6,6 +6,8 @@ https://github.com/golang/go/wiki/Performance
 
 
 gops 分析机器上运行了哪些go进程
+https://shockerli.net/post/golang-tool-gops/
+
 godebug:一个跨平台的Go程序调试工具
 go tool trace
 
@@ -21,6 +23,8 @@ go tool pprof -http=:1234 http://10.244.28.10:8080/debug/pprof/allocs?seconds=30
 - 分析工具：go tool pprof
 - 分析工具：go tool trace
 [好东西 - 性能优化](file/gopher-meetup-2020-陈一枭.pdf)
+
+
 
 
 堆的信息
