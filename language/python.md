@@ -1,4 +1,11 @@
 
+## IronPython vs. Python .NET
+https://stackoverflow.com/questions/1168914/ironpython-vs-python-net
+https://ironpython.net/
+https://github.com/IronLanguages/ironpython2
+https://github.com/IronLanguages/ironpython3
+https://github.com/pythonnet/pythonnet
+
 ## Style Guide
 Style Guide: https://www.python.org/dev/peps/pep-0008/
 
@@ -74,3 +81,31 @@ pre-commit install
 ```
 pipenv graph
 ```
+
+## python解释器(python.exe)和python启动器(py.exe)
+
+（在 Unix 系统中是 Control-D，Windows 系统中是 Control-Z）就退出解释器并返回退出状态为0。如果这样不管用，你还可以写这个命令退出：quit() 和 exit()。
+
+### python启动器
+多环境（如;2.7和3.7 和3.8）共存
+py -h
+[适用于Windows的Python启动器](https://docs.python.org/zh-cn/3/using/windows.html#launcher)
+
+### python解释器
+
+如果不使用默认编码，要声明文件所使用的编码，文件的 第一 行要写成特殊的注释。语法如下所示：
+https://docs.python.org/zh-cn/3/library/codecs.html#module-codecs
+```
+# -*- coding: encoding -*-
+```
+关于 第一行 规则的一种例外情况是，源码以 UNIX "shebang" 行 开头。这种情况下，编码声明就要写在文件的第二行。例如：
+```
+#!/usr/bin/env python3
+# -*- coding: cp1252 -*-
+```
+在Unix系统中，Python 3.x解释器默认安装后的执行文件并不叫作 python，这样才不会与同时安装的Python 2.x冲突。
+```
+#! /usr/bin/python -v
+```
+然后Python将以 -v 选项启动
+

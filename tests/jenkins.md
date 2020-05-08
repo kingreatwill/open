@@ -27,6 +27,12 @@ systemctl start rpcbind
 systemctl enable nfs-server
 systemctl start nfs-server
 
+# systemctl status nfs-server.service
+# systemctl daemon-reload
+# service nfs restart
+
+
+
 showmount -e or exportfs
 
 权限问题（all_squash将任何用户都压缩为nfsnobody用户权限）
