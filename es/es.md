@@ -640,6 +640,9 @@ GET /xx-order/_search
   }
 }
 ```
+
+
+
 #### has_child返回父表
 ```
 GET /xx-order/_search
@@ -689,6 +692,9 @@ GET /xx-order/_search
     }
 }
 ```
+也可以加inner_hits返回父表
+"inner_hits": {}
+
 #### agg
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-children-aggregation.html
 
