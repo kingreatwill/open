@@ -66,3 +66,7 @@ PostgreSQL尝试符合SQL标准，在这种标准下，该标准不会与传统�
 **B-tree or B+tree**
 Postgresql: B-tree
 只有Key键。索引的重点是存储键。数据位于表中，这些表是逻辑堆。
+
+## Greenplum: 基于PostgreSQL的分布式数据库
+https://www.toutiao.com/i6827431495108395532/
+https://github.com/greenplum-db/gpdb
