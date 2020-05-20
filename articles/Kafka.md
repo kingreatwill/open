@@ -30,6 +30,9 @@ https://blog.csdn.net/csdn_bang/article/details/103797920
 [TOC]
 
 # Kafka
+## News
+[Kafka Needs No Keeper](https://www.confluent.io/blog/removing-zookeeper-dependency-in-kafka/)
+2020.05.16 zookeeper将从kafka中移除.
 
 ## 什么是Kafka
 

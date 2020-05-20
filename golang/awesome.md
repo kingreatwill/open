@@ -18,6 +18,13 @@ NEW
 https://github.com/derekparker/delve
 
 
+## yaegi  go解释器
+https://github.com/containous/yaegi
+可以提供交互环境
+
+https://github.com/topxeq/gotx
+
+
 
 ## gops 分析机器上运行了哪些go进程
 go get -u github.com/google/gops
