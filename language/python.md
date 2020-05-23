@@ -43,6 +43,27 @@ sphinx-build -b html docs build
 ```
 
 
+### pip
+https://stackoverflow.com/questions/30306099/pip-install-editable-vs-python-setup-py-develop
+
+pip install -e
+https://stackoverflow.com/questions/42609943/what-is-the-use-case-for-pip-install-e/59667164
+
+#### Installing from a VCS
+https://the-hitchhikers-guide-to-packaging.readthedocs.io/en/latest/pip.html#installing-from-a-vcs
+
+#### cmd
+pip install -h
+
+pip install http://dist.repoze.org/PIL-1.1.6.tar.gz
+
+pip install -U git+https://github.com/madmaze/pytesseract.git
+git clone https://github.com/madmaze/pytesseract.git
+cd pytesseract && pip install -U .
+pip3 install face_recognition -i  http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
+pip install -r requirements.txt
+
 ### 生成requirements.txt
 1.
 ```
