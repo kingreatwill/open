@@ -52,6 +52,8 @@ tar xzf flink-*.tgz
 cd flink-1.9.1
 
 ./bin/start-cluster.sh  # Start Flink
+
+# http://localhost:8081
 ```
 
 
