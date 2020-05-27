@@ -1,3 +1,8 @@
+## MSVC的STL
+https://github.com/microsoft/STL
+## Clang
+Clang是一个C语言、C++、Objective-C语言的轻量级编译器
+Clang 是一个 C++ 编写、基于 LLVM、发布于 LLVM BSD 许可证下的 C/C++/Objective C/Objective C++ 编译器，其目标（之一）就是超越 GCC。
 ## gcc
 gcc 是GNU编译器套件，是Linux下默认的C/C++编译器.在windows环境下可以通过MinGw等GNU for Windows类工具使用gcc编译套件
 
