@@ -1,4 +1,7 @@
 
+## 学习资源
+数据科学Python笔记本:深度学习(TensorFlow、Theano、Caffe、Keras)、scikit-learn、Kaggle、大数据(Spark、Hadoop MapReduce、HDFS)、matplotlib、panda、NumPy、SciPy、Python essentials、AWS和各种命令行。
+https://github.com/donnemartin/data-science-ipython-notebooks
 ## IronPython vs. Python .NET
 https://stackoverflow.com/questions/1168914/ironpython-vs-python-net
 https://ironpython.net/

@@ -26,7 +26,7 @@ export  SPARK_MASTER_IP=192.168.110.216
 export  SPARK_MASTER_PORT=7077
 export  SPARK_WORKER_CORES=1
 export  SPARK_WORKER_INSTANCES=1
-
+export  PYSPARK_PYTHON=python3
 
 
 
@@ -101,6 +101,8 @@ Row(value='# Apache Spark')
 
 # Scala
 %SPARK_HOME%\bin\spark-shell
+
+# PYSPARK_DRIVER_PYTHON设置为ipython后，pyspark交互模式变为ipython模式
 ```
 
 
