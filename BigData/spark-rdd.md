@@ -13,6 +13,79 @@
 
 ![](img/spark-flow.png)
 
+
+## RDD概念
+Resilient Distributed Datasets  弹性分布式数据集，是一个容错的、并行的数据结构，可以让用户显式地将数据存储到磁盘和内存中，并能控制数据的分区。同时，RDD还提供了一组丰富的操作来操作这些数据。RDD是只读的记录分区的集合，只能通过在其他RDD执行确定的转换操作（transformation操作）而创建。RDD可看作一个spark的对象，它本身存在于内存中，如对文件计算是一个RDD，等。
+
+一个RDD可以包含多个分区，每个分区就是一个dataset片段。RDD可以相互依赖。如果RDD的每个分区最多只能被一个Child RDD的一个分区使用，则称之为narrow dependency；若多个Child RDD分区都可以依赖，则称之为wide dependency。
+![](img/spark-info-1.png)
+
+RDD抽象出来的东西里面实际的数据，是分散在各个节点上面的，RDD可分区，分区的个数是我们可以指定的。但是默认情况下，一个hdfs块就是一个分区。
+
+且大部分操作在内存里面，少部分在磁盘，例如reduceByKey操作，就需要放在磁盘，为了保证数据的安全性，然后再从磁盘被读取出到内存上面。容错性好。
+
+## RDD如何保障数据处理效率？
+
+RDD提供了两方面的特性persistence和patitioning，用户可以通过persist与patitionBy函数来控制RDD的这两个方面。RDD的分区特性与并行计算能力(RDD定义了parallerize函数)，使得Spark可以更好地利用可伸缩的硬件资源。若将分区与持久化二者结合起来，就能更加高效地处理海量数据。例如：
+
+input.map(parseArticle _).partitionBy(partitioner).cache()
+
+partitionBy函数需要接受一个Partitioner对象，如：
+
+val partitioner = new HashPartitioner(sc.defaultParallelism)
+
+RDD本质上是一个内存数据集，在访问RDD时，指针只会指向与操作相关的部分。例如存在一个面向列的数据结构，其中一个实现为Int的数组，另一个实现为Float的数组。如果只需要访问Int字段，RDD的指针可以只访问Int数组，避免了对整个数据结构的扫描。
+
+ 
+
+RDD将操作分为两类：transformation与action。无论执行了多少次transformation操作，RDD都不会真正执行运算，只有当action操作被执行时，运算才会触发。而在RDD的内部实现机制中，底层接口则是基于迭代器的，从而使得数据访问变得更高效，也避免了大量中间结果对内存的消耗。
+
+ 
+
+在实现时，RDD针对transformation操作，都提供了对应的继承自RDD的类型，例如map操作会返回MappedRDD，而flatMap则返回FlatMappedRDD。当我们执行map或flatMap操作时，不过是将当前RDD对象传递给对应的RDD对象而已。例如：
+
+ 
+
+def map[U: ClassTag](f: T => U): RDD[U] = new MappedRDD(this,sc.clean(f))
+
+这些继承自RDD的类都定义了compute函数。该函数会在action操作被调用时触发，在函数内部是通过迭代器进行对应的转换操作：
+
+ 
+```
+private[spark]
+
+class MappedRDD[U: ClassTag, T: ClassTag](prev: RDD[T], f: T => U)
+
+  extends RDD[U](prev) {
+
+ 
+
+  override def getPartitions:Array[Partition] = firstParent[T].partitions
+
+ 
+
+  override def compute(split:Partition, context: TaskContext) =
+
+   firstParent[T].iterator(split, context).map(f)
+
+}
+```
+总结：
+
+RDD是Spark的核心，也是整个Spark的架构基础。它的特性可以总结如下：
+
+它是不变的数据结构存储
+
+它是支持跨集群的分布式数据结构
+
+可以根据数据记录的key对结构进行分区
+
+提供了粗粒度的操作，且这些操作都支持分区
+
+它将数据存储在内存中，从而提供了低延迟性
+
+
+
 ## spark-spark RDD的创建
 进行Spark核心编程时，首先要做的第一件事，就是创建一个初始的RDD。该RDD中，通常就代表和包含了Spark应用程序的输入源数据。然后在创建了初始的RDD之后，才可以通过Spark Core提供的transformation算子，对该RDD进行转换，来获取其他的RDD。
 
@@ -107,6 +180,38 @@ Spark提供的多种持久化级别，主要是为了在CPU和内存消耗之间
 
 使用RDD持久化`sc.textFile("E:\\spark\\spark.txt").cache();`
 
+
+## RDD理解及宽依赖和窄依赖
+
+[Spark宽依赖和窄依赖深度剖析](https://www.jianshu.com/p/736a4e628f0f)
+
+一个RDD可以包含多个分区，每个分区就是一个dataset片段。RDD可以相互依赖。如果RDD的每个分区最多只能被一个Child RDD的一个分区使用，则称之为narrow dependency；若多个Child RDD分区都可以依赖，则称之为wide dependency。
+
+宽依赖：父RDD的分区被子RDD的多个分区使用   例如 groupByKey、reduceByKey、sortByKey等操作会产生宽依赖，会产生shuffle
+
+窄依赖：父RDD的每个分区都只被子RDD的一个分区使用  例如map、filter、union等操作会产生窄依赖
+
+![](img/spark-info-2.png)
+
+![](img/spark-info-3.png)
+
+### 窄依赖
+窄依赖是指1个父RDD分区对应1个子RDD的分区。换句话说，一个父RDD的分区对应于一个子RDD的分区，或者多个父RDD的分区对应于一个子RDD的分区。所以窄依赖又可以分为两种情况：
+
+1个子RDD的分区对应于1个父RDD的分区，比如map，filter，union等算子
+1个子RDD的分区对应于N个父RDD的分区，比如co-partioned join
+
+
+### 宽依赖
+宽依赖是指1个父RDD分区对应多个子RDD分区。宽依赖有分为两种情况
+
+1个父RDD对应非全部多个子RDD分区，比如groupByKey，reduceByKey，sortByKey
+1个父RDD对应所有子RDD分区，比如未经协同划分的join
+
+
+
+
+> join操作有两种情况：如果两个RDD在进行join操作时，一个RDD的partition仅仅和另一个RDD中已知个数的Partition进行join，那么这种类型的join操作就是窄依赖，例如图1中左半部分的join操作(join with inputsco-partitioned)；其它情况的join操作就是宽依赖,例如图1中右半部分的join操作(join with inputsnot co-partitioned)，由于是需要父RDD的所有partition进行join的转换，这就涉及到了shuffle，因此这种类型的join操作也是宽依赖。
 
 ## Spark-共享变量工作原理
 
