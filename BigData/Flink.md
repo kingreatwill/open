@@ -5,6 +5,8 @@ https://github.com/alibaba/Alink
 
 [Flink入门（一）——Apache Flink介绍](https://www.cnblogs.com/tree1123/p/11880563.html)
 
+Apache Flink 1.9.0 版本则会开启新的 ML 接口和新的 flink-python 模块
+
 ## 安装Flink
 
 ### centos7 关闭防火墙

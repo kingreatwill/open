@@ -125,3 +125,10 @@ Windows
 
 ## eval
 github.com/Knetic/govaluate
+
+## 限流熔断
+https://github.com/alibaba/sentinel-golang
+
+https://github.com/afex/hystrix-go
+
+golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件

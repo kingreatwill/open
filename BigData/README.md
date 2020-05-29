@@ -86,3 +86,10 @@ Hadoop 批处理
 
 
 故障容忍（Apache Storm）、低延迟（Apache Flink、Storm），可操作性（Twitter Heron）、直观编程模型（Millwheel）、语义处理（Dataflow、Samza、Flink）、弹性伸缩（Millwheel），有效资源管理（Twitter Heron）和状态管理（Spark Streaming）
+
+
+
+
+
+----------------
+数据挖掘工作平台 Weka

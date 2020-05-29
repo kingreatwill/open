@@ -73,3 +73,8 @@ https://github.com/oqtane/oqtane.framework
 https://github.com/enkodellc/blazorboilerplate
 
 https://github.com/sps014/BlazorML5
+
+## 好玩的项目
+
+emoji 
+https://github.com/abock/dotnet-ecoji

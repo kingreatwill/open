@@ -266,3 +266,243 @@ Email通知系统要注意垃圾邮件及用户隐私保护问题。
 对于用户隐私问题，在用户向博客系统提供Email地址的同时，需要告知用户该Email地址会被如何使用（可写在隐私协议或页面可见区域），也可以让用户勾选是否允许博主使用该Email进行通知推送。另一个问题是邮件地址暴露，这通常发生在Newsletter的订阅群发，如果把所有订户的Email地址都放在To或CC里，那么每个用户都会知道其余所有人的Email地址，从而互相约炮、欺诈，因此Newsletter请采用BCC或单独发送，并允许用户退订。
 
 Moonglade的通知系统采用Email方式，但设计比较基础。一个完善的通知系统需要采用消息队列及事件设计，并采用三方服务。例如Azure上可以使用Storage Queue + Function App + SendGrid，以免遇到大批量Email发送的时候原地爆炸。
+
+## 博客协议或标准
+### RSS
+RSS（Really Simple Syndication）是一种基于XML的标准，普遍应用于包括博客在内的内容类网站，由Dave Winer于1999年发明，少年计算机天才Aaron Swartz参与定义规范，可惜后者于2013年1月自杀，年仅26岁。
+
+RSS也是博客系统中最有标志性特性之一，其在博客中的应用广泛度成为了事实上的标准，没有RSS的博客系统就像看到不带摄像头的手机一样有趣。
+
+RSS文件的扩展名可通常是 .rss 或 .xml，也可以不定义拓展名（如Moonglade的RSS）。内容为近期发表的博客文章的XML描述，包括标题、时间、作者、分类、摘要（也可以是全文）等信息。
+
+RSS是写给机器看的，可用于网站之间同步内容，例如当年人人网（前校内网）可通过RSS导入博客文章为日记。而对于普通用户，则需要RSS阅读器应用来订阅博客。通常这样的阅读器里不止订阅一个作者的博客，而是该用户关心的所有博客。阅读器通常也是跨平台、跨设备的，用户可以在电脑、平板、手机，甚至树莓派上订阅RSS源。
+
+部分浏览器（如早期的火狐）也可以自动识别一个博客的RSS地址，并在浏览器中订阅。其自动发现原理是查找网页head中有没有这么一个东西：
+
+`<link rel="alternate" type="application/rss+xml" title="Edi Wang" href="/rss" />`
+
+但是RSS有个缺点，它并不能够由服务器主动向客户端推送，而需要靠客户端自动去服务器拉取。而过去10年中，随着移动端的兴起，消息推送服务弥补了RSS的不足，各大平台也几乎都推出了自己的手机APP，因此RSS已经被许多网站淘汰。但并不意味着RSS没用了，至今仍有大量网站仍然提供RSS订阅。例如微软Channel 9电视台的RSS: `https://channel9.msdn.com/Feeds/RSS/`，国内的博客园的`RSS：http://feed.cnblogs.com/blog/sitehome/rss`，有意思的是博客园网站的logo其实就是个RSS图标。
+
+对于构建博客系统而言，你通常不会再专门做个手机App，用户也不会为每一个博客都单独下载一个App，并且博客系统与其他博客、网站之间依然需要同步，不可能为每个合作伙伴都开发一套同步协议，大家依然都用已经是公认标准的RSS，因此RSS在2020年依然是博客系统推送文章的最佳途径。
+
+参考：https://en.wikipedia.org/wiki/RSS
+
+### ATOM
+
+ATOM和RSS的作用几乎一样，但ATOM的出现是为了弥补RSS的一些设计缺陷。例如对于文章发表日期，ATOM采用RFC 3339的时间戳，而RSS采用的是RFC 822标准。ATOM也可以标识文章的语言、允许payload中出现RSS不允许的XHTML、XML和Base64编码内容等。
+
+许多博客系统（包括我的Moonglade）同时提供RSS及ATOM源。
+
+参考链接：https://en.wikipedia.org/wiki/Atom_(Web_standard) 
+
+### OPML
+“OPML（概述处理器标记语言）是用于轮廓的XML格式（定义为“一棵树，其中每个节点包含一组具有字符串值的命名属性” ）。它最初由UserLand在其Radio UserLand产品中作为大纲应用程序的本机文件格式开发，此后已被用于其他用途，最常见的是在Web Feed聚合器之间交换Web Feed列表。
+
+OPML规范将大纲定义为任意元素的层次结构，有序列表。该规范相当开放，因此适用于多种类型的列表数据。
+
+Mozilla Thunderbird 和许多其他RSS阅读器网站和应用程序都支持以OPML格式导入和导出RSS feed列表。”
+
+参考：https://en.wikipedia.org/wiki/OPML
+
+通俗易懂的说，OPML对于博客来说，就是告诉阅读器，这个博客一共有哪些订阅源以及他们各自的订阅地址，通常就是每个文章分类是一个订阅源，全部文章又是一个订阅源。
+
+### APML
+APML即Attention Profiling Mark-up Language，它比OPML更鲜为人知。APML目前在互联网上已经非常少见了，比WP还惨。作为博客行业的历史遗迹之一，抱着情怀简短介绍一下。
+
+与OPML类似，它也是一种XML格式的声明文件，用来描述个人感兴趣的事物或话题，并分享给其他读者或博主，以帮助阅读器或者博客系统本身针对用户感兴趣的内容提供服务或更有针对性的广告。
+
+参考链接：https://en.wikipedia.org/wiki/Attention_Profiling_Mark-up_Language
+
+WordPress可以通过插件实现APML，BlogEngine则自带APML，我的Moonglade不支持APML。
+
+### FOAF
+FOAF即Friend of a Friend，也是个写给机器看的文件，描述了一个人类的社交关系，通常在博客中可以用FOAF表示博主和其他博客之间的 “友情链接” ，只不过这个友情链接是写给机器看的。好让机器明白，谁才是你的基友，从而给读者推荐基友博客里的内容。
+
+WordPress可以通过插件实现FOAF，BlogEngine自带FOAF，我的Moonglade不支持FOAF。FOAF和APML的现状差不多，已快绝迹。
+
+参考链接：https://en.wikipedia.org/wiki/FOAF_(ontology)
+
+
+### BlogML
+BlogML是一套跨博客系统的数据标准，凡是实现了BlogML的博客系统，就算语言、平台不一样，也都可以互相导入、导出文章等数据。就好比HTML5是个标准，Edge、Chrome、Firefox是浏览器，只要针对HTML5写的网页都能跨这些浏览器运行。
+
+BlogML也诞生于.NET社区之中，随后发展成了标准。除了本身就是.NET的BlogEngine等系统以外，PHP写的WordPress都支持BlogML。当年支持BlogML的还有Windows Live Spaces，Subtext，DasBlog等。我的Moonglade不支持BlogML。
+
+当前BlogML的标准schema是2.0，更新于2006年11月25日。看起来这个标准也已经……
+
+参考：https://en.wikipedia.org/wiki/BlogML
+
+### Open Search
+如果博客实现了Open Search规范，那么博客的搜索功能就能够自动整合到用户的浏览器里，从而便于用户直接在浏览器地址栏使用你博客的搜索服务作为搜索引擎（就像必应、谷歌那样）。
+
+实现Open Search只需两部，首先在网页的head里加入指向opensearch定义文件的link
+
+`<link type="application/opensearchdescription+xml" rel="search" title="Edi Wang" href="/opensearch" />`
+
+然后输出opensearch文件即可
+```
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+
+<ShortName>Edi Wang</ShortName>
+
+<Description>Latest posts from Edi Wang</Description>
+
+<Image height="16" width="16" type="image/vnd.microsoft.icon">https://edi.wang/favicon.ico</Image>
+
+<Url type="text/html" template="https://edi.wang/search/{searchTerms}"/>
+
+</OpenSearchDescription>
+```
+文件描述了博客的名称、简介、图标以及搜索内容的URL pattern。浏览器一旦识别这个文件，会自动将你的博客注册到搜索引擎列表里去。然后读者就可以直接在浏览器地址栏里搜索关键词，并显示博客自己的搜索结果页面。
+
+Open Search的具体规范和标准可参考：https://en.wikipedia.org/wiki/OpenSearch
+
+### Pingback
+
+Pingback用于博客系统之间通讯，一旦自己的文章被他人引用就会收到pingback请求，而自己引用了他人的文章就会向对方博客发送一个pingback请求，因此完成一次Pingback需要己方和对方的博客共同支持pingback协议。由于是标准协议，所以pingback并不要求双方的博客使用同一款博客产品，例如我用.NET Core写的Moonglade可以完美和PHP写的WordPress互相ping。Pingback也并不限制网站类型一定得是博客，任何CMS或内容网站想要支持Pingback都没问题。
+
+Pingback的技术原理也不复杂。
+
+发送Pingback请求：
+
+得到自己文章的URL A、对面被引用文章的URL B，请求B，看看它有没有pingback终端，如果有，构建一个HTTP Request，内容是一段XML：
+```
+<methodCall>
+       <methodName>pingback.ping</methodName>
+       <param>
+              <param><value><string>A</string></value></param>
+              <param><value><string>B</string></value></param>
+       </param>
+</methodCall>
+```
+这样B所在的网站就知道A文章引用了B文章，处理pingback后，会给A所在的网站一个成功与否的响应。
+
+接受Pingback请求：
+
+自己的文章URL A被他人文章B引用，并收到了一个pingback XML。首先自己要验证别人的pingback请求长得是否奇怪，以保证安全性，例如有没有正常的methodName、有没有合法的双方URL、URL是否能正常访问、是否有奇怪的URL（例如localhost或有潜在攻击行为的特殊构造）。保证pingback请求没问题后，请求B的页面，抓取B网页的title内容、B的IP地址，记录到自己的数据库中，并和A文章关联。
+
+收到的Pingback通常以系统身份自动在文章下加评论，但这个设计不是规范之一，你可以自由发挥，例如Moonglade把pingback集中起来在后台给博客管理员查看。
+
+参考：https://en.wikipedia.org/wiki/Pingback
+
+### Trackback
+Trackback允许一个网站将更新通知给另一个网站。这是网站作者在有人链接到其文档之一时请求通知的四种类型的链接方法之一。这使作者可以跟踪谁链接到他们的文章。
+
+参考：https://en.wikipedia.org/wiki/Trackback
+
+尽管功能和Pingback类似，但Trackback通常需要手工发送，并需要给对方提供一篇文章的摘要。而Pingback的过程是又双方博客系统共同完成的全自动操作。
+
+### MetaWeblog
+
+MetaWeblog是一套基于XML-RPC 的Web Service，这套API定义了几个标准接口，用于文章、分类、标签等博客常规内容的CRUD。只要实现了这些接口的博客系统，就可以让博主不用通过浏览器登录博客后台写文章，而使用计算机上安装的客户端去写博客。主流的客户端包括 Windows Live Writer、Microsoft Word。在客户端里可以完整的编辑文章、插入图片、设置分类，甚至可以将博客的主题同步到客户端中。
+
+可能它看起来也像是过时的博客协议之一，但直到2020年的今天，最新版的Microsoft 365套件依然完整支持实现了MetaWeblog API的博客系统。
+
+类似MetaWeblog的博客API还有Blogger API, Atom Publishing Protocol, Micropub。
+
+参考：https://en.wikipedia.org/wiki/MetaWeblog
+
+我的博客在2012年曾经996 007完整实现了MetaWeblog + RSD，但如今30岁了，在.NET Core里暂时不打算实现这个了，毕竟有多少人还在用Live Writer和Word写博客（哭。
+
+### RSD
+
+Really Simple Discovery（RSD）是XML格式和一种发布约定，用于使博客或其他Web软件公开的服务可由客户端软件发现。这是一种将设置编辑/博客软件所需的信息减少到三个众所周知的元素的方法：用户名，密码和主页URL。任何其他关键设置都应该在与网站相关的RSD文件中定义，或者可以使用提供的信息来发现。
+
+为了使用RSD，网站的所有者在首页的head里放置了一个链接标记，用于指示RSD文件的位置。MediaWiki使用的一个示例是：
+```
+<link rel="EditURI" type="application/rsd+xml" href="https://en.wikipedia.org/w/api.php?action=rsd" />
+```
+然后用RSD文件去表示各种API的接口
+```
+<?xml version="1.0"?>
+<rsd version="1.0" xmlns="http://archipelago.phrasewise.com/rsd">
+    <service>
+        <apis>
+            <api name="MediaWiki" preferred="true" apiLink="http://en.wikipedia.org/w/api.php" blogID="">
+                <settings>
+                    <docs xml:space="preserve">http://mediawiki.org/wiki/API</docs>
+                    <setting name="OAuth" xml:space="preserve">false</setting>
+                </settings>
+            </api>
+        </apis>
+        <engineName xml:space="preserve">MediaWiki</engineName>
+        <engineLink xml:space="preserve">http://www.mediawiki.org/</engineLink>
+    </service>
+</rsd>
+```
+参考：https://en.wikipedia.org/wiki/Really_Simple_Discovery
+
+RSD也几乎和上面的MetaWeblog接口一起使用。这样Windows Live Writer、Microsoft Word等工具才可以自动发现博客的MetaWeblog服务，而不需要手工去输URL。
+
+### 阅读器视图
+大部分浏览器和客户端都有阅读器视图，可以让读者在与博客网站页面风格完全不一样的视图中阅读文章。
+
+浏览器识别到我的博客支持阅读器视图，就会亮起沉浸式阅读按钮
+
+进入沉浸式阅读界面后，浏览器会自动提取文章的内容，识别文章的标题、章节、图片，去掉导航栏、侧边栏等与文章无关的元素，并可让用户控制文本大小、背景色，甚至朗读文章内容。
+
+不仅我的博客有阅读器视图，设计良好的博客、新闻内容站都有，例如Azure的：
+另外，支持阅读器视图的网站，SEO一定不会差。因此设计博客系统时，请考虑支持阅读器视图。
+
+## 设计博客系统有哪些知识点
+### 时区真的全用UTC
+存储时间使用UTC在2020年应该已经是猿尽皆知的实践了，博客系统其实也是如此，我的博客所有时间数据最终保存都采用UTC时间。但博客有个特殊的地方，即它不应该按读者的时区去转换UTC时间进行显示，而应该按照博客作者的时区去显示时间。
+
+这并不是技术上的原因，就算你按读者时区去显示时间也不会有代码爆炸，原因在于博客的诞生初衷，就是为了彰显个性，让博主在互联网上有自己的展示空间，因此突出博主本人的属性非常重要，博主所在时区也是个让读者了解博主的属性之一，因此，正宗的博客系统都会给一个时区设置选项，并以此转换UTC时间作为显示，WordPress和我的Moonglade博客系统均是如此。博客系统不自动转换读者所在时区的时间，纯粹就是个鲜为人知的情怀设计，但必须得尊重。
+
+那么有意思的事情来了，搜索引擎要怎么理解博客文章的时间？最好将UTC时间仅告诉搜索引擎，不要给用户显示，方法也很简单，用HTML5的time标签的datetime属性即可。在HTML5标准推广以后，搜索引擎更喜欢看标签类型来判断内容的含义，而不是根据标签里的内容来猜意思。
+
+在C#里，ToString(“u”)指的是Universal sortable date/time patter。
+```
+<time datetime="@Model.PostModel.PubDateUtc.ToString("u")" title="GMT @Model.PostModel.PubDateUtc">@DateTimeResolver.GetDateTimeWithUserTZone(Model.PostModel.PubDateUtc).ToString("MM/dd/yyyy")</time>
+```
+对于刚才截图里的文章，时间的HTML为：
+`<time datetime="2020-04-29 11:41:02Z" title="GMT 4/29/2020 11:41:02 AM">04/29/2020</time>`
+
+### HTML还是Markdown
+
+许多技术人士编写博客系统的时候喜欢选用Markdown作为编辑器，如果单纯只是个技术博客，自己使用并没有什么问题。但如果你在给他人编写博客系统，请记住，不是每个人，都是程序员，不是每个人，都喜欢Markdown。
+
+在这种情况下，一个WSIWYG的HTML编辑器（如TinyMCE）是不错的选择，HTML编辑器相对Markdown也支持更高级的排版方式。Moonglade 同时支持HTML和Markdown编辑器。
+
+保存文章内容到数据库时，Markdown格式需要选择原始内容，而非生成的HTML，因为还需要支持后续编辑。HTML格式现在也不建议encoding存储，毕竟都已经2020年了，市面上的主流数据库都可以正确支持各种神奇的Unicode，比如文章中突然出现个emoji😂，而如果你使用了encoding，就会像我的博客一样面临一些福报：https://github.com/EdiWang/Moonglade/issues/280。并且encoding和decoding的过程会影响性能。我的Moonglade博客系统也刚刚完成了去除encoding的改造。
+
+### MVC还是SPA
+
+许多社区里写博客系统的程序员都偏向于使用SPA架构建博客，而鄙视用MVC，觉得落后，真的是这样吗？这个问题就像是飞机为什么不飞直线，是航空公司不会规划吗？关于这一点，我曾经在以前的博客文章《我的 .NET Core 博客性能优化经验总结》中写过：
+
+2014年以后，随着SPA的兴起，Angular等框架逐渐成为了前端开发的主流。它们解决的问题正是提升前端的响应度，让Web应用尽量接近本地原生应用的体验。我也面临过不少朋友的质疑：为什么你的博客不用angular写？是你不擅长吗？
+
+其实并不是那么简单。实际上我任职的岗位的目前主要工作内容也是写angular，博客曾经的.NET Framework版的后台也用过angularjs以及angular2，经过一系列的实践表明，我博客这样的内容站用angular收益并不大。
+
+其实这并不奇怪，在盲目选择框架之前，我们得注意一个前提条件：SPA框架所针对的，其实是Web应用。而应用的意思是重交互，即像Azure Portal或Outlook邮箱那样，目的是把网页当应用程来开发，这时候SPA不仅能提升用户体验，也能降低开发成本，何乐而不为？但是博客属于内容为主的网站，不是应用，要说应用也勉强只能说博客的后台管理可以是应用。博客前台唯一的交互就是评论、搜索，因此SPA并不适合这样的工作。这就像你要去菜场买菜，骑自行车反而比你开个坦克过去方便。
+
+在微软官方文档里也有同样的关于何时选择SPA，何时选择传统网站的参考：
+
+https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps 
+
+博客前台仍然选用MVC的另一个原因，请回顾一下本文开头“博客的读者是谁”，我运营博客十余年，统计的数据表明，几乎所有的用户都来源于搜索引擎，都只点进来看一篇文章，然后关闭网页。现在仔细想想，SPA解决的最大的问题之一是什么？是不是通过只刷新局部来提高前端性能（可响应度）？而用户从搜索引擎过来，只看一篇文章就关闭网页，真的用得到SPA只刷新局部的优势吗？用户只看一篇文章，你用个SPA框架，用户得加载一堆框架本身的文件，其中包括导航、交互等功能，而99%的用户根本就不会点到别的地方去，于是你只为了1%的用户，去加载硕大的一个框架，值得吗？这性能到底是提高了，还是降低了？
+
+MVC框架虽然每次都会输出服务器端渲染的完整HTML，但由于99%的用户只看一篇文章就关闭网页，所以对于99%的用户来说，他们所需要加载的资源，远小于加载一套SPA，速度更快，还更SEO友好。SPA适合用在博客的后台管理portal，而不是前台。
+
+### 安全
+
+根据运营博客多年的后台监控数据，最常见的攻击行为是全自动的漏洞扫描工具。他们会请求例如 data.zip, wp-admin.php, git目录等常见的安全疏忽，或是想要通过某些博客系统的已知漏洞进行攻击。目的是为了控制服务器，在你的博客网页里加入对用户的恶意代码（例如勒索病毒、挖矿）等，有些也会将服务器本身变成矿机。
+
+设计博客系统时，常用的安全对策可参考OWASP（https://owasp.org/），但同时保留灵活性。例如，加入JavaScript的CSP时，请考虑正常博客用户可能需要添加三方统计插件（如Azure Application Insights，国内的CNZZ等），请设计一定的黑、白名单或功能开关。
+
+大部分设计者都知道要防范用户的输入，即博客的读者，输入的入口通常只有评论和搜索功能。但不要忘了，博主在博客后台管理中的输入也需要防范，因为不一定是博主本人在操作。举个例子，博主的账号被盗，黑客在后台将导航栏的链接指向黑客的服务器或localhost上早已准备好的奇妙的机关（是的，不要以为localhost在正常人的电脑上不起作用），那么读者就会受到严重影响。
+
+关于后台登录的身份认证，能采用成熟的SSO的就优先采用SSO，例如Moonglade支持Azure Active Directory验证，这样能够利用微软这样的专业服务管理授权认证，尽可能小的避免账户上产生安全问题。如果用户没有SSO的环境，才fallback到本地账号认证。千万不要认为用三方服务没自己写安全，觉得自己写的逻辑没人知道就不会被黑了，除非你是世界顶级大牛，不然自己写的系统易黑程度远高于三方服务。
+
+另有一些攻击通常由一些敌对阵营的无聊程序员发起，例如使用脚本或工具持续不断的请求博客系统的某个URL，企图像DDOS那样击爆服务器，对于这种无聊刷刷党，博客系统设计者只要加入有关URL endpoint的rate limit即可。对于真实的DDOS攻击，只有云端抗DDOS服务或硬件DDOS防火墙才能解决。
+
+最后别忘了OWASP里没有的东西，博客的协议也会有设计缺陷，例如pingback可以用来DDOS（https://www.imperva.com/blog/wordpress-security-alert-pingback-ddos/），也能扫描服务器端口（https://www.avsecurity.in/wordpress-xml-rpc-pingback-vulnerability/）
+
+## 结束语
+
+设计一个优秀的博客系统，每一处细节都值得斟酌。这些设计绝对不可能一开始就能做对，而是得靠长期运营博客的数据去发现并思考。并且，市场会变化，用户行为会变化，标准会被淘汰，也会被发明，因此你的系统需要跟着进化。
+
+任何看似简单的系统，就算普通到烂大街，也有背后看不见的一套完整体系。博客如此，电子商城、外卖、金融清算系统更是复杂，不要光凭自己表面看到的就开始做。就如同造飞机，造个纸飞机和真飞机，绝对不是一回事。
+
+技术人员也不要觉得什么流行就得用什么，优秀的产品并不是堆砌时髦技术做出来的，而先得分析你的用户到底是怎么用你的产品，才能做最合适的选择。要记住，想要一件事情做成功，思路不要只局限于技术本身，学会分析市场，用户行为，才能更准确的选择和应用技术。

@@ -1,7 +1,12 @@
 Markdown 目录：
 <!-- toc -->
 [TOC]
+
 [Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
+
+[Markdown: Syntax 语法](https://daringfireball.net/projects/markdown/syntax)
+
+ Setext, atx, Textile, reStructuredText, Grutatext, and EtText
 
 [emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md)
 
