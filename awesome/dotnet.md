@@ -6,8 +6,15 @@
 [fparsec](https://github.com/stephan-tolksdorf/fparsec) F#
 
 
-##
+## 内存
 https://github.com/ZenLulz/MemorySharp
+
+## javascript
+Javascript Interpreter js解释器
+https://github.com/sebastienros/jint
+
+go  的js解释器
+https://github.com/robertkrimen/otto
 
 ## Colorful Console
 
