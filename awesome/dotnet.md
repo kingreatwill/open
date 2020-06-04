@@ -16,6 +16,24 @@ https://github.com/sebastienros/jint
 go  的js解释器
 https://github.com/robertkrimen/otto
 
+## Headless Browser
+
+前端就有了对 headless 浏览器的需求，最多的应用场景有两个
+
+- UI 自动化测试：摆脱手工浏览点击页面确认功能模式
+- 爬虫：解决页面内容异步加载等问题
+
+也就有了很多杰出的实现，前端经常使用的莫过于 PhantomJS 和 selenium-webdriver，但两个库有一个共性——难用！环境安装复杂，API 调用不友好，1027 年 Chrome 团队连续放了两个大招 Headless Chrome 和对应的 NodeJS API Puppeteer，直接让 PhantomJS 和 Selenium IDE for Firefox 作者宣布没必要继续维护其产品.
+
+js和c#,python的[selenium-webdriver](https://www.selenium.dev/selenium/docs/api/javascript/)
+js的[PhantomJS ](https://phantomjs.org/)
+
+[ Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
+[ NodeJS API Puppeteer](https://github.com/puppeteer/puppeteer)
+[unofficial port of puppeteer](https://github.com/pyppeteer/pyppeteer)
+[puppeteer-sharp](https://github.com/hardkoded/puppeteer-sharp)
+[PuppeteerSharp 扩展](https://github.com/hlaueriksson/puppeteer-sharp-contrib)
+
 ## Colorful Console
 
 [Colorful Console](https://github.com/tomakita/Colorful.Console)

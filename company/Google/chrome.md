@@ -1,3 +1,5 @@
+<!--toc-->
+[TOC]
 ## Chrome devtools
 
 ### 命令（Command） 菜单
@@ -119,3 +121,43 @@ Devtools会在样式表中检测媒体查询，并在顶端标尺中将它们显
 Devtools提供的用于将对象数组记录为表格的API:
 
 table(listjson)
+
+
+## chrome插件
+https://github.com/zhaoolee/ChromeAppHeroes
+
+
+谷歌访问助手破解版
+FVD Downloader
+Adblock Plus - 免费的广告拦截器
+CaretTab - 新式可以显示时间和日期的标签
+Chrome版Todoist
+ColorPick Eyedropper
+ElasticSearch Head
+Evernote Web Clipper
+在线记事本
+Gitpod Online IDE
+Enhanced GitHub
+Infinity 新标签页
+Markdown Editor 
+Markdown Preview Plus
+Markdown Viewer 推荐
+NordVPN 
+Octotree 推荐
+Postman Interceptor
+Project Naptha
+Proxy SwitchyOmega
+Proxy SwitchySharp
+Sweet二维码生成器
+Search by Image (by Google)
+Sourcegraph 推荐
+Tab Resize - split screen layouts
+Volume Controller - 音量控制器
+划词翻译
+沙拉查词-聚合词典划词翻译
+彩云小译
+
+
+
+
+

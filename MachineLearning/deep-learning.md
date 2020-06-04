@@ -81,3 +81,4 @@ ni​是第i个卷积层的输入通道数，hi​和wi​是输入特征图的�
 *   [GitHub 项目推荐：用深度学习让你的照片变得美丽](https://github.com/aiff22/DPED)
 *   [Github项目推荐 | Transformer-XL 的高效分布式训练](https://github.com/GaoPeng97/transformer-xl-chinese)
 *   [Spark Streaming VS Flink](https://www.jianshu.com/p/96624553cf14)
+* [写给程序员的机器学习入门 (五) - 递归模型 RNN，LSTM 与 GRU](https://www.cnblogs.com/zkweb/p/12982132.html) 

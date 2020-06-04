@@ -9,3 +9,5 @@
 
 3. nohup sh test.sh  & 
 将sh test.sh任务放到后台，但是依然可以使用标准输入，**终端能够接收任何输入**，重定向标准输出和标准错误到当前目录下的nohup.out文件，即使关闭xshell退出当前session依然继续运行。
+
+[命令行的艺术](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)

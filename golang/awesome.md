@@ -132,3 +132,6 @@ https://github.com/alibaba/sentinel-golang
 https://github.com/afex/hystrix-go
 
 golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
+
+## 微服务
+https://github.com/douyu/jupiter
