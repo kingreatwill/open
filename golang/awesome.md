@@ -135,3 +135,7 @@ golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
 
 ## 微服务
 https://github.com/douyu/jupiter
+
+## book
+《Go语法树入门》(开源免费图书/Go语言进阶/掌握抽象语法树/Go语言AST/LLVM/LLIR)
+https://github.com/chai2010/go-ast-book
