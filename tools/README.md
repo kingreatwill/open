@@ -158,3 +158,8 @@ bashtop 是一个 Linux 资源监视器，显示处理器、内存、磁盘、�
 自动缩放图显示网络使用情况
 菜单直接显示是否有新版本可用
 GitHub 地址→https://github.com/aristocratos/bashtop
+
+
+## watchman 监控文件变化
+其它机器可以连接查看
+https://github.com/facebook/watchman

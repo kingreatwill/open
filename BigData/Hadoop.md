@@ -27,6 +27,7 @@ Hadoop的两个核心解决了数据存储问题（HDFS分布式文件系统）�
     - Spark
     - Zookeeper
     - ...
+    - HDF5 (Hierarchical Data Format)
 ### 2. Hadoop产生背景
 - Doug Cutting是Lucene、Nutch 、Hadoop等项目的发起人
 - Hadoop最早起源于Nutch。Nutch的设计目的是构建一个大型的全网搜索引擎，包括网页抓取、索引、查询等功能，但随着抓取网页数量的增加，遇到了严重的可扩展性问题：如何解决数十亿网页的存储和索引问题。

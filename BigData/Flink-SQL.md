@@ -1,4 +1,8 @@
+[聊聊FlinkSQL流式聚合中的几个优化](https://www.toutiao.com/i6834771671463756300/)
+
 # Flink 1.9 实战：使用 SQL 读取 Kafka 并写入 MySQL
+
+
 > 上周六在深圳分享了《Flink SQL 1.9.0 技术内幕和最佳实践》，会后许多小伙伴对最后演示环节的 Demo 代码非常感兴趣，迫不及待地想尝试下，所以写了这篇文章分享下这份代码。希望对于 Flink SQL 的初学者能有所帮助。完整分享可以观看 Meetup 视频回顾 ：https://developer.aliyun.com/live/1416
 演示代码已经开源到了 GitHub 上：https://github.com/wuchong/flink-sql-submit 。
 
