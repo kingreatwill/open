@@ -2,6 +2,32 @@
 [toc]
 # 图像处理需要掌握的基本知识
 
+给图片打标签的工具（不要有中文路径）
+https://github.com/tzutalin/labelImg
+
+标注工具labelimg和labelme
+
+矩形标注工具：labelimg
+多边形标准工具：labelme
+ 
+
+前者官网发布了可执行文件，后者只有python源码，如果需要编译windows exe，可以这样：
+pip install labelme
+
+然后运行labelme确保程序可以正常执行
+
+下载源码：
+
+cd  D:\github\wkentaro\labelme-3.16.7
+
+pip install .
+
+pip install pyinstaller
+
+pyinstaller labelme.spec
+
+
+
 ## 静态图像类型
 ### 矢量（Vector）图
 用数学公式描述的图像，用一系列绘图指令表示图像：图像中每个形状都用一个完整的公式描述，称为一个对象。

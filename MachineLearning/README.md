@@ -4,7 +4,7 @@
 [TOC]
 # 机器学习
 
-
+[DNN，CNN和RNN的12种主要dropout方法的数学和视觉解释](https://blog.csdn.net/m0_46510245/article/details/106600133)
 
 ## 学习地址
 
