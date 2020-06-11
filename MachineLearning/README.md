@@ -6,6 +6,28 @@
 
 [DNN，CNN和RNN的12种主要dropout方法的数学和视觉解释](https://blog.csdn.net/m0_46510245/article/details/106600133)
 
+[Facebook 发布 TransCoder：实现 C ++ 到 Java、Python 的代码转化 | 论文解读](https://www.infoq.cn/article/vIvKyNV89Aw0x4uIQKxK)
+
+
+https://arxiv.org/pdf/2006.03511.pdf
+
+## 工业界和学术界
+工业界和学术界最大的区别，工业界追求的是产品和利润，学术界关心的是技术；工业届着重有用更务实，学术届着眼未来更看重创新。
+
+第一点:工业界要的一定是可转化的成果，成果形式是实实在在的产品；而学术界允许你做的技术暂时没有什么用，成果可能就是paper，基金，title什么的；
+
+第二点:因为追求的目标不同，大部分就是大部分时间工业界要用的是现成的技术，而学术界在研究新技术。工业界做的更多的是成果转化，学术界做的是技术探索；
+
+
+先不谈钱，从贡献上说，学术圈和工业界看问题的出发点不一样，学术圈追求现有技术、方法上的提高和创新，会把一个事情的解决立足到一类共性问题上。工业界更多是就事论事，以如何提高产品效率、精度、美观等进行技术改造。
+
+工业界：这东西真好用，有意义，解决实际问题，还能挣钱！
+
+学术界：这东西有创新，有难度，能写出好文章，还能报奖！
+
+
+
+
 ## 学习地址
 
 [机器学习相关教程](https://github.com/MorvanZhou/tutorials)
@@ -204,9 +226,33 @@ ReLU, Swish, Maxout
 
 可求导的函数才能反向传递
 
+激励函数（activation function）和损失函数（loss function）
+
+
 梯度爆炸
 
 过拟合（对自己过度自信）：
     方法一: 增加数据量
     运用正规化. L1, l2 regularization等等
     还有一种专门用在神经网络的正规化的方法, 叫作 dropout，随机忽略一些点，让其无法过拟合
+
+
+得分函数；损失函数；正则化；过拟合、泛化能力；softmax分类器；激励函数；梯度下降；后向传播
+https://www.cnblogs.com/wangxiao-zb/p/7748347.html
+
+
+
+
+http://www.image-net.org/
+
+
+TensorSpace 是一款3D 模型可视化框架
+http://scs.ryerson.ca/~aharley/vis/conv/
+
+官网链接：
+
+https://tensorspace.org/
+
+Github链接：
+
+https://github.com/tensorspace-team/tensorspace

@@ -1,5 +1,11 @@
 [Linux学习教程，Linux入门教程（超详细）](http://c.biancheng.net/linux_tutorial/)
 [Linux 内核揭秘](https://github.com/MintCN/linux-insides-zh)
+
+[Linux内核地图 ](https://makelinux.github.io/kernel/map/)
+[linux kernel map](https://github.com/makelinux/linux_kernel_map)
+
+![](img/LKM.svg)
+
 查看centos版本
 cat /etc/redhat-release
 
