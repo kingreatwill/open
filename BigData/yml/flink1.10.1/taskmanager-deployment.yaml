@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flink-taskmanager
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flink
+      component: taskmanager
+  template:
+    metadata:
+      labels:
+        app: flink
+        component: taskmanager
+    spec:
+      containers:
+      - name: taskmanager
+        image: flink:1.10.1
+        workingDir: /opt/flink
+        command: ["/bin/bash", "-c", "$FLINK_HOME/bin/taskmanager.sh start; \
+          while :;
+          do
+            if [[ -f $(find log -name '*taskmanager*.log' -print -quit) ]];
+              then tail -f -n +1 log/*taskmanager*.log;
+            fi;
+          done"]
+        ports:
+        - containerPort: 6122
+          name: rpc
+        livenessProbe:
+          tcpSocket:
+            port: 6122
+          initialDelaySeconds: 30
+          periodSeconds: 60
+        volumeMounts:
+        - name: flink-config-volume
+          mountPath: /opt/flink/conf/
+        securityContext:
+          runAsUser: 9999  # refers to user _flink_ from official flink image, change if necessary
+      volumes:
+      - name: flink-config-volume
+        configMap:
+          name: flink-config
+          items:
+          - key: flink-conf.yaml
+            path: flink-conf.yaml
+          - key: log4j.properties
+            path: log4j.properties

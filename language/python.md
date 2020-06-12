@@ -133,3 +133,47 @@ https://docs.python.org/zh-cn/3/library/codecs.html#module-codecs
 ```
 然后Python将以 -v 选项启动
 
+
+
+## 分布式计算框架
+https://github.com/mars-project/mars
+Mars是由阿里云高级软件工程师秦续业等人开发的一个基于张量的大规模数据计算的统一框架，目前它已在GitHub上开源。
+该工具能用于多个工作站，而且即使在单块CPU的情况下，它的矩阵运算速度也比NumPy(MKL)快。
+
+
+https://github.com/databricks/koalas
+
+
+https://github.com/dask/dask
+关于Python性能的一个常见抱怨是全局解释器锁(GIL)。由于GIL，同一时刻只能有一个线程执行Python字节码。因此，即使在现代的多核机器上，使用线程也不会加速计算。
+但当你需要并行化到多核时，你不需要放弃使用Python，Dask库可以将计算扩展到多个内核甚至多个机器。某些设置可以在数千台机器上配置Dask，每台机器都有多个内核。
+
+https://github.com/vaexio/vaex
+Vaex是一个开源的DataFrame库(类似于Pandas)，对和你硬盘空间一样大小的表格数据集，它可以有效进行可视化、探索、分析甚至进行实践机器学习。
+
+它可以在N维网格上计算每秒超过十亿(10^9)个对象/行的统计信息，例如均值、总和、计数、标准差等。使用直方图、密度图和三维体绘制完成可视化，从而可以交互式探索大数据。
+Vaex使用内存映射、零内存复制策略获得最佳性能(不浪费内存)。
+
+为实现这些功能，Vaex 采用内存映射、高效的核外算法和延迟计算等概念。所有这些都封装为类Pandas的API，因此，任何人都能快速上手。
+
+
+
+https://github.com/cupy/cupy
+CuPy是一个借助CUDA GPU库在英伟达GPU上实现Numpy数组的库。基于Numpy数组的实现，GPU自身具有的多个CUDA核心可以促成更好的并行加速。
+CuPy接口是Numpy 的一个镜像，并且在大多情况下，它可以直接替换Numpy使用。只要用兼容的CuPy代码替换Numpy代码，用户就可以实现 GPU 加速。
+CuPy支持Numpy的大多数数组运算，包括索引、广播、数组数学以及各种矩阵变换。
+
+
+http://docs.cython.org/en/latest/
+Cython是结合了Python和C的语法的一种语言，可以简单的认为就是给Python加上了静态类型后的语法，使用者可以维持大部分的Python语法，
+而不需要大幅度调整主要的程式逻辑与算法。但由于会直接编译为二进制程序，所以性能较Python会有很大提升。
+```
+pip install Cython
+
+from cpython cimport array
+import array
+cdef array.array a = array.array('i', [1, 2, 3])
+cdef int[:] ca = a
+print(ca[0])
+```
+

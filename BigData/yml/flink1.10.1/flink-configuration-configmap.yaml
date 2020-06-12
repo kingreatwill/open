@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flink-config
+  labels:
+    app: flink
+data:
+  flink-conf.yaml: |+
+    jobmanager.rpc.address: flink-jobmanager
+    taskmanager.numberOfTaskSlots: 1
+    blob.server.port: 6124
+    jobmanager.rpc.port: 6123
+    taskmanager.rpc.port: 6122
+    jobmanager.heap.size: 1024m
+    taskmanager.memory.process.size: 1024m
+  log4j.properties: |+
+    log4j.rootLogger=INFO, file
+    log4j.logger.akka=INFO
+    log4j.logger.org.apache.kafka=INFO
+    log4j.logger.org.apache.hadoop=INFO
+    log4j.logger.org.apache.zookeeper=INFO
+    log4j.appender.file=org.apache.log4j.FileAppender
+    log4j.appender.file.file=${log.file}
+    log4j.appender.file.layout=org.apache.log4j.PatternLayout
+    log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c %x - %m%n
+    log4j.logger.org.apache.flink.shaded.akka.org.jboss.netty.channel.DefaultChannelPipeline=ERROR, file
