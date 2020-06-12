@@ -2,6 +2,13 @@
 [TOC]
 # ES优化
 https://learnku.com/elasticsearch
+[十亿级数据ES搜索怎么优化](https://www.toutiao.com/i6836213244743385611)
+
+filesystem cache 加大分配内存
+数据预热  定时查询热数据
+冷热分离
+scroll分页
+
 
 ## 分片个数计算
 

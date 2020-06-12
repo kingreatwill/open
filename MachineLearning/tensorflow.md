@@ -10,6 +10,8 @@ https://blog.tensorflow.org/
 [Tensorflow2.0 学习](https://github.com/lyhue1991/eat_tensorflow2_in_30_days)
 https://lyhue1991.github.io/eat_tensorflow2_in_30_days/
 
+[tf 2.0](https://geektutu.com/post/tf2doc.html)
+
 [python深度学习](https://github.com/fchollet/deep-learning-with-python-notebooks)
 
 学习深度学习简单的例子，如MNIST, CIFAR, PTB, Word2Vec等等。只要学习了这里面的基础任务，基本可以说是入门了。我建议结合网上的深度学习教材来看代码。

@@ -6,6 +6,9 @@
 [大白话讲解卷积神经网络工作原理](https://zhuanlan.zhihu.com/p/49184702) 
 
 
+[卷积神经网络](https://baike.baidu.com/item/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/17541100)
+
+
 [网站：三维可视化卷积神经网络](http://scs.ryerson.ca/~aharley/vis/conv/)
 
 
