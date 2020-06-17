@@ -200,6 +200,8 @@ CCTV6高清：http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8
 苹果提供的测试源（点播）：
 http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
 
+### RTC(Real-time Communications)
+实时通信
 
 ## 播放器推荐
 ### PotPlayer 
