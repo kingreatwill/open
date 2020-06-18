@@ -1,5 +1,14 @@
-http://spark.apache.org/docs/latest/quick-start.html
 
+## 2.Spark邮件列表
+2.1 邮件列表清单
+如果想要进一步跟踪问题、获取最新资源、调试bug、或者贡献代码给Spark项目组，邮件列表是一个非常好的方式。邮件列表也是有多种方式，需要区分每一个邮件类型，订阅你关心的邮件。Apache下面的每一个项目都有自己的邮件列表，同时分不同的邮件组，Apache Spark有如下订阅列表
+
+user@spark.apache.org  订阅该邮件可以参与讨论普通用户遇到的问题
+dev-subscribe@spark.apache.org   订阅该邮件可以参与讨论开发者遇到的问题，开发者比较常用这个邮件列表
+issues-subscribe@spark.apache.org 订阅该邮件可以收到所有jira的创建和更新
+commits-subscribe@spark.apache.org 所有的代码的提交变动信息都会发到该邮件
+
+给上列邮箱发送邮件
 
 
 
