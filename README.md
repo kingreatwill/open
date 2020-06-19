@@ -1,5 +1,7 @@
 # 学习笔记
 
+![](img/var-named.jpg)
+
 [技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++ https://cyc2018.github.io/CS-Notes](https://github.com/CyC2018/CS-Notes)
 
 [2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总。](https://github.com/0voice/interview_internal_reference)
