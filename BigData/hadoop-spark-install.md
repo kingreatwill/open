@@ -337,12 +337,15 @@ start-all.sh
 查看端口 netstat -tunlp
 http://192.168.110.216:8080
 ```
-spark-submit --master spark://192.168.110.216:7077 examples/src/main/python/wordcount.py file:///root/bigdata/spark/README.md
+spark-submit --master spark://192.168.110.216:7077 /root/bigdata/spark/examples/src/main/python/wordcount.py hdfs://192.168.110.216:9000/aaa/README.txt
 
-spark-submit examples/src/main/python/wordcount.py file:///root/bigdata/spark/README.md
+spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py file:///root/bigdata/spark/README.md
 
 # 默认hdfs
 spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py /aaa/README.txt
 
 spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py hdfs://192.168.110.216:9000/aaa/README.txt
 ```
+
+### jupyter notebook
+PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS=notebook ./bin/pyspark
