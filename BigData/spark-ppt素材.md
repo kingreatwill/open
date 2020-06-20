@@ -4,6 +4,66 @@
 
 # BigData + AI
 
+## hadoop
+
+### hive与hbase的联系与区别
+hive与hbase的联系与区别：
+共同点：
+1. hbase与hive都是架构在hadoop之上的。都是用hadoop作为底层存储。
+
+他们的底层是要通过mapreduce分布式计算的，hbase、hive、pig底层都是这样的。但整体来说hadoop还是比较快的，因为它是进行海量数据存储和分布式计算，这个速度已经很不错了。
+
+区别：
+
+2. Hive是建立在Hadoop之上为了减少MapReduce jobs编写工作的批处理系统，HBase是为了支持弥补Hadoop对实时操作的缺陷的项目 。
+3. 想象你在操作RMDB数据库，如果是全表扫描，就用Hive+Hadoop,如果是索引访问，就用HBase+Hadoop 。
+4. Hive query就是MapReduce jobs可以从5分钟到数小时不止，HBase是非常高效的，肯定比Hive高效的多。
+5. Hive本身不存储和计算数据，它完全依赖于HDFS和MapReduce，Hive中的表纯逻辑。hive需要用到hdfs存储文件，需要用到MapReduce计算框架。
+
+6. hive借用hadoop的MapReduce来完成一些hive中的命令的执行
+7. hbase是物理表，不是逻辑表，提供一个超大的内存hash表，搜索引擎通过它来存储索引，方便查询操作。
+8. hbase是列存储。
+9. hdfs作为底层存储，hdfs是存放文件的系统，而Hbase负责组织文件。
+
+
+> 觉得在问区别之前，我应该显示说相同点，这么一想，又糊涂了，hive和hbase哪里像了，好像哪里都不像，既然哪里都不像，又何来的“区别是什么”这一问题，他俩所有的都算区别。
+那么，hive是什么？
+白话一点再加不严格一点，**hive可以认为是map-reduce的一个包装**。hive的意义就是把好写的hive的sql转换为复杂难写的map-reduce程序。
+于是，hbase是什么？
+同样白话一点加不严格一点，**hbase可以认为是hdfs的一个包装**。他的本质是数据存储，是个NoSql数据库；hbase部署于hdfs之上，并且克服了hdfs在随机读写方面的缺点。
+所以要问hive和hbase的区别，就应该问问map-reduce和hdfs之间的区别，问区别，就要先说说他俩哪里像。
+于是，你说map-reduce和hdfs哪里像了呢？
+
+说点题外话：hive难在sql，habse难在表结构的设计
+
+
+
+## Cassandra+Spark
+
+简单来说 可以使用Cassandra+Spark代替Hbase+Hive
+
+### SparkSQL
+
+[Hive，Hive on Spark和SparkSQL区别](https://www.cnblogs.com/lixiaochun/p/9446350.html)
+
+SparkSQL的前身是Shark，给熟悉RDBMS但又不理解MapReduce的技术人员提供快速上手的工具，hive应运而生，它是当时唯一运行在Hadoop上的SQL-on-hadoop工具。但是MapReduce计算过程中大量的中间磁盘落地过程消耗了大量的I/O，降低的运行效率，为了提高SQL-on-Hadoop的效率，Shark应运而生，但又因为Shark对于Hive的太多依赖（如采用Hive的语法解析器、查询优化器等等),2014年spark团队停止对Shark的开发，将所有资源放SparkSQL项目上，其中SparkSQL作为Spark生态的一员继续发展，而不再受限于Hive，只是兼容Hive；而Hive on Spark是一个Hive的发展计划，该计划将Spark作为Hive的底层引擎之一，也就是说，Hive将不再受限于一个引擎，可以采用Map-Reduce、Tez、Spark等引擎。
+
+
+SparkSQL的两个组件：
+
+- SQLContext：Spark SQL提供SQLContext封装Spark中的所有关系型功能。可以用之前的示例中的现有SparkContext创建SQLContext。 
+- DataFrame：DataFrame是一个分布式的，按照命名列的形式组织的数据集合。DataFrame基于R语言中的data frame概念，与关系型数据库中的数据库表类似。通过调用将DataFrame的内容作为行RDD（RDD of Rows）返回的rdd方法，可以将DataFrame转换成RDD。可以通过如下数据源创建DataFrame：已有的RDD、结构化数据文件、JSON数据集、Hive表、外部数据库。
+
+Hive on Spark
+
+hive on Spark是由Cloudera发起，由Intel、MapR等公司共同参与的开源项目，其目的是把Spark作为Hive的一个计算引擎，将Hive的查询作为Spark的任务提交到Spark集群上进行计算。通过该项目，可以提高Hive查询的性能，同时为已经部署了Hive或者Spark的用户提供了更加灵活的选择，从而进一步提高Hive和Spark的普及率。
+
+Hive on Spark与SparkSql的区别
+
+hive on spark大体与SparkSQL结构类似，只是SQL引擎不同，但是计算引擎都是spark！
+
+
+
 ## [现代流式计算的基石：Google DataFlow](https://yq.aliyun.com/articles/688767)
 
 ### 2. 核心概念

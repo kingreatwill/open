@@ -60,8 +60,12 @@ http://spark.apache.org/docs/latest/quick-start.html
 ### 下载安装
 ```
 
-setx HADOOP_HOME E:\bigdata\spark-2.4.4-bin-hadoop2.7\
-setx SPARK_HOME E:\bigdata\spark-2.4.4-bin-hadoop2.7\
+setx HADOOP_HOME  E:\bigdata\hadoop-3.2.1\
+setx SPARK_HOME E:\bigdata\spark-3.0.0-bin-hadoop3.2\
+
+https://github.com/cdarlint/winutils
+下载winutils.exe放入 E:\bigdata\hadoop-3.2.1\bin中
+path 添加%SPARK_HOME%\bin
 
 %SPARK_HOME%\bin\spark-submit --version
 
