@@ -120,3 +120,13 @@ Spark常用术语
 | TaskScheduler    | 将Taskset提交给Worker node集群运行并返回结果   |
 | Transformations  | 是Spark API的一种类型，Transformation返回值还是一个RDD，所有的Transformation采用的都是懒策略，如果只是将Transformation提交是不会执行计算的 |
 | Action | 是Spark API的一种类型，Action返回值不是一个RDD，而是一个scala集合；计算只有在Action被提交的时候计算才被触发。  |
+
+
+## [Spark核心技术原理透视一（Spark运行原理） ](https://www.sohu.com/a/217196727_100065429)
+
+https://blog.csdn.net/zxc123e/article/details/79912343
+
+http://spark.apache.org/faq.html
+
+
+[Spark--Spark RDD与Dataframe/Datasets对比学习](https://www.jianshu.com/p/9e6482bcec99)
