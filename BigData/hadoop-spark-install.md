@@ -347,5 +347,11 @@ spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py /aaa/READ
 spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py hdfs://192.168.110.216:9000/aaa/README.txt
 ```
 
+### Spark历史服务器配置
+stop-history-server.sh
+
+### Master HA
+需要zookeeper
+
 ### jupyter notebook
 PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS=notebook ./bin/pyspark

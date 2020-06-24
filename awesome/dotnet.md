@@ -107,3 +107,6 @@ https://github.com/abock/dotnet-ecoji
 ## proxy
 YARP  https://github.com/microsoft/reverse-proxy
 https://github.com/proxykit/ProxyKit
+
+## 代码保护工具.NET Reactor
+https://www.eziriz.com/reactor_download.htm

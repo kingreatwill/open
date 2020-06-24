@@ -163,3 +163,15 @@ GitHub 地址→https://github.com/aristocratos/bashtop
 ## watchman 监控文件变化
 其它机器可以连接查看
 https://github.com/facebook/watchman
+
+## 屏幕画笔工具
+
+- Pointofix
+http://www.pointofix.de/download.php
+并复制文件到Pointofix的安装目录下，将文件pointofix_translation_zh-cn.ini改名为pointofix_translation.ini,重新启动Pointofix
+
+- Scrpen
+- 3 WhiteBoard
+- 4 大鸿屏幕画笔
+- 5 汉王电子白板
+- 6 桌面小画笔
