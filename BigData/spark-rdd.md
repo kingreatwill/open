@@ -183,7 +183,48 @@ Spark提供的多种持久化级别，主要是为了在CPU和内存消耗之间
 
 ## RDD理解及宽依赖和窄依赖
 
+[Spark宽窄依赖详解](https://blog.csdn.net/modefrog/article/details/79581770)
+
+
+名词解析
+1. 一个 job，就是由一个 rdd 的 action 触发的动作，可以简单的理解为，当你需要执行一个 rdd 的 action 的时候，会生成一个 job。
+
+2. stage : stage 是一个 job 的组成单位，就是说，一个 job 会被切分成 1 个或 1 个以上的 stage，然后各个 stage 会按照执行顺序依次执行。Spark中Stage的划分就是通过shuffle来划分。
+
+3. task :即 stage 下的一个任务执行单元，一般来说，一个 rdd 有多少个partition，就会有多少个 task，因为每一个 task 只是处理一个partition 上的数据。
+
+Stage的划分规则
+1. 从后向前推理，遇到宽依赖就断开，遇到窄依赖就把当前的RDD加入到Stage中；
+
+2. 每个Stage里面的Task的数量是由该Stage中最后 一个RDD的Partition数量决定的；
+
+3. 最后一个Stage里面的任务的类型是ResultTask，前面所有其他Stage里面的任务类型都是ShuffleMapTask；
+
+4. 代表当前Stage的算子一定是该Stage的最后一个计算步骤；
+
+总结：由于spark中stage的划分是根据shuffle来划分的，而宽依赖必然有shuffle过程，因此可以说spark是根据宽窄依赖来划分stage的。
+
+Spark优化 
+流水线（pipeline）优化
+变换算子序列一碰上shuffle类操作，宽依赖就发生了，流水线优化终止
+在spark中pipeline是一个partition对应一个partition，所以在stage内部只有窄依赖,stage与stage之间是宽依赖
+
+
+分布式计算过程
+![](img/spark-rdd-stage.png)
+
+根据上述stage划分原则，这个job划分为2个stage,产生了一个宽依赖
+
+![](img/spark-rdd-jst.png)
+Application就是用户submit提交的整体代码，代码中又有很多action操作，action算子把Application划分为多个job，job根据宽依赖划分为不同Stage，Stage内划分为许多（数量由分区决定，一个分区的数据由一个task计算）功能相同的task，然后这些task提交给Executor进行计算执行，把结果返回给Driver汇总或存储。
+
+
+----------
+
+
 [Spark宽依赖和窄依赖深度剖析](https://www.jianshu.com/p/736a4e628f0f)
+
+
 
 一个RDD可以包含多个分区，每个分区就是一个dataset片段。RDD可以相互依赖。如果RDD的每个分区最多只能被一个Child RDD的一个分区使用，则称之为narrow dependency；若多个Child RDD分区都可以依赖，则称之为wide dependency。
 

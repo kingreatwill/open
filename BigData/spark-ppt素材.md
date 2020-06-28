@@ -4,6 +4,9 @@
 
 # BigData + AI
 
+Bigdata on PySpark
+Deep Learning on PySpark
+
 ## hadoop
 
 ### hive与hbase的联系与区别
@@ -130,3 +133,5 @@ http://spark.apache.org/faq.html
 
 
 [Spark--Spark RDD与Dataframe/Datasets对比学习](https://www.jianshu.com/p/9e6482bcec99)
+
+[spark 为什么启用akka](https://issues.apache.org/jira/browse/SPARK-5293)

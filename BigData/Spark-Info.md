@@ -16,6 +16,8 @@ ETL(Extract-Transform-Load)用来描述将数据从来源端经过抽取（extra
 https://delta.io/
 https://github.com/delta-io/delta
 
+[Delta Lake，Apache Spark的ACID事物](https://www.toutiao.com/i6842080022841262599)
+
 ## mlflow
 https://www.mlflow.org/
 https://github.com/mlflow/mlflow/

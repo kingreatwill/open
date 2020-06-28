@@ -1,3 +1,5 @@
+<!--toc-->
+[TOC]
 #  多媒体（Multimedia）
 一般包括文本，声音和图像等多种媒体形式。
 ## 视频 Video
@@ -134,6 +136,48 @@ wav使用的是数码信号，它是用一堆数字来描述原来的模拟信�
 - 杜比
 ### 音频编解码
 Speex, AAC, Ogg/Vorbis
+
+### 音视频开发领域常用的9大开源项目
+https://www.toutiao.com/i6841924924513190407/
+- FFmpeg
+FFmpeg是目前最全面的开源音视频编解码库，包括常用的音视频编码协议 H265、H264、MPEG4、H263、G.721、G.726、G.729等，并且它提供了一整套的音视频处理解决方案，包括音视频采集与编码、音视频解码、视频格式转换、视频抓图、给视频加水印等。
+https://ffmpeg.org/
+
+- WebRTC
+WebRTC是一个由Google发起的开源音视频实时通讯解决方案，其中包括音视频的采集、编解码、网络传输、解码显示等，我们可以通过该技术快速地构建出一个音视频通讯应用。
+虽然其名为WebRTC，但是实际上它不光支持Web之间的音视频通讯，还支持Windows、Android以及iOS等移动平台。WebRTC底层是用C/C++开发的，具有良好的跨平台性能。WebRTC因为其较好的音视频效果及良好的网络适应性，目前已被广泛的应用到视频会议系统中，比如视频会议厂商华为、ZOOM、小鱼易连、科达均支持了WebRTC方式的音视频转发会议。
+https://webrtc.org/
+
+- x264
+x264是一个开源的H.264/MPEG-4 AVC视频编码函数库，是最好的有损视频编码器之一。H264是目前应用最广的码流标准，x264则能够产生符合H264标准的码流的编码器，它可以将视频流编码为H264、MPEG4 AVC格式。它提供了命令行接口与API，前者被用于一些图形用户接口例如Straxrip、MeGUI，后者则被FFmpeg、Handbrake等调用。当然，既然有x264，就有对应HEVC/H.265的x265。
+https://www.videolan.org/developers/x264.html
+
+- Live555
+Live555是一个为流媒体提供解决方案的跨平台的C++开源项目，它实现了标准流媒体传输，是一个为流媒体提供解决方案的跨平台的C++开源项目，它实现了对标准流媒体传输协议如RTP/RTCP、RTSP、SIP等的支持。
+Live555实现了对多种音视频编码格式的音视频数据的流化、接收和处理等支持，包括H265、H264、MPEG4、H.263+ 、DV、JPEG视频和多种音频编码。同时由于良好的设计，Live555非常容易扩展对其他格式的支持。
+http://www.live555.com/
+
+- SDL
+SDL（Simple DirectMedia Layer）是一套开放源代码的跨平台多媒体开发库，使用C语言写成。SDL提供了数种控制图像、声音、输出入的函数，让开发者只要用相同或是相似的代码就可以开发出跨多个平台（Linux、Windows、Mac OS X等）的应用软件。目前SDL多用于开发游戏、模拟器、媒体播放器、视频会议系统等产品开发中。
+https://www.libsdl.org
+
+- Opus
+Opus是用C语言开发的一个高灵活度的音频编码器，针对ARM、x86有特殊优化，fix-point实现。Opus在各方面都有着明显优势。它同时支持语音与音乐的编码，比特率为6k-510k。它融合了SILK编码方法和CELT编码方法。SILK原本被用于Skype中，基于语音信号的线性预测分析（LPC），对音乐支持并不好。而CELT尽管适用于全带宽音频，但对低比特率语音的编码效率不高，所以两者在Opus中形成了互补。
+https://opus-codec.org/
+
+- ffplay
+ffplay是ffmpeg的一个子工具，所以其开源代码也是内置在FFmpeg项目中的。ffplay内部使用了FFmpeg和 SDL库，是一个简单的可移植的媒体播放器。它具有强大的音视频解码播放能力，目前它广泛被各种流行播放器（QQ影音、暴风影音……）集成应用。作为一款开源软件，ffplay囊括Linux、Windows、Ios、Android等众多主流系统平台，十分适合进行二次开发。
+http://ffmpeg.org/ffplay.html
+
+- VLC
+VLC是一款自由、开源的跨平台多媒体播放器及框架，它可以播放来自网络、摄像头、磁盘、光驱的文件，支持包括MPEG4、H264、H265、DivX、WMV、Vorbis、AC3等多种音视频协议。VLC最为突出的就是流媒体文件的功能，VLC支持各种流媒体协议，能直接播放远端的流媒体视频，只要输入一个视频文件的网址即可，无需下载到本地。此外，VLC还可以直接播放没有下载完成的文件。
+VideoLanServer(VLS)的功能已经合并到VLC中，所以VLC不仅仅是一个音视频播放器，它也可以作为小型的视频服务器或流媒体服务器使用，可以一边播放一边转码，把视频流发送到网络上。
+https://www.videolan.org/
+
+- ijkplayer
+在介绍ijkplayer播放器之前，要先提到FFmpeg中的ffplay。ffplay是一个使用了FFmpeg和SDL库的可移植的媒体播放器。ijkplay是国内知名的视频弹幕网站Bilibili开源的基于ffplay.c实现的轻量级iOS/Android视频播放器，API易于集成，且编译配置可裁剪，利于控制安装包大小。
+在编解码方面，ijkplayer支持视频软解和硬解，可以在播放前配置，但在播放过程中则不能切换。iOS和Android上视频硬解可分别使用大家熟悉的VideoToolbox和MediaCodec。但ijkplayer对音频仅支持软解。
+https://github.com/Bilibili/ijkplayer
 
 ## 容器
 很多多媒体数据流需要同时包含音频数据和视频数据，这时通常会加入一些用于音频和视频数据同步的元数据，例如字幕和弹幕。这三种数据流可能会被不同的程序，进程或者硬件处理，但是当它们传输或者存储的时候，这三种数据通常是被封装在一起的。通常这种封装是通过视频文件格 式来实现的，例如常见的*.mpg, *.avi, *.mov, *.mp4, *.rm, *.ogg or *.tta. 这些格式中有些只能使用某些编解码器，而更多可以以容器的方式使用各种编解码器。

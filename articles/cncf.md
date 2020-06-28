@@ -74,6 +74,7 @@ Jaeger|[2019.10.31](https://www.cncf.io/announcement/2019/10/31/cloud-native-com
 Vitess|[2019.11.05](https://www.cncf.io/announcement/2019/11/05/cloud-native-computing-foundation-announces-vitess-graduation/)|[golang](https://github.com/vitessio/vitess)|数据库
 TUF|[2019.12.18](https://www.cncf.io/announcement/2019/12/18/cloud-native-computing-foundation-announces-tuf-graduation/)|[python](https://github.com/theupdateframework/tuf)|规范与安全性-保护软件更新系统
 Helm|[2020.04.30](https://www.cncf.io/announcement/2020/04/30/cloud-native-computing-foundation-announces-helm-graduation/)|[golang](https://github.com/helm/helm)|k8s的包管理器
+Harbor |[2020.06.23](https://www.cncf.io/announcement/2020/06/23/cloud-native-computing-foundation-announces-harbor-graduation/) |[golang](https://github.com/goharbor/harbor) |开源制品（artifact）仓库，可通过策略和基于角色的访问控制来保护制品（如容器镜像、Helm Chart等）
 
 ## Landscape介绍
 https://blog.csdn.net/liumiaocn/article/details/100713072

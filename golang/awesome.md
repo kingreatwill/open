@@ -162,3 +162,15 @@ https://github.com/pion/webrtc
 
 IOT 平台？
 https://github.com/nats-io/nats-streaming-server
+
+## Chrome DevTools Protocol 
+https://github.com/chromedp/chromedp
+https://www.toutiao.com/i6843024797073408515
+
+## grpc
+### grpcui
+他是一个 gRPC 的 Web 页面调试工具，提供交互式的调试界面。
+https://github.com/fullstorydev/grpcui
+
+grpcui -plaintext 127.0.0.1:9901
+127.0.0.1:9901 是grpc server的地址
