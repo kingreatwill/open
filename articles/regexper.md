@@ -12,17 +12,27 @@ https://github.com/CJex/regulex
 [正则表达式工具 - good](https://regexr.com/)
 https://github.com/gskinner/regexr/
 
-[RegexBuddy 收费 - good](http://www.regexbuddy.com/)
-
-
 [regex101 - good++](https://regex101.com/)
 https://github.com/firasdib/Regex101
 
 
+[在线正则表达式](http://www.regexe.com/)
 
 [正则表达式教程 - Regex Tutorial](http://www.regular-expressions.info/wordboundaries.html)
 
 [正则表达式其它工具](http://www.regular-expressions.info/tools.html)
+[RegexBuddy 收费 - good](http://www.regexbuddy.com/)
+下载4.10：https://www.0daydown.com/01/243180.html
+Download 百度网盘
+链接: https://pan.baidu.com/s/1VIiYSL2OYosxh_T3pGvHLg 提取码: e3uu
+
+[RegexMagic 正则表达式生成工具 收费 - good](https://www.regexmagic.com/)
+下载：2.8：https://www.0daydown.com/01/149682.html
+https://pan.baidu.com/s/1mENJB-YFUfkiM1-WC2-ycg
+
+[PowerGREP  Windows grep 收费](https://www.powergrep.com/)
+
+[不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
 
 [.NET Regex - 不更新了](http://regexstorm.net/)
 https://github.com/lonekorean/regex-storm
