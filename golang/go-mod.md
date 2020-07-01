@@ -245,3 +245,19 @@ go install github.com/poloxue/modv
 go mod graph | modv | dot -T svg -o graph.svg; start graph.svg
 
 TIP: 当包多了不是人看的
+
+
+### go-mod-upgrade 交互式更新依赖
+https://github.com/oligot/go-mod-upgrade
+
+[Go Wiki 在 如何升级和降级依赖关系](https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies) 中介绍了一个命令：
+```
+go list -u -f '{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Version}} -> {{.Update.Version}}{{end}}' -m all 2> /dev/null
+```
+它查看直接依赖项的可用升级。然而，过程不可控，即我们不能通过它方便的更新某些依赖项。
+
+此工具旨在通过交互的方式，使更新多个依赖项变得更加容易。这类似于 yarn upgrade-interactive ，但适用于 Go。
+
+安装go-mod-upgrade
+![](img/go-mod-upgrade.jpg)
+

@@ -175,3 +175,6 @@ http://www.pointofix.de/download.php
 - 4 大鸿屏幕画笔
 - 5 汉王电子白板
 - 6 桌面小画笔
+
+## ScreenToGif
+https://github.com/NickeManarin/ScreenToGif

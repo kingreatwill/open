@@ -5,6 +5,14 @@
 - js gitbook
 - go MinDoc
 - go BookStack
+- mdbook https://github.com/rust-lang/mdBook 4.5k
+- peach https://github.com/peachdocs/peach 1.1k 
+- gohugo+git book theme  https://github.com/gohugoio/hugo 45.1k
+https://github.com/alex-shpak/hugo-book
+
+•mdbook是“门槛”最低的，几乎无需配置，就能搭建出一个像模像样的类似gitbook的图书站点；
+•peach门槛较高一些，要配置的东西多一些；
+•gohugo门槛适中，但却最为灵活和强大。如果对gohugo的模板语法十分熟悉，可以定义出一套满足自己风格的电子书浏览页面风格。
 
 
 ## 安装gitbook
