@@ -563,6 +563,37 @@ Controller 从 ZK 的 /brokers/topics/[topic]/partitions/[partition]/state 中�
 ##### 思考：当 Acks=-1 时
 - 是 Follwers 都来 Fetch 就返回成功，还是等 Follwers 第二轮 Fetch？
 - Leader 已经写入本地，但是 ISR 中有些机器失败，那么怎么处理呢？
+- acks=all 就可以代表数据一定不会丢失了吗？
+当然不是，如果你的Partition只有一个副本，也就是一个Leader，任何Follower都没有，你认为acks=all有用吗？
+当然没用了，因为ISR里就一个Leader，他接收完消息后宕机，也会导致数据丢失。
+所以说，这个acks=all，必须跟ISR列表里至少有2个以上的副本配合使用，起码是有一个Leader和一个Follower才可以。
+这样才能保证说写一条数据过去，一定是2个以上的副本都收到了才算是成功，此时任何一个副本宕机，不会导致数据丢失。
+
+
+
+首先这个acks参数，是在KafkaProducer，也就是生产者客户端里设置的
+
+也就是说，你往kafka写数据的时候，就可以来设置这个acks参数。然后这个参数实际上有三种常见的值可以设置，分别是：0、1 和 all。
+
+第一种选择是把acks参数设置为0，意思就是我的KafkaProducer在客户端，只要把消息发送出去，不管那条数据有没有在哪怕Partition Leader上落到磁盘，我就不管他了，直接就认为这个消息发送成功了。
+
+如果你采用这种设置的话，那么你必须注意的一点是，可能你发送出去的消息还在半路。结果呢，Partition Leader所在Broker就直接挂了，然后结果你的客户端还认为消息发送成功了，此时就会导致这条消息就丢失了。
+
+
+第二种选择是设置 acks = 1，意思就是说只要Partition Leader接收到消息而且写入本地磁盘了，就认为成功了，不管他其他的Follower有没有同步过去这条消息了。
+
+这种设置其实是kafka默认的设置，大家请注意，划重点！这是默认的设置
+
+也就是说，默认情况下，你要是不管acks这个参数，只要Partition Leader写成功就算成功。
+
+但是这里有一个问题，万一Partition Leader刚刚接收到消息，Follower还没来得及同步过去，结果Leader所在的broker宕机了，此时也会导致这条消息丢失，因为人家客户端已经认为发送成功了。
+
+
+最后一种情况，就是设置acks=all，这个意思就是说，Partition Leader接收到消息之后，还必须要求ISR列表里跟Leader保持同步的那些Follower都要把消息同步过去，才能认为这条消息是写入成功了。
+
+如果说Partition Leader刚接收到了消息，但是结果Follower没有收到消息，此时Leader宕机了，那么客户端会感知到这个消息没发送成功，他会重试再次发送消息过去。
+
+此时可能Partition 2的Follower变成Leader了，此时ISR列表里只有最新的这个Follower转变成的Leader了，那么只要这个新的Leader接收消息就算成功了。
 
 
 #### 消费
@@ -667,3 +698,31 @@ Offset 啥的都是要我们自己记录。（注：消息消费的时候，首�
 ### Topic 配置
 
 ![](../img/kafka/kafka-config-2.jpg)
+
+### kafka持久化配置
+因为磁盘限制，不可能永久保留所有数据（实际上也没必要），因此Kafka提供两种策略去删除旧数据。一是基于时间，二是基于partition文件大小。例如可以通过配置$KAFKA_HOME/config/server.properties，让Kafka删除一周前的数据，也可通过配置让Kafka在partition文件超过1GB时删除旧数据，如下所示。
+```
+############################# Log Retention Policy #############################
+# The following configurations control the disposal of log segments. The policy can
+# be set to delete segments after a period of time, or after a given size has accumulated.
+# A segment will be deleted whenever *either* of these criteria are met. Deletion always happens
+# from the end of the log.
+# The minimum age of a log file to be eligible for deletion 
+# 可以删除的日志文件的最小年龄
+log.retention.hours=168
+# A size-based retention policy for logs. Segments are pruned from the log as long as the remaining
+# segments don't drop below log.retention.bytes.
+#log.retention.bytes=1073741824
+# The maximum size of a log segment file. When this size is reached a new log segment will be created. 
+#日志段文件的最大大小。当达到这个大小时，将创建一个新的日志段。
+log.segment.bytes=1073741824
+# The interval at which log segments are checked to see if they can be deleted according
+# to the retention policies
+log.retention.check.interval.ms=300000
+# By default the log cleaner is disabled and the log retention policy will default to
+#just delete segments after their retention expires.
+# If log.cleaner.enable=true is set the cleaner will be enabled and individual logs
+#can then be marked for log compaction.
+log.cleaner.enable=false
+```
+Kafka读取特定消息的时间复杂度为O(1)，即与文件大小无关，所以这里删除文件与Kafka性能无关，选择怎样的删除策略只与磁盘以及具体的需求有关

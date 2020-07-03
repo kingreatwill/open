@@ -12,6 +12,9 @@
 cat /prox/PID/maps
 ```
 
+# 内存管理
+https://www.toutiao.com/i6844780093961667084/
+https://juejin.im/post/5efadf48f265da2304062e51
 
 # Linux 内核如何管理内存
 Windows在默认情况下，将高地址的2GB空间分配给内核（也可配置1GB），而Linux默认情况下，将高地址的1GB空间分配给内核。这些分配给内核的空间叫内和空间，用户使用剩下的空间称为用户空间。

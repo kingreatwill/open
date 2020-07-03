@@ -212,6 +212,7 @@ hadoop fs -ls /
 
 
 hadoop fs -mkdir /aaa
+hadoop fs -chmod 777 /aaa
 
 hadoop fs -put /root/bigdata/hadoop/README.txt /aaa
 
