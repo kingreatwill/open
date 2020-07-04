@@ -350,6 +350,10 @@ spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py hdfs://19
 
 ### Spark历史服务器配置
 stop-history-server.sh
+http://spark.apache.org/docs/latest/monitoring.html
+
+### executor metrics Prometheus 
+http://spark.apache.org/docs/latest/monitoring.html#executor-metrics
 
 ### Master HA
 需要zookeeper
