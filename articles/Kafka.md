@@ -31,6 +31,7 @@ https://blog.csdn.net/csdn_bang/article/details/103797920
 
 # Kafka
 
+kafka同款->Pulsar
 [kafka tool可视化](https://www.kafkatool.com/download.html)
 
 ## News

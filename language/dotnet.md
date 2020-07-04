@@ -31,6 +31,16 @@ https://elm-lang.org/
 [Functional Model-View-Update Architecture for Flutter](https://buildflutter.com/functional-model-view-update-architecture-for-flutter/)
 正与我想的一致！
 
+支持：MVVM, RxUI, MVU, Blazor  https://devblogs.microsoft.com/dotnet/introducing-net-multi-platform-app-ui/
+MVU：类似flutter开发
+MVVM：Xamarin.Forms	
+
+Xamarin.Forms will become System.Maui
+.NET 的大一统，那么迟早也会实现自己的一套跨平台 UI 方案
+https://github.com/dotnet/maui/wiki/Roadmap
+
+flutter 有近50W开发者
+https://venturebeat.com/2020/04/22/google-500000-developers-flutter-release-process-versioning-changes/
 
 ```
 MVVM
