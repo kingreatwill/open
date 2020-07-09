@@ -13,10 +13,11 @@ https://data-flair.training/blogs/spark-sql-tutorial/
 - SparkSQL 
 
 - 华为的数据虚拟化引擎[OpenLookeng](https://openlookeng.io/zh-cn/docs/docs/overview/use-cases.html)
+openLooKeng不是为处理联机事务处理（OLTP）而设计，openLooKeng被设计用来处理数据仓库和分析：数据分析、聚合大量数据并生成报告。这些工作负载通常归类为联机分析处理（OLAP）。
 
 - SQL Server 数据虚拟化 (Polybase)  [配置 PolyBase 以访问 Hadoop 中的外部数据](https://docs.microsoft.com/zh-cn/sql/relational-databases/polybase/polybase-configure-hadoop?view=sql-server-ver15)
 
-[PolyBase 与 链接服务器](https://docs.microsoft.com/zh-cn/sql/relational-databases/polybase/polybase-faq?view=sql-server-ver15)
+    [PolyBase 与 链接服务器 比较](https://docs.microsoft.com/zh-cn/sql/relational-databases/polybase/polybase-faq?view=sql-server-ver15)
 
 ## 架构图 Architecture 
 ![](img/spark_sql_architecture.svg)
@@ -43,3 +44,6 @@ AUTHORIZATION：列出需要被授权的条目，包括输入与输出
 ```
 spark.sql("SELECT age FROM emp where age>25 order by age").explain()
 可以调用explain(True)方法查看逻辑和物理执行计划
+
+## 参考
+[二十八、SparkSQL入门](https://www.toutiao.com/i6846994501806850568)

@@ -136,3 +136,6 @@ hey : https://github.com/rakyll/hey
 说明： l:listening   n:num   t:tcp  u:udp  p:process
 
 ## securecrt ssh工具
+
+## cockpit   
+web管理页面 连接linux
