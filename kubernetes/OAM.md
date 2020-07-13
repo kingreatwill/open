@@ -130,13 +130,14 @@ Rudr 是对 OAM v1alpha1 在 Kubernetes 环境下的实现，OAM 正在与 Cross
 
 ### 2020年5月18日。Crossplane成为OAM规范的标准Kubernetes实现
 
-https://github.com/crossplane/crossplane
+Crossplane 项目：https://github.com/crossplane/crossplane
 
-https://github.com/crossplane/oam-kubernetes-runtime
+OAM Kubernetes 标准实现：https://github.com/crossplane/oam-kubernetes-runtime
+
 OAM Kubernetes Runtime 将会成为 OAM 社区官方维护的基础组件，目标是在 Kubernetes 上提供稳定且统一的 OAM 核心插件。
 
 
-
+OAM K8s 标准实现 Crossplane 项目进入 CNCF Sandbox
 
 
 ## 参考

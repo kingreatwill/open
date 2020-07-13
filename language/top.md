@@ -1,6 +1,15 @@
 <!--toc-->
 [TOC]
 # 排行榜
+
+## Stack Overflow Trends 趋势
+https://insights.stackoverflow.com/trends
+
+
+## google 趋势
+https://trends.google.com/
+https://trends.google.com/trends/?geo=US
+
 ## stackoverflow 调查统计
 https://insights.stackoverflow.com/survey/
 ### 2020技术调查

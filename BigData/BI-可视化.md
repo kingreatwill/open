@@ -29,8 +29,20 @@ Redash 比 Superset 支持的数据库多
 https://github.com/metabase/metabase  Clojure 21.3k
 https://www.metabase.com/
 
+## Davinci
+https://github.com/edp963/davinci
+
+## Pentaho
+https://github.com/pentaho/pentaho-platform
+## CBoard
+https://github.com/TuiQiao/CBoard
+
 ## stimulsoft Dashboards
 商业，付费
+
+## Grafana
+目前已经支持绝大部分常用的时序数据库
+
 
 ## 实时数据看板
 

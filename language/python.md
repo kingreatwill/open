@@ -9,6 +9,33 @@ https://github.com/IronLanguages/ironpython2
 https://github.com/IronLanguages/ironpython3
 https://github.com/pythonnet/pythonnet
 
+## Python解释器&编译器
+### CPython (C), which is the most common
+### Jython (Java)
+### IronPython (.NET)
+### PyPy (Python)
+### Stackless
+Stackless Python是Python编程语言的增强版本
+https://github.com/stackless-dev/stackless
+
+Microthreads: tasklets wrap functions allowing them to be launched as microthreads.
+Channels channels can be used for bidirectional communication between tasklets.
+Scheduling a round robin scheduler is built in. It can be used to schedule tasklets either cooperatively or preemptively.
+Serialisation: tasklets can be serialised to disk through pickling for later resumption of execution.
+
+
+### RustPython
+https://github.com/RustPython/RustPython
+
+
+Each of these implementations offer some benefits: Jython, for example, compiles Python source code to Java byte code, then routes it to the Java Virtual Machine. Because Python code is translated to Java byte code, it looks and feels like a true Java program at runtime and so it integrates well with Java applications.
+
+IronPython is well-integrated with .NET, which means IronPython can use the .NET framework and Python libraries or vice versa.
+
+We want to unlock the same possibilities that Jython and IronPython enable, but for the Rust programming language. In addition, thanks to Rusts’ minimal runtime, we’re able to compile RustPython to WebAssembly and allow users to run their Python code easily in the browser.
+
+
+
 ## Style Guide
 Style Guide: https://www.python.org/dev/peps/pep-0008/
 
