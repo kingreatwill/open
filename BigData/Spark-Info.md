@@ -158,3 +158,8 @@ Spark 通过 Spark Streaming 拥有了流计算能力，那 Spark SQL 是否也�
 [Spark Cluster Architecture Explained](https://www.edureka.co/blog/spark-architecture/)
 
 [The Components and Working of Spark](https://www.digitalvidya.com/blog/spark-architecture/)
+
+
+[Spark最佳实践](https://www.toutiao.com/i6746356891804238349)
+[四十一、SparkSQL读取parquet数据源(必须要弄懂)](https://www.toutiao.com/i6848509880853070339)
+[三十六、图解SparkSQL运行原理](https://www.toutiao.com/i6847863225300550156/)
