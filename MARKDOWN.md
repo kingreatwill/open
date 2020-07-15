@@ -1,18 +1,19 @@
 Markdown 目录：
-<!-- toc -->
+
+
 [TOC]
 
 [Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
 
 [Markdown: Syntax 语法](https://daringfireball.net/projects/markdown/syntax)
 
- Setext, atx, Textile, reStructuredText, Grutatext, and EtText
+Setext, atx, Textile, reStructuredText, Grutatext, and EtText
 
 [emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md)
 
->微信公众号：**[颜家大少](#jump_10)**
-关注可了解更多的教程及排版技巧。问题或建议，请公众号留言;
-**[如果你觉得Md2All对你有帮助，欢迎赞赏](#jump_20)[^1]**
+> 微信公众号：**[颜家大少](#jump_10)**
+> 关注可了解更多的教程及排版技巧。问题或建议，请公众号留言;
+> **[如果你觉得Md2All对你有帮助，欢迎赞赏](#jump_20)[^1]**
 
 ###内容目录（由[TOC]自动生成）
 
@@ -38,8 +39,6 @@ Markdown排版利器，支持 **"一键排版"** 、自定义css、80多种代�
 [请参考此博文：https://juejin.im/post/5a1bcc6ef265da431f4acb09](https://juejin.im/post/5a1bcc6ef265da431f4acb09)
 支持直接把页面"复制"到 **"知乎"** 、51CTO、worpress ,hex......中。
 
-
-
 ###代码块显示效果
 注：markdown对代码块的语法是开始和结束行都要添加：\`\`\`,其中 \` 为windows键盘左上角那个，如下：
 
@@ -56,6 +55,7 @@ public class MyActivity extends AppCompatActivity {
         }
 }
 ```
+
 要精确指定语言（如：`java,cpp,css,xml,javascript,python,php,go,kotlin,lua,objectivec`等等）时，在头部直接指定，如：\`\`\`javascript，如下：
 
 ```javascript
@@ -65,7 +65,7 @@ function DisplayWindowSize(){
   || document.documentElement.clientWidth
   || document.body.clientWidth;
 }
-``` 
+```
 
 如果所有的"代码主题"都不符合你的要求，你可以参考"一键排版"下的"代码块样式"自定义自己喜欢的代码高亮
 
@@ -82,24 +82,48 @@ function DisplayWindowSize(){
 Md2All支持云图床，设置好云图床后，能把本地图片自动上传到云图床，并自动生成markdown.
 [请参考云图床教程:https://www.cnblogs.com/garyyan/p/9181809.html](https://www.cnblogs.com/garyyan/p/9181809.html)
 
-###Latex数学公式(能正确复制到公众号等平台）:
+
+
+### mathjax
+
+https://www.mathjax.org/
+
+### Latex数学公式(能正确复制到公众号等平台）:
+
 https://khan.github.io/KaTeX/docs/supported.html
 “复制”时会自动把Latex数学公式转换为图片，并自动上传到云图床（如果在“图片”设置了“...,自动上传到云图床”）。
 [请参考：Md2All,让公众号完美显示Latex数学公式](https://www.cnblogs.com/garyyan/p/9228994.html)
 ####行内公式：$...$
-是的，我就是行内公式：$$e^{x^2}\neq{e^x}^2$$，排得OK吗？
-####块公式：$$...$$
-$$e^{x^2}\neq{e^x}^2$$
+是的，我就是行内公式：
+
+$$
+e^{x^2}\neq{e^x}^2
+
+$$
+
+，排得OK吗？
+####块公式：
+$$
+...
+
+$$
+
+
+
+$$
+e^{x^2}\neq{e^x}^2$$
 来个 *"复杂点"* 的:
 $$H(D_2) = -(\frac{2}{4}\ log_2 \frac{2}{4} + \frac{2}{4}\ log_2 \frac{2}{4}) = 1$$
 矩阵：
+
 $$
-        \begin{pmatrix}
-        1 & a_1 & a_1^2 & \cdots & a_1^n \\
-        1 & a_2 & a_2^2 & \cdots & a_2^n \\
-        \vdots & \vdots & \vdots & \ddots & \vdots \\
-        1 & a_m & a_m^2 & \cdots & a_m^n \\
-        \end{pmatrix}
+
+    \begin{pmatrix}
+    1 & a_1 & a_1^2 & \cdots & a_1^n \\
+    1 & a_2 & a_2^2 & \cdots & a_2^n \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & a_m & a_m^2 & \cdots & a_m^n \\
+    \end{pmatrix}
 $$
 对应“一键排版”的css样式关键字为：`.katex`
 ####Latex复制到公众号等各平台的特别说明
@@ -302,10 +326,10 @@ Markdown 换行：
 <br>
 
 Markdown 段首缩进：
-&ensp; or &#8194; 表示一个半角的空格
-&emsp; or &#8195;  表示一个全角的空格
-&emsp;&emsp; 两个全角的空格（用的比较多）
-&nbsp; or &#160; 不断行的空白格
+  or   表示一个半角的空格
+  or    表示一个全角的空格
+   两个全角的空格（用的比较多）
+  or   不断行的空白格
 
 #### html注释
 
@@ -441,4 +465,4 @@ note right of 孔子: 孔子思考\n如何回答
 
 ```
 
-
+$$

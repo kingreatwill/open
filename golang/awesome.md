@@ -167,6 +167,11 @@ https://github.com/nats-io/nats-streaming-server
 https://github.com/chromedp/chromedp
 https://www.toutiao.com/i6843024797073408515
 
+## 其它
+### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
+https://github.com/augmentable-dev/gitqlite
+
+
 ## grpc
 ### grpcui
 他是一个 gRPC 的 Web 页面调试工具，提供交互式的调试界面。
