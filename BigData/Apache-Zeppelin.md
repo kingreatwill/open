@@ -1,7 +1,7 @@
 # Apache Zeppelin
 https://github.com/apache/zeppelin  4.8k
 ## 简介
-Apache Zeppelin 是一个可以进行大数据可视化分析的交互式开发系统，可以承担数据接入、数据发现、数据分析、数据可视化、数据协作等任务，其前端提供丰富的可视化图形库，不限于SparkSQL，后端支持HBase、Flink 等大数据系统以插件扩展的方式，并支持Spark、Python、JDBC、Markdown、Shell 等各种常用Interpreter，这使得开发者可以方便地使用SQL 在 Zeppelin 中做数据开发。
+Apache Zeppelin 是一个可以进行大数据可视化分析的交互式开发系统，可以承担数据接入、数据发现、数据分析、数据可视化、数据协作等任务，其前端提供丰富的可视化图形库，不限于SparkSQL，后端支持HBase、Flink 等大数据系统以插件扩展的方式，并支持Spark、Flink、Beam、Python、JDBC、Markdown、Shell 等各种常用Interpreter，这使得开发者可以方便地使用SQL 在 Zeppelin 中做数据开发。
 
 对于机器学习算法工程师来说，他们可以在 Zeppelin 中可以完成机器学习的数据预处理、算法开发和调试、算法作业调度的工作，包括当前在各类任务中表现突出的深度学习算法，因为 Zeppelin 的最新的版本中增加了对TensorFlow、PyTorch等主流深度学习框架的支持，此外，Zeppelin将来还会提供算法的模型 Serving 服务、Workflow 工作流编排等新特性，使得 Zeppelin可以完全覆盖机器学习的全流程工作。
 

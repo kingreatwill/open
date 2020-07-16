@@ -33,10 +33,23 @@ https://blog.csdn.net/csdn_bang/article/details/103797920
 
 kafka同款->Pulsar
 [kafka tool可视化](https://www.kafkatool.com/download.html)
-
+[kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
+[Kafka Web UI可视化界面](https://github.com/obsidiandynamics/kafdrop)
 ## News
 [Kafka Needs No Keeper](https://www.confluent.io/blog/removing-zookeeper-dependency-in-kafka/)
-2020.05.16 zookeeper将从kafka中移除.
+
+[KIP-500：Replace ZooKeeper with a Metadata Quorum](https://cwiki.apache.org/confluence/display/KAFKA/KIP-500%3A+Replace+ZooKeeper+with+a+Self-Managed+Metadata+Quorum)
+
+提到将使用Quorum机制
+
+多年前就有人提到[Is Zookeeper a must for Kafka?](https://stackoverflow.com/questions/23751708/is-zookeeper-a-must-for-kafka)
+
+
+zookeeper将从kafka中移除. - 2020.05.15
+Kafka 2.6 版本还是需要zookeeper(说明不是那么简单的事) - 2020.07.16
+
+
+
 
 ## 什么是Kafka
 
