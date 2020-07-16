@@ -19,6 +19,8 @@ openLooKeng不是为处理联机事务处理（OLTP）而设计，openLooKeng被
 
     [PolyBase 与 链接服务器 比较](https://docs.microsoft.com/zh-cn/sql/relational-databases/polybase/polybase-faq?view=sql-server-ver15)
 
+
+
 ## 架构图 Architecture 
 ![](img/spark_sql_architecture.svg)
 SparkSQL架构分成三个部分，第一部分是前端的，第二部分是后端的，第三个部分是中间的Catalyst，这个Catalyst是整个架构的核心。
@@ -46,6 +48,48 @@ AUTHORIZATION：列出需要被授权的条目，包括输入与输出
 ```
 spark.sql("SELECT age FROM emp where age>25 order by age").explain()
 可以调用explain(True)方法查看逻辑和物理执行计划
+
+## SparkSQL中产生笛卡尔积的几种典型场景以及处理策略
+
+1. join语句中不指定on条件
+`select * from test_partition1 join test_partition2;`
+2. join语句中指定不等值连接
+`select * from test_partition1 t1 inner join test_partition2 t2 on t1.name <> t2.name;`
+3. join语句on中用or指定连接条件
+`select * from test_partition1 t1 join test_partition2 t2 on t1.id = t2.id or t1.name = t2.name;`
+4. join语句on中用||指定连接条件
+`select * from test_partition1 t1 join test_partition2 t2 on t1.id = t2.id || t1.name = t2.name;`
+除了上述举的几个典型例子，实际业务开发中产生笛卡尔积的原因多种多样。
+
+同时需要注意，在一些SQL中即使满足了上述4种规则之一也不一定产生笛卡尔积。比如，对于join语句中指定不等值连接条件的下述SQL不会产生笛卡尔积:
+```
+--在Spark SQL内部优化过程中针对join策略的选择，最终会通过SortMergeJoin进行处理。
+select * from test_partition1 t1 join test_partition2 t2 on t1.id = t2.id and t1.name<>t2.name;
+```
+此外，对于直接在SQL中使用cross join的方式，也不一定产生笛卡尔积。比如下述SQL：
+```
+-- Spark SQL内部优化过程中选择了SortMergeJoin方式进行处理
+select * from test_partition1 t1 cross  join test_partition2 t2 on t1.id = t2.id;
+```
+但是如果cross join没有指定on条件同样会产生笛卡尔积。
+那么如何判断一个SQL是否产生了笛卡尔积呢？
+### Spark SQL是否产生了笛卡尔积
+
+以join语句不指定on条件产生笛卡尔积的SQL为例:
+```
+-- test_partition1和test_partition2是Hive分区表
+select * from test_partition1 join test_partition2;
+```
+通过Spark UI上SQL一栏查看上述SQL执行图，
+可以看出，因为该join语句中没有指定on连接查询条件，导致了CartesianProduct即笛卡尔积。
+
+也可以看执行计划 ：通过逻辑计划到物理计划，以及最终的物理计划选择CartesianProduct，可以分析得出该SQL最终确实产生了笛卡尔积。
+### Spark SQL中产生笛卡尔积的处理策略
+1. 在利用Spark SQL执行SQL任务时，通过查看SQL的执行图来分析是否产生了笛卡尔积。如果产生笛卡尔积，则将任务杀死，进行任务优化避免笛卡尔积。
+2. 分析Spark SQL的逻辑计划和物理计划，通过程序解析计划推断SQL最终是否选择了笛卡尔积执行策略。如果是，及时提示风险。 
+
+除了笛卡尔积效率比较低，BroadcastNestedLoopJoin效率也相对低效，尤其是当数据量大的时候还很容易造成driver端的OOM，这种情况也是需要极力避免的。
+
 
 ## 参考
 [二十八、SparkSQL入门](https://www.toutiao.com/i6846994501806850568)

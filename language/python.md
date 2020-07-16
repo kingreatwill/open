@@ -220,6 +220,9 @@ https://github.com/intel-analytics/analytics-zoo
 
 Apache Spark/Flink & Ray上的分布式Tensorflow、Keras和PyTorch
 
+
+https://github.com/uber/fiber
+
 ## Python代码的静态类型分析器
 https://github.com/google/pytype
 

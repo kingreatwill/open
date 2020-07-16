@@ -352,6 +352,38 @@ spark-submit /root/bigdata/spark/examples/src/main/python/wordcount.py hdfs://19
 stop-history-server.sh
 http://spark.apache.org/docs/latest/monitoring.html
 
+### Spark 依赖包添加方式
+- 在提交脚本中添加
+
+bin/spark-submit --jars /opt/cdh-5.3.6/hive/lib/mysql-connector-java-5.1.27-bin.jar
+
+spark.executor.extraClassPath /opt/apps/spark/external_jars/*
+
+spark.driver.extraClassPath /opt/apps/spark/external_jars/*
+
+在spark-env.sh中 配置EXTRA_SPARK_CLASSPATH环境变量
+export EXTRA_SPARK_CLASSPATH=/home/fly/spark-2.1.1-bin-hadoop2.7/jars/
+
+
+脚本中从maven仓库下载
+bin/spark-submit --packages mysql:mysql-connector-java:5.1.27 --repositories http://maven.aliyun.com/nexus/content/groups/public/
+
+- 在默认环境中添加
+A.创建一个保存第三方jar文件的文件夹:
+命令：$ mkdir external_jars
+
+B.修改Spark配置信息
+命令：$ vim conf/spark-env.sh
+修改内容：SPARK_CLASSPATH=$SPARK_CLASSPATH:/opt/cdh-5.3.6/spark/external_jars/*
+
+C.将依赖的jar文件copy到新建的文件夹中
+命令：$ cp /opt/cdh-5.3.6/hive/lib/mysql-connector-java-5.1.27-bin.jar ./external_jars/
+
+
+备注：（只针对spark on yarn(cluster)模式）
+spark on yarn(cluster)，如果应用依赖第三方jar文件
+最终解决方案：将第三方的jar文件copy到${HADOOP_HOME}/share/hadoop/common/lib文件夹中(Hadoop集群中所有机器均要求copy)
+
 ### executor metrics Prometheus 
 http://spark.apache.org/docs/latest/monitoring.html#executor-metrics
 
