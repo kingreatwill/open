@@ -1,5 +1,9 @@
 https://www.gnu.org/software/gdb/
 
+
+使用gdbgui在浏览器中远程多语言调试
+https://github.com/cs01/gdbgui
+
 使用cgdb为gdb插上翅膀
 http://cgdb.github.io/
 

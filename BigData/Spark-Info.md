@@ -18,6 +18,12 @@ https://github.com/delta-io/delta
 
 [Delta Lake，Apache Spark的ACID事物](https://www.toutiao.com/i6842080022841262599)
 
+Parquet文件 + Meta 文件 + 一组操作的API = Delta Lake.
+
+Delta Lake 其实只是一个Lib库
+
+Delta Lake 是一个lib 而不是一个service,不同于HBase,他不需要单独部署，而是直接依附于计算引擎的。目前只支持Spark引擎。这意味什么呢？Delta Lake 和普通的parquet文件使用方式没有任何差异，你只要在你的Spark代码项目里引入delta包，按标准的Spark datasource操作即可，可谓部署和使用成本极低。
+
 ## mlflow
 https://www.mlflow.org/
 https://github.com/mlflow/mlflow/

@@ -34,9 +34,12 @@ TTL
 CAS -> 比如更新或者插入时可以加if
 batch -> 原子性
 
+(Change Data Capture, CDC) 
+![](img/cassandra-cdc.jpeg)
+
 Cassandra不支持join或者外键
 
-
+https://www.bilibili.com/video/BV1WJ411g7NK?p=2
 
 
 ##  商业公司

@@ -134,7 +134,7 @@ http://spark.apache.org/faq.html
 
 [Spark--Spark RDD与Dataframe/Datasets对比学习](https://www.jianshu.com/p/9e6482bcec99)
 
-[spark 为什么启用akka](https://issues.apache.org/jira/browse/SPARK-5293)
+[spark 为什么弃用akka](https://issues.apache.org/jira/browse/SPARK-5293)
 
 
 案例：每个月报表统计：以前是运维从多个数据库分别统计，现在使用spark

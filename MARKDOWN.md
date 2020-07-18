@@ -346,6 +346,22 @@ hack方法就是利用markdown的解析原理来实现注释的。
 
 
 # Mark流程图语法
+
+DOT语言：图形描述语言
+
+https://github.com/dreampuf/GraphvizOnline
+Graphviz绘图：一款开源图形可视化软件
+
+https://gitlab.com/graphviz/graphviz
+https://graphviz.gitlab.io/about/
+Graphviz 有 6 个引擎，分别是：
+1. dot - “层次”或有向图的分层绘图。如果边具有方向性，这是默认使用的工具。
+2. neato - “spring model” 布局。如果图不是太大(大约 100 个节点)，而且您对它一无所知，那么这是默认的工具。Neato 试图最小化一个全局能量函数，它相当于统计多维尺度。
+3. fdp - “spring model”的布局类似于neato，但它是通过减少力而不是利用能量来实现的。
+4. sfdp - fdp 的多尺度版本，用于大图形的布局。
+5. twopi - 径向布局，after Graham Wills 97。节点被放置在同心圆上，这取决于它们与给定根节点的距离。
+6. circo - 圆形布局，after Six and Tollis 99, Kauffman and Wiese 02。这适用于多个循环结构的某些图，例如某些电信网络。
+
 [flowchat](http://flowchart.js.org/)
 [Sequence](https://bramp.github.io/js-sequence-diagrams/)
 [Mermaid](https://mermaid-js.github.io/mermaid/#/)

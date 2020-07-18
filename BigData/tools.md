@@ -77,7 +77,11 @@ datax sqoop kettle flume StreamSets
 适用于日志文件实时采集。
 
 ## StreamSets
+https://github.com/streamsets
 
 StreamSets 数据收集器是一个轻量级，强大的引擎，实时流数据。使用Data Collector在数据流中路由和处理数据。
 要为Data Collector定义数据流，请配置管道。一个流水线由代表流水线起点和终点的阶段以及您想要执行的任何附加处理组成。配置管道后，单击“开始”，“ 数据收集器”开始工作。
 Data Collector在数据到达原点时处理数据，在不需要时静静地等待。您可以查看有关数据的实时统计信息，在数据通过管道时检查数据，或仔细查看数据快照。
+
+DataOps
+Scale across Data Lakes and Data Warehouses
