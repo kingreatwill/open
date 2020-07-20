@@ -9,8 +9,8 @@
 [卷积神经网络](https://baike.baidu.com/item/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/17541100)
 
 
+## 可视化
 [网站：三维可视化卷积神经网络](http://scs.ryerson.ca/~aharley/vis/conv/)
-
 
 [3D模型可视化框架](https://tensorspace.org/html/playground/lenet.html)
 
@@ -22,3 +22,20 @@ https://tensorspace.org/
 Github链接：
 
 https://github.com/tensorspace-team/tensorspace
+
+## CNN系列模型
+1. LeNet
+2. AlexNet
+3. VGG
+4. GoogLeNet
+5. ResNet
+6. DenseNet
+7. Non-Local Networks
+8. Deformable Convolutional Networks
+9. Dilated Convolutional Networks
+10. SENET
+[CNN系列模型发展简述（附github代码--已全部跑通）](https://zhuanlan.zhihu.com/p/66215918)
+
+github代码依赖：
+python 2.7, Pytorch 0.3.1
+https://github.com/liuyuemaicha/cnn_model

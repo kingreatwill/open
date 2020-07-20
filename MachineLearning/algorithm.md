@@ -1,5 +1,9 @@
 <!-- toc -->
 [TOC]
+
+# 十大数据挖掘算法
+国际权威的学术组织the IEEE International Conference on Data Mining (ICDM) 评选出了数据挖掘领域的十大经典算法：C4.5, k-Means, SVM, Apriori, EM, PageRank, AdaBoost, kNN, Naive Bayes, and CART.
+
 # 机器学习十大算法
 > 本文介绍了 10 大常用机器学习算法，包括线性回归、Logistic 回归、线性判别分析、朴素贝叶斯、KNN、随机森林等。
 
