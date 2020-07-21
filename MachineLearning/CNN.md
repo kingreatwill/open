@@ -5,8 +5,13 @@
 [大白话讲解卷积神经网络工作原理 视频](https://www.bilibili.com/video/av35087157/) 
 [大白话讲解卷积神经网络工作原理](https://zhuanlan.zhihu.com/p/49184702) 
 
+[什么是CNN？写给小白的机器学习入门贴，Facebook员工打造，47k访问量](https://blog.csdn.net/QbitAI/article/details/107455120)
+
+[CNNs，第1部分:卷积神经网络简介-原文](https://victorzhou.com/blog/intro-to-cnns-part-1/)
 
 [卷积神经网络](https://baike.baidu.com/item/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/17541100)
+
+[12种Dropout方法：应用于DNNs，CNNs，RNNs中的数学和可视化解释](https://blog.csdn.net/weixin_42137700/article/details/107248725)
 
 
 ## 可视化

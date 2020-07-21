@@ -139,3 +139,6 @@ http://spark.apache.org/faq.html
 
 案例：每个月报表统计：以前是运维从多个数据库分别统计，现在使用spark
 [应用场景](https://flink.apache.org/zh/usecases.html)
+
+
+[Spark宽依赖 窄依赖 Job Stage Executor Task 总结](https://blog.csdn.net/lsgqjh/article/details/86166469)

@@ -178,3 +178,7 @@ http://www.pointofix.de/download.php
 
 ## ScreenToGif
 https://github.com/NickeManarin/ScreenToGif
+
+## Microsoft Whiteboard
+## Microsoft OneNote
+## Microsoft Todo

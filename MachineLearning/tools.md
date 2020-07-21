@@ -16,3 +16,7 @@ SageMath可通过GPL许可获得，其源代码可在项目网站上找到。
 https://github.com/sagemath/sage
 
 ## Matlab 商业软件 几个G
+
+## spyder
+科学Python开发环境
+https://github.com/spyder-ide/spyder 5.5k

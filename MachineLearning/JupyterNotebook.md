@@ -193,6 +193,13 @@ conda deactivate
 conda env update -f environment.yml
 ```
 
+conda info --envs
+列出我的所有环境
+
+nvidia-smi 查看显卡
+
+
+
 5. 打开Jupyter记事本
 ```
 jupyter notebook
