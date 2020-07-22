@@ -264,3 +264,7 @@ http://www.videolan.org/
 [各种音视频编解码学习详解](https://www.cnblogs.com/skyofbitbit/p/3651270.html)
 [五种常见流媒体协议](https://www.jianshu.com/p/d71ceef679de)
 
+##  音频处理
+Audiokit: audiokit/AudioKit
+ffmpeg： FFmpeg/FFmpeg
+

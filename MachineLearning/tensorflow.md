@@ -1,11 +1,15 @@
 pytorch
 tensorflow
 
-https://blog.tensorflow.org/
+
+[tensorflow blog](https://blog.tensorflow.org/)
+[tensorflow 教程](http://tensorflow.google.cn/)
+[tensorflow playground](http://playground.tensorflow.org/?hl=zh-cn)
+[机器学习课程](https://developers.google.cn/machine-learning/crash-course)
+
+
 
 [深度学习入门开源书，基于TensorFlow 2.0案例实战](https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book)
-
-[tensorflow 教程](http://tensorflow.google.cn/)
 
 [Tensorflow2.0 学习](https://github.com/lyhue1991/eat_tensorflow2_in_30_days)
 https://lyhue1991.github.io/eat_tensorflow2_in_30_days/
