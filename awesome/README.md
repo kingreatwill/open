@@ -79,3 +79,9 @@ CEF是包含Chromium浏览器的应用框架
 [User-Agent格式含义与示例](https://www.jianshu.com/p/9453579154e3)
 
 [为什么所有主要浏览器的 User-Agent 都是 Mozilla/x.0 开头？](https://www.zhihu.com/question/19553117)
+
+
+## 开放源码发现服务
+https://github.com/librariesio/libraries.io
+
+https://libraries.io/

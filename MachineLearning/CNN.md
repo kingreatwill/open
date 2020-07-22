@@ -13,6 +13,7 @@
 
 [12种Dropout方法：应用于DNNs，CNNs，RNNs中的数学和可视化解释](https://blog.csdn.net/weixin_42137700/article/details/107248725)
 
+[写给程序员的机器学习入门 (八) - 卷积神经网络 (CNN) - 图片分类和验证码识别](https://www.cnblogs.com/zkweb/p/13354826.html)
 
 ## 可视化
 [网站：三维可视化卷积神经网络](http://scs.ryerson.ca/~aharley/vis/conv/)
