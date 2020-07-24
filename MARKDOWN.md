@@ -1,7 +1,19 @@
 Markdown 目录：
 
+## 上标、下标
+
+- 
+X<sub>i</sub>
+H<sub>2</sub>O  CO<sub>2</sub>
+益达<sup>TM</sup>
+
+- 
+
+输入上标 x^2^
+输入下标 x~0~
 
 [TOC]
+
 
 [Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
 
