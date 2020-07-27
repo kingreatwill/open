@@ -82,3 +82,12 @@ docker run -it --rm zendesk/maxwell bin/maxwell --user='maxwell' \
 
 ## 其它更多
 [MySQL Binlog 解析工具 Maxwell 详解](https://blog.csdn.net/wwwdc1012/article/details/88388552)
+
+# Databus
+https://github.com/linkedin/databus
+功能：
+- 源与消费者之间的隔离
+- 保证按顺序和至少一次交付具有高可用性
+- 从更改流中的任意时间点开始消耗，包括整个数据的完全引导功能。
+- 分区消费
+- 源一致性保存

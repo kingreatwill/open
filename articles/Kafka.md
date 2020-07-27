@@ -30,11 +30,14 @@ https://blog.csdn.net/csdn_bang/article/details/103797920
 [TOC]
 
 # Kafka
-
+## Tools
 kafka同款->Pulsar
 [kafka tool可视化](https://www.kafkatool.com/download.html)
 [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
 [Kafka Web UI可视化界面](https://github.com/obsidiandynamics/kafdrop)
+
+[Kafka管理工具CMAK,以前叫kafka-manager](https://github.com/yahoo/CMAK)
+
 ## News
 [Kafka Needs No Keeper](https://www.confluent.io/blog/removing-zookeeper-dependency-in-kafka/)
 

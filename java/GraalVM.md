@@ -89,3 +89,7 @@ https://github.com/kingreatwill/java_study/tree/master/GraalVM
 
 Oracle pits GraalVM against Google Go
 https://www.techworld.com.au/article/666629/oracle-pits-graalvm-against-google-go/
+
+## 红帽和 GraalVM 社区创建 GraalVM 下游发行版“Mandrel”
+
+红帽和 GraalVM 社区共同建立了新的 GraalVM 下游发行版，称为 Mandrel。红帽方面表示，该发行版本将为 [Quarkus](https://github.com/quarkusio/quarkus) 提供支持。Quarkus 已成为红帽运行时（Red Hat Runtimes）中全面支持的一个框架。

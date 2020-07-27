@@ -16,6 +16,9 @@
 [写给程序员的机器学习入门 (八) - 卷积神经网络 (CNN) - 图片分类和验证码识别](https://www.cnblogs.com/zkweb/p/13354826.html)
 
 ## 可视化
+
+[卷积可视化](https://github.com/vdumoulin/conv_arithmetic)
+
 [网站：三维可视化卷积神经网络](http://scs.ryerson.ca/~aharley/vis/conv/)
 
 [3D模型可视化框架](https://tensorspace.org/html/playground/lenet.html)
@@ -45,3 +48,12 @@ https://github.com/tensorspace-team/tensorspace
 github代码依赖：
 python 2.7, Pytorch 0.3.1
 https://github.com/liuyuemaicha/cnn_model
+
+
+## 概念
+
+### 卷积和反卷积
+[一文搞懂CNN中的卷积和反卷积](https://www.toutiao.com/i6642655643314422275)
+**卷积(Convolutional)**：卷积在图像处理领域被广泛的应用，像滤波、边缘检测、图片锐化等，都是通过不同的卷积核来实现的。在卷积神经网络中通过卷积操作可以提取图片中的特征，低层的卷积层可以提取到图片的一些边缘、线条、角等特征，高层的卷积能够从低层的卷积层中学到更复杂的特征，从而实现到图片的分类和识别。
+
+**反卷积**：反卷积也被称为转置卷积，反卷积其实就是卷积的逆过程。大家可能对于反卷积的认识有一个误区，以为通过反卷积就可以获取到经过卷积之前的图片，实际上通过反卷积操作并不能还原出卷积之前的图片，只能还原出卷积之前图片的尺寸。那么到底反卷积有什么作用呢？通过反卷积可以用来可视化卷积的过程，反卷积在GAN等领域中有着大量的应用。
