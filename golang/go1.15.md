@@ -1,5 +1,5 @@
 # Go 1.15 都有哪些值得关注的变化
-
+https://tip.golang.org/doc/go1.15
 ## 新的链接器
 官方的设计文档地址：https://golang.org/s/better-linker，从命名看，是一个更好的链接器（这是废话），目前该链接器还未完成。
 
