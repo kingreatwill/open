@@ -182,3 +182,6 @@ https://github.com/NickeManarin/ScreenToGif
 ## Microsoft Whiteboard
 ## Microsoft OneNote
 ## Microsoft Todo
+
+## 视频音频处理软件
+https://github.com/HaujetZhao/QuickCut
