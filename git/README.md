@@ -312,3 +312,6 @@ git update-index --add --cacheinfo 100644 03ccxxxxx  new.txt
 以上，便是我们利用plumbing命令完成的三次提交的过程，希望通过这几个步骤，能让你简单的理解porcelain命令和plumbing命令之间的联系，为接下来的Git学习做铺垫。
 
 [参考](https://www.cnblogs.com/yelbosh/p/7471979.html)
+
+[让你的 commit 更有价值](https://segmentfault.com/a/1190000023388007)
+
