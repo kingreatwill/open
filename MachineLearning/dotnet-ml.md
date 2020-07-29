@@ -33,36 +33,80 @@ AForge.Fuzzy —— 模糊推理系统类库
 AForge.Controls—— 图像，三维，图表显示控件
 
 ## Accord.NET
-
+https://github.com/accord-net/framework
 Accord.NET Framework是在AForge.NET基础上封装和进一步开发来的。功能也很强大，因为AForge.NET更注重与一些底层和广度，而Accord.NET Framework更注重与机器学习这个专业，在其基础上提供了更多统计分析和处理函数，包括图像处理和计算机视觉算法，所以侧重点不同，但都非常有用。
 
 ## 绑定
 https://github.com/SciSharp/TensorFlow.NET
+
 https://github.com/migueldeicaza/TensorFlowSharp
 
 https://github.com/SciSharp/Torch.NET
+
 https://github.com/xamarin/TorchSharp
 
+https://github.com/tech-quantum/MxNet.Sharp
 
 https://github.com/SciSharp/Keras.NET
 
-### xx
-https://github.com/SciSharp/NumSharp
 https://github.com/SciSharp/SharpCV
+
+https://github.com/shimat/opencvsharp
+
+### SciSharp其它生态
+https://github.com/SciSharp/NumSharp
+
 https://github.com/SciSharp/Plot.NET
+
 https://github.com/SciSharp/Pandas.NET
+
 https://github.com/SciSharp/PillowSharp
+
 https://github.com/SciSharp/Matplotlib.Net
 
+https://github.com/SciSharp/Gym.NET
 
 ## 其它机器学习库
 https://github.com/sethjuarez/numl
 
 http://www.alglib.net/
 
+https://github.com/mdabros/SharpLearning
+
+https://github.com/jdermody/brightwire
+
+
+## Spark绑定
+https://github.com/dotnet/spark
+
+## 自动驾驶仿真器
+https://github.com/lgsvl/simulator
+
+## 人脸识别
+https://github.com/takuya-takeuchi/FaceRecognitionDotNet
+
+## OpenPose人体姿态识别
+https://github.com/takuya-takeuchi/OpenPoseDotNet
+
+## 神经网络
+https://github.com/Sergio0694/NeuralNetwork.NET
+
+### DL
+https://github.com/harujoh/KelpNet
+
+https://github.com/kawatan/Merkurius
+
+### RNN
+https://github.com/zhongkaifu/RNNSharp
+
+## NLP
+https://github.com/curiosity-ai/catalyst
+
+https://github.com/SciSharp/CherubNLP
+
 ## 开源.NET平台非综合类
 ### Math.NET
-Math.NET是.NET平台下最全面的数学计算组件之一，基础功能非常完善。
+[Math.NET](https://github.com/mathnet/mathnet-numerics)是.NET平台下最全面的数学计算组件之一，基础功能非常完善。
 
 ### Adaboost算法
 1.https://github.com/bgorven/Classifier
