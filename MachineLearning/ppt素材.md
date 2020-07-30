@@ -311,6 +311,38 @@ ReLU 激活函数有助于防止梯度消失。
 卷积神经网络的端到端结构
 ![](img/cnn_architecture.svg)
 
+一般图像处理使用2DConvolution层
+
+3DConvolution层
+三维卷积对三维的输入进行滑动窗卷积，当使用该层作为第一层时，应提供input_shape参数。
+例如input_shape = (3,10,128,128)代表对10帧128*128的彩色RGB图像进行卷积 。
+
+```
+# demo01
+#160*100*22
+model.add(Convolution3D(
+    10,
+    kernel_dim1=9, # depth
+    kernel_dim2=9, # rows
+    kernel_dim3=9, # cols
+    input_shape=(3,160,100,22),
+    activation='relu'
+))
+#now 152*92*14
+
+# demo02
+
+#34*19*8
+model.add(Convolution3D(
+    50,
+    kernel_dim1=5, # depth
+    kernel_dim2=9, # rows
+    kernel_dim3=8, # cols
+    activation='relu'
+))
+#now 26*12*4
+```
+
 
 ### 待学习 seq2seq BERT  YOLOv5 对决 Faster RCNN
 目前，基于深度学习(deep learning)的目标检测技术效果是最好的，这些技术模型可以分成三类：
@@ -326,11 +358,15 @@ ReLU 激活函数有助于防止梯度消失。
 
 https://pjreddie.com/darknet/yolo/
 
+### NLP
+GRU，LSTM，XLNet，BERT
+
 ### 最强大的语言模型GPT-3（也有图片模型GPT-3）
 
 GPT 模型是 OpenAI 在 2018 年提出的一种新的 ELMo 算法模型，该模型在预训练模型的基础上，只需要做一些微调即可直接迁移到各种 NLP 任务中，因此具有很强的业务迁移能力。
 
 互联网原子弹，人工智能界的卡丽熙，算力吞噬者，黄仁勋的新 KPI ，下岗工人制造机，幼年期的天网 —— 最先进的 AI 语言模型 GPT-3。
+GPT-3开启“天网元年”。
 
 在语言方面，依赖于单词预测的无监督学习算法（例如GPT-3和BERT）非常成功
 
@@ -351,11 +387,35 @@ OpenAI 曾于 2019 年初发布 GPT-2，这一基于 Transformer 的大型语言
 
 而 GPT-3 的参数量足足是 GPT-2 的 116 倍（**GPT-3，1750 亿参数，45TB 训练数据**），实现了对整个 2019 年的所有大型自然语言处理模型的降维打击。
 
+在 NLP 领域中，通常采用 ELMo 算法的思想，即通过在大量的语料上预训练语言模型，然后再将预训练好的模型迁移到具体的下游NLP任务，从而提高模型的能力。GPT 模型是 OpenAI 在 2018 年提出的一种新的 ELMo 算法模型，该模型在预训练模型的基础上，只需要做一些微调即可直接迁移到各种 NLP 任务中，因此具有很强的业务迁移能力。
+
+GPT 模型主要包含两个阶段。第一个阶段，先利用大量未标注的语料预训练一个语言模型，接着，在第二个阶段对预训练好的语言模型进行微改，将其迁移到各种有监督的 NLP 任务，并对参数进行 fine-tuning。
+
+在 GPT-3 之前，最大的 AI 语言模型是微软在今年（2020） 2 月推出的 Turing NLG，当时拥有 170 亿参数的 Turing NLG 已经标榜是第二名 Megatron-LM 的两倍。没错，仅短短 5 个月的时间，GPT-3 就将头号玩家的参数提高了 10 倍！
+
 微软给 OpenAI 提供的这台超级计算机是一个统一的系统，该系统拥有超过 285000 个 CPU 核心，10000 个 GPU 和每秒 400G 的网络，是一台排名全球前 5 的超级计算机。
+有专业人士推测过，训练一个GPT-3模型需要“355个GPU年”（一块GPU运行355年的运算量），光是训练费用就高达460万美元。
+
 
 最后引用神经网络之父、图灵奖获得者 Geoffrey Hinton 早前对 GPT-3 的一番评论：
 
 “ 鉴于 GPT-3 在未来的惊人前景，可以得出结论：生命、宇宙和万物的答案，就只是 4.398 万亿个参数而已。”
+
+#### 参考链接：
+https://blogs.microsoft.com/ai/openai-azure-supercomputer/
+https://jalammar.github.io/how-gpt3-works-visualizations-animations/
+https://www.reddit.com/r/MachineLearning/comments/hymqof/d_gpt3_and_a_typology_of_hype_by_delip_rao/
+https://www.datanami.com/2020/07/21/openais-gpt-3-language-generator-is-impressive-but-dont-hold-your-breath-for-skynet/
+
+GPT-3应用案例：
+https://gpt3examples.com/
+
+GPT-3沙箱：
+https://github.com/shreyashankar/gpt3-sandbox
+
+OpenAI API开发者工具包：
+https://www.notion.so/API-Developer-Toolkit-49595ed6ffcd413e93ebff10d7e70fe7
+
 
 ### one-hot
 
@@ -369,3 +429,69 @@ OpenAI 曾于 2019 年初发布 GPT-2，这一基于 Transformer 的大型语言
    fish = [0,0,1,0,..]
 
 一般在输出结果之前的数据格式为[dog=0.9,cat=0.1]  它们的概率之和为1，我们取最大的
+
+### 张量的数据形式
+
+tensor:张量
+dim：代表张量的维度。
+constant:常量
+
+标量(scalar)：数据单独的一个数，零维张量，其形状如：1.1 ,dim=0  ,shape=()
+
+向量(vector) ：一维数组，一维张量，其形状如：`[1.1,2.2,3.3]` ,dim=1 ,shape=(3,)
+
+矩阵(matrix)：二维数组，二维张量，其形状如：shape=(3,3)
+
+多维数组(n-d array)：多维数组，多维张量，其形状如：shape=(1,3,3)
+
+
+shape：shape描述的是矩阵的形状, 即张量的shape。从前往后对应由外向内的维度。
+
+size：size描述的是元素的个数。
+
+dim：代表张量的维度。
+
+`[[1],[2],[3]]` 这个张量的shape为（3,1）
+`[[[1,2],[3,4]],[[5,6],[7,8]],[[9,10],[11,12]]]`这个张量的shape为（3,2,2）,
+`[1,2,3,4]`这个张量的shape为（4，）
+
+#### 1-5维的张量应用场景
+dim = 0 , 标量(scalar), shape = ()  ,`[]`
+loss 和 accuracy
+
+dim = 1 ,向量(vector), shape = (2,) , `[1,2]`
+
+net.bias
+```
+# W @ x + b
+net = layers.Dense(10)
+net.build((4, 8))
+
+net.kernel # w,shape = (8,10)
+net.bias # b, shape =(10,)  
+```
+
+dim = 2 ,矩阵(matrix)，shape = (2,2)，`[[1,2],[3,4]]`
+一般 input x :[b, vec_dim] (`一张图片[1,784]，多张图片[b,784]`)
+weight : [input_dim, output_dim]
+
+
+dim = 3, tensor张量,  `[25000, 80, 200]`
+比如NLP中
+x:[b,seq_len, word_dim]
+
+将每个单词转换为word_dim = 200长度的
+那么seq_len = 单词个数
+b= 句子个数
+
+对单词embedding
+
+
+dim = 4, tensor张量,  `[60000, 28, 28, 3]`
+比如图片：`[b,h,w,3]`
+b个图片个数
+
+
+dim = 5 ,tensor张量
+可以看做对dim=4的批量
+`[task_b,b,h,w,3]` 有task_b个任务，每个任务`[b,h,w,3]`
