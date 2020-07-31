@@ -343,6 +343,9 @@ model.add(Convolution3D(
 #now 26*12*4
 ```
 
+### 待学习 迁移学习 Transfer Learning 元学习 meta-learning  Few-shot learning（少样本学习） learning to learn，就是学会学习
+### 待学习 Artificial Neural Networks (ANN)  RNN CNN
+ann可视化：https://github.com/Prodicode/ann-visualizer
 
 ### 待学习 seq2seq BERT  YOLOv5 对决 Faster RCNN
 目前，基于深度学习(deep learning)的目标检测技术效果是最好的，这些技术模型可以分成三类：
