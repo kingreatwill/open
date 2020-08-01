@@ -22,3 +22,13 @@ https://github.com/felixchenfy/Realtime-Action-Recognition
 ## 自动驾驶
 [百度apollo](https://github.com/ApolloAuto/apollo)
 [基于apollo](https://github.com/lgsvl)
+
+Navigant Research自动驾驶排行榜 2020
+![](img/Navigant-Research-2020.jpg)
+![](img/Navigant-Research-2019.jpg)
+竖坐标为执行能力（Execution），横坐标为策略能力（Strategy），将他们划分为「领导者」、「竞争者」、「挑战者」以及「跟随者」四个等级
+
+
+[自动驾驶汽车成熟度指数报告](files/2020-autonomous-vehicles-readiness-index.pdf)
+毕马威《自动驾驶汽车成熟度指数报告》(Autonomous Vehicles Readiness Index)(AVRI)
+https://home.kpmg/au/en/home/insights/2020/07/autonomous-vehicles-readiness-index-2020.html

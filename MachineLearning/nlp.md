@@ -24,3 +24,52 @@ AI界无人不知的最先进NLP模型Transformer
 https://ai.tencent.com/ailab/nlp/en/data/Tencent_AILab_ChineseEmbedding.tar.gz
 
 https://chinesenlp.xyz/#/zh/
+
+
+
+
+## xx
+http://rowanzellers.com/advice/
+https://openai.com/blog/image-gpt/
+
+ELMo:https://arxiv.org/abs/1802.05365
+BERT:https://arxiv.org/abs/1810.04805
+ERNIE:https://arxiv.org/abs/1904.09223
+Grover:https://arxiv.org/abs/1905.12616
+KERMIT:https://arxiv.org/abs/1906.01604
+Big Bird:https://arxiv.org/abs/2007.14062
+
+### BERT
+[BERT Rediscovers the Classical NLP Pipeline](https://arxiv.org/abs/1905.05950)
+https://openreview.net/pdf?id=SJzSgnRcKX
+
+[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+
+### ERNIE
+[中文任务全面超越BERT：百度正式发布NLP预训练模型ERNIE](https://zhuanlan.zhihu.com/p/59436589)
+https://github.com/PaddlePaddle/ERNIE
+
+### GPT
+
+ELMO 有94M个参数（M 百万）
+BERT 有340M个参数
+GPT-2 有1542M个参数
+T5 有11B个参数
+Turing-NLG 有17000M个参数(17B)
+GPT-3 有175000M个参数(175B)
+（光训练好的model有700GB - GPT-2 才6GB）
+
+https://lambdalabs.com/blog/demystifying-gpt-3/
+
+ELMo paper  - 15 pages
+BERT paper  - 16 pages
+GPT-2 paper  - 24 pages
+T5 paper  - 53 pages  https://arxiv.org/abs/1910.10683
+GPT-3 paper  - 72 pages
+[如何评价1700亿参数的GPT-3？](https://www.zhihu.com/question/398114261)
+
+https://github.com/elyase/awesome-gpt3
+
+### Turing Natural Language Generation (T-NLG)  （Turing-NLG）
+https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/
+![](img/TurningNGL_Model.png)

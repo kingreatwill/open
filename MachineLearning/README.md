@@ -4,6 +4,8 @@
 [TOC]
 # 机器学习
 
+[MLPerf -AI芯片的基准测试](https://www.mlperf.org/)
+
 [DNN，CNN和RNN的12种主要dropout方法的数学和视觉解释](https://blog.csdn.net/m0_46510245/article/details/106600133)
 
 [Facebook 发布 TransCoder：实现 C ++ 到 Java、Python 的代码转化 | 论文解读](https://www.infoq.cn/article/vIvKyNV89Aw0x4uIQKxK)

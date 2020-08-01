@@ -15,6 +15,9 @@
 https://developers.google.com/machine-learning/glossary
 https://developers.google.cn/machine-learning/glossary/?hl=zh-cn
 
+#### SOTA
+state of the art 最先进的
+
 ### 课程
 https://developers.google.cn/machine-learning/crash-course/ml-intro?hl=zh-cn
 
@@ -369,7 +372,7 @@ GRU，LSTM，XLNet，BERT
 GPT 模型是 OpenAI 在 2018 年提出的一种新的 ELMo 算法模型，该模型在预训练模型的基础上，只需要做一些微调即可直接迁移到各种 NLP 任务中，因此具有很强的业务迁移能力。
 
 互联网原子弹，人工智能界的卡丽熙，算力吞噬者，黄仁勋的新 KPI ，下岗工人制造机，幼年期的天网 —— 最先进的 AI 语言模型 GPT-3。
-GPT-3开启“天网元年”。
+GPT-3开启“天网元年”。GPT-3是来自黑暗大陆的模型。
 
 在语言方面，依赖于单词预测的无监督学习算法（例如GPT-3和BERT）非常成功
 
@@ -397,8 +400,9 @@ GPT 模型主要包含两个阶段。第一个阶段，先利用大量未标注�
 在 GPT-3 之前，最大的 AI 语言模型是微软在今年（2020） 2 月推出的 Turing NLG，当时拥有 170 亿参数的 Turing NLG 已经标榜是第二名 Megatron-LM 的两倍。没错，仅短短 5 个月的时间，GPT-3 就将头号玩家的参数提高了 10 倍！
 
 微软给 OpenAI 提供的这台超级计算机是一个统一的系统，该系统拥有超过 285000 个 CPU 核心，10000 个 GPU 和每秒 400G 的网络，是一台排名全球前 5 的超级计算机。
-有专业人士推测过，训练一个GPT-3模型需要“355个GPU年”（一块GPU运行355年的运算量），光是训练费用就高达460万美元。
+有专业人士推测过，训练一个GPT-3模型需要“355个GPU年”（一块GPU运行355年的运算量），光是训练费用就高达460万美元。（光训练好的model有700GB - GPT-2 才6GB）
 
+(有BUG也不敢重新训练~~太贵了)
 
 最后引用神经网络之父、图灵奖获得者 Geoffrey Hinton 早前对 GPT-3 的一番评论：
 
@@ -419,6 +423,10 @@ https://github.com/shreyashankar/gpt3-sandbox
 OpenAI API开发者工具包：
 https://www.notion.so/API-Developer-Toolkit-49595ed6ffcd413e93ebff10d7e70fe7
 
+awesome-gpt3:
+https://github.com/elyase/awesome-gpt3
+
+https://lambdalabs.com/blog/gpt-3/
 
 ### one-hot
 
