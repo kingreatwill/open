@@ -226,3 +226,9 @@ https://github.com/uber/fiber
 ## Python代码的静态类型分析器
 https://github.com/google/pytype
 
+
+## Python执行实时可视化
+可以实时可视化 Python 程序的执行过程
+Heartate——如监测心率般追踪程序运行
+https://github.com/alexmojaki/heartrate
+代码调用高亮依赖于executing (https://github.com/alexmojaki/executing) 库

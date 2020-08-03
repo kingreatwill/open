@@ -346,6 +346,20 @@ model.add(Convolution3D(
 #now 26*12*4
 ```
 
+### softmax
+给定一些数字，Softmax函数就能将任意数字转化为概率
+
+比如，我们选定数字 -1、0、3和5。
+
+首先，我们需要计算e的指定数字次方，然后将其所有结果相加，当作分母。 
+denominator = e^-1^ + e^0^ + e^3^ + e^5^ = 169.87
+
+最后，e的指定数字次方的值就作为分子，由此计算可能性。
+![](img/softmax.jpg)
+
+https://victorzhou.com/blog/softmax/
+
+
 ### 待学习 迁移学习 Transfer Learning 元学习 meta-learning  Few-shot learning（少样本学习） learning to learn，就是学会学习
 ### 待学习 Artificial Neural Networks (ANN)  RNN CNN
 ann可视化：https://github.com/Prodicode/ann-visualizer

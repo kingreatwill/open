@@ -22,6 +22,8 @@ https://github.com/felixchenfy/Realtime-Action-Recognition
 ## 自动驾驶
 [百度apollo](https://github.com/ApolloAuto/apollo)
 [基于apollo](https://github.com/lgsvl)
+[waymo](https://github.com/waymo-research/waymo-open-dataset)
+![](img/self-driving-car-works.jpg)
 
 Navigant Research自动驾驶排行榜 2020
 ![](img/Navigant-Research-2020.jpg)
