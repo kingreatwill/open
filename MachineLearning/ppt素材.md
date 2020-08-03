@@ -1,14 +1,28 @@
+<!--toc-->
+[TOC]
 
+# xx
 ![](img/MlSystem.svg)
+
+## 工具
+### 神经网络绘图工具
+http://alexlenail.me/NN-SVG/
+非常方便的绘图工具，可视化操作，免费，由麻省理工学院开发
+https://github.com/alexlenail/NN-SVG
+
+### 梯度下降可视化工具
+[梯度下降可视化工具](https://github.com/lilipads/gradient_descent_viz)
+
 ## Gradient Descent
 
 [梯度下降的可视化解释(Momentum，AdaGrad，RMSProp，Adam)](https://zhuanlan.zhihu.com/p/147275344)
 
-[可视化工具](https://github.com/lilipads/gradient_descent_viz)
-
 ![](img/Gradient-Descent-01.gif)
 利用动能
 ![](img/Gradient-Descent-02.gif)
+
+
+
 
 ## 机器学习
 ### 术语库
@@ -62,13 +76,48 @@ https://developers.google.cn/machine-learning/crash-course/ml-intro?hl=zh-cn
 
 当前的点x~1~ - 学习速率 * 导数 = 新的点x~2~ 
 
+https://ruder.io/optimizing-gradient-descent/index.html
+
 #### 梯度下降法和其他无约束优化算法的比较
+
+
 在机器学习中的无约束优化算法，除了梯度下降以外，还有前面提到的最小二乘法，此外还有牛顿法和拟牛顿法。
 
 梯度下降法和最小二乘法相比，梯度下降法需要选择步长，而最小二乘法不需要。梯度下降法是迭代求解，最小二乘法是计算解析解。如果样本量不算很大，且存在解析解，最小二乘法比起梯度下降法要有优势，计算速度很快。但是如果样本量很大，用最小二乘法由于需要求一个超级大的逆矩阵，这时就很难或者很慢才能求解解析解了，使用迭代的梯度下降法比较有优势。
 
 梯度下降法和牛顿法/拟牛顿法相比，两者都是迭代求解，不过梯度下降法是梯度求解，而牛顿法/拟牛顿法是用二阶的海森矩阵的逆矩阵或伪逆矩阵求解。
 相对而言，使用牛顿法/拟牛顿法收敛更快。但是每次迭代的时间比梯度下降法长。
+
+#### 优化器
+https://ruder.io/optimizing-gradient-descent/index.html
+SGD
+Momentum
+NAG
+Adagrad
+Adadelta
+Rmsprop
+
+```
+# optimizer：优化器； learning_rate 学习速率(步长)
+# SGD->Stochastic随机的 Gradient Descent 梯度下降
+optimizer = optimizers.SGD(learning_rate=0.001, momentum=0.9)
+
+
+# momentum 动力，
+
+# 如何选择优化算法?
+#
+# 如果数据是稀疏的，就用自适用方法，即 Adagrad, Adadelta, RMSprop, Adam。
+# RMSprop, Adadelta, Adam 在很多情况下的效果是相似的。
+# Adam 就是在 RMSprop 的基础上加了 bias-correction 和 momentum，
+# 随着梯度变的稀疏，Adam 比 RMSprop 效果会好。
+# 整体来讲，Adam 是最好的选择。
+# 很多论文里都会用 SGD，没有 momentum 等。SGD 虽然能达到极小值，但是比其它算法用的时间长，而且可能会被困在鞍点，这时就需要momentum参数了，一般0.9。
+
+# 深度学习——优化器算法Optimizer详解（BGD、SGD、MBGD、Momentum、NAG、Adagrad、Adadelta、RMSprop、Adam）
+# https://www.cnblogs.com/guoyaohua/p/8542554.html
+```
+
 
 ### 特征
 
@@ -254,6 +303,7 @@ TP：True Positive,被判定为正样本，事实上也是正样本。
 
 ### 激活函数，梯度消失与梯度爆炸
 
+
 如果每层因子相乘的结果不断减小，产生**梯度消失**，会造成网络的前层网络的权重的梯度很小，这些w很可能得不到更新；而如果相乘的结果越来越大，则产生**梯度爆炸**。
 
 非线性变化，例如激活函数
@@ -276,19 +326,71 @@ out = relu(w3@hide2 + b3)
 **x输入如果是矩阵，那么w和b 也是矩阵，这样就可以实现降维：**
 ![](img/mnist.jpg)
 
-#### Relu
+
+#### 激活函数的由来
+![](img/activation-function-source1.png)
+1959年，生物科学家研究青蛙神经元的时候发现，青蛙的神经元有多个输入，神经元中间有一个多输入加权后的相应，当该响应小于阈值时没有输出，当该响应大于阈值是会有一个固定的输出。当时的计算机科学家借鉴于此发明了一个计算机模型，如下图：
+![](img/activation-function-source2.png)
+假设z为输入经过加权后的值，z小于阈值输出0，z大于阈值输出1。（阶梯函数）
+为了解决阶梯函数在阶梯处不可导的缺点，计算机学家们引入了sigmoid函数
+
+#### 常见的激活函数
+
+![](img/activation-function.png)
+使用场景：
+1、在输出层，一般会使用sigmoid函数，因为一般期望的输出结果概率在0~1之间，如二分类，sigmoid可作为输出层的激活函数
+2、在隐藏层，tanh函数优于sigmoid函数。因为其取值范围介于-1 ~ 1之间，有类似数据中心化的效果。
+3、但实际应用中，tanh和sigmoid会在端值趋于饱和，造成训练速度减慢，故一般的深层网络的激活函数默认大多采用relu函数，也可以前面几层使用relu函数，后面几层使用sigmoid函数。
+
+#### Relu  Rectified Linear Unit 调整线性单元
+
+max(0,x)
+
 x<0时，输出为0, 否则输出x
 存在的问题：
 -  x<0时，输出为0，可能导致某些神经元死亡
 - 不是zero-center
 - 无负值
 
+tf.nn.relu
 
 
 ReLU在自变量大于0时导数为1,小于0时导数为0,因此可以解决梯度爆炸问题.
 
+ReLU 梯度：<0 梯度0  >0 梯度1
+
 ####  S 型激活函数
 S 型激活函数将加权和转换为介于 0 和 1 之间的值
+
+存在的问题：
+（1）梯度消失 
+
+（2）sigmod函数的输出不是以0为中心的
+
+（3）exp()计算的代价大
+
+##### Sigmoid
+f(x) = 1/(1+e^-x^)
+
+x = 0 ,f(x) =y=0.5
+x > 0,f(x) =y>0.5 & <1
+x <> 0,f(x) =y<0.5 & >0
+
+一般 x=5 基本上f(x) =y = 0.9933
+一般 x=-5 基本上f(x) =y = 0.0067
+tf.sigmoid
+
+
+#### tanh
+(-1,1)
+tanh(x) = sinh(x)/cosh(x) = (e^x^ - e^-x^)/(e^x^ + e^-x^)
+
+tanh(0) = 0 
+-5  = -0.9999
+-2.5 = -0.9866
+2.5 = 0.9866
+3 = 0.995
+5 = 0.9999
 
 
 #### 梯度消失
@@ -307,6 +409,12 @@ ReLU 激活函数有助于防止梯度消失。
 一旦 ReLU 单元的加权和低于 0，ReLU 单元就可能会停滞。它会输出对网络输出没有任何贡献的 0 激活，而梯度在反向传播算法期间将无法再从中流过。由于梯度的来源被切断，ReLU 的输入可能无法作出足够的改变来使加权和恢复到 0 以上。
 
 降低学习速率有助于防止 ReLU 单元消失。
+
+
+### Loss
+MSE 均方差
+
+
 ### Deep Learning
 深度学习是机器学习的一个子领域，研究受大脑结构和功能启发的算法。这些算法被称为人工智能网络，它由层层排列的函数（神经元）组成，它们将信号传递给其他神经元。这些信号是输入到网络中的数据的产物，从一层传递到另一层，并对网络进行缓慢的“调整”，实际上是在调整每个连接的突触强度（权重）。通过数据集中提取特征并识别交叉样本的趋势，网络最终学会做出预测。
 
@@ -347,6 +455,7 @@ model.add(Convolution3D(
 ```
 
 ### softmax
+适合多分类问题
 给定一些数字，Softmax函数就能将任意数字转化为概率
 
 比如，我们选定数字 -1、0、3和5。
@@ -356,6 +465,8 @@ denominator = e^-1^ + e^0^ + e^3^ + e^5^ = 169.87
 
 最后，e的指定数字次方的值就作为分子，由此计算可能性。
 ![](img/softmax.jpg)
+
+金字塔 -> 5没有3的两倍 -> 概率却是它的8倍，哪怕你比别人大一点，你的收益(概率)却比别人大很多
 
 https://victorzhou.com/blog/softmax/
 

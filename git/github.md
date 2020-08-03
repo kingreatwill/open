@@ -1,3 +1,5 @@
+<!--toc-->
+[TOC]
 # Github
 [GitHub 镜像访问](https://code.pingbook.top/blog/2020/How-To-Speed-Github.html)
 ## GItHub  刷新 ipconfig /flushdns
@@ -60,3 +62,117 @@ GitHub raw 域名并非 github.com 而是 raw.githubusercontent.com，上方的 
 jsdelivr 唯一美中不足的就是它不能获取 exe 文件以及 Release 处附加的 exe 和 dmg 文件。
 
 也就是说如果 exe 文件是附加在 Release 处但是没有在 code 里面的话是无法获取的。所以只能当作静态文件 cdn 用途，而不能作为 Release 加速下载的用途。
+
+
+## 使用技巧
+
+### blame 责任
+`#L10-L13` 行数
+https://github.com/kingreatwill/kingreatwill/blame/master/README.md#L10-L13
+行号可以点击，按住shift可以选择多行
+
+### trending排行榜
+https://github.com/trending/java?since=daily
+
+### gitattributes设置项目语言
+```
+*.html linguist-language=JavaScript
+```
+主要意思是把所有html文件后缀的代码识别成js文件。
+
+https://github.com/alexkaratarakis/gitattributes
+https://git-scm.com/docs/gitattributes
+
+
+### 通过提交的msg自动关闭issues
+
+比如有人提交了个issues:
+
+https://github.com/AlloyTeam/AlloyTouch/issues/6
+
+然后你去主干上改代码，改完之后提交填msg的时候，填入：
+
+fix https://github.com/AlloyTeam/AlloyTouch/issues/6
+
+这个issues会自动被关闭。当然不仅仅是fix这个关键字。下面这些关键字也可以：
+
+close
+closes
+closed
+fixes
+fixed
+resolve
+resolves
+resolved
+
+### 搜索
+https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github
+
+### in限制搜索范围
+
+使用方法：搜索的关键词 in: name / description / readme -> 项目名/项目描述/readme文件
+
+可以组合使用
+
+公式：搜索词 in:name(/description/readme)
+
+搜索项目名称和自述文件中包含秒杀的仓库   seckill in:name,readme
+
+限定符 |	示例
+---|---
+in:name	|jquery in:name 匹配仓库名称包含 "jquery" 的内容
+in:description	|jquery in:name,description 匹配仓库名或描述中包含 "jquery" 的内容(组合使用)
+in:readme	|jquery in:readme readme文件中包含"jquery"
+repo:owner/name	|repo:octocat/hello-world 查询某人的某个项目（查octocat 的 hello-world 仓库）
+
+
+### 关键词查找
+
+使用方法：搜索的关键词 stars / forks 通配符
+
+通配符选择`:>`或者`:>=`
+
+或者使用区间范围：下限..上限
+
+star和fork可以组合是使用
+
+示例：`spring boot forks 100..200 stars 1000..2000`
+
+```
+>n、>=n、<n、<=n：查询数量范围，可以是 starts、forks、topics......
+
+n..*、*..n：等同于 >=n 和 <=n
+
+n..m：取值范围 n 到 m
+```
+限定符|	示例
+---|---
+stars:n	|	stars:500 匹配 500 个 stars 的项目<br/>stars:10..20 匹配 starts 数量 10 到 20 的项目
+followers:n	|	node followers:>=10000 匹配关注者大于等于 10000 的 node 仓库
+forks:n	|	seckill forks:5  匹配有 5 个 forks 的秒杀项目
+created:YYYY-MM-DD|		seckill created:>2020-01-01 创建时间在 2020-01-01 之后的秒杀项目
+language:LANGUAGE	|	seckill language:java 匹配 java 语言编写的秒杀项目
+user:name	|	user:Jstarfish stars:>50 匹配 Jstarfish 用户 stars 数大于 50 的仓库
+location:LOCATION	|	location:beijing 匹配北京的朋友们
+互相组合使用|		seckill stars:>=500 fork:true language:java 匹配stars 数量大等于 500（包含 forks 数），且语言是 java 的秒杀项目<br/>location:beijing language:java 北京做 Java 开发的大佬
+
+
+### 项目内搜索文件
+
+在项目界面按`t`，项目变成列表形式
+
+#### 其它快捷键
+
+https://docs.github.com/en/github/getting-started-with-github/keyboard-shortcuts
+
+https://docs.github.com/en/desktop/getting-started-with-github-desktop/keyboard-shortcuts
+
+### 其他
+issue中输入冒号 : 添加表情
+任意界面，shift + ？显示快捷键
+issue中选中文字，R键快速引用
+
+使用方式：location:地区
+
+使用方式：language:语言
+
