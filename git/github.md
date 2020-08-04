@@ -63,6 +63,28 @@ jsdelivr 唯一美中不足的就是它不能获取 exe 文件以及 Release 处
 
 也就是说如果 exe 文件是附加在 Release 处但是没有在 code 里面的话是无法获取的。所以只能当作静态文件 cdn 用途，而不能作为 Release 加速下载的用途。
 
+## github ssh提交
+1. 查看git提交方式
+`git remote -v`
+
+2. 生成公钥
+默认公钥是存储在用户目录下的.ssh目录中，如下：
+```
+C:\Users\xxx\.ssh   # Windows
+/home/xxx/.ssh  # Linux
+```
+如果没有公钥的文件，输入如下命令生成公钥
+`ssh-keygen -t rsa -C "kingreatwill@qq.com"`
+密码可填可不填，填的话需要大于5位，不能太简单，一般存储普通项目直接回车跳过即可。
+
+用记事本打开id_rsa.pub，复制里面所有内容，进入github个人settings里。找到SSH and GPG keys，这里保存了所有与你github关联的公钥。
+
+3. 移除https方式 & 添加ssh提交方式
+git remote rm origin
+git remote add origin git@github.com:openjw/open.git
+
+4. 验证 & 正常
+`git remote -v`
 
 ## 使用技巧
 
