@@ -96,3 +96,7 @@ $ git fetch https://gitee.com/tinylab/cloud-lab.git
 $ git checkout -b master FETCH_HEAD
 ```
 git fetch 只能一个一个 branch fetch，fetch 完，把 FETCH_HEAD checkout 出来新建对应的分支即可。如果 git fetch 中途中断网络，可以再次 git fetch，git fetch 可以续传，不至于一断网就前功尽弃。
+
+
+
+[Git科普文，Git基本原理&各种骚操作](https://www.cnblogs.com/iisheng/p/13425658.html)

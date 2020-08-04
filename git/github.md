@@ -167,6 +167,9 @@ https://docs.github.com/en/github/getting-started-with-github/keyboard-shortcuts
 
 https://docs.github.com/en/desktop/getting-started-with-github-desktop/keyboard-shortcuts
 
+### 需求：Github上项目的master分支设置为不能直接合并需要review才能合并
+https://www.cnblogs.com/liucx/p/12132709.html
+
 ### 其他
 issue中输入冒号 : 添加表情
 任意界面，shift + ？显示快捷键
@@ -175,4 +178,6 @@ issue中选中文字，R键快速引用
 使用方式：location:地区
 
 使用方式：language:语言
+
+
 

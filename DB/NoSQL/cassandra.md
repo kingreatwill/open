@@ -72,6 +72,8 @@ https://www.datastax.com/，是一家位于加州的初创公司，提供了一�
 
 • 思科：主要使用在设备制造等场景
 
+• 华为：Cassandra我们全球的节点大概有三万多台，我们的数据规模大概有20PB。我们的集群数量可能有500多。我们最大的集群的节点数有600多节点。我们当前最大的一张表，单表达到三千亿条记录。
+
 ## cassandra使用场景判断
 什么时候应该考虑使用Cassandra
 
@@ -118,3 +120,42 @@ Cassandra写入性能是非常高的，Netflix曾经在一次测试中达到每�
 
 - 有弹性的模式定义
 cassandra的设计机制决定了，它的数据模式（列的增减）的改动的成本是非常低的。在mysql中，对一张大数据的表进行schema改动（列的增删改）的成本是非常非常高的，一不小心就会导致锁表，导致业务异常。
+
+## Cassandra nodetool常用操作
+![](img/cassandra-nodetool.jpg)
+```
+
+nodetool -h 192.168.30.231 -u ershixiong -pw 111111 repair读修复
+nodetool -h 192.168.30.231 -u ershixiong -pw 111111 status查看状态
+nodetool -h 192.168.30.231 -u ershixiong -pw 111111 info查看节点信息
+nodetool -h 192.168.30.231 -u ershixiong -pw 111111 removenodeHostID 移除一个节点
+nodetool -h 192.168.30.231 -u ershixiong -pw 111111 stopdaemon 关闭Cassandra服务
+
+
+nodetool decommission //关闭当前节点，并把数据复制到环中紧邻的下一个节点。
+nodetool snapshot //用于创建keyspace或table的快照信息，即数据备份，可用于数据的恢复
+nodetool clearsnapshot [-t snapshotname -- keyspacename]//删除快照
+nodetool refresh -- keyspacename tablename //把快照文件复制到对应表的目录下(data/keyspace/tablename-UUID) 运行该命令加载新的SSTables 不需要重启机器节点。
+nodetool describecluster //输出集群信息。
+nodetool describering //后面需要跟keyspace的名字，显示圆环的节点信息。
+nodetool drain //会把memtable中的数据刷新到sstable，并且当前节点会终止与其他节点的联系。执行完这条命令需要重启这个节点。一般在Cassandra版本升级的时候才使用这个命令。
+nodetool flush //会把memtable中的数据刷新到sstable，不需要重启节点。
+nodetool getendpoints keyspacename tablename fieldname//查看key分布在哪一个节点上
+nodetool getsstables keyspacename tablename fieldname//查看key分布在哪一个SSTable上
+nodetool netstats //获取节点的网络连接信息
+nodetool rebuild //当有新的数据中心加入，运行这个命令复制数据到数据中心
+nodetool tpstats //列出Cassandra维护的线程池的信息，你可以直接看到每个阶段有多少操作，以及他们的状态是活动中、等待还是完成。
+nodetool cfstats //查看表的一些信息，包括读的次数，写的次数，sstable的数量，memtable信息，压缩信息，bloomfilter信息。
+nodetool compact [keyspacename [tablename]] //合并sstable文件。省略表，压缩keyspace下面的所有表  省略keyspace，压缩所有keyspace下的所有表
+nodetool compactionstats //显示当前正在压缩的任务进度。
+nodetool scrub //清洗指定的表的SSTable, 试图删除损坏的部分，保留完好的部分。
+nodetool removenode HostID//删除一个节点 例：./nodetool removenode ec1411fc-4ac9-473d-8374-f2fc293e6472
+nodetool removenode status //查看删除状态
+nodetool removenode force //如果用status发现总在等待一个节点, 行一次force停掉
+
+
+
+将已经存在的SSTable载入到另外一个节点数不同或者复制策略不同的集群:
+sstableloader -d saprk129 /data/cassandra/data/test/user-6ef84b30a0cb11e685d08b1ab488d15d/
+sstablescrub 一般出现问题的时候先运行 nodetool scrub  如果第一步没解决问题，使用sstablescrub
+```

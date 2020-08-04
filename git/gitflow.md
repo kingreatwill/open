@@ -1,5 +1,5 @@
 ## 如何正确使用Git Flow
-
+https://guides.github.com/introduction/flow/
 1. SVN式开发，在当前分支下开发，每个人都有写的权限，都可以直接push
 2. Git Flow
 
