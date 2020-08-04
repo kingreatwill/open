@@ -7,6 +7,14 @@ tensorflow
 [tensorflow playground](http://playground.tensorflow.org/?hl=zh-cn)
 [机器学习课程](https://developers.google.cn/machine-learning/crash-course)
 
+V1.x
+![](img/tensorflow.gif)
+具体编程流程：
+建立计算图
+初始化变量
+建立会话
+在会话中执行图
+关闭会话
 
 
 [深度学习入门开源书，基于TensorFlow 2.0案例实战](https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book)

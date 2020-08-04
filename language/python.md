@@ -232,3 +232,13 @@ https://github.com/google/pytype
 Heartate——如监测心率般追踪程序运行
 https://github.com/alexmojaki/heartrate
 代码调用高亮依赖于executing (https://github.com/alexmojaki/executing) 库
+
+## 优美的绘图可视化
+http://www.bugman123.com/
+
+## 代码格式化
+https://github.com/psf/black 17k
+https://github.com/hhatto/autopep8 3.5k
+
+让 Python 代码更易维护的七种武器——代码风格（pylint、Flake8、Isort、Autopep8、Yapf、Black）测试覆盖率（Coverage）CI（JK）
+https://www.cnblogs.com/bonelee/p/11045196.html
