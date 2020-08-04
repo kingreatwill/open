@@ -89,6 +89,10 @@ git remote add origin git@github.com:openjw/open.git
 第一次提交如果失败，使用下面cmd
 `git push --set-upstream orgin master`
 
+5. tortoisegit 错误
+disconnected no supported authentication methods available(server sent: publickey)
+右键--小乌龟---settings--network--修改ssh client为git的ssh.exe
+`D:\Program Files\Git\usr\bin\ssh.exe`
 ## 使用技巧
 
 ### blame 责任
