@@ -1,0 +1,6 @@
+*.js linguist-language=Markdown
+*.css linguist-language=Markdown
+*.html linguist-language=Markdown
+*.py linguist-language=Markdown
+*.md linguist-language=Markdown
+*.go linguist-language=Markdown
