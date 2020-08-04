@@ -80,9 +80,10 @@ C:\Users\xxx\.ssh   # Windows
 用记事本打开id_rsa.pub，复制里面所有内容，进入github个人settings里。找到SSH and GPG keys，这里保存了所有与你github关联的公钥。
 
 3. 移除https方式 & 添加ssh提交方式
+```
 git remote rm origin
 git remote add origin git@github.com:openjw/open.git
-
+```
 4. 验证 & 正常
 `git remote -v`
 第一次提交如果失败，使用下面cmd
