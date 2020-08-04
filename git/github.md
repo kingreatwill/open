@@ -85,6 +85,8 @@ git remote add origin git@github.com:openjw/open.git
 
 4. 验证 & 正常
 `git remote -v`
+第一次提交如果失败，使用下面cmd
+`git push --set-upstream orgin master`
 
 ## 使用技巧
 
