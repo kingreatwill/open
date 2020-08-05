@@ -204,3 +204,6 @@ https://github.com/blender/blender
 ## CPU和内存
 PerfView是一个CPU和内存性能分析工具
 https://github.com/microsoft/perfview
+
+## 填补Win10缺失功能PowerToys
+https://github.com/microsoft/PowerToys 32.9k

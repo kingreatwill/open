@@ -69,7 +69,9 @@ https://developers.google.cn/machine-learning/crash-course/ml-intro?hl=zh-cn
 
 将验证数据传给训练好的模型，观察相应的效果：如果效果不好，就重新换参数，重新训练模型…直到找到一组参数，这组参数使得模型针对验证数据来说已经达到最优
 
-测试数据集：作为衡量最终模型性能的数据集
+测试数据集：作为衡量最终模型性能的数据集(客户验收的数据集-你一般没有)
+
+交叉验证：k-fold cross validation
 
 ### 梯度下降 Gradient Descent
 在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。
@@ -129,9 +131,48 @@ optimizer = optimizers.SGD(learning_rate=0.001, momentum=0.9)
 2. [A x B x C x D x E]：将五个特征的值相乘形成的特征组合。
 3. [A x A]：对单个特征的值求平方形成的特征组合。
 
+
+### 过拟合和欠拟合
+![](img/fitted.png)
+#### 如果减轻过拟合 - 正则化 和 Dropout 和Early stopping
+#### 如果知道过拟合 - 验证和测试
+
+### 动量 Momentum
+![](img/momentum.jpg)
+理想情况：（常见的的值0.9）
+1. 改变实际梯度下降的方向
+2. 当正常的梯度下降时 到达局部最小解时，由于动力的惯性 可以找到全局最小解
+
+### 学习速率
+![](img/learning-rate.jpg)
+
+#### Learning rate decay 衰弱
+![](img/learning-rate-decay.jpg)
+
+#### 如何做
+![](img/learning-rate-decay-adaptive.jpg)
+
+### Dropout
+![](img/dropout.jpg)
+### BatchNorm 归一化
+减少梯度消失，加快了收敛过程。
+
+起到类似dropout一样的正则化能力，一定程度上防止过拟合。
+
+放宽了一定的调参要求。
+
+可以替代LRN。使用：Tensorflow 提供了函数 tf.nn.lrn()来完成这个操作。
+
+### Early stopping
+当在验证集上面开始下降的时候中断训练，一种方式使用TensorFlow去实现，是间隔的比如每50 steps，在验证集上去评估模型，然后保存一下快照如果输出性能优于前面的快照，记住最后一次保存快照时候迭代的steps的数量，当到达step的limit次数的时候，restore最后一次胜出的快照。
+ 尽管early stopping实际工作做不错，你还是可以得到更好的性能当结合其他正则化技术一起的话
+![](img/early-stopping.png)
+
+每次训练一（N）个epoch就验证下,判断是否需要保存
+
 ### 正则化
 
-排除噪点
+排除噪点，增加泛化能力
 
 lambda（又称为正则化率）就是惩罚因子
 
@@ -160,7 +201,6 @@ L2 和 L1 采用不同的方式降低权重：
 因此，L2 和 L1 具有不同的导数：
 - L2 的导数为 2 * 权重。
 - L1 的导数为 k（一个常数，其值与权重无关）。
-
 
 ### 准确率、精确率、召回率
 精确率是针对我们预测结果而言的，它表示的是预测为正的样本中有多少是真正的正样本。
@@ -342,6 +382,7 @@ out = relu(w3@hide2 + b3)
 2、在隐藏层，tanh函数优于sigmoid函数。因为其取值范围介于-1 ~ 1之间，有类似数据中心化的效果。
 3、但实际应用中，tanh和sigmoid会在端值趋于饱和，造成训练速度减慢，故一般的深层网络的激活函数默认大多采用relu函数，也可以前面几层使用relu函数，后面几层使用sigmoid函数。
 
+
 #### Relu  Rectified Linear Unit 调整线性单元
 
 max(0,x)
@@ -424,7 +465,31 @@ MSE 均方差
 
 一般图像处理使用2DConvolution层
 
-3DConvolution层
+https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8ETensorFlow%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98-%E6%BA%90%E7%A0%81%E5%92%8CPPT/lesson38-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C
+
+#### 卷积核
+
+> DL 中的卷积核（就像一个w参数）是自己学到的
+
+[CV常见的卷积核](https://blog.csdn.net/Ibelievesunshine/article/details/102679466)
+
+- sharpen 锐化
+
+0|-1|0
+---|---|---
+-1|5|-1
+0|-1|0
+
+- Blur 模糊
+- Edge Detect 边缘检测
+
+0|1|0
+---|---|---
+1|-4|1
+0|1|0
+
+
+#### 3DConvolution层
 三维卷积对三维的输入进行滑动窗卷积，当使用该层作为第一层时，应提供input_shape参数。
 例如input_shape = (3,10,128,128)代表对10帧128*128的彩色RGB图像进行卷积 。
 
