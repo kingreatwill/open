@@ -157,10 +157,24 @@ Jupyter Notebook是一个开源的Web应用程序，允许用户创建和共享�
 https://conda.io/en/master/miniconda.html
 
 2. 使用conda创建虚拟（运行）环境。conda和pip默认使用国外站点来下载软件，我们可以配置国内镜像来加速下载（国外用户无须此操作）。
+
+[Anaconda 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
 ```
 # 配置清华PyPI镜像（如无法运行，将pip版本升级到>=10.0.0）
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
+常用命令
+```
+conda info --envs
+conda create --name penter python=3.8
+conda activate gluon
+
+conda list: 看这个环境下安装的包和版本
+conda install numpy scikit-learn: 安装numpy sklearn包
+conda env remove -n yourEnv: 删除你的环境
+conda env list: 查看所有的环境
+```
+
 3. 创建环境和安装环境依赖
 
 environment.yml 文件内容
