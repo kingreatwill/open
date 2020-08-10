@@ -25,8 +25,8 @@ https://ai.tencent.com/ailab/nlp/en/data/Tencent_AILab_ChineseEmbedding.tar.gz
 
 https://chinesenlp.xyz/#/zh/
 
-
-
+ChineseSemanticKB,chinese semantic knowledge base, 面向中文处理的12类、百万规模的语义常用词典，包括34万抽象语义库、34万反义语义库、43万同义语义库等，可支持句子扩展、转写、事件抽象与泛化等多种应用场景。
+https://github.com/liuhuanyong/ChineseSemanticKB
 
 ## xx
 http://rowanzellers.com/advice/
