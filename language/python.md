@@ -223,9 +223,6 @@ Apache Spark/Flink & Ray上的分布式Tensorflow、Keras和PyTorch
 
 https://github.com/uber/fiber
 
-## Python代码的静态类型分析器
-https://github.com/google/pytype
-
 
 ## Python执行实时可视化
 可以实时可视化 Python 程序的执行过程
@@ -237,8 +234,29 @@ https://github.com/alexmojaki/heartrate
 http://www.bugman123.com/
 
 ## 代码格式化
-https://github.com/psf/black 17k
-https://github.com/hhatto/autopep8 3.5k
 
 让 Python 代码更易维护的七种武器——代码风格（pylint、Flake8、Isort、Autopep8、Yapf、Black）测试覆盖率（Coverage）CI（JK）
 https://www.cnblogs.com/bonelee/p/11045196.html
+
+### black
+https://github.com/psf/black 17k
+### autopep8
+https://github.com/hhatto/autopep8 3.5k
+
+
+## Python方面的静态检查工具
+### pylint
+https://github.com/PyCQA/pylint 3k
+### Google的pytype
+https://github.com/google/pytype 2.8k
+### Microsoft的pyright
+https://github.com/microsoft/pyright 5.6k
+### Facebook的Pyre
+[Pysa](https://engineering.fb.com/security/pysa/)是一个专注于安全性的工具，它是在Facebook之前开源的静态检查工具Pyre的基础上进行开发的。
+Pysa还可以检查常见的web应用安全问题，例如，XSS和SQL注入。
+
+Pysa 的开发汲取了 Zoncolan 的经验，其使用了与 Zoncolan 相同的算法执行静态分析，甚至与 Zoncolan 共享了一些代码。像 Zoncolan 一样，Pysa 可追踪程序中的数据流。Zoncolan 是 Facebook 于 2019 年 8 月发布的用于 Hack 的静态分析器，主要面向类似于 PHP 的编程语言。
+
+https://github.com/facebook/pyre-check 4.1k
+
+https://pyre-check.org/docs/pysa-basics.html

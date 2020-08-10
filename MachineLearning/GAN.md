@@ -24,5 +24,31 @@ GAN是机器学习近十年来最有意思的想法，GAN，即生成对抗网�
 ### Networks：（深度）神经网络
 创作艺术品（Gatys 的 Neural Alorightm for Artistic Style），AlphaGo（CNN估值 + 蒙特卡洛剪枝），高质量的机器翻译（Attention + seq2seq）
 
+## 其它
+### gan-playground
+
+https://github.com/reiinakano/gan-playground
+```
+$ git clone https://github.com/reiinakano/gan-playground.git
+$ cd gan-playground
+$ npm install && bower install # Install node modules and bower components
+```
+
+### GAN Image-to-Image
+https://affinelayer.com/pixsrv/index.html
+
+### gans-awesome
+https://github.com/nashory/gans-awesome-applications
+
+### gan paper
+https://github.com/hindupuravinash/the-gan-zoo
+
+### GAN图像生成器—BigGAN
+
+https://github.com/sxhxliang/BigGAN-pytorch
+https://github.com/ajbrock/BigGAN-PyTorch
+
+https://github.com/ajbrock/Neural-Photo-Editor
+
 ## 参考
 [生成对抗网络（GAN）的半监督学习](https://www.toutiao.com/i6853711638252651022/)

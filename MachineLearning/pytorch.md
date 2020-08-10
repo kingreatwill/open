@@ -15,6 +15,9 @@ python -m visdom.server # 或者直接visdom
 
 
 ## pytorch安装
+
+
+
 ```
 # https://pytorch.org/
 pip install torch===1.5.1 torchvision===0.6.1 -f https://download.pytorch.org/whl/torch_stable.html
@@ -39,3 +42,18 @@ https://download.pytorch.org/whl/cu102/torchvision-0.6.1-cp37-cp37m-win_amd64.wh
 
 pip install xx.whl
 ```
+
+### conda安装
+`conda install pytorch torchvision cudatoolkit=10.1 -c pytorch`
+
+#### CONDA 安装本地包
+有的conda或pipy源太慢，conda install xxx或者pip install xxx下载会中断连接导致压缩包下载不全，本地的安装包没法完全安装,
+遇到这个问题时，我们可以用p2p工具-迅雷等先下载指定包再用conda或pip安装
+
+pip 安装本地包
+pip install   D:\XXX.whl
+
+conda 安装本地包
+conda install --use-local   D:\XXX.tar.bz2
+
+anaconda源访问地址：   https://repo.anaconda.com/pkgs/，可以下载相应的包到本地，然后按照上面的命令进行安装（或更新）。
