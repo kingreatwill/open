@@ -139,3 +139,48 @@ hey : https://github.com/rakyll/hey
 
 ## cockpit   
 web管理页面 连接linux
+
+## Linux 神器：bashtop
+
+查看bash
+bash --version
+升级到4.4以上
+
+```
+wget http://ftp.gnu.org/gnu/bash/bash-5.0.tar.gz
+解压缩：
+tar zxvf bash-5.0.tar.gz
+进入目录：
+cd bash-5.0
+开始编译：
+./configure&&make&&make install
+编译完成后，重启CentOS后，新版Bash生效。
+
+虽然通过/bin/bash --version命令可以显示已经更新到最新版了，但是$BASH_VERSION变量依旧还是老版本，我们还需要加入下面的软链接：
+
+mv /bin/bash /bin/bash.bak
+ln -s /usr/local/bin/bash /bin/bash
+再次重启系统
+reboot
+完成后echo $BASH_VERSION即可以显示为最新Bash版本了。
+```
+
+
+需要安装 yum install -y coreutils procps lm_sensors-libs
+
+查看是否安装
+rpm -qa|grep sensors
+
+
+bashtop 是一个 Linux 资源监视器，显示处理器、内存、磁盘、网络和进程的使用情况和状态。特征：
+
+易于使用，带有受游戏启发的菜单系统
+快速响应的 UI，带有 UP，DOWN 键可进行过程选择
+显示所选进程的详细统计信息
+可过滤流程
+在排序选项之间轻松切换
+将 SIGTERM，SIGKILL，SIGINT 发送到选定的进程
+可更改所有配置文件选项的 UI 菜单
+自动缩放图显示网络使用情况
+菜单直接显示是否有新版本可用
+GitHub 地址→https://github.com/aristocratos/bashtop
