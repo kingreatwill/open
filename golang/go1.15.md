@@ -1,7 +1,18 @@
 # Go 1.15 都有哪些值得关注的变化
 https://tip.golang.org/doc/go1.15
-## 新的链接器
-官方的设计文档地址：https://golang.org/s/better-linker，从命名看，是一个更好的链接器（这是废话），目前该链接器还未完成。
+
+正式版本：https://golang.org/doc/go1.15
+
+## 运行时 Runtime
+
+
+## 编译器 Compiler
+与Go 1.14相比，通过消除某些类型的GC元数据和更积极地消除未使用的类型元数据，Go 1.15减少了典型的二进制文件大小约5%。
+
+经过一个服务的测试：减少了3.8%，还是很不错的。
+
+## 新的链接器 Linker
+官方的设计文档地址：https://golang.org/s/better-linker，从命名看，是一个更好的链接器（这是废话）。
 
 ## 略微小了些的二进制文件
 
@@ -90,6 +101,7 @@ panic: main.MyString("hello")
 6）将小的 int 值转为 interface{} 不额外分配内存；
 
 ## 如何试用？
-
+```
 $ go install golang.org/dl/gotip
 $ gotip download
+```
