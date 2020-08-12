@@ -26,6 +26,34 @@ MinGW及MinGW-w64中的运行时API。
 
 [MinGW-w64](http://mingw-w64.sourceforge.net/)
 
+https://sourceforge.net/projects/mingw-w64/files/
+
+https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
+
+https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe
+
 [TDM-GCC](http://tdm-gcc.tdragon.net/)
 
 [TDM-GCC download](http://tdm-gcc.tdragon.net/download)
+
+
+
+Cygwin - Windows下的Linux开发环境
+http://www.cygwin.com/
+阿里云镜像
+http://mirrors.aliyun.com/cygwin/
+
+
+## Cygwin VS MinGW
+1. 从目标上说
+- MinGW 是让Windows 用户可以用上GNU 工具，比如GCC。
+- Cygwin 提供完整的类Unix 环境，Windows 用户不仅可以使用GNU 工具，理论上Linux 上的程序只要用Cygwin 重新编译，就可以在Windows 上运行。
+
+2. 从能力上说
+- 如果程序只用到C/C++ 标准库，可以用MinGW 或Cygwin 编译。
+- 如果程序还用到了POSIX API，则只能用Cygwin 编译。
+
+3. 从依赖上说
+- 程序经MinGW 编译后可以直接在Windows 上面运行。
+- 程序经Cygwin 编译后运行，需要依赖安装时附带的cygwin1.dll
+
