@@ -114,3 +114,9 @@ PATH=$PATH:/usr/local/webserver/php/bin:/usr/local/webserver/mysql/bin
 export PATH
 
 最后：执行 命令source /etc/profile或 执行点命令 ./profile使其修改生效，执行完可通过echo $PATH命令查看是否添加成功。
+
+## 将文件从dos格式、unix格式相互转化
+- `vi 文件名` 
+- `set ff?` 查看文件格式dos或unix的字样.
+- `set ff=dos`  #强制转化为dos格式，如果是要转化成unix格式就是   `set ff=unix`
+- `w!` 保存
