@@ -165,6 +165,18 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 常用命令
 ```
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+# 验证.condarc文件
+
+添加环境变量：
+D:\ProgramData\Anaconda3
+D:\ProgramData\Anaconda3\Library\bin （如果想在cmd里面直接conda activate ,这个要放在下个路径的前面，这个里面是conda.bat,下个里面是conda.exe。如果你只想使用conda命令，你可以值添加这一个变量，当然也可是D:\ProgramData\Anaconda3\condabin）
+D:\ProgramData\Anaconda3\Scripts
+D:\ProgramData\Anaconda3\Library\mingw-w64\bin
+
+
 conda info --envs
 conda create --name penter python=3.8
 conda activate gluon

@@ -11,8 +11,12 @@ https://tip.golang.org/doc/go1.15
 
 经过一个服务的测试：减少了3.8%，还是很不错的。
 
+Go 1.15 adds a "-spectre" flag to enable Spectre mitigations for the compiler and assembler.
+
 ## 新的链接器 Linker
 官方的设计文档地址：https://golang.org/s/better-linker，从命名看，是一个更好的链接器（这是废话）。
+
+Go链接器现在使用的资源更少，速度更快，并且改进了代码质量。一般来说，对于大型Go程序，链接的速度大约快了20%，而占用的内存却少了30%左右。
 
 ## 略微小了些的二进制文件
 
