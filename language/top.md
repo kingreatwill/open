@@ -31,5 +31,12 @@ https://stackoverflow.blog/2011/01/11/survey-says/
 https://db-engines.com/en/ranking
 
 
-## 语言排行
+## 语言排行 tiobe
 https://www.tiobe.com/tiobe-index/
+
+## 语言排行 IEEE Spectrum
+### 2020
+https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2020
+
+### 2019
+https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2019
