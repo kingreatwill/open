@@ -4,6 +4,36 @@ https://tip.golang.org/doc/go1.15
 正式版本：https://golang.org/doc/go1.15
 
 ## 运行时 Runtime
+- Converting a small integer value into an interface value no longer causes allocation.
+意思是说，将小整数转换为接口值不再需要进行内存分配。小整数是指 0 到 255 之间的数。
+
+```go
+package smallint
+
+func Convert(val int) []interface{} {
+    var slice = make([]interface{}, 100)
+    for i := 0; i < 100; i++ {
+        slice[i] = val
+    }
+
+    return slice
+}
+
+package smallint_test
+
+import (
+    "testing"
+    "test/smallint"
+)
+
+func BenchmarkConvert(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+        result := smallint.Convert(12)
+        _ = result
+    }
+}
+```
+分别使用 Go1.14 和 Go1.15 版本进行测试：
 
 
 ## 编译器 Compiler
