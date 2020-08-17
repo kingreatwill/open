@@ -33,7 +33,7 @@ func BenchmarkConvert(b *testing.B) {
     }
 }
 ```
-分别使用 Go1.14 和 Go1.15 版本进行测试：
+分别使用 Go1.14 和 Go1.15 版本进行测试,接着讲 smallint_test.go 中调用 Convert 的参数由 12 改为 256，再次使用 Go1.15 运行.
 
 
 ## 编译器 Compiler

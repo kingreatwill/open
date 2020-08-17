@@ -207,3 +207,8 @@ https://github.com/microsoft/perfview
 
 ## 填补Win10缺失功能PowerToys
 https://github.com/microsoft/PowerToys 32.9k
+
+## 冰点下载器
+可以自由下载百度，豆丁，道客巴巴，丁香，畅享网，it68，mbalib，mab.book118，open-open, 金字塔医学,大桔灯文库文档。 
+
+https://share.weiyun.com/P63B9Qyy
