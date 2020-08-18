@@ -733,3 +733,32 @@ POST /index/_update_by_query
 }
 ```
 
+## 分词器
+
+### 自定义分词器
+```
+PUT /xxx
+{
+  "aliases": {
+    "xxx": {}
+  },
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "rebuilt_cjk": {
+          "tokenizer":  "standard",
+          "filter": ["cjk_bigram","ngram"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "ProductNote": {
+        "type": "text", 
+        "analyzer" : "rebuilt_cjk"
+      }
+    }
+  }
+}
+```
