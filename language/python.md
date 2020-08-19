@@ -260,3 +260,6 @@ Pysa 的开发汲取了 Zoncolan 的经验，其使用了与 Zoncolan 相同的�
 https://github.com/facebook/pyre-check 4.1k
 
 https://pyre-check.org/docs/pysa-basics.html
+
+## Latex公式
+https://github.com/connorferster/handcalcs
