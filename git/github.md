@@ -171,6 +171,13 @@ git remote add origin git@github.com:openjw/open.git
 disconnected no supported authentication methods available(server sent: publickey)
 右键--小乌龟---settings--network--修改ssh client为git的ssh.exe
 `D:\Program Files\Git\usr\bin\ssh.exe`
+
+6. 增加gitee同步更新
+在gitee配置ssh公钥
+`git remote set-url --add origin git@gitee.com:kingreatwill/open.git`
+可以参考[如何同步多个 git 远程仓库](https://www.cnblogs.com/taadis/p/12170953.html)
+
+
 ## 使用技巧
 
 ### blame 责任
