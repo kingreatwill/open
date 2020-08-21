@@ -1,0 +1,1 @@
+[智能硬件不止树莓派，八款优秀智能硬件开源项目推荐](https://blog.csdn.net/ZicoChan/article/details/107810531)
