@@ -25,6 +25,19 @@ sudo apt-get install ubuntu-desktop unity compizconfig-settings-manager
 注意：中间有可能出现意想不到的状况，使用下面的命令重新安装即可
 sudo apt-get install ubuntu-desktop unity compizconfig-settings-manager --fix-missing
 
+#### 配置 compiz 并运行桌面环境
+
+启动 XLaunch，选择：“one large window”，Display number 设置成 0，其它一路默认，这里在上面设置过了，如果你没关就不用重现选择了，如果不小心关掉了，那么就重新来一次吧。我们用管理员身份运行ubuntu Bash并且中执行：
+```
+export DISPLAY=localhost:0
+ccsm
+```
+在 X-windows 中，即会弹出 ccsm 的配置界面，勾选需要的 Desktop 组件（只需要勾选 Desktop 中的 Ubuntu Unity Plugin 即可，其它默认）,
+
+点击 close 关闭 ccsm，执行命令：`compiz`
+短暂的加载后，在 X-windows 的界面中就能看到桌面版的 Ubuntu 了。
+
+
 ### 第二种：通过本机远程桌面连接
 #### xorg
 包括显卡驱动，图形环境库等等一系列软件包
