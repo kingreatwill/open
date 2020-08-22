@@ -65,8 +65,8 @@ C:\Users\xxx\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_7
 
 ## 将默认镜像源修改为国内的
 ```
-mv /etc/apt/sources.list /etc/apt/sources.listback
-vi /etc/apt/sources.list
+sudo mv /etc/apt/sources.list /etc/apt/sources.listback
+sudo vi /etc/apt/sources.list
 
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
 
