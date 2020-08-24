@@ -188,6 +188,17 @@ disconnected no supported authentication methods available(server sent: publicke
 新增openjw团队，创建kingreatwill项目，在该项目下创建仓库
 `git remote set-url --add origin git@e.coding.net:openjw/kingreatwill/open.git`
 
+8. 其它
+百度效率云：http://xiaolvyun.baidu.com
+
+阿里云Code托管平台：https://code.aliyun.com
+老版以前代码仓库容量限制是2G，数量是50
+**现在不限制了！！**
+新版：https://codeup.aliyun.com/
+`git remote set-url --add origin git@codeup.aliyun.com:kingreatwill/kingreatwill/open.git`
+
+
+
 ## 使用技巧
 
 ### blame 责任
