@@ -247,3 +247,18 @@ func main() {
     fmt.Println("发送成功", result)
 }
 ```
+
+## WebAssembly
+从Go到JavaScript的编译器，用于在浏览器中运行Go代码
+https://github.com/gopherjs/gopherjs
+
+
+https://github.com/hexops/vecty
+
+## git
+
+### git sql
+https://github.com/augmentable-dev/askgit
+
+也可以跑docker
+docker run -v `pwd`:/repo:ro askgit "SELECT * FROM commits"

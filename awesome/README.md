@@ -85,3 +85,11 @@ CEF是包含Chromium浏览器的应用框架
 https://github.com/librariesio/libraries.io
 
 https://libraries.io/
+
+## Mock
+在Node.js和浏览器中生成大量真实的假数据
+https://github.com/Marak/faker.js
+
+## 字体
+程序员字体
+https://github.com/tonsky/FiraCode
