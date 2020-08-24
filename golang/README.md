@@ -1,5 +1,5 @@
 
-
+![](https://github.com/polaris1119/golangweekly/raw/master/docs/imgs/issue054/history-of-go.png)
 在现有go版本中安装其他版本
 https://pkg.go.dev/golang.org/dl
 go get golang.org/dl/go1.10.7

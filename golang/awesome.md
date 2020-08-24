@@ -261,4 +261,13 @@ https://github.com/hexops/vecty
 https://github.com/augmentable-dev/askgit
 
 也可以跑docker
-docker run -v `pwd`:/repo:ro askgit "SELECT * FROM commits"
+docker run -v F:/github/openjw/openself:/repo:ro augmentable/askgit "SELECT * FROM commits"
+
+## Markdown
+将 markdown 中的 go 代码块进行格式化。
+https://github.com/po3rin/gofmtmd
+
+https://github.com/JohannesKaufmann/html-to-markdown
+
+## 嵌入文件
+https://github.com/golang/proposal/blob/master/design/draft-embed.md#background

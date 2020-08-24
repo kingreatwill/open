@@ -90,6 +90,9 @@ https://libraries.io/
 在Node.js和浏览器中生成大量真实的假数据
 https://github.com/Marak/faker.js
 
+HTTP mocking for Golang
+https://github.com/jarcoal/httpmock
+
 ## 字体
 程序员字体
 https://github.com/tonsky/FiraCode

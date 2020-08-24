@@ -54,6 +54,9 @@ raw.githubusercontent.com服务器iP：
 
 http://tool.chinaz.com/dns/?type=1&host=raw.githubusercontent.com&ip=
 
+找出最快的IP地址
+https://www.ipaddress.com/
+
 ```
 # GItHub  刷新 ipconfig /flushdns
 # 52.74.223.119     github.com
@@ -106,6 +109,9 @@ http://tool.chinaz.com/dns/?type=1&host=raw.githubusercontent.com&ip=
 https://github.com.cnpmjs.org
 https://hub.fastgit.org
 也就是说上面的镜像就是一个克隆版的Github，你可以访问上面的镜像网站，网站的内容跟Github是完整同步的镜像，然后在这个网站里面进行下载克隆等操作。
+
+https://gitclone.com/
+
 
 ## GitHub文件加速
 利用 Cloudflare Workers 对github release 、archive 以及项目文件进行加速，部署无需服务器且自带CDN.
