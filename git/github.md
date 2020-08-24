@@ -197,7 +197,9 @@ disconnected no supported authentication methods available(server sent: publicke
 新版：https://codeup.aliyun.com/
 `git remote set-url --add origin git@codeup.aliyun.com:kingreatwill/kingreatwill/open.git`
 
+企业设置-企业个性化 - kingreatwill
 
+第二个kingreatwill是代码组
 
 ## 使用技巧
 
