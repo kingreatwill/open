@@ -2,3 +2,5 @@
 
 [算法可视化](https://github.com/algorithm-visualizer/algorithm-visualizer)
 [算法可视化 demo](https://algorithm-visualizer.org/simple-recursive/cellular-automata)
+
+[hello-algorithm](https://github.com/geekxh/hello-algorithm)
