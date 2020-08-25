@@ -184,7 +184,7 @@ disconnected no supported authentication methods available(server sent: publicke
 可以参考[如何同步多个 git 远程仓库](https://www.cnblogs.com/taadis/p/12170953.html)
 由于gitee限制单个文件50M，单个仓库1G(企业500M)，总仓库5G，所以可以考虑coding
 
-> 如果需要gitee的贡献度的统计，那么你的密钥填写的邮箱是gitee设置的提交邮箱.
+> 如果需要gitee的贡献度的统计，那么你的本地git填写的邮箱（区别密钥填写的邮箱）是gitee设置的提交邮箱.
 
 7. 增加coding同步更新
 总容量100G, 单个仓库2G
