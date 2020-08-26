@@ -194,3 +194,47 @@ git checkout v1.4
 # git blame 找到谁动了某行代码
 git blame -L 50,50 init/main.c
 
+# git gc
+`git gc [--aggressive] [--auto] [--quiet] [--prune=<date> | --no-prune] [--force]`
+
+1、简单指令：
+`git gc`
+
+2、 --aggressive：仔细检查并清理，犹如电脑的全部杀毒，用时较久，一般上100个commit后可以执行，经常执行区别不大：
+`git gc --aggressive`
+
+3、 --auto：大概看一下仓库有没有需要整理，如果情况良好，不执行gc：
+`git gc --auto`
+
+4、—no-prune：不要整理任何零散的文件：
+`git gc -no-prune`
+
+5、–quiet：取消所有进度报告：
+`git gc --quiet`
+
+运行git prune命令即可，或者直接运行git gc --prune=now把所有的悬空对象都清空
+git gc  --prune=now
+
+## 其它
+1. 找出大文件
+`git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print $1}')"`
+
+2. 删除文件
+
+删文件，将 bigfile 换成上面找出的文件名
+
+git filter-branch --force --index-filter \
+  'git rm --cached --ignore-unmatch "bigfile"' \
+  --prune-empty -- --all
+
+删文件夹，将 wrongdir 换成上面找出的文件夹
+
+git filter-branch --force --index-filter \
+  'git rm -r --cached --ignore-unmatch "wrongdir"' \
+  --prune-empty -- --all
+
+3. 强制更新远程仓库
+(这一步执行了，就真没救了。请确认已备份。)
+
+git push --force --verbose --dry-run
+git push --force
