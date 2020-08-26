@@ -197,6 +197,9 @@ disconnected no supported authentication methods available(server sent: publicke
 阿里云Code托管平台：https://code.aliyun.com
 老版以前代码仓库容量限制是2G，数量是50
 **现在不限制了！！**
+
+云效DevOps 中的代码管理Codeup
+
 新版：https://codeup.aliyun.com/
 `git remote set-url --add origin git@codeup.aliyun.com:kingreatwill/kingreatwill/open.git`
 
