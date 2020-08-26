@@ -213,7 +213,7 @@ git blame -L 50,50 init/main.c
 `git gc --quiet`
 
 运行git prune命令即可，或者直接运行git gc --prune=now把所有的悬空对象都清空
-git gc  --prune=now
+git gc --prune=now
 
 ## 其它
 1. 找出大文件
