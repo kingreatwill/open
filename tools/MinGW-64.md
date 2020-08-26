@@ -57,3 +57,17 @@ http://mirrors.aliyun.com/cygwin/
 - 程序经MinGW 编译后可以直接在Windows 上面运行。
 - 程序经Cygwin 编译后运行，需要依赖安装时附带的cygwin1.dll
 
+## msys2
+https://www.msys2.org/
+https://sourceforge.net/projects/msys2/
+和cygwin差别不大
+唯一的优点应该是包比较新，可以通过pacman来更新
+
+https://github.com/msys2/msys2
+
+### pacman
+Pacman 是一个 软件包管理器, 作为 ArchLinux发行版的一部分. 它最早由 Arch Linux 的 Judd Vinet开发. Pacman 可以解决安装过程中的依赖问题，自动下载并且安装所有需要的软件包。Pacman包管理器是Arch Linux的一大亮点。它将一个简单的二进制包格式和易用的构建系统结合了起来。Pacman使得简单的管理与自定义软件包成为了可能，而不论他们来自于官方的Arch软件库或是用户自己创建的。
+
+### ArchLinux
+Arch Linux是一个轻量的、灵活的Linux发行版，遵循K.I.S.S.（保持简单和愚蠢）原则。
+https://github.com/archlinux

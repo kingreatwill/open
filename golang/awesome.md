@@ -1,6 +1,6 @@
+<!--toc-->
+[TOC]
 [awesome-go](https://github.com/avelino/awesome-go)
-
-
 ## x
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
@@ -24,7 +24,11 @@ https://github.com/containous/yaegi
 
 https://github.com/topxeq/gotx
 
+## 热更新
+https://github.com/cosmtrek/air
 
+
+https://github.com/topics/live-reload?l=go
 
 ## gops 分析机器上运行了哪些go进程
 go get -u github.com/google/gops
@@ -271,6 +275,24 @@ https://github.com/JohannesKaufmann/html-to-markdown
 
 ## 嵌入文件
 https://github.com/golang/proposal/blob/master/design/draft-embed.md#background
+
+- github.com/alecthomas/gobundle
+- github.com/GeertJohan/go.rice
+- github.com/go-playground/statics
+- github.com/gobuffalo/packr
+- github.com/knadh/stuffbin
+- github.com/mjibson/esc
+- github.com/omeid/go-resources
+- github.com/phogolabs/parcello
+- github.com/pyros2097/go-embed
+- github.com/rakyll/statik
+- github.com/shurcooL/vfsgen
+- github.com/UnnoTed/fileb0x
+- github.com/wlbr/templify
+- perkeep.org/pkg/fileembed
+
+### go-bindata
+https://github.com/go-bindata/go-bindata
 
 ## 视频下载
 
