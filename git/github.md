@@ -207,6 +207,31 @@ disconnected no supported authentication methods available(server sent: publicke
 
 第二个kingreatwill是代码组
 
+```
+使用带用户名密码的方式（可以避免后续每次都要输入用户名密码）
+
+git clone https://[username]:[password]@/remote
+
+但有时会出现用户名或密码中含有像@这样的特殊符号，而不能被正常解析
+
+我们需要通过下面方式进行重新编码
+
+String c = URLEncoder.encode("@","utf-8");
+System.out.println(c);
+
+console -> %40
+
+-------------------------
+[git 指定要提交的ssh key](https://www.cnblogs.com/chenkeyu/p/10440798.html)
+环境变量GIT_SSH_COMMAND：
+从Git版本2.3.0可以使用环境变量GIT_SSH_COMMAND，如下所示：
+
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_example" git clone example
+请注意，-i有时可以被您的配置文件覆盖，在这种情况下，您应该给SSH一个空配置文件，如下所示：
+
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_example -F /dev/null" git clone example
+```
+
 ## 使用技巧
 
 ### blame 责任
