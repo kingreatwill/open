@@ -224,6 +224,8 @@ console -> %40
 -------------------------
 [git 指定要提交的ssh key](https://www.cnblogs.com/chenkeyu/p/10440798.html)
 环境变量GIT_SSH_COMMAND：
+
+注意：使用git的cmd-> GIT_SSH_COMMAND="ssh -i xx" git push
 从Git版本2.3.0可以使用环境变量GIT_SSH_COMMAND，如下所示：
 
 GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_example" git clone example
