@@ -115,7 +115,7 @@ $ GOOS=linux GOARCH=amd64 go tool compile -S direct_topfunc_call.go
 
 - `(SB)`: `SB` 是一个虚拟寄存器，保存了静态基地址(static-base) 指针，即我们程序地址空间的开始地址。
 `"".add(SB)` 表明我们的符号位于某个固定的相对地址空间起始处的偏移位置 (最终是由链接器计算得到的)。换句话来讲，它有一个直接的绝对地址: 是一个全局的函数符号。
-`objdump` 这个工具能帮我们确认上面这些结论:
+`objdump` 这个工具能帮我们确认上面这些结论（需要go build direct_topfunc_call.go）:
 
 ```
 $ objdump -j .text -t direct_topfunc_call | grep 'main.add'

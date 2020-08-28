@@ -217,7 +217,7 @@ git gc --prune=now
 
 ## 其它
 1. 找出大文件
-`git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print $1}')"`
+`git rev-list --objects --all | grep -a "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print $1}')"`
 
 2. 删除文件
 
