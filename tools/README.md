@@ -179,6 +179,9 @@ http://www.pointofix.de/download.php
 ## ScreenToGif
 https://github.com/NickeManarin/ScreenToGif
 
+## 截图
+https://github.com/lupoDharkael/flameshot
+
 ## Microsoft Whiteboard
 ## Microsoft OneNote
 ## Microsoft Todo
