@@ -324,3 +324,8 @@ XVIDEOS	    https://xvideos.com	✓
 聯合新聞網	https://udn.com	✓			
 TikTok	    https://www.tiktok.com	✓			
 好看视频    https://haokan.baidu.com	✓
+
+
+## go包搜索
+https://api.godoc.org/search?q=etcd
+https://github.com/clearcodecn/gosearch
