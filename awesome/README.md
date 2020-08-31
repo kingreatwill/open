@@ -93,6 +93,13 @@ https://github.com/Marak/faker.js
 HTTP mocking for Golang
 https://github.com/jarcoal/httpmock
 
+Mimesis是一款用于mock数据的Python工具。
+https://github.com/lk-geimfari/mimesis
+
 ## 字体
 程序员字体
 https://github.com/tonsky/FiraCode
+
+## 其它
+中国程序员容易发音错误的单词
+https://github.com/shimohq/chinese-programmer-wrong-pronunciation
