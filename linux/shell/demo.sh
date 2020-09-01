@@ -10,6 +10,7 @@ function getDir() {
 		echo $fileName
 		cd $fileName
 		git pull
+		git reset --hard
 		GIT_SSH_COMMAND="ssh -i xxrsa" git push
     fi
     done

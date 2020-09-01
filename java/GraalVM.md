@@ -93,3 +93,13 @@ https://www.techworld.com.au/article/666629/oracle-pits-graalvm-against-google-g
 ## 红帽和 GraalVM 社区创建 GraalVM 下游发行版“Mandrel”
 
 红帽和 GraalVM 社区共同建立了新的 GraalVM 下游发行版，称为 Mandrel。红帽方面表示，该发行版本将为 [Quarkus](https://github.com/quarkusio/quarkus) 提供支持。Quarkus 已成为红帽运行时（Red Hat Runtimes）中全面支持的一个框架。
+
+
+## 淘汰的gcj
+GCJ 是GNU Compiler for the Java Programing Language 的简称。是Java版的GNU编译器。
+GCJ 是一个轻巧的，性能优越的Java语言编译器。它能够将Java源文件编译为Java字节码文件或者直接将Java源文件编译为本地机器码，它也能够将Java字节码文件编译为本地机器码。
+被编译的应用程序和GCJ运行时libgcj进行链接。该运行时提供了核心类库，垃圾回收器和一个字节码解释器。libgcj能够动态加载和解释类文件，产生混合编译/解释的应用程序。该运行时同名为GNU Classpath的工程整合在一起。目前支持的java版本最高1.5，最新的1.6还不支持。
+
+GCJ作为GNU编译器集合的一部分已有十多年的历史，但效率低下一直是它的主要问题。直到OpenJDK出现后，GCJ的使用频率越来越低。到了2017年，它已不再被维护，未来不会再成为Linux发行版的一部分。
+
+http://www.mingw.org/category/wiki/gcj

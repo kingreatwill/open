@@ -38,13 +38,14 @@ https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32
 
 
 
+## Cygwin
 Cygwin - Windows下的Linux开发环境
 http://www.cygwin.com/
 阿里云镜像
 http://mirrors.aliyun.com/cygwin/
 
 
-## Cygwin VS MinGW
+### Cygwin VS MinGW
 1. 从目标上说
 - MinGW 是让Windows 用户可以用上GNU 工具，比如GCC。
 - Cygwin 提供完整的类Unix 环境，Windows 用户不仅可以使用GNU 工具，理论上Linux 上的程序只要用Cygwin 重新编译，就可以在Windows 上运行。
