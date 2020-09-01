@@ -28,3 +28,9 @@ https://chinesenlp.xyz/#/zh/
 这个网站包含超过21000个不同的数据集，可以用于机器学习项目。
 https://www.openml.org/
 https://archive.ics.uci.edu/ml/datasets.php
+
+
+## 汽车型号数据集
+http://ai.stanford.edu/~jkrause/cars/car_dataset.html
+
+code: https://github.com/foamliu/Car-Recognition

@@ -23,3 +23,22 @@ nano ~/.ssh/authorized_keys     # Ctrl+O 保存   Ctrl+X 退出
 ```
 在win上找到ssh-keygen生成的.pub文件 放到~/.ssh/authorized_keys文件里
 
+## shell工具
+### xshell
+收费
+
+[家庭/学校免费](https://www.netsarang.com/zh/free-for-home-school/)
+
+[公测版 7 免费 - 公测版本可以一直试用到正式版上线。](https://www.netsarang.com/zh/version-7-open-beta/)
+
+### MobaXterm
+全能终端神器
+
+### terminus
+https://github.com/Eugeny/terminus
+
+### SecureCRT
+
+### finalshell
+
+### Putty、telnet
