@@ -374,6 +374,9 @@ Graphviz 有 6 个引擎，分别是：
 5. twopi - 径向布局，after Graham Wills 97。节点被放置在同心圆上，这取决于它们与给定根节点的距离。
 6. circo - 圆形布局，after Six and Tollis 99, Kauffman and Wiese 02。这适用于多个循环结构的某些图，例如某些电信网络。
 
+https://github.com/structurizr/dotnet
+可以导出到PlantUML和[DGML](https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/modeling/directed-graph-markup-language-dgml-reference.md)
+
 [flowchat](http://flowchart.js.org/)
 [Sequence](https://bramp.github.io/js-sequence-diagrams/)
 [Mermaid](https://mermaid-js.github.io/mermaid/#/)
