@@ -1,6 +1,18 @@
 # GraalVM
 [源码](https://github.com/oracle/graal)
 [下载](https://github.com/graalvm/graalvm-ce-builds/releases)
+GraalVM 还不支持交叉编译.
+## win 安装
+https://dev.to/skhmt/creating-a-native-executable-in-windows-with-graalvm-3g7f
+
+https://github.com/remkop/picocli-native-image-maven-demo
+
+java8 需要安装这两个
+http://www.microsoft.com/downloads/en/details.aspx?FamilyID=689655b4-c55d-4f9b-9665-2c547e637b70
+https://www.microsoft.com/en-us/download/details.aspx?id=8442   > GRMSDKX_EN_DVD.iso
+<!-- https://www.microsoft.com/en-us/download/confirmation.aspx?id=8279 -->
+java11 和8 都需要这个
+https://www.graalvm.org/docs/getting-started-with-graalvm/windows/
 
 ## 安装
 ```
@@ -39,6 +51,7 @@ $ gu install python
 $ gu install R
 ```
 native-image命令会把你的Java代码以及用到的相关库，都编译成本地的机器代码
+> native-image -jar code-with-quarkus-1.0.0-SNAPSHOT-runner.jar --no-fallback
 
 ## JavaScript, Java, Ruby以及R混合编程
 

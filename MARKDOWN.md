@@ -376,6 +376,7 @@ Graphviz 有 6 个引擎，分别是：
 
 https://github.com/structurizr/dotnet
 可以导出到PlantUML和[DGML](https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/modeling/directed-graph-markup-language-dgml-reference.md)
+  DGML是Directed Graph Markup Language的缩写，中文应该翻译为“有向图标记语言”。 DGML是微软在Visual Studio 2010中开始引入的一种完全符合XML格式语言，它主要是用来描述循环（cyclical）和非循环（acyclic）的有向图。有向图是由一系列的由边（link/edge）进行互联的节点（node）组成。
 
 [flowchat](http://flowchart.js.org/)
 [Sequence](https://bramp.github.io/js-sequence-diagrams/)
