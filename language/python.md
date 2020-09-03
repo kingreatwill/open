@@ -1,4 +1,14 @@
 
+动静类型与强弱类型
+![](img/language-type.jpg)
+https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language
+
+强类型：如果一门语言不对变量的类型做隐式转换，这种编程语言就被称为强类型语言 ；
+弱类型：与强类型相反，如果一门语言对变量的类型做隐式转换，那我们则称之为弱类型语言；
+动态类型：如果一门语言可以在运行时改变变量的类型，那我们称之为动态类型语言；
+静态类型：与动态类型相反，如果一门语言不可以在运行时改变变量的类型，则称之为静态类型语言；
+
+
 ## 学习资源
 数据科学Python笔记本:深度学习(TensorFlow、Theano、Caffe、Keras)、scikit-learn、Kaggle、大数据(Spark、Hadoop MapReduce、HDFS)、matplotlib、panda、NumPy、SciPy、Python essentials、AWS和各种命令行。
 https://github.com/donnemartin/data-science-ipython-notebooks
@@ -263,3 +273,6 @@ https://pyre-check.org/docs/pysa-basics.html
 
 ## Latex公式
 https://github.com/connorferster/handcalcs
+
+## object-mapper
+https://github.com/marazt/object-mapper

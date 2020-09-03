@@ -26,6 +26,15 @@ Cygwin，让你拥有Windows下的Linux环境
 [ABBYY FineReader 14] PDF ORC
 Adobe Acrobat
 
+[小型实用的工具](https://github.com/l3m0n/pentest_tools)
+- 信息收集
+- 内网攻防
+- 应急响应
+- 权限攻防
+- 漏洞利用
+- 辅助工具
+- 逆向工程/windows
+
 [语言在线](https://repl.it/languages)
 
 [Protoman](https://github.com/spluxx/Protoman)
