@@ -329,3 +329,6 @@ TikTok	    https://www.tiktok.com	✓
 ## go包搜索
 https://api.godoc.org/search?q=etcd
 https://github.com/clearcodecn/gosearch
+
+## 机器学习
+https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
