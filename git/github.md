@@ -41,7 +41,12 @@ https://github.com/devspace/awesome-github-templates
 
 评论可以单向同步到自己的blog系统
 
+同步部分分离出一个服务出来
 
+#### api参考
+https://github.com/search?q=github+api
+
+https://gitee.com/wuyu15255872976/gitee-client
 
 ### 提高 API 访问次数的配额
 默认情况下你是用匿名权限访问 github 接口的， github 的访问限制是一个小时最多 60 次请求，这显然是不够的，如何提高限制呢？
@@ -91,6 +96,9 @@ https://github.com/lepture/github-cards
 https://gh-card.dev/
 
 ## github域名 IP
+
+**github.io** 不能访问：DNS：223.5.5.5  和 备用DNS：223.6.6.6
+
 https://site.ip138.com/raw.githubusercontent.com/
 
 ```
