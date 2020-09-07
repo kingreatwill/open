@@ -10,3 +10,17 @@ OpenAPI规范始于Swagger规范，经过Reverb Technologies和SmartBear等公�
 
 Apifox = Postman + Swagger + Mock
 支持导入 OpenApi格式（原Swagger）、Postman、HAR、RAP2、yapi、Eolinker、DOClever、ApiPost、Apizza 等数据格式。
+
+## swagger
+
+### swagger-codegen-cli
+https://mvnrepository.com/artifact/io.swagger/swagger-codegen-cli
+https://mvnrepository.com/artifact/io.swagger.codegen.v3/swagger-codegen-cli
+
+java -jar swagger-codegen-cli-3.0.21.jar config-help -l python
+
+-D{optionName}={optionValue}
+
+https://gitee.com/api/v5/doc_json
+
+java -jar swagger-codegen-cli-3.0.21.jar  generate -i doc_json.json -l python -o client -DpackageName=gitee -DprojectName=pygitee -DpackageName=gitee -DprojectName=pygitee

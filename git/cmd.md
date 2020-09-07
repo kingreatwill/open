@@ -39,6 +39,23 @@ $ git commit --amend
 git status # git status -s ：--short 
 git diff
 
+# git 分支
+
+
+git branch google  #创建分支
+git checkout google # 切换分支
+git checkout -b google # 创建并切换
+git push origin newbranch # 推送本地分支到远程分支（远程没有会自动创建）
+git push origin newbranch:newbranch # 推送本地分支到远程分支（远程没有会自动创建，：前面的是本地分支，：后面是远程分支）
+git branch -d xx # 删除本地分支
+git pull origin dev # 拉取远程分支到本地
+
+有时在远程创建的分支本地没有：
+git branch -a # 查看所有分支
+git fetch --all # 拉取所有
+git checkout -b 0.1 origin/0.1  # 拉取远程分支0.1 并创建本地分支0.1
+git branch --set-upstream-to origin/0.1 # 关联本地当前分支到远程分支
+
 # git log
 git log：提交历史
 git log --pretty=oneline
