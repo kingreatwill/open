@@ -46,7 +46,11 @@ https://github.com/devspace/awesome-github-templates
 #### api参考
 https://github.com/search?q=github+api
 
+java
+https://gitee.com/openkylin/java-gitee
 https://gitee.com/wuyu15255872976/gitee-client
+
+python
 
 ### 提高 API 访问次数的配额
 默认情况下你是用匿名权限访问 github 接口的， github 的访问限制是一个小时最多 60 次请求，这显然是不够的，如何提高限制呢？

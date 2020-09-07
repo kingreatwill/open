@@ -20,3 +20,7 @@ AutoHotkey是一个windows上的开源软件，用于做自动化的处理
 - 通过 WinLIRC client script.对外部设备的信号进行回应
 - 可以运行AutoITv2的脚本
 - 将自动化脚本转变成exe文件
+
+
+### PE Tools
+https://github.com/petoolse/petools
