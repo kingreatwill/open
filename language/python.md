@@ -271,6 +271,15 @@ https://github.com/facebook/pyre-check 4.1k
 
 https://pyre-check.org/docs/pysa-basics.html
 
+### mypy
+
+
+### 还可以利用Git pre-commit hook规范检查
+如果你需要跳过这些钩子，你可以运行git commit --no-verify或git push --no-verify
+
+## 虚拟环境和包管理工具 Conda、Virtualenv、Pipenv、  pyenv、venv、
+## Pipx是一款跨平台的Python环境隔离管理工具
+
 ## Latex公式
 https://github.com/connorferster/handcalcs
 
