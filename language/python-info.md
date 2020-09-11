@@ -80,3 +80,25 @@ Google|	用缩进分隔 |	倾向水平，短而简单的文档
 [Python风格规范 — Google 开源项目风格指南](http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_style_rules/#comments)
 [Sphinx入门——快速生成Python文档](https://xercis.blog.csdn.net/article/details/103970663)
 [Sphinx](https://www.osgeo.cn/sphinx/index.html)是Python文档生成器
+
+### 智能提示
+1. 类型注解 方式1
+```
+from PIL import Image
+im = Image.open('Me.jpg') # type: Image.Image
+```
+
+2. 类型注解 方式2
+```
+from PIL import Image
+im = Image.open('Me.jpg')
+""":type: Image.Image"""
+```
+
+
+3. 使用isinstance指定
+```
+from PIL import Image
+im = Image.open('Me.jpg')
+assert isinstance(im, Image.Image)
+```
