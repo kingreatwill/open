@@ -59,8 +59,14 @@ https://github.com/XiaoMi/soar
 
 [基于Inception & SQLAdvisor & SOAR SQL审核平台WEB](https://github.com/myide/see)
 
+## Chrome
+chrome 插件
+彩云小译 翻译 保留原文
+
+## 内存
 [Cheat Engine 内存修改器](https://www.cheatengine.org/)
 
+## PE
 [LordPE](http://www.opdown.com/soft/84659.html) 主要包括PE文件分析、修改和脱壳三大功能
 
 1、一个托管的PE文件包含4个部分：PE表头，CLR表头，元数据，IL代码。PE表头是Windows操作系统要求的标准信息，主要时指出了文件的类型，GUI、CUI或是DLL(不同于以前的Dynamic Link Library，特指程序集文件的一种形式)。
@@ -82,8 +88,23 @@ https://github.com/XiaoMi/soar
 8.有限的 PE 资源查看处理功能。
 9.有限的图片及文本格式文件查看功能。
 
-chrome 插件
-彩云小译 翻译 保留原文
+## 交互式反汇编专业工具 IDA
+[逆向神器之IDA的使用](https://www.cnblogs.com/aikongmeng/articles/10657479.html)
+
+## 密码管理工具
+### KeePass 
+KeePass的插件
+- KeeAnywhere  - cloud storage providers 解压整个目录放入Plugins目录
+    - Amazon Drive (Experimental: see reason here)
+    - Amazon AWS S3
+    - Box
+    - Dropbox
+    - Google Drive
+    - HiDrive
+    - hubiC
+    - OneDrive
+- KeePassRPC - Firefox和chrome数据同步  将KeePassRPC.plgx文件放入Plugins目录
+    - 需要安装chrome插件https://github.com/pfn/passifox（chrome:chromeIPass（改名了KeePassHttp-Connector）   Firefox:PassIFox ）和https://github.com/pfn/keepasshttp/
 
 ## IDE 
 ```
