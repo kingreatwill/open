@@ -96,6 +96,9 @@ https://github.com/jarcoal/httpmock
 Mimesis是一款用于mock数据的Python工具。
 https://github.com/lk-geimfari/mimesis
 
+dotnet版本的faker.js
+https://github.com/bchavez/Bogus
+
 ## 字体
 程序员字体
 https://github.com/tonsky/FiraCode
