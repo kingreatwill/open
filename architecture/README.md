@@ -40,6 +40,24 @@ https://dzone.com/articles/5-major-software-architecture-patterns
 - I(Interface SegregationPrinciple)：接口隔离原则，简称ISP
 - D(Dependence Inversion Principle)：依赖倒置原则，简称DIP
 
+### 微服务设计IDEALS原则
+
+[微服务设计的原则：IDEALS，而不是SOLID](https://www.toutiao.com/i6871251586476147212)
+[Principles for Microservice Design: Think IDEALS, Rather than SOLID](https://www.infoq.com/articles/microservices-design-ideals/)
+
+- 接口分离（Interface segregation）
+    指的是不同类型的客户端（移动应用程序，web应用程序，CLI程序）应该能够通过适合其需求的协议与服务端交互。
+- 可部署性（deployability）
+    指的是在微服务时代，也就是DevOps时代，开发人员需要在打包、部署和运行微服务方面做出关键的设计决策和技术选择。
+- 事件驱动（event-driven）
+    指的是在任何时候，都应该对服务进行建模，通过异步消息或事件而不是同步调用。
+- 可用性胜于一致性（Availability over Consistency）
+    指的是最终用户更看重系统的可用性而不是强一致性，它们对最终一致性也很满意。
+- 松耦合（Loose coupling）
+    仍然是一个重要的设计问题，涉及传入和传出的耦合。
+- 单一责任（single responsibility）
+    是一种思想，它支持对不太大或太细的微服务进行建模，因为他们包含了适当数量的内聚功能。
+
 ### LoD原则（Law of Demeter）
 > Each unit should have only limited knowledge about other units: onlyunits "closely"related to the current unit.Only talk to your immediatefriends,don＇t talk to strangers.
 
