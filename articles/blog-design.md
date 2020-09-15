@@ -268,6 +268,14 @@ Email通知系统要注意垃圾邮件及用户隐私保护问题。
 Moonglade的通知系统采用Email方式，但设计比较基础。一个完善的通知系统需要采用消息队列及事件设计，并采用三方服务。例如Azure上可以使用Storage Queue + Function App + SendGrid，以免遇到大批量Email发送的时候原地爆炸。
 
 ## 博客协议或标准
+RSS / ATOM / RSD / OPML / APML / BlogML / Yahoo Media / iTunes
+
+https://github.com/shawnwildermuth/RssSyndication
+
+https://github.com/stimpy77/Argotic
+
+https://github.com/argotic-syndication-framework/Argotic
+
 ### RSS
 RSS（Really Simple Syndication）是一种基于XML的标准，普遍应用于包括博客在内的内容类网站，由Dave Winer于1999年发明，少年计算机天才Aaron Swartz参与定义规范，可惜后者于2013年1月自杀，年仅26岁。
 
@@ -305,6 +313,92 @@ Mozilla Thunderbird 和许多其他RSS阅读器网站和应用程序都支持以
 参考：https://en.wikipedia.org/wiki/OPML
 
 通俗易懂的说，OPML对于博客来说，就是告诉阅读器，这个博客一共有哪些订阅源以及他们各自的订阅地址，通常就是每个文章分类是一个订阅源，全部文章又是一个订阅源。
+
+#### OPML概念
+
+http://dev.opml.org/spec1.html
+
+http://dev.opml.org/spec2.html
+[使用并解析 OPML 格式的订阅列表来转移自己的 RSS 订阅（解析篇）](https://blog.walterlv.com/post/deserialize-opml-using-dotnet)
+- 典型的 OPML 文件
+https://edi.wang/opml
+http://home.opml.org/?format=opml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+    <title>walterlv</title>
+  </head>
+  <body>
+    <outline text="walterlv" title="walterlv" type="rss" xmlUrl="https://blog.walterlv.com/feed.xml" htmlUrl="https://blog.walterlv.com/" />
+
+    <outline title="Team" text="Team">
+      <outline text="林德熙" title="林德熙" type="rss" xmlUrl="https://blog.lindexi.com/feed.xml" htmlUrl="https://blog.lindexi.com/" />
+    </outline>
+
+    <outline title="Microsoft" text="Microsoft">
+      <outline text="Microsoft .NET Blog" title="Microsoft .NET Blog" type="rss" xmlUrl="https://blogs.msdn.microsoft.com/dotnet/feed/"/>
+      <outline text="Microsoft The Visual Studio Blog" title="Microsoft The Visual Studio Blog" type="rss" xmlUrl="https://blogs.msdn.microsoft.com/visualstudio/feed/"/>
+    </outline>
+  </body>
+</opml>
+```
+你可以很容易地看出它的一些特征。比如以 opml 为根，head 中包含 title，body 中包含分组的 outline。每一个 outline 中包含 text, type, xmlUrl 等属性。接下来我们详细描述这个格式。
+
+- OPML 文件中的节点解释
+**opml 根节点**
+`<opml>` 是 OPML 格式文件的根节点，其 version 属性是必要的。它的值可能为 1.0 或 2.0；如果是 1.0，则视为符合 [OPML 1.0 规范](http://dev.opml.org/spec1.html)；如果是 2.0，则视为符合 [OPML 2.0 规范](http://dev.opml.org/spec2.html)。额外的，值也可能是 1.1，那么也视为符合 1.0 规范。
+opml 根节点中包含 head 和 body 节点。
+**head 节点**
+head 节点可包含 0 个或多个元素：
+    - title 这就是 OPML 文档标题
+    - dateCreated 文档创建时间
+    - dateModified 文档修改时间
+    - ownerName 文档作者
+    - ownerEmail 文档作者的邮箱
+    - ownerId 文档作者的 url，要求不存在相同 Id 的两个作者
+    - docs 描述此文档的文档的 url
+    当然，这些都是可选的。
+    额外的，还有 expansionState, vertScrollState, windowTop, windowLeft, windowBottom, windowRight。
+
+**body 节点**
+body 节点包含一个或多个 outline 元素。
+**outline（普通）**
+outline 元素组成一个树状结构。也就是说，如果我们使用 OPML 储存 RSS 订阅列表，那么可以存为树状结构。在前面的例子中，我把自己的 RSS 订阅独立开来，把朋友和微软的 RSS 订阅分成了单独的组。
+
+outline 必须有 text 属性，其他都是可选的。而 text 属性就是 RSS 订阅的显示文字，如果没有这个属性，那么 RSS 的订阅列表中将会是空白一片。
+
+于是，我们解析 text 属性便可以得到可以显示出来的 RSS 订阅列表。对于前面的例子对应的 RSS 订阅列表就可以显示成下面这样：
+```
+- walterlv
+- Team
+    - 林德熙
+- Microsoft
+    - Microsoft .NET Blog
+    - Microsoft The Visual Studio Blog
+```
+outline 还有其他可选属性：
+type 指示此 outline 节点应该如何解析
+isComment 布尔值，为 true 或 false；如果为 true，那么次 outline 就只是注释而已
+isBreakpoint 适用于脚本，执行时可下断点
+created 一个时间，表示此节点的创建时间
+category 逗号分隔的类别：如果表示分类，则要用 / 分隔子类别；如果表示标签，则不加 /
+例如：/Boston/Weather, /Harvard/Berkman,/Politics（例子来源于[官方规范](http://dev.opml.org/spec2.html)）
+
+**outline（RSS 专属）**
+当 type 是 rss 时，还有一些 RSS 专属属性。这时，必要属性就有三个了：
+type
+text
+xmlUrl
+其中，xmlUrl 就指的是订阅源的 url 地址了。在官方规范中，规定解析器不应该总认为 text 存在，相比之下，xmlUrl 显得更加重要。
+还有一些可选属性：
+description
+htmlUrl
+language
+title
+version
+
+
 
 ### APML
 APML即Attention Profiling Mark-up Language，它比OPML更鲜为人知。APML目前在互联网上已经非常少见了，比WP还惨。作为博客行业的历史遗迹之一，抱着情怀简短介绍一下。
