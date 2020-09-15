@@ -131,3 +131,7 @@ https://github.com/IgnaceMaes/MaterialSkin
 ## 微服务框架
 https://github.com/Raiffeisen-DGTL/ViennaNET
 https://github.com/jamesmh/coravel
+
+## 扩展
+### String
+https://github.com/axuno/SmartFormat
