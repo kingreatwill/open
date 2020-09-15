@@ -6,6 +6,8 @@ docker volume create --name=pgdata
 
 docker run -d -p 5432:5432 -v pgdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123456@lcb --name postgresql --restart always postgres:12.0
 
+docker run -d -p 5432:5432 -v /d/dockerv/postgresql13/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123456@lcb --name postgresql --restart always postgres:13
+
 
 PGDATA=/var/lib/postgresql/data
 

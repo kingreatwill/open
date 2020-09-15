@@ -1,0 +1,6 @@
+
+## ERP
+### Odoo
+
+## CRM
+### Salesforce

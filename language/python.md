@@ -285,3 +285,9 @@ https://github.com/connorferster/handcalcs
 
 ## object-mapper
 https://github.com/marazt/object-mapper
+
+## Pymunk
+[是一个易于使用的pythonic 2d物理库](https://www.toutiao.com/i6871974915000500744)
+http://www.pymunk.org/en/latest/
+https://pypi.org/project/pymunk/
+https://github.com/viblo/pymunk

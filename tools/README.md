@@ -212,6 +212,11 @@ https://github.com/NickeManarin/ScreenToGif
 ## 截图
 https://github.com/lupoDharkael/flameshot
 
+## 图片处理
+### Imagine 
+Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
+https://github.com/meowtec/Imagine
+
 ## Microsoft Whiteboard
 ## Microsoft OneNote
 ## Microsoft Todo
@@ -251,3 +256,11 @@ https://share.weiyun.com/P63B9Qyy
 
 开源视频会议服务
 https://github.com/jitsi
+
+## 数据库管理工具
+- dbeaver 
+    - https://github.com/dbeaver/dbeaver 
+- navicat
+    - http://bbs.sdbeta.com/read-htm-tid-566717-page-1.html
+    - https://github.com/Deltafox79/Navicat_Keygen/releases
+    - https://www.cnblogs.com/poloyy/p/12231357.html
