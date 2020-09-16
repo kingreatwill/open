@@ -487,6 +487,7 @@ Trackback允许一个网站将更新通知给另一个网站。这是网站作�
 尽管功能和Pingback类似，但Trackback通常需要手工发送，并需要给对方提供一篇文章的摘要。而Pingback的过程是又双方博客系统共同完成的全自动操作。
 
 ### MetaWeblog
+http://1998.xmlrpc.com/metaWeblogApi.html
 
 MetaWeblog是一套基于XML-RPC 的Web Service，这套API定义了几个标准接口，用于文章、分类、标签等博客常规内容的CRUD。只要实现了这些接口的博客系统，就可以让博主不用通过浏览器登录博客后台写文章，而使用计算机上安装的客户端去写博客。主流的客户端包括 Windows Live Writer、Microsoft Word。在客户端里可以完整的编辑文章、插入图片、设置分类，甚至可以将博客的主题同步到客户端中。
 
@@ -497,6 +498,15 @@ MetaWeblog是一套基于XML-RPC 的Web Service，这套API定义了几个标准
 参考：https://en.wikipedia.org/wiki/MetaWeblog
 
 我的博客在2012年曾经996 007完整实现了MetaWeblog + RSD，但如今30岁了，在.NET Core里暂时不打算实现这个了，毕竟有多少人还在用Live Writer和Word写博客（哭。
+### AtomPub
+
+### Micropub
+https://www.w3.org/TR/micropub/
+
+### ActivityPub
+推荐标准（W3C Recommendation）
+https://www.w3.org/TR/2018/REC-activitypub-20180123/
+https://www.w3.org/TR/activitypub/
 
 ### RSD
 

@@ -208,6 +208,8 @@ http://www.pointofix.de/download.php
 
 ## ScreenToGif
 https://github.com/NickeManarin/ScreenToGif
+## Honeycam
+动画GIF软件-免费版限制多
 
 ## 截图
 https://github.com/lupoDharkael/flameshot
@@ -216,6 +218,25 @@ https://github.com/lupoDharkael/flameshot
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
 https://github.com/meowtec/Imagine
+
+## Honeyview
+图像查看器
+
+主要功能
+- 轻量而快速
+- 可以显示包括 GPS 信息在内的 JPEG 格式的 EXIF 信息
+- 对图像格式进行批量转换和调整
+- 支持显示 GIF 和 WebP 动图
+- 无需解压即可直接查看压缩包中的图像
+支持的格式
+- 图像格式: BMP, JPG, GIF, PNG, PSD, DDS, JXR, WebP, J2K, JP2, TGA, TIFF, PCX, PGM, PNM, PPM, BPG
+- Raw 图像格式: DNG, CR2, CRW, NEF, NRW, ORF, RW2, PEF, SR2, RAF
+- 动画图像格式: Animated GIF, Animated WebP, Animated BPG, Animated PNG
+- 无需解压即可直接查看压缩包中的图像: ZIP, RAR, 7Z, LZH, TAR, CBR, CBZ
+
+## Bandizip 
+ZIP 压缩包管理器 - 免费版含广告
+
 
 ## Microsoft Whiteboard
 ## Microsoft OneNote
@@ -264,3 +285,4 @@ https://github.com/jitsi
     - http://bbs.sdbeta.com/read-htm-tid-566717-page-1.html
     - https://github.com/Deltafox79/Navicat_Keygen/releases
     - https://www.cnblogs.com/poloyy/p/12231357.html
+

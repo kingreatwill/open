@@ -16,3 +16,5 @@ VMware Workstation 20H1预览版已经兼容了Hype-V，VMware workstation 20H1�
 https://download3.vmware.com/software/wkst/file/VMware-workstation-full-e.x.p-15679048.exe
 
 https://blogs.vmware.com/workstation/2020/05/vmware-workstation-now-supports-hyper-v-mode.html
+
+[VMware Workstation 16 发布](https://sysin.org/article/Download-VMware-Workstation-16/) 支持Hype-V
