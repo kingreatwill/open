@@ -501,11 +501,17 @@ MetaWeblog是一套基于XML-RPC 的Web Service，这套API定义了几个标准
 ### AtomPub
 
 ### Micropub
+推荐标准（W3C Recommendation）
+Micropub是一种客户端与服务器之间的协议，用于创建，更新，删除社交网络内容。Web以及本地应用程序可以使用Micropub向支持该协议的服务器发布消息，图片，事件，以及其他内容。用户可以选择在各种各样的客户端发布接口创建内容，同时保持对数据存储位置的控制。
 https://www.w3.org/TR/micropub/
+
+https://micropub.rocks/
 
 ### ActivityPub
 推荐标准（W3C Recommendation）
+ActivityPub 是用于构建去中心化社交网络应用的协议。
 https://www.w3.org/TR/2018/REC-activitypub-20180123/
+
 https://www.w3.org/TR/activitypub/
 
 ### RSD

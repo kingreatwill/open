@@ -4,6 +4,10 @@ chcp 65001 cmd 显示中文
 
 Cygwin，让你拥有Windows下的Linux环境
 
+## markdown
+### MarkdownMonster
+Markdown编辑工具-支持weblog
+### markdown在线转换工具
 [html 转markdown](https://tool.lu/markdown/) 
 
 [html 转markdown](https://github.com/domchristie/turndown )
@@ -12,12 +16,23 @@ Cygwin，让你拥有Windows下的Linux环境
 
 [table 转 md](https://tableconvert.com/)
 
-[my.cnf自动生成工具](https://imysql.com/my-cnf-wizard.html)
-
 [excel to markdown](http://www.tablesgenerator.com/markdown_tables)
 
-[BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)
+## mysql
+[my.cnf自动生成工具](https://imysql.com/my-cnf-wizard.html)
 
+[soar:优化mysql数据库复杂sql](https://www.toutiao.com/a6778396540256911884/)
+
+https://github.com/XiaoMi/soar
+
+[soar-web](https://github.com/xiyangxixian/soar-web)
+
+[基于Inception & SQLAdvisor & SOAR SQL审核平台WEB](https://github.com/myide/see)
+
+## language playgroud
+[语言在线](https://repl.it/languages)
+
+## 其它小工具
 [代码比较工具](https://blog.csdn.net/yueliang2100/article/details/82190257)
 
 [文件同步工具](https://freefilesync.org/)
@@ -35,10 +50,12 @@ Adobe Acrobat
 - 辅助工具
 - 逆向工程/windows
 
-[语言在线](https://repl.it/languages)
 
 [Protoman](https://github.com/spluxx/Protoman)
 Postman for protobuf APIs
+[BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)
+
+## 视频下载
 
 [视频下载1](https://github.com/soimort/you-get)
 ```
@@ -51,13 +68,7 @@ pip install --upgrade youtube-dl
 youtube-dl "https://www.bilibili.com/video/av77403752?from=search&seid=8721276388614459679"
 ```
 
-[soar:优化mysql数据库复杂sql](https://www.toutiao.com/a6778396540256911884/)
 
-https://github.com/XiaoMi/soar
-
-[soar-web](https://github.com/xiyangxixian/soar-web)
-
-[基于Inception & SQLAdvisor & SOAR SQL审核平台WEB](https://github.com/myide/see)
 
 ## Chrome
 chrome 插件
