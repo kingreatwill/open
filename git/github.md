@@ -177,10 +177,65 @@ https://www.ipaddress.com/
 这里提供两个最常用的镜像地址：
 
 https://github.com.cnpmjs.org
-https://hub.fastgit.org
+https://hub.fastgit.org - https://github.com/k0shk0sh/FastHub/
 也就是说上面的镜像就是一个克隆版的Github，你可以访问上面的镜像网站，网站的内容跟Github是完整同步的镜像，然后在这个网站里面进行下载克隆等操作。
 
 https://gitclone.com/
+
+自定义脚本：clone
+```perl
+#!/bin/perl
+
+# 参考知乎文章: https://zhuanlan.zhihu.com/p/165413464
+# 两个   github.com  镜像网址来实现 clone 加速
+#   1.   github.com.cnpmjs.org
+#   2.   https://hub.fastgit.org
+
+
+use strict;
+use warnings;
+
+sub git_clone(@){
+    my $origin_url = $_[0];
+    my $url = $origin_url =~ s/github\.com/hub\.fastgit\.org/r;
+    printf "%s\n",$url;
+    system("git clone $url");
+    my @arr = split(/\/+/, $origin_url =~ s/(\.git)$//r);
+    my $dir = $arr[-1];
+    chdir $dir;
+    system("git remote set-url origin $origin_url");
+    system("git fetch")
+}
+
+sub print_usage() {
+    print "two mthods to clone github repo\n";
+    print "  1. perl clone <repo>\n";
+    print "  2. ./clone <repo>\n";
+}
+
+my $argc = @ARGV;
+if($argc == 0){
+    print_usage();
+    exit(1);
+}
+my $repo = $ARGV[0];
+if($repo =~ m/^git@/){
+    print "only support https url now, please try the follow command:\n\n";
+    $repo = $repo =~ s/:/\//r;
+    $repo = $repo =~ s/^git@/https:\/\//r;
+    print "    perl clone $repo \n\n";
+    print "or\n\n";
+    print "    clone $repo \n\n";
+    exit(1);
+}
+if($ARGV[0] =~ m/(-h)|(--help)|(^help$)/){
+    print_usage();
+    exit(0);
+}
+
+git_clone($ARGV[0]);
+```
+use: clone https://github.com/google/pprof.git
 
 
 ## GitHub文件加速
