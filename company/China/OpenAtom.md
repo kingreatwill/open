@@ -11,6 +11,9 @@ https://gitee.com/OpenAtomFoundation
 OpenHarmony是HarmonyOS的开源版
 https://openharmony.gitee.com/openharmony
 
+> Samsung [Tizen](https://www.tizen.org/)
+> 源码：https://review.tizen.org/git/
+> Google [Fuchsia OS]()
 
 HarmonyOS应用开发集成开发环境（IDE） – DevEco Studio 2.0
 https://www.harmonyos.com/cn/develop

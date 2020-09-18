@@ -1,6 +1,8 @@
 ## dotnet 5
 [Performance Improvements in .NET 5](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/)
 [Announcing .NET 5.0 RC 1](https://devblogs.microsoft.com/dotnet/announcing-net-5-0-rc-1/)
+[废弃.NET Standard标准-The future of .NET Standard](https://devblogs.microsoft.com/dotnet/the-future-of-net-standard/)
+
 ### 发布：
 https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish
 
