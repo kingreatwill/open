@@ -31,6 +31,7 @@ https://github.com/XiaoMi/soar
 
 ## language playgroud
 [语言在线](https://repl.it/languages)
+[rust](https://play.rust-lang.org/)
 
 ## 其它小工具
 [代码比较工具](https://blog.csdn.net/yueliang2100/article/details/82190257)
@@ -129,6 +130,10 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "$(pwd):/home/p
 # Windows
 docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/project:cached" theiaide/theia:next --inspect=0.0.0.0:9229
 ```
+### Eclipse Theia
+web IDE
+https://github.com/eclipse-theia/theia
+
 
 ## Listary Pro
 好用的搜索工具
