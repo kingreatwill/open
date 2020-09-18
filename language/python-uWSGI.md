@@ -3,6 +3,8 @@ https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html
 https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html#deploying-flask
 https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html#deploying-django
 先定义好uwsgi配置文件
+参数：https://uwsgi-docs.readthedocs.io/en/latest/Options.html
+
 uwsgi.ini
 ```
 socket=/tmp/app.sock
@@ -17,6 +19,101 @@ processes=8
 threads=4
 lazy-apps=true
 ```
+```
+# uwsgi.ini file
+[uwsgi]
+
+# Django-related settings
+
+# django项目运行的端口号
+socket = :8001
+
+# django项目的根目录，同名目录的外层
+# the base directory (full path)
+# chdir = /home/blog/Blog
+chdir = /home//www/blog/Blog
+
+# django项目同名目录内层自动生成的wsgi.py的路径，如果你的项目叫taobao，就填taobao.wsgi
+# Django s wsgi file
+module = Blog.wsgi
+
+# 开启主进程
+# process-related settings
+# master
+master = true
+
+# 最大进程数量
+# maximum number of worker processes
+processes = 4
+
+# 停止uwsgi时自动清理
+# ... with appropriate permissions - may be needed
+# chmod-socket = 664
+# clear environment on exit
+vacuum = true
+
+# 指定后台输出日志信息的文件，如果遇到不能正常使用，可以使用cat /var/log/uwsgi_log.log查看报错信息
+daemonize = /var/log/uwsgi_log.log
+
+# 指定运行时候的pid文件，也可以用来停止进程， uwsgi --stop /var/run/uwsgi_pid.log
+pidfile = /var/run/uwsgi_pid.log
+
+# 指定虚拟环境，如果没有使用虚拟环境可以不用指定
+home = /usr/local/django2.2
+```
+```
+master = true 
+#启动主进程，来管理其他进程，其它的uwsgi进程都是这个master进程的子进程，如果kill这个master进程，相当于重启所有的uwsgi进程。
+
+chdir = /web/www/mysite 
+#在app加载前切换到当前目录， 指定运行目录
+
+module = mysite.wsgi 
+# 加载一个WSGI模块,这里加载mysite/wsgi.py这个模块
+
+py-autoreload=1  
+#监控python模块mtime来触发重载 (只在开发时使用)
+
+lazy-apps=true  
+#在每个worker而不是master中加载应用
+
+socket = /test/myapp.sock 
+#指定socket文件，也可以指定为127.0.0.1:9000，这样就会监听到网络套接字
+
+processes = 2 #启动2个工作进程，生成指定数目的worker/进程
+
+buffer-size = 32768 
+#设置用于uwsgi包解析的内部缓存区大小为64k。默认是4k。
+
+daemonize = /var/log/myapp_uwsgi.log 
+# 使进程在后台运行，并将日志打到指定的日志文件或者udp服务器
+
+log-maxsize = 5000000 #设置最大日志文件大小
+
+disable-logging = true #禁用请求日志记录
+
+vacuum = true #当服务器退出的时候自动删除unix socket文件和pid文件。
+
+listen = 120 #设置socket的监听队列大小（默认：100）
+
+pidfile = /var/run/uwsgi.pid #指定pid文件
+
+enable-threads = true 
+#允许用内嵌的语言启动线程。这将允许你在app程序中产生一个子线程
+
+reload-mercy = 8 
+#设置在平滑的重启（直到接收到的请求处理完才重启）一个工作子进程中，等待这个工作结束的最长秒数。这个配置会使在平滑地重启工作子进程中，如果工作进程结束时间超过了8秒就会被强行结束（忽略之前已经接收到的请求而直接结束）
+
+max-requests = 5000 
+#为每个工作进程设置请求数的上限。当一个工作进程处理的请求数达到这个值，那么该工作进程就会被回收重用（重启）。你可以使用这个选项来默默地对抗内存泄漏
+
+limit-as = 256 
+#通过使用POSIX/UNIX的setrlimit()函数来限制每个uWSGI进程的虚拟内存使用数。这个配置会限制uWSGI的进程占用虚拟内存不超过256M。如果虚拟内存已经达到256M，并继续申请虚拟内存则会使程序报内存错误，本次的http请求将返回500错误。
+
+harakiri = 60 
+#一个请求花费的时间超过了这个harakiri超时时间，那么这个请求都会被丢弃，并且当前处理这个请求的工作进程会被回收再利用（即重启）
+```
+
 启动uwsgi服务器
 uwsgi --ini uwsgi.ini
 
