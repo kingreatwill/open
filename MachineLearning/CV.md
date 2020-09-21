@@ -10,6 +10,10 @@
 
 ### 人脸识别
 
+#### BlazeFace
+https://arxiv.org/abs/1907.05047
+https://google.github.io/mediapipe/solutions/face_detection
+
 ## Action Recognition
 https://github.com/jinwchoi/awesome-action-recognition
 
@@ -18,6 +22,16 @@ https://github.com/kenshohara/3D-ResNets-PyTorch
 ### OpenPose
 https://github.com/felixchenfy/Realtime-Action-Recognition
 
+### BlazePose
+谷歌研究人员提出全新神经网络BlazePose，可健身跟踪、手语识别
+https://arxiv.org/pdf/2006.10204.pdf
+https://arxiv.org/abs/2006.10204
+https://www.arxiv-vanity.com/papers/2006.10204/
+
+[推出 BlazePose：实现设备端实时人体姿态追踪](https://blog.csdn.net/jILRvRTrc/article/details/108590889)
+
+### BlazePalm
+https://google.github.io/mediapipe/solutions/hands
 
 ## 自动驾驶
 [百度apollo](https://github.com/ApolloAuto/apollo)
