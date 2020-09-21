@@ -250,6 +250,13 @@ https://github.com/meowtec/Imagine
 - 动画图像格式: Animated GIF, Animated WebP, Animated BPG, Animated PNG
 - 无需解压即可直接查看压缩包中的图像: ZIP, RAR, 7Z, LZH, TAR, CBR, CBZ
 
+### ImageMagick 
+https://imagemagick.org/script/download.php#windows
+
+ImageMagick 是一个用来创建、编辑、合成图片的软件。它可以读取、转换、写入超过 200 种格式的图片，包括 PNG、JPEG、GIF、HEIC、TIFF、DPX、EXR、WebP、Postscript、PDF 和 SVG 等等。
+
+ImageMagick 可被用于图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线， 多边形，椭圆，曲线，附加到图片伸展旋转等。支持 Linux、Windows、Mac OS X、iOS、Android OS 平台。
+
 ## Bandizip 
 ZIP 压缩包管理器 - 免费版含广告
 

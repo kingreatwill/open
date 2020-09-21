@@ -21,3 +21,15 @@ for %x in (powershell.exe) do @echo %~$PATH:x
 ### powershell
 Get-Command where # Get-Command and its alias gcm
 gcm where
+
+## mem
+free按1024进制计算
+free -g # 以G显示
+free -m # 以M显示
+
+cat /proc/meminfo|grep Slab
+or
+echo `cat /proc/meminfo|grep Slab|awk '{mem += $2} END {print mem/1024/1024}'` GB
+
+echo `ps aux |awk '{mem += $6} END {print mem/1024/1024}'` GB
+

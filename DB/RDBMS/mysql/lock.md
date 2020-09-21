@@ -82,3 +82,11 @@ Innodb 支持对包含空间列的列进行 SPATIAL 索引(参见11.4.8节“优
 
 http://i.youku.com/u/UMTcwMTg3NDc1Mg==
 https://yq.aliyun.com/edu/lesson/play/508
+
+### 在MySQL中使用insert into table1 select * from table2时，会对table2进行加锁
+使用`select @@global.tx_isolation,@@session.tx_isolation;`查询事务隔离级别，REPEATABLE-READ是MySQL默认的事务隔离级别
+使用`show engine innodb status;`查询锁状况
+[MySQL insert into select锁表的问题（上）](https://blog.csdn.net/llliarby/article/details/78697327)
+
+[MySQL insert into select锁表的问题（下）](https://blog.csdn.net/llliarby/article/details/78698269)
+
