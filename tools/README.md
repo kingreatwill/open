@@ -309,3 +309,18 @@ https://github.com/jitsi
     - https://github.com/Deltafox79/Navicat_Keygen/releases
     - https://www.cnblogs.com/poloyy/p/12231357.html
 
+## Web 调试神器
+https://github.com/microsoft/playwright-cli
+https://playwright.dev/
+```
+
+npm i -D playwright
+
+npx playwright-cli --help
+
+npx playwright-cli codegen wikipedia.org
+# Open page in Chromium
+npx playwright-cli open example.com
+# Open page in WebKit
+npx playwright-cli wk example.com
+```

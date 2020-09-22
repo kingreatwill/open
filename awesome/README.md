@@ -103,6 +103,9 @@ https://github.com/bchavez/Bogus
 程序员字体
 https://github.com/tonsky/FiraCode
 
+## E-Books
+https://github.com/trumpowen/All-Programming-E-Books-PDF
+
 ## 其它
 中国程序员容易发音错误的单词
 https://github.com/shimohq/chinese-programmer-wrong-pronunciation

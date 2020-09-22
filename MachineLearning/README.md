@@ -56,6 +56,25 @@ https://github.com/josephmisiti/awesome-machine-learning
 为了使用机器学习技术并获得良好的性能，人类通常需要参与数据采集、特征提取工程、模型和算法选择。这张图显示了一个典型的机器学习应用程序管道，以及AutoML如何参与其中尽可能减少人类的参与。
 https://arxiv.org/pdf/1810.13306.pdf
 
+### auto-sklearn
+https://automl.github.io/auto-sklearn/master/
+
+### TPOT
+Tree-based Pipeline Optimization Tool, TPOT
+TPOT 文档地址：https://epistasislab.github.io/tpot/。
+
+TPOT 的教程示例地址：https://epistasislab.github.io/tpot/examples/
+
+### HyperOpt
+HyperOpt 是一个用于贝叶斯优化的 Python 库
+http://hyperopt.github.io/hyperopt-sklearn/
+
+
+### AutoKeras
+文档地址：https://autokeras.com/
+
+教程地址：https://towardsdatascience.com/automl-creating-top-performing-neural-networks-without-defining-architecture-c7d3b08cddc
+
 
 ## Reddit 票选：2019 年绝对不能错过的机器学习论文
 ### 1. 理论研究 
