@@ -12,3 +12,6 @@ https://github.com/awslabs/djl
 - Amazon 的 Deep Java Library（DJL）是这个新标准的其中一种实现
 - VisRec 是 JSR 381 的一部分，用于图像的视觉识别
 - DJL 包含许多预训练的模型
+
+## Oracle开源Java机器学习库Tribuo
+https://github.com/oracle/tribuo
