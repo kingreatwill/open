@@ -324,3 +324,6 @@ npx playwright-cli open example.com
 # Open page in WebKit
 npx playwright-cli wk example.com
 ```
+
+## cat 的替代品bat
+https://github.com/sharkdp/bat 22k
