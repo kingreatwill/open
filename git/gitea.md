@@ -347,6 +347,7 @@ ssh -t DESKTOP-PK520IC@localhost.xxx.com # gitea
 
 3. [更多](https://git-scm.com/download/gui/win)
 4. tortoisegit
+5. GitExtensions
 ## 处理合并冲突
 - git status  查看状态
 

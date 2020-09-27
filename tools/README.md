@@ -327,3 +327,7 @@ npx playwright-cli wk example.com
 
 ## cat 的替代品bat
 https://github.com/sharkdp/bat 22k
+- 可以高亮众多语言的语法，Markdown 中的代码也可以高亮；
+- 和 Git 集成，注意下图左侧的 ~+；它能自动和 Git 沟通，识别出修改；
+- 和 less 一样，自带分页；
+- 其他 cat 的一些功能；
