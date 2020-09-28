@@ -43,3 +43,15 @@ https://github.com/kangvcar/InfoSpider
 
 ### 通过用户名在社交网络上搜索社交媒体账户
 https://github.com/sherlock-project/sherlock
+
+## Tools
+### linq
+https://github.com/viralogic/py-enumerable
+
+## 文档
+https://github.com/scanny/python-pptx
+
+https://github.com/python-openxml/python-docx
+
+https://foss.heptapod.net/openpyxl/openpyxl
+https://pypi.org/project/openpyxl/
