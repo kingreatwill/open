@@ -233,6 +233,46 @@ https://doc.rust-lang.org/cargo/reference/config.html
 [The Manifest Format 清单格式](https://cargo.budshome.com/reference/manifest.html)
 
 ## 交叉编译
+
+格式`{arch}-{vendor}-{sys}-{abi}`
+例如arm-unknown-linux-gnueabihf
+- architecture: arm.
+- vendor: unknown. In this case, no vendor was specified and/or is not important.
+- system: linux.
+- ABI: gnueabihf. gnueabihf indicates that the system uses `glibc` as its `C standard library (libc)` implementation and has hardware accelerated floating point arithmetic (i.e. an FPU).
+
+有一些省略了vendor 或者 abi
+例如x86_64-apple-darwin
+- architecture: x86_64.
+- vendor: apple.
+- system: darwin.
+
+元素解释
+- Architecture: On UNIXy systems, you can find this with the command `uname -m`.
+    架构在UNIX系统上可以`uname -m`查看
+    ```
+    Administrator@DESKTOP-E3H0GN4 MINGW64 ~/Desktop
+    $ uname -m
+    x86_64
+    ```
+
+- Vendor: On linux: usually unknown. On windows: pc. On OSX/iOS: apple
+    `在linux上：通常为unknown。在Windows上：pc。在OSX / iOS上：apple`
+
+- System: On UNIXy systems, you can find this with the command `uname -s`
+    在UNIX系统上可以`uname -s`查看
+- ABI: On Linux, this refers to the libc implementation which you can find out with ldd --version. Mac and *BSD systems don't provide multiple ABIs, so this field is omitted. On Windows, AFAIK there are only two ABIs: gnu and msvc.
+    `在Linux上，这是指您可以通过找到的libc实现ldd --version。Mac和* BSD系统不提供多个ABI，因此省略此字段。在Windows上，AFAIK只有两个ABI：gnu和msvc`
+
+
+arm-unknown-linux-gnueabihf和 之间有什么区别armv7-unknown-linux-gnueabihf
+arm涵盖ARMv6和ARMv7处理器，而armv7 仅支持ARMv7处理器。
+
+[工具](https://github.com/japaric/rust-cross#c-cross-toolchain)
+在linux上都有对应的工具：对于arm-unknown-linux-gnueabi，Ubuntu和Debian提供了gcc-*-arm-linux-gnueabi软件包，其中*是gcc版本。例：gcc-4.9-arm-linux-gnueabi
+
+
+
 查看支持的目标平台
 rustup target list
 ```
@@ -357,13 +397,18 @@ https://gnutoolchains.com/raspberry/
 
 https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/
 
-#### 解决方案1
+#### 解决方案1 - 支持C/C++/rust
 根据这个
 https://rustcc.cn/article?id=7d4707bf-d9ae-4b88-bc71-212c24ce0ac9
 找到以下网站
 [Your source for static cross- and native- musl-based toolchains.](https://musl.cc/)
 
 [Windows-to-Linux Cross-Compiler Toolchains](https://win.musl.cc/)
+
+[github源码](https://github.com/richfelker/musl-cross-make) 
+[or gitlab](https://git.zv.io/toolchains/musl-cross-make)
+
+[docker](https://hub.docker.com/r/muslcc/i686/tags/)
 
 1. 下载https://win.musl.cc/x86_64-linux-musl-cross.zip
 
@@ -373,6 +418,19 @@ https://rustcc.cn/article?id=7d4707bf-d9ae-4b88-bc71-212c24ce0ac9
 linker = "F:/linux/x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc.exe"
 ```
 `cargo build --target=x86_64-unknown-linux-musl`
+
+同上面类似还有一个
+
+- Linux上交叉编译
+[toolchains](https://toolchains.bootlin.com/)
+[toolchains 源码](https://github.com/bootlin/toolchains-builder/)
+- Windows
+https://gnutoolchains.com/download/
+- macos
+https://github.com/tpoechtrager/osxcross
+参考[全网可用交叉编译工具链大全](https://zhuanlan.zhihu.com/p/79043170)
+
+
 #### 解决方案2
 根据这个
 https://rustcc.cn/article?id=fcb2900b-339a-45a9-bb53-88301d7f34ed
