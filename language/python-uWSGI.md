@@ -115,7 +115,13 @@ harakiri = 60
 ```
 
 启动uwsgi服务器
-uwsgi --ini uwsgi.ini
+`uwsgi --ini uwsgi.ini`
+
+`uwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9191`
+
+`uwsgi -s /tmp/flask-demo.sock --http 0.0.0.0:5001 --wsgi-file app.py --callable app --processes 4 --threads 2 --stats 0.0.0.0:9191`
+
+`uwsgi -s /tmp/yourapplication.sock --manage-script-name --mount /yourapplication=myapp:app`
 
 #### uwsgi http、http-socket和socket配置项
 
