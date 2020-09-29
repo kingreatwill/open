@@ -48,6 +48,10 @@ https://github.com/sherlock-project/sherlock
 ### linq
 https://github.com/viralogic/py-enumerable
 
+### ebook
+https://github.com/kovidgoyal/calibre
+Calibre 是一款功能强大的电子书管理软件，支持 Amazon、Apple、Bookeen、Ectaco、Endless Ideas、Google/HTC 与 Hanlin Song 设备及格式。
+
 ## 文档
 https://github.com/scanny/python-pptx
 
