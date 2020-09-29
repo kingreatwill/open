@@ -230,6 +230,24 @@ https://github.com/NickeManarin/ScreenToGif
 ## 截图
 https://github.com/lupoDharkael/flameshot
 
+## 录屏
+### Camtasia 收费的
+Camtasia Studio是TechSmith旗下的一套专业屏幕录像软件，同时包含Camtasia 录像器、Camtasia Studio（编辑器）、Camtasia 菜单制作器、Camtasia 剧场、Camtasia 播放器和Screencast的内置功能。
+
+### OBS Studio
+Obs Studio 是一款开源的录屏软件,用于视频录制和直播。(既可以录制屏幕又可以录制摄像头)
+https://github.com/obsproject/obs-studio 22k
+
+https://obsproject.com/
+
+### Captura 
+https://github.com/MathewSachin/Captura 5k
+捕捉屏幕，音频，光标，鼠标点击和击键
+C#做的，现在已经归档了
+
+### ScreenToGif
+没有声音
+
 ## 图片处理
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
