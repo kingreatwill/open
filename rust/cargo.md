@@ -326,6 +326,9 @@ x86_64-unknown-redox
 ```
 [target.x86_64-unknown-linux-musl]
 linker = "x86_64-linux-musl-gcc"
+
+[target.x86_64-unknown-linux-musl]
+rustflags = ["-C", "linker-flavor=ld.lld"]
 ```
 安装在config配置的target.x86_64-unknown-linux-musl工具
 ```
@@ -345,6 +348,44 @@ target = "x86_64-unknown-linux-musl"
 [alias]
 build_linux = "build --target x86_64-unknown-linux-musl"
 ```
+### 交叉编译时需要gcc支持的
+
+#### 查找资料
+https://stackoverflow.com/questions/39705213/cross-compiling-rust-from-windows-to-arm-linux
+
+https://gnutoolchains.com/raspberry/
+
+https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/
+
+#### 解决方案1
+根据这个
+https://rustcc.cn/article?id=7d4707bf-d9ae-4b88-bc71-212c24ce0ac9
+找到以下网站
+[Your source for static cross- and native- musl-based toolchains.](https://musl.cc/)
+
+[Windows-to-Linux Cross-Compiler Toolchains](https://win.musl.cc/)
+
+1. 下载https://win.musl.cc/x86_64-linux-musl-cross.zip
+
+2. 配置C:\Users\Administrator\.cargo\config
+```
+[target.x86_64-unknown-linux-musl]
+linker = "F:/linux/x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc.exe"
+```
+`cargo build --target=x86_64-unknown-linux-musl`
+#### 解决方案2
+根据这个
+https://rustcc.cn/article?id=fcb2900b-339a-45a9-bb53-88301d7f34ed
+找到以下开源方案，应该是利用docker实现的，这种方案其实我们可以自己做
+[“Zero setup” cross compilation and “cross testing” of Rust crates](https://github.com/rust-embedded/cross)
+
+1. 启动docker
+2. 编译，cross有cargo相同的api
+`cross build --target aarch64-unknown-linux-gnu`
+`cross build --target=x86_64-unknown-linux-musl`
+
+### 交叉编译指南
+https://github.com/japaric/rust-cross
 
 ## 常见问题
 - Blocking waiting for file lock on package cache
