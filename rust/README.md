@@ -48,6 +48,18 @@ https://doc.rust-lang.org/rustc/index.html
 ## 编译错误指南
 https://doc.rust-lang.org/error-index.html
 
+## Live Reload / Hot Reload 热更新
+
+1. 通过WASM运行时进行热加载。比如 Substrate框架，自己实现了一个WASM运行时。也可以通过wasmer这样的 wasm vm 来支持热加载。
+2. 利用 Rust 为宿主的脚本语言。比如社区里有一个 mun-runtime，是[mun 编程语言](https://github.com/mun-lang/mun) （Rust实现），可以和 Rust 无缝集成，并先天支持Hot Reload。
+
+3. 通过动态库实现。比如，[live-reloading-rs](https://github.com/porglezomp-misc/live-reloading-rs) 。这里也有篇[相关的文章](https://silverweed.github.io/Rust_game_programming_code_hotloading/)。
+
+4. 平时开发的话，可以用[cargo-watch](https://github.com/passcod/cargo-watch)，它会监控代码文件的变化，并自动重新编译、运行代码。
+还有另外一种热更新是资源热更新，比如配置文件、游戏素材什么的，可参考：
+https://github.com/phaazon/warmy
+https://github.com/amethyst/amethyst/blob/master/amethyst_assets/src/reload.rs
+
 ## 参考
 Rust语言示例：https://rustwiki.org/zh-CN//rust-by-example/hello.html
 
