@@ -78,5 +78,12 @@ https://rustcc.gitbooks.io/rustprimer/content/quickstart/rust-travel.html
 ## 每日rust
 https://zhuanlan.zhihu.com/p/50737367
 
-## web框架对比
+## Awesome Rust
+[一个可以比较各种库的网站](https://rust.libhunt.com/categories)
+
+[awesome-rust](https://github.com/rust-unofficial/awesome-rust)
+
+### web框架对比
 https://github.com/the-benchmarker/web-frameworks#full-table
+
+https://rust.libhunt.com/categories/5464-web
