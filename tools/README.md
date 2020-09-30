@@ -349,3 +349,88 @@ https://github.com/sharkdp/bat 22k
 - 和 Git 集成，注意下图左侧的 ~+；它能自动和 Git 沟通，识别出修改；
 - 和 less 一样，自带分页；
 - 其他 cat 的一些功能；
+
+
+## 差异比较工具
+Linux工具
+- diff命令
+    - 增强：colordiff命令和wdiff命令
+- Vimdiff命令
+    http://vimdoc.sourceforge.net/htmldoc/diff.html
+- Kompare
+    https://kde.org/applications/en/kompare
+    Kompare是一个diff GUI包装器，允许用户查看文件之间的差异，并合并他们。 它的一些功能包括：
+    - 支持多种差异格式
+    - 支持目录比较
+    - 支持读取diff文件
+    - 可定制的界面
+    - 创建和应用补丁到源文件
+
+- DiffMerge
+    https://sourcegear.com/diffmerge/
+    DiffMerge是比较和合并文件的跨平台GUI应用程序。它有两个功能引擎，Diff引擎显示两个文件之间的差异，它支持行内突出显示和编辑，以及合并引擎，在三个文件之间输出更改的行。 它有以下特点：
+    - 支持目录比较
+    - 文件浏览器集成
+    - 高度可配置
+- Meld
+    http://meldmerge.org/
+    Meld是一个轻量级的GUI diff和合并工具。它使用户能够比较文件，目录和版本控制的程序。专为开发人员而开发，它具有以下功能：
+    - 文件和目录的双向和三向比较
+    - 更新文件比较作为用户键入更多的单词
+    - 使用自动合并模式和更改块上的操作使合并更容易
+    - 使用可视化进行简单比较
+    - 支持Git，Mercurial，Subversion，Bazaar等等
+
+- DiffUse 
+    http://diffuse.sourceforge.net/
+    DiffUse是另一种流行的，免费的，小而简单的GUI diff和合并工具，你可以在Linux上使用。在Python中，它提供两个主要功能，即：文件比较和版本控制，允许文件编辑，文件合并，还输出文件之间的差异。 您可以查看比较摘要，使用鼠标指针在文件中选择文本行，匹配相邻文件中的行并编辑不同的文件。其他功能包括：
+    - 语法高亮显示
+    - 键盘快捷键，便于浏览
+    - 支持无限撤消
+    - Unicode支持
+    - 支持Git，CVS，Darcs，Mercurial，RCS，Subversion，SVK和Monotone
+
+- XXdiff 
+    http://furius.ca/xxdiff/
+    XXdiff是一个免费的，功能强大的文件和目录比较和合并工具，可以在Unix类操作系统，如Linux，Solaris和HP / UX，IRIX，DEC Tru64上。 XXdiff的一个限制是它缺乏对unicode文件的支持和diff文件的内联编辑。 它具有以下功能列表：
+    - 浅和递归比较两个，三个文件或两个目录
+    - 水平差异突出显示
+    - 交互式合并文件和保存结果输出
+    - 支持合并评审/监管
+    - 支持外部比较工具，如GNU diff，SIG diff，Cleareddiff等等
+    - 可扩展使用脚本
+    - 使用资源文件和许多其他次要功能可完全自定义
+- KDiff3
+    http://kdiff3.sourceforge.net/
+    KDiff3是另一个很酷的，跨平台的差异和合并工具从KDevelop的制作。它适用于所有类Unix平台，包括Linux和Mac OS X，Windows。 它可以比较或合并两到三个文件或目录，并具有以下显着的功能：
+    - 逐行和逐个字符指示差异
+    - 支持自动合并
+    - 内置编辑器来处理合并冲突
+    - 支持Unicode，UTF-8和许多其他编解码器
+    - 允许打印差异
+    - Windows explorer集成支持
+    - 还支持通过字节顺序标记“BOM”的自动检测
+    - 支持手动对齐线条
+    - 直观的GUI和更多
+- TkDiff
+https://sourceforge.net/projects/tkdiff/
+TkDiff也是Unix的比较工具一个跨平台的，易于使用的GUI包装。它提供了两个输入文件之间的差异的并排视图。它可以在Linux，Windows和Mac OS X上运行。 此外，它还有一些其他令人兴奋的功能，包括差异书签，差异的图形地图方便快捷的导航等等。
+
+Win工具
+- BCompare
+可以比较文件夹的差异
+- UltraCompare 
+可以比较文件夹的差异
+
+### bc3
+### bc
+### diffmerge
+### kdiff3
+### meld
+### p4merge
+### semanticmerge
+### tortoisemerge
+### vscode
+### vsdiffmerge
+### winmerge
+
