@@ -332,3 +332,9 @@ https://github.com/clearcodecn/gosearch
 
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
+
+
+## 流程图
+https://github.com/blushft/go-diagrams
+可以生成graphviz DOT file
+go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
