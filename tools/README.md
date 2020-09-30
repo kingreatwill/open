@@ -422,15 +422,96 @@ Win工具
 - UltraCompare 
 可以比较文件夹的差异
 
+
+
+**以下比较工具也可以直接在命令行中使用，也是git合并和差异比较工具**
+直接在用户文件夹下，修改.gitconfig文件，修改名称并把path修改对应的工具路径
+```
+[diff]
+	guitool = vscode
+[difftool "vscode"]
+	path = D:/Microsoft VS Code/Code.exe
+	cmd = \"D:/Microsoft VS Code/Code.exe\" --wait --diff \"$LOCAL\" \"$REMOTE\"
+[merge]
+	guitool = vscode
+[mergetool "vscode"]
+	path = D:/Microsoft VS Code/Code.exe
+	cmd = \"D:/Microsoft VS Code/Code.exe\" --wait \"$MERGED\"
+```
+
+git difftool # 比较当前所修改的内容
+git difftool xxx  xxx # 比较两个commit id
+```
+C:\Users\Administrator>git difftool --tool-help
+'git difftool --tool=<tool>' may be set to one of the following:
+                vimdiff
+                vimdiff2
+                vimdiff3
+
+        user-defined:
+                vscode.cmd "D:/Microsoft VS Code/Code.exe" --wait "$MERGED"
+                vscode.cmd "D:/Microsoft VS Code/Code.exe" --wait --diff "$LOCAL" "$REMOTE"
+
+The following tools are valid, but not currently available:
+                araxis
+                bc
+                bc3
+                codecompare
+                deltawalker
+                diffmerge
+                diffuse
+                ecmerge
+                emerge
+                examdiff
+                guiffy
+                gvimdiff
+                gvimdiff2
+                gvimdiff3
+                kdiff3
+                kompare
+                meld
+                opendiff
+                p4merge
+                smerge
+                tkdiff
+                winmerge
+                xxdiff
+
+Some of the tools listed above only work in a windowed
+environment. If run in a terminal-only session, they will fail.
+```
+
 ### bc3
+bcomp.exe file1 file2
+
 ### bc
+bcomp.exe file1 file2
+
 ### diffmerge
+DiffMerge.exe file1 file2
+
 ### kdiff3
+kdiff3.exe file1 file2
+
 ### meld
+meld.exe file1 file2
+
 ### p4merge
+p4merge.exe file1 file2
+
 ### semanticmerge
+semanticmergetool.exe -s file1 -d file2
+
 ### tortoisemerge
+TortoiseGitMerge.exe file1 file2
+
 ### vscode
+有空格是需要双引号的，文件也一样，如："file1"
+"D:/Microsoft VS Code/Code.exe" --wait --diff file1 file2
+
 ### vsdiffmerge
+vsdiffmerge.exe file1 file2
+
 ### winmerge
+winmergeu.exe -e -u file1 file2
 
