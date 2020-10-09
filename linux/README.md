@@ -125,4 +125,49 @@ export PATH
 
 ## linux实用技巧 & cmd
 - 使用 last 命令获取用户登录信息
- 
+`last | head -5 | tr -s " "`
+`tr -s " "` 表示将多个空格合并为一个，这样可以节约篇幅
+
+- 统计每个用户登录次数
+```
+for user in `ls /home`; do echo -ne "$user\t"; last $user | wc -l; done
+```
+show_user_logins.sh
+```
+#!/bin/bash
+
+echo -n "Logins since "
+who /var/log/wtmp | head -1 | awk '{print $3}'
+echo "======================="
+
+for user in `ls /home`
+do
+  echo -ne "$user\t"
+  last $user | wc -l
+done
+```
+
+- 统计每个用户登录时长
+单个用户
+`ac username`
+所有用户
+```
+for user in `ls /home`; do ac $user | sed "s/total/$user\t/" ; done
+```
+使用sed去掉每行前面的空格
+```
+for user in `ls /home`; do ac $user | sed "s/^\t//" | sed "s/total/$user\t/" ; done
+```
+show_user_hours.sh
+```
+#!/bin/bash
+
+echo -n "hours online since "
+who /var/log/wtmp | head -1 | awk '{print $3}'
+echo "============================="
+
+for user in `ls /home`
+do
+  ac $user | sed "s/^\t//" | sed "s/total/$user\t/"
+done
+```
