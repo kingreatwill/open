@@ -3,6 +3,10 @@
 
 # 在线文档管理系统
 - js gitbook
+- js Gatsby https://github.com/gatsbyjs/gatsby 47.3k
+- ts Docusaurus https://github.com/facebook/docusaurus 19.4k
+- ruby Jekyll https://github.com/jekyll/jekyll 41.4k
+- js VuePress https://github.com/vuejs/vuepress 17.5k
 - go MinDoc
 - go BookStack
 - mdbook https://github.com/rust-lang/mdBook 4.5k

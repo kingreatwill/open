@@ -1,3 +1,5 @@
+<!--toc-->
+[TOC]
 [Linux学习教程，Linux入门教程（超详细）](http://c.biancheng.net/linux_tutorial/)
 [Linux 内核揭秘](https://github.com/MintCN/linux-insides-zh)
 
@@ -120,3 +122,7 @@ export PATH
 - `set ff?` 查看文件格式dos或unix的字样.
 - `set ff=dos`  #强制转化为dos格式，如果是要转化成unix格式就是   `set ff=unix`
 - `w!` 保存
+
+## linux实用技巧 & cmd
+- 使用 last 命令获取用户登录信息
+ 

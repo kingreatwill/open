@@ -211,6 +211,11 @@ git checkout v1.4
 # git blame 找到谁动了某行代码
 git blame -L 50,50 init/main.c
 
+
+# git cherry-pick 合并指定的commitid
+`git cherry-pick commitID`
+https://www.cnblogs.com/yychuyu/p/13751649.html
+
 # git gc
 `git gc [--aggressive] [--auto] [--quiet] [--prune=<date> | --no-prune] [--force]`
 

@@ -62,3 +62,6 @@ https://pypi.org/project/openpyxl/
 
 ## 流程图
 https://github.com/mingrammer/diagrams
+
+## 翻译
+https://github.com/UlionTse/translators

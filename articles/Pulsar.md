@@ -1,6 +1,9 @@
 # Apache Pulsar
 https://github.com/apache/pulsar 6.2k
 
+## Pulsar Manger
+https://github.com/apache/pulsar-manager
+
 ## Apache BookKeeper
 https://github.com/apache/bookkeeper 900
 
