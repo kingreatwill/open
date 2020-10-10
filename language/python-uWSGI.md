@@ -282,3 +282,5 @@ https://dormousehole.readthedocs.io/en/latest/deploying/index.html
 [Flask + uWSGI alpine](https://github.com/cirolini/Docker-Flask-uWSGI)
 
 [supervisord + nginx + uwsgi + flask + alpine](https://github.com/hellt/nginx-uwsgi-flask-alpine-docker/tree/master/python3)
+
+[alpine python 镜像](../docker/alpine.md)
