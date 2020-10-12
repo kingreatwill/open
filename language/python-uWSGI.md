@@ -1,4 +1,7 @@
-## Flask docker部署
+<!--toc-->
+[TOC]
+# Flask docker部署
+## Flask uwsgi docker部署
 https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html
 https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html#deploying-flask
 https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html#deploying-django
@@ -123,6 +126,52 @@ harakiri = 60
 `uwsgi -s /tmp/flask-demo.sock --http 0.0.0.0:5001 --wsgi-file app.py --callable app --processes 4 --threads 2 --stats 0.0.0.0:9191`
 
 `uwsgi -s /tmp/yourapplication.sock --manage-script-name --mount /yourapplication=myapp:app`
+
+启动`uwsgi --ini uwsgi.ini`
+uwsgi重启`uwsgi --reload uwsgi.pid`
+uwsgi停止`uwsgi --stop uwsgi.pid`
+```
+[uwsgi]
+#配合nginx使用
+socket = 127.0.0.1:8000
+#项目路径 /自己项目路径/flask_test
+chdir = 自己项目路径
+#wsgi文件 run就是flask启动文件去掉后缀名 app是run.py里面的Flask对象 
+module = run:app
+#指定工作进程
+processes = 4
+#主进程
+master = true
+#每个工作进程有2个线程
+threads = 2
+#指的后台启动 日志输出的地方
+daemonize = uwsgi.log
+#保存主进程的进程号
+pidfile = uwsgi.pid
+#虚拟环境环境路径（在root下的.virtualenvs下查看）
+virtualenv = /虚拟环境路径/flask_test
+```
+然后配置Nginx，找到Nginx的配置文件nginx.conf，在http块下加上下面代码
+```
+server {
+    # 监听端口
+    listen 80;
+    # 监听ip 换成服务器公网IP
+    server_name 127.0.0.1;
+ 
+    #动态请求
+    location / {
+      include uwsgi_params;
+      uwsgi_pass 127.0.0.1:8000;
+    }
+    #静态请求
+    location /static {
+        alias /自己路径下的静态文件/static;
+​
+    }
+}
+```
+
 
 #### uwsgi http、http-socket和socket配置项
 
@@ -285,3 +334,116 @@ https://dormousehole.readthedocs.io/en/latest/deploying/index.html
 [supervisord + nginx + uwsgi + flask + alpine](https://github.com/hellt/nginx-uwsgi-flask-alpine-docker/tree/master/python3)
 
 [alpine python 镜像](../docker/alpine.md)
+
+## Web 框架，gunicorn/flup/uWSGI 程序，与 CGI/FastCGI/WSGI 标准
+### CGI/fastCGI/WSGI 标准
+#### CGI（Common Gateway Interface）
+通用网关接口。实现它的程序使用了 UNIX shell 环境变量来保存从 Web 服务器传递出去的参数，然后生成一个独立进程。CGI的第一个实现是 Perl 写的。
+- 效率低下：每一个连接 fork 一个进程处理。
+- 功能十分有限：CGI只能收到一个请求，输出一个响应。很难在CGI体系去对Web请求的控制，例如：用户认证等。
+
+正因为这些问题，后面就有大神提出了 FastCGI 标准。
+#### FastCGI（Fast Common Gateway Interface）
+Fast通用网关接口 （这个名字起好敷衍）。使用进程/线程池来处理一连串的请求。这些进程/线程由FastCGI服务器管理，而不是Web服务器。 当进来一个请求时，Web服务器把环境变量和这个页面请求通过一个Socket长连接传递给FastCGI进程。所以FastCGI有如下的优点并在一推出就几乎获得了所有主流Web Server的支持：
+- 性能：通过进程/线程池规避了CGI开辟新的进程的开销。
+- 兼容：非常容易改造现有CGI标准的程序。
+- 语言无关：FastCGI是一套标准，理论上讲只要能进行标准输出（stdout）的语言都可以作为FastCGI标准的Web后端。
+- Web Server隔离：FastCGI后端和Web Server运行在不同的进程中，后端的任何故障不会导致Web Server挂掉。
+- 专利：没有Apache mod_php之类的私有API的知识产权问题。
+- 扩展：FastCGI后端和Web Server通过Socket进行通信，两者可以分布式部署并方便进行横向扩展。
+
+所以FastCGI一推出就几乎获得了所有主流 Web Server 的支持，比如 Apache
+
+但是，事情总是还有改进的余地的，FastCGI 这套工作模式实际上没有什么太大缺陷，但是有些不安分的 Python 程序猿觉得，FastCGI 标准下写异步的Web服务还是不太方便，如果能够收到请求后CGI端去处理，处理完毕后通过Callback回调来返回结果，那样岂不是很Coooool？！所以 WSGI 就被创造出来了
+
+#### WSGI（Web Server Gateway Interface）
+Web服务器网关接口。是为 Python 语言定义的Web服务器和Web应用程序或框架之间的一种简单而通用的接口。
+你如果去搜索了他们的概念（我加上了），你一定知道了他们是标准接口规范， 而 Gateway Interface Server 才是实现了这个标准接口规范的产物，正如 CGI 的第一个实现是 Perl 写的；
+
+举个例子，我规定了有一种房子必须有两个入口，一个出口，那么按照这个规定造出来的房子（两入口，一出口）就是实现了这个规定的产物，规定和房子分别对应上面的接口规范和 Gateway Interface Server ，可好理解？
+
+### gunicorn/flup/uWSGI 程序
+- [gunicorn](https://gunicorn.org/) - Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
+- [flup](https://www.saddi.com/software/flup/) - Flup offers three sets of WSGI servers/gateways, which speak AJP 1.3, FastCGI, and SCGI.
+- [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) - The uWSGI project aims at developing a full stack for building hosting services.
+
+可以看出他们是实现了标准的接口，之前有读者希望多点图直观，画了个图：
+![](img/python-uwsgi.jpg)
+
+**如果你使用Python语言，推荐你使用 Gunicorn 来部署，希望大家重视生产环境**
+> [gunicorn 文档](https://docs.gunicorn.org/en/stable/run.html#commands)
+> [gunicorn code 7.2k](https://github.com/benoitc/gunicorn)
+
+
+### Gunicorn理论
+Gunicorn“绿色独角兽”是一个被广泛使用的高性能的python WSGI UNIX HTTP服务器，移植自Ruby的独角兽（Unicorn）项目，使用pre-fork worker模式，具有使用非常简单，轻量级的资源消耗，以及高性能等特点。
+
+Gunicorn是主流的WSGI容器之一，它易于配置，兼容性好，CPU消耗很少，它支持多种worker模式：
+
+- 同步worker：默认模式，也就是一次只处理一个请求。
+- 异步worker：通过Eventlet、Gevent实现的异步模式
+- 异步IOWorker：目前支持gthread和gaiohttp
+- Tronado worker：tornado框架
+
+> pre-fork worker模式
+> 
+> Gunicorn基于pre-fork的工作者模式，即有一个中央master进程来管理一系列的工作进程，master并不知道各个独立客户端。
+> 所有的请求和响应完全由工作进程去完成。
+> master通过一个循环不断监听各个进程的信号并作出相应反应，这些信号包括TTIN、TTOU和CHLD。TTIN和TTOU告诉master增加或者减少正在运行的进程数，CHLD表明一个子进程被终止了，在这种情况下master进程会自动重启这个失败的进程。
+
+工作模式是通过work_class参数配置的值：缺省值：sync (gunicorn --worker-class=gevent myapp:app)
+
+- sync
+- Gevent
+- Eventlet
+- tornado
+- gaiohttp
+- gthread
+
+> Sync Workers（sync）
+> 最简单的同步工作模式
+> 
+> Async Workers（gevent，eventlet）
+> gevent和eventlet都是基于greenlet库，利用python协程实现的
+> 
+> Tornado Workers（tornado）
+> 利用python Tornado框架实现
+> 
+> AsyncIO Workers（gthread，gaiohttp）
+> gaiohttp利用aiohttp库实现异步IO，支持web socket
+> gthread采用的事线程工作模式，利用线程池管理连接
+
+启动
+> gunicorn --workers=6 app:app -b 0.0.0.0:8888
+> - --workers是开启的进程数量，推荐值是CPU个数*2+1，CPU个数的获取方式
+> - 第一个app是模块文件的名字，如果包含文件夹可以使用.连接
+> - 第二个app是文件中Flask实例的名字
+> - -b 指定监听地址和端口
+
+
+- 服务器模式
+
+Gunicorn基于pre-fork的工作者模式，即有一个中央master进程来管理一系列的工作进程，master并不知道各个独立客户端。所有的请求和响应完全由工作进程去完成。
+
+master通过一个循环不断监听各个进程的信号并作出相应反应，这些信号包括TTIN、TTOU和CHLD。TTIN和TTOU告诉master增加或者减少正在运行的进程数，CHLD表明一个子进程被终止了，在这种情况下master进程会自动重启这个失败的进程。
+
+如 Gevent,Sync 同步进程，Asyc 异步进程，Eventlet 等等
+
+- 进程的同步和异步模式
+
+默认情况下，Gunicorn的工作进程是同步执行的模式，即单个进程在某个时间只处理一个请求。同时，Gunicorn也支持Gevent、Eventlet来实现异步，通过--worker-class选项可以指定工作方式：
+
+gunicorn --worker-class=gevent myapp:app
+
+[fcgi vs. gunicorn vs. uWSGI 10年的老文章](https://www.peterbe.com/plog/fcgi-vs-gunicorn-vs-uwsgi)
+[uWSGI vs. Gunicorn 12年的老文章](https://blog.kgriffs.com/2012/12/18/uwsgi-vs-gunicorn-vs-node-benchmarks.html)
+
+[gevent: gunicorn vs uWSGI 12年的老文章](https://ivan-site.com/2012/10/gevent-gunicorn-vs-uwsgi/)
+
+## 参考
+https://flask.palletsprojects.com/en/1.0.x/deploying/wsgi-standalone/
+- Gunicorn
+- uWSGI
+- Gevent
+- Twisted Web
+- Proxy Setups
