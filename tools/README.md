@@ -281,6 +281,17 @@ ZIP 压缩包管理器 - 免费版含广告
 
 ## Microsoft Whiteboard
 ## Microsoft OneNote
+其它类似工具
+- [Evernote](https://evernote.com/)
+- [Simplenote 3.2k](https://github.com/Automattic/simplenote-electron)
+- [Laverna 8.6k](https://github.com/Laverna/laverna)
+- [Standard Notes](https://github.com/standardnotes)
+- [Turtl](https://github.com/turtl)
+- [CherryTree 1.5k](https://github.com/giuspen/cherrytree)
+- [TagSpaces 2.1k](https://github.com/tagspaces/tagspaces)
+- [Google Keep](https://keep.google.com/)
+
+
 ## Microsoft Todo
 
 ## 视频音频处理软件

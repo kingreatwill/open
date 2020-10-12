@@ -8,3 +8,10 @@ wireshark是捕获机器上的某一块网卡的网络包，当你的机器上�
 
 ## TODO
 深入TCP的时候需要学习
+
+## 其它
+### Charles
+Charles是一个HTTP代理/ HTTP监视器/反向代理，它使开发人员能够查看他们的机器和Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求、响应和HTTP头(其中包含cookie和缓存信息)。
+
+### AnyProxy
+一个完全可配置的http/https代理在NodeJS 

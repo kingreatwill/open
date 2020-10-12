@@ -11,6 +11,13 @@ Telerik 和 DevExpress 都是.net UI的专家
 ## FiddlerCore（收费）
 Fiddler 开放了他的FiddlerCoreAPI  提供给开发者调用，来处理所有的http请求
 
+## 其它工具
+### 代理抓包工具 Charles
+Charles是一个HTTP代理/ HTTP监视器/反向代理，它使开发人员能够查看他们的机器和Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求、响应和HTTP头(其中包含cookie和缓存信息)。
+
+### AnyProxy
+一个完全可配置的http/https代理在NodeJS
+
 ## Fiddler简介
 Fiddler是比较好用的web代理调试工具之一，它能记录并检查所有客户端与服务端的HTTP/HTTPS请求，能够设置断点，篡改及伪造Request/Response的数据，修改hosts，限制网速，http请求性能统计，简单并发，接口测试，辅助自动化测试，等等。现在抓包工具成为测试人员的必备使用工具，开发人员也在普遍使用，进行问题的定位分析，是非常有助于工作的一款工具。
 
