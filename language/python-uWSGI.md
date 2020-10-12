@@ -273,6 +273,21 @@ https://dormousehole.readthedocs.io/en/latest/deploying/index.html
 如何使用 WSGI 的部分，只要记住： `Flask` 应用对象实质上是一个 WSGI
 应用。
 
+dockerfile
+```
+FROM python:3.8-slim
+RUN sed -i "s@http://deb.debian.org@https://mirrors.163.com@g" /etc/apt/sources.list
+RUN apt-get update && apt-get install gcc -y
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+COPY ./ /root
+RUN pip install -i https://pypi.douban.com/simple -r /root/requirements.txt
+RUN pip install -i https://pypi.douban.com/simple uWSGI
+WORKDIR /root
+EXPOSE 8080 8080
+CMD ["uwsgi", "--wsgi-file", "app.py", "--http-socket", ":8080","--callable","app"]
+```
+
 
 #### 托管于其它web服务
 
