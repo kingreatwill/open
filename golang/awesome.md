@@ -171,9 +171,7 @@ https://github.com/nats-io/nats-streaming-server
 https://github.com/chromedp/chromedp
 https://www.toutiao.com/i6843024797073408515
 
-## 其它
-### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
-https://github.com/augmentable-dev/gitqlite
+
 
 
 ## grpc
@@ -330,6 +328,9 @@ TikTok	    https://www.tiktok.com	✓
 https://api.godoc.org/search?q=etcd
 https://github.com/clearcodecn/gosearch
 
+## go多版本
+https://github.com/owenthereal/goup
+
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 
@@ -338,3 +339,8 @@ https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 https://github.com/blushft/go-diagrams
 可以生成graphviz DOT file
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
+
+
+## 其它
+### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
+https://github.com/augmentable-dev/gitqlite
