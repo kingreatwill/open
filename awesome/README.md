@@ -211,3 +211,7 @@ https://github.com/trumpowen/All-Programming-E-Books-PDF
 ## 其它
 中国程序员容易发音错误的单词
 https://github.com/shimohq/chinese-programmer-wrong-pronunciation
+
+免费的编程书籍
+https://github.com/EbookFoundation/free-programming-books
+https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md
