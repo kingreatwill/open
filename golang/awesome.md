@@ -257,6 +257,24 @@ https://github.com/gopherjs/gopherjs
 
 https://github.com/hexops/vecty
 
+## js
+### esbuild
+https://github.com/evanw/esbuild
+这是一个 JavaScript 打包和压缩程序。它用于打包 JavaScript 和 TypeScript 代码以在网络上分发。
+我目前有两个基准测试用于衡量 esbuild 的性能。对于这些基准测试，esbuild 比我测试的其他 JavaScript 打包程序 快至少 100 倍 ：https://docs.breword.com/evanw-esbuild/
+
+类似工具：
+- Webpack ， Rollup 或 Parcel 用于打包
+- Babel 或 TypeScript 用于转译
+- Terser 或 UglifyJS 用于代码压缩
+
+使用者：
+- Vite
+- Snowpack
+> Vite，snowpack使用了esbuild
+
+> esbuild 不可能替代 webpack、parcel 等构建工具
+
 ## git
 
 ### git sql

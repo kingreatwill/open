@@ -226,6 +226,12 @@ https://github.com/serhatbolsu/robotframework-appiumlibrary
 
 [Robot Framework + SeleniumLibrary 实现web 自动化](https://github.com/robotframework/SeleniumLibrary)
 
+### Cypress
+[Cypress](https://docs.cypress.io/)是基于node.js环境的,相较于Selenium来说，Cypress的运行速度真的是相当快了，它不需要web driver来驱动浏览器。
+
+[Cypress系列](https://www.cnblogs.com/poloyy/category/1768839.html)
+
+https://github.com/cypress-io/cypress
 
 ### HttpRunner 
 HttpRunner 是一款面向 HTTP(S) 协议的通用测试框架，只需编写维护一份 YAML/JSON 脚本，即可实现自动化测试、性能测试、线上监控、持续集成等多种测试需求。
