@@ -1,4 +1,6 @@
-#
+# regular expression 正则表达式
+
+[正则表达式30分钟入门教程](https://deerchao.cn/tutorials/regex/regex.htm)
 [图解正则表达式 - ok+](https://regexper.com/)
 https://gitlab.com/javallone/regexper-static
 
@@ -19,6 +21,10 @@ https://github.com/firasdib/Regex101
 [在线正则表达式](http://www.regexe.com/)
 
 [正则表达式教程 - Regex Tutorial](http://www.regular-expressions.info/wordboundaries.html)
+
+
+[正则表达式工具- 在线](https://deerchao.cn/tools/wegester/)
+[正则表达式工具 Regester](https://deerchao.cn/tools/regester/)
 
 [正则表达式其它工具](http://www.regular-expressions.info/tools.html)
 [RegexBuddy 收费 - good](http://www.regexbuddy.com/)
