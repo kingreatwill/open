@@ -225,12 +225,6 @@ https://github.com/bcicen/ctop
 https://github.com/drone/drone
 > 一个基于 Docker 的持续集成平台，使用 Go 语言编写
 
-https://github.com/skanehira/docui
-> 终端 Docker 管理工具，自带一个终端界面。使用该工具可以方便的通过界面管理 docker 不用再记那些命令。
-
-https://github.com/jesseduffield/lazydocker
-> 带命令行 UI 的 docker 管理工具。可以通过点点点来管理 docker，却又不需要装 rancher 这样的企业级容器管理平台
-
 https://github.com/wagoodman/dive
 > 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
 
@@ -250,3 +244,23 @@ https://github.com/pipiliang/docker-dashboard
 
 https://github.com/yeasy/docker_practice
 > Docker 从入门到实践
+
+## docker GUI
+
+### Portainer
+https://github.com/portainer/portainer 16.2k
+
+### DockStation
+桌面应用程序
+https://github.com/DockStation/dockstation
+
+### Docker Desktop
+桌面应用程序
+
+### Lazydocker（UI终端）
+https://github.com/jesseduffield/lazydocker
+> 带命令行 UI 的 docker 管理工具。可以通过点点点来管理 docker，却又不需要装 rancher 这样的企业级容器管理平台
+
+### Docui (UI终端)
+https://github.com/skanehira/docui
+> 终端 Docker 管理工具，自带一个终端界面。使用该工具可以方便的通过界面管理 docker 不用再记那些命令。
