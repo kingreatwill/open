@@ -1,7 +1,10 @@
-
+<!--toc-->
+[TOC]
 # CodeReview 
 
-## SonarQube
+## 代码质量审核和管理工具
+[11个代码质量审核和管理工具](https://www.toutiao.com/a6788710794432348687)
+### SonarQube
 项目工程代码质量检测
 [SonarQube](https://github.com/SonarSource/sonarqube)
 [SonarCloud](sonarcloud.io)
@@ -24,7 +27,17 @@
 - XML
 - etc...
 
-
+### Kritika
+http://kritika.io/
+### DeepScan
+### Klocwork
+### CodeSonar
+### JArchitect
+### Bandit
+### Code Climate
+### Crucible
+### Fortify
+### Codecov
 
 ## Phabricator - 可视化代码评审工具
 Facebook出品，支持Git, Mercurial, and SVN
@@ -34,6 +47,10 @@ https://github.com/phacility/phabricator/ 11.6k
 Google出品
 https://github.com/GerritCodeReview/gerrit
 (mirror of https://gerrit.googlesource.com/gerrit)
+
+## 谷歌工程实践文档
+https://xindoo.github.io/eng-practices-cn/review/reviewer/
+https://github.com/xindoo/eng-practices-cn
 
 ## 代码审查工具
 [17款最佳的代码审查工具](https://www.toutiao.com/i6750444677385683468)
