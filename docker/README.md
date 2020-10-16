@@ -225,16 +225,6 @@ https://github.com/bcicen/ctop
 https://github.com/drone/drone
 > 一个基于 Docker 的持续集成平台，使用 Go 语言编写
 
-https://github.com/wagoodman/dive
-> 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
-
-https://github.com/vicanso/diving
-> 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
-> 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
-
-https://github.com/docker-slim/docker-slim
-> 自动缩减 docker 镜像的体积的工具。大幅度缩减 docker 镜像的体积，方便分发，使用命令 docker-slim build --http-probe your-name/your-app。
-
 https://github.com/LockGit/gochat
 > 纯 Go 实现的轻量级即时通讯系统。技术上各层之间通过 rpc 通讯，使用 redis 作为消息存储与投递的载体，相对 kafka 操作起来更加方便快捷。
 > 各层之间基于 etcd 服务发现，在扩容部署时将会方便很多。架构、目录结构清晰，文档详细。而且还提供了 docker 一件构建，安装运行十分方便，推荐作为学习项目
@@ -244,6 +234,39 @@ https://github.com/pipiliang/docker-dashboard
 
 https://github.com/yeasy/docker_practice
 > Docker 从入门到实践
+
+## 用docker创建ubuntuVNC桌面
+
+
+https://github.com/fcwu/docker-ubuntu-vnc-desktop
+docker运行ubuntu
+```
+docker pull dorowu/docker-ubuntu-vnc-desktop
+docker run -p 30007:80 dorowu/ubuntu-desktop-lxde-vnc
+
+# 使用VNC Viewer或者浏览器登录容器
+docker run -itd -p 6080:80 -p 5900:5900 dorowu/ubuntu-desktop-lxde-vnc:bionic
+# 浏览器访问6080端口或者下载VNC Viewer，然后在VNC Viewer中通过5900端口访问容器
+
+# 创建容器时给网页版以及VNC Viewer版添加登录容器的密码
+docker run -itd -p 6080:80 -p 5900:5900  -e HTTP_PASSWORD=mypassword  -e VNC_PASSWORD=mypassword dorowu/ubuntu-desktop-lxde-vnc:bionic
+
+# 创建容器时设置容器分辨率以及添加新用户
+docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e USER=zs -e PASSWORD=mypassword -e HTTP_PASSWORD=mypassword  -e VNC_PASSWORD=mypassword dorowu/ubuntu-desktop-lxde-vnc:bionic
+```
+### 名词解释
+VNC (Virtual Network Console)是虚拟网络控制台的缩写，优点像windows版本的远程桌面控制
+
+## docker 分析
+https://github.com/wagoodman/dive
+> 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
+
+https://github.com/vicanso/diving
+> 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
+> 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
+
+https://github.com/docker-slim/docker-slim
+> 自动缩减 docker 镜像的体积的工具。大幅度缩减 docker 镜像的体积，方便分发，使用命令 docker-slim build --http-probe your-name/your-app。
 
 ## docker GUI
 

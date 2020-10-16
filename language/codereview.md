@@ -35,6 +35,42 @@ Google出品
 https://github.com/GerritCodeReview/gerrit
 (mirror of https://gerrit.googlesource.com/gerrit)
 
+## 代码审查工具
+[17款最佳的代码审查工具](https://www.toutiao.com/i6750444677385683468)
+### CodeStriker
+http://codestriker.sourceforge.net/index.html
+### RhodeCode
+https://rhodecode.com/
+### Codebrag
+http://codebrag.com/
+### Phabricator
+http://phabricator.org/
+### Codifferous
+https://codifferous.com/
+### Getbarkeep
+http://getbarkeep.org/
+### Crucible
+https://www.atlassian.com/software/crucible/overview
+### Code Review Tool
+http://codereviewtool.com/
+### Malevich
+http://malevich.codeplex.com/
+### SmartBear
+http://smartbear.com/product/collaborator/overview/
+### Review Assistant
+Review Assistant是一款支持Visual Studio的简单又优秀的代码审查工具。
+https://visualstudiogallery.msdn.microsoft.com/9ef817b4-2c6d-4213-8b08-5be48f9d91b9
+### Review Board
+### Peer Review Plugin
+http://trac-hacks.org/wiki/PeerReviewPlugin
+### Code Reviewer
+https://codereview.appspot.com/
+### Code Analysis Tool
+http://www.castsoftware.com/products/code-analysis-tools
+### jArchitect
+http://www.jarchitect.com/
+### Reviewale
+
 ## 其它
 GitHub、GitLab 有基于 PR 的审查
 评审的关键操作：

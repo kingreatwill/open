@@ -99,6 +99,7 @@ Md2All支持云图床，设置好云图床后，能把本地图片自动上传�
 ### mathjax
 
 https://www.mathjax.org/
+https://github.com/mathjax/MathJax
 
 ### Latex数学公式(能正确复制到公众号等平台）:
 

@@ -107,9 +107,6 @@ Spring boot与Spring cloud 是什么关系？
 https://www.zhihu.com/question/47304987/answer/627831450?utm_source=wechat_session&utm_medium=social&utm_oi=867777191335858176
 
 
-17款最佳的代码审查工具
-https://www.toutiao.com/a6750444677385683468/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1582163574&app=news_article&utm_source=weixin&utm_medium=toutiao_android&req_id=20200220095253010129039216026DBC57&group_id=6750444677385683468
-
 
 系统设计入门
 https://github.com/donnemartin/system-design-primer/blob/master/README-zh-Hans.md
