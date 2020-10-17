@@ -389,6 +389,14 @@ https://www.ej-technologies.com/products/jprofiler/overview.html
 ## mat
 MAT是Memory Analyzer tool的缩写，是一种快速，功能丰富的Java堆分析工具，能帮助你查找内存泄漏和减少内存消耗。很多情况下，我们需要处理测试提供的hprof文件，分析内存相关问题，那么MAT也绝对是不二之选。 Eclipse可以下载插件结合使用，也可以作为一个独立分析工具使用，下载地址：http://www.eclipse.org/mat/downloads.php
 
+## jinfo 
+通过jinfo查看Java进程运行的JVM参数，通过jinfo -h  查看命令。
+我们先通过 jps查看PID，然后通过jinfo来查看 对应进程的参数信息。
+查看 JVM参数：jinfo -flags pid
+查看系统参数：jinfo -sysprops pid
+查看启动脚本参数：jinfo -flag PrintGC pid
+动态修改启动脚本参数：通过java -XX:+PrintFlagsFinal -version | grep manageable 查询可以修改的参数，以PrintGC为例，jinfo -flag -PrintGC pid 关闭GC日志，jinfo -flag +PrintGC pid 打开GC日志
+
 
 ## Arthas
 

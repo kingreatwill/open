@@ -175,12 +175,23 @@ https://www.ipaddress.com/
 
 ## GitHub 镜像访问
 这里提供两个最常用的镜像地址：
+- https://hub.fastgit.org/openjw/open.git
+- https://gitclone.com/github.com/openjw/open.git
+- https://github.com.cnpmjs.org/openjw/open.git
+- https://github-mirror.bugkiller.org/openjw/open.git
+- https://github-speedup.laiczhang.com/openjw/open.git  
 
+https://github-speedup.laiczhang.com - https://github.com/zzh-blog/GithubSpeedUp
 https://github.com.cnpmjs.org
 https://hub.fastgit.org - https://github.com/k0shk0sh/FastHub/
 也就是说上面的镜像就是一个克隆版的Github，你可以访问上面的镜像网站，网站的内容跟Github是完整同步的镜像，然后在这个网站里面进行下载克隆等操作。
 
 https://gitclone.com/
+
+https://gh.api.99988866.xyz/ - https://github.com/hunshcn/gh-proxy
+http://gitd.cc/
+
+https://github.com/Henry14all/github-plus-js
 
 自定义脚本：clone
 ```perl

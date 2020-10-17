@@ -56,6 +56,9 @@ Adobe Acrobat
 Postman for protobuf APIs
 [BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)
 
+[切换Hosts文件](https://github.com/oldj/SwitchHosts)
+
+
 ## 视频下载
 
 [视频下载1](https://github.com/soimort/you-get)
