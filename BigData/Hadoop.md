@@ -38,6 +38,9 @@ Hadoop的两个核心解决了数据存储问题（HDFS分布式文件系统）�
 - Nutch开发人员完成了相应的开源实现HDFS和MapReduce，并从Nutch中剥离成为独立项目Hadoop，直到2008年，Hadoop成为Apache顶级项目，之后快速发展。
 - 到现在hadoop已经形成了完善的生态圈
 
+> Ceph 分布式文件系统
+
+
 ### 3. Hadoop架构
 1. 分布式架构简介
 - 单机的问题

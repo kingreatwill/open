@@ -35,7 +35,7 @@ kafka同款->Pulsar
 [kafka tool可视化](https://www.kafkatool.com/download.html)
 [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
 [Kafka Web UI可视化界面](https://github.com/obsidiandynamics/kafdrop)
-
+[Kafka Eagle监控系统是一款用来监控Kafka集群的工具](https://github.com/smartloli/kafka-eagle)
 [Kafka管理工具CMAK,以前叫kafka-manager](https://github.com/yahoo/CMAK)
 
 ## News

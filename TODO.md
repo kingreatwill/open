@@ -27,7 +27,7 @@ https://riptutorial.com/
 
 ## 中间件
 [学习Kafka，必须搞明白的五大核心问题](https://www.toutiao.com/a6752637966696317454/)
-[Kafka Eagle监控系统是一款用来监控Kafka集群的工具](https://www.toutiao.com/a1657755331841027)
+
 [什么是Kafka connect？](https://www.toutiao.com/a1657943945756680/)
 
 [Quartz框架基础知识](https://learning.snssdk.com/feoffline/toutiao_wallet_bundles/toutiao_learning_wap/online/article.html?item_id=6793201878663430663&app_name=news_article)
