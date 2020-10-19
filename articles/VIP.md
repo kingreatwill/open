@@ -1,6 +1,6 @@
 
 ## 去广告
-### 油猴插件
+### tampermonkey 油猴插件
 先安装[脚本管理器- tampermonkey](https://gitee.com/yangbuyi/bky_yby/blob/master/博客园文章等资料/Tampermonkey_4.9.crx)插件，然后安装脚本
 https://greasyfork.org/zh-CN/
 https://greasyfork.org/zh-CN/scripts
@@ -12,3 +12,9 @@ https://greasyfork.org/zh-CN/scripts
 [百度文库转 Word | 百度文库下载器](https://greasyfork.org/zh-CN/scripts/405373-%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E8%BD%AC-word-%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%99%A8)
 
 [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
+
+### violentmonkey 暴力猴
+https://violentmonkey.github.io
+
+
+### Greasemonkey 油猴

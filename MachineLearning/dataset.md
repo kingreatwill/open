@@ -34,3 +34,13 @@ https://archive.ics.uci.edu/ml/datasets.php
 http://ai.stanford.edu/~jkrause/cars/car_dataset.html
 
 code: https://github.com/foamliu/Car-Recognition
+
+## 综合
+https://github.com/ChaofWang/Awesome-Super-Resolution#datasets
+
+该项目主要包含以下内容：
+- 最佳论文库/项目列表
+- 数据集
+- 论文：非深度学习方法、深度学习方法（2014-2020）
+- workshop论文
+- 综述

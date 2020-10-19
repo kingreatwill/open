@@ -60,6 +60,22 @@ https://github.com/python-openxml/python-docx
 https://foss.heptapod.net/openpyxl/openpyxl
 https://pypi.org/project/openpyxl/
 
+数据管理的库
+[Tablib](https://github.com/jazzband/tablib) 是一个与表格格式数据有关的Python库，允许导入、导出、管理表格格式数据。
+Output formats supported:
+- Excel (Sets + Books)
+- JSON (Sets + Books)
+- YAML (Sets + Books)
+- Pandas DataFrames (Sets)
+- HTML (Sets)
+- Jira (Sets)
+- TSV (Sets)
+- ODS (Sets)
+- CSV (Sets)
+- DBF (Sets)
+
+
+
 ## 流程图
 https://github.com/mingrammer/diagrams
 
@@ -69,4 +85,8 @@ http://www.pythontutor.com/
 
 ## 翻译
 https://github.com/UlionTse/translators
+
+## Python 
+这个有趣的项目意在收集 Python 中那些难以理解和反人类直觉的例子以及鲜为人知的功能特性, 并尝试讨论这些现象背后真正的原理!
+https://github.com/satwikkansal/wtfpython
 
