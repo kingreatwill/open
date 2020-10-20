@@ -15,3 +15,15 @@ https://www.jianshu.com/p/1628e47a598a
 6. 数据库表之间外键，采用逻辑外键而非物理外键。（采用逻辑外键，以免级联更新造成的低并发问题，级联更新是强阻塞，不适合分布式高并发系统。同时物理外键存在数据库更新风暴的风险，外键也会大大影响数据库的插入速度）
 
 7. 禁止使用存储过程，存储过程难以调试和扩展，没有移植性。
+
+
+## proxy
+
+### mysql proxy
+
+#### Gaea
+Gaea在设计、实现阶段参照了mycat、kingshard和vitess，并使用tidb parser作为内置的sql parser
+https://github.com/XiaoMi/Gaea
+
+#### kingshard
+https://github.com/flike/kingshard

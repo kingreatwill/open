@@ -328,6 +328,9 @@ disconnected no supported authentication methods available(server sent: publicke
 新增openjw团队，创建kingreatwill项目，在该项目下创建仓库
 `git remote set-url --add origin git@e.coding.net:openjw/kingreatwill/open.git`
 
+> codechina
+> `git remote set-url --add origin git@codechina.csdn.net:kingreatwill/open.git`
+
 8. 其它
 百度效率云：http://xiaolvyun.baidu.com
 

@@ -104,6 +104,66 @@ echo `cat /proc/meminfo|grep Slab|awk '{mem += $2} END {print mem/1024/1024}'` G
 
 echo `ps aux |awk '{mem += $6} END {print mem/1024/1024}'` GB
 
+#### pstree
+pstree可以将所有进程以树状展示出来
+加上-p参数可以看到系统上的每个进程，`pstree -p`
+加上pid`pstree -p <pid>`可以看到进程的线程
+
+#### vmstat 
+可以对操作系统的虚拟内存、进程、CPU活动进行监控。
+
+一般有两个参数，用来表示采样速率与次数。
+`vmstat <时间间隔> <采集次数>`
+
+- Procs
+    r：运行和等待CPU时间片的进程数
+    b：表示阻塞的进程数。
+
+- Memory
+    swpd：表示虚拟内存使用情况
+    free：表示当前空闲的物理内存
+    buff：表示缓冲的内存大小
+    Cache：表示缓存的内存大小，
+
+- Swap
+    si：表示有磁盘读入内存大小。
+    so：表示由内存写入磁盘大小。
+
+- Io
+    bi：表示由块设备读入数据的总量
+    bo：表示写到块设备数据的总量
+
+- System
+    in：表示每秒中断数。
+    cs：表示每秒产生的上下文切换次数(线程切换)。
+
+- cpu
+    us：表示用户进程消耗的CPU时间百分比
+    sy：表示系统调用消耗的CPU时间百分比
+    id：表示CPU处在空间状态的时间百分比
+    wa: 等待IO的CPU时间
+
+#### pidstat    
+可以用来监控全部或指定进程的cpu、内存、线程、设备IO等系统资源的占用情况
+`pidstat -w <时间间隔>`
+- Cswch/s:每秒主动任务上下文切换数量
+- Nvcswch/s:每秒被动任务上下文切换数量
+- Command:命令名
+
+`pidstat -tt -p <pid>`可以看到每个进程的线程切换与cpu调度情况
+- TGID:主线程的表示
+- TID:线程id
+- %usr：进程在用户空间占用cpu的百分比
+- %system：进程在内核空间占用cpu的百分比
+- %guest：进程在虚拟机占用cpu的百分比
+- %CPU：进程占用cpu的百分比
+- CPU：处理进程的cpu编号
+- Command：当前进程对应的命令
+
+#### straces
+通过该命令可以看到该进程正在进行的用户空间与内核空间的交互，如系统调用，进程状态等。
+`strace -t -p`
+
 ### du 查看目录大小
 ```
 du -sh .
