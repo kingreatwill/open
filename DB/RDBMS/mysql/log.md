@@ -1,5 +1,8 @@
 <!-- toc -->
 [TOC]
+
+[几年了，作为一个码农终于把MySQL日记看懂了](https://www.toutiao.com/i6885625128105804295/)
+
 # 详解MySQL的Redo日志与Undo日志
 ## 概念与理解
 Redo与undo并非是相互的逆操作，而是能配合起来使用的两种机制。

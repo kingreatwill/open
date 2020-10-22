@@ -11,6 +11,21 @@ SQL与NoSQL的界限逐渐在模糊，甚至传统关系型数据库PostgreSQL�
 Google 第一个搞了 NewSQL （Spanner 和 F1）
 包括(顺序随机)Clustrix、GenieDB、ScalArc、Schooner、VoltDB、RethinkDB、ScaleDB、Akiban、CodeFutures、ScaleBase、Translattice和NimbusDB，以及 Drizzle、带有 NDB的 MySQL 集群和带有HandlerSocket的MySQL。后者包括Tokutek和JustOne DB。相关的“NewSQL作为一种服务”类别包括亚马逊关系数据库服务，微软SQLAzure，Xeround和FathomDB。
 
+### TiDB
+https://github.com/pingcap/tidb golang 25.4k
+
+TiDB 是 PingCAP 公司自主设计、研发的开源分布式关系型数据库，是一款同时支持在线事务处理与在线分析处理 (Hybrid Transactional and Analytical Processing, HTAP）的融合型分布式数据库产品，具备水平扩容或者缩容、金融级高可用、实时 HTAP、云原生的分布式数据库、兼容 MySQL 5.7 协议和 MySQL 生态等重要特性。目标是为用户提供一站式 OLTP (Online Transactional Processing)、OLAP (Online Analytical Processing)、HTAP 解决方案。TiDB 适合高可用、强一致要求较高、数据规模较大等各种应用场景。
+
+TiDB 是一款定位于在线事务处理/在线分析处理（ HTAP: Hybrid Transactional/Analytical Processing）的融合型数据库产品，实现了一键水平伸缩，强一致性的多副本数据安全，分布式事务，实时 OLAP 等重要特性。同时兼容 MySQL 协议和生态，迁移便捷，运维成本极低。
+
+### CockroachDB
+云原生分布式SQL数据库
+Cockroach DB使用PostgreSQL协议，支持标准SQL接口，兼容关系型数据库SQL生态
+
+https://github.com/cockroachdb/cockroach golang 19.2k
+
+CockroachDB是一款开源的分布式数据库，具有NoSQL对海量数据的存储管理能力，又保持了传统数据库支持的ACID和SQL等，还支持跨地域、去中心、高并发、多副本强一致和高可用等特性。支持OLTP场景，同时支持轻量级OLAP场景。 
+
 ### 目前NewSQL系统大致分三类：
 
 #### 新架构
