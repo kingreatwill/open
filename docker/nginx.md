@@ -99,7 +99,7 @@ metadata:
   name: nginx-service
 spec:
   ports:
-    - port: 8000
+    - port: 80
       targetPort: 80
       protocol: TCP
       nodePort: 30080    #外网访问端口
