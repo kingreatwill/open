@@ -9,10 +9,10 @@ https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20
 
 ## 学习资源
 
-数据科学Python笔记本: 深度学习(TensorFlow、Theano、Caffe、Keras)、scikit-learn、Kaggle、大数据(Spark、Hadoop MapReduce、HDFS)、matplotlib、panda、NumPy、SciPy、Python essentials、AWS和各种命令行。
+数据科学 Python 笔记本:深度学习(TensorFlow、Theano、Caffe、Keras)、scikit-learn、Kaggle、大数据(Spark、Hadoop MapReduce、HDFS)、matplotlib、panda、NumPy、SciPy、Python essentials、AWS 和各种命令行。
 https://github.com/donnemartin/data-science-ipython-notebooks
 
-## IronPython vs. Python . NET
+## IronPython vs. Python .NET
 
 https://stackoverflow.com/questions/1168914/ironpython-vs-python-net
 https://ironpython.net/
@@ -20,18 +20,19 @@ https://github.com/IronLanguages/ironpython2
 https://github.com/IronLanguages/ironpython3
 https://github.com/pythonnet/pythonnet
 
-## Python解释器&编译器
+## Python 解释器&编译器
 
 ### CPython (C), which is the most common
 
 ### Jython (Java)
 
-### IronPython (. NET)
+### IronPython (.NET)
 
 ### PyPy (Python)
 
 ### Stackless
-Stackless Python是Python编程语言的增强版本
+
+Stackless Python 是 Python 编程语言的增强版本
 https://github.com/stackless-dev/stackless
 
 Microthreads: tasklets wrap functions allowing them to be launched as microthreads.
@@ -45,7 +46,7 @@ https://github.com/RustPython/RustPython
 
 Each of these implementations offer some benefits: Jython, for example, compiles Python source code to Java byte code, then routes it to the Java Virtual Machine. Because Python code is translated to Java byte code, it looks and feels like a true Java program at runtime and so it integrates well with Java applications.
 
-IronPython is well-integrated with . NET, which means IronPython can use the . NET framework and Python libraries or vice versa.
+IronPython is well-integrated with .NET, which means IronPython can use the .NET framework and Python libraries or vice versa.
 
 We want to unlock the same possibilities that Jython and IronPython enable, but for the Rust programming language. In addition, thanks to Rusts’ minimal runtime, we’re able to compile RustPython to WebAssembly and allow users to run their Python code easily in the browser.
 
@@ -60,20 +61,21 @@ Style Guide: https://www.python.org/dev/peps/pep-0008/
 ### autopep8
 
 helps to format code automatically
-使用autopep8，以PEP 8规范，自动排版Python代码
+使用 autopep8，以 PEP 8 规范，自动排版 Python 代码
 
-``` 
+```
 python -m autopep8 -r --global-config .config-pep8 -i .
 
 autopep8 --in-place --aggressive --aggressive file.py
 
+
 ```
 
-### isort 
+### isort
 
 helps to order imports automatically
 
-``` 
+```
 python -m isort -rc .
 #When you use newly 3rd party modules, add it to .isort.cfg to keep import order correct
 ```
@@ -82,15 +84,16 @@ python -m isort -rc .
 
 https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
-### RST与Python类似Javadoc与Java.
+### RST 与 Python 类似 Javadoc 与 Java.
 
 You can customise CHANGELOG.rst with commit messages following .gitchangelog.rc
 It generates readable changelog
-如果下载了别人的Python源码，里面有rst文件夹，我们可以转为html后用浏览器打开
+如果下载了别人的 Python 源码，里面有 rst 文件夹，我们可以转为 html 后用浏览器打开
 
-``` 
+```
 pip install sphinx
 pip install -i http://pypi.douban.com/simple/ sphinx_rtd_theme --trusted-host pypi.douban.com
+
 
 sphinx-build -b html docs build
 ```
@@ -115,15 +118,15 @@ pip install http://dist.repoze.org/PIL-1.1.6.tar.gz
 pip install -U git+https://github.com/madmaze/pytesseract.git
 git clone https://github.com/madmaze/pytesseract.git
 cd pytesseract && pip install -U .
-pip3 install face_recognition -i  http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+pip3 install face_recognition -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 pip install -r requirements.txt
 
-### 生成requirements.txt
+### 生成 requirements.txt
 
 1.
 
-``` 
+```
 pip freeze > requirements.txt
 
 //pip install pycryptodome -i https://pypi.doubanio.com/simple/
@@ -132,7 +135,7 @@ pip freeze > requirements.txt
 
 2.
 
-``` 
+```
 pip install pipreqs
 // 生成
 pipreqs .
@@ -144,12 +147,13 @@ pipreqs --force --encoding=utf-8 .
 
 #### pipenv
 
-``` 
+```
 pip install --user pipenv
 python -m pipenv lock --clear
 
 # If you experience the below error, then refer pypa/pipenv#187 to solve it.
 # Locking Failed! unknown locale: UTF-8
+
 
 python -m pipenv install --dev --system
 
@@ -158,74 +162,74 @@ pre-commit install
 
 查看依赖关系
 
-``` 
+```
 pipenv graph
 ```
 
-## python解释器(python.exe)和python启动器(py.exe)
+## python 解释器(python.exe)和 python 启动器(py.exe)
 
-（在 Unix 系统中是 Control-D，Windows 系统中是 Control-Z）就退出解释器并返回退出状态为0。如果这样不管用，你还可以写这个命令退出：quit() 和 exit()。
+（在 Unix 系统中是 Control-D，Windows 系统中是 Control-Z）就退出解释器并返回退出状态为 0。如果这样不管用，你还可以写这个命令退出：quit() 和 exit()。
 
-### python启动器
+### python 启动器
 
-多环境（如; 2.7和3.7 和3.8）共存
+多环境（如;2.7 和 3.7 和 3.8）共存
 py -h
-[适用于Windows的Python启动器](https://docs.python.org/zh-cn/3/using/windows.html#launcher)
+[适用于 Windows 的 Python 启动器](https://docs.python.org/zh-cn/3/using/windows.html#launcher)
 
-### python解释器
+### python 解释器
 
 如果不使用默认编码，要声明文件所使用的编码，文件的 第一 行要写成特殊的注释。语法如下所示：
 https://docs.python.org/zh-cn/3/library/codecs.html#module-codecs
 
-``` 
+```
 # -*- coding: encoding -*-
 ```
 
 关于 第一行 规则的一种例外情况是，源码以 UNIX "shebang" 行 开头。这种情况下，编码声明就要写在文件的第二行。例如：
 
-``` 
+```
 #!/usr/bin/env python3
 # -*- coding: cp1252 -*-
 ```
 
-在Unix系统中，Python 3.x解释器默认安装后的执行文件并不叫作 python，这样才不会与同时安装的Python 2.x冲突。
+在 Unix 系统中，Python 3.x 解释器默认安装后的执行文件并不叫作 python，这样才不会与同时安装的 Python 2.x 冲突。
 
-``` 
+```
 #! /usr/bin/python -v
 ```
 
-然后Python将以 -v 选项启动
+然后 Python 将以 -v 选项启动
 
 ## 分布式计算框架
 
 https://github.com/mars-project/mars
-Mars是由阿里云高级软件工程师秦续业等人开发的一个基于张量的大规模数据计算的统一框架，目前它已在GitHub上开源。
-该工具能用于多个工作站，而且即使在单块CPU的情况下，它的矩阵运算速度也比NumPy(MKL)快。
+Mars 是由阿里云高级软件工程师秦续业等人开发的一个基于张量的大规模数据计算的统一框架，目前它已在 GitHub 上开源。
+该工具能用于多个工作站，而且即使在单块 CPU 的情况下，它的矩阵运算速度也比 NumPy(MKL)快。
 
 https://github.com/databricks/koalas
 
 https://github.com/dask/dask
-关于Python性能的一个常见抱怨是全局解释器锁(GIL)。由于GIL，同一时刻只能有一个线程执行Python字节码。因此，即使在现代的多核机器上，使用线程也不会加速计算。
-但当你需要并行化到多核时，你不需要放弃使用Python，Dask库可以将计算扩展到多个内核甚至多个机器。某些设置可以在数千台机器上配置Dask，每台机器都有多个内核。
+关于 Python 性能的一个常见抱怨是全局解释器锁(GIL)。由于 GIL，同一时刻只能有一个线程执行 Python 字节码。因此，即使在现代的多核机器上，使用线程也不会加速计算。
+但当你需要并行化到多核时，你不需要放弃使用 Python，Dask 库可以将计算扩展到多个内核甚至多个机器。某些设置可以在数千台机器上配置 Dask，每台机器都有多个内核。
 
 https://github.com/vaexio/vaex
-Vaex是一个开源的DataFrame库(类似于Pandas)，对和你硬盘空间一样大小的表格数据集，它可以有效进行可视化、探索、分析甚至进行实践机器学习。
+Vaex 是一个开源的 DataFrame 库(类似于 Pandas)，对和你硬盘空间一样大小的表格数据集，它可以有效进行可视化、探索、分析甚至进行实践机器学习。
 
-它可以在N维网格上计算每秒超过十亿(10^9)个对象/行的统计信息，例如均值、总和、计数、标准差等。使用直方图、密度图和三维体绘制完成可视化，从而可以交互式探索大数据。
-Vaex使用内存映射、零内存复制策略获得最佳性能(不浪费内存)。
+它可以在 N 维网格上计算每秒超过十亿(10^9)个对象/行的统计信息，例如均值、总和、计数、标准差等。使用直方图、密度图和三维体绘制完成可视化，从而可以交互式探索大数据。
+Vaex 使用内存映射、零内存复制策略获得最佳性能(不浪费内存)。
 
-为实现这些功能，Vaex 采用内存映射、高效的核外算法和延迟计算等概念。所有这些都封装为类Pandas的API，因此，任何人都能快速上手。
+为实现这些功能，Vaex 采用内存映射、高效的核外算法和延迟计算等概念。所有这些都封装为类 Pandas 的 API，因此，任何人都能快速上手。
 
 https://github.com/cupy/cupy
-CuPy是一个借助CUDA GPU库在英伟达GPU上实现Numpy数组的库。基于Numpy数组的实现，GPU自身具有的多个CUDA核心可以促成更好的并行加速。
-CuPy接口是Numpy 的一个镜像，并且在大多情况下，它可以直接替换Numpy使用。只要用兼容的CuPy代码替换Numpy代码，用户就可以实现 GPU 加速。
-CuPy支持Numpy的大多数数组运算，包括索引、广播、数组数学以及各种矩阵变换。
+CuPy 是一个借助 CUDA GPU 库在英伟达 GPU 上实现 Numpy 数组的库。基于 Numpy 数组的实现，GPU 自身具有的多个 CUDA 核心可以促成更好的并行加速。
+CuPy 接口是 Numpy 的一个镜像，并且在大多情况下，它可以直接替换 Numpy 使用。只要用兼容的 CuPy 代码替换 Numpy 代码，用户就可以实现 GPU 加速。
+CuPy 支持 Numpy 的大多数数组运算，包括索引、广播、数组数学以及各种矩阵变换。
 
 http://docs.cython.org/en/latest/
-Cython是结合了Python和C的语法的一种语言，可以简单的认为就是给Python加上了静态类型后的语法，使用者可以维持大部分的Python语法，
-而不需要大幅度调整主要的程式逻辑与算法。但由于会直接编译为二进制程序，所以性能较Python会有很大提升。
+Cython 是结合了 Python 和 C 的语法的一种语言，可以简单的认为就是给 Python 加上了静态类型后的语法，使用者可以维持大部分的 Python 语法，
+而不需要大幅度调整主要的程式逻辑与算法。但由于会直接编译为二进制程序，所以性能较 Python 会有很大提升。
 
-``` 
+```
 pip install Cython
 
 from cpython cimport array
@@ -244,16 +248,16 @@ Ray 是由加州大学伯克利分校 RISELab 开源的新兴人工智能应用�
 Ray On Spark
 https://github.com/intel-analytics/analytics-zoo
 
-Apache Spark/Flink & Ray上的分布式Tensorflow、Keras和PyTorch
+Apache Spark/Flink & Ray 上的分布式 Tensorflow、Keras 和 PyTorch
 
 https://github.com/uber/fiber
 
-## Python执行实时可视化
+## Python 执行实时可视化
 
 可以实时可视化 Python 程序的执行过程
 Heartate——如监测心率般追踪程序运行
 https://github.com/alexmojaki/heartrate
-代码调用高亮依赖于executing (https://github.com/alexmojaki/executing) 库
+代码调用高亮依赖于 executing (https://github.com/alexmojaki/executing) 库
 
 ## 优美的绘图可视化
 
@@ -272,23 +276,24 @@ https://github.com/psf/black 17k
 
 https://github.com/hhatto/autopep8 3.5k
 
-## Python方面的静态检查工具
+## Python 方面的静态检查工具
 
 ### pylint
+
 https://github.com/PyCQA/pylint 3k
 
-### Google的pytype
+### Google 的 pytype
 
 https://github.com/google/pytype 2.8k
 
-### Microsoft的pyright
+### Microsoft 的 pyright
 
 https://github.com/microsoft/pyright 5.6k
 
-### Facebook的Pyre
+### Facebook 的 Pyre
 
-[Pysa](https://engineering.fb.com/security/pysa/)是一个专注于安全性的工具，它是在Facebook之前开源的静态检查工具Pyre的基础上进行开发的。
-Pysa还可以检查常见的web应用安全问题，例如，XSS和SQL注入。
+[Pysa](https://engineering.fb.com/security/pysa/)是一个专注于安全性的工具，它是在 Facebook 之前开源的静态检查工具 Pyre 的基础上进行开发的。
+Pysa 还可以检查常见的 web 应用安全问题，例如，XSS 和 SQL 注入。
 
 Pysa 的开发汲取了 Zoncolan 的经验，其使用了与 Zoncolan 相同的算法执行静态分析，甚至与 Zoncolan 共享了一些代码。像 Zoncolan 一样，Pysa 可追踪程序中的数据流。Zoncolan 是 Facebook 于 2019 年 8 月发布的用于 Hack 的静态分析器，主要面向类似于 PHP 的编程语言。
 
@@ -298,15 +303,15 @@ https://pyre-check.org/docs/pysa-basics.html
 
 ### mypy
 
-### 还可以利用Git pre-commit hook规范检查
+### 还可以利用 Git pre-commit hook 规范检查
 
-如果你需要跳过这些钩子，你可以运行git commit --no-verify或git push --no-verify
+如果你需要跳过这些钩子，你可以运行 git commit --no-verify 或 git push --no-verify
 
-## 虚拟环境和包管理工具 Conda、Virtualenv、Pipenv、  pyenv、venv、
+## 虚拟环境和包管理工具 Conda、Virtualenv、Pipenv、 pyenv、venv、
 
-## Pipx是一款跨平台的Python环境隔离管理工具
+## Pipx 是一款跨平台的 Python 环境隔离管理工具
 
-## Latex公式
+## Latex 公式
 
 https://github.com/connorferster/handcalcs
 
@@ -316,7 +321,7 @@ https://github.com/marazt/object-mapper
 
 ## Pymunk
 
-[是一个易于使用的pythonic 2d物理库](https://www.toutiao.com/i6871974915000500744)
+[是一个易于使用的 pythonic 2d 物理库](https://www.toutiao.com/i6871974915000500744)
 http://www.pymunk.org/en/latest/
 https://pypi.org/project/pymunk/
 https://github.com/viblo/pymunk
