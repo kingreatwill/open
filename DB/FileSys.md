@@ -84,6 +84,10 @@ DRBD是一个分布式冗余存储系统，由内核驱动程序，多个用户�
 
 有关DRBD更多的信息[请参见](https://docs.linbit.com/)
 
+#### curve
+https://github.com/opencurve/curve c++ 590
+CURVE是网易自主设计研发的高性能、高可用、高可靠分布式存储系统，具有非常良好的扩展性。基于该存储底座可以打造适用于不同应用场景的存储系统，如块存储、对象存储、云原生数据库等。当前我们基于CURVE已经实现了高性能块存储系统，支持快照克隆和恢复 ,支持QEMU虚拟机和物理机NBD设备两种挂载方式, 在网易内部作为高性能云盘使用。
+
 ### 其它文件共享
 - CIFS是SMB的改进其使用可以简单理解为windows中的共享文件夹
 - Samba服务器主要是用来windows访问linux的共享文件夹 关于samba服务器的配置谷歌之。[参考](http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html)

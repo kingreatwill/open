@@ -45,3 +45,34 @@ conn, err := grpc.Dial(
     }))),
 )
 ```
+
+## 代码格式化
+
+### clang-format
+下载https://github.com/llvm/llvm-project/releases
+```
+# win64
+https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe
+
+# ubuntu/debian
+sudo apt-get install clang-format
+```
+文档
+http://clang.llvm.org/docs/ClangFormat.html
+支持 C/C++/Java/JavaScript/Objective-C/Protobuf/C#
+
+代码格式支持：LLVM, Google, Chromium, Mozilla, WebKit
+http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+[团队协作-代码格式化工具clang-format](https://www.toutiao.com/i6886080589141639693)
+
+Visual Studio Code安装插件clang-format
+
+其它插件
+- markdown-formatter
+- shell-format
+
+
+shift+alt+f
+or
+shift+ctrl+p
