@@ -20,6 +20,9 @@ openLooKeng不是为处理联机事务处理（OLTP）而设计，openLooKeng被
     [PolyBase 与 链接服务器 比较](https://docs.microsoft.com/zh-cn/sql/relational-databases/polybase/polybase-faq?view=sql-server-ver15)
 
 
+- PostgreSQL外部数据源支持(Foreign Data Wrapper，FDW)
+可以把 70 种外部数据源 (包括 Mysql, Oracle, CSV, hadoop …) 当成自己数据库中的表来查询。Postgres有一个针对这一难题的解决方案：一个名为“外部数据封装器(Foreign Data Wrapper，FDW)”的特性。该特性最初由PostgreSQL社区领袖Dave Page四年前根据SQL标准SQL/MED(SQL Management of External Data)开发。FDW提供了一个SQL接口，用于访问远程数据存储中的远程大数据对象，使DBA可以整合来自不相关数据源的数据，将它们存入Postgres数据库中的一个公共模型。这样，DBA就可以访问和操作其它系统管理的数据，就像在本地Postgres表中一样。例如，使用FDW for MongoDB，数据库管理员可以查询来自文档数据库的数据，并使用SQL将它与来自本地Postgres表的数据相关联。借助这种方法，用户可以将数据作为行、列或JSON文档进行查看、排序和分组。他们甚至可以直接从Postgres向源文档数据库写入(插入、更细或删除)数据，就像一个一体的无缝部署。也可以对Hadoop集群或MySQL部署做同样的事。FDW使Postgres可以充当企业的中央联合数据库或“Hub”。
+
 
 ## 架构图 Architecture 
 ![](img/spark_sql_architecture.svg)

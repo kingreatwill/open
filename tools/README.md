@@ -1,3 +1,5 @@
+<!--toc-->
+[TOC]
 chcp 65001 cmd 显示中文
 
 [作为程序员的你，常用的工具软件有哪些？](https://www.zhihu.com/question/22867411/answer/923997976)
@@ -136,17 +138,6 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/pro
 ### Eclipse Theia
 web IDE
 https://github.com/eclipse-theia/theia
-
-
-## Listary Pro
-好用的搜索工具
-
-## http://www.wox.one/
-想必用过mac的人都会知道一款效率神器Alfred，可快速启动、计算、查找等，使用起来非常的方便。Win上面也有类似的效率神器，比如Listary和WOX。
-
-## https://u.tools/
-比everything更好？
-
 
 ## CMD
 https://www.jianshu.com/p/4b2b7074d9e2
@@ -319,8 +310,42 @@ https://github.com/blender/blender
 PerfView是一个CPU和内存性能分析工具
 https://github.com/microsoft/perfview
 
-## 填补Win10缺失功能PowerToys
+## 填补Win10缺失功能
+### microsoft PowerToys
 https://github.com/microsoft/PowerToys 32.9k
+
+### WindowTop
+https://windowtop.info/
+
+- 窗口置顶
+- 设置窗口透明度
+- 窗口点击穿透
+- 新型窗口「最小化」
+- 窗口强制深色
+
+WindowTop Pro 的进阶功能($5.99 购买 Pro 版本)
+- 窗口 Aero 模糊效果
+- 智能反色功能
+- 针对不同应用的窗口设置的存储记忆功能，不必每次重新设置同一应用的窗口样式；
+- 对「WindowTop 最小化」模式的应用，支持实时的鼠标悬停预览；
+- 将窗口白色背景替换，使用其他比如壁纸作为窗口背景，获得更加沉浸的效果；
+- ...
+
+### 搜索相关
+#### Quicker
+Windows效率神器(不仅仅是搜索)
+
+#### everything
+#### Listary Pro
+好用的搜索工具
+
+#### http://www.wox.one/
+想必用过mac的人都会知道一款效率神器Alfred，可快速启动、计算、查找等，使用起来非常的方便。Win上面也有类似的效率神器，比如Listary和WOX。
+
+#### https://u.tools/
+比everything更好？
+
+
 
 ## 冰点下载器
 可以自由下载百度，豆丁，道客巴巴，丁香，畅享网，it68，mbalib，mab.book118，open-open, 金字塔医学,大桔灯文库文档。 

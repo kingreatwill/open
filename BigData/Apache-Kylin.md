@@ -43,3 +43,12 @@ SQLServer内置的OLAP工具Analysis Manager可以允许用户访问异构数据
 [SQL Server Analysis Services OLAP 引擎服务器组件](https://docs.microsoft.com/zh-cn/analysis-services/multidimensional-models/olap-physical/olap-engine-server-components?view=asallproducts-allversions)
 
 [通过内存中 OLTP 使用查询存储](https://docs.microsoft.com/zh-cn/sql/relational-databases/performance/using-the-query-store-with-in-memory-oltp?view=sql-server-ver15)
+
+- Apache Pinot
+Pinot 是一个实时分布式的 OLAP 数据存储和分析系统。
+使用它实现低延迟可伸缩的实时分析。
+Pinot 从脱机数据源（包括 Hadoop 和各类文件）和在线数据源（如 Kafka）中获取数据进行分析。
+Pinot 被设计成可进行水平扩展。
+Pinot 特别适合这样的数据分析场景：查询具有大量维度和指标的时间序列数据、分析模型固定、数据只追加以及低延迟，以及分析结果可查询。
+
+

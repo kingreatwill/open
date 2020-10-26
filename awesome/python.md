@@ -90,3 +90,6 @@ https://github.com/UlionTse/translators
 这个有趣的项目意在收集 Python 中那些难以理解和反人类直觉的例子以及鲜为人知的功能特性, 并尝试讨论这些现象背后真正的原理!
 https://github.com/satwikkansal/wtfpython
 
+## 音频处理
+### klio
+https://github.com/spotify/klio

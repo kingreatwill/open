@@ -1,5 +1,6 @@
-参考：https://github.com/eip-work/kuboard-press
-
+参考1：https://github.com/eip-work/kuboard-press
+参考2：https://github.com/lework/kainstall
+kainstall = kubeadm install kubernetes
 <!-- toc -->
 [TOC]
 

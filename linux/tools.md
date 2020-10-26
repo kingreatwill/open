@@ -193,5 +193,11 @@ GitHub 地址→https://github.com/aristocratos/bashtop
 
 xDev提供与xDroid、xWin等适配接口,基于xDev开发的安卓应用、Window应用无需借助模拟器或虚拟机即可直接运行在异构国产平台上
 
+## 系统监控
+### hegemon
+https://github.com/p-e-w/hegemon
+
+cargo install hegemon
+
 ## xx
 https://github.com/xwmx/nb

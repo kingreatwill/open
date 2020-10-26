@@ -1,9 +1,11 @@
 <!--toc-->
 [TOC]
-
+# 定律、理论、原则和模式
 https://www.oodesign.com/behavioral-patterns/
 
 https://www.oodesign.com/
+
+更多可以参考[对开发人员有用的定律、理论、原则和模式](https://github.com/nusr/hacker-laws-zh)
 
 ## 软件设计模式(Software design patterns)
 
