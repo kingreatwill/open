@@ -11,3 +11,16 @@ https://contribute.freecodecamp.org/#/
 ## 富文本编辑器
 ### Quill
 https://github.com/quilljs/quill
+
+## SSG 
+ Static Site Generators (SSG) 技术
+
+ 生成静态网页：
+
+Next.js 是基于 React 的 SSR/SSG 框架。
+Scully 是基于 Angular 的 SSG 框架。
+VitePress 是 Vue 官方推出的 SSG 框架。
+
+JAMStack
+Ledge 
+Gatsby

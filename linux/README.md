@@ -117,57 +117,24 @@ export PATH
 
 最后：执行 命令source /etc/profile或 执行点命令 ./profile使其修改生效，执行完可通过echo $PATH命令查看是否添加成功。
 
+```
+当脚本准备好后，把脚本文件的路径加到 .bash_profile 文件末尾（红帽系列的系统：CentOS、Oracle Linux 和 Fedora）：
+
+# echo "/root/system-info.sh" >> ~root/.bash_profile
+执行以下命令，来让修改的内容生效：
+
+# source ~root/.bash_profile
+对于 Debian 系统的系统，你可能需要把文件路径加到 .profile 文件中：
+
+# echo "/root/system-info.sh" >> ~root/.profile
+运行以下命令使修改生效：
+
+# source ~root/.profile
+```
+
 ## 将文件从dos格式、unix格式相互转化
 - `vi 文件名` 
 - `set ff?` 查看文件格式dos或unix的字样.
 - `set ff=dos`  #强制转化为dos格式，如果是要转化成unix格式就是   `set ff=unix`
 - `w!` 保存
 
-## linux实用技巧 & cmd
-- 使用 last 命令获取用户登录信息
-`last | head -5 | tr -s " "`
-`tr -s " "` 表示将多个空格合并为一个，这样可以节约篇幅
-
-- 统计每个用户登录次数
-```
-for user in `ls /home`; do echo -ne "$user\t"; last $user | wc -l; done
-```
-show_user_logins.sh
-```
-#!/bin/bash
-
-echo -n "Logins since "
-who /var/log/wtmp | head -1 | awk '{print $3}'
-echo "======================="
-
-for user in `ls /home`
-do
-  echo -ne "$user\t"
-  last $user | wc -l
-done
-```
-
-- 统计每个用户登录时长
-单个用户
-`ac username`
-所有用户
-```
-for user in `ls /home`; do ac $user | sed "s/total/$user\t/" ; done
-```
-使用sed去掉每行前面的空格
-```
-for user in `ls /home`; do ac $user | sed "s/^\t//" | sed "s/total/$user\t/" ; done
-```
-show_user_hours.sh
-```
-#!/bin/bash
-
-echo -n "hours online since "
-who /var/log/wtmp | head -1 | awk '{print $3}'
-echo "============================="
-
-for user in `ls /home`
-do
-  ac $user | sed "s/^\t//" | sed "s/total/$user\t/"
-done
-```

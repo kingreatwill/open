@@ -73,3 +73,11 @@ https://github.com/elyase/awesome-gpt3
 ### Turing Natural Language Generation (T-NLG)  （Turing-NLG）
 https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/
 ![](img/TurningNGL_Model.png)
+
+
+## 翻译
+Facebook开源了M2M-100源代码，这是首个可以不依赖英语数据而可以实现100个语言对互相翻译的机器翻译模型（如中文-法文互译为一个语言对）。在训练2200种语言对后，该单一多语言模型不仅与传统的双语模型性能相当，同时也比以英语为中心的多语模型在机器翻译评价指标BLEU上提高了10%。
+
+论文主页：https://ai.facebook.com/research/publications/beyond-english-centric-multilingual-machine-translation
+
+项目地址：https://github.com/pytorch/fairseq/tree/master/examples/m2m_100

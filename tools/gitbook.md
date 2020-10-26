@@ -18,6 +18,10 @@ https://github.com/alex-shpak/hugo-book
 •peach门槛较高一些，要配置的东西多一些；
 •gohugo门槛适中，但却最为灵活和强大。如果对gohugo的模板语法十分熟悉，可以定义出一套满足自己风格的电子书浏览页面风格。
 
+https://github.com/foambubble/foam
+知识管理 #GitHub Trending# foam  是一个受 Roam Research 启发的个人笔记与知识管理思维导图系统，基于 VSCode + MarkDown + GitHub。
+[Foam + vscode 打造个人知识库](https://www.bilibili.com/read/cv6632291/)
+
 
 ## 安装gitbook
 ```
