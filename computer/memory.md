@@ -356,3 +356,95 @@ movl A, %eax
 
 
 现在是保护模式，就可以复习一下下，地址是怎么转换的，先过segment unit 逻辑地址变为线性地址，后线性地址过Page unit 根据CR3 ,一级页表，二级页表的设置一步步找到对应的物理页地址， 然后把他放到内存控制器的总线上，存贮器感觉到存储器总线上的地址信号，把数据写到存储器总线，CPU 从总线上读出数据，并将数据copy 到寄存器%eax.
+
+# 进程虚拟内存空间
+一个进程的虚拟内存可以划分为不同的内存区域，包含代码段、数据段、bss段、N个lib动态库的代码段、数据段、bss段、任何内存映射文件和任何共享内存段、进程栈stack和进程堆heap
+
+如何查看？
+cat /proc/pid/maps
+
+进程的每段地址空间由struct vm_area_struct 描述。
+- vm_start,第一列，此段虚拟地址空间的起始地址
+- vm_end,第二列，此段虚拟地址空间的结束地址  
+- vm_flags,第三列，此段虚拟地址空间的属性(如：r-xp)，每种属性用一个字段表示，r表示可读，w表示可写，x表示可执行，p和s共用一个字段，互斥关系（p表示私有段，s表示共享段），如果没有相应的权限，则用-代替
+
+- vm_pgoff,第四列，对有名映射，表示此段虚拟内存起始地址在文件中以页为单位的偏移。对匿名映射，它等于0或者vm_start/PAGE_SIZE
+
+- vm_file->f_dentry->d_inode->i_sb->s_dev，第五列，映射文件所属设备号。对匿名映射来说，因为没有文件在磁盘上，所以没有设备号，始终为0。对有名映射来说，是映射的文件所在设备的设备号
+```
+比如08:03
+ls -l /dev/
+brw-rw---- 1 root disk    8,   3 Oct  9 09:13 sda3
+```
+
+
+
+- vm_file->f_dentry->d_inode->i_ino，第六列，映射文件所属节点号。对匿名映射来说，因为没有文件在磁盘上，所以没有节点号，始终为00:00。对有名映射来说，是映射的文件的节点号
+
+- 第七列，如/lib/ld-2.5.so，对有名来说，是映射的文件名。对匿名映射来说，是此段虚拟内存在进程中的角色。`[stack]`表示在进程中作为栈使用，`[heap]`表示堆。其余情况则无显示
+
+```
+[root@dev07 ~]# cat /proc/1160/maps
+556463cae000-556463cd7000 r-xp 00000000 08:03 2892700                    /usr/sbin/xinetd
+556463ed6000-556463ed8000 r--p 00028000 08:03 2892700                    /usr/sbin/xinetd
+556463ed8000-556463ed9000 rw-p 0002a000 08:03 2892700                    /usr/sbin/xinetd
+556463ed9000-556463eda000 rw-p 00000000 00:00 0 
+556465e04000-556465e25000 rw-p 00000000 00:00 0                          [heap]
+7f8c0c3da000-7f8c0c3f1000 r-xp 00000000 08:03 2884258                    /usr/lib64/libpthread-2.17.so
+7f8c0c3f1000-7f8c0c5f0000 ---p 00017000 08:03 2884258                    /usr/lib64/libpthread-2.17.so
+7f8c0c5f0000-7f8c0c5f1000 r--p 00016000 08:03 2884258                    /usr/lib64/libpthread-2.17.so
+7f8c0c5f1000-7f8c0c5f2000 rw-p 00017000 08:03 2884258                    /usr/lib64/libpthread-2.17.so
+7f8c0c5f2000-7f8c0c5f6000 rw-p 00000000 00:00 0 
+7f8c0c5f6000-7f8c0c5f8000 r-xp 00000000 08:03 2884223                    /usr/lib64/libfreebl3.so
+7f8c0c5f8000-7f8c0c7f7000 ---p 00002000 08:03 2884223                    /usr/lib64/libfreebl3.so
+7f8c0c7f7000-7f8c0c7f8000 r--p 00001000 08:03 2884223                    /usr/lib64/libfreebl3.so
+7f8c0c7f8000-7f8c0c7f9000 rw-p 00002000 08:03 2884223                    /usr/lib64/libfreebl3.so
+7f8c0c7f9000-7f8c0c7fb000 r-xp 00000000 08:03 2884238                    /usr/lib64/libdl-2.17.so
+7f8c0c7fb000-7f8c0c9fb000 ---p 00002000 08:03 2884238                    /usr/lib64/libdl-2.17.so
+7f8c0c9fb000-7f8c0c9fc000 r--p 00002000 08:03 2884238                    /usr/lib64/libdl-2.17.so
+7f8c0c9fc000-7f8c0c9fd000 rw-p 00003000 08:03 2884238                    /usr/lib64/libdl-2.17.so
+7f8c0c9fd000-7f8c0ca5d000 r-xp 00000000 08:03 2884410                    /usr/lib64/libpcre.so.1.2.0
+7f8c0ca5d000-7f8c0cc5d000 ---p 00060000 08:03 2884410                    /usr/lib64/libpcre.so.1.2.0
+7f8c0cc5d000-7f8c0cc5e000 r--p 00060000 08:03 2884410                    /usr/lib64/libpcre.so.1.2.0
+7f8c0cc5e000-7f8c0cc5f000 rw-p 00061000 08:03 2884410                    /usr/lib64/libpcre.so.1.2.0
+7f8c0cc5f000-7f8c0ce22000 r-xp 00000000 08:03 2884232                    /usr/lib64/libc-2.17.so
+7f8c0ce22000-7f8c0d022000 ---p 001c3000 08:03 2884232                    /usr/lib64/libc-2.17.so
+7f8c0d022000-7f8c0d026000 r--p 001c3000 08:03 2884232                    /usr/lib64/libc-2.17.so
+7f8c0d026000-7f8c0d028000 rw-p 001c7000 08:03 2884232                    /usr/lib64/libc-2.17.so
+7f8c0d028000-7f8c0d02d000 rw-p 00000000 00:00 0 
+7f8c0d02d000-7f8c0d035000 r-xp 00000000 08:03 2884236                    /usr/lib64/libcrypt-2.17.so
+7f8c0d035000-7f8c0d234000 ---p 00008000 08:03 2884236                    /usr/lib64/libcrypt-2.17.so
+7f8c0d234000-7f8c0d235000 r--p 00007000 08:03 2884236                    /usr/lib64/libcrypt-2.17.so
+7f8c0d235000-7f8c0d236000 rw-p 00008000 08:03 2884236                    /usr/lib64/libcrypt-2.17.so
+7f8c0d236000-7f8c0d264000 rw-p 00000000 00:00 0 
+7f8c0d264000-7f8c0d365000 r-xp 00000000 08:03 2884240                    /usr/lib64/libm-2.17.so
+7f8c0d365000-7f8c0d564000 ---p 00101000 08:03 2884240                    /usr/lib64/libm-2.17.so
+7f8c0d564000-7f8c0d565000 r--p 00100000 08:03 2884240                    /usr/lib64/libm-2.17.so
+7f8c0d565000-7f8c0d566000 rw-p 00101000 08:03 2884240                    /usr/lib64/libm-2.17.so
+7f8c0d566000-7f8c0d57d000 r-xp 00000000 08:03 2884242                    /usr/lib64/libnsl-2.17.so
+7f8c0d57d000-7f8c0d77c000 ---p 00017000 08:03 2884242                    /usr/lib64/libnsl-2.17.so
+7f8c0d77c000-7f8c0d77d000 r--p 00016000 08:03 2884242                    /usr/lib64/libnsl-2.17.so
+7f8c0d77d000-7f8c0d77e000 rw-p 00017000 08:03 2884242                    /usr/lib64/libnsl-2.17.so
+7f8c0d77e000-7f8c0d780000 rw-p 00000000 00:00 0 
+7f8c0d780000-7f8c0d789000 r-xp 00000000 08:03 2884931                    /usr/lib64/libwrap.so.0.7.6
+7f8c0d789000-7f8c0d988000 ---p 00009000 08:03 2884931                    /usr/lib64/libwrap.so.0.7.6
+7f8c0d988000-7f8c0d989000 r--p 00008000 08:03 2884931                    /usr/lib64/libwrap.so.0.7.6
+7f8c0d989000-7f8c0d98a000 rw-p 00009000 08:03 2884931                    /usr/lib64/libwrap.so.0.7.6
+7f8c0d98a000-7f8c0d98b000 rw-p 00000000 00:00 0 
+7f8c0d98b000-7f8c0d9af000 r-xp 00000000 08:03 2884419                    /usr/lib64/libselinux.so.1
+7f8c0d9af000-7f8c0dbae000 ---p 00024000 08:03 2884419                    /usr/lib64/libselinux.so.1
+7f8c0dbae000-7f8c0dbaf000 r--p 00023000 08:03 2884419                    /usr/lib64/libselinux.so.1
+7f8c0dbaf000-7f8c0dbb0000 rw-p 00024000 08:03 2884419                    /usr/lib64/libselinux.so.1
+7f8c0dbb0000-7f8c0dbb2000 rw-p 00000000 00:00 0 
+7f8c0dbb2000-7f8c0dbd4000 r-xp 00000000 08:03 2884221                    /usr/lib64/ld-2.17.so
+7f8c0ddc1000-7f8c0ddc7000 rw-p 00000000 00:00 0 
+7f8c0ddd2000-7f8c0ddd3000 rw-p 00000000 00:00 0 
+7f8c0ddd3000-7f8c0ddd4000 r--p 00021000 08:03 2884221                    /usr/lib64/ld-2.17.so
+7f8c0ddd4000-7f8c0ddd5000 rw-p 00022000 08:03 2884221                    /usr/lib64/ld-2.17.so
+7f8c0ddd5000-7f8c0ddd6000 rw-p 00000000 00:00 0 
+7ffe6aa8f000-7ffe6aab0000 rw-p 00000000 00:00 0                          [stack]
+7ffe6aae3000-7ffe6aae5000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+```
+

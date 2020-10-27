@@ -7,6 +7,8 @@ tensorflow
 [tensorflow playground](http://playground.tensorflow.org/?hl=zh-cn)
 [机器学习课程](https://developers.google.cn/machine-learning/crash-course)
 
+[TensorFlow Recommenders](https://github.com/tensorflow/recommenders)
+
 V1.x
 ![](img/tensorflow.gif)
 具体编程流程：

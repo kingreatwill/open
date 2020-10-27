@@ -35,6 +35,14 @@ http://ai.stanford.edu/~jkrause/cars/car_dataset.html
 
 code: https://github.com/foamliu/Car-Recognition
 
+
+## Glint360K数据集
+Glint360K数据集包含36万类别的1800万张图像，不论是类别数还是图像数，相比MS1MV2数据集都有大幅提升。
+
+论文地址：https://arxiv.org/pdf/2010.05222.pdf
+
+代码地址：https://github.com/deepinsight/insightface/tree/master/recognition/partial_fc
+
 ## 综合
 https://github.com/ChaofWang/Awesome-Super-Resolution#datasets
 

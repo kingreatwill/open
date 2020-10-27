@@ -60,10 +60,79 @@ https://github.com/facebook/PathPicker
 运行以下命令：
 git diff HEAD~8 --stat | fpp
 
-### htop
+### 进程实时监控-htop
 提供更美观、更方便的进程监控工具，替代top命令。
 https://hisham.hm/htop/
 
+### 查看进程占用带宽情况-Nethogs
+https://github.com/raboof/nethogs
+```
+下载：http://sourceforge.net/projects/nethogs/files/nethogs/0.8/nethogs-0.8.0.tar.gz/download
+[root@localhost ~]#yum-y install libpcap-develncurses-devel 
+[root@localhost ~]# tar zxvf nethogs-0.8.0.tar.gz 
+[root@localhost ~]# cd nethogs 
+[root@localhost nethogs]# make && make install 
+[root@localhost nethogs]# nethogs eth0
+```
+### 硬盘读取性能测试-IOZone
+```
+下载：http://www.iozone.org/src/current/
+
+[root]# tar xvf iozone3_420.tar 
+[root]# cd iozone3_420/src/current/ 
+[root]# make linux 
+[root]# ./iozone -a -n 512m -g 16g -i 0 -i 1 -i 5 -f /mnt/iozone -Rb ./iozone.xls 
+```
+-a使用全自动模式
+-n为自动模式设置最小文件大小(Kbytes)。
+-g设置自动模式可使用的最大文件大小Kbytes。
+-i用来指定运行哪个测试。
+-f指定测试文件的名字完成后自动删除
+-R产生Excel到标准输出
+-b指定输出到指定文件上
+
+### 实时监控磁盘IO-IOTop
+### 网络流量监控-IPtraf
+### 网络流量监控-IFTop
+```
+下载：http://www.ex-parrot.com/~pdw/iftop/
+
+[root@localhost ~]# tar zxvf iftop-0.17.tar.gz
+[root@localhost ~]# cd iftop-0.17 
+[root@localhost iftop-0.17]# ./configure 
+[root@localhost iftop-0.17]# make && make install 
+[root@localhost iftop-0.17]# iftop 
+[root@localhost iftop-0.17]# iftop -i eth0  #指定监控网卡接口
+
+TX：发送流量
+RX：接收流量
+TOTAL：总流量
+Cumm：运行iftop到目前时间的总流量
+peak：流量峰值
+rates：分别表示过去 2s 10s 40s 的平均流量
+```
+### 系统资源监控-NMON
+### 监控多个日志-MultiTail
+MultiTail是在控制台打开多个窗口用来实现同时监控多个日志文档、类似tail命令的功能的软件。
+### SSH暴力破解防护-Fail2ban
+### 连接会话终端持续化-Tmux
+### 页面显示磁盘空间使用情况-Agedu
+### 安全扫描工具-NMap
+### Web压力测试-Httperf
+```
+下载：http://code.google.com/p/httperf/downloads/list
+
+[root]# tar zxvf httperf-0.9.0.tar.gz
+[root]# cd httperf-0.9.0
+[root]# ./configure
+[root]# make && make install
+[root]# httperf --hog --server=192.168.0.202 --uri=/index.html --num-conns= 10000 --wsess=10,10,0.1
+参数说明：
+
+--hog：让httperf尽可能多产生连接，httperf会根据硬件配置，有规律的产生访问连接
+--num-conns：连接数量，总发起10000请求
+--wsess：用户打开网页时间规律模拟，第一个10表示产生10个会话连接，第二个10表示每个会话连接进行10次请求，0.1表示每个会话连接请求之间的间隔时间/s
+```
 ### axel
 多线程下载工具，下载文件时可以替代curl、wget。
 
@@ -198,6 +267,11 @@ xDev提供与xDroid、xWin等适配接口,基于xDev开发的安卓应用、Wind
 https://github.com/p-e-w/hegemon
 
 cargo install hegemon
+
+### eul
+macOS status monitoring app written in SwiftUI.
+
+https://github.com/gao-sun/eul
 
 ## xx
 https://github.com/xwmx/nb

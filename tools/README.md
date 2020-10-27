@@ -83,6 +83,15 @@ chrome 插件
 ## 内存
 [Cheat Engine 内存修改器](https://www.cheatengine.org/)
 
+## X64Dbg
+x64_dbg是一款windows系统下非常优秀的64位调试器，与目前热门的“OllyDbg”十分相似，使用过OllyDbg调试工具的朋友应该很容易上手操作。
+https://x64dbg.com/
+
+## OllyDbg(OllyDebug)
+http://ollydbg.de/
+Ollydbg 通常称作OD，是反汇编工作的常用工具
+[64-bit OllyDbg](http://ollydbg.de/odbg64.html)
+
 ## PE
 [LordPE](http://www.opdown.com/soft/84659.html) 主要包括PE文件分析、修改和脱壳三大功能
 
