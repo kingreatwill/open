@@ -359,6 +359,11 @@ https://github.com/blushft/go-diagrams
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
 
 
+## http
+### http中间件negroni
+https://github.com/urfave/negroni
+https://github.com/urfave/negroni#third-party-middleware
+
 ## 其它
 ### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
 https://github.com/augmentable-dev/gitqlite

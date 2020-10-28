@@ -1,3 +1,4 @@
+# bash
 https://github.com/vuuihc/bash-guide
 
 
@@ -21,3 +22,9 @@ reboot
 完成后echo $BASH_VERSION即可以显示为最新Bash版本了。
 or bash --version
 ```
+### Zsh
+zsh 完全兼容 bash
+zsh 官网：http://www.zsh.org/
+### Fish Shell
+### Oh My Zsh
+https://github.com/ohmyzsh/ohmyzsh

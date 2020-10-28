@@ -66,15 +66,24 @@ SQLServer 内置的 OLAP 工具 Analysis Manager 可以允许用户访问异构�
 
 [通过内存中 OLTP 使用查询存储](https://docs.microsoft.com/zh-cn/sql/relational-databases/performance/using-the-query-store-with-in-memory-oltp?view=sql-server-ver15)
 
-- Apache Pinot
+#### Apache Pinot
   Pinot 是一个实时分布式的 OLAP 数据存储和分析系统。
   使用它实现低延迟可伸缩的实时分析。
   Pinot 从脱机数据源（包括 Hadoop 和各类文件）和在线数据源（如 Kafka）中获取数据进行分析。
   Pinot 被设计成可进行水平扩展。
   Pinot 特别适合这样的数据分析场景：查询具有大量维度和指标的时间序列数据、分析模型固定、数据只追加以及低延迟，以及分析结果可查询。
 
-- Apache Kylin
+#### Apache Kylin
   Apache Kylin™ 是一个开源、分布式的大数据分析数据仓库;它被设计为在大数据时代提供 OLAP(在线分析处理)能力。通过对 Hadoop 和 Spark 上的多维立方体和预计算技术的革新，Kylin 能够在数据量不断增长的情况下实现近乎恒定的查询速度。Kylin 将查询延迟从几分钟缩短到次秒，将在线分析带回到大数据。
+
+#### Apache Doris（原Palo）
+https://github.com/apache/incubator-doris
+[Apache Kylin VS Apache Doris全方位对比](https://cloud.tencent.com/developer/article/1477234)
+Doris是一个MPP的OLAP系统，主要整合了Google Mesa（数据模型），Apache Impala（MPP Query Engine)和Apache ORCFile (存储格式，编码和压缩) 的技术。
+
+Apache Doris的分布式架构非常简洁，易于运维，并且可以支持10PB以上的超大数据集。
+
+Apache Doris可以满足多种数据分析需求，例如固定历史报表，实时数据分析，交互式数据分析和探索式数据分析等。使得数据分析工作更加简单高效！
 
 ## 其它
 

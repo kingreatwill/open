@@ -20,6 +20,9 @@ Markdown编辑工具-支持weblog
 
 [excel to markdown](http://www.tablesgenerator.com/markdown_tables)
 
+### MarkDown 网页编辑器StackEdit
+https://github.com/benweet/stackedit 17.2k
+
 ## mysql
 [my.cnf自动生成工具](https://imysql.com/my-cnf-wizard.html)
 
@@ -113,6 +116,11 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 7.提供 PE 反汇编及反汇编比较功能。
 8.有限的 PE 资源查看处理功能。
 9.有限的图片及文本格式文件查看功能。
+
+[PEzor](https://github.com/phra/PEzor)
+一款开源的可绕过杀软检测的 PE 文件加壳工具
+主要是用于通过反射来执行exe或shellcode，从而来绕过AV。
+[红队的最新一款绕过AV的PE工具](https://www.toutiao.com/i6888192159233769996/)
 
 ## 交互式反汇编专业工具 IDA
 [逆向神器之IDA的使用](https://www.cnblogs.com/aikongmeng/articles/10657479.html)
@@ -293,6 +301,7 @@ ZIP 压缩包管理器 - 免费版含广告
 - [CherryTree 1.5k](https://github.com/giuspen/cherrytree)
 - [TagSpaces 2.1k](https://github.com/tagspaces/tagspaces)
 - [Google Keep](https://keep.google.com/)
+-  NoteCase、KeepNote、Knowit、Tomboy、TuxCards、Treepad、Leo
 
 
 ## Microsoft Todo

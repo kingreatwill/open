@@ -40,3 +40,13 @@ https://github.com/givanz/VvvebJs 3.5k
 7、页面下载或导出html或保存页面在服务器上包含示例PHP脚本。
 8、组件/块列表搜索。
 9、Bootstrap 4组件等组件
+
+### h5-Dooring
+https://github.com/MrXujiang/h5-Dooring 870
+### sparrow-js
+https://github.com/sparrow-js/sparrow 349
+### 其它相似
+#### ContentTools
+用于为HTML内容构建所见即所得编辑器的JS库。
+https://github.com/GetmeUK/ContentTools
+https://github.com/GetmeUK

@@ -51,4 +51,5 @@ Pinot 从脱机数据源（包括 Hadoop 和各类文件）和在线数据源（
 Pinot 被设计成可进行水平扩展。
 Pinot 特别适合这样的数据分析场景：查询具有大量维度和指标的时间序列数据、分析模型固定、数据只追加以及低延迟，以及分析结果可查询。
 
-
+- Apache Doris
+[Apache Kylin VS Apache Doris全方位对比](https://cloud.tencent.com/developer/article/1477234)

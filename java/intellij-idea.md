@@ -4,3 +4,4 @@
 
 激活
 http://idea.medeming.com/jihuoma/
+http://idea.studycoder.com/

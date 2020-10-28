@@ -145,6 +145,18 @@ CNTK与Torch和PyTorch一样，支持NVIDIA的CUDA技术。 它也与.NET标准�
 ### Accord.NET 1.7K+
 https://github.com/accord-net/framework
 
+### Knime
+https://github.com/knime
+https://github.com/knime/knime-core
+Knime基于图形用户界面(GUI)的开源机器学习工具，通常用于与数据相关的目的，比如数据操纵、数据挖掘等，无需编写任何代码就能完成端到端的数据科学工作流程。
+而且，为了帮助新手，它配备了一个拖放式界面，界面清晰，可以使用它创建和生成，用起来很容易上手。
+
+### RapidMiner
+https://github.com/rapidminer
+https://github.com/rapidminer/rapidminer-studio
+如果你是非程序员，那么RapidMiner能帮上你的大忙，它的操作简单，只需要拖放就可以。
+这是一个数据科学平台，界面很出色。它可以在跨平台操作系统上工作，使用它，可以用自己的数据测试自己的模型。
+
 ## 线性代数、微积分、概率和统计
 ### 线性代数概念：
 1. 矩阵运算

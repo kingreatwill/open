@@ -143,20 +143,26 @@ Markdown Editor
 Markdown Preview Plus
 Markdown Viewer 推荐
 NordVPN 
-Octotree 推荐
 Postman Interceptor
 Project Naptha
 Proxy SwitchyOmega
 Proxy SwitchySharp
 Sweet二维码生成器
 Search by Image (by Google)
-Sourcegraph 推荐
 Tab Resize - split screen layouts
 Volume Controller - 音量控制器
 划词翻译
 沙拉查词-聚合词典划词翻译
 彩云小译
+### github插件
+Octotree - GitHub code tree推荐
 GitHub加速 推荐
+GitHub Downloader 可以针对单个文件进行下载
+Awesome Autocomplete for GitHub 为 GitHub 的搜索栏添加即时搜索功能，简单而谨慎的扩展增强了GitHub的搜索功能，比以往更快地、准确的搜索存储库和人员。
+Sourcegraph 对 GitHub 搜索功能，代码比对，查看引用，自动跳转，项目目录导航等功能做了全面的升级。 推荐
+File Icons for GitHub and GitLab
+GitHub Isometric Contributions 可以将 GitHub 贡献图和等距像素艺术版本之间切换，3D 像素立体展示 GitHub 上的仓库提交记录
+Markdown Menu for GitHub 
 
 ### tampermonkey插件 
 脚本管理器 - 相当于万能插件
