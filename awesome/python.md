@@ -79,9 +79,22 @@ Output formats supported:
 ## 流程图
 https://github.com/mingrammer/diagrams
 
-## 可视化在线编写运行Python的神器：PythonTutor
+## Python神器
+### 可视化在线编写运行Python的神器：PythonTutor
+有点像图解python运行过程
 http://www.pythontutor.com/
 
+### 优秀的Debug神器---pysnooper
+有点像日志输出python运行过程
+https://github.com/cool-RR/PySnooper 13.8k
+```
+https://github.com/cool-RR/PySnooper/blob/master/ADVANCED_USAGE.md
+import pysnooper
+#@pysnooper.snoop()
+@pysnooper.snoop('file.log')
+@pysnooper.snoop(watch=('foo.bar', 'self.x["whatever"]')) 查看变量
+@pysnooper.snoop(depth=2)
+```
 
 ## 翻译
 https://github.com/UlionTse/translators
