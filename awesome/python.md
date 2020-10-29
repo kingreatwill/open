@@ -95,6 +95,8 @@ Output formats supported:
 https://github.com/mingrammer/diagrams
 
 ## Python神器
+### 可视化排序算法
+https://github.com/LucasPilla/Sorting-Algorithms-Visualizer
 ### 可视化在线编写运行Python的神器：PythonTutor
 有点像图解python运行过程
 http://www.pythontutor.com/

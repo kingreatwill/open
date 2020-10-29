@@ -273,5 +273,15 @@ macOS status monitoring app written in SwiftUI.
 
 https://github.com/gao-sun/eul
 
+## 系统工具
+### crash
+https://github.com/crash-utility/crash
+
+crash是redhat的工程师开发的，主要用来离线分析linux内核转存文件，它整合了gdb工具，功能非常强大。可以查看堆栈，dmesg日志，内核数据结构，反汇编等等。
+crash支持多种工具生成的转存文件格式，如kdump，LKCD，netdump和diskdump，而且还可以分析虚拟机Xen和Kvm上生成的内核转存文件。
+同时crash还可以调试运行时系统，直接运行crash即可，ubuntu下内核映象存放在/proc/kcore。
+crash和linux内核是紧密耦合的，会随着内核的变化持续更新，它向前兼容的，新的crash工具可以分析老内核的转存文件
+
+
 ## xx
 https://github.com/xwmx/nb
