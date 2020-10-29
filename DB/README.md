@@ -106,3 +106,37 @@ SysBench 是一个模块化的、跨平台、多线程基准测试工具，主�
 4、内存分配及传输速度
 5、POSIX 线程性能
 6、数据库性能(OLTP 基准测试)
+
+
+### 数据库同步
+#### canal
+#### Debezium
+https://github.com/debezium/debezium 3.8k
+
+可以同步数据到kafka
+
+Debezium是一个开源项目，为捕获数据更改(Capture Data Change，CDC)提供了一个低延迟的流式处理平台，通过安装配置Debezium监控数据库，可以实时消费行级别(row-level)的更改。身为一个分布式系统，Debezium也拥有良好的容错性。
+Debezium 是一种借助 Kafka 将数据变更发布成事件流的 CDC 实现。
+Debezium 是一款开源的、基于 Kafka 的 CDC 工具，它会读取数据库事务日志，并将其发布成事件流。
+
+CDC 除了可以用来更新缓存、服务和搜索引擎，Morling 还介绍了其他几种用例，包括：
+- 数据复制，通常用来将数据复制到其他类型的数据库或数据仓库中。
+- 审计。因为保留了数据历史，在使用元数据填充数据后，可以实现数据变更审计。
+
+Debezium的源端(即支持监控哪些数据库) : 
+- MySQL
+- MongoDB
+- PostgreSQL
+- Oracle
+- SQL Server 
+- Oracle (Incubating)
+- Db2 (Incubating)
+- Cassandra (Incubating)
+[数据库连接器](https://debezium.io/docs/connectors/)
+
+Debezium的目标端(即可以数据导入端) : Kafka
+
+[Debezium获取MySQL Binlog](https://my.oschina.net/jerval/blog/3058959)
+[使用嵌入式Debezium和SpringBoot捕获更改数据事件（CDC） - Sohan Ganapathy](https://www.jdon.com/53411)
+
+如果您已经安装了Zookeeper、Kafka和Kafka Connect，那么使用Debezium的连接器是很容易的。只需下载一个或多个连接器插件存档(见下文)，将它们的文件解压到Kafka Connect环境中，并将解压后的插件的父目录添加到Kafka Connect的插件路径中。如果不是这样，在你的工作配置中指定插件路径(例如，connect- distribu. properties)使用插件。路径配置属性。例如，假设您已经下载了Debezium MySQL连接器存档，并将其内容解压缩到/kafka/connect/ Debezium -connector- MySQL。然后在worker配置中指定以下内容:`plugin.path=/kafka/connect`

@@ -66,6 +66,14 @@ https://github.com/viralogic/py-enumerable
 ### ebook
 https://github.com/kovidgoyal/calibre
 Calibre 是一款功能强大的电子书管理软件，支持 Amazon、Apple、Bookeen、Ectaco、Endless Ideas、Google/HTC 与 Hanlin Song 设备及格式。
+ 
+### Arrow Python时间日期库
+其设计灵感主要来源于moment.js。
+https://github.com/arrow-py/arrow
+
+> 区别于Apache Arrow；Apache Arrow支持丰富的语言
+> 在分布式系统内部，每个系统都有自己的内存格式，大量的 CPU 资源被消耗在序列化和反序列化过程中，并且由于每个项目都有自己的实现，没有一个明确的标准，造成各个系统都在重复着复制、转换工作，这种问题在微服务系统架构出现之后更加明显，Arrow 的出现就是为了解决这一问题。作为一个跨平台的数据层，我们可以使用 Arrow 加快大数据分析项目的运行速度。
+
 
 ## 文档
 https://github.com/scanny/python-pptx
@@ -134,6 +142,15 @@ DeepFaceLab 是一种工具，可以创建深层假图像和视频，它允许�
 
 ### ORC
 - https://pypi.org/project/muggle-ocr
+
+## 机器学习
+### 机器学习UI框架Streamlit - 好东西
+
+https://github.com/streamlit/streamlit 11.6k
+
+Streamlit 是 Python 编写的开源应用框架，数据科学家用其来构建好看的数据可视化应用。Streamlit 专注于快速原型设计，并且支持各种不同的可视化库(包括 Plotly和Bokeh)，因此在Dash等竞品中脱颖而出。
+对于需要在实验周期中快速展示的数据科学家来说，Streamlit 是一个可靠的选择。我们在一些项目中使用它，并且只需要花费很少的工作量就能把多个交互式可视化放在一起。
+
 
 ## 其它整理
 ### Manim

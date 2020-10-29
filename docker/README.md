@@ -258,15 +258,34 @@ docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e USER=zs -e P
 VNC (Virtual Network Console)是虚拟网络控制台的缩写，优点像windows版本的远程桌面控制
 
 ## docker 分析
-https://github.com/wagoodman/dive
+### dive 分析docker镜像
+https://github.com/wagoodman/dive 23k
 > 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
 
-https://github.com/vicanso/diving
+### diving 分析docker镜像web展示基于dive
+https://github.com/vicanso/diving 147
 > 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
 > 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
 
+### docker-slim 自动缩减 docker 镜像
 https://github.com/docker-slim/docker-slim
 > 自动缩减 docker 镜像的体积的工具。大幅度缩减 docker 镜像的体积，方便分发，使用命令 docker-slim build --http-probe your-name/your-app。
+
+### Trivy 镜像漏洞扫描工具
+https://github.com/aquasecurity/trivy
+> 镜像漏洞扫描工具Trivy
+
+Trivy是一种适用于CI的简单而全面的容器漏洞扫描程序。软件漏洞是指软件或操作系统中存在的故障、缺陷或弱点。Trivy检测操作系统包（Alpine、RHEL、CentOS等）和应用程序依赖（Bundler、Composer、npm、yarn等）的漏洞。Trivy很容易使用，只要安装二进制文件，就可以扫描了。扫描只需指定容器的镜像名称。与其他镜像扫描工具相比，例如Clair，Anchore Engine，Quay相比，Trivy在准确性、方便性和对CI的支持等方面都有着明显的优势。
+
+推荐在CI中使用它，在推送到container registry之前，您可以轻松地扫描本地容器镜像，Trivy具备如下的特征：
+
+1. 检测面很全，能检测全面的漏洞，操作系统软件包（Alpine、Red Hat Universal Base Image、Red Hat Enterprise Linux、CentOS、Oracle Linux、Debian、Ubuntu、Amazon Linux、openSUSE Leap、SUSE Enterprise Linux、Photon OS 和Distrioless）、应用程序依赖项（Bundler、Composer、Pipenv、Poetry、npm、yarn和Cargo）；
+2. 使用简单，仅仅只需要指定镜像名称；
+3. 扫描快且无状态，第一次扫描将在10秒内完成（取决于您的网络）。随后的扫描将在一秒钟内完成。与其他扫描器在第一次运行时需要很长时间（大约10分钟）来获取漏洞信息，并鼓励您维护持久的漏洞数据库不同，Trivy是无状态的，不需要维护或准备；
+4. 易于安装，安装方式：
+  apt-get install
+  yum install
+  brew install
 
 ## docker GUI
 

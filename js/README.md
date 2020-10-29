@@ -50,3 +50,17 @@ https://github.com/sparrow-js/sparrow 349
 用于为HTML内容构建所见即所得编辑器的JS库。
 https://github.com/GetmeUK/ContentTools
 https://github.com/GetmeUK
+
+## state
+### xstate
+https://github.com/davidkpiano/xstate
+它是个简单的 JavaScript 和 TypeScript 框架，可以创建有限状态机并可视化为状态图。
+它可以跟最流行的响应式 JavaScript 框架（Vue.js，Ember.js，React.js 以及 RxJS）集成，并基于 W3C 标准来创建有限状态机。
+###
+https://github.com/immerjs/immer
+
+## test
+### jest
+https://github.com/facebook/jest
+#### jest-when
+https://github.com/timkindberg/jest-when
