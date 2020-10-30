@@ -66,16 +66,52 @@ https://github.com/viralogic/py-enumerable
 ### ebook
 https://github.com/kovidgoyal/calibre
 Calibre 是一款功能强大的电子书管理软件，支持 Amazon、Apple、Bookeen、Ectaco、Endless Ideas、Google/HTC 与 Hanlin Song 设备及格式。
- 
-### Arrow Python时间日期库
+
+### 日期处理
+#### Arrow Python时间日期库
 其设计灵感主要来源于moment.js。
 https://github.com/arrow-py/arrow
 
 > 区别于Apache Arrow；Apache Arrow支持丰富的语言
 > 在分布式系统内部，每个系统都有自己的内存格式，大量的 CPU 资源被消耗在序列化和反序列化过程中，并且由于每个项目都有自己的实现，没有一个明确的标准，造成各个系统都在重复着复制、转换工作，这种问题在微服务系统架构出现之后更加明显，Arrow 的出现就是为了解决这一问题。作为一个跨平台的数据层，我们可以使用 Arrow 加快大数据分析项目的运行速度。
 
+#### dateutils
+#### pendulum
+比Arrow库好用?
+https://github.com/sdispater/pendulum
+
+#### Delorean
+一个酷炫的日期时间库，类似JavaScript中的moment
+
 ### 不会正则表达式的看过来
 https://github.com/r1chardj0n3s/parse
+
+### sqlmap
+是一款用来检测与利用SQL注入漏洞的免费开源工具，支持所有类型数据库的注入。
+
+### you-get
+### wget
+
+### url操作
+furl: 简化对url中各部分的操作，例如查询字符串的获取或设置等。
+官方地址：https://github.com/gruns/furl
+
+### 任务队列
+#### celery
+celery：python中最强大的任务队列了，配合Flower可在web界面上实时查看celery的各个任务状态和统计信息
+
+Flower项目地址：https://flower.readthedocs.io/en/latest/
+
+#### huey
+huey：一个比较小型的任务队列，依赖于redis或sqlite。
+
+官方文档：https://huey.readthedocs.io/en/latest/
+
+### 定时任务
+#### apscheduler
+apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启动信息。
+官方文档：https://apscheduler.readthedocs.io/en/latest/
+
 
 
 ## 文档
@@ -99,6 +135,11 @@ Output formats supported:
 - ODS (Sets)
 - CSV (Sets)
 - DBF (Sets)
+
+excel相关：
+xlrd：读取excel文档
+xlwt：写excel文档
+pyexcel：读写excel文档（只能xlsx格式）
 
 
 

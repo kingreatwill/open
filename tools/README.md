@@ -313,7 +313,7 @@ ZIP 压缩包管理器 - 免费版含广告
 - [TagSpaces 2.1k](https://github.com/tagspaces/tagspaces)
 - [Google Keep](https://keep.google.com/)
 -  NoteCase、KeepNote、Knowit、Tomboy、TuxCards、Treepad、Leo
-
+- 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine,Xwiki
 
 ## Microsoft Todo
 

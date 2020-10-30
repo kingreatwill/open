@@ -20,3 +20,9 @@ https://github.com/sagemath/sage
 ## spyder
 科学Python开发环境
 https://github.com/spyder-ide/spyder 5.5k
+
+
+## Lobe
+https://www.lobe.ai/
+Lobe桌面应用程序 助你轻松创建机器学习模型
+2018 年的时候，微软收购了一家名叫 Lobe 的人工智能初创企业。Lobe 加入到微软之后，仍以独立服务存在。两年过后，微软终于宣布了 Lobe 的公开预览。
