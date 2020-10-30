@@ -62,7 +62,18 @@ Postman for protobuf APIs
 [BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)
 
 [切换Hosts文件](https://github.com/oldj/SwitchHosts)
-
+### 压缩工具
+#### 7-Zip
+#### winrar
+#### PeaZip
+https://github.com/peazip/PeaZip
+PeaZip这款软件是基于著名的开源压缩软件7-Zip打造的
+#### bandzip
+性能比7-Zip好很多
+bandzip 7开始出现广告了
+#### minizip
+https://github.com/nmoinvaz/minizip
+#### picozip
 
 ## 视频下载
 

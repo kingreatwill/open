@@ -1,4 +1,5 @@
-
+<!--toc-->
+[TOC]
 [测试平台](https://www.processon.com/diagraming/5ddddca0e4b074c442e605de)
 
 UFT，QTP被惠普收购以后的新名称
@@ -233,6 +234,10 @@ https://github.com/serhatbolsu/robotframework-appiumlibrary
 
 https://github.com/cypress-io/cypress
 
+### Playwright UI自动化
+https://github.com/microsoft/playwright
+https://github.com/microsoft/playwright-python
+
 ### HttpRunner 
 HttpRunner 是一款面向 HTTP(S) 协议的通用测试框架，只需编写维护一份 YAML/JSON 脚本，即可实现自动化测试、性能测试、线上监控、持续集成等多种测试需求。
 ### splinter 
@@ -298,7 +303,8 @@ https://github.com/topics/security-scanner?l=python
 ### 强大的全新 Web UI 测试框架 Cypress
 
 ### 其它(以下跟前端更相关)
-
+#### playwright
+https://github.com/microsoft/playwright
 #### puppeteer
 https://github.com/puppeteer/puppeteer
 Headless Chrome Node.js API https://pptr.dev/
