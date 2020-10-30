@@ -51,12 +51,22 @@ https://github.com/sparrow-js/sparrow 349
 https://github.com/GetmeUK/ContentTools
 https://github.com/GetmeUK
 
+## 在线
+### 可视化在线绘图引擎 Topology（类似draw.io）
+
+https://github.com/le5le-com/topology/
+A diagram (topology, UML) framework uses canvas and typescript. 一个轻量（100k左右）、功能丰富的绘图工具（微服务架构图、拓扑图、流程图、类图等UML图、脑图，动画、视频支持）。 【在线使用】：
+
+topology.le5le.com/
+
+
+
 ## state
 ### xstate
 https://github.com/davidkpiano/xstate
 它是个简单的 JavaScript 和 TypeScript 框架，可以创建有限状态机并可视化为状态图。
 它可以跟最流行的响应式 JavaScript 框架（Vue.js，Ember.js，React.js 以及 RxJS）集成，并基于 W3C 标准来创建有限状态机。
-###
+### immer
 https://github.com/immerjs/immer
 
 ## test
@@ -64,3 +74,19 @@ https://github.com/immerjs/immer
 https://github.com/facebook/jest
 #### jest-when
 https://github.com/timkindberg/jest-when
+
+## doc
+### PDF
+#### jsPDF
+生成PDF
+https://github.com/MrRio/jsPDF 20.3k
+
+#### pdf.js
+https://github.com/mozilla/pdf.js 32.7k
+在web端打开pdf格式文件bai
+#### pdfobject
+在web端打开pdf格式文件bai
+https://github.com/pipwerks/PDFObject 1.7k
+
+#### html2pdf
+https://github.com/eKoopmans/html2pdf.js
