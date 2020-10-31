@@ -127,11 +127,12 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 --volume , -v: 绑定一个卷
 
 --restart: docker服务启动时，自动启动容器，并且当容器停止时，尝试重启容器。
-
                 --restart具体参数值详细信息：
-                no -  容器退出时，不重启容器；
-                on-failure - 只有在非0状态退出时才从新启动容器；
-                always - 无论退出状态是如何，都重启容器
+                - no -  容器退出时，不重启容器；no是默认策略，在任何情况下都不会restart容器
+                - on-failure - 只有在非0状态退出时才从新启动容器；on-failure表示如果容器 exit code异常时将restart，如果容器exit code正常将不做任何处理。
+                - on-failure:max-retries，max-retries表示最大重启次数。如（--restart on-failure:5）
+                - always - 无论退出状态是如何，都重启容器
+                - unless-stopped和 always 基本一样，只有一个场景 unless-stopped有点特殊：如果容器正常stopped，然后机器重启或docker服务重启，这种情况下容器将不会被restart
 
 --privileged=true 管理权限
 ```
