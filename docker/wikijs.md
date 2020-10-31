@@ -1,6 +1,8 @@
 
+## Wiki.js 2
 docker run -d -p 3000:3000 --name wiki --restart always -v /d/dockerv/wikijs2/config.yml:/wiki/config.yml -v /d/dockerv/wikijs2/data/:/wiki/db/ requarks/wiki:2.5
 
+> Wiki.js runs as user wiki. docker启动时可以指定-u="root"
 升级只需要更新docker镜像版本就可以了.
 
 config.yml
@@ -134,3 +136,9 @@ ha: false
 # Writeable data path used for cache and temporary user uploads.
 dataPath: ./data
 ```
+## Wiki.js 3
+将使用Quasar Vue framework
+支持PDF导出
+## Wiki.js 4
+将PostgreSQL 作为唯一的数据库
+
