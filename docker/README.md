@@ -287,6 +287,10 @@ Trivy是一种适用于CI的简单而全面的容器漏洞扫描程序。软件�
   yum install
   brew install
 
+### ctop
+实时监控类似linux的top
+https://github.com/bcicen/ctop
+
 ## docker GUI
 
 ### Portainer

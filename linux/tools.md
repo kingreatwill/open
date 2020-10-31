@@ -64,6 +64,15 @@ git diff HEAD~8 --stat | fpp
 提供更美观、更方便的进程监控工具，替代top命令。
 https://hisham.hm/htop/
 
+#### htop 和 glances
+glances 是htop的补充工具。除了列出所有进程及其 CPU 和内存使用情况之外，它还可以显示有关系统的其他信息，比如：
+- 网络及磁盘使用情况
+- 文件系统已使用的空间和总空间
+- 来自不同传感器（例如电池）的数据
+- 以及最近消耗过多资源的进程列表
+
+https://nicolargo.github.io/glances/
+
 ### 查看进程占用带宽情况-Nethogs
 https://github.com/raboof/nethogs
 ```
@@ -91,6 +100,8 @@ https://github.com/raboof/nethogs
 -R产生Excel到标准输出
 -b指定输出到指定文件上
 
+### ncdu 磁盘分析
+ncdu 下载地址：https://dev.yorhel.nl/ncdu
 ### 实时监控磁盘IO-IOTop
 ### 网络流量监控-IPtraf
 ### 网络流量监控-IFTop
@@ -201,6 +212,62 @@ ab :
 hey : https://github.com/rakyll/hey 9.2k  golang
 vegeta: https://github.com/tsenart/vegeta 15.5k golang
 ali: https://github.com/nakabonne/ali 630 golang (这款工具基于 vegeta，但使用起来更傻瓜式，而且实时进行分析，图形化展示。)
+
+
+### Starship
+https://starship.rs/
+它可以做到：
+- 根据你是否在代码仓库中添加了新文件、是否修改了文件、是否暂存了文件等情况，用相应的符号表示 git 仓库的状态。
+- 根据你所在的 Python 项目目录，展示 Python 的版本号，这也适用于 Go/Node/Rust/Elm 等其他编程语言环境。
+- 展示上一个命令执行所用的时间，指令运行时间必须在毫秒级别。
+- 如果上一个命令执行失败，会展示相应的错误提示符。
+
+### z
+z 可以让你快速地在文件目录之间跳转
+https://github.com/rupa/z
+
+### fzf
+fzf — fuzzy finder，即模糊查找器。它是一种通用工具，可让你使用模糊搜索来查找文件、历史命令、进程、git 提交等。你键入一些字母，它会尝试匹配结果列表中任何位置的字母。输入的字母越多，结果也就越准确。
+https://github.com/junegunn/fzf
+
+### fd
+类似于系统自带的 find 命令，但使用起来更简单，查找速度更快，并且具有良好的默认设置。
+https://github.com/sharkdp/fd
+
+### ripgrep
+
+ripgrep是grep命令的替代方法， 不过ripgrep的执行速度更快，而且具有健全的默认配置以及丰富的彩色输出。
+https://github.com/BurntSushi/ripgrep
+
+### virtualenv 和 virtualfish
+Virtualenv 是用于在 Python 中创建虚拟环境的工具。
+VirtualFish 则是 Fish Shell 的虚拟环境管理器。它提供了许多命令来执行快速创建、列出或删除虚拟环境等操作。
+
+virtualenv 下载地址：https://pypi.org/project/virtualenv/
+virtualfish 下载地址：https://github.com/justinmayer/virtualfish
+
+### pyenv、nodenv 和 rbenv
+pyenv 可以轻松实现 Python 版本的切换。
+Pyenv、nodenv 和 rubyenv 是用于管理计算机上不同版本的 Python、Node 和 Ruby 的工具。
+pyenv 下载地址：https://github.com/pyenv/pyenv
+nodenv 下载地址：https://github.com/nodenv/nodenv
+rbenv 下载地址：https://github.com/rbenv/rbenv
+
+### bat cat的替代品
+bat 下载地址：https://github.com/sharkdp/bat
+
+### httpie curl替代工具
+https://httpie.org/
+
+### tldr  man的简化版
+https://tldr.sh/
+### exa ls命令的一个可替代方案
+https://the.exa.website/
+
+### litecli 和 pgcli
+这是SQLite 和 PostgreSQL CLI 的解决方案。借助自动提示和语法突出显示，它们比默认的sqlite3和psql工具要好用很多。
+litecli 下载地址：https://litecli.com/
+pgcli 下载地址：https://www.pgcli.com/
 
 ## netstat -lntup  
 说明： l:listening   n:num   t:tcp  u:udp  p:process

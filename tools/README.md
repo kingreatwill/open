@@ -313,9 +313,55 @@ ZIP 压缩包管理器 - 免费版含广告
 - [TagSpaces 2.1k](https://github.com/tagspaces/tagspaces)
 - [Google Keep](https://keep.google.com/)
 -  NoteCase、KeepNote、Knowit、Tomboy、TuxCards、Treepad、Leo
-- 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine,Xwiki
+- 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine、Xwiki、confluence
+
+### Wiki  知识库
+[wiki比较](https://www.wikimatrix.org/) https://github.com/topics/wiki
+- DokuWiki 
+- MediaWiki 
+- XWiki 
+- TiddlyWiki 
+- PmWiki 
+- Wiki.js 
+- TWiki 
+- Tiki Wiki CMS Groupware 
+- Confluence 
+- MoinMoin 
+- WikkaWiki 
+- WackoWiki 
+- PBwiki 
+- Oddmuse 
+- BookStack 
+- PhpWiki 
+- JSPWiki 
+- Drupal Wiki 
+- TracWiki 
+- Wikia 
+- ThoughtFarmer 
+- Foswiki 
+- BlueSpice MediaWiki 
+- GWiki 
+#### Xwiki
+#### confluence
+confluence  企业级的Wiki https://www.atlassian.com/software/confluence
+
+docker
+https://github.com/cptactionhank/docker-atlassian-confluence
+https://github.com/teamatldocker/confluence
+
+#### Wiki.js
+
+#### ONES Wiki
+
+#### redmine自带wiki
+#### mediawiki 
+#### MoinMoinWiki
+https://moinmo.in/
+#### DokuWiki
+https://www.dokuwiki.org/dokuwiki
 
 ## Microsoft Todo
+
 
 ## 视频音频处理软件
 https://github.com/HaujetZhao/QuickCut
@@ -592,4 +638,9 @@ vsdiffmerge.exe file1 file2
 
 ### winmerge
 winmergeu.exe -e -u file1 file2
+
+### 其它
+colordiff 和 diff-so-fancy
+colordiff 下载地址：https://www.colordiff.org/
+diff-so-fancy 下载地址：https://github.com/so-fancy/diff-so-fancy
 

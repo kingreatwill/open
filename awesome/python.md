@@ -112,7 +112,9 @@ huey：一个比较小型的任务队列，依赖于redis或sqlite。
 apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启动信息。
 官方文档：https://apscheduler.readthedocs.io/en/latest/
 
-
+### 数据可视化工具
+#### python的matplotlib
+#### R语言的ggplot2
 
 ## 文档
 https://github.com/scanny/python-pptx

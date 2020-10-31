@@ -40,7 +40,7 @@ https://github.com/Eugeny/terminus
 ### SecureCRT
 
 ### finalshell
-
+https://fishshell.com/
 ### Putty、telnet
 
 ### OpenSSH

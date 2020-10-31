@@ -20,6 +20,7 @@ Mi表示（1Mi=1024x1024）,M表示（1M=1000x1000）
 
 
 
+### 文档
 中文文档：https://kubernetes.io/zh/docs/
 
 Kubernetes Handbook （Kubernetes指南）
@@ -66,3 +67,38 @@ kubernetes相关的工具：https://github.com/kubernetes-sigs/ （你会发现
 [图解kubernetes调度器SchedulingQueue核心源码实现](https://m.toutiao.com/i6781307442589336067/)
 
 [Kubernetes REST API](https://www.jianshu.com/p/0de6bc64c423)
+
+## 其它
+### Kubernetes日志监控工具
+#### Zebrium
+优点：易于启动；只需复制/粘贴自定义的HELM或kubectl命令；自动检测问题和根本原因，无需手动规则；可以用作独立的日志管理工具，也可以用作现有日志管理工具（例如ELK Stack）的机器学习附件。
+缺点：免费计划限制为每天500 MB，保留3天；支持Kubernetes，Docker和大多数常见平台，但不支持Windows
+
+#### Sematext
+用于日志管理和应用程序性能监控的解决方案。Sematex提供了系统状态的全栈可见性。
+Sematext不仅限于Kubernetes日志，还可以监控和Kubernetes（基于度量标准和日志）。收集到的日志会自动针对几种不同的已知日志格式进行解析/结构化，并且用户还可以提供自定义日志的模式。它还公开了Elasticsearch API，因此也可以使用任何与Elasticsearch配合使用的工具，例如Filebeat和Logstash与Sematex。可以将其用作ELK的变体或与本机Sematext生态系统一起使用。该工具有助于创建特定规则，来监控特定情况并捕获异常。借助Sematex全面的实时仪表板，客户可以控制和监控所有服务。
+
+优点：与其他Sematext云工具集成；可配置超限来阻止日志被接受从而控制成本；具有ELK的灵活性。
+
+缺点：Sematext小部件和Kibana不能在一个仪表板上混合使用；自定义解析需要在日志传送器中完成，Sematext仅在服务器端解析Syslog和JSON；跟踪功能较弱，但已经在计划进行改进。
+
+#### Loki
+Loki是一个受Prometheus启发的多租户和高度可用的日志聚合工具。这款工具有助于收集日志，但是用户将需要为其建立手动规则。Loki与Grafana，Prometheus和Kubernetes合作。Loki可以让内部流程更有效率。如，它节省了Paytm Insider 75%的日志记录和监控成本。Loki不会索引你的日志内容，而是仅索引每个事件流的一组标签，因此效率很高。
+
+优点：拥有大型的生态系统；丰富的可视化功能；由于未索引日志内容而提高了效率。并且可以配合tempo调用链查看日志.
+
+缺点：未针对Kubernetes日志管理进行优化；大量的架构规则手工工作；缺少内容索引可能会限制搜索性能。
+
+#### ELK Stack
+
+ELK是最著名的日志管理开源工具。ELK是Elasticsearch，Logstash和Kibana的首字母缩写。每个组件负责日志记录过程的不同部分。Elasticsearch是一个功能强大且可扩展的搜索系统，Logstash聚合并处理日志，而Kibana提供了一个分析和可视化界面，可帮助用户理解数据。它们共同为Kubernetes提供了全面的日志记录解决方案。但ELK Stack还有许多其他变体，如EFK Stack，即Elasticsearch，Fluentd和Kibana组成。
+
+优点：ELK是众所周知的，并且拥有庞大的社区；非常广泛的平台支持；Kibana中丰富的分析和可视化功能；需要对日志和手动定义的警报规则进行复杂的分析。
+
+缺点：维持规模难度大；需要很多调整，特别是对于大型环境；大量的资源需求；某些功能需要付费许可证。
+
+#### Fluentd
+
+优点：大型社区和插件生态系统；统一日志记录层；经过验证的可靠性和性能。可以在不到10分钟的时间内安装完毕。
+
+缺点：难以配置；对转换数据的支持有限；不是完整的日志记录解决方案。
