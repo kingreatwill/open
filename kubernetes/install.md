@@ -1,9 +1,48 @@
+<!-- toc -->
+[TOC]
 参考1：https://github.com/eip-work/kuboard-press
 参考2：https://github.com/lework/kainstall
 kainstall = kubeadm install kubernetes
-<!-- toc -->
-[TOC]
+## Kubernetes IN Docker
+https://github.com/kubernetes-sigs/kind
+kind：是一种使用Docker容器节点运行本地Kubernetes集群的工具。该类型主要用于测试Kubernetes，但可用于本地开发或CI。
+https://kind.sigs.k8s.io/docs/user/quick-start/#installation
 
+### 下载
+```
+$ curl -Lo ./kind "https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64"
+$ chmod +x ./kind
+$ mv ./kind /usr/local/bin/kind
+
+查看环境变量
+env
+or
+echo $PATH
+
+mac
+brew install kind
+win
+choco install kind
+```
+### 创建集群，默认集群名称为 kind
+$ kind create cluster
+$ kind create cluster --name k8s-demo # 定义集群名称
+$ kubectl cluster-info --context kind-kind
+$ docker ps | grep kind
+$ kubectl get pods -A -o wide # 列出K8S集群pods
+$ kind get clusters # 查询集群
+$ kind delete cluster # 删除集群
+$ docker exec -it my-node-name crictl images # 列出集群镜像
+
+### kubernetes client安装(kubectl)
+选择对应版本下载
+wget https://dl.k8s.io/v1.19.1/kubernetes-client-linux-amd64.tar.gz
+tar -zxvf kubernetes-client-linux-amd64.tar.gz
+cd kubernetes/client/bin
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
+
+## kuboard
 ### 准备工作
 k8s集群安装: k8s v1.16.1
 环境准备：3台centos7.7  2核心4G

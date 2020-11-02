@@ -182,6 +182,8 @@ docker stats
 docker stats exceptionless_api_1 
 查看具体的容器　　
 
+如果已经启动了则可以使用如下命令：
+docker update --restart=always `<CONTAINER ID>`
 
 ## docker push到私有仓库
 
@@ -291,6 +293,17 @@ Trivy是一种适用于CI的简单而全面的容器漏洞扫描程序。软件�
 ### ctop
 实时监控类似linux的top
 https://github.com/bcicen/ctop
+
+### 查看一个运行容器的docker run启动参数
+
+https://github.com/lavie/runlike 453
+不安装的方法：`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike YOUR-CONTAINER`
+可以使用-q自动换行
+
+https://github.com/nexdrew/rekcod 237
+不安装的方法：`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nexdrew/rekcod <container>`
+
+> docker ps -a --no-trunc 查看启动的脚本参数和完整的命令
 
 ## docker GUI
 

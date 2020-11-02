@@ -85,6 +85,12 @@ NETMASK=255.255.255.0
 systemctl restart network
 ```
 
+> x86_64，x64，AMD64基本上是同一个东西
+> x86是intel开发的一种32位指令集
+> x84_64是CPU迈向64位的时候
+> x86_64是一种64位的指令集，x86_64是x86指令的超集，在x86上可以运行的程序，在x86_64上也可以运行，x86_64是AMD发明的，也叫AMD64
+> 现在用的intel/amd的桌面级CPU基本上都是x86_64，与之相对的arm、pcc等都不是x86_64
+
 ## job
 
 nohup cmd &
