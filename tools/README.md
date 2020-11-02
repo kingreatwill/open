@@ -297,6 +297,10 @@ ImageMagick 是一个用来创建、编辑、合成图片的软件。它可以�
 
 ImageMagick 可被用于图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线， 多边形，椭圆，曲线，附加到图片伸展旋转等。支持 Linux、Windows、Mac OS X、iOS、Android OS 平台。
 
+### Inkscape
+开源矢量图形编辑软件
+https://gitlab.com/inkscape/inkscape
+
 ## Bandizip 
 ZIP 压缩包管理器 - 免费版含广告
 
