@@ -14,6 +14,8 @@ docker run -d -p 8080:80 --name nginx -v /d/dockerv/nginx/www:/usr/share/nginx/h
 
 # nginx:1.19.3-alpine
 ```
+[Nginx多域名配置](https://www.cnblogs.com/goloving/p/9363490.html)
+
 
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
