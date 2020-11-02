@@ -1,6 +1,7 @@
 [安装](https://hub.docker.com/_/postgres)
 ```
 docker pull postgres:12.0
+docker pull postgres:13.0-alpine
 
 docker volume create --name=pgdata
 

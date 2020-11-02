@@ -1,5 +1,11 @@
 
-## Wiki.js 2
+
+## Wiki.js 2 postgresql
+docker run -d -p 5432:5432 -v /data/dockerv/postgresql13/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=jw@zll --name postgresql --restart always postgres:13
+
+docker run -d -p 3000:3000 --name wiki --restart always --link postgresql:postgresql -e "DB_TYPE=postgres" -e "DB_HOST=postgresql" -e "DB_PORT=5432" -e "DB_USER=postgres" -e "DB_PASS=jw@zll" -e "DB_NAME=wiki" requarks/wiki:2.5
+
+## Wiki.js 2 sqlite
 docker run -d -p 3000:3000 --name wiki --restart always -v /d/dockerv/wikijs2/config.yml:/wiki/config.yml -v /d/dockerv/wikijs2/data/:/wiki/db/ requarks/wiki:2.5
 
 > Wiki.js runs as user wiki. docker启动时可以指定-u="root"
