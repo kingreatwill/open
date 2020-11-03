@@ -14,6 +14,9 @@
 https://arxiv.org/abs/1907.05047
 https://google.github.io/mediapipe/solutions/face_detection
 
+### 目标检测
+- 旷视提出MegDetV2：目标检测/实例分割系统 论文：https://arxiv.org/abs/2010.02475
+
 ## Action Recognition
 https://github.com/jinwchoi/awesome-action-recognition
 

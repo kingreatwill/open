@@ -19,8 +19,34 @@ https://ai.tencent.com/ailab/nlp/en/data/Tencent_AILab_ChineseEmbedding.tar.gz
 https://chinesenlp.xyz/#/zh/
 
 ## MNIST
+MINST数据库是由Yann提供的手写数字数据库文件，其官方下载地址http://yann.lecun.com/exdb/mnist/
+
+### MedMNIST
+上海交大开源医疗版MNIST数据集
+
+
+项目地址：https://medmnist.github.io/
+
+论文地址：https://arxiv.org/pdf/2010.14925v1.pdf
+
+GitHub 地址：https://github.com/MedMNIST/MedMNIST
+
+数据集下载地址：https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0
+
+共包含 10 个预处理开放医疗图像数据集（其数据来自多个不同的数据源，并经过预处理）。
+和 MNIST 数据集一样，MedMNIST 数据集在轻量级 28 × 28 图像上执行分类任务，所含任务覆盖主要的医疗图像模态和多样化的数据规模。根据研究人员的设计，MedMNIST 数据集具备以下特性：
+
+- 教育性：该数据集中的多模态数据来自多个具备知识共享许可证的开放医疗图像数据集，可以用作教育目的。
+- 标准化：研究人员对数据进行预处理，将其转化为相同的格式，因此用户无需具备背景知识即可使用。
+- 多样性：多模态数据集涵盖多种数据规模（从 100 到 100,000）和任务（二分类 / 多分类、有序回归和多标签）。
+- 轻量级：图像大小为 28 × 28，便于快速设计原型和试验多模态机器学习与 AutoML 算法。
+
+受 Medical Segmentation Decathlon（医学分割十项全能）的启发，该研究也设计了 MedMNIST Classification Decathlon（MedMNIST 分类十项全能），作为 AutoML 在医疗图像分类领域的基准。
+
 ## SVHN
+
 ## ImageNet
+
 ## PascalVoc
 
 ## openml
