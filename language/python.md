@@ -54,6 +54,20 @@ We want to unlock the same possibilities that Jython and IronPython enable, but 
 
 https://github.com/go-python/gpython
 
+### Pyston
+Pyston是Python编程语言的一种更快、高兼容性的实现。版本2目前是封闭源代码，但是您可以在这个存储库的v1.0标记下找到旧的v1源代码。
+如需更新，请关注[我们的博客](https://blog.pyston.org/)
+https://github.com/pyston/pyston
+
+Ubuntu 
+```
+# 下载
+$ wget https://github.com/pyston/pyston/releases/download/v2.0/pyston_2.0_amd64_18.04.deb
+# 安装
+$ sudo apt install ./pyston_2.0*.deb
+然后你就可以使用 pyston (或者 pyston3) 和 pip-pyston install(或者 pip-pyston3 install) 命令来使用 pyston。
+```
+
 ## Style Guide
 
 Style Guide: https://www.python.org/dev/peps/pep-0008/
