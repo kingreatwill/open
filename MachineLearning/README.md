@@ -132,6 +132,20 @@ PyTorch 顶级项目
 
 - Horizon：一个用于应用强化学习（Applied RL）的平台：https://horizonrl.com (https://horizonrl.com/)
 
+#### prophet
+Prophet 是 Facebook 开源一款基于 Python 和 R 语言的数据预测工具。
+
+https://github.com/facebook/prophet
+
+- 安装 pstan
+prophet 是基于 pystan 的，因此安装此库前，要先安装 pystan。当然它还需要其他库，例如scipy、numpy、matplotlib等，但这些库在安装anaconda的时候已经安装完毕。同时pip工具也已经升级至最新版本。
+
+pystan这个库也并不友好。这个库也是基于一堆的第三方库。不能通过pip install pystan 来进行安装，或者下载pystan之后用以上命令安装。根据以往经验，即使该库通过pip命令显示安装成功，最后导入该库的时候还是会出问题。推荐通过以下命令进行安装，安装过程会刷一些其他第三方库的版本。
+`conda install -c conda-forge pystan`
+
+- 安装 prophet
+`pip install fbprophet  -i https://pypi.tuna.tsinghua.edu.cn/simple`
+
 ### Scikit-learn 35K+
 Scikit-learn是一个完全用Python编写的机器学习框架。 它使你可以使用已建立的模型对数据运行分类，回归，聚类和降维过程，同时支持有监督和无监督的学习方法。
 

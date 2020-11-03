@@ -90,3 +90,9 @@ https://github.com/pipwerks/PDFObject 1.7k
 
 #### html2pdf
 https://github.com/eKoopmans/html2pdf.js
+
+## D3.js
+https://github.com/d3/d3 95k
+D3的全称是（Data-Driven Documents），顾名思义可以知道是一个关于数据驱动的文档的javascript类库。说得简单一点，D3.js主要是用于操作数据的，它通过使用HTML、SVG、CSS来给你的数据注入生命，即转换为各种简单易懂的绚丽的图形。
+
+D3 是最流行的可视化库之一，它被很多其他的表格插件所使用。它允许绑定任意数据到DOM，然后将数据驱动转换应用到Document中。你可以使用它用一个数组创建基本的HMTL表格，或是利用它的流体过度和交互，用相似的数据创建惊人的SVG条形图。

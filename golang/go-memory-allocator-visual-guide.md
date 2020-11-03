@@ -1,9 +1,9 @@
 <!-- toc -->
 [TOC]
 [原文](https://blog.ankuranand.com/2019/02/20/a-visual-guide-to-golang-memory-allocator-from-ground-up/)
-[](https://blog.learngoprogramming.com/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
+[A visual guide to Go Memory Allocator from scratch](https://blog.learngoprogramming.com/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
 [github](https://github.com/coldnight/go-memory-allocator-visual-guide)
-
+[为什么 Go 占用那么多的虚拟内存？](https://segmentfault.com/a/1190000037683112)
 # Go 内存分配器可视化指南
 当我第一次开始尝试理解 Go 语言的内存分配器时，整个过程让我抓狂。一切看起来都像一个神秘的黑盒子。因为几乎所有技术魔法（technical wizardry）都隐藏在抽象之下，所以你需要一层一层的剥离才能去理解它。
 
