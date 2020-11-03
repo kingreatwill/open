@@ -307,6 +307,11 @@ https://github.com/golang/proposal/blob/master/design/draft-embed.md#background
 - github.com/wlbr/templify
 - perkeep.org/pkg/fileembed
 
+2020 年 10 月 30 日，Russ Cox 提交了最终的实现：[cmd/go: add //go:embed support](cmd/go: add //go:embed support)，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。
+Embed 设计提案：https://github.com/golang/proposal/blob/master/design/draft-embed.md
+示例参考：https://github.com/mattn/go-embed-example
+tip 相关文档：https://tip.golang.org
+
 ### go-bindata
 https://github.com/go-bindata/go-bindata
 
