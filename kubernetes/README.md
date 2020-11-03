@@ -102,3 +102,130 @@ ELK是最著名的日志管理开源工具。ELK是Elasticsearch，Logstash和Ki
 优点：大型社区和插件生态系统；统一日志记录层；经过验证的可靠性和性能。可以在不到10分钟的时间内安装完毕。
 
 缺点：难以配置；对转换数据的支持有限；不是完整的日志记录解决方案。
+
+
+### Kubernetes工具
+
+#### KubeDB
+在Kubernetes上运行生产级数据库  
+https://github.com/kubedb  
+https://kubedb.com/  
+
+KubeDB允许管理员创建用于管理数据库的Kubernetes运算符。运行备份，克隆，监视，快照和声明性地创建数据库都是混合的一部分。
+- Elasticsearch
+- Memcached
+- MongoDB
+- MySQL
+- Percona XtraDB
+- PgBouncer
+- PostgreSQL
+- ProxySQL
+- Redis
+
+#### Bitnami Cabin
+适用于iOS和Android的Kubernetes仪表板
+
+Cabin为Kubernetes管理员提供了可从iOS或Android智能手机访问的Kubernetes仪表板版本。完整的Kubernetes仪表板中提供的许多功能都可以从Cabin启动，包括Helm图表，扩展部署，读取pod日志以及访问Kubernetes托管的基于Web的应用程序。
+
+#### Goldpinger
+可视化Kubernetes集群
+
+#### K9s
+全屏Kubernetes CLI UI
+
+#### Kube-ops-view
+多个Kubernetes集群的仪表板
+
+Kubernetes有一个用于通用监控的有用仪表板，但Kubernetes社区正在尝试其他方式向Kubernetes管理员有用地呈现数据。Kube-ops-view就是这样一个实验;它提供了多个Kubernetes集群的一览式视图，以图形方式呈现，因此可以一目了然地看到集群中CPU和内存使用情况以及pod的状态。请注意，它不允许您调用任何命令;它严格用于可视化。但它提供的可视化效果非常高效，适用于运营中心的墙壁监视器。
+
+#### Gravity
+便携式Kubernetes集群
+
+如果你想将应用程序部署到Kubernetes，许多应用程序都会使用Helm图表来指导和自动化该过程。但是，如果你想按原样使用Kubernetes集群并将其部署到某个地方呢?
+
+Gravity获取Kubernetes集群及其容器注册表及其运行应用程序(称为“应用程序包”)的快照。程序包只是一个.tar文件，可以在Kubernetes运行的任何地方复制集群。
+
+Gravity还确保目标基础结构可以支持与源相同的行为要求，并且目标上的Kubernetes运行时也可以满足要求。Gravity的企业版增加了安全功能，包括基于角色的访问控制，以及跨多个集群部署同步安全配置的能力。
+
+
+#### Kaniko
+在Kubernetes集群中构建容器
+
+大多数容器镜像都构建在容器堆栈外部的系统上。但有时，你希望在容器堆栈中执行构建过程，例如，在正在运行的容器内或Kubernetes集群上的某个位置。
+
+Kaniko在容器环境中执行容器构建，但不依赖像Docker这样的容器守护进程来完成其工作。Kaniko获取基本镜像，提取文件系统，然后在提取的文件系统顶部的用户空间中执行所有构建命令，在每个命令之后获取文件系统的快照。
+
+#### Koki Short
+可管理的Kubernetes清单
+
+Koki Short像上面的Kedge，是一个改进应用程序定义或表现方式在Kubernetes中工作的项目。与Kedge定义一样，Koki Short使用缩写语法来描述Kubernetes pod，它可以转换为完整的语法，然后再转换回来。与Kedge定义不同，Koki Short也是模块化的，这意味着来自一个Short声明的细节可以在其他声明中重复使用，因此可以简洁地定义许多具有共同元素的pod。
+
+#### Kops
+
+Kubernetes集群的命令行操作
+
+Kops由Kubernetes团队开发，允许你从命令行管理Kubernetes集群。它支持在AWS和GCE上运行的集群，VMware vSphere和其他环境正在开发中。除了自动化设置和拆卸过程外，Kops还可以帮助实现其他类型的自动化。例如，它可以生成Terraform配置以允许使用Terraform重新部署集群。
+
+#### Kubebox
+Kubernetes的终端控制台
+
+作为Kubernetes的高级终端控制台，Kubebox不仅为Kubernetes及其API提供了美化外壳。它提供内存和CPU利用率的交互式显示，pod列表，运行日志和配置编辑器。最重要的是，它可作为Linux，Windows和MacOS的独立应用程序提供。
+
+#### Kubecost
+运行Kubernetes的指标成本
+
+大多数Kubernetes管理工具都侧重于易用性，监控，对pod行为的洞察等。但是如何监控与运行Kubernetes相关的成本?
+
+Kubecost使用实时Kubernetes指标以及从主要云提供商上运行的集群派生的实际成本信息，以提供每个集群部署的每月成本的仪表板视图。内存，CPU，GPU和存储的成本都由Kubernetes组件(容器，容器，服务，部署等)分解。
+
+Kubecost还可以跟踪“群集外”资源(例如S3存储桶)的成本，尽管目前仅限于AWS。成本数据甚至可以共享回Prometheus，因此可以使用数据以编程方式更改群集行为。
+
+#### Kube-monkey
+
+Kubernetes的混沌猴子
+
+对系统进行压力测试的一种可靠方法是随意破坏。这就是Netflix的混乱猴子的理论，它是一种混乱的工程工具，可以随机终止在生产中运行的虚拟机和容器，以“鼓励”开发人员构建更具弹性的系统。Kube-monkey是对Kubernetes集群进行压力测试的相同基本思想的实现。它的工作原理是随机删除你专门指定的群集中的pod，并且可以进行微调以在特定时间窗口内运行。
+
+#### Kube-ps1
+Smart Kubernetes命令提示符
+
+不，Kube-ps1不是Kubernetes的第一代索尼PlayStation模拟器(虽然那会非常漂亮)。它是Bash的一个简单补充，它在提示符中显示当前的Kubernetes上下文和命名空间。Kube-shell包含了这一功能以及许多其他功能，但如果你想要的只是更智能的提示，Kube-ps1可以提供很少的开销。
+
+#### Kube-prompt
+
+交互式Kubernetes客户端
+
+对Kubernetes CLI，Kube-prompt的另一个最小但有用的修改允许你输入与Kubernetes客户端的交互式命令会话的数量。Kube-prompt使你不必键入kubectl来为每个命令添加前缀，并为每个命令提供自动完成功能以及上下文信息。
+
+#### Kube-shell
+用于Kubernetes CLI的Shell
+
+Kubernetes命令行功能强大，但与任何命令行应用程序一样，选择其选项可能很繁琐。Kube-shell将标准Kubernetes命令行包装在一个集成shell中，该shell提供常用命令的自动完成和自动建议，包括Kubernetes服务器提供的建议(例如，服务名称)。它还为你提供了更强大的命令历史记录功能，vi样式编辑模式以及用户，命名空间，群集和其他特定于安装的详细信息的运行上下文信息。
+
+#### Kubespy
+
+实时监控Kubernetes资源
+
+Pulumi的Kubespy是一个诊断工具，允许你实时跟踪Kubernetes资源的更改，为你提供一种文本视图仪表板。例如，你可以在启动时观察pod状态的变化：pod定义被写入Etcd，pod被安排在节点上运行，节点上的Kubelet创建pod，最后是pod标记为正在运行。Kubespy可以作为独立的二进制文件运行，也可以作为Kubectl的插件运行。
+
+#### Skaffold
+Kubernetes的迭代开发
+
+Skaffold是Google自己的Kubernetes工具之一，是一种为Kubernetes应用程序执行持续部署的方法。当你对源代码进行更改时，Skaffold会自动检测它们，触发构建和部署过程，并在出现任何错误时向您发出警告。 Skaffold完全在客户端运行。它可以在现有的CI/CD流水线中使用，并与一些外部构建工具集成，主要是谷歌自己的Bazel。
+
+#### Stern和Kubetail
+为Kubernetes记录标记
+
+Stern允许从Kubernetes中的pod和容器生成颜色编码输出(根据tail命令)。这是一种快速方法，可以将来自多个资源的所有输出组合成一个可以一目了然地读取的流。与此同时，可以一目了然(颜色编码)来区分流。
+
+Kubetail同样将来自多个pod的日志聚合到一个流中，对不同的pod和容器进行颜色编码。但是Kubetail是一个Bash脚本，所以它只需要一个shell。
+
+#### Teresa
+Kubernetes的简单PaaS
+
+Teresa是一个应用程序部署系统，在Kubernetes上作为简单的PaaS运行。组织成团队的用户可以部署和管理属于他们的应用程序。这使得受特定应用程序信任的人更轻松地使用它，而无需直接处理Kubernetes。
+
+#### Tilt
+将容器更新到Kubernetes集群
+
+由Windmill Engineering开发，Tilt实时监控对Dockerfiles的更改，然后将这些更改逐步部署到Kubernetes集群中的相应容器中。从本质上讲，它允许开发人员实时更新实时集群，只需更新Dockerfile即可。Tilt在集群内执行构建，唯一引起的变化是源代码。
