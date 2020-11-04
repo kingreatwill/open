@@ -1,6 +1,15 @@
 
 [最佳实践,为计算机视觉代码示例和文档。微软出品](https://github.com/microsoft/computervision-recipes)
 ## 图片处理
+
+- OpenCV 
+- Kornia 
+Kornia 是一个基于 PyTorch 的可微分的计算机视觉 （differentiable computer vision） 开源库，
+最常用图像处理库就是 OpenCV 和 PIL 了。然而，因为 OpenCV 和 PIL 都是不可微的，所以这些处理都只可以作为图像的预处理而无法通过观察梯度的变化来对这些算子进行优化 （gradient-based optimization）。因此，Kornia 便应运而生。
+论文链接：https://arxiv.org/pdf/2009.10521.pdf
+项目链接：https://github.com/kornia/kornia
+文档链接：https://kornia.readthedocs.io/en/latest/index.html
+examples: https://github.com/kornia/kornia-examples
 ### 卡通化
 [卡通化](https://github.com/SystemErrorWang/White-box-Cartoonization)
 使用了GAN
