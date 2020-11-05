@@ -2,6 +2,11 @@
 
 [德哥的PostgreSQL私房菜 - 史上最屌PG资料合集](https://yq.aliyun.com/articles/59251)
 
+[实战6：PostgreSQL 全文检索功能实战](https://itdashu.com/docs/sqlbase/aff6b/sqlpractice6.html)
+
+- https://github.com/jaiminpan/pg_jieba
+- https://github.com/amutu/zhparser
+
 ## 为什么使用PG
 
 PostgreSQL带有[许多功能](https://www.postgresql.org/about/featurematrix/)，旨在帮助开发人员构建应用程序，帮助管理员保护数据完整性和构建容错环境，并帮助您管理数据（无论数据集大小）。
