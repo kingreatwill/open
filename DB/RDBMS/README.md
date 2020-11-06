@@ -27,3 +27,40 @@ https://github.com/XiaoMi/Gaea
 
 #### kingshard
 https://github.com/flike/kingshard
+
+## 国产数据库
+
+[国产数据库流行度排行](https://www.modb.pro/dbrank)
+
+- 阿里的数据库：OceanBase & PolarDB
+- 腾讯的TDSQL
+- 华为的GaussDB
+- PingCAP 团队开发的TiDB
+- 达梦数据库
+- GBase南大通用
+- 神通数据库
+- 金仓数据库
+- EsgynDB
+- SequoiaDB巨杉数据库
+- K-DB数据库
+- OpenBASE
+- 华易数据库Huayisoft DB Server
+- HUABASE-华鼎数据库
+- 神州OSCAR
+- ZILLIZ数据库
+
+国产的数据库都有哪些？ - 晓平的回答 - 知乎
+https://www.zhihu.com/question/31750851/answer/1066968462
+国产的数据库都有哪些？ - 李宇明的回答 - 知乎
+https://www.zhihu.com/question/31750851/answer/139665111
+
+### OceanBase
+分布式架构
+OceanBase内核100多万行代码都是蚂蚁完全自主编写
+OceanBase是蚂蚁金服阳振坤老师团队开发的，官方称为“完全自主研发的金融级分布式关系数据库”。
+OceanBase是完全从头写的，PolarDB应该是基于MySQL开发的。
+
+### openGauss
+openGauss是一款开源的关系型数据库管理系统，它具有多核高性能、全链路安全性、智能运维等企业级特性。 openGauss内核早期源自开源数据库PostgreSQL，融合了华为在数据库领域多年的内核经验，在架构、事务、存储引擎、优化器及ARM架构上进行了适配与优化。作为一个开源数据库，期望与广泛的开发者共同构建一个多元化技术的开源数据库社区。
+
+### TiDB

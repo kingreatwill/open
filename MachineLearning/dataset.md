@@ -1,4 +1,7 @@
 
+
+[HQ open datasets](https://github.com/awesomedata/awesome-public-datasets)
+
 [Open Images dataset](https://storage.googleapis.com/openimages/web/download.html)
 
 https://cocodataset.org/#download
