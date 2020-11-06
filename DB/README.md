@@ -67,27 +67,31 @@ SQLServer 内置的 OLAP 工具 Analysis Manager 可以允许用户访问异构�
 [通过内存中 OLTP 使用查询存储](https://docs.microsoft.com/zh-cn/sql/relational-databases/performance/using-the-query-store-with-in-memory-oltp?view=sql-server-ver15)
 
 #### Apache Pinot
-  Pinot 是一个实时分布式的 OLAP 数据存储和分析系统。
-  使用它实现低延迟可伸缩的实时分析。
-  Pinot 从脱机数据源（包括 Hadoop 和各类文件）和在线数据源（如 Kafka）中获取数据进行分析。
-  Pinot 被设计成可进行水平扩展。
-  Pinot 特别适合这样的数据分析场景：查询具有大量维度和指标的时间序列数据、分析模型固定、数据只追加以及低延迟，以及分析结果可查询。
+
+Pinot 是一个实时分布式的 OLAP 数据存储和分析系统。
+使用它实现低延迟可伸缩的实时分析。
+Pinot 从脱机数据源（包括 Hadoop 和各类文件）和在线数据源（如 Kafka）中获取数据进行分析。
+Pinot 被设计成可进行水平扩展。
+Pinot 特别适合这样的数据分析场景：查询具有大量维度和指标的时间序列数据、分析模型固定、数据只追加以及低延迟，以及分析结果可查询。
 
 #### Apache Kylin
-  Apache Kylin™ 是一个开源、分布式的大数据分析数据仓库;它被设计为在大数据时代提供 OLAP(在线分析处理)能力。通过对 Hadoop 和 Spark 上的多维立方体和预计算技术的革新，Kylin 能够在数据量不断增长的情况下实现近乎恒定的查询速度。Kylin 将查询延迟从几分钟缩短到次秒，将在线分析带回到大数据。
 
-#### Apache Doris（原Palo）
+Apache Kylin™ 是一个开源、分布式的大数据分析数据仓库;它被设计为在大数据时代提供 OLAP(在线分析处理)能力。通过对 Hadoop 和 Spark 上的多维立方体和预计算技术的革新，Kylin 能够在数据量不断增长的情况下实现近乎恒定的查询速度。Kylin 将查询延迟从几分钟缩短到次秒，将在线分析带回到大数据。
+
+#### Apache Doris（原 Palo）
+
 https://github.com/apache/incubator-doris
-[Apache Kylin VS Apache Doris全方位对比](https://cloud.tencent.com/developer/article/1477234)
-Doris是一个MPP的OLAP系统，主要整合了Google Mesa（数据模型），Apache Impala（MPP Query Engine)和Apache ORCFile (存储格式，编码和压缩) 的技术。
+[Apache Kylin VS Apache Doris 全方位对比](https://cloud.tencent.com/developer/article/1477234)
+Doris 是一个 MPP 的 OLAP 系统，主要整合了 Google Mesa（数据模型），Apache Impala（MPP Query Engine)和 Apache ORCFile (存储格式，编码和压缩) 的技术。
 
-Apache Doris的分布式架构非常简洁，易于运维，并且可以支持10PB以上的超大数据集。
+Apache Doris 的分布式架构非常简洁，易于运维，并且可以支持 10PB 以上的超大数据集。
 
-Apache Doris可以满足多种数据分析需求，例如固定历史报表，实时数据分析，交互式数据分析和探索式数据分析等。使得数据分析工作更加简单高效！
+Apache Doris 可以满足多种数据分析需求，例如固定历史报表，实时数据分析，交互式数据分析和探索式数据分析等。使得数据分析工作更加简单高效！
 
 ## 其它
 
 ### 数据库性能测试工具
+
 #### SysBench
 
 https://github.com/akopytov/sysbench c 3.5k
@@ -98,7 +102,7 @@ https://github.com/akopytov/sysbench c 3.5k
 - macOS
 - Windows
 
-目前sysbench主要支持 MySQL,pgsql,oracle 
+目前 sysbench 主要支持 MySQL,pgsql,oracle
 
 SysBench 是一个模块化的、跨平台、多线程基准测试工具，主要用于评估测试各种不同系统参数下的数据库负载情况。它主要包括以下几种方式的测试：
 1、cpu 性能
@@ -108,41 +112,132 @@ SysBench 是一个模块化的、跨平台、多线程基准测试工具，主�
 5、POSIX 线程性能
 6、数据库性能(OLTP 基准测试)
 
-####
+#### dbbench
+
 https://github.com/memsql/dbbench
+
 - mysql
 - mssql
 - pgsql
 
 ### 数据库同步
+
 #### canal
+
 #### Debezium
+
 https://github.com/debezium/debezium 3.8k
 
-可以同步数据到kafka
+可以同步数据到 kafka
 
-Debezium是一个开源项目，为捕获数据更改(Capture Data Change，CDC)提供了一个低延迟的流式处理平台，通过安装配置Debezium监控数据库，可以实时消费行级别(row-level)的更改。身为一个分布式系统，Debezium也拥有良好的容错性。
+Debezium 是一个开源项目，为捕获数据更改(Capture Data Change，CDC)提供了一个低延迟的流式处理平台，通过安装配置 Debezium 监控数据库，可以实时消费行级别(row-level)的更改。身为一个分布式系统，Debezium 也拥有良好的容错性。
 Debezium 是一种借助 Kafka 将数据变更发布成事件流的 CDC 实现。
 Debezium 是一款开源的、基于 Kafka 的 CDC 工具，它会读取数据库事务日志，并将其发布成事件流。
 
 CDC 除了可以用来更新缓存、服务和搜索引擎，Morling 还介绍了其他几种用例，包括：
+
 - 数据复制，通常用来将数据复制到其他类型的数据库或数据仓库中。
 - 审计。因为保留了数据历史，在使用元数据填充数据后，可以实现数据变更审计。
 
-Debezium的源端(即支持监控哪些数据库) : 
+Debezium 的源端(即支持监控哪些数据库) :
+
 - MySQL
 - MongoDB
 - PostgreSQL
 - Oracle
-- SQL Server 
+- SQL Server
 - Oracle (Incubating)
 - Db2 (Incubating)
 - Cassandra (Incubating)
-[数据库连接器](https://debezium.io/docs/connectors/)
+  [数据库连接器](https://debezium.io/docs/connectors/)
 
-Debezium的目标端(即可以数据导入端) : Kafka
+Debezium 的目标端(即可以数据导入端) : Kafka
 
-[Debezium获取MySQL Binlog](https://my.oschina.net/jerval/blog/3058959)
-[使用嵌入式Debezium和SpringBoot捕获更改数据事件（CDC） - Sohan Ganapathy](https://www.jdon.com/53411)
+[Debezium 获取 MySQL Binlog](https://my.oschina.net/jerval/blog/3058959)
+[使用嵌入式 Debezium 和 SpringBoot 捕获更改数据事件（CDC） - Sohan Ganapathy](https://www.jdon.com/53411)
 
-如果您已经安装了Zookeeper、Kafka和Kafka Connect，那么使用Debezium的连接器是很容易的。只需下载一个或多个连接器插件存档(见下文)，将它们的文件解压到Kafka Connect环境中，并将解压后的插件的父目录添加到Kafka Connect的插件路径中。如果不是这样，在你的工作配置中指定插件路径(例如，connect- distribu. properties)使用插件。路径配置属性。例如，假设您已经下载了Debezium MySQL连接器存档，并将其内容解压缩到/kafka/connect/ Debezium -connector- MySQL。然后在worker配置中指定以下内容:`plugin.path=/kafka/connect`
+如果您已经安装了 Zookeeper、Kafka 和 Kafka Connect，那么使用 Debezium 的连接器是很容易的。只需下载一个或多个连接器插件存档(见下文)，将它们的文件解压到 Kafka Connect 环境中，并将解压后的插件的父目录添加到 Kafka Connect 的插件路径中。如果不是这样，在你的工作配置中指定插件路径(例如，connect- distribu. properties)使用插件。路径配置属性。例如，假设您已经下载了 Debezium MySQL 连接器存档，并将其内容解压缩到/kafka/connect/ Debezium -connector- MySQL。然后在 worker 配置中指定以下内容:`plugin.path=/kafka/connect`
+
+### 数据湖方案
+
+- ACID 和隔离级别支持
+
+| Solution   | ACID Support | Isolation Level                                            | Concurrent Multi-Writers | Time Travel |
+| ---------- | ------------ | ---------------------------------------------------------- | ------------------------ | ----------- |
+| Iceberg    | Yes          | Write Serialization                                        | Yes                      | Yes         |
+| Hudi       | Yes          | Snapshot Isolation                                         | Yes                      | Yes         |
+| Open Delta | Yes          | Serialization<br>Write Serialization<br>Snapshot Isolation | Yes                      | Yes         |
+| Hive ACID  | Yes          | Snapshot Isolation                                         | Yes                      | No          |
+
+三种隔离分别代表的含义:
+
+- Serialization 是说所有的 reader 和 writer 都必须串行执行；
+- Write Serialization: 是说多个 writer 必须严格串行，reader 和 writer 之间则可以同时跑；
+- Snapshot Isolation: 是说如果多个 writer 写的数据无交集，则可以并发执行；否则只能串行。Reader 和 writer 可以同时跑。
+
+- Schema 变更支持和设计
+
+| Solution   | Schema Evolution | Self-defined schema object |
+| ---------- | ---------------- | -------------------------- |
+| Iceberg    | all              | Yes                        |
+| Hudi       | back-compatible  | No(spark-schema)           |
+| Open Delta | all              | No(spark-schema)           |
+| Hive ACID  | all              | No(Hive-schema)            |
+
+iceberg 是做的比较好的，抽象了自己的 schema，不绑定任何计算引擎层面的 schema。
+
+- 流批接口支持
+  目前 Iceberg 和 Hive 暂时不支持流式消费，不过 Iceberg 社区正在 issue 179 上开发支持。
+
+- 接口抽象程度和插件化
+
+| Solution   | Engine Pluggable<br/>(Write Path) | Engine Pluggable<br/>(Read Path) | Storage Pluggable <br/>(Less Storage API Binding) | Open File Format    |
+| ---------- | --------------------------------- | -------------------------------- | ------------------------------------------------- | ------------------- |
+| Iceberg    | Yes                               | Yes                              | Yes                                               | Yes                 |
+| Hudi       | No(Bind with spark)               | Yes                              | Yes                                               | Yes(data) + No(Log) |
+| Open Delta | No(Bind with spark)               | Yes                              | Yes                                               | Yes                 |
+| Hive ACID  | Yes                               | Yes                              | No                                                | No(Only ORC)        |
+
+- 查询性能优化
+
+| Solution    | Filter PushDown | Low meta cast | Indexing within partitions <br/>Boost the perf of selective queries | CopyOnWrite | MergeOnRead | Auto-Compaction |
+| ----------- | --------------- | ------------- | ------------------------------------------------------------------- | ----------- | ----------- | --------------- |
+| Iceberg     | Yes             | Yes           | Road-map                                                            | Yes         | On-going    | No              |
+| Hudi        | No              | Yes           | -                                                                   | Yes         | Yes         | Yes             |
+| Open Delta  | No              | Yes           | -                                                                   | Yes         | No          | No              |
+| Close Delta | Yes             | Yes           | Yes                                                                 | Yes         | Yes         | Yes             |
+| Hive ACID   | Yes             | No            | -                                                                   | No          | Yes         | Yes             |
+
+- 其他功能
+
+| Solution    | One line demo | Python Support | File Encryption | Cli Command |
+| ----------- | ------------- | -------------- | --------------- | ----------- |
+| Iceberg     | Not Good      | Yes            | Yes             | No          |
+| Hudi        | Medium        | No             | No              | Yes         |
+| Open Delta  | Good          | Yes            | No              | Yes         |
+| Close Delta | Good          | Yes            | No              | Yes         |
+| Hive ACID   | Medium        | No             | No              | Yes         |
+
+- 社区现状（截止到 2020-11-05）
+
+| Solution   | Open Source Time | Github Star | Github Fork | Github Issues | Contributors |
+| ---------- | ---------------- | ----------- | ----------- | ------------- | ------------ |
+| Iceberg    | 2018/11/06       | 805         | 312         | 237           | 106          |
+| Hudi       | 2019/01/17       | 1.5k        | 638         | 52            | 122          |
+| Open Delta | 2019/04/12       | 2.9k        | 635         | 131           | 76           |
+
+总结成如下图：
+![](../img/delta-hudi-iceberg.jpg)
+
+#### Delta
+
+Databricks 的 [Delta](https://github.com/delta-io/delta)
+开源的 delta 是 databricks 闭源 delta 的一个简化版本
+
+#### Apache Iceberg
+
+Netflix 的 [Apache Iceberg](https://github.com/apache/iceberg)
+
+#### Apache Hudi
+
+Uber 的 [Apache Hudi](https://github.com/apache/hudi)
