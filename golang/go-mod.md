@@ -222,6 +222,10 @@ go mod graph 依赖输出
 
 go mod graph|grep github.com/coreos/etcd
 
+实际上，调试 go mod 问题最好的工具是 go get，加上 -x 选项后，更是屡试不爽。
+go get-x github.com/coreos/etcd
+
+> 出现：remote origin already exists. 解决方案：git config --global --unset remote.origin.push
 
 ### 冲突
 https://github.com/cch123/gomod-conflict-detect
