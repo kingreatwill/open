@@ -42,6 +42,10 @@ https://www.arxiv-vanity.com/papers/2006.10204/
 
 [推出 BlazePose：实现设备端实时人体姿态追踪](https://blog.csdn.net/jILRvRTrc/article/details/108590889)
 
+### 安全帽佩戴检测
+https://github.com/PeterH0323/Smart_Construction
+数据集链接：https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset
+
 ### BlazePalm
 https://google.github.io/mediapipe/solutions/hands
 

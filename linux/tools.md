@@ -149,6 +149,10 @@ MultiTail是在控制台打开多个窗口用来实现同时监控多个日志�
 
 axel -n 20 http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso
 
+### httpstat
+https://github.com/reorx/httpstat
+httpstat以一种美丽和清晰的方式可视化curl统计数据。
+
 ### sz/rz
 交互式文件传输，在多重跳板机下传输文件非常好用，不用一级一级传输。
 yum install lrzsz -y

@@ -12,6 +12,7 @@ python -m visdom.server # 或者直接visdom
 ```
 > 目前from torch.utils.tensorboard import SummaryWriter中的tensorboard是tensorflow开发的，
 > 还有这个玩意from tensorboardX import SummaryWriter 
+> 极简可视化工具[Aim](https://github.com/Aimhubio/Aim)
 
 
 ## pytorch安装
