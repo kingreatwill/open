@@ -672,3 +672,7 @@ colordiff 和 diff-so-fancy
 colordiff 下载地址：https://www.colordiff.org/
 diff-so-fancy 下载地址：https://github.com/so-fancy/diff-so-fancy
 
+## 上传
+### winscp
+WinSCP 是一个 Windows 环境下使用的 SSH 的开源图形化 SFTP 客户端。同时支持 SCP 协议。
+WinSCP是一个免费的Windows SFTP、SCP、Amazon S3、WebDAV和FTP客户端。

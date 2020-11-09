@@ -11,9 +11,17 @@ https://www.cnblogs.com/poloyy/tag/Jmeter/
 - Load impact（免费使用）
   https://github.com/loadimpact/
   https://github.com/loadimpact/k6
-  
+
 - Locust
   https://github.com/locustio/locust python 14.2k
+
+  Locust 是一个开源负载测试工具。使用 Python 代码定义用户行为，也可以仿真百万个用户。
+
+  Locust 是非常简单易用，分布式，用户负载测试工具。Locust 主要为网站或者其他系统进行负载测试，能测试出一个系统可以并发处理多少用户。
+
+  Locust 是完全基于时间的，因此单个机器支持几千个并发用户。相比其他许多事件驱动的应用，Locust 不使用回调，而是使用轻量级的处理方式 gevent。
+
+  > jmeter虚拟用户的方式是线程
 
 - OpenSTA
   http://www.opensta.org/

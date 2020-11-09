@@ -43,3 +43,14 @@ FLUSH PRIVILEGES;
 
 然后就可以远程登陆MySQL
 ```
+
+## 还原数据库
+- 使用RESTORE FILELISTONLY命令列出备份数据文件的逻辑名
+```
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'dev@123,' -Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/testdb.bak"' | tr -s ' ' | cut -d ' ' -f 1-2
+```
+使用该命令可以把数据库的数据文件，日志文件名称显示出来。在接下来的恢复操作中有用。
+- 使用RESTORE DATABASE命令还原数据库
+```
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'dev@123,' -Q 'RESTORE DATABASE testdb FROM DISK = "/var/opt/mssql/testdb.bak" WITH MOVE "testdb" TO "/var/opt/mssql/data/testdb.mdf" , MOVE "testdb_log" TO "/var/opt/mssql/data/testdb.ldf"'
+```
