@@ -354,6 +354,18 @@ https://github.com/clearcodecn/gosearch
 ## go多版本
 https://github.com/owenthereal/goup
 
+## go测试
+goc 是专为 Go 语言打造的一个综合覆盖率收集系统，尤其适合复杂的测试场景，比如系统测试时的代码覆盖率收集以及精准测试。
+https://github.com/qiniu/goc
+
+```
+go tool cover -mode=count -var=CoverageVariableName xxxx.go
+> 相信大家一定见过表示go覆盖率结果的coverprofile数据，类似下面: github.com/qiniu/goc/goc.go:21.13,23.2 1 1
+其基本语义为 "文件:起始行.起始列,结束行.结束列 该基本块中的语句数量 该基本块被执行到的次数"
+[聊聊 Go 代码覆盖率技术与最佳实践](https://xie.infoq.cn/article/ca1cc8ba293eddf793b3b0613)
+```
+
+
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 
