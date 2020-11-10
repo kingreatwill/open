@@ -2,7 +2,7 @@
 ```
 docker pull postgres:12.0
 docker pull postgres:13.0-alpine
-
+docker pull kingreatwill/postgres:13-alpine-jieba
 docker volume create --name=pgdata
 
 docker run -d -p 5432:5432 -v pgdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123456@lcb --name postgresql --restart always postgres:12.0
@@ -37,8 +37,80 @@ psql –h 127.0.0.1 -p 5432 -U postgres –f db_bak.sql
 
 ## 分词器
 ### pg_jieba
-https://github.com/chen-xin/docker_pg_jieba
 
+pg_jieba.dockerfile
+```
+FROM postgres:13-alpine
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.cloud.tencent.com/' /etc/apk/repositories && sed -i 's/http:/https:/' /etc/apk/repositories
+
+RUN set -ex \
+  && apk add --no-cache --virtual .fetch-deps ca-certificates cmake git openssl tar \  
+  && apk add --no-cache --virtual .build-deps gcc g++ libc-dev make postgresql-dev \
+  && apk add --no-cache --virtual .rundeps libstdc++ \
+  && git clone --recursive https://github.com/jaiminpan/pg_jieba \
+  && cd /pg_jieba \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make \
+  && make install \
+  && echo -e "  \necho \"shared_preload_libraries = 'pg_jieba'\" >> /var/lib/postgresql/data/postgresql.conf" > /docker-entrypoint-initdb.d/init-conf.sh \
+  && chmod +x /docker-entrypoint-initdb.d/init-conf.sh \
+  && echo -e "CREATE EXTENSION pg_jieba;" > /docker-entrypoint-initdb.d/init-jieba.sql \
+  && apk del .build-deps .fetch-deps \
+  && rm -rf /pg_jieba
+```
+cmd
+```
+
+docker build -f pg_jieba.dockerfile -t pg_jieba:13-alpine .
+
+docker tag pg_jieba:13-alpine  kingreatwill/postgres:13-alpine-jieba
+
+docker push  kingreatwill/postgres:13-alpine-jieba
+```
+
+https://github.com/ssfdust/psql_jieba_swsc
+```
+FROM postgres:alpine
+
+RUN apk add --no-cache --virtual .build \
+        postgresql-dev \
+        gcc \
+        make \
+        llvm \
+        libc-dev \
+        g++ \
+        clang \
+        git \
+        cmake \
+        curl \
+        openssl-dev && \
+    git clone https://github.com/jaiminpan/pg_jieba && \
+    cd /pg_jieba && \
+    git submodule update --init --recursive && \
+    mkdir -p build && \
+    cd build && \
+    curl -L https://raw.githubusercontent.com/ssfdust/psql_jieba_swsc/master/FindPostgreSQL.cmake > $(find /usr -name "FindPostgreSQL.cmake") && \
+    cmake .. && \
+    make && \
+    make install && \
+    cd / && \
+    git clone https://github.com/jaiminpan/pg_scws && \
+    cd /pg_scws && \
+    USE_PGXS=1 make && \
+    USE_PGXS=1 make install && \
+    apk del .build && \
+    rm -rf /pg_jieba /pg_scws
+
+RUN echo "echo \"shared_preload_libraries = 'pg_jieba'\" >> /var/lib/postgresql/data/postgresql.conf" \
+    > /docker-entrypoint-initdb.d/init-dict.sh  && \
+    echo "CREATE EXTENSION pg_jieba;create extension pg_scws;" > /docker-entrypoint-initdb.d/init-jieba.sql
+```
+
+
+https://github.com/chen-xin/docker_pg_jieba
 
 ```
 FROM postgres:13.0

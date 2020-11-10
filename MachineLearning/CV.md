@@ -10,12 +10,15 @@ Kornia 是一个基于 PyTorch 的可微分的计算机视觉 （differentiable 
 项目链接：https://github.com/kornia/kornia
 文档链接：https://kornia.readthedocs.io/en/latest/index.html
 examples: https://github.com/kornia/kornia-examples
+
 ### 卡通化
 [卡通化](https://github.com/SystemErrorWang/White-box-Cartoonization)
 使用了GAN
 [在线图片或视频来进行卡通化](https://cartoonize-lkqov62dia-de.a.run.app/cartoonize)
 [论文链接](https://systemerrorwang.github.io/White-box-Cartoonization/paper/06791.pdf)
 
+### 图片转3D人体模型
+https://github.com/facebookresearch/pifuhd
 
 ### 人脸识别
 
@@ -258,3 +261,4 @@ Navigant Research自动驾驶排行榜 2020
 [自动驾驶汽车成熟度指数报告](files/2020-autonomous-vehicles-readiness-index.pdf)
 毕马威《自动驾驶汽车成熟度指数报告》(Autonomous Vehicles Readiness Index)(AVRI)
 https://home.kpmg/au/en/home/insights/2020/07/autonomous-vehicles-readiness-index-2020.html
+ 
