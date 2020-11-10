@@ -16,6 +16,42 @@ docker run -d -p 8080:80 --name nginx -v /d/dockerv/nginx/www:/usr/share/nginx/h
 ```
 [Nginx多域名配置](https://www.cnblogs.com/goloving/p/9363490.html)
 
+### 定义状态页面
+```
+location /status {
+                stub_status on;
+                 #allow IP地址;
+                 #deny IP地址;# deny all;
+        }
+```
+访问/status
+```
+Active connections：当前活动的连接数量。
+Accepts：已经接受客户端的连接总数量。
+Handled：已经处理客户端的连接总数量。（一般与accepts一致，除非服务器限制了连接数量）。
+Requests：客户端发送的请求数量。
+Reading：当前服务器正在读取客户端请求头的数量。
+Writing：当前服务器正在写响应信息的数量。
+Waiting：当前多少客户端在等待服务器的响应。
+
+
+Active connections：145           
+#nginx 正处理的活动连接数145个。
+server accepts handled requests
+ 1749 1749 3198                   
+#nginx启动到现在共处理了 1749个连接 ,nginx启动到现在共成功创建 1749次握手 请求丢失数=(握手-连接),可以看出，我们没丢请求;总共处理了3198 次请求。
+Reading: 0 Writing: 3 Waiting: 142
+#Reading ：nginx读取到客户端的Header信息数。
+#Writing ： nginx返回给客户端的Header信息数。
+#Waiting ： Nginx已经处理完正在等候下一次请求指令的驻留连接.开启keep-alive的情况下,这个值等于active–(reading+writing)。
+```
+
+### 定义对静态页面的缓存时间
+```
+location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+  expires        30d;            //定义客户端缓存时间为30天
+}
+```
 
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
