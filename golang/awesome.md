@@ -364,7 +364,14 @@ go tool cover -mode=count -var=CoverageVariableName xxxx.go
 其基本语义为 "文件:起始行.起始列,结束行.结束列 该基本块中的语句数量 该基本块被执行到的次数"
 [聊聊 Go 代码覆盖率技术与最佳实践](https://xie.infoq.cn/article/ca1cc8ba293eddf793b3b0613)
 ```
+## go Plugin
+- go原生plugin
+    - 实现机制基于动态链接so库
+    - 跨语言支持较差且调用复杂，需解决不同语言的数据类型匹配问题
 
+- github.com/hashicorp/go-plugin
+    - 实现机制基于rpc调用，基于本地网络调用，调用性能高效
+    - 插件可用多种语言实现，跨语言支持良好
 
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md

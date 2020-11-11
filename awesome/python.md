@@ -66,6 +66,9 @@ https://github.com/viralogic/py-enumerable
 ### ebook
 https://github.com/kovidgoyal/calibre
 Calibre 是一款功能强大的电子书管理软件，支持 Amazon、Apple、Bookeen、Ectaco、Endless Ideas、Google/HTC 与 Hanlin Song 设备及格式。
+### pyforest 自动导入需要的包
+https://github.com/8080labs/pyforest
+
 
 ### 日期处理
 #### Arrow Python时间日期库
