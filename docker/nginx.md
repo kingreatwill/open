@@ -53,6 +53,20 @@ location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
 }
 ```
 
+### nginx 绑定cpu到worker进程
+worker_processes 4;
+worker_cpu_affinity 0001 0010 0100 1000;
+
+四核心系统，每个cpu绑定到一个work进程的写法。 
+
+worker_processes 8;
+worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000;
+
+八核心系统，每个cpu绑定到一个work进程的写法。
+
+### 如何构建高性能服务器（以Nginx为例）
+https://www.cnblogs.com/kukafeiso/p/13957174.html
+
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
 ```

@@ -4,7 +4,19 @@
 
 UFT，QTP被惠普收购以后的新名称
 
-
+## 自动化测试工具
+- Endtest 收费
+  Recorder 组件可以让用户不用编程技巧就能创建和执行测试
+- 基于selenium的watir
+  Watir 是一个 Ruby 的浏览器自动化测试开源库。
+  https://github.com/watir/watir
+- Sikuli
+- Micro Focus UFT (QTP)
+- IBM Rational Functional Tester
+- Jest
+- Cucumber
+  Cucumber 是一个开源的行为驱动测试工具，支持多种编程语言，包括 Ruby,Java，Scala 和 Groovy。可以说 Cucumber 并不是 Selenium 的替代品，而仅仅是对 Selenium 进行了一层包装。
+  
 ### selenium
 https://github.com/SeleniumHQ/selenium
 https://www.selenium.dev/documentation/en/
@@ -255,8 +267,9 @@ UI自动化测试工具
 看压测过程中参数的变化
 
 ### bandit
-
 https://github.com/PyCQA/bandit
+Bandit是一个用于发现Python代码中常见安全问题的工具。
+
 ### 11款常用的安全测试工具
 https://blog.csdn.net/lb245557472/article/details/88572607/
 - AppScan
@@ -264,6 +277,11 @@ https://blog.csdn.net/lb245557472/article/details/88572607/
 - Acunetix
 - Nmap
 - sqlmap
+- Grabber 
+  一个 Web 应用程序扫描程序，现在，它还可以做安全测试了。
+
+### Litmus
+Litmus 是一款用来测试和监视电子邮件的工具
 
 ### Python安全测试工具合集
 https://www.cnblogs.com/xiaodi914/p/5176094.html

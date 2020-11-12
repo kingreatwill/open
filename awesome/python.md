@@ -121,6 +121,37 @@ apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启
 #### pandas_alive
 Pandas_Alive，它以 matplotlib 绘图为后端，不仅可以创建出令人惊叹的动画可视化，而且使用方法非常简单。
 https://github.com/JackMcKew/pandas_alive
+
+## Python神器
+### 可视化排序算法
+https://github.com/LucasPilla/Sorting-Algorithms-Visualizer
+### 可视化在线编写运行Python的神器：PythonTutor
+有点像图解python运行过程
+http://www.pythontutor.com/
+
+### 优秀的Debug神器---pysnooper
+有点像日志输出python运行过程
+https://github.com/cool-RR/PySnooper 13.8k
+```
+https://github.com/cool-RR/PySnooper/blob/master/ADVANCED_USAGE.md
+import pysnooper
+#@pysnooper.snoop()
+@pysnooper.snoop('file.log')
+@pysnooper.snoop(watch=('foo.bar', 'self.x["whatever"]')) 查看变量
+@pysnooper.snoop(depth=2)
+```
+### heartrate 程序执行实时可视化
+Python程序执行的简单实时可视化。
+https://github.com/alexmojaki/heartrate
+代码调用高亮依赖于[executing](https://github.com/alexmojaki/executing) 库
+
+## 流程图
+https://github.com/mingrammer/diagrams
+
+## 翻译
+https://github.com/UlionTse/translators
+
+
 ## 文档
 https://github.com/scanny/python-pptx
 
@@ -147,35 +178,6 @@ excel相关：
 xlrd：读取excel文档
 xlwt：写excel文档
 pyexcel：读写excel文档（只能xlsx格式）
-
-
-
-## 流程图
-https://github.com/mingrammer/diagrams
-
-## Python神器
-### 可视化排序算法
-https://github.com/LucasPilla/Sorting-Algorithms-Visualizer
-### 可视化在线编写运行Python的神器：PythonTutor
-有点像图解python运行过程
-http://www.pythontutor.com/
-
-### 优秀的Debug神器---pysnooper
-有点像日志输出python运行过程
-https://github.com/cool-RR/PySnooper 13.8k
-```
-https://github.com/cool-RR/PySnooper/blob/master/ADVANCED_USAGE.md
-import pysnooper
-#@pysnooper.snoop()
-@pysnooper.snoop('file.log')
-@pysnooper.snoop(watch=('foo.bar', 'self.x["whatever"]')) 查看变量
-@pysnooper.snoop(depth=2)
-```
-
-## 翻译
-https://github.com/UlionTse/translators
-
-
 
 ## Python 
 这个有趣的项目意在收集 Python 中那些难以理解和反人类直觉的例子以及鲜为人知的功能特性, 并尝试讨论这些现象背后真正的原理!
