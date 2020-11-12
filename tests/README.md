@@ -55,6 +55,99 @@ http://www.testclass.net/selenium_python
 #### Selenium并行启动多个浏览器
 https://www.cnblogs.com/graceting/p/5034023.html
 
+#### Selenium下Chrome配置
+
+常用的行为有：
+禁止图片和视频的加载：提升网页加载速度。
+添加代理：用于翻墙访问某些页面，或者应对IP访问频率限制的反爬技术。
+使用移动头：访问移动端的站点，一般这种站点的反爬技术比较薄弱。
+添加扩展：像正常使用浏览器一样的功能。
+设置编码：应对中文站，防止乱码。
+阻止JavaScript执行。
+
+例子: 设置无界面模式浏览器启动
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(chrome_options=chrome_options)
+
+##### 设置默认编码为 utf-8，也就是中文
+options.add_argument('lang=zh_CN.UTF-8')
+
+移动设备user-agent表格：http://www.fynas.com/ua
+##### 通过设置user-agent，用来模拟移动设备
+###### 比如模拟 android QQ浏览器
+options.add_argument('user-agent="MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"')
+
+###### 模拟iPhone 6
+options.add_argument('user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"')
+
+##### 设置好应用扩展
+extension_path = 'D:/extension/XPath-Helper_v2.0.2.crx'
+chrome_options.add_extension(extension_path)
+如何获取crx文件？http://crxextractor.com/ 或者 在扩展里 点击“打包扩展程序”
+
+```
+地址：https://peter.sh/experiments/chromium-command-line-switches/
+
+chrome_options.add_argument('--headless') # 无头模式
+chrome_options.add_argument('--disable-gpu') # 禁用GPU加速
+chrome_options.add_argument('--start-maximized')#浏览器最大化
+chrome_options.add_argument('--window-size=1280x1024') # 设置浏览器分辨率（窗口大小）
+
+
+chrome_options.add_argument('log-level=3') # options.SetLoggingPreference("off", LogLevel.Off); #禁止 console.log 日志输出
+#info(default) = 0
+#warning = 1
+#LOG_ERROR = 2
+#LOG_FATAL = 3
+
+chrome_options.add_argument("url=data:,");# 设置启动浏览器空白页
+chrome_options.add_argument('--user-agent=""') # 设置请求头的User-Agent
+chrome_options.add_argument('--disable-infobars') # 禁用浏览器正在被自动化程序控制的提示
+chrome_options.add_argument('--incognito') # 隐身模式（无痕模式）
+chrome_options.add_argument('--hide-scrollbars') # 隐藏滚动条, 应对一些特殊页面
+chrome_options.add_argument('--disable-javascript') # 禁用javascript
+chrome_options.add_argument('--blink-settings=imagesEnabled=false') # 不加载图片, 提升速度
+chrome_options.add_argument('--ignore-certificate-errors') # 禁用扩展插件并实现窗口最大化
+chrome_options.add_argument('–disable-software-rasterizer')
+chrome_options.add_argument('--disable-extensions') # 禁用Chrome浏览器上现有的扩展
+chrome_options.add_argument('--disable-popup-blocking') #禁用弹窗
+
+其他
+–user-data-dir=”[PATH]” 指定用户文件夹User Data路径，可以把书签这样的用户数据保存在系统分区以外的分区。
+–disk-cache-dir=”[PATH]“ 指定缓存Cache路径
+–disk-cache-size= 指定Cache大小，单位Byte
+–first run 重置到初始状态，第一次运行
+–incognito 隐身模式启动
+–disable-javascript 禁用Javascript
+–omnibox-popup-count=”num” 将地址栏弹出的提示菜单数量改为num个。我都改为15个了。
+–user-agent=”xxxxxxxx” 修改HTTP请求头部的Agent字符串，可以通过about:version页面查看修改效果
+–disable-plugins 禁止加载所有插件，可以增加速度。可以通过about:plugins页面查看效果
+–disable-javascript 禁用JavaScript，如果觉得速度慢在加上这个
+–disable-java 禁用java
+–start-maximized 启动就最大化
+–no-sandbox 取消沙盒模式
+–single-process 单进程运行
+–process-per-tab 每个标签使用单独进程
+–process-per-site 每个站点使用单独进程
+–in-process-plugins 插件不启用单独进程
+–disable-popup-blocking 禁用弹出拦截
+–disable-plugins 禁用插件
+–disable-images 禁用图像
+–incognito 启动进入隐身模式
+–enable-udd-profiles 启用账户切换菜单
+–proxy-pac-url 使用pac代理 [via 1/2]
+–lang=zh-CN 设置语言为简体中文
+–disk-cache-dir 自定义缓存目录
+–disk-cache-size 自定义缓存最大值（单位byte）
+–media-cache-size 自定义多媒体缓存最大值（单位byte）
+–bookmark-menu 在工具 栏增加一个书签按钮
+–enable-sync 启用书签同步
+–single-process 单进程运行Google Chrome
+–start-maximized 启动Google Chrome就最大化
+–disable-java 禁止Java
+–no-sandbox 非沙盒模式运行
+```
 
 ### Pytest 5.7k
 pytest是一个非常成熟的全功能的Python测试框架，主要特点有以下几点：

@@ -261,6 +261,28 @@ docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e USER=zs -e P
 VNC (Virtual Network Console)是虚拟网络控制台的缩写，优点像windows版本的远程桌面控制
 
 ## docker 分析
+### docker image转dockerfile
+https://github.com/P3GLEG/Whaler
+```
+FROM golang:1.14.4 AS builder
+WORKDIR $GOPATH
+RUN go get -u github.com/P3GLEG/Whaler
+WORKDIR $GOPATH/src/github.com/P3GLEG/Whaler
+RUN export CGO_ENABLED=0 && go build .
+RUN cp Whaler /root/Whaler
+
+FROM alpine:3.12.0
+WORKDIR /root/
+COPY --from=builder /root/Whaler .
+ENTRYPOINT ["./Whaler"]
+```
+docker run -t --rm -v /var/run/docker.sock:/var/run/docker.sock:ro pegleg/whaler -sV=1.36 nginx:latest
+or
+alias whaler="docker run -t --rm -v /var/run/docker.sock:/var/run/docker.sock:ro pegleg/whaler"
+whaler -sV=1.36 nginx:latest
+or
+自己编译
+./whaler -sV=1.36 nginx:latest
 ### dive 分析docker镜像
 https://github.com/wagoodman/dive 23k
 > 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名

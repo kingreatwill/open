@@ -124,6 +124,17 @@ Devtools提供的用于将对象数组记录为表格的API:
 
 table(listjson)
 
+## chrome地址栏命令
+在Chrome的浏览器地址栏中输入以下命令，就会返回相应的结果。这些命令包括查看内存状态，浏览器状态，网络状态，DNS服务器状态，插件缓存等等。但是需要注意的是这些命令会不停的变动，所以不一定都是好用的。
+about:version - 显示当前版本
+about:memory - 显示本机浏览器内存使用状况
+about:plugins - 显示已安装插件
+about:histograms - 显示历史记录
+about:dns - 显示DNS状态
+about:cache - 显示缓存页面
+about:gpu -是否有硬件加速
+about:flags -开启一些插件 //使用后弹出这么些东西：“请小心，这些实验可能有风险”，不知会不会搞乱俺的配置啊！
+chrome://extensions/ - 查看已经安装的扩展
 
 ## chrome插件
 https://github.com/zhaoolee/ChromeAppHeroes
