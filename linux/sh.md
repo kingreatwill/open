@@ -243,3 +243,28 @@ ls -r | measure -s Length
 看起来比上面的要舒服多了。或者直接在命令行 cmd 下执行：
 powershell -noprofile -command "ls -r | measure -s Length"
 ```
+
+### 网路相关
+#### netstat
+#### ss
+SS命令可以提供如下信息：
+- 所有的TCP sockets
+- 所有的UDP sockets
+- 所有ssh/ftp/ttp/https持久连接
+- 所有连接到Xserver的本地进程
+- 使用state（例如：connected, synchronized, SYN-RECV, SYN-SENT,TIME-WAIT）、地址、端口过滤
+- 所有的state FIN-WAIT-1 tcpsocket连接以及更多
+
+常用ss命令：
+- ss -l 显示本地打开的所有端口
+- ss -pl 显示每个进程具体打开的socket
+- ss -t -a 显示所有tcp socket
+- ss -u -a 显示所有的UDP Socekt
+- ss -o state established '( dport = :smtp or sport = :smtp )' 显示所有已建立的SMTP连接
+- ss -o state established '( dport = :http or sport = :http )' 显示所有已建立的HTTP连接
+- ss -x src /tmp/.X11-unix/* 找出所有连接X服务器的进程
+- ss -s 列出当前socket详细信息:
+- ss src ADDRESS_PATTERN(src：表示来源,ADDRESS_PATTERN：表示地址规则)
+    ss src 120.33.31.1 # 列出来之20.33.31.1的连接    
+    ss src 120.33.31.1:http # 列出来至120.33.31.1,80端口的连接
+    ss src 120.33.31.1:80

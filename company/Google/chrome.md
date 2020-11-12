@@ -1,5 +1,7 @@
 <!--toc-->
 [TOC]
+## Chrome插件开发
+https://github.com/sxei/chrome-plugin-demo
 ## Chrome devtools
 
 ### 命令（Command） 菜单

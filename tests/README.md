@@ -16,7 +16,7 @@ UFT，QTP被惠普收购以后的新名称
 - Jest
 - Cucumber
   Cucumber 是一个开源的行为驱动测试工具，支持多种编程语言，包括 Ruby,Java，Scala 和 Groovy。可以说 Cucumber 并不是 Selenium 的替代品，而仅仅是对 Selenium 进行了一层包装。
-  
+
 ### selenium
 https://github.com/SeleniumHQ/selenium
 https://www.selenium.dev/documentation/en/
@@ -335,3 +335,30 @@ https://www.jianshu.com/p/c9ddb5e5bfc2
 #### Jest
 https://github.com/facebook/jest
 Delightful JavaScript Testing. https://jestjs.io
+
+## 性能工具
+### 性能工具之Taurus
+https://github.com/Blazemeter/taurus
+支持
+- JMeter Executor
+- Selenium Executor
+- JUnit Executor
+- TestNG Executor
+- Apiritif Executor
+- PyTest Executor
+- RSpec Executor
+- Mocha Executor
+- WebdriverIO Executor
+- NUnit Executor
+- xUnit Executor
+- Robot Executor
+- Gatling Executor
+- Grinder Executor
+- Locust Executor
+- PBench Executor
+- Siege Executor
+- ApacheBenchmark Executor
+- Tsung Executor
+- Molotov Executor
+- Postman/Newman Executor
+- Existing Results Loader
