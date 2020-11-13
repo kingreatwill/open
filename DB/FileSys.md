@@ -184,6 +184,7 @@ DEMO演示站：https://drive.aoaoao.me
 - 用户组基础权限设置、二步验证
 - WebDAV协议支持
 
+
 ##### 宝塔安装方法
 1. 打开终端工具，用命令行安装composer，之后再用composer工具安装cloudreve.
 ```
@@ -218,6 +219,7 @@ location / {
 docker run -p 80:80 -v /cloudreve:/cloudreve -e CLOUDREVE_URL="http://你的域名:6780/" -e APACHE2_WEB_PORT="6780" --name cloudreve ilemonrain/cloudreve
 
 ```
+docker pull xavierniu/cloudreve:3.1.1
 
 #### z-file
 https://github.com/zhaojun1998/zfile
@@ -235,6 +237,96 @@ https://github.com/zhimengzhe/iBarn
 #### KODExplorer
 https://github.com/kalcaddle/KODExplorer
 
+## 图床
+[盘点国内免费好用的图床](https://zhuanlan.zhihu.com/p/35270383)
+### PicGo
+https://github.com/Molunerfinn/PicGo
+PicGo 本体支持如下图床：
+- 七牛图床 v1.0
+- 腾讯云 COS v4\v5 版本 v1.1 & v1.5.0
+- 又拍云 v1.2.0
+- GitHub v1.5.0
+- SM.MS V2 v2.3.0-beta.0
+- 阿里云 OSS v1.6.0
+- Imgur v1.6.0
+
+支持vs插件：https://github.com/PicGo/vs-picgo
+支持手机：https://github.com/PicGo/flutter-picgo
+
+### PicUploader
+https://github.com/xiebruce/PicUploader
+### ImgURL
+https://github.com/helloxz/imgurl
+### weiboUploader-Watermark
+https://github.com/yhf7952/weiboUploader-Watermark
+
+### gitPic
+https://github.com/zzzzbw/gitPic
+
+### auxpi
+集合多家 API 的新一代图床
+https://github.com/0xDkd/auxpi
+
+### 公益图床
+https://sbimg.cn/
+### 路过图床
+https://imgchr.com
+简介：支持免注册上传图片，永久存储，支持HTTPS加密访问和调用图片，提供多种图片链接格式，成立于2011年
+限制：最大10M
+
+### SM.MS
+官网地址：https://sm.ms
+特点：永久存储免注册，图片链接支持https，可以删除上传的图片，提供多种图片链接格式，建立于2015年，目前免费用户无法使用香港节点因此速度比较慢
+图片上传限制：每个图片最大5M，每次最多上传10张
+
+### 聚合图床
+官网地址：https://www.superbed.cn
+
+简介：将图片分发到多处备份，借助其本身的CDN加速功能，节省服务器流量，并且不用担心图片被删除，即便其中某几个图床上的图片被删除了，还有其他备份，保证万无一失，支持匿名和注册管理
+
+图片上传限制：无
+
+### iPic
+iPic 可以屏幕截图、还是复制图片，都可以自动上传、保存 Markdown 格式的链接，直接粘贴插入，也可使用 Hexo | Heroku 或 WordPress 写博客、在公众号发文章、在知乎讨论、在豆瓣灌水、在论坛发帖等 。（注： iPic 是Mac的一款图床工具）。
+### kieng综合图床
+https://image.kieng.cn/
+
+- 阿里图床
+https://image.kieng.cn/ali.html
+- 腾讯图床
+https://image.kieng.cn/qq.html
+- 网易图床
+https://image.kieng.cn/wy.html
+- 头条图床
+https://image.kieng.cn/tt.html
+- 京东图床
+https://image.kieng.cn/jd.html
+- 侠聚图床
+https://image.kieng.cn/hl.html
+- 搜狐图床
+https://image.kieng.cn/sh.html
+
+### 各大图床API接口
+
+BaiDu 百度 图床 API
+https://api.uomg.com/api/image.baidu
+
+360识图 图床 API
+http://st.so.com/stu
+
+网易云 图床 API
+http://you.163.com/xhr/file/upload.json
+
+JingDong 京东 图床 API
+https://search.jd.com/image?op=upload
+
+JueJin 掘金 图床 API
+https://cdn-ms.juejin.im/v1/upload?bucket=gold-user-assets
+
+Ali 阿里云 图床 API
+https://kfupload.alibaba.com/mupload
+https://api.uomg.com/api/image.ali
+https://api.uomg.com/doc-image.ali.html
 
 ## 办公套件
 
