@@ -328,6 +328,24 @@ https://kfupload.alibaba.com/mupload
 https://api.uomg.com/api/image.ali
 https://api.uomg.com/doc-image.ali.html
 
+## 记录分享文件存储
+### perkeep 
+https://github.com/perkeep/perkeep 5.2k
+### Upspin
+https://github.com/upspin/upspin 5.6k
+### IPFS
+https://github.com/ipfs/ipfs 18.3k
+### Keybase Filesystem
+https://keybase.io/docs/kbfs
+### git-annex
+### Google Drive
+### Dropbox
+### Libchop
+### Tahoe-LAFS
+predates Perkeep, file-centric
+### Unhosted
+
+
 ## 办公套件
 
 ### onlyoffice 
