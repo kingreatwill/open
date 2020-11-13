@@ -79,15 +79,12 @@ https://zerossl.com/
 
 ### 公众号文章
 
-有趣实验: hack go interface
-https://mp.weixin.qq.com/s?__biz=MzAxMTA4Njc0OQ==&mid=2651438356&idx=1&sn=55be7b10cb2bc6479377671b18eb478f&chksm=80bb63e6b7cceaf09e997e589e7764c29cf6bf65385c01b156134386def8e71b98ef3ff5ef14&mpshare=1&scene=1&srcid=&sharer_sharetime=1580038709908&sharer_shareid=16697c4af176d0bae6f144be947679f7&rd2werd=1#wechat_redirect
-
+[有趣实验: hack go interface](https://mp.weixin.qq.com/s/_Th5plNZa5LwINExKrMcCw)
 
 Go语言爱好者周刊：第 27 期
 https://mp.weixin.qq.com/s?__biz=MzAxMTA4Njc0OQ==&mid=2651438377&idx=1&sn=68ff8e3b94b6d9b0350e14f4fc3711c0&chksm=80bb63dbb7cceacd065dde5cfd5d809784864deb4406835d5b49ff189ab9921025c1deb18017&mpshare=1&scene=1&srcid=&sharer_sharetime=1580038738964&sharer_shareid=16697c4af176d0bae6f144be947679f7&rd2werd=1#wechat_redirect
 
-基于 Redis 实现 CAS 操作
-https://mp.weixin.qq.com/s?__biz=MzAwNTMxMzg1MA==&mid=2654077754&idx=7&sn=b9300d94a34cd64f86fabc2005bdf900&chksm=80d8276fb7afae791b37e794c9c6921acef33b34cf001182e2148d3bc9df5f4a5fafcc127e8d&mpshare=1&scene=1&srcid=&sharer_sharetime=1583711423472&sharer_shareid=16697c4af176d0bae6f144be947679f7&rd2werd=1#wechat_redirect
+[基于 Redis 实现 CAS 操作](https://www.cnblogs.com/weihanli/p/redis-based-cas.html)
 
 如何使用有序GUID提升数据库读写性能
 https://mp.weixin.qq.com/s?__biz=MzAwNTMxMzg1MA==&mid=2654077730&idx=2&sn=542ca7f49988bffc9d704112ba2700dd&chksm=80d82777b7afae61876cff46f66296baee6b4a9c59a5f1be86d1eabc57ce2c713fea54bb6ced&mpshare=1&scene=1&srcid=&sharer_sharetime=1583714863370&sharer_shareid=16697c4af176d0bae6f144be947679f7&rd2werd=1#wechat_redirect
