@@ -67,6 +67,14 @@ worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 010000
 ### 如何构建高性能服务器（以Nginx为例）
 https://www.cnblogs.com/kukafeiso/p/13957174.html
 
+### 设置HTTP强制跳转HTTPS
+```
+server {
+    listen 80;
+    server_name example.com;  这里修改为网站域名
+    rewrite ^(.*)$ https://$host$1 permanent;
+}
+```
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
 ```
