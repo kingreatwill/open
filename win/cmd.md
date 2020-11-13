@@ -1,6 +1,137 @@
 <!--toc-->
 [TOC]
 # windows 命令
+## 常用
+https://thegeekpage.com/101-windows-10-run-commands-shortcuts-to-find-hidden-features/
+
+### 有用的Windows工具
+- 屏幕键盘– osk
+- 计算器– calc
+- 写字板– write
+- Windows Media Player – wmplayer
+- Windows传真和扫描–  wfs
+- 截图工具– snippingtool
+- 绘画– mspaint
+- 记事本– notepad
+- 任务管理器– taskmgr
+- 便签– stikynot
+- 数学输入面板– MIP
+- 命令提示符– cmd
+- Powershell – Powershell
+- Windows日记本  - journal
+- 叙述者– narrator
+- 放大镜– magnify
+- Edge  – microsoft-edge://
+- Internet Explorer – iexplore
+- 蓝牙– fsquirt
+- Windows防火墙– firewall.cpl
+- 具有高级安全性的Windows防火墙– wf.msc
+- Windows资源管理器– explorer
+- XPS查看器– xpsrchvw
+
+### 特定实用程序
+- 创建修复光盘–recdisc
+- 备份和还原– sdclt
+- 远程协助– msra
+- 打开最近查看的文件–recent
+- 连接投影仪– displayswitch
+- 添加新设备– devicepairingwizard
+- 开放易用的访问中心– utilman
+- 用户帐户控制设置–  useraccountcontrolsettings
+- Windows任务计划程序– taskchd.msc
+- 系统还原– rstrui
+- 所有系统信息– msinfo32
+- 网络连接– ncpa.cpl
+- 系统配置–  msconfig
+- 磁盘清理– cleanmgr
+- 磁盘碎片整理程序– dfrgui
+- 磁盘管理– diskmgmt.msc
+- 恶意软件删除工具– MRT
+- 问题步骤记录器  – psr
+- Internet选项– inetcpl.cpl
+- 设备管理器– devmgmt.msc
+- 计算机管理– compmgmt.msc
+- 共享文件夹  – fsmgmt.msc
+- 创建共享文件夹向导– shrpubw
+- 备份和还原用户名和密码– credwiz
+- 地区和语言– intl.cpl
+- 注册表编辑器– regedit
+- 本地组策略编辑器– gpedit.msc
+- 索引选项– rundll32.exe shell32.dll，Control_RunDLL srchadmin.dll
+- 资源监控器– resmon
+- 声音设置– mmsys.cpl
+- 故障排除– control.exe /name Microsoft.Troubleshooting
+- 用户帐户– control.exe /name Microsoft.UserAccounts
+- 本地用户和组– lusrmgr.msc
+- 高级用户帐户– netplwiz
+- 时间和日期– timedate.cpl
+- 屏幕分辨率– desk.cpl
+- 色彩管理– colorcpl
+- 事件查看器– eventvwr.msc
+- 远程桌面连接– mstsc
+- 服务  – services.msc
+- 证书– certmgr.msc
+- 鼠标设置– main.cpl
+- 知道当前的Windows版本– Winver
+- 本地安全策略– secpol.msc
+- 直接转到已安装程序的列表– appwiz.cpl
+- Windows Update设置–control update
+- 管理工具- control admintools
+- 预定任务– control schedtasks
+
+### 控制面板运行命令
+- 控制面板– control
+- 个性化和主题- control desktop
+- 个性化和颜色- control color
+- 文件浏览器属性和文件夹选项– control folders
+- 键盘属性  – control keyboard
+- 鼠标属性– control mouse
+- 网络属性– control netconnections
+- 打印机属性– control printers
+- 管理当前用户帐户– control userpasswords
+- 管理所有用户帐户– control userpasswords2
+- 声音控制面板– control mmsys.cpl sounds
+ 
+
+### 打开文件夹命令
+- 打开文档文件夹  – documents
+- 打开视频文件夹  – videos
+- 打开下载文件夹  – downloads
+- 打开收藏夹文件夹- favorites
+- 打开最近的文件夹  - recent
+- 打开图片文件夹  – pictures
+
+### 系统运行命令
+- 系统配置–  msconfig
+- 系统配置编辑器  – sysedit
+- 系统信息–  msinfo32
+- 系统属性  – sysdm.cpl
+- 系统属性（高级选项卡） -  systempropertiesadvanced
+- 系统属性（“计算机名称”选项卡）   – systemproperties
+- 系统属性（“硬件”选项卡）  – systempropertieshardware
+- 系统属性（“远程”选项卡）  – systempropertiesremote
+- 系统属性（“系统保护”选项卡）  – systempropertiesprotection
+- 系统还原– rstrui
+
+### 所有其他有用的运行命令快捷方式
+- 显示屏颜色校准–  dccw
+- 显示–dpiscaling
+- 显示开关– displayswitch
+- 驱动程序验证程序管理器–verifier
+- 文件签名验证– sigverif
+- 游戏控制器– joy.cpl
+- 入门–gettingstarted
+- iSCSI启动器配置工具– iscsicpl
+- 语言包安装程序– lpksetup
+- Microsoft管理控制台– mmc
+- Microsoft支持诊断工具– msdt
+- 性能监视器– perfmon.msc
+- 电话和调制解调器电话– cpl
+- 电话拨号器– dialer
+- WMI管理  – wmimgmt.msc
+- Windows光盘映像刻录工具– isoburn
+- Windows DVD Maker – dvdmaker
+
 ## 参考
 https://www.thewindowsclub.com/
 https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/windows-commands

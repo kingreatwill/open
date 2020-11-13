@@ -150,11 +150,25 @@ SAN提供一个专用的、高可靠性的基于光通道的存储网络，SAN�
 
 
 ## 云盘系统
-### Cloudreve
+
+
+### ownCloud
+https://github.com/owncloud/
+
+### Nextcloud
+https://github.com/nextcloud/
+
+### Seafile 
+https://github.com/haiwen/seafile
+### OnionShare
+https://github.com/micahflee/onionshare
+
+### 国产
+#### Cloudreve
 https://github.com/cloudreve/Cloudreve
 
 DEMO演示站：https://drive.aoaoao.me
-#### 目前已经实现的功能：
+##### 目前已经实现的功能：
 - 快速对接多家云存储，支持七牛、又拍云、阿里云OSS、AWS S3、Onedrive、自建远程服务器，当然，还有本地存储
 - 可限制单文件最大大小、MIMEType、文件后缀、用户可用容量
 - 自定义主题配色
@@ -170,7 +184,7 @@ DEMO演示站：https://drive.aoaoao.me
 - 用户组基础权限设置、二步验证
 - WebDAV协议支持
 
-#### 宝塔安装方法
+##### 宝塔安装方法
 1. 打开终端工具，用命令行安装composer，之后再用composer工具安装cloudreve.
 ```
 curl -sS https://getcomposer.org/installer | php
@@ -198,14 +212,28 @@ location / {
 5. 正式环境：请设置定时任务
 在终端输入contab -e粘贴以下内容：`* * * * * curl http://你的域名/Cron`之后reboot服务器即可。
 
-#### 使用Docker
+##### 使用Docker
 ```
 # 注意修改你的域名,没有的话，填写ip
 docker run -p 80:80 -v /cloudreve:/cloudreve -e CLOUDREVE_URL="http://你的域名:6780/" -e APACHE2_WEB_PORT="6780" --name cloudreve ilemonrain/cloudreve
 
 ```
 
+#### z-file
+https://github.com/zhaojun1998/zfile
+#### dzzoffice
+https://github.com/zyx0814/dzzoffice
 
+#### kiftd
+https://github.com/KOHGYLW/kiftd-source
+https://github.com/KOHGYLW/kiftd
+
+#### 蓝眼云盘
+https://github.com/eyebluecn/tank
+#### iBarn
+https://github.com/zhimengzhe/iBarn
+#### KODExplorer
+https://github.com/kalcaddle/KODExplorer
 
 
 ## 办公套件

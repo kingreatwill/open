@@ -6,6 +6,8 @@ chcp 65001 cmd 显示中文
 
 Cygwin，让你拥有Windows下的Linux环境
 
+[Freeware](https://thegeekpage.com/category/windows/freeware/)
+
 ## markdown
 ### MarkdownMonster
 Markdown编辑工具-支持weblog
@@ -253,6 +255,10 @@ https://github.com/NickeManarin/ScreenToGif
 https://github.com/lupoDharkael/flameshot
 
 ## 录屏
+[17 Best Free Screenshot Tools for Windows 10](https://thegeekpage.com/17-best-free-screenshot-tools-for-windows-10/)
+[17 Best Free Screen Recording Software for Windows 10](https://thegeekpage.com/screen-recording-software-for-windows-10/)
+
+
 ### Camtasia 收费的
 Camtasia Studio是TechSmith旗下的一套专业屏幕录像软件，同时包含Camtasia 录像器、Camtasia Studio（编辑器）、Camtasia 菜单制作器、Camtasia 剧场、Camtasia 播放器和Screencast的内置功能。
 
@@ -443,7 +449,27 @@ Groupy 是著名的 Stardock 公司开发的一款强大的 Windows 软件，它
 - 多文件夹合并，极大提升效率
 - 快速打开新选项卡，高效工作
 - 分组管理窗口，快捷打开多窗口
-### Clover
+
+### 文件管理
+[11 Best Free File Manager for Windows 10](https://thegeekpage.com/11-best-free-file-manager-for-windows-10/)
+
+> alt+p 预览文件内容
+
+- FreeCommander
+- Directory Opus
+- Total Commander
+- [Explorer++](https://explorerplusplus.com/)
+    [源码](https://github.com/derceg/explorerplusplus)
+    [多语言](https://explorerplusplus.com/translations)
+- Q-Dir (the Quad Explorer)
+- One Commander
+- Xplorer²
+- WinDirStat
+- XYplorer
+- Files&Folder Lite
+- Clover
+
+#### Clover
 Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。
 
 ### 搜索相关
@@ -451,8 +477,46 @@ Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似�
 Windows效率神器(不仅仅是搜索)
 
 #### everything
+everything 也支持全文本文档搜索
 #### Listary Pro
 好用的搜索工具
+#### Recoll 全文搜索工具
+“Recoll”原本是Linux下的一款开源软件，随后被迁移到了Windows.
+比Listary更好用
+https://www.lesbonscomptes.com/recoll/
+源码：https://framagit.org/medoc92/recoll
+
+- Recoll WebUI
+https://github.com/koniu/recoll-webui
+
+提供linux上的web界面
+
+#### Archivarius 3000
+全文本文档搜索
+#### 其它
+https://alternativeto.net/software/recoll/?platform=windows
+- DocFetcher 开源
+- Search Monkey 免费
+- RecentX
+- SwiftSearch 开源
+- Lookeen Desktop Search
+- NTFS-SearchG 开源
+- Index Your Files 免费
+- FileSearchy 个人免费
+
+https://thegeekpage.com/13-best-desktop-search-tools-for-windows/
+
+- grepWin 免费
+- Copernic Desktop Search
+- Agent Ransack 免费
+- Lookeen
+- Google Desktop  免费
+- AstroGrep 免费
+- Exselo Desktop
+- SearchMyFiles  免费
+- Puggle Desktop Search
+- Locate3 免费
+
 
 #### http://www.wox.one/
 想必用过mac的人都会知道一款效率神器Alfred，可快速启动、计算、查找等，使用起来非常的方便。Win上面也有类似的效率神器，比如Listary和WOX。
@@ -673,6 +737,21 @@ winmergeu.exe -e -u file1 file2
 colordiff 和 diff-so-fancy
 colordiff 下载地址：https://www.colordiff.org/
 diff-so-fancy 下载地址：https://github.com/so-fancy/diff-so-fancy
+
+https://thegeekpage.com/12-best-free-file-comparison-tools-for-windows-10/
+- AptDiff
+- DiffMerge
+- Diffuse
+- ExamDiff
+- KDiff3
+- Workshare Compare 收费
+- WinMerge
+- Meld
+- tkdiff
+- Diff Doc 收费
+- DocuProof Enterprise 收费
+- Beyond Compare Version 3 收费
+
 
 ## 上传
 ### winscp
