@@ -85,3 +85,33 @@ View body() => new StackLayout
     )
 };
 ```
+
+cnblogs dockerfile
+```
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN apt-get update && apt-get install -y curl
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+WORKDIR /src
+COPY src/*.sln src/*.props src/NuGet.config ./
+COPY src/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p ${file%.*}/ && mv $file ${file%.*}/; done
+RUN dotnet restore "BlogServerCore.sln"
+COPY src/. .
+RUN dotnet build "BlogServerCore.sln" -c Release --no-restore
+
+FROM build AS publish
+WORKDIR /src/BlogServer.WebApi
+RUN dotnet publish "BlogServer.WebApi.csproj" -c Release -o /app/publish --no-build
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+RUN echo "dotnet BlogServer.WebApi.dll" > run.sh
+HEALTHCHECK --interval=5s --timeout=20s \
+    CMD curl -fs -o /dev/null localhost/alive || exit 1
+```
