@@ -22,6 +22,11 @@ Markdown编辑工具-支持weblog
 
 [excel to markdown](http://www.tablesgenerator.com/markdown_tables)
 
+### PDF 转 markdown
+https://github.com/jzillmann/pdf-to-markdown
+https://github.com/johnlinp/pdf-to-markdown
+https://pdf2md.morethan.io/
+
 ### MarkDown 网页编辑器StackEdit
 https://github.com/benweet/stackedit 17.2k
 

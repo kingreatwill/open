@@ -278,9 +278,6 @@ pgcli 下载地址：https://www.pgcli.com/
 
 ## securecrt ssh工具
 
-## cockpit   
-web管理页面 连接linux
-
 ## BusyBox Unix常用工具包
 BusyBox 是一个集成了一百多个最常用 linux 命令和工具的软件。BusyBox 包含了一些简单的工具，例如 ls、cat 和echo 等等，
 还包含了一些更大、更复杂的工具，例 grep、find、mount 以及 telnet。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。
@@ -382,7 +379,11 @@ bashtop 是一个 Linux 资源监视器，显示处理器、内存、磁盘、�
 GitHub 地址→https://github.com/aristocratos/bashtop
 
 ## UI
-
+### cockpit   
+web管理页面 连接linux
+### webmin
+web服务器管理控制面板
+https://github.com/webmin/webmin
 ### xDroid
 运行安卓应用
 

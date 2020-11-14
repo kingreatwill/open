@@ -145,6 +145,13 @@ Python程序执行的简单实时可视化。
 https://github.com/alexmojaki/heartrate
 代码调用高亮依赖于[executing](https://github.com/alexmojaki/executing) 库
 
+### VizTracer 工具可以可视化并跟踪 Python 代码
+https://github.com/gaogaotiantian/viztracer
+
+VizTracer 是一个这样的工具，它通过跟踪和可视化 Python 代码的执行过程，来帮助你对代码的理解。无需对源代码进行任何更改，VizTracer 即可记录函数的入口 / 出口，函数参数 / 返回值以及任意变量，然后通过 [Trace-Viewer](http://google.github.io/trace-viewer/) 使用直观的谷歌前端界面来显示数据。
+
+[Understand your Python code with this open source visualization tool](https://opensource.com/article/20/11/python-code-viztracer)
+
 ## 流程图
 https://github.com/mingrammer/diagrams
 
