@@ -3,6 +3,7 @@
 ## 图片处理
 
 - OpenCV 
+ [LearnOpenCV](https://github.com/spmallick/learnopencv)
 - Kornia 
 Kornia 是一个基于 PyTorch 的可微分的计算机视觉 （differentiable computer vision） 开源库，
 最常用图像处理库就是 OpenCV 和 PIL 了。然而，因为 OpenCV 和 PIL 都是不可微的，所以这些处理都只可以作为图像的预处理而无法通过观察梯度的变化来对这些算子进行优化 （gradient-based optimization）。因此，Kornia 便应运而生。
@@ -36,6 +37,9 @@ https://github.com/kenshohara/3D-ResNets-PyTorch
 
 ### OpenPose
 https://github.com/felixchenfy/Realtime-Action-Recognition
+
+[OpenPose：实现抖音很火的人体骨架和视频动态舞](https://www.toutiao.com/i6894794634640392712/)
+[人体骨架舞：OpenPose用python-opencv实现](https://www.toutiao.com/i6894970259586056711/)
 
 ### BlazePose
 谷歌研究人员提出全新神经网络BlazePose，可健身跟踪、手语识别

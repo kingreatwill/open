@@ -117,6 +117,7 @@ apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启
 
 ### 数据可视化工具
 #### python的matplotlib
+- [D3渲染Matplotlib图形](https://github.com/mpld3/mpld3) 新版的matplotlib自带了mpld3
 #### R语言的ggplot2
 #### pandas_alive
 Pandas_Alive，它以 matplotlib 绘图为后端，不仅可以创建出令人惊叹的动画可视化，而且使用方法非常简单。
