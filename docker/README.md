@@ -283,6 +283,11 @@ whaler -sV=1.36 nginx:latest
 or
 自己编译
 ./whaler -sV=1.36 nginx:latest
+
+### Dozzle  实时日志查看器的docker容器
+https://github.com/amir20/dozzle
+Dozzle 是 Docker 容器的实时日志查看器。Dozzle 将能够从用户的容器中捕获所有日志并将其实时发送到用户的浏览器。Dozzle 不是数据库，它不存储或保存任何日志，使用 Dozzle 时只能看到实时日志。
+
 ### dive 分析docker镜像
 https://github.com/wagoodman/dive 23k
 > 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
