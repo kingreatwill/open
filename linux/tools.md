@@ -153,6 +153,10 @@ axel -n 20 http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minima
 https://github.com/reorx/httpstat
 httpstat以一种美丽和清晰的方式可视化curl统计数据。
 
+### gping
+Ping，但有个图表
+https://github.com/orf/gping
+
 ### sz/rz
 交互式文件传输，在多重跳板机下传输文件非常好用，不用一级一级传输。
 yum install lrzsz -y

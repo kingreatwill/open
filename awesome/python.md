@@ -123,6 +123,15 @@ apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启
 Pandas_Alive，它以 matplotlib 绘图为后端，不仅可以创建出令人惊叹的动画可视化，而且使用方法非常简单。
 https://github.com/JackMcKew/pandas_alive
 
+#### EDA
+探索性数据分析（Exploratory Data Analysis，简称EDA）
+
+Pandas Profiling、Sweetviz和PandasGUI都很不错，旨在简化我们的EDA处理。在不同的工作流程中，每个都有自己的优势和适用性，三个工具具体优势如下：
+[Pandas Profiling](https://github.com/pandas-profiling/pandas-profiling) 适用于快速生成单个变量的分析。
+[Sweetviz](https://github.com/fbdesignpro/sweetviz) 适用于数据集之间和目标变量之间的分析。
+[PandasGUI](https://github.com/adamerose/pandasgui)适用于具有手动拖放功能的深度分析。
+
+
 ## Python神器
 ### 可视化排序算法
 https://github.com/LucasPilla/Sorting-Algorithms-Visualizer

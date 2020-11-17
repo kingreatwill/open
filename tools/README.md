@@ -143,6 +143,9 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 ## 交互式反汇编专业工具 IDA
 [逆向神器之IDA的使用](https://www.cnblogs.com/aikongmeng/articles/10657479.html)
 
+## 逆向工程的十六进制编辑器 rehex
+https://github.com/solemnwarning/rehex
+
 ## 密码管理工具
 ### KeePass 
 KeePass的插件
