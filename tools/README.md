@@ -284,6 +284,10 @@ C#做的，现在已经归档了
 ### ScreenToGif
 没有声音
 
+### rrweb
+web录制
+https://github.com/rrweb-io/rrweb
+
 ## 图片处理
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。

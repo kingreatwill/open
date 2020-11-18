@@ -1,4 +1,7 @@
 
+Python应用生态
+https://www.pythonstacks.com/
+
 ## 自动化
 ### automagica
 https://github.com/automagica/automagica 3.1k

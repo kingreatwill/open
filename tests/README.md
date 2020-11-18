@@ -20,9 +20,16 @@ UFT，QTP被惠普收购以后的新名称
 - SoapUI 
 
 ### UI自动化录制工具 chrome 插件
+#### headless-recorder 推荐
+Puppeteer or Playwright script.
+https://github.com/checkly/headless-recorder
+
+> 注意元素规范：https://theheadless.dev/posts/basics-selectors/
+
 
 #### Cypress-Recorder 推荐
 https://github.com/KabaLabs/Cypress-Recorder
+
 #### katalon-recorder  推荐
 selenium
 

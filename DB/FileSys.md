@@ -237,6 +237,9 @@ https://github.com/zhimengzhe/iBarn
 #### KODExplorer
 https://github.com/kalcaddle/KODExplorer
 
+## Web文件浏览器
+### filebrowser
+https://github.com/filebrowser/filebrowser
 ## 图床
 [盘点国内免费好用的图床](https://zhuanlan.zhihu.com/p/35270383)
 ### PicGo
