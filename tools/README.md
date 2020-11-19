@@ -480,6 +480,11 @@ Groupy 是著名的 Stardock 公司开发的一款强大的 Windows 软件，它
 - XYplorer
 - Files&Folder Lite
 - Clover
+- RX文件管理器
+- Files UWP
+- Directory Opus
+- Droplt
+- Files2Folder
 
 #### Clover
 Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。
