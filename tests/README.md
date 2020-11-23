@@ -18,6 +18,7 @@ UFT，QTP被惠普收购以后的新名称
   Cucumber 是一个开源的行为驱动测试工具，支持多种编程语言，包括 Ruby,Java，Scala 和 Groovy。可以说 Cucumber 并不是 Selenium 的替代品，而仅仅是对 Selenium 进行了一层包装。
 - ReadyAPI
 - SoapUI 
+- UiPath
 
 ### UI自动化录制工具 chrome 插件
 #### headless-recorder 推荐

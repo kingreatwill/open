@@ -61,6 +61,9 @@ Photon 可以从中抓取信息的许多来源包括：
 - JavaScript文件
 
 Photon 以有组织的方式保存所有提取的信息，甚至可以导出为 JSON 文件。该工具还提供了各种选项来自定义它的工作方式，比如控制超时，排除一些 url 等等。
+## 服务器操作
+### paramiko
+https://github.com/paramiko/paramiko
 
 ## Tools
 ### linq
