@@ -24,10 +24,15 @@ VitePress 是 Vue 官方推出的 SSG 框架。
 JAMStack
 Ledge 
 Gatsby
-
-## 上传
-### FilePond
+## 工具
+### 上传
+#### FilePond
 https://github.com/pqina/filepond
+#### Uppy
+https://github.com/transloadit/uppy
+
+### 图片处理
+https://github.com/nhn/tui.image-editor
 
 ## 网页构建  Web Builder Framework
 ### grapesjs
@@ -54,6 +59,12 @@ https://github.com/sparrow-js/sparrow 349
 用于为HTML内容构建所见即所得编辑器的JS库。
 https://github.com/GetmeUK/ContentTools
 https://github.com/GetmeUK
+
+H5 页面设计器
+https://github.com/ymm-tech/gods-pen
+
+#### 表单设计器
+https://github.com/JakHuang/form-generator
 
 ## 在线
 ### 可视化在线绘图引擎 Topology（类似draw.io）
@@ -95,6 +106,8 @@ https://github.com/pipwerks/PDFObject 1.7k
 
 #### html2pdf
 https://github.com/eKoopmans/html2pdf.js
+### excel
+https://github.com/mengshukeji/Luckysheet
 
 ## D3.js
 https://github.com/d3/d3 95k

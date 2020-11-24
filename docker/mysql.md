@@ -20,12 +20,12 @@ docker pull mysql:8.0.17   #445M
 
 D盘新建dockerv  mysql8 data/conf/logs 文件夹
 
-docker run  -itd -p 3406:3306 -v D:/dockerv/mysql8/conf:/etc/mysql/conf.d -v D:/dockerv/mysql8/logs:/logs -v D:/dockerv/mysql8/data:/var/lib/mysql --restart always -e MYSQL_ROOT_PASSWORD=123456@lcb --name mysql8.0.17  mysql:8.0.17 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+docker run  -itd -p 3406:3306 -v D:/dockerv/mysql8/conf:/etc/mysql/conf.d -v D:/dockerv/mysql8/logs:/logs -v D:/dockerv/mysql8/data:/var/lib/mysql --restart always -e MYSQL_ROOT_PASSWORD=123456@lcb --name mysql8.0.17  mysql:8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 
 
 进入MySQL容器,登陆MySQL
-docker exec -it mysql8.0.17 /bin/bash
+docker exec -it mysql8 /bin/bash
 
 mysql -u root -p
 

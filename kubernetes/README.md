@@ -121,6 +121,8 @@ KubeDB允许管理员创建用于管理数据库的Kubernetes运算符。运行�
 - PostgreSQL
 - ProxySQL
 - Redis
+#### Headlamp
+K8s UI
 
 #### Bitnami Cabin
 适用于iOS和Android的Kubernetes仪表板
