@@ -20,7 +20,7 @@ docker pull mysql:8.0.17   #445M
 
 D盘新建dockerv  mysql8 data/conf/logs 文件夹
 
-docker run  -itd -p 3406:3306 -v D:/dockerv/mysql8/conf:/etc/mysql/conf.d -v D:/dockerv/mysql8/logs:/logs -v D:/dockerv/mysql8/data:/var/lib/mysql --restart always -e MYSQL_ROOT_PASSWORD=123456@lcb --name mysql8.0.17  mysql:8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+docker run  -itd -p 3306:3306 -v D:/dockerv/mysql8/conf:/etc/mysql/conf.d -v D:/dockerv/mysql8/logs:/logs -v D:/dockerv/mysql8/data:/var/lib/mysql --restart always -e MYSQL_ROOT_PASSWORD=123456 --name mysql8  mysql:8 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 
 
@@ -37,11 +37,17 @@ mysql -u root -p
 
 备注：host为 % 表示不限制ip   localhost表示本机使用    plugin非mysql_native_password 则需要修改密码
 
-ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456@lcb';
+ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 
 FLUSH PRIVILEGES;  
 
 然后就可以远程登陆MySQL
+
+也可以新增用户
+
+CREATE USER 'demo' IDENTIFIED WITH mysql_native_password BY '123456';
+GRANT all ON *.* TO 'demo'@'%';
+FLUSH PRIVILEGES;
 ```
 
 ## 还原数据库
