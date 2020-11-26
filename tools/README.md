@@ -292,7 +292,11 @@ https://github.com/rrweb-io/rrweb
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
 https://github.com/meowtec/Imagine
-
+### 图像编辑器
+#### lazpaint
+https://github.com/bgrabitmap/lazpaint
+#### Paint.NET
+https://www.getpaint.net/download.html
 ### Honeyview
 图像查看器
 
