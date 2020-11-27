@@ -77,7 +77,7 @@ Helm|[2020.04.30](https://www.cncf.io/announcement/2020/04/30/cloud-native-compu
 Harbor |[2020.06.23](https://www.cncf.io/announcement/2020/06/23/cloud-native-computing-foundation-announces-harbor-graduation/) |[golang](https://github.com/goharbor/harbor) |开源制品（artifact）仓库，可通过策略和基于角色的访问控制来保护制品（如容器镜像、Helm Chart等）
 TiKV|[2020.09.02](https://www.cncf.io/announcements/2020/09/02/cloud-native-computing-foundation-announces-tikv-graduation/)|[rust](https://github.com/tikv/tikv)|TiKV 是一个开源的分布式事务 Key-Value 数据库，专注为下一代数据库提供可靠、高质量、实用的存储架构。TiKV 是继 Harbor 之后在 CNCF 毕业的第二个中国原创开源项目
 Rook|[2020.10.07](https://www.cncf.io/announcements/2020/10/07/cloud-native-computing-foundation-announces-rook-graduation/)|[golang](https://github.com/rook/rook)|Rook 是面向 Kubernetes 的开源云原生存储编排器
-
+Etcd | [2020.11.24](https://www.cncf.io/announcements/2020/11/24/cloud-native-computing-foundation-announces-etcd-graduation/)|[golang](https://github.com/etcd-io/etcd)| 分布式K-V存储系统
 ## Landscape介绍
 https://blog.csdn.net/liumiaocn/article/details/100713072
 

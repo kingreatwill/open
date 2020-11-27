@@ -293,6 +293,7 @@ https://github.com/rrweb-io/rrweb
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
 https://github.com/meowtec/Imagine
 ### 图像编辑器
+截图：【FSCapture】支持长截图，另外这款【Snipaste】支持贴图 
 #### lazpaint
 https://github.com/bgrabitmap/lazpaint
 #### Paint.NET
@@ -322,6 +323,8 @@ ImageMagick 可被用于图片切割、颜色替换、各种效果的应用，�
 ### Inkscape
 开源矢量图形编辑软件
 https://gitlab.com/inkscape/inkscape
+
+
 
 ## Bandizip 
 ZIP 压缩包管理器 - 免费版含广告
@@ -438,6 +441,9 @@ PerfView是一个CPU和内存性能分析工具
 https://github.com/microsoft/perfview
 
 ## 填补Win10缺失功能
+### 全局鼠标手势
+MouseInc
+
 ### microsoft PowerToys
 https://github.com/microsoft/PowerToys 32.9k
 
@@ -490,6 +496,7 @@ Groupy 是著名的 Stardock 公司开发的一款强大的 Windows 软件，它
 - Droplt
 - Files2Folder
 
+#### QTTabBar
 #### Clover
 Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。
 
@@ -542,10 +549,20 @@ https://thegeekpage.com/13-best-desktop-search-tools-for-windows/
 #### http://www.wox.one/
 想必用过mac的人都会知道一款效率神器Alfred，可快速启动、计算、查找等，使用起来非常的方便。Win上面也有类似的效率神器，比如Listary和WOX。
 
-#### https://u.tools/
+#### uTools
+https://u.tools/
 比everything更好？
-
-
+### 其它
+透明任务栏：【TranslucentTB】
+流量监控器：【TrafficMonitor】
+桌面壁纸：【WinDynamicDesktop】
+卸载神器：【Geek Uninstaller】，删完自动查找注册表，删不删由你
+右键菜单管理：【ContextMenuManager】
+系统维护工具：【PowerToolx64】我就拿来删文件的，毕竟总会遇到一些顽固的，有些360也删不了它可以；
+多媒体格式转换：【VideoProc 3.4】
+U盘格式化：【FormatTool2.0】
+纯粹的听音乐：【Aimp】
+系统工具【Dism++】
 
 ## 冰点下载器
 可以自由下载百度，豆丁，道客巴巴，丁香，畅享网，it68，mbalib，mab.book118，open-open, 金字塔医学,大桔灯文库文档。 
