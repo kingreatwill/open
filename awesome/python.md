@@ -137,6 +137,7 @@ Pandas Profiling、Sweetviz和PandasGUI都很不错，旨在简化我们的EDA�
 [Sweetviz](https://github.com/fbdesignpro/sweetviz) 适用于数据集之间和目标变量之间的分析。
 [PandasGUI](https://github.com/adamerose/pandasgui)适用于具有手动拖放功能的深度分析。
 
+#### Altair
 
 ## Python神器
 ### 可视化排序算法

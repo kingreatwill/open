@@ -218,3 +218,10 @@ https://github.com/shimohq/chinese-programmer-wrong-pronunciation
 免费的编程书籍
 https://github.com/EbookFoundation/free-programming-books
 https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md
+
+
+## 儿童教育
+### Scratch 
+### GCompris 
+支持 Windows、Android、GNU/Linux 和 macOS 平台，可安装到台式机、笔记本电脑、平板电脑和移动设备上。
+https://gcompris.net/downloads-en.html
