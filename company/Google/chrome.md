@@ -167,6 +167,15 @@ Volume Controller - 音量控制器
 划词翻译
 沙拉查词-聚合词典划词翻译
 彩云小译
+### Wappalyzer
+网站技术分析插件
+https://www.wappalyzer.com
+
+其它类似工具
+- WhatRuns
+- PageXray
+- BuiltWith Technology Profiler https://builtwith.com
+
 ### github插件
 Octotree - GitHub code tree推荐
 GitHub加速 推荐

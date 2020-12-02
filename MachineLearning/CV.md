@@ -22,6 +22,8 @@ examples: https://github.com/kornia/kornia-examples
 https://github.com/facebookresearch/pifuhd
 
 ### 人脸识别
+- face-api.js
+https://github.com/justadudewhohacks/face-api.js
 
 #### BlazeFace
 https://arxiv.org/abs/1907.05047

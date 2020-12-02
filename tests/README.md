@@ -219,6 +219,8 @@ Selenium & pytest
 
 ### Calabash
 Calabash进行Android和iOS UI测试
+### Macaca
+https://macacajs.com/
 ### appium
 [appium介绍](http://www.testclass.net/appium/appium-base-summary/)
 

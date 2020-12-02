@@ -261,7 +261,8 @@ https://github.com/NickeManarin/ScreenToGif
 
 ## 截图
 https://github.com/lupoDharkael/flameshot
-
+## 视频处理
+Subtitle Edit - 开源字幕编辑器
 ## 录屏
 [17 Best Free Screenshot Tools for Windows 10](https://thegeekpage.com/17-best-free-screenshot-tools-for-windows-10/)
 [17 Best Free Screen Recording Software for Windows 10](https://thegeekpage.com/screen-recording-software-for-windows-10/)
@@ -476,6 +477,9 @@ Groupy 是著名的 Stardock 公司开发的一款强大的 Windows 软件，它
 - 分组管理窗口，快捷打开多窗口
 
 ### 文件管理
+
+Wise Folder Hider - 电脑文件隐藏与加密工具
+
 [11 Best Free File Manager for Windows 10](https://thegeekpage.com/11-best-free-file-manager-for-windows-10/)
 
 > alt+p 预览文件内容
@@ -498,6 +502,8 @@ Groupy 是著名的 Stardock 公司开发的一款强大的 Windows 软件，它
 - Directory Opus
 - Droplt
 - Files2Folder
+- Quicklook
+- Files UWP
 
 #### QTTabBar
 #### Clover
