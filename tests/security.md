@@ -5,7 +5,12 @@ https://www.kali.org/docs/
 https://github.com/kali-docs-cn/kali-linux-cookbook-zh
 
 [WLS2（win10子系统）Linux图形化GUI教程win-kex](https://blog.csdn.net/l1447320229/article/details/108210760)
-
+```
+wsl -l -v
+kali-linux
+enter 123456
+kex
+```
 
 ## 工具
 ### 端口扫描

@@ -57,25 +57,6 @@ https://riptutorial.com/
 
 [作为一个技术Leader，要如何去提升团队的技术氛围](https://www.toutiao.com/a6792820868150985228)
 
-### SSL
-[11种免费获取SSL证书的方式](https://www.toutiao.com/i6883395048126284292)
-
-#### ACME 协议
-Let’s Encrypt 使用 ACME 协议来验证您对给定域名的控制权并向您颁发证书。要获得 Let’s Encrypt 证书，您需要选择一个要使用的 ACME 客户端软件。
-
-https://letsencrypt.org/zh-cn/docs/client-options/
-
-https://github.com/letsencrypt/website/
-
-##### certbot - ACME 客户端
-[让网站永久拥有HTTPS - 申请免费SSL证书并自动续期](https://blog.csdn.net/xs18952904/article/details/79262646)
-https://www.cnblogs.com/dissipate/p/13606006.html
-http://www.mntm520.com/post/48
-也可以用certbot的docker镜像来生成证书
-
-
-##### zerossl - ACME 客户端
-https://zerossl.com/
 
 ### 公众号文章
 
