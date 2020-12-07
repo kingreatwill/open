@@ -59,3 +59,16 @@ Android 包| Soon |No
 支持本地 web 服务 |Yes| Yes
 没有本地服务选项 |Yes| No
 桌面文件盒 |Soon |No
+
+## 终端工具
+### Conemu
+Conemu是windows下的一个终端工具,类似于cmder
+https://github.com/Maximus5/ConEmu
+
+## 其它
+[PC版微信/QQ/TIM防撤回补丁,微信多开工具](https://github.com/huiyadanli/RevokeMsgPatcher)
+
+### Rufus U 盘系统启动盘
+Rufus 是一个开源免费的快速制作 U 盘系统启动盘和格式化 USB 的实用小工具，它可以快速把 ISO 格式的系统镜像文件快速制作成可引导的 USB 启动安装盘，支持 Windows 或 Linux 启动。Rufus 小巧玲珑，软件体积仅几百多 KB，然而麻雀虽小，它却五脏俱全，而且速度极快
+https://github.com/pbatard/rufus
+

@@ -29,6 +29,12 @@ https://github.com/justadudewhohacks/face-api.js
 https://arxiv.org/abs/1907.05047
 https://google.github.io/mediapipe/solutions/face_detection
 
+#### 口罩检测
+数据
+https://www.kaggle.com/andrewmvd/face-mask-detection
+
+https://www.cnblogs.com/zkweb/p/14078501.html
+
 ### 目标检测
 - 旷视提出MegDetV2：目标检测/实例分割系统 论文：https://arxiv.org/abs/2010.02475
 

@@ -161,6 +161,8 @@ KeePass的插件
 - KeePassRPC - Firefox和chrome数据同步  将KeePassRPC.plgx文件放入Plugins目录
     - 需要安装chrome插件https://github.com/pfn/passifox（chrome:chromeIPass（改名了KeePassHttp-Connector）   Firefox:PassIFox ）和https://github.com/pfn/keepasshttp/
 
+### Passbolt
+https://github.com/passbolt
 ## IDE 
 ```
 docker run -it --init -p 3000:3000 -v "%cd%:/home/project:cached" theiaide/theia-full:1.0.0
@@ -344,6 +346,8 @@ ZIP 压缩包管理器 - 免费版含广告
 - [Google Keep](https://keep.google.com/)
 -  NoteCase、KeepNote、Knowit、Tomboy、TuxCards、Treepad、Leo
 - 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine、Xwiki、confluence
+- takenote 基于 Web 的 Markdown 笔记应用
+
 
 ### Wiki  知识库
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
@@ -504,6 +508,14 @@ Wise Folder Hider - 电脑文件隐藏与加密工具
 - Files2Folder
 - Quicklook
 - Files UWP
+
+1.Q-dir：多窗口资源管理器
+2.Wise Folder Hider：文件隐藏加密
+3.FastStone capture：屏幕截图软件
+4.Quicklook：快速预览各种文件
+5.Wox：快速启动工具
+6.feem：免费全平台文件传输利器
+7.CC助手：快速收藏
 
 #### QTTabBar
 #### Clover

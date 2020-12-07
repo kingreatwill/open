@@ -4,6 +4,8 @@
 
 [Open Images dataset](https://storage.googleapis.com/openimages/web/download.html)
 
+[deepmind-research](https://github.com/deepmind/deepmind-research)
+
 https://cocodataset.org/#download
 
 ## 一键搜索，免费获取，直接链接到原始数据库，帮你快速找到合适的数据集。

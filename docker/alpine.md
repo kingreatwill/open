@@ -60,6 +60,9 @@ apt-get install build-essential
 ```
 sed -i "s@http://deb.debian.org@https://mirrors.163.com@g" /etc/apt/sources.list
 
+sed -i "s@http://deb.debian.org/debian@http://mirrors.163.com/debian@g" /etc/apt/sources.list
+sed -i "s@http://security.debian.org/debian-security@http://mirrors.163.com/debian-security@g" /etc/apt/sources.list
+
 163镜像站
 deb http://mirrors.163.com/debian/ stretch main non-free contrib
 deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib
@@ -143,3 +146,6 @@ deb-src https://mirror.sjtu.edu.cn/debian-security/ stretch/updates main contrib
 
 最后附上官方全球镜像站列表地址https://www.debian.org/mirror/list
 ```
+#### ubuntu
+sed -i "s/archive.ubuntu.com/mirrors.163.com/g" /etc/apt/sources.list
+sed -i "s/security.ubuntu.com/mirrors.163.com/g" /etc/apt/sources.list
