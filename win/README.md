@@ -72,3 +72,15 @@ https://github.com/Maximus5/ConEmu
 Rufus 是一个开源免费的快速制作 U 盘系统启动盘和格式化 USB 的实用小工具，它可以快速把 ISO 格式的系统镜像文件快速制作成可引导的 USB 启动安装盘，支持 Windows 或 Linux 启动。Rufus 小巧玲珑，软件体积仅几百多 KB，然而麻雀虽小，它却五脏俱全，而且速度极快
 https://github.com/pbatard/rufus
 
+### 腾讯管家国际版
+https://www.pcmgr-global.com/
+
+### 下载工具
+#### IDM破解版
+https://secure.internetdownloadmanager.com/buy_idm.html
+https://www.52pojie.cn/thread-1013874-1-1.html
+
+#### FDM
+https://www.freedownloadmanager.org/zh/download.htm
+
+
