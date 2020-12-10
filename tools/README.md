@@ -263,6 +263,7 @@ https://github.com/NickeManarin/ScreenToGif
 
 ## 截图
 https://github.com/lupoDharkael/flameshot
+老牌截图工具Snagit
 ## 视频处理
 Subtitle Edit - 开源字幕编辑器
 ## 录屏
@@ -819,3 +820,32 @@ WinSCP是一个免费的Windows SFTP、SCP、Amazon S3、WebDAV和FTP客户端�
 
 ## 按键精灵
 https://github.com/taojy123/KeymouseGo
+
+## 其它
+有一个文件管理器叫FreeCommander
+有一款高效浏览器叫CentBrowser
+有一种内存加速盘叫Ramdisk
+再加上几件利器，助你打造一把Windows瑞士军刀：Everything + Hoekey + IDM + Snagit + PandaOCR。
+Snagit：老牌截图工具
+Everything：最快文件名搜索工具
+Wiztree：最快磁盘分析器
+Hoekey：最小快捷键程序
+AIDA64：全面硬件检测
+IDM下载器：网站视频嗅探
+CCleaner：Windows垃圾清理
+PandaOCR：文字识别翻译朗读
+USBOS：多合一WinPE启动盘
+Inpaint：快速去除水印杂物
+ScreenToGif：免费绿色动画GIF录制
+360断网急救箱：有单独剥离绿色版
+万兴PDF专家：PDF编辑转换利器
+格式工厂：万能多媒体格式转换
+完美解码：集成Potplayer万能播放器
+文本整理器：去除空行空格小工具
+冰点下载器：文库资料免费搬运
+汉语大辞典：查字词成语对联
+iSlide：工作做的好，不如PPT做得好！iSlide一款基于PowerPoint的插件，支持Win和Mac系统，内置了38个设计辅助功能，丰富的资源模板库，可以让职场人士或学生群体快速做出好看专业的演示PPT。
+卸载软件Geek Uninstaller
+Dism++优化软件
+EV录屏
+迅捷PDF转换器
