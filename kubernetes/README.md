@@ -69,6 +69,49 @@ kubernetes相关的工具：https://github.com/kubernetes-sigs/ （你会发现
 [Kubernetes REST API](https://www.jianshu.com/p/0de6bc64c423)
 
 ## 其它
+### 监控工具
+#### kubectl-debug
+https://github.com/aylei/kubectl-debug 这个是别人开发的插件
+
+另外k8s 1.20原生支持 kubectl debug （跟上面不是一个东西？）
+https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/#kubectl-debug-graduates-to-beta
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
+
+#### Kubewatch
+Kubewatch是一个很好用的工具，kubewatch能够监控那些特定的Kubernetes事件，并将此类事件以通知的形式推送到诸如Slack和PagerDuty的端点上。可以确保你的容器是安全的，并使用行业最佳实践进行打包，同时监视软件的漏洞和更新。但是，用户表示，添加对多个实例的支持将会更有帮助。支持多个端点，且易于部署。
+
+
+#### Weave Scope
+
+Weave Scope用来监视和解决Kubernetes和Docker集群的故障，你就可以解放双手轻松地识别和纠正你的容器化应用程序的问题。
+
+#### Test-infra
+
+Testinfra 是一个基础架构测试框架，它可以轻松编写单元测试来验证服务器的状态。它支持的后端之一是 Ansible，所以这意味着 Testinfra 可以直接使用 Ansible 的清单文件和清单中定义的一组机器来对它们进行测试。对于处理复杂的模板来测试和检测错误非常有用。
+
+#### Trireme
+
+Trireme通过提高Kubernetes进程、工作负载和容器的安全性和降低复杂性，引入了一种不同的网络授权方法。建议用它来减轻Kubernetes工作负载、容器和进程的复杂性。它可以帮助你在应用程序层强制实施安全性。
+
+#### Sysdig Falco
+
+这是一个可以提供深度容器可见性的行为活动监视工具，它缩短了检测安全事件所需的时间，并应用了允许你持续监视和检测容器、应用程序、主机和网络活动的规则。使用它可以对其基础设施进行持续检查、异常检测，并为任何类型的 Linux 系统调用设置警报通知。
+
+还可以通过 Falco 监视 shell 何时在容器中运行、容器在哪里挂载、对敏感文件的意外读取、出站网络尝试以及其他可疑调用。
+
+### 开发工具
+#### Telepresence
+[开发和调试现有的服务](https://kubernetes.io/zh/docs/tasks/debug-application-cluster/local-debugging/)
+它让你可以在本地调试Kubernetes服务，简化了开发和调试过程。
+
+#### Helm
+
+Helm帮助用户管理他们的Kubernetes应用程序，通过Helm图表让你可以共享你的应用程序。这让用户能够创建可共享可复制的构建，但它不推荐用于更高级、更频繁的部署。
+
+#### Keel
+
+它让用户可以重新专注于编写代码和测试他们的应用程序。因为如果库中有新的应用程序版本可用，它就会自动更新kubernetes的工作负载。
+
 ### Kubernetes日志监控工具
 #### Zebrium
 优点：易于启动；只需复制/粘贴自定义的HELM或kubectl命令；自动检测问题和根本原因，无需手动规则；可以用作独立的日志管理工具，也可以用作现有日志管理工具（例如ELK Stack）的机器学习附件。
