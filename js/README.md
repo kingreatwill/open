@@ -8,6 +8,10 @@ https://contribute.freecodecamp.org/#/
 [Snowpack 打包工具](https://github.com/pikapkg/snowpack)
 实现直接在浏览器中运行npm软件包。SnowPack 是基于 ESM 的工具。
 
+## js学习
+学习js必须要掌握的++
+[刷新你对js认识 ](https://github.com/lydiahallie/javascript-questions)
+
 ## 富文本编辑器
 ### Quill
 https://github.com/quilljs/quill

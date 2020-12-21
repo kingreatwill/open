@@ -7,7 +7,8 @@ https://github.com/feiyu563/PrometheusAlert
 
 
 [高可用 Prometheus：问题集锦](https://mp.weixin.qq.com/s/ob4NBl_P0TokMf5GYTcwZQ)
-
+## 同款
+[VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics)
 ## PromQL 常用命令
 ### PromQL 用途
 PromQL 可以非常方便的对监控样本数据进行统计分析，PromQL 支持常见运算符和一些内置的函数，监控告警也是依赖PromQL实现的。

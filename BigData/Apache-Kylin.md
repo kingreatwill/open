@@ -20,6 +20,12 @@ Apache Kylin™是一个开源、分布式的大数据分析数据仓库;它被�
  - 联机分析处理OLAP（On-Line Analytical Processing）
  OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。 
 
+
+与Apache Kylin一样致力于解决大数据查询问题的其他开源产品也有不少，比如Apache Drill、Apache Impala、Druid、Doris、ClickHouse、Hive、Presto、SparkSQL等。
+目前，主流的OLAP引擎主要是两个套路：一个用空间换时间，一个充分利用所有资源快速计算。
+前者就是MOLAP（Multidimensional OLAP，多维在线分析），后者就是ROLAP（Relational OLAP，关系型在线分析）。
+Kylin和Druid都是MOLAP的典范，ClickHouse和Doris则是ROLAP的佼佼者。
+
 ## OLAP开源引擎
 目前市面上主流的开源OLAP引擎包含不限于：Hive、Hawq、Presto、Kylin、Impala、Sparksql、Druid、Clickhouse、Greeplum等，可以说目前没有一个引擎能在数据量，灵活程度和性能上做到完美，用户需要根据自己的需求进行选型。
 

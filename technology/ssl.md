@@ -1,4 +1,6 @@
 
+## 域名
+[免费的域名](http://www.freenom.com/en/index.html)
 ## SSL
 [11种免费获取SSL证书的方式](https://www.toutiao.com/i6883395048126284292)
 

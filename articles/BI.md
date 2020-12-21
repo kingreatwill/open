@@ -21,7 +21,7 @@ Pentaho
 https://github.com/pentaho
 
 
-商业BI工具
+## 商业BI工具
 FineBI
 QlikView
 Tableau
@@ -30,5 +30,23 @@ SmartBI
 QuickBI
 
 
+## 开源商业智能工具
+BIRT
 
+Clicdata
+https://github.com/eclipse/birt
 
+ELK Stack
+Helical Insight是一个开源BI框架
+Jedox
+Jasperreports Server
+Knime
+Pentaho
+Microsoft Power BI
+Rapidminer
+Reportserver
+Seal Report
+Spagobi
+SQL Power Wabit
+Tableau Public
+Zoho Reports

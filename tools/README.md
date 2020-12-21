@@ -163,6 +163,10 @@ KeePass的插件
 
 ### Passbolt
 https://github.com/passbolt
+
+### 其它
+微软 Microsoft Authenticator 应用推出了类似 1password 之类的密码管理功能，支持 iOS、Android，密码是从 Edge 同步过去的，Chrome 也有插件，叫 Microsoft Autofill
+
 ## IDE 
 ```
 docker run -it --init -p 3000:3000 -v "%cd%:/home/project:cached" theiaide/theia-full:1.0.0

@@ -1,6 +1,15 @@
 SQL查询语句的执行顺序解析
 https://www.jianshu.com/p/1628e47a598a
 
+[MySQL和PGSQL对比材料](https://blog.csdn.net/qq_45533926/article/details/111328980)
+31. 分布式演进
+PGSQL
+HTAP数据库：cockroachDB、腾讯Tbase
+分片集群：  Postgres-XC、Postgres-XL
+MySQL
+HTAP数据库：TiDB
+分片集群： 各种各样的中间件，不一一列举
+
 ## 数据库设计规范
 1. 表名及字段名必须使用小写字母或者数字（MySql在Windows下不区分大小写，但在linux中是默认区分大小写的，避免节外生枝，不要出现任何大写字母），禁止出现数字开头，更禁止两个下划线之间仅有数字。
 
