@@ -26,10 +26,20 @@
 - VB
 - XML
 - etc...
-
+### DeepSource
+https://deepsource.io
+### Codacy
+https://www.codacy.com
 ### Kritika
 http://kritika.io/
 ### DeepScan
+https://deepscan.io
+### Embold
+https://embold.io
+### Veracode
+https://www.veracode.com/products/binary-static-analysis-sast
+### Reshift
+https://www.reshiftsecurity.com
 ### Klocwork
 ### CodeSonar
 ### JArchitect
