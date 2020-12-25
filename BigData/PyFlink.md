@@ -1,5 +1,8 @@
 
 [视频](https://ververica.cn/developers/flink-training-course-basics/)
+[视频](https://github.com/flink-china/flink-training-course)
+[中文学习](https://ververica.cn/)
+[PyFlink 作业的多种部署模式](https://ververica.cn/developers/multiple-deployment-modes-of-pyflink-jobs/)
 
 [flink系列-11、PyFlink 核心功能介绍（整理自 Flink 中文社区）](https://www.cnblogs.com/xiexiandong/p/12878642.html)
 
@@ -19,3 +22,11 @@ Align Flink Java API | 不支持|支持
 [Python Support for UDFs in Flink 1.10](https://flink.apache.org/2020/04/09/pyflink-udf-support-flink.html)
 
 ![](img/pyflink-udf-architecture.gif)
+
+![](img/pyflink-udf.png)
+大体的流程我们可以大概看一下：
+1. 在 open 方法里进行 Java Operator 和 Python Operator 环境的初始化。
+2. 环境初始化好之后，会进行数据处理。当 Java Operator 收到数据之后，先把数据放到一个input buffer 缓冲区中，达到一定的阈值后，才会 flash 到 Python 这边。Python 这边在处理完之后，也会先将数据放到一个结果的缓冲区中，当达到一定阈值，比如达到一定的记录的行数，或者是达到一定的时间的位置，才会把结果 flash 到这边。
+3. state 访问的链路。
+4. logging 访问的链路。
+5. metrics 汇报的链路。

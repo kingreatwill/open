@@ -1,4 +1,38 @@
+mysql参数
+```
+默认值:
+read_buffer_size 128kb
+sort_buffer_size 256kb
+innodb_sort_buffer_size 1M
+read_rnd_buffer_size 256kb
+join_buffer_size 256kb
+tmp_table_size 16M
+table_open_cache 4000
 
+innodb_buffer_pool_size 128M
+key_buffer_size 8M
+
+innodb_page_size 16kb
+
+show global status;
+show global variables  like '%query_cache%'; -- global   like '%s%';
+
+
+8G内存建议配置：
+
+read_buffer_size 4M
+sort_buffer_size 4M
+read_rnd_buffer_size 4M
+tmp_table_size 512M
+
+table_open_cache 4000
+
+innodb_buffer_pool_size 4G 改成db服务器总内存的60% 到80%
+key_buffer_size 512M
+
+innodb_page_size 16kb
+max_allowed_packet 
+```
 
 
 ## MySQL新增用户及赋予权限
