@@ -16,6 +16,8 @@ Cassandra是闹过绯闻的，08年 由Facebook开源，然后10年[twitter宣�
 
 [Cassandra – 数据结构设计概念和原则](https://my.oschina.net/silentriver/blog/182814)
 
+[cassandra 3.x官方文档(7)---内部原理之如何读写数据](https://blog.csdn.net/fs1360472174/article/details/55005335)
+
 ## 安装
 docker pull cassandra:3.11.6
 
