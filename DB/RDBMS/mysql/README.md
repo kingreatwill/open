@@ -16,22 +16,32 @@ innodb_page_size 16kb
 
 show global status;
 show global variables  like '%query_cache%'; -- global   like '%s%';
-
+SET GLOBAL innodb_buffer_pool_size = 3221225472
 
 8G内存建议配置：
 
+每个链接的：
 read_buffer_size 4M
 sort_buffer_size 4M
-read_rnd_buffer_size 4M
-tmp_table_size 512M
+read_rnd_buffer_size 4M # 但MySql会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大。 
 
-table_open_cache 4000
-
+全局的
 innodb_buffer_pool_size 4G 改成db服务器总内存的60% 到80%
 key_buffer_size 512M
 
+# 5.7 key_buffer_size, innodb_buffer_pool_size, innodb_additional_mem_pool_size（8.0无），innodb_log_buffer_size, query_cache_size （8.0无）
+
+其它
 innodb_page_size 16kb
-max_allowed_packet 
+tmp_table_size 512M
+table_open_cache 4000
+max_allowed_packet = 16M：服务端最大允许接收的数据包大小。在没有调整该配置项的时候，服务端默认是4M。
+max_allowed_packet =976kb
+
+innodb_buffer_pool_chunk_size 默认 128MB
+innodb_buffer_pool_chunk_size 的最大值估算如下：
+MAX(innodb_buffer_pool_chunk_size) = innodb_buffer_pool_size / innodb_buffer_pool_instances
+https://dev.mysql.com/doc/refman/5.7/en/innodb-buffer-pool-resize.html
 ```
 
 
