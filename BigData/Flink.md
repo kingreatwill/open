@@ -61,8 +61,25 @@ cd flink-1.9.1
 ./bin/start-cluster.sh  # Start Flink
 
 # http://localhost:8081
-```
 
+```
+- bin:可执行脚本
+- conf:配置文件目录
+- lib:依赖jar
+- opt:扩展依赖jar
+
+.
+- Flink 如何在 K8s 的 POD 中与 HDFS 交互？
+
+其与 HDFS 交互很简单，只要把相关依赖打到镜像里面就行了。就是说你把 flink-shaded-hadoop-2-uber-{hadoopVersion}-{flinkVersion}.jar 放到 flink-home/lib 目录下，然后把一些 hadoop 的配置比如 hdfs-site.xml、 core-site.xml 等放到可以访问的目录下，Flink 自然而然就可以访问了。
+
+**这其实和在一个非 HDFS 集群的节点上，要去访问 HDFS 是一样的。**
+
+- Flink on K8s 和 Flink on YARN，哪个方案更优？怎样选择？
+
+Flink on YARN 是目前比较成熟的一套系统，但是它有点重，不是云原生（cloud native）。在服务上云的大趋势下，Flink on K8s 是一个光明的未来。Flink on YARN 是一个过去非常成熟一套体系，但是它在新的需求、新的挑战之下，可能缺乏一些应对措施。例如对很多细致的 GPU 调度，pipeline 的创建等等，概念上没有 K8s 做得好。
+
+如果你只是简单运行一个作业，在 Flink on YARN 上可以一直稳定运行下去，它也比较成熟，相比之下 Flink on K8s 够新、够潮、方便迭代。不过目前 Flink on K8s 已知的一些问题，比如学习曲线比较陡峭，需要一个很好的 K8s 运维团队去支撑。另外，K8s 本身虚拟化带来的性能影响，正如先前介绍的无论是磁盘，还是网络，很难避免一定的性能损耗，这个可能是稍微有点劣势的地方，当然相比这些劣势，虚拟化（容器化）带来的优点更明显。
 
 ### Flink Data Sources
 https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/datastream_api.html#data-sources
