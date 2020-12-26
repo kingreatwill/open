@@ -1,7 +1,7 @@
 <!-- toc -->
 [TOC]
 https://www.oracle.com/technetwork/java/javase/jdk-relnotes-index-2162236.html
-
+[JDK每个版本更新的内容](https://foojay.io/java-8/?tab=highlights)
 # 名词介绍
 
 ## TM
