@@ -5,6 +5,8 @@ go build --buildmode=c-shared -o Test.dll
 dotnet
 [DllImport(DLL_NAME, EntryPoint = "Test")]
 ```
+### 六大主流语言代码漏洞分析
+https://www.veracode.com/sites/default/files/pdf/resources/ipapers/security-flaw-heatmap/index.html
 
 ### 让出 CPU 时间片
 

@@ -90,6 +90,7 @@ GolangCI-Lint 检查代码
 
 [编译出dll C# 结合 Golang 开发](https://www.cnblogs.com/timeddd/p/11731160.html)
 
+[详解 Go 内联优化](https://mp.weixin.qq.com/s/89QLSqGzH0yUM6cO6V4zmQ)
 
 ![](img/go.jpg)
 

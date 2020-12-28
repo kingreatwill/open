@@ -64,6 +64,19 @@ https://github.com/PeterH0323/Smart_Construction
 ### BlazePalm
 https://google.github.io/mediapipe/solutions/hands
 
+## MediaPipe 
+实时和流媒体ML解决方案
+集成人脸识别，人体姿态评估，人手检测模型
+https://github.com/google/mediapipe
+
+MediaPipe Face Detection
+MediaPipe Iris
+MediaPipe Iris: Depth-from-Iris
+MediaPipe Hands
+MediaPipe Hands (palm/hand detection only)
+MediaPipe Pose
+MediaPipe Hair Segmentation
+
 ## OpenMMLab
 https://github.com/open-mmlab
 https://open-mmlab.github.io/

@@ -174,6 +174,10 @@ VizTracer 是一个这样的工具，它通过跟踪和可视化 Python 代码�
 
 [Understand your Python code with this open source visualization tool](https://opensource.com/article/20/11/python-code-viztracer)
 
+## jupyter
+### lux
+https://github.com/lux-org/lux
+
 ## 流程图
 https://github.com/mingrammer/diagrams
 
