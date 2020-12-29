@@ -11,6 +11,7 @@ Apache Flink 1.9.0 版本则会开启新的 ML 接口和新的 flink-python 模�
 
 [实时计算](https://www.zhihu.com/topic/19876621/hot)
 
+[Flink 官方Wiki](https://cwiki.apache.org/confluence/display/FLINK)
 
 ## 安装Flink
 
