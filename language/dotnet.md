@@ -115,3 +115,20 @@ RUN echo "dotnet BlogServer.WebApi.dll" > run.sh
 HEALTHCHECK --interval=5s --timeout=20s \
     CMD curl -fs -o /dev/null localhost/alive || exit 1
 ```
+
+## 在.NET Core 中收集数据的几种方式
+https://www.cnblogs.com/myshowtime/p/14199844.html
+
+- 手动埋点
+- Middleware 中间件 & 过滤器 Filter
+- DiagnosticSource   基于发布订阅模式
+SkyApm-dotnet https://github.com/SkyAPM/SkyAPM-dotnet
+HttpReports APM https://github.com/dotnetcore/HttpReports
+
+
+- AOP
+- ETW(Event Tracing for Windows)
+- Mono.Cecil
+- CLR Profiling API
+听云APM（商业）OneAPM （商业）Datadog （商业）
+https://docs.microsoft.com/en-us/archive/blogs/yirutang/clr-profiling-api

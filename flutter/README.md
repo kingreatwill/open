@@ -2,6 +2,12 @@
 (1).Termux(终端模拟器)
 https://termux.com/
 
+移动端JuiceSSH  free SSH client for Android
+https://www.juicessh.com/
+
+Mosh(mobile shell)
+https://mosh.org/
+
 (2).AnLinux(里边有各种安装liunx的命令)
 https://github.com/EXALAB/AnLinux-App
 
