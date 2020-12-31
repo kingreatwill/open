@@ -132,3 +132,19 @@ HttpReports APM https://github.com/dotnetcore/HttpReports
 - CLR Profiling API
 听云APM（商业）OneAPM （商业）Datadog （商业）
 https://docs.microsoft.com/en-us/archive/blogs/yirutang/clr-profiling-api
+
+## dotnet 诊断工具 监控 分析
+https://github.com/dotnet/diagnostics
+
+- dotnet-monitor  https://github.com/SachiraChin/dotnet-monitor-ui
+```
+dotnet tool install -g dotnet-monitor --add-source https://dnceng.pkgs.visualstudio.com/public/_packaging/dotnet5-transport/nuget/v3/index.json --version 5.0.0-preview.*
+
+dotnet monitor collect # 会开放 http://localhost:52323 和 http://localhost:52325 两个端口
+```
+
+- SOS - About the SOS debugger extension.
+- dotnet-dump - Dump collection and analysis utility.
+- dotnet-gcdump - Heap analysis tool that collects gcdumps of live .NET processes.
+- dotnet-trace - Enable the collection of events for a running .NET Core Application to a local trace file.
+- dotnet-counters - Monitor performance counters of a .NET Core application in real time.
