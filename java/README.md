@@ -7,6 +7,7 @@ https://profile.zjurl.cn/rogue/ugc/profile/?version_code=769&version_name=70609&
 Java Tutorial
 https://www.javatpoint.com/spring-boot-tutorial
 
+[Java顶级项目权威排名](https://github.com/ossf/criticality_score)
 
 ## 微服务框架
 

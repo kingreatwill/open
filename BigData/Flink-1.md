@@ -174,3 +174,6 @@ env.socketTextStream().flatMap(…).keyBy(0).sum(1).print();
 ![](img/execution-graph.png)
 
 [Flink 数据交换和Redistribute详解](https://cwiki.apache.org/confluence/display/FLINK/Data+exchange+between+tasks)
+
+## Flink常用算子Transformation（转换）
+![](img/flink-transformations.png)

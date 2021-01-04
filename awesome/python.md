@@ -213,8 +213,35 @@ xlwt：写excel文档
 pyexcel：读写excel文档（只能xlsx格式）
 
 ## Python 
+### 学习
 这个有趣的项目意在收集 Python 中那些难以理解和反人类直觉的例子以及鲜为人知的功能特性, 并尝试讨论这些现象背后真正的原理!
 https://github.com/satwikkansal/wtfpython
+
+https://github.com/jerry-git/learn-python3
+https://github.com/trekhleb/learn-python
+https://github.com/joaoventura/full-speed-python
+https://github.com/rasbt/python_reference/
+https://github.com/zhiwehu/Python-programming-exercises
+https://github.com/MTrajK/coding-problems/
+
+### 算法
+https://github.com/TheAlgorithms/Python/
+
+### 错误
+知道了性能瓶颈，那就要解决深层次的原因，或许是逻辑上的问题，或许是有异常代码。
+PrettyErrors只做一件事并且做得很好。
+https://github.com/onelivesleft/PrettyErrors
+
+### 交互式
+https://github.com/facebookresearch/hiplot
+
+### CPU和内存探查器
+Scalene是用于Python脚本的CPU和内存探查器，能够正确处理多线程代码并区分运行Python和本机代码所花费的时间。
+https://github.com/emeryberger/scalene
+
+### 其它
+代码画图
+https://github.com/mingrammer/diagrams
 
 ## 音频处理
 ### klio
