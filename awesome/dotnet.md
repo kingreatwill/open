@@ -135,3 +135,17 @@ https://github.com/jamesmh/coravel
 ## 扩展
 ### String
 https://github.com/axuno/SmartFormat
+
+## plugins
+### OrchardCore
+https://github.com/OrchardCMS/OrchardCore 4.7k
+### nopCommerce
+https://github.com/nopSolutions/nopCommerce 5.6k
+### PluginFramework
+Everything is a Plugin in .NET
+https://github.com/weikio/PluginFramework 166
+
+### Prise
+https://github.com/merken/Prise 172
+### CoolCat
+https://github.com/lamondlu/CoolCat 190
