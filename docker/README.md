@@ -297,6 +297,15 @@ https://github.com/vicanso/diving 147
 > 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
 > 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
 
+### skopeo
+https://github.com/containers/skopeo
+除了基本的 inspect 之外，Skopeo 还提供了 skopeo copy 命令来复制镜像，可以直接在远程注册表之间复制镜像，无需将它们拉取到本地注册表。如果你使用了本地注册表，这个命令也可以作为拉取 / 推送的替代方案。
+
+- 通过各种存储机制复制镜像，例如，可以在不需要特权的情况下将镜像从一个注册表复制到另一个注册表
+- 检测远程镜像并查看其属性，包括其图层，无需将镜像拉到本地
+- 从镜像库中删除镜像
+- 当存储库需要时，skopeo 可以传递适当的凭据和证书进行身份验证
+
 ### docker-slim 自动缩减 docker 镜像
 https://github.com/docker-slim/docker-slim
 > 自动缩减 docker 镜像的体积的工具。大幅度缩减 docker 镜像的体积，方便分发，使用命令 docker-slim build --http-probe your-name/your-app。
@@ -353,3 +362,23 @@ https://github.com/skanehira/docui
 > 终端 Docker 管理工具，自带一个终端界面。使用该工具可以方便的通过界面管理 docker 不用再记那些命令。
 
 ### Shipyard
+
+## 其它
+### 镜像的构建
+- Buildah（https://buildah.io） podman build 子命令，它实际上是经过包装的 Buildah。
+- 谷歌的 Kaniko（https://github.com/GoogleContainerTools/kaniko）
+- buildkit（https://github.com/moby/buildkit）
+下一代 docker build。它是 Moby 项目的一部分，在运行 Docker 时通过 DOCKER_BUILDKIT=1 docker build 就可以启用它，作为 Docker 的一个实验性特性。
+
+- Source-To-Image (S2I，https://github.com/openshift/source-to-image) 是一个不使用 Dockerfile 直接从源代码构建镜像的工具包。这个工具在简单可预期的场景和工作流中表现良好，但如果你需要多一些定制化，或者你的项目没有预期的结构，那么它就会变得烦人和笨拙。如果你对 Docker 还不是很有信心，或者如果你在 OpenShift 集群上构建镜像，可能可以考虑使用 S2I，因为使用 S2I 构建镜像是它的一个内置特性。
+
+- Jib（https://github.com/GoogleContainerTools/jib）是谷歌开发的一款工具，专门用于构建 Java 镜像。它提供了 Maven 和 Gradle 插件，可以让你轻松地构建镜像，不需要理会 Dockerfile。
+
+- Bazel（https://github.com/bazelbuild/bazel），它是谷歌的另一款工具。它不仅用于构建容器镜像，而且是一个完整的构建系统。如果你只是想构建镜像，那么使用 Bazel 可能有点大材小用，但这绝对是一个很好的学习体验，所以如果你愿意，可以将 [rules_docker](https://github.com/bazelbuild/rules_docker) 为入手点。
+
+### 容器运行时
+- runc（https://github.com/opencontainers/runc）
+- crun（https://github.com/containers/crun）
+- CRI-O 实际上不是容器引擎，而是容器运行时
+- containerd（https://containerd.io）
+### 

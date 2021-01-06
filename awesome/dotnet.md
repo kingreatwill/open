@@ -149,3 +149,71 @@ https://github.com/weikio/PluginFramework 166
 https://github.com/merken/Prise 172
 ### CoolCat
 https://github.com/lamondlu/CoolCat 190
+
+
+## dotnet社区
+
+- [MSDN](http://msdn.microsoft.com/zh-cn/default.aspx)
+- [CodeProject](http://www.codeproject.com)
+- [CodePlex](http://www.codeplex.com/)
+- [ASP.NET/ ASP.NET MVC](http://www.asp.net)
+- [微软.NET WinForm/WPF](http://windowsclient.net/)
+- [InfoQ](http://www.infoq.com/)
+- [C# Corner](http://www.c-sharpcorner.com/)
+- [SourceForge](http://sourceforge.net/)
+- [CsharpHelp](http://www.csharphelp.com/)
+- [silverlight.net](http://www.silverlight.net/)
+
+- [英文社区和英文个人站点](http://dotnetslackers.com/)
+- [英文社区和英文个人站点](http://weblogs.asp.net/scottgu/)
+- [英文社区和英文个人站点](http://codebetter.com/blogs/)
+- [英文社区和英文个人站点](http://www.drdobbs.com/)
+- [英文社区和英文个人站点](http://ayende.com/Blog/)
+- [英文社区和英文个人站点](http://www.nikhilk.net/)
+- [英文社区和英文个人站点](http://www.markhneedham.com/blog/)
+- [英文社区和英文个人站点](http://blogs.msdn.com/b/somasegar/)
+- [英文社区和英文个人站点](http://blogs.msdn.com/b/tims/archive/2005/09/28/windows-presentation-foundation-blogs.aspx)
+
+- [技术社区](http://stackoverflow.com/)
+- [技术社区](http://www.theserverside.net/)
+- [技术社区](http://dotnet.sys-con.com/)
+- [技术社区](http://en.csharp-online.net/Main)
+
+- [ebook](http://www.wowebook.com/category/e-book/dot-net)
+- [ebook](http://gigapedia.com/)
+
+- [cnblogs](http://www.cnblogs.com)
+- [CSDN](http://www.csdn.net)
+- [51CTO](http://www.51cto.com/)
+- [InfoQ中文版](http://www.infoq.com/cn/)
+- [zdnet中文版 ](http://www.zdnet.com.cn/)
+- [MSDN](http://msdn.microsoft.com/zh-cn/default.aspx)
+- [ITPUB](http://www.itpub.net/)
+- [博客堂](http://blog.joycode.com/)
+```
+http://www.51aspx.com/
+
+http://www.silverlightchina.net/
+
+http://www.chenjiliang.com/
+
+http://www.rainsts.net/
+
+http://tech.ddvip.com/
+
+http://www.ccidnet.com/
+
+http://www.programfan.com/article/article.asp?classid=18
+
+http://bbs.xml.org.cn/index.asp
+
+http://www.ibm.com/developerworks/cn/web/
+
+http://social.microsoft.com/forums/zh-CN/categories/
+
+http://www.studycs.com/html/index.html
+
+http://blog.csdn.net/21aspnet/
+
+http://dotnet.aspx.cc/
+```
