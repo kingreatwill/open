@@ -51,6 +51,10 @@ state of the art 最先进的
 https://developers.google.cn/machine-learning/crash-course/ml-intro?hl=zh-cn
 
 ## 总结
+### 损失函数 loss function
+机器通过损失函数进行学习。这是一种评估特定算法对给定数据建模程度的方法。如果预测值与实际结果偏离较远，损失函数会得到一个非常大的值。
+
+损失函数是用来计算预测结果和真实结果之间的差，正则化是为了防止模型过拟合，所以在损失函数后面加上一个正则项/惩罚项
 
 ### [训练集、测试集和验证集](https://developers.google.cn/machine-learning/crash-course/validation/video-lecture?hl=zh-cn)
 

@@ -148,3 +148,9 @@ dotnet monitor collect # 会开放 http://localhost:52323 和 http://localhost:5
 - dotnet-gcdump - Heap analysis tool that collects gcdumps of live .NET processes.
 - dotnet-trace - Enable the collection of events for a running .NET Core Application to a local trace file.
 - dotnet-counters - Monitor performance counters of a .NET Core application in real time.
+
+## DataFrame
+https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/
+https://github.com/dotnet/corefxlab/tree/master/src/Microsoft.Data.Analysis
+
+dotnet spark ML python 能很好的一起工作，可以向pandas一样读取CVS
