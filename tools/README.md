@@ -853,3 +853,4 @@ iSlide：工作做的好，不如PPT做得好！iSlide一款基于PowerPoint的�
 Dism++优化软件
 EV录屏
 迅捷PDF转换器
+Poppler ，PDF 生成工具
