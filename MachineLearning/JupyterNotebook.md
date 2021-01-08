@@ -1,6 +1,38 @@
 ### nteract
 nteract可以直接打开本地ipynb文件，可以直接双击ipynb文件直接打开笔记进行编辑，再不需要像以前一样，要先运行jupyter notebook，然后在浏览器中打开ipynb文件。
 
+### Jupyter 结合 Excel
+
+https://mp.weixin.qq.com/s/D09CXCeYxqpOBVH61B4MUA
+
+**一定要安装64位的excel和64位的python**
+
+pip install pyxll -i https://mirrors.aliyun.com/pypi/simple/
+
+pyxll install # 安装好了PyXLL在 Excel中的插件，下一步就是安装pyxll-jupyter
+
+pip install pyxll-jupyter -i https://mirrors.aliyun.com/pypi/simple/
+
+安装完毕后，启动Excel，将在PyXLL选项卡中看到一个新的Jupyter按钮。
+
+```
+%xl_get   获取excel数据
+
+%xl_set 将Python中的数据移到Excel
+
+%xl_set df
+
+
+
+%xl_plot 在Excel中使用Python绘图
+
+
+从Excel调用Python函数
+替代VBA脚本 https://www.pyxll.com/docs/userguide/vba.html
+```
+
+> excel也有其他第三方支持python脚本https://www.cnblogs.com/connect/p/office-excel-python-conf.html
+
 ### Time Profiling
 https://pynash.org/2013/03/06/timing-and-profiling/
 
