@@ -35,7 +35,7 @@ pip install pyxll-jupyter -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Time Profiling
 https://pynash.org/2013/03/06/timing-and-profiling/
-
+一个%是一行，两个%是一个cell
 ```
 In [1]: %time?
 In [2]: %timeit?
