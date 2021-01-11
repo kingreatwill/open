@@ -139,6 +139,16 @@ Loki是一个受Prometheus启发的多租户和高度可用的日志聚合工具
 
 缺点：未针对Kubernetes日志管理进行优化；大量的架构规则手工工作；缺少内容索引可能会限制搜索性能。
 
+
+- Loki 是主服务器，负责存储日志和处理查询。对标ELK中的ElasticSearch。
+> dotnet add package Serilog.Sinks.Loki
+> .WriteTo.LokiHttp(new NoAuthCredentials("http://localhost:3100"))//配置Loki Url和认证方式 (请求时附带调用链信息，loki配置一个调用链后端)
+> https://github.com/JosephWoodward/Serilog-Sinks-Loki
+> demo: https://github.com/grafana/tempo/tree/master/example/docker-compose#loki-derived-fields
+- Promtail 是代理，负责收集日志并将其发送给loki。对标ELK中的Logstash。
+
+- Grafana提供用户界面。对标ELK中的Kibana。
+
 #### ELK Stack
 
 ELK是最著名的日志管理开源工具。ELK是Elasticsearch，Logstash和Kibana的首字母缩写。每个组件负责日志记录过程的不同部分。Elasticsearch是一个功能强大且可扩展的搜索系统，Logstash聚合并处理日志，而Kibana提供了一个分析和可视化界面，可帮助用户理解数据。它们共同为Kubernetes提供了全面的日志记录解决方案。但ELK Stack还有许多其他变体，如EFK Stack，即Elasticsearch，Fluentd和Kibana组成。

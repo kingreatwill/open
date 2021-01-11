@@ -854,3 +854,8 @@ Dism++优化软件
 EV录屏
 迅捷PDF转换器
 Poppler ，PDF 生成工具
+
+## PPT
+[OfficePlus - Office模板网站](http://www.officeplus.cn/Template/Home.shtml)
+[Sway - 在线制作PPT](https://sway.office.com/)
+[Bing wallpaper - 高清壁纸](https://www.microsoft.com/en-us/bing/bing-wallpaper)
