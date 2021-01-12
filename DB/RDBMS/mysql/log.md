@@ -233,3 +233,18 @@ update undo log是delete和update操作产生的undo log。此类undo log是MVCC
 TRX_UNDO_DEL_MARK_REC，将记录标记为delete
 TRX_UNDO_UPD_DEL_REC，将delete的记录标记为not delete
 TRX_UNDO_UPD_EXIST_REC，更新未被标记delete的记录
+
+## binlog
+### binlog工具
+
+- binlog2sql：Python 编写（执行时需要有 Python2.7、Python3.4+ 的环境），用于生成回滚/前滚 SQL 进行数据恢复/补偿
+- MyFlash：C 语言编写（需要动态编译成二级制脚本后执行），用于生成反向 binlog 文件（二进制）进行数据恢复
+- my2sql：Go 语言编写（可直接下载 linux 二进制版本执行），除了闪回，还提供了前滚和事务分析的功能，与 binlog2sql、MyFlash 差不多，my2sql 目前也不支持 8.0；闪回功能需要开启 binlog_format=row，binlog_row_image=full；只能闪回 DML 操作，不支持 DDL 的闪回。
+
+#### my2sql限制
+- my2sql 是模拟一个从库去在线获取主库 binlog，然后进行解析，因此执行操作的数据库用户需要具有 SELECT，REPLICATION SALVE，REPLICATION CLIENT 的权限。
+- 与 binlog2sql、MyFlash 差不多，my2sql 目前也不支持 8.0；闪回功能需要开启 binlog_format=row，binlog_row_image=full；只能闪回 DML 操作，不支持 DDL 的闪回。
+- 无法离线解析 binlog（MyFlash 支持）。
+- 不能以 GTID 事务为单位进行解析（MyFlash 支持），具体 file+pos 点位需要先通过手工解析 binlog 后确认。
+- 闪回/前滚 SQL 中，没有提供具体的 begin/commit 的位置，使用时无法分隔事务，需要人工判断。
+- 使用事务分析功能时，只能给出具体的大/长事务发生时间、点位、涉及的对象和操作类型，不能给出具体的 SQL 语句，完整的语句仍然需要去 binlog 中进行查看（需设置 binlog_rows_query_log_events=on）
