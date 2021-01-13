@@ -248,3 +248,9 @@ TRX_UNDO_UPD_EXIST_REC，更新未被标记delete的记录
 - 不能以 GTID 事务为单位进行解析（MyFlash 支持），具体 file+pos 点位需要先通过手工解析 binlog 后确认。
 - 闪回/前滚 SQL 中，没有提供具体的 begin/commit 的位置，使用时无法分隔事务，需要人工判断。
 - 使用事务分析功能时，只能给出具体的大/长事务发生时间、点位、涉及的对象和操作类型，不能给出具体的 SQL 语句，完整的语句仍然需要去 binlog 中进行查看（需设置 binlog_rows_query_log_events=on）
+
+### MySQL Binlog增量订阅
+
+#### canal
+#### go-mysql-transfer
+#### mysql-stream
