@@ -149,6 +149,9 @@ dotnet monitor collect # 会开放 http://localhost:52323 和 http://localhost:5
 - dotnet-trace - Enable the collection of events for a running .NET Core Application to a local trace file.
 - dotnet-counters - Monitor performance counters of a .NET Core application in real time.
 
+[.netcore利用perf分析高cpu使用率](https://www.cnblogs.com/wu_u/p/14263349.html)
+[利用dotnet-dump分析docker容器内存泄露](https://www.cnblogs.com/wu_u/p/14109333.html)
+
 ## DataFrame
 https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/
 https://github.com/dotnet/corefxlab/tree/master/src/Microsoft.Data.Analysis
