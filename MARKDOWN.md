@@ -360,6 +360,8 @@ hack方法就是利用markdown的解析原理来实现注释的。
 
 # Mark流程图语法
 
+领域专用语言（DSL）(Domain Specific Language)
+
 DOT语言：图形描述语言
 
 https://github.com/dreampuf/GraphvizOnline
@@ -384,6 +386,11 @@ https://github.com/structurizr/dotnet
 [Mermaid](https://mermaid-js.github.io/mermaid/#/)
 [PlantUML](https://plantuml.com/zh/)
 
+Diagrams： https://diagrams.mingrammer.com/
+Structurizr DSL ：https://structurizr.com/dsl  https://github.com/structurizr/dsl
+Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
+WebSequenceDiagrams： https://www.websequencediagrams.com/
+ilograph：http://app.ilograph.com/
 ```flow
 st=>start: 开始
 e=>end: 结束

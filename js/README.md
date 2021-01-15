@@ -28,6 +28,11 @@ VitePress 是 Vue 官方推出的 SSG 框架。
 JAMStack
 Ledge 
 Gatsby
+
+## 兼容
+用来为旧浏览器提供它没有原生支持的较新的功能。
+https://github.com/financial-times/polyfill-service
+
 ## 工具
 ### 上传
 #### FilePond
