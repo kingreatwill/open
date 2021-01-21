@@ -233,18 +233,26 @@ FN: 将正类预测为负类数 20(60个正样本 - 系统查找出40个是真�
 FP: 将负类预测为正类数 10(系统查找出50个 - 系统查找出40个是真正的正样本)
 TN: 将负类预测为负类数 30(系统查找出50个正样本，那么就是预测了50个负样本，但是50个认为的负样本中实际上有20个正样本，所以30=50-20)
 
-准确率(accuracy) = 预测对的/所有 = (TP+TN)/(TP+FN+FP+TN) = 70%
+准确率(accuracy)(ACC) = 预测对的/所有 = (TP+TN)/(TP+FN+FP+TN) = 70%
 
-精确率(precision) = TP/(TP+FP) = 80%
+精确率(precision)(PPV) = TP/(TP+FP) = 80%
 
-召回率(recall) = TP/(TP+FN) = 2/3
+召回率(recall) = TP/(TP+FN) = 2/3 
+
+> 灵敏度（Sensitivity）（TPR）：就是召回率（Recall）召回率 = 提取出的正确信息条数 / 样本中的信息条数。通俗地说，就是所有准确的条目有多少被检索出来了
 
 真正例率 (TPR) 是召回率的同义词 = TP/(TP+FN)
 
 假正例率 (FPR) = FP/(FP+TN)
 
+> 特异度(TNR)  Specificity = TN/(TN+FP)  
 
+> 以上都是二级指标
 
+> 三级指标 F1 Score = 2PR/(P+R)
+> 其中，P代表Precision，R代表Recall。
+> F1-Score指标综合了Precision与Recall的产出的结果。
+> F1-Score的取值范围从0到1的，1代表模型的输出最好，0代表模型的输出结果最差
 
 1）TP就是【True P】;FP就是【False P】。都是站在预测的角度来描述的。 
 （2）P代表的是Positive【正类】; N表示的是Negative【负类】
