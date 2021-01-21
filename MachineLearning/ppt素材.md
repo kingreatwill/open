@@ -677,7 +677,7 @@ dim：代表张量的维度。
 `[1,2,3,4]`这个张量的shape为（4，）
 
 #### 1-5维的张量应用场景
-dim = 0 , 标量(scalar), shape = ()  ,`[]`
+dim = 0 （0阶张量）, 标量(scalar), shape = ()  ,`5 比如np.array(5)`
 loss 和 accuracy
 
 dim = 1 ,向量(vector), shape = (2,) , `[1,2]`
