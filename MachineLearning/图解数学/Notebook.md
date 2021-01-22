@@ -28,3 +28,19 @@ https://www.bilibili.com/video/BV1ys411472E?p=3
 
 ## 行列式
 https://www.bilibili.com/video/BV1ys411472E?p=7
+
+> A的逆矩阵记为A<sup>-1</sup> ,如果 det(A) != 0 , 那么A就存在逆矩阵
+> A* A的逆矩阵 = 单位矩阵E(对角线为1，其它为0；如同数的乘法中的1)
+
+## 
+奇异矩阵
+非奇异矩阵
+单位矩阵
+投影矩阵 projection matrix
+
+投影矩阵， P = A(A<sup>T</sup>A)<sup>-1</sup>A<sup>T</sup>, 这个公式的作用就是投影， 比如P*b就是将向量b投影到距离它的列空间最近的位置；
+
+举两个极端的例子，
+
+如果向量b位于它自己的列空间中， 那么向量b在其列空间中的投影就是它自己， 即：Pb = b。
+如果向量b与它自己的列空间垂直， 那么向量b在其列空间中的投影就是0， 即：Pb = 0。
