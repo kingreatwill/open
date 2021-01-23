@@ -18,6 +18,185 @@ https://cocodataset.org/#download
 标签格式包括，YOLO、PASCAL、COCO以及Segmentation。
 https://datasets.bifrost.ai/
 
+### 其它公开数据集
+#### tianchi天池
+https://tianchi.aliyun.com/dataset
+
+- 电商
+    - 淘宝直播商品识别数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=75730
+
+    - 阿里巴巴用户行为数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81505
+
+    - 面向商品的视频描述生成数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=75986
+
+    - 电商服装产品视频标题数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=75173
+
+    - 速卖通搜索系统数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=74690
+
+    - 淘宝用户行为数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=72423
+
+    - 甜品店铺用户评分数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=4366
+
+    - 智能出行平台车辆订单数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=39384
+
+- 医疗
+
+    - 脊椎疾病病理数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79463
+
+    - 医学影像和标题的语篇照应数据集MedICaT
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=86602
+
+    - 息肉医学影像数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=84385
+
+    - 中风后病灶解剖追踪数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82972
+
+    - 颅骨医学图像数据集用于监测颅内出血
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82967
+
+    - 皮肤病图像数据集用于诊断黑素瘤
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82823
+
+    - COVID-19 mRNA疫苗数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82790
+
+    - OSIC肺部CT扫描影像数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82703
+
+    - 自然神经影像数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82631
+
+    - 医学影像数据集MedMNIST
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82187
+
+    - 生物医学实体标准化数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81720
+
+    - 生物医学概念标准化数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81565
+
+    - 社交媒体医学实体链接语料数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81554
+
+    - PubMedQA生物医学研究问答数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81523
+
+    - 中文BLUE数据集（生物医学文本挖掘语料库）
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81513
+
+    - 中文医学知识图谱数据集CMeKG
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=81506
+
+    - 医学对话数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79671
+
+    - 中文医学问答数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79670
+
+    - 平安医学技术疾病问答迁移学习数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79665
+
+    - 临床术语标准化数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79664
+
+    - 医学实体识别和属性抽取EMR数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79663
+
+    - 疫情相似句对诊断数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=76751
+
+    - 2019-nCoV新型冠状病毒基因测序数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=51202
+
+    - 2020新冠肺炎全国各省数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=78902
+
+- IT通讯
+    - 阿里巴巴快递送达检测系统Beacon数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=76359
+
+    - 大型硬盘故障预测数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=70251
+
+- 交通
+
+    - 谷歌地标数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=86611
+
+- 自然语言处理
+    - 语义分割数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82714
+
+    - 谷歌MC4数据集（可翻译101种语言）
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=82412
+
+- 工业
+
+    - 布匹瑕疵智能识别数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=79336
+
+- 农业
+    - 遥感检测数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=74952
+
+- 科学
+    - 太阳耀斑预测数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=74780
+
+    - 太阳黑子类型智能分类数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=74779
+
+- 计算机视觉
+
+    - 视盲OCR图片文案顺序理解数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=72926
+
+- 家装
+
+    - 家居成品房3D图像数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=65347
+
+- 公共
+
+    - 2012美联邦总统选举数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=2581
+
+    - 共享单车租用数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=54174
+
+    - 教育系统学生分班预测
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=47307
+
+    - 员工离职预测数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=25860
+
+- 娱乐
+    - 豆瓣电影评分数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=9603
+
+- 金融
+    - 银行营销活动效果预测
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=45944
+    - 信贷用户逾期预测数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=29157
+    - 金融业股票数据
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=46522
+    - 二手车交易数据集
+    https://tianchi.aliyun.com/dataset/dataDetail?dataId=62977
+
+#### openml
+https://www.openml.org
+
 ## 中文 数据集
 https://ai.tencent.com/ailab/nlp/en/data/Tencent_AILab_ChineseEmbedding.tar.gz
 
