@@ -217,3 +217,33 @@ http://blog.csdn.net/21aspnet/
 
 http://dotnet.aspx.cc/
 ```
+
+## 基于.NET Core的优秀开源项目合集
+https://www.cnblogs.com/myshowtime/p/14315080.html
+### demo
+https://github.com/dotnet-architecture/eShopOnContainers eShopOnContainers是一个示例参考应用程序，演示了Microsoft的基于容器的微服务的各种体系结构模式。
+https://github.com/dotnet-architecture/eShopOnWeb eShopOnWeb是一个示例参考应用程序，演示了Microsoft提供支持的单体架构。
+https://github.com/dodyg/practical-aspnetcore
+https://github.com/jasontaylordev/NorthwindTraders Entity Framework 和CQRS模式的DDD的示例项目
+https://github.com/AdaptiveConsulting/ReactiveTraderCloud 实时交易应用程序，展示了反应式编程原理。
+
+https://github.com/vietnam-devs/coolstore-microservices 演示了如何通过Service Mesh来使用Kubernetes。
+
+https://github.com/ivanpaulovich/clean-architecture-manga 一个整洁架构的参考示例项目。
+
+https://github.com/JacekKosciesza/StarWars 一个基于GraphQL的ASP.NET Core Star Wars应用程序。
+
+https://github.com/kgrzybek/sample-dotnet-core-cqrs-api  Clean architecture, DDD, CQRS
+
+### Commerce
+
+https://github.com/nopSolutions/nopCommerce
+https://github.com/simplcommerce/SimplCommerce
+
+### CMS
+https://github.com/OrchardCMS/OrchardCore
+https://github.com/Squidex/squidex squidex是无头CMS和内容管理中心，使用具有OData和CQRS模式的ASP.NET Core构建。
+
+### blog
+https://github.com/madskristensen/Miniblog.Core
+https://github.com/piranhacms/piranha.core

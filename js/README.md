@@ -90,6 +90,18 @@ https://github.com/le5le-com/topology/
 A diagram (topology, UML) framework uses canvas and typescript. 一个轻量（100k左右）、功能丰富的绘图工具（微服务架构图、拓扑图、流程图、类图等UML图、脑图，动画、视频支持）。 【在线使用】：
 
 topology.le5le.com/
+
+- drawio
+draw.io
+- Excalidraw: 虚拟白板，用于素描手绘图
+https://github.com/excalidraw
+https://excalidraw.com/
+
+-zwibbler
+https://zwibbler.com/
+
+> [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)
+
 ### 终端应用程序Xterm.js
 https://github.com/xtermjs/xterm.js
 

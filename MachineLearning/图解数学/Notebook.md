@@ -26,13 +26,25 @@ y=a+bx是一次函数,图像为直线；—————————是线性函�
 
 https://www.bilibili.com/video/BV1ys411472E?p=3
 
-## 行列式
+## 行列式 det
 https://www.bilibili.com/video/BV1ys411472E?p=7
+
+向量的面积
 
 > A的逆矩阵记为A<sup>-1</sup> ,如果 det(A) != 0 , 那么A就存在逆矩阵
 > A* A的逆矩阵 = 单位矩阵E(对角线为1，其它为0；如同数的乘法中的1)
 
-## 
+## 点积 dot
+> np.dot(a, b) or a@b
+
+https://www.bilibili.com/video/BV1ib411t7YR?p=10
+
+当a和b是向量时，a@b = a在b上投影长度 * b
+a = [3,1]
+b = [2,-1]
+叉积=向量a和b形成的四边形的面积 = 行列式
+
+## 矩阵
 奇异矩阵
 非奇异矩阵
 单位矩阵
