@@ -163,6 +163,7 @@ https://github.com/lamondlu/CoolCat 190
 - [SourceForge](http://sourceforge.net/)
 - [CsharpHelp](http://www.csharphelp.com/)
 - [silverlight.net](http://www.silverlight.net/)
+- [TooSlowException](https://tooslowexception.com/)
 
 - [英文社区和英文个人站点](http://dotnetslackers.com/)
 - [英文社区和英文个人站点](http://weblogs.asp.net/scottgu/)

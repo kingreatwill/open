@@ -56,3 +56,22 @@ b = [2,-1]
 
 如果向量b位于它自己的列空间中， 那么向量b在其列空间中的投影就是它自己， 即：Pb = b。
 如果向量b与它自己的列空间垂直， 那么向量b在其列空间中的投影就是0， 即：Pb = 0。
+
+## 微积分
+
+我们通常所说的微积分，其实就是微分+积分，所谓微分，就是将图形分成若干个微小的矩形，所谓积分，就是将这些矩形的面积相加。
+
+导数:是指函数在某一点处变化的快慢,是一种变化率。
+微分：是指函数在某一点处（趋近于无穷小）的变化量，是一种变化的量。
+
+## 导数
+
+导数(derivative),最早被称为**微商**,即微小变化量之商,导数一名称是根据derivative的动词derive翻译而来,柯林斯上对derive的解释是：
+> If you say that something such as a word or feeling derives or is derived from something else, you mean that it comes from that thing. 
+翻译为衍生。以及derivative的解释是：
+> A derivative is something which has been developed or obtained from something else.
+
+即衍生物。最早将导数称作derivative,本意是因为它是由  这一式子所导出，是“导出来的数”。后来中文翻译借鉴英文称之为导数。
+
+但是有趣的是，最早牛顿将导数称为流数，即fluxion.
+
