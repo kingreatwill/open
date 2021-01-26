@@ -2,6 +2,26 @@
 [TOC]
 
 # shell脚本
+## 变量&环境变量
+```
+子shell ，在当前shell，运行一个新的shell（如：在当前shell运行bash）
+如果环境变量不写入配置文件，那么当前 Shell 一旦终止，这个环境变量就会消失，而只有写入配置文件才会永久地在所有 Shell 中生效。
+
+1. 环境变量（重启无效，新开的shell无效，子shell有效）
+[root@VM-0-9-centos enter]# export age="18"
+[root@VM-0-9-centos enter]# echo $age  # or echo ${age}
+
+
+2. 变量（重启无效，新开的shell无效，子shell无效）
+[root@VM-0-9-centos enter]# age2="18"
+[root@VM-0-9-centos enter]# echo $age2
+
+升级为环境变量
+[root@VM-0-9-centos enter]# export age2
+
+删除变量或者环境变量
+unset age2
+```
 
 ## 常用shell脚本
 https://github.com/dylanaraps/pure-bash-bible
