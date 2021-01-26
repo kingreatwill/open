@@ -2,6 +2,11 @@
 [TOC]
 #  多媒体（Multimedia）
 一般包括文本，声音和图像等多种媒体形式。
+
+## 流媒体工具
+- Emby
+- Plex
+- https://github.com/jellyfin/jellyfin
 ## 视频 Video
 - 画面更新率
 每秒6或8张（frame per second，简称fps）至现今的每秒120张不等

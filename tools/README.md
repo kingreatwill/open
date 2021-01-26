@@ -296,7 +296,11 @@ C#做的，现在已经归档了
 web录制
 https://github.com/rrweb-io/rrweb
 
+### ShareX
+https://github.com/ShareX/ShareX 15k
 ## 图片处理
+### ShareX
+https://github.com/ShareX/ShareX 15k
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
 https://github.com/meowtec/Imagine
