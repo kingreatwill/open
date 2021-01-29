@@ -5,6 +5,90 @@
 
 3. setup函数只能是同步的不能是异步的
 
+https://www.cnblogs.com/rmlzy/p/14343325.html
+```
+export {
+  ref, // 代理基本类型
+  shallowRef, // ref 的浅代理模式
+  isRef, // 判断一个值是否是 ref
+  toRef, // 把响应式对象的某个 key 转为 ref
+  toRefs, // 把响应式对象的所有 key 转为 ref
+  unref, // 返回 ref.value 属性
+  proxyRefs,
+  customRef, // 自行实现 ref						
+  triggerRef, // 触发 customRef
+  Ref, // 类型声明
+  ToRefs, // 类型声明
+  UnwrapRef, // 类型声明
+  ShallowUnwrapRef, // 类型声明
+  RefUnwrapBailTypes // 类型声明
+} from './ref'
+export {
+  reactive, // 生成响应式对象
+  readonly, // 生成只读对象
+  isReactive, // 判断值是否是响应式对象
+  isReadonly, // 判断值是否是只读对象
+  isProxy, // 判断值是否是 proxy
+  shallowReactive, // 生成浅响应式对象
+  shallowReadonly, // 生成浅只读对象
+  markRaw, // 让数据不可被代理
+  toRaw, // 获取代理对象的原始对象
+  ReactiveFlags, // 类型声明
+  DeepReadonly // 类型声明
+} from './reactive'
+export {
+  computed, // 计算属性
+  ComputedRef, // 类型声明
+  WritableComputedRef, // 类型声明
+  WritableComputedOptions, // 类型声明
+  ComputedGetter, // 类型声明
+  ComputedSetter // 类型声明
+} from './computed'
+export {
+  effect, // 定义副作用函数, 返回 effect 本身, 称为 runner
+  stop, // 停止 runner
+  track, // 收集 effect 到 Vue3 内部的 targetMap 变量
+  trigger, // 执行 targetMap 变量存储的 effects
+  enableTracking, // 开始依赖收集
+  pauseTracking, // 停止依赖收集
+  resetTracking, // 重置依赖收集状态
+  ITERATE_KEY, // 固定参数
+  ReactiveEffect, // 类型声明
+  ReactiveEffectOptions, // 类型声明
+  DebuggerEvent // 类型声明
+} from './effect'
+export {
+  TrackOpTypes, // track 方法的 type 参数的枚举值
+  TriggerOpTypes // trigger 方法的 type 参数的枚举值
+} from './operations'
+```
+名词解释
+```
+target: 普通的 JS 对象
+
+reactive: @vue/reactivity 提供的函数, 接收一个对象, 并返回一个 代理对象, 即响应式对象
+
+shallowReactive: @vue/reactivity 提供的函数, 用来定义浅响应对象
+
+readonly:@vue/reactivity 提供的函数, 用来定义只读对象
+
+shallowReadonly: @vue/reactivity 提供的函数, 用来定义浅只读对象
+
+handlers: Proxy 对象暴露的钩子函数, 有 get()、set()、deleteProperty()、ownKeys() 等, 可以参考MDN
+
+targetMap: @vue/reactivity 内部变量, 存储了所有依赖
+
+effect: @vue/reactivit 提供的函数, 用于定义副作用, effect(fn, options) 的参数就是副作用函数
+
+watchEffect: @vue/runtime-core 提供的函数, 基于 effect 实现
+
+track: @vue/reactivity 内部函数, 用于收集依赖
+
+trigger: @vue/reactivity 内部函数, 用于消费依赖
+
+scheduler: effect 的调度器, 允许用户自行实现
+```
+
 ### setup中的data如何使用
 
 ```

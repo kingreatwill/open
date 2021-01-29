@@ -149,6 +149,11 @@ D3 是最流行的可视化库之一，它被很多其他的表格插件所使�
 
 
 ## 前端框架
+[github](https://github.com/krausest/js-framework-benchmark)
+[最新成绩对比](https://krausest.github.io/js-framework-benchmark/index.html)
+[javascript frameworks performance comparison](https://medium.com/@ajmeyghani/javascript-frameworks-performance-comparison-c566d19ab65b)
+[JS 框架性能对比](https://www.infoq.cn/article/ebDcihIZbEZoFU9q6pi7)
+
 1. Vue (177k)
 2. React (161k)
 3. Angular (68.9k)
