@@ -4,6 +4,50 @@
 
 UFT，QTP被惠普收购以后的新名称
 
+## 前端性能测试工具
+### Lighthouse
+运行 Lighthouse 的方式有两种：作为 Chrome 扩展程序运行，或作为命令行工具运行。 Chrome 扩展程序提供了一个对用户更友好的界面，方便读取报告。 命令行工具允许您将 Lighthouse 集成到持续集成系统。
+
+### SpeedCurve
+SpeedCurve 可以帮助追踪自己的性能表现，以及竞争对手的性能表现。它可以用来查看某个因素在不同站点的速度表现，并且还提供了综合监控。综合监控是在受控环境中模拟网站。在其中可以自定义选项，比如网络速度、设备、操作系统等等。
+
+### Pingdom
+在Pingdom输入 URL 地址，即可测试页面加载速度，分析并找出性能瓶颈。帮助用户找出影响网站速度的原因，并给出改善网页性能的可行性方案，很适合做网站的用户。
+### PageSpeed Insights
+Google Page Speed Insight（PSI）是一款旨在优化所有设备上的网页、提高网页加载速度的工具。它提供免费服务，可以分析网页的内容，提出建议，加快网页的速度。它为您提供了关键指标，如第一个内容绘制，总阻塞时间和更多。度量标准被分类为Field Data、Origin Summary,Lab Data,Opportunities、Diagnostics 和Passed Audits。
+
+在线版：https://developers.google.com/speed/pagespeed/
+
+你可以从chrome应用商店里找到PageSpeed Insights插件。
+点击open 在线分析性能，也可以测试本地的项目通过PageSpeed，点击Start analyzing运行一会就显示分析结果。
+
+### SpeedTracker
+SpeedTracker运行在WebPageTest上，可定期进行网站性能测试，并显示各种性能指标随时间的变化。这个功能可以帮助不断评估网站，并查看新功能如何影响网站的性能，还可以定义预算并通过电子邮件和Slack获取警报。
+
+官网：
+
+https://speedtracker.org/
+项目地址：
+
+https://github.com/speedtracker
+
+### WebPageTest
+WebPageTest是一个在线性能评测网站， 它是一个非常详细且专业的web页面性能分析工具，而且开源的！支持IE，Chrome，使用真正的浏览器(IE和Chrome)和真实的消费者连接速度，从全球多个地点运行免费网站速度测试。WebpageTest 主要提供了Advanced Testing、simple Testing、Visual Comparison、Traceroute四个功能。
+
+项目地址：
+
+https://www.webpagetest.org/
+
+### Sitespeed.io
+Sitespeed.io 是开源的Web性能测试工具，用来衡量Web网站的综合性能，帮助开发和测试人员分析网页的加载速度和渲染性能。Sitespeed.io通过驱动浏览器(如：Chrome、Firefox)进行测试，然后从开发者的站点收集多个页面的数据，并根据优秀实践等规则来分析这些网页，然后将结果以HTML报告的形式输出。
+
+项目地址：https://github.com/sitespeedio/sitespeed.io
+
+安装sitespeed.io之后，如果要分析一下百度PC首页性能，执行以下命令：
+`sitespeed.io  -n 5 -v https://www.baidu.com`
+
+该命令将会在chrome浏览器下调起URL为https://www.baidu.com 5次，产出了一个分析文件夹，打开index.html文件后，我们可以看到关于页面性能的相关总结。
+
 ## 自动化测试工具
 - Endtest 收费
   Recorder 组件可以让用户不用编程技巧就能创建和执行测试
