@@ -386,3 +386,131 @@ export default {
   }
 }
 ```
+
+### Composition API
+Vue2 的 Options API 和 Composition API 的区别：
+```
+/* Options API */
+export default {
+  props: {},
+  data(){},
+  computed: {},
+  watch: {},
+  methods: {},
+  created(),
+  components:{}
+  // ...other options
+}
+
+/* Composition API */
+export default {
+  props: {},
+  setup(),
+  components:{}
+}
+```
+这就是两种 API 在大致结构上的不同，虽然 Composition API 提倡使用 setup 来暴露组件的 data、computed、watch、生命周期钩子... 但并不意味着强制使用，在 Vue3 中同样可以选择 Options API 或者两种写法混用。
+#### setup
+setup 方法接受两个参数 setup(props, context) ，props 是父组件传给组件的数据，context(上下文) 中包含了一些常用属性：
+
+#### context.attrs 表示由上级传向该组件，但并不包含在 props 内的属性：
+
+```
+<!-- parent.vue -->
+<Child msg="hello world" :name="'child'"></Child>
+/* child.vue */
+export default {
+  props: { name: String },
+  setup(props, context) {
+    console.log(props) // {name: 'child'}
+    console.log(context.attrs) // {msg: 'hello world'}
+  },
+}
+```
+#### context.emit用于在子组件内触发父组件的方法
+```
+<!-- parent.vue -->
+<Child @sayWhat="sayWhat"></Child>
+/* child.vue */
+export default {
+  setup(_, context) {
+    context.emit('sayWhat')
+  },
+}
+```
+#### slots
+
+用来访问被插槽分发的内容，相当于 vm.$slots
+```
+<!-- parent.vue -->
+<Child>
+  <template v-slot:header>
+    <div>header</div>
+  </template>
+  <template v-slot:content>
+    <div>content</div>
+  </template>
+  <template v-slot:footer>
+    <div>footer</div>
+  </template>
+</Child>
+/* child.vue */
+import { h } from 'vue'
+export default {
+  setup(_, context) {
+    const { header, content, footer } = context.slots
+    return () => h('div', [h('header', header()), h('div', content()), h('footer', footer())])
+  },
+}
+```
+
+### 生命周期
+Vue3 的生命周期除了可以使用传统的 Options API 形式外，也可以在 setup 中进行定义，只不过要在前面加上 on：
+```
+export default {
+  setup() {
+    onBeforeMount(() => {
+      console.log('实例创建完成，即将挂载')
+    })
+    onMounted(() => {
+      console.log('实例挂载完成')
+    })
+    onBeforeUpdate(() => {
+      console.log('组件dom即将更新')
+    })
+    onUpdated(() => {
+      console.log('组件dom已经更新完毕')
+    })
+    // 对应vue2 beforeDestroy
+    onBeforeUnmount(() => {
+      console.log('实例即将解除挂载')
+    })
+    // 对应vue2 destroyed
+    onUnmounted(() => {
+      console.log('实例已经解除挂载')
+    })
+    onErrorCaptured(() => {
+      console.log('捕获到一个子孙组件的错误')
+    })
+    onActivated(() => {
+      console.log('被keep-alive缓存的组件激活')
+    })
+    onDeactivated(() => {
+      console.log('被keep-alive缓存的组件停用')
+    })
+    // 两个新钩子，可以精确地追踪到一个组件发生重渲染的触发时机和完成时机及其原因
+    onRenderTracked(() => {
+      console.log('跟踪虚拟dom重新渲染时')
+    })
+    onRenderTriggered(() => {
+      console.log('当虚拟dom被触发重新渲染时')
+    })
+  },
+}
+```
+Vue3 没有提供单独的 onBeforeCreate 和 onCreated 方法，因为 setup 本身是在这两个生命周期之前执行的，Vue3 建议我们直接在 setup 中编写这两个生命周期中的代码。
+
+### Reactive API
+https://www.cnblogs.com/FrankLongger/p/14439342.html
+
+### computed
