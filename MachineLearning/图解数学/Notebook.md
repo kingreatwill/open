@@ -92,6 +92,8 @@ b = [2,-1]
 
 ![](img/norm-02.jpg)
 
+![](img/norm-03.jpg)
+
 更多参考：
 [向量与矩阵的范数（比较1-范数、2-范数、无穷范数、p-范数、L0范数 和 L1范数等）](https://blog.csdn.net/zaishuiyifangxym/article/details/81673491)
 
