@@ -104,6 +104,8 @@ Frobenius 范数，简称F-范数，是一种矩阵范数
 ## 核(kernel)与象(Image)
 https://www.cnblogs.com/marsggbo/p/10129075.html
 
+> Image的集合成为Range
+
 ## 微积分
 
 我们通常所说的微积分，其实就是微分+积分，所谓微分，就是将图形分成若干个微小的矩形，所谓积分，就是将这些矩形的面积相加。
