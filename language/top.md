@@ -30,6 +30,8 @@ https://stackoverflow.blog/2011/01/11/survey-says/
 
 https://db-engines.com/en/ranking
 
+## 软件行业分析公司 RedMonk
+[2021 年 1 月（第一季度）编程语言排行榜](https://redmonk.com/sogrady/2021/03/01/language-rankings-1-21/)
 
 ## 语言排行 tiobe
 https://www.tiobe.com/tiobe-index/
