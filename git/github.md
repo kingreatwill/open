@@ -262,6 +262,11 @@ https://g.ioiox.com
 
 地址：http://toolwa.com/github/
 
+## Github 加速下载
+只需要复制当前 GitHub 地址粘贴到输入框中就可以代理加速下载！
+
+地址：http://toolwa.com/github/
+
 ## 加速你的 Github
 https://github.zhlh6.cn
 
