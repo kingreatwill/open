@@ -26,6 +26,10 @@
 zookeeper 将从 kafka 中移除. - 2020.05.15
 Kafka 2.6 版本还是需要 zookeeper(说明不是那么简单的事) - 2020.07.16
 
+Kafka 2.8  [What’s New in Apache Kafka 2.8.0](https://blogs.apache.org/kafka/entry/what-s-new-in-apache5)  - 2021.04.19
+我们很高兴地宣布2.8引入了不带ZooKeeper的Kafka的抢先体验！
+该实现尚未完成功能，不应在生产中使用，但是可以在没有ZooKeeper的情况下启动新集群
+
 ## 文章
 Kafka 总结（一）：Kafka 概述
 https://blog.csdn.net/qq_36807862/article/details/81283142
