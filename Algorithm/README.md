@@ -9,3 +9,5 @@
 [算法可视化 demo](https://algorithm-visualizer.org/simple-recursive/cellular-automata)
 [可视化排序算法](https://github.com/LucasPilla/Sorting-Algorithms-Visualizer)
 [hello-algorithm](https://github.com/geekxh/hello-algorithm)
+
+[动画模拟算法](https://github.com/chefyuan/algorithm-base)
