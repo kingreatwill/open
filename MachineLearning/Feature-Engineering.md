@@ -70,6 +70,7 @@ PowerTransformer目前提供了两个这样的幂变换，Yeo-Johnson变换和Bo
 ### OneHotEncoder 独热编码
 该离散特征有多少取值，就用多少维来表示该特征。
 
+
 - 优点：独热编码解决了分类器不好处理属性数据的问题，在一定程度上也起到了扩充特征的作用。它的值只有0和1，不同的类型存储在垂直的空间。
 - 缺点：当类别的数量很多时，特征空间会变得非常大。在这种情况下，一般可以用PCA来减少维度。而且one hot encoding+PCA这种组合在实际中也非常有用。
 
@@ -77,6 +78,14 @@ PowerTransformer目前提供了两个这样的幂变换，Yeo-Johnson变换和Bo
 
 > 否则如果特征是字符串，就需要先使用 sklearn.preprocessing.LabelEncoder 将离散特征值转换为数字。
 > 比如训练数据只有3类(可以指定类别)，当预测数据出现第四类时就会有问题（可以设置处理或者忽略也可以指定类别）
+
+#### 哑编码dummy
+当OneHotEncoder(drop='first')时就是哑编码（哑变量 dummy variable）（一般无序多分类时可以使用）
+> 总结：我们使用one-hot编码时，通常我们的模型不加bias项 或者 加上bias项然后使用正则化手段去约束参数；当我们使用哑变量编码时，通常我们的模型都会加bias项，因为不加bias项会导致固有属性的丢失。
+
+> 选择建议：我感觉最好是选择正则化 + one-hot编码；哑变量编码也可以使用，不过最好选择前者。虽然哑变量可以去除one-hot编码的冗余信息，但是因为每个离散型特征各个取值的地位都是对等的，随意取舍未免来的太随意。
+
+> https://www.cnblogs.com/lianyingteng/p/7792693.html
 
 ## 离散化 (Discretization) 或 量化(quantization) 或 装箱(binning))
 将连续特征划分为离散特征值。其目的就是把具有连续属性的数据集变换成只有名义属性(nominal attributes)的数据集。
@@ -278,3 +287,5 @@ KernelCenterer 类构造过程中不需要设定任何参数，只在 fit 过程
 
 ### MissingIndicator
 标记缺失值，用来判断是否有缺失值，返回bool矩阵
+
+# 特征工程 - 特征提取
