@@ -513,14 +513,18 @@ feature_selection
 
 ### GenericUnivariateSelect 通用的单变量特征选择 - （过滤法）Filter
 
-单变量特征选择的原理是分别单独的计算每个变量的某个统计指标，根据该指标来判断哪些指标重要，剔除那些不重要的指标。
+单变量特征选择的原理是分别单独的计算每个变量的某个统计指标，根据该指标来判断哪些指标重要，剔除那些不重要的指标。（选择特征跟Y有关的特征；单变量的意思就是对某一特征来统计和分析）
 
 GenericUnivariateSelect可以设置不同的策略来进行单变量特征选择。同时不同的选择策略也能够使用超参数寻优，从而让我们找到最佳的单变量特征选择策略。
 GenericUnivariateSelect返回一个单变量的f_score(F检验的值)或p-values(P值，假设检验中的一个标准，P-value用来和显著性水平作比较)，注意SelectKBest 和 SelectPercentile只有得分，没有p-value。
 
-对于分类问题(y离散)，可采用：f_classif(F-检验), mutual_info_classif(估计离散目标变量的互信息),chi2(卡方检验)
+**对于分类问题(y离散)，可采用：f_classif(F-检验), mutual_info_classif(估计离散目标变量的互信息),chi2(卡方检验)**
 
-对于回归问题(y连续)，可采用：f_regression(F-检验), mutual_info_regression(估计一个连续目标变量的互信息)
+**对于回归问题(y连续)，可采用：f_regression(F-检验), mutual_info_regression(估计一个连续目标变量的互信息)**
+
+**如果是稀疏数据可以用chi2，mutual_info_classif，mutual_info_regression来保持其稀疏性**
+
+> F检验（F-test），最常用的别名叫做联合假设检验（英语：joint hypotheses test），此外也称方差比率检验、方差齐性检验。它是一种在零假设（null hypothesis, H0）之下，统计值服从F-分布的检验。
 
 > GenericUnivariateSelect(chi2, mode='k_best')
 > mode参数{‘percentile’, ‘k_best’, ‘fpr’, ‘fdr’, ‘fwe’}, default=’percentile’
