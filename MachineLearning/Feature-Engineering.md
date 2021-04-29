@@ -1,7 +1,8 @@
 <!--toc-->
 [TOC]
 # 特征工程 - 数据预处理
-
+> https://github.com/scikit-learn/scikit-learn/
+> https://github.com/rasbt/mlxtend
 
 特征是原始数据的数学表示。有很多方法可以将原始数据转换为数学测量值，这也是为什么特征最终看起来与许多事情相似。自然的，特征必须来自可用数据的类型。可能它们与模型相关联的事实也没那么明显；**一些模型更适合某些类型的特征，反之亦然**。正确的特征应该与手头的任务相关并且容易被模型摄取。**特征工程是指给定数据、模型和任务是制定最佳特征的过程**。
 
@@ -214,6 +215,10 @@ $$
 ### RobustScaler
 如果你的数据包含许多异常值（离群值），使用均值和方差缩放可能并不是一个很好的选择。这种情况下，你可以使用 robust_scale 以及 RobustScaler 作为替代品。它们对你的数据的中心和范围使用更有鲁棒性的估计。
 
+该缩放器删除中位数，并根据分位数范围（默认值为IQR：四分位间距）缩放数据。
+![](img/fn_10.png)
+其中v<sub>i</sub>表示样本的某个值。median是样本的中位数，IQR是样本的 四分位距
+
 ### 标准化 StandardScaler（方差缩放）(z-score归一化)
 缩放到均值为0，方差为1
 
@@ -260,6 +265,33 @@ L2 范数将求特征的各数据点的平方和, 然后取平方根。L2 规范
 ### 核矩阵的中心化 KernelCenterer
 KernelCenterer 类构造过程中不需要设定任何参数，只在 fit 过程中需要传入核矩阵，之后进行转换。实质上，KernelCenterer 中心化数据的过程就是将数据集转换为零均值的归一化过程。
 
+## 离群值检查与处理
+
+离群值 (outliers)
+是指在一份数据中,与其他观察值具有明显不同特征的那些观察值。
+然而，并没有一个明确的准则来判断哪些观察值属于“离群值”。这主要取决于多种因素。
+
+
+大多数的参数统计数值，如均值、标准差、相关系数 等，以及基于这些参数的统计分析，均对离群值高度敏感。因此，离群值的存在会对数据分析造成极大影响。
+
+[数据离群值的检验及处理方法讨论](http://www.dxhx.pku.edu.cn/article/2018/1000-8438/20180812.shtml)
+
+离群值的处理方法（在实际操作中应该结合这些特点进行选择。）:
+- [对数转换](#离散化-discretization-或-量化quantization-或-装箱binning)
+对数转换后数据的分布会变得更加集中。（**对数转换对某变量的全部观察值均进行了处理，也就是对所有值进行了处理，其它方法只对离群值处理**）
+- 缩尾
+将超出变量特定百分位范围的数值替换为其特定百分位数值的方法。
+比如：指定分别在第 2.5 百分位和第 97.5 百分位进行缩尾。即，将 wage 变量中小于其 2.5 百分位的数值替换为其 2.5 百分位数值；将变量中大于其 97.5 百分位的数值替换为其 97.5 百分位数值。（注：这一过程是双侧缩尾，也有单侧缩尾-左/右侧缩尾。）
+> 缩尾后，对应于之前变量的2.5和97.5百分位上的数值变多了，这是由原来超过该范围的“离群值”转换而来的。
+- 截尾
+将超出变量特定百分位范围的数值予以删除的方法。（**截尾处理会减少数据中的样本量，其他方法则保留了原有数据的样本量。**）
+- 插值
+应用原有数据信息对离群值赋予一个相对合理的新值的方法。
+对数据进行赋值的方法有很多。比如，随机赋值、最近点赋值、均值赋值、回归赋值等。插值法是对数据赋值的一种方法，一般指的是线性插值（ linear interpolation ）。
+**插值法利用了原有数据中的相关性信息，其他方法则没有利用这些信息**
+
+### RobustScaler-截尾
+[RobustScaler](#robustscaler)
 
 # 特征工程 - 缺失值处理
 
@@ -338,6 +370,250 @@ scikit-learn中降维在sklearn.decomposition包中，特征提取在sklearn.fea
 
 
 ## 特征工程 - 特征提取
-
+feature_extraction
+特征提取：将原特征转换为一组具有明显物理意义或统计意义或核的新特征。
 ### DictVectorizer(字典特征向量化)
 将字典类型数据结构的样本，抽取特征，转化成向量形式
+
+### FeatureHasher(特征哈希化)
+将不同数据类型通过hash算法转换成特征向量。如String、bool、int，dic等等。
+Features hashing是一个高速的，低存储的向量化的类。是DictVectorizer和CountVectorizer的低内存替代品，适用于大规模（在线）学习以及内存紧张的情况，例如：
+在嵌入式设备上运行预测代码时。
+> 可以升维和降维（n_features指定维度），哈希函数可能会导致本来不相关的特征之间发生冲突
+
+### text.CountVectorizer
+将文本中的词语转换为词频矩阵
+### text.HashingVectorizer
+普通的CountVectorizer存在但词库很大时，占用大内存，因此，使用hash技巧，并用稀疏矩阵存储编译后的矩阵
+
+
+> 参数：如果norm ='l1'，则可能归一化为标记频率；如果norm ='l2'，则可能会投影在欧几里得单位球上。（不能不做归一化）
+
+实现的伪代码为：
+```
+ function hashing_vectorizer(features : array of string, N : integer):
+     x := new vector[N]
+     for f in features:
+         h := hash(f)
+         x[h mod N] += 1
+     return x
+```
+> 这里伪代码没有考虑到hash冲突的情况，实际实现会更加复杂。
+
+### text.TfidfVectorizer 词频-逆向文件频率
+等效于CountVectorizer，后跟TfidfTransformer。
+
+TF-IDF（term frequency–inverse document frequency，词频-逆向文件频率）是一种用于信息检索（information retrieval）与文本挖掘（text mining）的常用加权技术。
+
+TF-IDF是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。
+
+TF-IDF的主要思想是：如果某个单词在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。
+
+大白话：一个词在一个文章中出现的越多，那么这个词就越重要，但是在整个文章集合(数据集)出现的越多，那么重要程度会下降
+
+- TF是词频(Term Frequency)
+词频（TF）表示词条（关键字）在文本中出现的频率。**这个数字通常会被归一化(一般是词频除以文章总词数), 以防止它偏向长的文件。**
+![](img/fn_08.jpg)
+
+- IDF是逆向文件频率(Inverse Document Frequency)
+逆向文件频率 (IDF) ：某一特定词语的IDF，可以由总文件数目除以包含该词语的文件的数目，再将得到的商取对数得到。如果包含词条t的文档越少, IDF越大，则说明词条具有很好的类别区分能力。
+![](img/fn_09.jpg)
+
+- TF-IDF实际上是：TF * IDF
+### text.TfidfTransformer
+将计数矩阵转换为标准化的tf或tf-idf表示形式
+
+```
+>>> from sklearn.feature_extraction.text import TfidfTransformer
+>>> from sklearn.feature_extraction.text import CountVectorizer
+>>> from sklearn.pipeline import Pipeline
+>>> import numpy as np
+>>> corpus = ['this is the first document',
+...           'this document is the second document',
+...           'and this is the third one',
+...           'is this the first document']
+>>> vocabulary = ['this', 'document', 'first', 'is', 'second', 'the',
+...               'and', 'one']
+>>> pipe = Pipeline([('count', CountVectorizer(vocabulary=vocabulary)),
+...                  ('tfid', TfidfTransformer())]).fit(corpus)
+>>> pipe['count'].transform(corpus).toarray()
+array([[1, 1, 1, 1, 0, 1, 0, 0],
+       [1, 2, 0, 1, 1, 1, 0, 0],
+       [1, 0, 0, 1, 0, 1, 1, 1],
+       [1, 1, 1, 1, 0, 1, 0, 0]])
+>>> pipe['tfid'].idf_
+array([1.        , 1.22314355, 1.51082562, 1.        , 1.91629073,
+       1.        , 1.91629073, 1.91629073])
+>>> pipe.transform(corpus).shape
+(4, 8)
+```
+
+### image.PatchExtractor
+- image.extract_patches_2d函数从存储为二维数组的灰度图像或三维数组的彩色图像中提取图像块(patches)。彩色图像的颜色信息在第三个维度中存放。如果要从所有的图像块(patches)中重建图像，请使用 image.reconstruct_from_patches_2d 函数。
+
+PatchExtractor 类的工作方式与 extract_patches_2d 函数相同，只是它支持多幅图像作为输入。它被实现为一个估计器(estimator)，因此它可以在管道(pipelines)中使用。
+
+> https://scikit-learn.org/stable/auto_examples/decomposition/plot_image_denoising.html
+
+### image.grid_to_graph 和 image.img_to_graph
+计算的是相邻像素点这之间的差（梯度）
+
+scikit-learn中有几个估计器(estimators)可以使用特征或样本之间的连接信息(connectivity information)。例如Ward clustering ( 层次聚类(Hierarchical clustering) )可以只把相邻像素聚集在一起，从而形成连续的斑块，这些估计器使用一个连接性矩阵，给出哪些样本是连接着的。 函数 img_to_graph 从2D或3D图像返回这样的矩阵。同样， grid_to_graph 函数为给定形状的图像构建连接矩阵。 这些矩阵可用于在使用连接信息的估计器中强加连接，例如Ward clustering ( 层次聚类(Hierarchical clustering) )，而且还要构建预计算的内核或相似矩阵。
+
+> https://scikit-learn.org/stable/modules/feature_extraction.html#connectivity-graph-of-an-image
+
+## 特征工程 - 特征选择
+feature_selection
+特征选择：从特征集合中挑选一组最具统计意义的特征子集。
+
+
+特征选择方法主要分为三种：
+
+1. Filter：过滤式；按权重排序，不涉及到学习器，排序规则一般有方差法、相关系数法、互信息法、卡方检验法、缺失值比例法（注意受范围影响的方法需先归一化）<sup>[zhihu 机器学习中，有哪些特征选择的工程方法？](https://www.zhihu.com/question/28641663)</sup>。
+
+    - 方差法：计算各个特征的方差，然后根据阈值，选择方差大于阈值的特征。可使用sklearn.feature_selection库的VarianceThreshold类来实现。
+       
+    - 缺失值比例法：计算各个特征的缺失值比例，将缺失值比例较大的特征过滤掉。
+       
+    - 相关系数法：计算特征与输出值的相关系数以及相关系数的 P值（常见的有：皮尔森相关系数用于数值特征的线性检验，秩相关系数用于类别特征的单调性检验）。
+
+    - 互信息法：计算定性特征与输出值的相关性（运用了信息熵理论），决策树学习中的信息增益等价于训练数据集中类与特征的互信息。
+　　 
+    - 卡方检验法：对于每个特征与输出值，先假设独立，再观察实际值与理论值的偏差来确定假设的正确性，即是否相关。
+> 过滤式特征选择的评价标准分为四种，即距离度量、信息度量、关联度度量以及一致性度量。
+> python包：SelectKBest指定过滤个数、SelectPercentile指定过滤百分比。
+
+2. Embedded：嵌入式；确定模型过程中自动完成重要特征挑选，基于惩罚项如岭回归(L2正则)、LASSO(L1正则)，基于树模型如GBDT、决策树，深度学习<sup>[cnblog 特征工程之特征选择](https://www.cnblogs.com/pinard/p/9032759.html)</sup>。
+
+> 集成法，先使用某些机器学习的算法和模型进行训练，得到各个特征的权值系数，根据系数从大到小选择特征。类似于Filter方法，但是是通过训练来确定特征的优劣。
+
+>在嵌入式特征选择中，特征选择算法本身作为组成部分嵌入到学习算法里。最典型的即决策树算法，如ID3、C4.5以及CART算法等，决策树算法在树增长过程的每个递归步都必须选择一个特征，将样本集划分成较小的子集，选择特征的依据通常是划分后子节点的纯度，划分后子节点越纯，则说明划分效果越好，可见决策树生成的过程也就是特征选择的过程。
+
+>基于惩罚项的特征选择法：
+>L1范数正则化通过向成本函数中添加L1范数，使得学习得到的结果满足稀疏化(sparsity)，从而方便人类提取特征。
+实际上，L1惩罚项降维的原理在于保留多个对目标值具有同等相关性的特征中的一个，所以没选到的特征不代表不重要。故，可结合L2惩罚项来优化。
+具体操作为：若一个特征在L1中的权值为1，选择在L2中权值差别不大且在L1中权值为0的特征构成同类集合，将这一集合中的特征平分L1中的权值，故需要构建一个新的逻辑回归模型。
+>python包：feature_selection.SelectFromModel选出权重不为0的特征。
+
+3. Wrapper：封装式；用学习器的性能评判不同特征子集的效果，特征子集生成方式：完全搜索（前向&后向）、启发式搜索、随机搜索<sup>[cnblog 特征工程之特征选择](https://www.cnblogs.com/pinard/p/9032759.html)</sup>。
+
+> 包装法，根据目标函数（通常是预测效果评分），每次选择若干特征，或者排除若干特征。
+
+> 封装式特征选择是利用学习算法的性能来评价特征子集的优劣。因此，对于一个待评价的特征子集，Wrapper方法需要训练一个分类器，根据分类器的性能对该特征子集进行评价。Wrapper方法中用以评价特征的学习算法是多种多样的，例如决策树、神经网络、贝叶斯分类器、近邻法以及支持向量机等等。
+
+> python包：RFE 
+
+
+### VarianceThreshold 方差阈值 - （过滤法）Filter
+删除所有低方差特征的特征选择器。
+默认情况下，它将删除所有零方差特征，即在所有样本中具有相同值的特征。
+> 注意：是方差不是百分比，[参考](https://scikit-learn.org/stable/modules/feature_selection.html#removing-features-with-low-variance)
+
+> 当特征值都是离散型变量的时候这种方法才能用，如果是连续型变量，就需要将连续变量离散化之后才能用。
+
+### GenericUnivariateSelect 通用的单变量特征选择 - （过滤法）Filter
+
+单变量特征选择的原理是分别单独的计算每个变量的某个统计指标，根据该指标来判断哪些指标重要，剔除那些不重要的指标。
+
+GenericUnivariateSelect可以设置不同的策略来进行单变量特征选择。同时不同的选择策略也能够使用超参数寻优，从而让我们找到最佳的单变量特征选择策略。
+GenericUnivariateSelect返回一个单变量的f_score(F检验的值)或p-values(P值，假设检验中的一个标准，P-value用来和显著性水平作比较)，注意SelectKBest 和 SelectPercentile只有得分，没有p-value。
+
+对于分类问题(y离散)，可采用：f_classif(F-检验), mutual_info_classif(估计离散目标变量的互信息),chi2(卡方检验)
+
+对于回归问题(y连续)，可采用：f_regression(F-检验), mutual_info_regression(估计一个连续目标变量的互信息)
+
+> GenericUnivariateSelect(chi2, mode='k_best')
+> mode参数{‘percentile’, ‘k_best’, ‘fpr’, ‘fdr’, ‘fwe’}, default=’percentile’
+
+**数据需要X和Y**
+
+#### SelectPercentile
+根据最高分数的百分位数选择特征。只保留用户指定前百分之多少的特征(默认百分之10)(取top k%)
+
+> 分数的计算根据参数指定，如：chi2
+
+#### SelectKBest
+只保留k个最高得分的特征(取top k)
+
+#### SelectFpr
+假正率(false positive rate)   FPR
+#### SelectFdr
+错误发现率(false discovery rate) 
+#### SelectFwe
+族系误差率
+
+### 递归特征消除 - 基于机器学习模型 Wrapper
+递归消除特征法使用一个基模型来进行多轮训练，每轮训练后，移除若干权值系数的特征，再基于新的特征集进行下一轮训练。
+
+sklearn官方解释：对特征含有权重的预测模型(例如，线性模型对应参数coefficients)，RFE通过递归减少考察的特征集规模来选择特征。首先，预测模型在原始特征上训练，每个特征指定一个权重。之后，那些拥有最小绝对值权重的特征被踢出特征集。如此往复递归，直至剩余的特征数量达到所需的特征数量。
+
+RFECV（带交叉验证的递归特征移除） 通过交叉验证的方式执行RFE，以此来选择最佳数量的特征：对于一个数量为d的feature的集合，他的所有的子集的个数是2的d次方减1(包含空集)。指定一个外部的学习算法，比如SVM之类的。通过该算法计算所有子集的validation error。选择error最小的那个子集作为所挑选的特征。
+
+> Estimator通过coef_属性或feature_importances_属性提供有关功能重要性的信息的方法。
+
+#### feature_selection.RFE
+Recursive feature elimination
+
+该API接口是利用某个可以为特征赋权的外部估计器(Estimator),递归地删除特征,考查数目越来越少的特征集(如线性模型里的特征系数).
+(1)首先,利用估计器对初始特征集训练,通过属性coef_和feature_importances_获得特征重要性;
+(2)然后,从当前特征集中删除最不重要的若干特征;
+(3)递归地重复以上操作,直至特征数目减少的预期结果
+
+> 参数estimator为基模型
+> 参数n_features_to_select为选择的特征个数
+
+#### feature_selection.RFECV
+Recursive feature elimination with cross-validation
+
+### SelectFromModel - 基于机器学习模型 Embedded
+
+SelectFromModel 作为meta-transformer(元转换器)，能够用于拟合后任何拥有coef_或feature_importances_ 属性的预测模型。 如果特征对应的coef_ 或 feature_importances_ 值低于设定的阈值threshold，那么这些特征将被移除。除了手动设置阈值，也可通过字符串参数调用内置的启发式算法(heuristics)来设置阈值，包括：平均值(“mean”), 中位数(“median”)以及他们与浮点数的乘积，如”0.1*mean”。
+
+#### 基于L1的特征选择 (L1-based feature selection)
+使用L1范数作为惩罚项的线性模型(Linear models)会得到稀疏解：大部分特征对应的系数为0。当你希望减少特征的维度以用于其它分类器时，可以通过 feature_selection.SelectFromModel 来选择不为0的系数。特别指出，常用于此目的的稀疏预测模型有 linear_model.Lasso（回归）， linear_model.LogisticRegression 和 svm.LinearSVC（分类）:
+https://scikit-learn.org/stable/modules/feature_selection.html#l1-based-feature-selection
+
+#### 基于树的特征选择 (Tree-based feature selection)
+基于树的预测模型（见 sklearn.tree 模块，森林见 sklearn.ensemble 模块）能够用来计算特征的重要程度，因此能用来去除不相关的特征（结合 sklearn.feature_selection.SelectFromModel）:
+
+### SequentialFeatureSelector - 基于机器学习模型 Wrapper
+循序特征选择。
+
+循序向前特征选择：Sequential Forward Selection，SFS
+循序向后特征选择：Sequential Backword Selection，SBS
+
+> direction参数{‘forward’, ‘backward’}, default=’forward’
+
+如果我们有10个特征并要求选择7个特征，则前向选择将需要执行7次迭代，而后向选择仅需要执行3次迭代。
+SFS与RFE和SelectFromModel的不同之处在于，SFS不需要基础模型公开coef_或feature_importances_属性。
+
+> 在mlxtend.feature_selection中还有 ExhaustiveFeatureSelector 穷举特征选择（Exhaustive feature selection），即封装器中搜索算法是将所有特征组合都实现一遍，然后通过比较各种特征组合后的模型表现，从中选择出最佳的特征子集
+
+## 特征工程 - 降维
+? 特征提取（投影or转换）
+
+- 线性方法<sup>[csdn 数据降维方法小结](https://blog.csdn.net/yujianmin1990/article/details/48223001)</sup>：
+    - PCA：主成分分析；理论：通过正交变换将原始的 n 维数据集变换到一个新的被称做主成分的数据集中，变换后的结果中第一个主成分具有最大的方差值；【特点：无监督，尽量少维度保留尽量多原始信息（均方误差最小），期望投影维度上方差最大，不考虑类别，去相关性，零均值化，丧失可解释性】
+    - ICA：独立成分分析；将原特征转化为相互独立的分量的线性组合；PCA一般作为ICA的预处理步骤<sup>[zhihu](https://www.zhihu.com/search?type=content&q=PCA%20ICA)</sup>。
+    - LDA：线性判别分析，有监督，尽可能容易被区分（高内聚、低耦合）<sup>[cnblog 机器学习中的数学(4)-线性判别分析（LDA）, 主成分分析(PCA)](https://www.cnblogs.com/LeftNotEasy/archive/2011/01/08/lda-and-pca-machine-learning.html)</sup>。
+    - SVD：奇异值分解，可用于PCA、推荐、潜在语义索引LSI，可并行，可解释性不强
+- 非线性方法：
+    - LLE：局部线性嵌入，非线性降维（基于图），保持原有流行结构
+    - LE：拉普拉斯特征映射，非线性（基于图），相互有联系的点尽可能靠近
+    - t-SNE：t分布随机临近嵌入，将欧几里得距离转为条件概率表达点与点之间的相似度<sup>[datakit t-SNE完整笔记](http://www.datakit.cn/blog/2017/02/05/t_sne_full.html)</sup>。
+    - AE：自动编码器
+    - 聚类
+### Linear Discriminant Analysis,LDA
+> Linear Discriminant Analysis,LDA  discriminant_analysis.LinearDiscriminantAnalysis可以直接用来分类
+> Quadratic Discriminant Analysis,QDA discriminant_analysis.QuadraticDiscriminantAnalysis不具有LDA和PCA的降维功能,只能用来做分类预测
+
+LDA将数据在低维度上进行投影，投影后希望每一种类别数据的投影点尽可能的接近，而不同类别的数据的类别中心之间的距离尽可能的大。
+
+LDA是一种监督学习的降维技术,PCA是无监督降维技术
+LDA缺点有：
+1）LDA不适合对非高斯分布样本进行降维，PCA也有这个问题。
+2）LDA降维最多降到类别数k-1的维数，如果我们降维的维度大于k-1，则不能使用LDA。当然目前有一些LDA的进化版算法可以绕过这个问题。
+3）LDA在样本分类信息依赖方差而不是均值的时候，降维效果不好。
+4）LDA可能过度拟合数据。
+
+### Principal Component Analysis,PCA
