@@ -721,6 +721,7 @@ https://scikit-learn.org/stable/modules/decomposition.html#dictionary-learning
 
 > 在线变分贝叶斯算法的潜在狄利克雷分配
 > Dirichlet分布
+> 统计学习方法的第二十章
 
 ### random_projection 随机投影
 

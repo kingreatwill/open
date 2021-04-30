@@ -157,10 +157,22 @@ TP：True Positive,被判定为正样本，事实上也是正样本。
 训练集上的损失值是无法衡量模型的好坏的。我们的办法就是增加交叉验证集，即将所有数据分为三部分：训练集、交叉验证集和测试集。交叉验证集不仅在选择模型时有用，在超参数选择、正则项参数 λ 和评价模型中也很有用。(也就是划分验证集用来模型选择和调参)
 
 
-### 代价曲线
+### 模型评估 - 代价曲线
+
+在分类型模型评判的指标中，常见的方法有如下三种：
+
+1. 混淆矩阵（也称误差矩阵，Confusion Matrix）
+2. ROC曲线
+3. AUC面积
+4. DET(Detection Error Tradeoff )
+
 ROC曲线有个很好的特性：当测试集中的正负样本的分布变化时，ROC曲线能够保持不变。在实际的数据集中经常会出现不平衡(class imbalance)现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化。下图是ROC曲线和P-R曲线的对比:
 ![](img/pr_03.png)
+
 #### 查准率－查全率曲线（P-R曲线）
+
+> metrics.plot_precision_recall_curve
+
 ![](img/pr.jpg)
 ![](img/pr_02.png)
 
@@ -175,8 +187,13 @@ plt.show()
 ```
 
 #### AUC值
+> metrics.auc
+
 就是ROC曲线下面积
 ![](img/AUC.svg)
+
+#### 混淆矩阵（confusion_matrix）
+https://blog.csdn.net/SmartShylyBoy/article/details/91360934
 
 ## 超参调优
 [Optuna - 超参数自动化调优框架](https://github.com/optuna/optuna)
@@ -186,13 +203,27 @@ plt.show()
 ## 绘图部分
 ### model_selection.learning_curve 学习曲线
 
-https://scikit-learn.org/stable/modules/classes.html#module-sklearn.inspection
 
 ### model_selection.validation_curve 验证曲线
 
-### metrics.plot_roc_curve roc曲线（直接绘制）
+### metrics.plot_precision_recall_curve PR曲线
+> 就是metrics.precision_recall_curve + metrics.PrecisionRecallDisplay
 
-### metrics.plot_det_curve 检测错误权衡图（直接绘制）
+### metrics.plot_roc_curve ROC曲线（直接绘制）
+> 就是metrics.roc_curve + metrics.RocCurveDisplay
+
+### metrics.plot_det_curve DET曲线（直接绘制）
+> 就是metrics.det_curve +metrics.DetCurveDisplay
+
+DET(Detection Error Tradeoff )曲线是对二元分类系统误码率的曲线图，绘制出错误拒绝率FRR（False Reject Rate）与错误接受率（False Accept Rate）之间随着判断阈值的变化而变化的曲线图。现在DET曲线扩展到用于模式识别分类器性能的评价的一个指标之一。
+
+https://www.jianshu.com/p/067425811206
+
+### metrics.plot_confusion_matrix 混淆矩阵
+> 就是metrics.confusion_matrix + metrics.ConfusionMatrixDisplay
+https://blog.csdn.net/SmartShylyBoy/article/details/91360934
 
 ### inspection.plot_partial_dependence 部分依赖图和个体条件期望图
 https://zhuanlan.zhihu.com/p/364921771
+
+https://scikit-learn.org/stable/modules/classes.html#module-sklearn.inspection
