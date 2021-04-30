@@ -137,6 +137,8 @@ Binarizer参数threshold ，默认为0.0
 小于或等于此值的特征值将替换为0，大于被1替换。对于稀疏矩阵的操作，阈值不得小于0。
 > 当k=2时，当bin边处于值阈值时，Binarizer类似于KBinsDiscreizer。
 
+> Binarizer都可以用在密集向量和稀疏矩阵上
+
 ## 特征缩放或归一化
 基于参数的模型或基于距离的模型，都是要进行特征的归一化。
 基于树的方法是不需要进行特征的归一化，例如随机森林，bagging 和 boosting等。
@@ -199,6 +201,7 @@ min-max normalization是线性归一化，还有非线性归一化，通过一�
 preprocessing.Normalizer
 
 ### MinMaxScaler (min-max归一化)
+> 等比例缩放，可以指定范围，不一定是[0,1];也有一个严重的问题，当矩阵是稀疏矩阵时，会把以前为0的特征变成不是0
 - 缩放压缩（或拉伸）所有特征值到 [0,1] 的范围内
 $$
 \widetilde{x}=\frac{x-\min (x)}{\max (x)-\min (x)}
@@ -211,7 +214,8 @@ $$
 $$
 
 ### MaxAbsScaler
-缩放到-1和1之间
+缩放到-1和1之间，为0的数据还是0，负数还是负数，正数还是正数，处理稀疏矩阵比MinMaxScaler好
+
 ### RobustScaler
 如果你的数据包含许多异常值（离群值），使用均值和方差缩放可能并不是一个很好的选择。这种情况下，你可以使用 robust_scale 以及 RobustScaler 作为替代品。它们对你的数据的中心和范围使用更有鲁棒性的估计。
 
@@ -233,6 +237,9 @@ $$
 ![](img/fn_03.png)
 
 ### Normalizer 归一化
+
+> Normalizer都既可以用在密集数组也可以用在稀疏矩阵（scipy.sparse)中对于稀疏的输入数据，它会被转变成维亚索的稀疏行表征
+
 对每个数据点进行缩放，使得特征向量的欧式长度等于1。
 
 归一化是缩放单个样本以具有单位范数的过程，这里的”范数”，可以使用L1或L2范数。
@@ -242,8 +249,6 @@ Normalizer的作用范围是每一行，使每一个行向量的范数变换为�
 
 ![](img/fn_07.png)
 
-#### 不要中心化稀疏数据
-最小最大缩放和标准化都从原始特征值中减去一个数量。对于最小最大缩放, 移动量是当前特征的所有值中最小的。对于标准化, 移动的量是平均值。如果移动量不是零, 则这两种转换可以将稀疏特征（大部分值为零）的向量转换为一个稠密的向量。这反过来会给分类器带来巨大的计算负担, 取决于它是如何实现的。词袋是一种稀疏表示, 大多数分类库都对稀疏输入进行优化。如果现在的表示形式包含了文档中没有出现的每个单词, 那就太可怕了。请谨慎对稀疏特征执行最小最大缩放和标准化操作。
 
 #### L2 normalization
 这项技术通过所谓的 L2 范数 (也称为欧几里德范数) 正常化 (划分) 原始特征值。
@@ -262,10 +267,21 @@ L2 范数将求特征的各数据点的平方和, 然后取平方根。L2 规范
 
 ![](img/fn_01.png)
 
+
+### 不要中心化稀疏数据
+最小最大缩放和标准化都从原始特征值中减去一个数量。对于最小最大缩放, 移动量是当前特征的所有值中最小的。对于标准化, 移动的量是平均值。如果移动量不是零, 则这两种转换可以将稀疏特征（大部分值为零）的向量转换为一个稠密的向量。这反过来会给分类器带来巨大的计算负担, 取决于它是如何实现的。词袋是一种稀疏表示, 大多数分类库都对稀疏输入进行优化。如果现在的表示形式包含了文档中没有出现的每个单词, 那就太可怕了。请谨慎对稀疏特征执行最小最大缩放和标准化操作。
+
+> 可以使用Normalizer或者MaxAbsScaler
+
 ### 核矩阵的中心化 KernelCenterer
 KernelCenterer 类构造过程中不需要设定任何参数，只在 fit 过程中需要传入核矩阵，之后进行转换。实质上，KernelCenterer 中心化数据的过程就是将数据集转换为零均值的归一化过程。
 
-## 离群值检查与处理
+## 离群值检测与处理
+
+https://scikit-learn.org/stable/modules/outlier_detection.html
+
+[比较](https://scikit-learn.org/stable/auto_examples/miscellaneous/plot_anomaly_comparison.html#sphx-glr-auto-examples-miscellaneous-plot-anomaly-comparison-py)
+![](img/sphx_glr_plot_anomaly_comparison_001.png)
 
 离群值 (outliers)
 是指在一份数据中,与其他观察值具有明显不同特征的那些观察值。
@@ -292,6 +308,18 @@ KernelCenterer 类构造过程中不需要设定任何参数，只在 fit 过程
 
 ### RobustScaler-截尾
 [RobustScaler](#robustscaler)
+
+### svm.OneClassSVM  检测
+无监督的离群值检测。
+### neighbors.LocalOutlierFactor 检测
+无监督离群检测 
+### covariance.EllipticEnvelope 检测
+用于检测高斯分布数据集中的异常值的对象。
+### ensemble.IsolationForest 检测
+在高维数据集中执行异常检测的一种有效方法是使用随机森林。
+
+### linear_model.HuberRegressor 模型
+对异常值具有鲁棒性的线性回归模型。
 
 # 特征工程 - 缺失值处理
 
@@ -497,6 +525,8 @@ feature_selection
 
 3. Wrapper：封装式；用学习器的性能评判不同特征子集的效果，特征子集生成方式：完全搜索（前向&后向）、启发式搜索、随机搜索<sup>[cnblog 特征工程之特征选择](https://www.cnblogs.com/pinard/p/9032759.html)</sup>。
 
+**需要根据模型学习来筛选**
+
 > 包装法，根据目标函数（通常是预测效果评分），每次选择若干特征，或者排除若干特征。
 
 > 封装式特征选择是利用学习算法的性能来评价特征子集的优劣。因此，对于一个待评价的特征子集，Wrapper方法需要训练一个分类器，根据分类器的性能对该特征子集进行评价。Wrapper方法中用以评价特征的学习算法是多种多样的，例如决策树、神经网络、贝叶斯分类器、近邻法以及支持向量机等等。
@@ -547,6 +577,7 @@ GenericUnivariateSelect返回一个单变量的f_score(F检验的值)或p-values
 族系误差率
 
 ### 递归特征消除 - 基于机器学习模型 Wrapper
+**需要根据模型学习来筛选，也就是包装一个模型来学习每个特征对Y的权重**
 递归消除特征法使用一个基模型来进行多轮训练，每轮训练后，移除若干权值系数的特征，再基于新的特征集进行下一轮训练。
 
 sklearn官方解释：对特征含有权重的预测模型(例如，线性模型对应参数coefficients)，RFE通过递归减少考察的特征集规模来选择特征。首先，预测模型在原始特征上训练，每个特征指定一个权重。之后，那些拥有最小绝对值权重的特征被踢出特征集。如此往复递归，直至剩余的特征数量达到所需的特征数量。
@@ -571,10 +602,12 @@ Recursive feature elimination with cross-validation
 
 ### SelectFromModel - 基于机器学习模型 Embedded
 
+**没有predict和score方法，是一个transformer，需要的模型（estimator）需要先对数据进行训练（fit），然后根据训练后的estimator的coef_ 或 feature_importances_ 属性进行筛选高于阈值的特征，所以是把一个模型嵌入到转换器中**
+
 SelectFromModel 作为meta-transformer(元转换器)，能够用于拟合后任何拥有coef_或feature_importances_ 属性的预测模型。 如果特征对应的coef_ 或 feature_importances_ 值低于设定的阈值threshold，那么这些特征将被移除。除了手动设置阈值，也可通过字符串参数调用内置的启发式算法(heuristics)来设置阈值，包括：平均值(“mean”), 中位数(“median”)以及他们与浮点数的乘积，如”0.1*mean”。
 
 #### 基于L1的特征选择 (L1-based feature selection)
-使用L1范数作为惩罚项的线性模型(Linear models)会得到稀疏解：大部分特征对应的系数为0。当你希望减少特征的维度以用于其它分类器时，可以通过 feature_selection.SelectFromModel 来选择不为0的系数。特别指出，常用于此目的的稀疏预测模型有 linear_model.Lasso（回归）， linear_model.LogisticRegression 和 svm.LinearSVC（分类）:
+使用L1范数作为惩罚项的线性模型(Linear models)会得到稀疏解：大部分特征对应的系数为0。当你希望减少特征的维度以用于其它分类器时，可以通过 feature_selection.SelectFromModel 来选择不为0的系数。**特别指出，常用于此目的的稀疏预测模型有 linear_model.Lasso（回归）， linear_model.LogisticRegression 和 svm.LinearSVC（分类）**:
 https://scikit-learn.org/stable/modules/feature_selection.html#l1-based-feature-selection
 
 #### 基于树的特征选择 (Tree-based feature selection)
@@ -598,6 +631,7 @@ SFS与RFE和SelectFromModel的不同之处在于，SFS不需要基础模型公�
 
 - 线性方法<sup>[csdn 数据降维方法小结](https://blog.csdn.net/yujianmin1990/article/details/48223001)</sup>：
     - PCA：主成分分析；理论：通过正交变换将原始的 n 维数据集变换到一个新的被称做主成分的数据集中，变换后的结果中第一个主成分具有最大的方差值；【特点：无监督，尽量少维度保留尽量多原始信息（均方误差最小），期望投影维度上方差最大，不考虑类别，去相关性，零均值化，丧失可解释性】
+    - FA：因子分析
     - ICA：独立成分分析；将原特征转化为相互独立的分量的线性组合；PCA一般作为ICA的预处理步骤<sup>[zhihu](https://www.zhihu.com/search?type=content&q=PCA%20ICA)</sup>。
     - LDA：线性判别分析，有监督，尽可能容易被区分（高内聚、低耦合）<sup>[cnblog 机器学习中的数学(4)-线性判别分析（LDA）, 主成分分析(PCA)](https://www.cnblogs.com/LeftNotEasy/archive/2011/01/08/lda-and-pca-machine-learning.html)</sup>。
     - SVD：奇异值分解，可用于PCA、推荐、潜在语义索引LSI，可并行，可解释性不强
@@ -608,7 +642,8 @@ SFS与RFE和SelectFromModel的不同之处在于，SFS不需要基础模型公�
     - AE：自动编码器
     - 聚类
 ### Linear Discriminant Analysis,LDA
-> Linear Discriminant Analysis,LDA  discriminant_analysis.LinearDiscriminantAnalysis可以直接用来分类
+> Linear Discriminant Analysis,LDA  discriminant_analysis.LinearDiscriminantAnalysis可以直接用来分类，transform用来获取降维后的数据
+
 > Quadratic Discriminant Analysis,QDA discriminant_analysis.QuadraticDiscriminantAnalysis不具有LDA和PCA的降维功能,只能用来做分类预测
 
 LDA将数据在低维度上进行投影，投影后希望每一种类别数据的投影点尽可能的接近，而不同类别的数据的类别中心之间的距离尽可能的大。
@@ -619,5 +654,88 @@ LDA缺点有：
 2）LDA降维最多降到类别数k-1的维数，如果我们降维的维度大于k-1，则不能使用LDA。当然目前有一些LDA的进化版算法可以绕过这个问题。
 3）LDA在样本分类信息依赖方差而不是均值的时候，降维效果不好。
 4）LDA可能过度拟合数据。
+![](img/lda_pca.jpg)
+
+> PCA 投影原则是保留高维向量（正交化后）方差大的信息，舍去方差小维度上的信息。如图上PC1 方向上的方差更大、数据更加分散，PC2方向上的方差更小、数据更集中，故投影到PC1方向上更合适。原因是投影会损失数据中的信息，方差大的方向包含差异化信息更多，用于分类问题更加准确。PCA并不需要类别标签。
+
+> LDA 试图找到一个特征子空间（特征的线性组合）以最大划分类别空间，LDA使用类别标签作为分类依据，LD2试图采用x2的线性组合划分上图的蓝色和绿色两类并不合适（同一类投影距离大，不同类几乎重叠了-也就是小）。LD1就很合适，不同类间距大，同一类投影距离小。
 
 ### Principal Component Analysis,PCA
+
+PCA的主要思想是将n维特征映射到k维上，这k维是全新的**正交特征**也被称为主成分，是在原有n维特征的基础上重新构造出来的k维特征。其中，第一个新坐标轴选择是原始数据中方差最大的方向，第二个新坐标轴选取是与第一个坐标轴正交的平面中使得方差最大的，第三个轴是与第1,2个轴正交的平面中方差最大的。依次类推，可以得到n个这样的坐标轴。通过这种方式获得的新的坐标轴，我们发现，大部分方差都包含在前面k个坐标轴中，后面的坐标轴所含的方差几乎为0。于是，我们可以忽略余下的坐标轴，只保留前面k个含有绝大部分方差的坐标轴。事实上，这相当于只保留包含绝大部分方差的维度特征，而忽略包含方差几乎为0的特征维度，实现对数据特征的降维处理。
+
+通过计算数据矩阵的协方差矩阵，然后得到协方差矩阵的特征值特征向量，选择特征值最大(即**方差最大**)的k个特征所对应的特征向量组成的矩阵。
+
+> 适用于样本数要远大于特征数
+#### decomposition.PCA 主成分分析
+> PCA是线性模型（主成分分析最终给出的主成分是原来的数据变量的线性组合）
+> PCA可以看作是一个特征提取的过程，对 d 个特征进行线性加权，提取出 k 个特征
+
+1）n_components：这个参数可以帮我们指定希望PCA降维后的特征维度数目。最常用的做法是直接指定降维到的维度数目，此时n_components是一个大于等于1的整数。当然，我们也可以指定主成分的方差和所占的最小比例阈值，让PCA类自己去根据样本特征方差来决定降维到的维度数，此时n_components是一个（0，1]之间的数。当然，我们还可以将参数设置为"mle", 此时PCA类会用MLE算法根据特征的方差分布情况自己去选择一定数量的主成分特征来降维。我们也可以用默认值，即不输入n_components，此时n_components=min(样本数，特征数)。
+
+　　　　2）whiten ：判断是否进行白化。所谓白化，就是对降维后的数据的每个特征进行归一化，让方差都为1.对于PCA降维本身来说，一般不需要白化。如果你PCA降维后有后续的数据处理动作，可以考虑白化。默认值是False，即不进行白化。
+
+　　　　3）svd_solver：即指定奇异值分解SVD的方法，由于特征分解是奇异值分解SVD的一个特例，一般的PCA库都是基于SVD实现的。有4个可以选择的值：{‘auto’, ‘full’, ‘arpack’, ‘randomized’}。randomized一般适用于数据量大，数据维度多同时主成分数目比例又较低的PCA降维，它使用了一些加快SVD的随机算法。 full则是传统意义上的SVD，使用了scipy库对应的实现。arpack和randomized的适用场景类似，区别是randomized使用的是scikit-learn自己的SVD实现，而arpack直接使用了scipy库的sparse SVD实现。默认是auto，即PCA类会自己去在前面讲到的三种算法里面去权衡，选择一个合适的SVD算法来降维。一般来说，使用默认值就够了。
+
+　　　　除了这些输入参数外，有两个PCA类的成员值得关注。第一个是explained_variance_，它代表降维后的各主成分的方差值。方差值越大，则说明越是重要的主成分。第二个是explained_variance_ratio_，它代表降维后的各主成分的方差值占总方差值的比例，这个比例越大，则越是重要的主成分。
+
+#### decomposition.IncrementalPCA 增量主成分分析
+IncrementalPCA主要是为了解决单机内存限制的。有时候我们的样本量可能是上百万+，维度可能也是上千，直接去拟合数据可能会让内存爆掉， 此时我们可以用IncrementalPCA类来解决这个问题。IncrementalPCA先将数据分成多个batch，然后对每个batch依次递增调用partial_fit函数，这样一步步的得到最终的样本最优降维。
+#### decomposition.SparsePCA 稀疏主成分分析
+稀疏主成分分析 会把主成分系数（构成主成分时每个变量前面的系数）变的稀疏，也即是把大多数系数都变成零，通过这样一种方式，我们就可以把主成分的主要的部分凸现出来，这样主成分就会变得较为容易解释。
+
+Sparse PCA要求主成分是稀疏向量，增强模型可解释性
+Sparse PCA低维空间的特征可以仅仅由高维空间个别特征线性加权表示
+Sparse PCA实际上是一种Dict Learning的问题，是稀疏编码问题
+
+SparsePCA和MiniBatchSparsePCA。他们和上面讲到的PCA类的区别主要是使用了L1的正则化，这样可以将很多非主要成分的影响度降为0，这样在PCA降维的时候我们仅仅需要对那些相对比较主要的成分进行PCA降维，避免了一些噪声之类的因素对我们PCA降维的影响。SparsePCA和MiniBatchSparsePCA之间的区别则是MiniBatchSparsePCA通过使用一部分样本特征和给定的迭代次数来进行PCA降维，以解决在大样本时特征分解过慢的问题，当然，代价就是PCA降维的精确度可能会降低。使用SparsePCA和MiniBatchSparsePCA需要对L1正则化参数进行调参。
+
+#### decomposition.MiniBatchSparsePCA 小批量稀疏主成分分析
+#### decomposition.KernelPCA Kernel主成分分析
+> 非线性模型
+
+### decomposition.TruncatedSVD 截断奇异值分解
+在做潜在语义分析 latent semantic analysis (LSA)时，TruncatedSVD 的 SVD 部分将 TF-IDF 矩阵分解为 3 个矩阵，其截断部分将丢弃包含 TF-IDF 矩阵最少信息的维度。这些被丢弃的维度表示文档集中变化最小的主题（词的线性组合），它们可能对语料库的总体语义没有意义
+
+### decomposition.NMF 非负矩阵分解
+
+> 类似SVD，是一种因子分解
+
+NMF(Non-negative matrix factorization)，即对于任意给定的一个非负矩阵V，其能够寻找到一个非负矩阵W和一个非负矩阵H，满足条件V=W*H,从而将一个非负的矩阵分解为左右两个非负矩阵的乘积。**其中，V矩阵中每一列代表一个观测(observation)，每一行代表一个特征(feature)；W矩阵称为基矩阵，H矩阵称为系数矩阵或权重矩阵。这时用系数矩阵H代替原始矩阵，就可以实现对原始矩阵进行降维，得到数据特征的降维矩阵，从而减少存储空间。** 过程如下图所示：
+
+![](img/nmf.png)
+
+
+### Dictionary Learning字典学习
+https://scikit-learn.org/stable/modules/decomposition.html#dictionary-learning
+#### decomposition.SparseCoder
+#### decomposition.DictionaryLearning
+#### decomposition.MiniBatchDictionaryLearning
+
+### decomposition.FactorAnalysis，FA：因子分析
+
+### decomposition.FastICA 独立成分分析
+
+
+### decomposition.LatentDirichletAllocation
+
+> 在线变分贝叶斯算法的潜在狄利克雷分配
+> Dirichlet分布
+
+### random_projection 随机投影
+
+数据集乘以一个随机矩阵，以减少其维度的数量
+
+支持随机投影的理论：Johnson-Lindenstrauss Lemma，处于高维度空间的有N个点的数据集，乘以随机矩阵，就可以被就诊映射成很低维度的空间，即缩小的数据集。
+
+> 随机矩阵（也称为概率矩阵、转移矩阵、 替代矩阵、或马尔可夫矩阵）
+
+> 特征多，数据少
+
+
+#### random_projection.GaussianRandomProjection
+#### random_projection.SparseRandomProjection
+
+### cluster.FeatureAgglomeration 聚集特征
+
+> 对特征聚类
