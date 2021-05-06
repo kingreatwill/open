@@ -198,13 +198,107 @@ https://blog.csdn.net/SmartShylyBoy/article/details/91360934
 ## 超参调优
 [Optuna - 超参数自动化调优框架](https://github.com/optuna/optuna)
 
-## 指标和评分
+### model_selection.ParameterSampler 参数生成器
+### model_selection.GridSearchCV 和RandomizedSearchCV 网格搜索
+GridSearchCV，它存在的意义就是自动调参，只要把参数输进去，就能给出最优化的结果和参数。但是这个方法适合于小数据集，一旦数据的量级上去了，很难得出结果。
+### HalvingGridSearchCV和 HalvingRandomSearchCV
 
-## 绘图部分
+## 模型可解释性 - 指标和评分
+一般模型验证时需要用到各种指标：
+model_selection.cross_validate 交叉验证
+参数:scoring 就是评分指标（str, callable, list, tuple, or dict, default=None）
+参数：groups:切分train/test数据集后的样本所在集合标号
+
+[交叉验证迭代器](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators)
+
+验证使用的验证指标可以是方法、字符串、以及字典,如：
+```
+scoring = {'accuracy': make_scorer(accuracy_score),
+          'prec': 'precision'}
+```
+所有指标
+```
+from sklearn import metrics
+metrics.SCORERS.keys()
+```
+
+
+指标表格
+
+| Scoring                              | Function                               | Comment                        |
+|--------------------------------------|----------------------------------------|--------------------------------|
+| Classification                       |                                        |                                |
+| ‘accuracy’                           | metrics.accuracy_score                 |                                |
+| ‘balanced_accuracy’                  | metrics.balanced_accuracy_score        |                                |
+| ‘top_k_accuracy’                     | metrics.top_k_accuracy_score           |                                |
+| ‘average_precision’                  | metrics.average_precision_score        |                                |
+| ‘neg_brier_score’                    | metrics.brier_score_loss               |                                |
+| ‘f1’                                 | metrics.f1_score                       | for binary targets             |
+| ‘f1_micro’                           | metrics.f1_score                       | micro-averaged                 |
+| ‘f1_macro’                           | metrics.f1_score                       | macro-averaged                 |
+| ‘f1_weighted’                        | metrics.f1_score                       | weighted average               |
+| ‘f1_samples’                         | metrics.f1_score                       | by multilabel sample           |
+| ‘neg_log_loss’                       | metrics.log_loss                       | requires predict_proba support |
+| ‘precision’ etc.                     | metrics.precision_score                | suffixes apply as with ‘f1’    |
+| ‘recall’ etc.                        | metrics.recall_score                   | suffixes apply as with ‘f1’    |
+| ‘jaccard’ etc.                       | metrics.jaccard_score                  | suffixes apply as with ‘f1’    |
+| ‘roc_auc’                            | metrics.roc_auc_score                  |                                |
+| ‘roc_auc_ovr’                        | metrics.roc_auc_score                  |                                |
+| ‘roc_auc_ovo’                        | metrics.roc_auc_score                  |                                |
+| ‘roc_auc_ovr_weighted’               | metrics.roc_auc_score                  |                                |
+| ‘roc_auc_ovo_weighted’               | metrics.roc_auc_score                  |                                |
+| Clustering                           |                                        |                                |
+| ‘adjusted_mutual_info_score’         | metrics.adjusted_mutual_info_score     |                                |
+| ‘adjusted_rand_score’                | metrics.adjusted_rand_score            |                                |
+| ‘completeness_score’                 | metrics.completeness_score             |                                |
+| ‘fowlkes_mallows_score’              | metrics.fowlkes_mallows_score          |                                |
+| ‘homogeneity_score’                  | metrics.homogeneity_score              |                                |
+| ‘mutual_info_score’                  | metrics.mutual_info_score              |                                |
+| ‘normalized_mutual_info_score’       | metrics.normalized_mutual_info_score   |                                |
+| ‘rand_score’                         | metrics.rand_score                     |                                |
+| ‘v_measure_score’                    | metrics.v_measure_score                |                                |
+| Regression                           |                                        |                                |
+| ‘explained_variance’                 | metrics.explained_variance_score       |                                |
+| ‘max_error’                          | metrics.max_error                      |                                |
+| ‘neg_mean_absolute_error’            | metrics.mean_absolute_error            |                                |
+| ‘neg_mean_squared_error’             | metrics.mean_squared_error             |                                |
+| ‘neg_root_mean_squared_error’        | metrics.mean_squared_error             |                                |
+| ‘neg_mean_squared_log_error’         | metrics.mean_squared_log_error         |                                |
+| ‘neg_median_absolute_error’          | metrics.median_absolute_error          |                                |
+| ‘r2’                                 | metrics.r2_score                       |                                |
+| ‘neg_mean_poisson_deviance’          | metrics.mean_poisson_deviance          |                                |
+| ‘neg_mean_gamma_deviance’            | metrics.mean_gamma_deviance            |                                |
+| ‘neg_mean_absolute_percentage_error’ | metrics.mean_absolute_percentage_error |                                |
+
+## 模型可解释性
+### 分类报告 metrics.classification_report
+### 各种损失
+- 分类
+metrics.hamming_loss
+metrics.brier_score_loss
+metrics.hinge_loss
+metrics.log_loss
+metrics.zero_one_loss
+
+- 回归
+metrics.mean_absolute_error(y_true, y_pred, *)
+metrics.mean_squared_error(y_true, y_pred, *) 均方误差
+metrics.mean_squared_log_error(y_true, y_pred, *)
+metrics.median_absolute_error(y_true, y_pred, *)
+metrics.mean_absolute_percentage_error(…)
+metrics.mean_poisson_deviance(y_true, y_pred, *)
+metrics.mean_gamma_deviance(y_true, y_pred, *)
+metrics.mean_tweedie_deviance(y_true, y_pred, *)
+
+### 相关系数
+jaccard_score 相关系数
+matthews_corrcoef 相关系数
+## 模型可解释性 - 绘图部分
 ### model_selection.learning_curve 学习曲线
-
+[Plotting Learning Curves](https://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html)
 
 ### model_selection.validation_curve 验证曲线
+[Plotting Validation Curves](https://scikit-learn.org/stable/auto_examples/model_selection/plot_validation_curve.html)
 
 ### metrics.plot_precision_recall_curve PR曲线
 > 就是metrics.precision_recall_curve + metrics.PrecisionRecallDisplay
@@ -217,11 +311,10 @@ https://blog.csdn.net/SmartShylyBoy/article/details/91360934
 
 DET(Detection Error Tradeoff )曲线是对二元分类系统误码率的曲线图，绘制出错误拒绝率FRR（False Reject Rate）与错误接受率（False Accept Rate）之间随着判断阈值的变化而变化的曲线图。现在DET曲线扩展到用于模式识别分类器性能的评价的一个指标之一。
 
-https://www.jianshu.com/p/067425811206
 
 ### metrics.plot_confusion_matrix 混淆矩阵
 > 就是metrics.confusion_matrix + metrics.ConfusionMatrixDisplay
-https://blog.csdn.net/SmartShylyBoy/article/details/91360934
+[模型评估之混淆矩阵（confusion_matrix）](https://blog.csdn.net/SmartShylyBoy/article/details/91360934)
 
 ### inspection.plot_partial_dependence 部分依赖图和个体条件期望图
 https://zhuanlan.zhihu.com/p/364921771
