@@ -320,3 +320,44 @@ DET(Detection Error Tradeoff )曲线是对二元分类系统误码率的曲线�
 https://zhuanlan.zhihu.com/p/364921771
 
 https://scikit-learn.org/stable/modules/classes.html#module-sklearn.inspection
+
+# AutoML
+![](img/auto_ml_01.jpg)
+
+https://zhuanlan.zhihu.com/p/93109455
+
+## 特征工程工具
+- Tsfresh
+- Trane
+- Categorical Encoding
+- boruta_py
+- Featuretools
+![](img/auto_ml_02.jpg)
+
+## 超参优化工具
+- optuna
+- Skopt
+- Hyperopt
+- Simple(x)
+- Ray.tune
+- Chocolate
+- GpFlowOpt
+- FAR-HO
+- Xcessiv
+- HORD
+- ENAS
+- NNI
+
+![](img/auto_ml_03.jpg)
+
+评比规则：通用基础项（50%）+gihub评分（50%）+加分项（20%）
+![](img/auto_ml_04.jpg)
+
+## AutoML开源框架
+
+- MLBox
+- Autokeras
+- TPOT
+- H2O
+- Auto_ml
+![](img/auto_ml_05.jpg)
