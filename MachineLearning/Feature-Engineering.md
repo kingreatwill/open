@@ -766,3 +766,8 @@ https://scikit-learn.org/stable/modules/decomposition.html#dictionary-learning
 ### cluster.FeatureAgglomeration 聚集特征
 
 > 对特征聚类
+
+### Autoencoder
+autoencoder是一种无监督的学习算法，主要用于数据的降维或者特征的抽取，在深度学习中，autoencoder可用于在训练阶段开始前，确定权重矩阵W的初始值。
+
+[几种AutoEncoder原理](https://blog.csdn.net/leida_wt/article/details/85052299)

@@ -156,6 +156,37 @@ TP：True Positive,被判定为正样本，事实上也是正样本。
 ### 交叉验证
 训练集上的损失值是无法衡量模型的好坏的。我们的办法就是增加交叉验证集，即将所有数据分为三部分：训练集、交叉验证集和测试集。交叉验证集不仅在选择模型时有用，在超参数选择、正则项参数 λ 和评价模型中也很有用。(也就是划分验证集用来模型选择和调参)
 
+validation set method一般步骤如下：
+1. 通过training set来训练不同的model
+2. 由validation set来对model进行检验，并选择误差最小的model
+3. 重新训练该模型用training set+validation set的数据（也就是最初的training data）
+4. 使用test data来评估我们选择的model
+
+Validation set method的缺点是如果数据集比较小的话我们可能就会没有足够多的数据来训练我们的model，所以model并不能够抓到一些核心的特征，因此validation set对模型的误差的估计也就没有什么意义。我们于是就引入了cross-validation：我们将training data划分为N个set，每个set轮流用来训练model/评估model。
+**如果数据集够大，直接用validation set method就可以了，完全不需要用到cross-validation method**
+
+
+> 验证集最终要参与训练得到最终模型，如5折交叉验证，需要的次数是 5m+1，m是超参组合
+
+- 数据集划分方法——K折交叉验证：KFold，GroupKFold，StratifiedKFold
+- 数据集划分方法——留一法：LeaveOneGroupOut，LeavePGroupsOut，LeaveOneOut，LeavePOut
+- 数据集划分方法——随机划分法：ShuffleSplit，GroupShuffleSplit，StratifiedShuffleSplit
+
+[参考-sklearn数据集划分](https://www.cnblogs.com/cmybky/p/11772655.html)
+
+#### K-fold cross validation (model_selection.KFold)
+#### 分层K-fold (model_selection.StratifiedKFold)
+保持正例和负例的比例不变
+#### GroupKFold
+GroupKFold是KFold的变化形式
+GroupKFold 会保证同一个group的数据不会同时出现在训练集和测试集上。因为如果训练集中包含了每个group的几个样例，可能训练得到的模型能够足够灵活地从这些样例中学习到特征，在测试集上也会表现很好。
+
+
+#### 留一法 leave one out (model_selection.LeaveOneOut)
+只用一个数据作为test集，其他的数据都作为训练集，并将此步骤重复N次（N为数据集的数据数量）。
+#### 留P法验证 Leave-p-out （model_selection.LeavePOut）
+有N个样本，将每P个样本作为测试样本，其它N-P个样本作为训练样本 排列组合，从N个选P个不同组合；当P=1的时候，就变成了留一法
+
 
 ### 模型评估 - 代价曲线
 
