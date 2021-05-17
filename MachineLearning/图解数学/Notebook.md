@@ -101,6 +101,8 @@ Frobenius 范数，简称F-范数，是一种矩阵范数
 更多参考：
 [向量与矩阵的范数（比较1-范数、2-范数、无穷范数、p-范数、L0范数 和 L1范数等）](https://blog.csdn.net/zaishuiyifangxym/article/details/81673491)
 
+[椭球范数，谱范数，F范数等](https://www.bilibili.com/video/BV1G7411Z7TM/)
+
 ## 核(kernel)与象(Image)
 https://www.cnblogs.com/marsggbo/p/10129075.html
 
