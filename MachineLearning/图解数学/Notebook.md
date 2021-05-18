@@ -103,10 +103,16 @@ Frobenius 范数，简称F-范数，是一种矩阵范数
 
 [椭球范数，谱范数，F范数等](https://www.bilibili.com/video/BV1G7411Z7TM/)
 
+> 两个向量之间的距离可以是||a-b||,两个矩阵之间的距离||A-B||F范数
+
+> 矩阵的F范数不同于矩阵的2范数（谱范数）
+
 ## 核(kernel)与象(Image)
 https://www.cnblogs.com/marsggbo/p/10129075.html
 
 > Image的集合成为Range
+
+> 核空间=零空间、像空间
 
 ## 微积分
 
