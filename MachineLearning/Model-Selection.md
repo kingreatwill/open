@@ -226,6 +226,8 @@ plt.show()
 #### 混淆矩阵（confusion_matrix）
 https://blog.csdn.net/SmartShylyBoy/article/details/91360934
 
+[混淆矩阵,ROC,AUC](https://www.bilibili.com/video/BV1qf4y1x7kB?p=18)
+
 ## 超参调优
 [Optuna - 超参数自动化调优框架](https://github.com/optuna/optuna)
 

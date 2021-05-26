@@ -13,6 +13,15 @@
 
 https://arxiv.org/pdf/2006.03511.pdf
 
+人工智能企图通过图灵测试的方法：
+1. 扮演智商低下者
+2. 不正面回答复杂问题
+3. 引导话题朝有所准备的领域
+
+人类必须用自己的智能来研究所谓的人工智能，不识庐山真面目，只缘身在此山中
+
+当人工智能越来越智能，那么人就越来越人工智能
+
 ## 工业界和学术界
 工业界和学术界最大的区别，工业界追求的是产品和利润，学术界关心的是技术；工业届着重有用更务实，学术届着眼未来更看重创新。
 
@@ -35,6 +44,8 @@ https://arxiv.org/pdf/2006.03511.pdf
 [机器学习相关教程](https://github.com/MorvanZhou/tutorials)
 [动手学深度学习](https://github.com/d2l-ai/d2l-zh)
 深度学习框架也在传播深度学习思想的过程中扮演了重要角色。Caffe、 Torch和Theano这样的第一代框架使建模变得更简单。许多开创性的论文都用到了这些框架。如今它们已经被TensorFlow（经常是以高层API Keras的形式被使用）、CNTK、 Caffe 2 和Apache MXNet所取代。第三代，即命令式深度学习框架，是由用类似NumPy的语法来定义模型的 Chainer所开创的。这样的思想后来被 PyTorch和MXNet的Gluon API 采用，后者也正是本书用来教学深度学习的工具
+
+[《动手学深度学习》(PyTorch版)](https://github.com/ShusenTang/Dive-into-DL-PyTorch)
 
 [机器学习google手册](https://developers.google.cn/machine-learning/crash-course/)
 
