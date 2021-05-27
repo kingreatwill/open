@@ -30,6 +30,10 @@
 
 
 许多常见的数字特征工程技术：量化，缩放（又称规范化），对数变换（一种功率变换），交互特征以及处理大量交互特征所需的特征选择技术。
+## 内核近似 Kernel Approximation
+[sklearn.kernel_approximation](https://scikit-learn.org/stable/modules/kernel_approximation.html#kernel-approximation)
+
+属于非线性变换，一般是升维，可以使海量数据进行非线性转换，从而可以使用线性方法进行训练，由于内核近似没有可解释性（无道理无经验的转换），所以建议将结果和使用精确的内核方法的结果进行比较。
 
 ## 非线性变换
 ### QuantileTransformer
