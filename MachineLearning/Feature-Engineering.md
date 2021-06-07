@@ -640,7 +640,8 @@ SFS与RFE和SelectFromModel的不同之处在于，SFS不需要基础模型公�
     - LDA：线性判别分析，有监督，尽可能容易被区分（高内聚、低耦合）<sup>[cnblog 机器学习中的数学(4)-线性判别分析（LDA）, 主成分分析(PCA)](https://www.cnblogs.com/LeftNotEasy/archive/2011/01/08/lda-and-pca-machine-learning.html)</sup>。
     - SVD：奇异值分解，可用于PCA、推荐、潜在语义索引LSI，可并行，可解释性不强
 - 非线性方法：
-    - LLE：局部线性嵌入，非线性降维（基于图），保持原有流行结构
+    - LLE（Locally Linear Embedding）：局部线性嵌入，非线性降维（基于图），保持原有流行结构（流行学习）
+    - Isomap等度量映射（流行学习）
     - LE：拉普拉斯特征映射，非线性（基于图），相互有联系的点尽可能靠近
     - t-SNE：t分布随机临近嵌入，将欧几里得距离转为条件概率表达点与点之间的相似度<sup>[datakit t-SNE完整笔记](http://www.datakit.cn/blog/2017/02/05/t_sne_full.html)</sup>。
     - AE：自动编码器
