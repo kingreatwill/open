@@ -674,6 +674,17 @@ model.feature_importances_ 据特征的重要性，这是最常用的降维方�
 12. UMAP
 适用于高维数据，与t-SNE相比，这种方法速度更快。
 
+### Manifold learning流行学习（非线性降维）-sklearn.manifold
+
+[浅谈流形学习](https://blog.pluskid.org/?p=533)
+
+#### sklearn.manifold
+Multidimensional scaling
+Isomap Embedding
+Locally Linear Embedding
+Spectral embedding
+t-distributed Stochastic Neighbor Embedding
+
 ### Linear Discriminant Analysis,LDA
 > Linear Discriminant Analysis,LDA  discriminant_analysis.LinearDiscriminantAnalysis可以直接用来分类，transform用来获取降维后的数据
 
