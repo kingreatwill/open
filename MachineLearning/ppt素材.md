@@ -589,7 +589,9 @@ MSE 均方差
 
 一般图像处理使用2DConvolution层
 
-https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8ETensorFlow%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98-%E6%BA%90%E7%A0%81%E5%92%8CPPT/lesson38-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C
+[卷积神经网络简介](https://github.com/zergtant/pytorch-handbook/blob/master/chapter2/2.4-cnn.ipynb)
+
+[卷积神经网络](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8ETensorFlow%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98-%E6%BA%90%E7%A0%81%E5%92%8CPPT/lesson38-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C)
 
 #### 卷积核
 
