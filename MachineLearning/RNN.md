@@ -74,6 +74,8 @@ backpropagation through time(BPTT; Williams and Zipser, 1995; Werbos, 1990).
 
 
 ### LSTM算法(Long Short Term Memory, 长短期记忆网络 ) 
+[长短期记忆（LSTM）](https://tangshusen.me/Dive-into-DL-PyTorch/#/chapter06_RNN/6.8_lstm)
+
 一个LSTM单元
 ![](img/rnn_lstm_10.jpg)
 > Figure 4.2: LSTM memory block with one cell. The three gates are nonlinear summation units that collect activations from inside and outside the block,and control the activation of the cell via multiplications (small black circles).
@@ -129,6 +131,8 @@ GRU是2014年提出的一种LSTM改进算法. 它将忘记门和输入门合并�
 
 ![](img/rnn_gru_01.jpg)
 
+> [门控循环单元（GRU）](https://tangshusen.me/Dive-into-DL-PyTorch/#/chapter06_RNN/6.7_gru)
+
 ### 双向循环神经网络Bidirectional Networks(BRNN)
 RNN和LSTM都只能依据之前时刻的时序信息来预测下一时刻的输出，但在有些问题中，当前时刻的输出不仅和之前的状态有关，还可能和未来的状态有关系。比如预测一句话中缺失的单词不仅需要根据前文来判断，还需要考虑它后面的内容，真正做到基于上下文判断。BRNN有两个RNN上下叠加在一起组成的，输出由这两个RNN的状态共同决定。BRNN结构图如图所示。
 ![](img/rnn_brnn_01.jpg)
@@ -144,6 +148,8 @@ RNN和LSTM都只能依据之前时刻的时序信息来预测下一时刻的输�
 
 2. 我们从右向左移动，从最后一个时间步骤开始计算值，一直持续到到达最终时间步骤为止；
 
+#### 双向LSTM神经网络 (BLSTM or BiLSTM)
+总的来说，BLSTM总体上还是优于其它网络
 
 ## 参考
 [循环神经网络(RNN)模型与前向反向传播算法](https://www.cnblogs.com/pinard/p/6509630.html)
