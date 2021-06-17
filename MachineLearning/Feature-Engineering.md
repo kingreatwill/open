@@ -753,6 +753,16 @@ NMF(Non-negative matrix factorization)，即对于任意给定的一个非负矩
 ### Dictionary Learning字典学习
 https://scikit-learn.org/stable/modules/decomposition.html#dictionary-learning
 #### decomposition.SparseCoder
+稀疏编码算法是一种无监督学习方法，它用来寻找一组“超完备”基向量来更高效地表示样本数据。稀疏编码算法的目的就是找到一组基向量 ，使得我们能将输入向量表示为这些基向量的线性组合。
+
+假设有一组基向量 $\phi_i$，将输入向量$X$表示为这些基向量的线性组合：
+$$X = \sum_{i=1}^k a_i \phi_i  $$
+
+
+稀疏编码（Sparse Coding）的思想是通过码本（Codebook）${\{\phi_i\}}_{i=1}^K ,\phi_i \in R^d$的线性组合来重构输入变量$x \in R^d$，而每个码本的权重系数构成一个向量$a \in R^m$。由于在重构时一般只会用到码本中少数的码字，因此向量$a$通常是稀疏的。稀疏编码可以通过最小化一下目标函数得到：
+
+$$ \mathop{min} \limits_{a} ||x-\sum_{i=1}^K a_i \phi_i||^2 + \lambda ||a||_1$$
+
 #### decomposition.DictionaryLearning
 #### decomposition.MiniBatchDictionaryLearning
 
