@@ -763,6 +763,8 @@ $$X = \sum_{i=1}^k a_i \phi_i  $$
 
 $$ \mathop{min} \limits_{a} ||x-\sum_{i=1}^K a_i \phi_i||^2 + \lambda ||a||_1$$
 
+[Autoencoder ,Sparse Coding ,Sparse autoencoder 简介](https://blog.csdn.net/whiteinblue/article/details/34168517)
+
 #### decomposition.DictionaryLearning
 #### decomposition.MiniBatchDictionaryLearning
 
