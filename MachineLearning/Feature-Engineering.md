@@ -686,7 +686,7 @@ Spectral embedding
 t-distributed Stochastic Neighbor Embedding
 
 ### Linear Discriminant Analysis,LDA
-> Linear Discriminant Analysis,LDA  discriminant_analysis.LinearDiscriminantAnalysis可以直接用来分类，transform用来获取降维后的数据
+> Linear Discriminant Analysis,LDA  discriminant_analysis.**LinearDiscriminantAnalysis可以直接用来分类，transform用来获取降维后的数据**
 
 > Quadratic Discriminant Analysis,QDA discriminant_analysis.QuadraticDiscriminantAnalysis不具有LDA和PCA的降维功能,只能用来做分类预测
 

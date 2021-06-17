@@ -61,7 +61,8 @@ https://www.jianshu.com/c/5aca64d148d5
 https://github.com/josephmisiti/awesome-machine-learning
 
 ![](../img/机器学习.jpeg)
-
+[scikit-learn algorithm cheat sheet](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
+![](https://scikit-learn.org/stable/_static/ml_map.png)
 ![](img/ml-02.png)
 ![](img/AI-Timeline-What-is-Deep-Learning-Edureka-1.png)
 ![](img/CBIdeeplearn.png)
