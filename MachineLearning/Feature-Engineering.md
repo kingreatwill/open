@@ -601,6 +601,21 @@ Recursive feature elimination
 > 参数estimator为基模型
 > 参数n_features_to_select为选择的特征个数
 
+```
+from sklearn.linear_model import LinearRegression
+
+from sklearn.feature_selection import RFE
+
+from sklearn import datasets
+
+lreg = LinearRegression()
+
+rfe = RFE(lreg, 10)
+
+rfe = rfe.fit_transform(df, train.Item_Outlet_Sales)
+```
+我们需要指定算法和要选择的特征数量，然后返回反向特征消除输出的变量列表。此外，rfe.ranking_可以用来检查变量排名。
+
 #### feature_selection.RFECV
 Recursive feature elimination with cross-validation
 
@@ -616,6 +631,12 @@ https://scikit-learn.org/stable/modules/feature_selection.html#l1-based-feature-
 
 #### 基于树的特征选择 (Tree-based feature selection)
 基于树的预测模型（见 sklearn.tree 模块，森林见 sklearn.ensemble 模块）能够用来计算特征的重要程度，因此能用来去除不相关的特征（结合 sklearn.feature_selection.SelectFromModel）:
+
+##### 随机森林（Random Forest）
+ensemble.RandomForestClassifier
+ensemble.RandomForestRegressor
+
+feature_importances_ 属性返回重要特征，可以从中挑选
 
 ### SequentialFeatureSelector - 基于机器学习模型 Wrapper
 循序特征选择。
@@ -792,12 +813,20 @@ $$ \mathop{min} \limits_{a} ||x-\sum_{i=1}^K a_i \phi_i||^2 + \lambda ||a||_1$$
 
 #### random_projection.GaussianRandomProjection
 #### random_projection.SparseRandomProjection
+### 随机森林（Random Forest）
+ensemble.RandomForestClassifier
+ensemble.RandomForestRegressor
 
+feature_importances_ 属性返回重要特征，可以从中挑选
+
+### neighbors.NeighborhoodComponentsAnalysis 近邻成分分析
+
+[近邻成分分析（Neighbourhood Component Analysis，NCA）](https://zhuanlan.zhihu.com/p/48371593)是由Jacob Goldberger和Geoff Hinton等大佬们在2005年发表的一项工作，属于度量学习（Metric Learning）和降维（Dimension Reduction）领域。
 ### cluster.FeatureAgglomeration 聚集特征
 
 > 对特征聚类
 
 ### Autoencoder
-autoencoder是一种无监督的学习算法，主要用于数据的降维或者特征的抽取，在深度学习中，autoencoder可用于在训练阶段开始前，确定权重矩阵W的初始值。
+autoencoder是一种无监督的学习算法，主要用于数据的降维或者特征的抽取，在深度学习中，autoencoder可用于在训练阶段开始前，确定权重矩阵W的初始值。然而，受模型复杂度、训练集数据量以及数据噪音等问题的影响，通过Auto-encoder得到的初始模型往往存在过拟合的风险。关于Auto-encoder的介绍请参考：[自动编码器（Auto-encoder）](https://blog.csdn.net/n1007530194/article/details/78369429#%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E6%9C%BAauto-encoder-ae)。
 
 [几种AutoEncoder原理](https://blog.csdn.net/leida_wt/article/details/85052299)
