@@ -639,6 +639,8 @@ ensemble.RandomForestRegressor
 feature_importances_ 属性返回重要特征，可以从中挑选
 
 ### SequentialFeatureSelector - 基于机器学习模型 Wrapper
+顺序特征选择器（SequentialFeatureSelector (SFS)）是一种基于贪心机制的特征选择方法
+
 循序特征选择。
 
 循序向前特征选择：Sequential Forward Selection，SFS
