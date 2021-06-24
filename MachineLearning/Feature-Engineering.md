@@ -832,3 +832,13 @@ feature_importances_ 属性返回重要特征，可以从中挑选
 autoencoder是一种无监督的学习算法，主要用于数据的降维或者特征的抽取，在深度学习中，autoencoder可用于在训练阶段开始前，确定权重矩阵W的初始值。然而，受模型复杂度、训练集数据量以及数据噪音等问题的影响，通过Auto-encoder得到的初始模型往往存在过拟合的风险。关于Auto-encoder的介绍请参考：[自动编码器（Auto-encoder）](https://blog.csdn.net/n1007530194/article/details/78369429#%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E6%9C%BAauto-encoder-ae)。
 
 [几种AutoEncoder原理](https://blog.csdn.net/leida_wt/article/details/85052299)
+
+堆叠自动编编码器是深度学习领域常用的一个深度学习模型，
+堆叠自编码（SAE）是堆叠的多个AE，
+深度自编码器（DAE）是多层的AE
+
+### sklearn.neural_network.BernoulliRBM
+输入的特征必须是0-1分布
+
+受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)
+受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。
