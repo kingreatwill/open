@@ -51,4 +51,6 @@ http://pnr.sz.gov.cn/
 
 > （2020年5月28日第十三届全国人民代表大会第三次会议通过）
 
+[全球各个国家商标数据库地址](https://mp.weixin.qq.com/s/EDuFpmGo0AV1tlBF6UMqbA)
+
 
