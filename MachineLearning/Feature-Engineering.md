@@ -826,7 +826,7 @@ feature_importances_ 属性返回重要特征，可以从中挑选
 [近邻成分分析（Neighbourhood Component Analysis，NCA）](https://zhuanlan.zhihu.com/p/48371593)是由Jacob Goldberger和Geoff Hinton等大佬们在2005年发表的一项工作，属于度量学习（Metric Learning）和降维（Dimension Reduction）领域。
 ### cluster.FeatureAgglomeration 聚集特征
 
-> 对特征聚类
+> 对特征聚类，把那些效果或行为相似的特征起来，达到降维的目的。
 
 ### Autoencoder
 autoencoder是一种无监督的学习算法，主要用于数据的降维或者特征的抽取，在深度学习中，autoencoder可用于在训练阶段开始前，确定权重矩阵W的初始值。然而，受模型复杂度、训练集数据量以及数据噪音等问题的影响，通过Auto-encoder得到的初始模型往往存在过拟合的风险。关于Auto-encoder的介绍请参考：[自动编码器（Auto-encoder）](https://blog.csdn.net/n1007530194/article/details/78369429#%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E6%9C%BAauto-encoder-ae)。

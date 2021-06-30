@@ -65,6 +65,10 @@ Android 包| Soon |No
 Conemu是windows下的一个终端工具,类似于cmder
 https://github.com/Maximus5/ConEmu
 
+### electerm
+Terminal/ssh/sftp client(linux, mac, win)
+https://github.com/electerm/electerm
+
 ## 其它
 [PC版微信/QQ/TIM防撤回补丁,微信多开工具](https://github.com/huiyadanli/RevokeMsgPatcher)
 

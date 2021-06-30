@@ -33,7 +33,9 @@ nano ~/.ssh/authorized_keys     # Ctrl+O 保存   Ctrl+X 退出
 
 ### MobaXterm
 全能终端神器
-
+### electerm
+Terminal/ssh/sftp client(linux, mac, win)
+https://github.com/electerm/electerm
 ### terminus
 https://github.com/Eugeny/terminus
 
@@ -44,3 +46,9 @@ https://fishshell.com/
 ### Putty、telnet
 
 ### OpenSSH
+
+### webssh
+https://pypi.org/project/webssh/
+在linux机器上安装python环境，并且使用命令pip3 install webssh,装上这个模块
+
+我们就可以在浏览器web页面登录我们的linux机器
