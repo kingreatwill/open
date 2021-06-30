@@ -11,3 +11,5 @@
 [hello-algorithm](https://github.com/geekxh/hello-algorithm)
 
 [动画模拟算法](https://github.com/chefyuan/algorithm-base)
+
+[机器学习算法的动画可视化](https://davpinto.github.io/ml-simulations)
