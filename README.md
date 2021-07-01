@@ -1,3 +1,54 @@
+# 维基百科
+https://www.wikipedia.org/
+https://zh.wikipedia.org/zh/
+https://zh.wikipedia.org/zh-cn/
+
+http://www.wikiwand.com/
+
+
+
+https://www.wanweibaike.com/	部分内容进行改编以符合中国大陆政策	
+https://wiwiki.kfd.me
+https://chi.jinzhao.wiki/wiki/	支持多种语言	
+https://zwiki.liuxfe.com/
+https://kxxtwikid.herokuapp.com 	账号，密码: admin
+https://en.wanweibaike.com/
+https://en.jinzhao.wiki/wiki/Main_Page
+http://en.wiki.sxisa.org/wiki/Main_Page	
+
+https://ja.jinzhao.wiki/wiki/
+
+http://ja.wiki.sxisa.org/wiki/
+
+镜像地址：
+英文： https://en.wikimirror.ga
+中文： https://zh.wikimirror.ga
+日文： https://ja.wikimirror.ga
+
+多语言版本的镜像网址：
+中文版： https://zhwiki.netlify.app
+英文版： https://enwiki.netlify.app
+日文版： https://jawiki.netlify.app
+
+https://zh.wikiredia.com/
+https://www.tw.wiiaa.top
+https://zh.wikipedia.wikicn.icu
+
+以下是能打开的:
+
+https://en.jinzhao.wiki/wiki/Main_Page
+https://encyclopedia.thefreedictionary.com/
+
+
+Kiwix让您能够随身携带完整的维基百科！无论您搭乘船只，还是身处偏僻的地区，抑或身陷囹圄，Kiwix都使您能够接触到全人类的知识。您不需要连接因特网，因为所有的资料都储存在您的电脑，优盘或者DVD中！
+下载软件：https://www.kiwix.org/en/download/
+下载离线文件：https://download.kiwix.org/zim/ 
+在里面找到中文的，完整版的要16G(wikipedia_zh_all_maxi_2021-03.zim)
+英文版完整的要80多G（wikipedia_en_all_maxi_2021-03.zim）
+github:https://github.com/kiwix
+
+[维基百科Wikipedia镜像网站列表 | 更新](https://zgc261.com/wikipedia.html)
+
 # 学习笔记
 
 ![](img/var-named.jpg)
