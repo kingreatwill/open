@@ -48,7 +48,7 @@ https://tianchi.aliyun.com/dataset
     https://tianchi.aliyun.com/dataset/dataDetail?dataId=39384
 
 - 医疗
-
+[医学影像方向|会议&期刊&比赛介绍](https://mp.weixin.qq.com/s/ft-xJCIIKDRA4y5TKfJQjw)
     - 脊椎疾病病理数据集
     https://tianchi.aliyun.com/dataset/dataDetail?dataId=79463
 
