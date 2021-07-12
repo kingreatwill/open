@@ -178,6 +178,9 @@ VizTracer 是一个这样的工具，它通过跟踪和可视化 Python 代码�
 ### lux
 https://github.com/lux-org/lux
 
+### PyXLL-Jupyter
+[将Jupyter Notebook嵌入到Excel中](https://github.com/pyxll/pyxll-jupyter)
+
 ## 流程图
 https://github.com/mingrammer/diagrams
 
@@ -193,6 +196,9 @@ https://github.com/python-openxml/python-docx
 https://foss.heptapod.net/openpyxl/openpyxl
 https://pypi.org/project/openpyxl/
 
+[将Jupyter Notebook嵌入到Excel中](https://github.com/pyxll/pyxll-jupyter)
+[在web中使用Python编辑excel](https://github.com/ricklamers/gridstudio)
+[基于python开发的excel插件 - sqlcelpy(数据分析) ](https://sqlcel.com/)
 数据管理的库
 [Tablib](https://github.com/jazzband/tablib) 是一个与表格格式数据有关的Python库，允许导入、导出、管理表格格式数据。
 Output formats supported:
