@@ -6,7 +6,7 @@
 [数据可视化的开源方案: Superset vs Redash vs Metabase (一)](https://zhuanlan.zhihu.com/p/33164027)
 ## Superset
 Superset最初是由Airbnb的数据团队开源的，目前已进入Apache Incubator(孵化器)，算是明星级的开源项目。
-https://github.com/apache/incubator-superset  python 29.2k
+https://github.com/apache/superset python 39.4k
 https://superset.incubator.apache.org/
 
 支持数据库：https://superset.incubator.apache.org/#databases
@@ -18,7 +18,7 @@ docker run --detach --name superset -p 8088:8088 amancevice/superset:0.36.0
 docker exec -it superset superset-init
 
 ## Redash
-https://github.com/getredash/redash python 16.7k
+https://github.com/getredash/redash python 19.1k
 https://redash.io/
 
 https://redash.io/help/data-sources/querying/supported-data-sources
@@ -26,7 +26,7 @@ https://redash.io/help/data-sources/querying/supported-data-sources
 Redash 比 Superset 支持的数据库多
 
 ## Metabase
-https://github.com/metabase/metabase  Clojure 21.3k
+https://github.com/metabase/metabase  Clojure 25.3k
 https://www.metabase.com/
 
 ## Davinci
