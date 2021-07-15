@@ -4,6 +4,10 @@
 Linux最常用命令：简单易学，但能解决95%以上的问题
 https://www.toutiao.com/a6763990899924926989/
 
+
+### osquery
+使用SQL查询你的 Linux 操作系统信息
+[像查询数据库一样查询你的 Linux 操作系统信息](https://linux.cn/article-13578-1.html)
 ### bash-completion 自动补齐
 yum install -y bash-completion
 安装成功后，得到文件为 /usr/share/bash-completion/bash_completion，如果没有这个文件，则说明系统上没有安装这个工具。
