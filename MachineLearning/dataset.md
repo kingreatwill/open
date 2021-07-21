@@ -202,6 +202,8 @@ https://ai.tencent.com/ailab/nlp/en/data/Tencent_AILab_ChineseEmbedding.tar.gz
 
 https://chinesenlp.xyz/#/zh/
 
+[中文NLP资源库](https://github.com/fighting41love/funNLP)
+
 ## MNIST
 MINST数据库是由Yann提供的手写数字数据库文件，其官方下载地址http://yann.lecun.com/exdb/mnist/
 
