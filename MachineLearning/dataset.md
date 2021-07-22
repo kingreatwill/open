@@ -1,4 +1,4 @@
-
+[kaggle](https://www.kaggle.com/)
 
 [HQ open datasets](https://github.com/awesomedata/awesome-public-datasets)
 
@@ -6,7 +6,7 @@
 
 [deepmind-research](https://github.com/deepmind/deepmind-research)
 
-https://cocodataset.org/#download
+[cocodataset](https://cocodataset.org/#download)
 
 ## 一键搜索，免费获取，直接链接到原始数据库，帮你快速找到合适的数据集。
 根据「类别」，这个网站共分为18类，比如Humans、Geospatial、Autonomous Cars、Retail、3D等。
@@ -384,4 +384,7 @@ https://github.com/ChaofWang/Awesome-Super-Resolution#datasets
 - 论文：非深度学习方法、深度学习方法（2014-2020）
 - workshop论文
 - 综述
+
+
+[免费数据集下载（很全面）](https://blog.csdn.net/u012735708/article/details/82682673)
 
