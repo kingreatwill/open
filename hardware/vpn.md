@@ -34,3 +34,17 @@ nohup ./sk_linux_64 -token=xxx &
 ps -ef | grep sk_linux_64
 
 https://www.toutiao.com/i6883016451180265998/ 闪库mac版本启动命令教程
+
+### FastTunnel
+https://github.com/FastTunnel/FastTunnel
+类似花生壳
+
+- 家中建站
+- 微信开发
+- 远程桌面
+- erp互通
+- svn代码仓库
+- 端口转发
+- iot物联网
+- 联机游戏
+- 等等场景，不局限以上

@@ -19,6 +19,8 @@ online
 - [JSLinux](https://bellard.org/jslinux/) - [JSLinux](http://jslinux.org/) Run Linux or other Operating Systems in your browser! [open](https://github.com/levskaya/jslinux-deobfuscated)
 
 
+- [Windows 11](https://github.com/blueedgetechno/windows11)
+
 ## IDE
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) A browser based code editor.[open](https://github.com/microsoft/monaco-editor)
 
