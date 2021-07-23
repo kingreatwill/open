@@ -6,6 +6,7 @@
 https://tangyulu.com/17.htm
 http://idea.medeming.com/jihuoma/
 http://idea.studycoder.com/
+http://idea.javatiku.cn/
 
 [IDEA 2020.3激活到2089年方法jetbrains-agent-latest.jar](http://googlevip8.com/post/145)
 
