@@ -801,7 +801,7 @@ $$ \mathop{min} \limits_{a} ||x-\sum_{i=1}^K a_i \phi_i||^2 + \lambda ||a||_1$$
 > 在线变分贝叶斯算法的潜在狄利克雷分配
 > Dirichlet分布
 > 统计学习方法的第二十章
-
+### cross_decomposition 交叉分解
 ### random_projection 随机投影
 
 数据集乘以一个随机矩阵，以减少其维度的数量
