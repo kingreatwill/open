@@ -1,8 +1,6 @@
 # regular expression 正则表达式
 
-[常用的正则表达式](https://github.com/cdoco/common-regex)
-
-[正则表达式30分钟入门教程](https://deerchao.cn/tutorials/regex/regex.htm)
+## 工具
 [图解正则表达式 - ok+](https://regexper.com/)
 https://gitlab.com/javallone/regexper-static
 
@@ -40,15 +38,34 @@ https://pan.baidu.com/s/1mENJB-YFUfkiM1-WC2-ycg
 
 [PowerGREP  Windows grep 收费](https://www.powergrep.com/)
 
-[不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
-
 [.NET Regex - 不更新了](http://regexstorm.net/)
 https://github.com/lonekorean/regex-storm
 
 
-[学习正则表达式](https://github.com/ziishaned/learn-regex)
-
+[正则表达式-不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
 [工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
+
+
+## 教程
+[JavaScript RegExp](https://learnbyexample.github.io/learn_js_regexp/anchors.html)
+[Python re(gex)](https://learnbyexample.github.io/py_regular_expressions/buy.html)
+[Regular Expressions](https://github.com/EbookFoundation/free-programming-books/blob/master/books/free-programming-books.md#regular-expressions)
+
+
+
+[正则表达式-不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
+
+[常用的正则表达式](https://github.com/cdoco/common-regex)
+[正则表达式30分钟入门教程](https://deerchao.cn/tutorials/regex/regex.htm)
+[学习正则表达式](https://github.com/ziishaned/learn-regex)
+[Regex 正则表达式入门](https://www.cnblogs.com/codeshell/p/12825243.html)
+[工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
+
+
+## 其它
+vs code 插件any-rule   F1
+
+
 
 ```go
 package main
@@ -71,8 +88,3 @@ func main() {
 	fmt.Printf("by name: %s %s\n", result["first"], result["second"])
 }
 ```
-
-
-[Regex 正则表达式入门](https://www.cnblogs.com/codeshell/p/12825243.html)
-
-vs code 插件any-rule   F1
