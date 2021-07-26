@@ -120,6 +120,10 @@ https://github.com/CarterCommunity/Carter
 ## dotnet编译
 https://github.com/MichalStrehovsky/bflat
 
+## 数学表达式计算math expressions
+https://github.com/loresoft/Calculator
+https://github.com/mariuszgromada/MathParser.org-mXparser
+
 ## UI
 https://github.com/oxyplot/oxyplot
 
