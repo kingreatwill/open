@@ -117,6 +117,9 @@ https://www.eziriz.com/reactor_download.htm
 新的路由框架，类似gin路由
 https://github.com/CarterCommunity/Carter
 
+## dotnet编译
+https://github.com/MichalStrehovsky/bflat
+
 ## UI
 https://github.com/oxyplot/oxyplot
 

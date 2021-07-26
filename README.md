@@ -64,6 +64,10 @@ github:https://github.com/kiwix
 
 https://www.wanweibaike.com/
 
+## 机器学习
+https://www.ml-science.com/
+https://www.javatpoint.com/machine-learning
+
 ## kubernetes
 
 中文文档1：https://kubernetes.io/zh/docs/
