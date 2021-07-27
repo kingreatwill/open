@@ -1,3 +1,5 @@
+# Data Rich, Information Poor
+
 https://github.com/heibaiying/BigData-Notes
 
 

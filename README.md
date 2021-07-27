@@ -1,4 +1,5 @@
-# 维基百科
+# 学习资源
+## 维基百科
 https://www.wikipedia.org/
 https://zh.wikipedia.org/zh/
 https://zh.wikipedia.org/zh-cn/
@@ -49,6 +50,17 @@ github:https://github.com/kiwix
 
 [维基百科Wikipedia镜像网站列表 | 更新](https://zgc261.com/wikipedia.html)
 
+## 学术
+Google Scholar（谷歌学术搜索）
+[谷歌学术镜像（用于找出文章的DOI号）](https://gfsoso.99lb.net/)
+[sci-hub（利用DOI号，免费下载文章）](https://sci-hub.shop/)
+[参考](https://www.zhihu.com/topic/19653450/top-answers)
+
+[百度学术](https://xueshu.baidu.com/)
+
+## 其它
+[权威数据挖掘网站kdnuggets](https://www.kdnuggets.com/)
+[数据集仓库UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
 # 学习笔记
 
 ![](img/var-named.jpg)

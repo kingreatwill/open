@@ -7,7 +7,7 @@
 [deepmind-research](https://github.com/deepmind/deepmind-research)
 
 [cocodataset](https://cocodataset.org/#download)
-
+[数据集仓库UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
 ## 一键搜索，免费获取，直接链接到原始数据库，帮你快速找到合适的数据集。
 根据「类别」，这个网站共分为18类，比如Humans、Geospatial、Autonomous Cars、Retail、3D等。
 
