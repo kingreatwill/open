@@ -1,6 +1,18 @@
 ## chrome
 
 ## VS Code
+
+### Debug Visualizer
+- JavaScript/TypeScript/... using node/node2/extensionHost/chrome/pwa-chrome/pwa-node debug adapter: ⭐ Full Support
+- Dart/Flutter using dart debug adapter: ✅ Basic Support
+- Go using go (Delve) debug adapter: ✅ Basic Support
+- Python using python debug adapter: ✅ Basic Support
+- C# using coreclr debug adapter: ✅ Basic Support (work in progress for Full Support)
+- PHP using php debug adapter: ✅ Basic Support
+- Java using java debug adapter: ✅ Basic Support
+- C++ using cppdbg debug adapter: ✅ Basic Support
+- Swift using lldb debug adapter: ✅ Basic Support
+- Rust using lldb debug adapter: ✅ Basic Support
 ### 正则表达式 any rule
 
 

@@ -9,7 +9,7 @@ https://github.com/CJex/regulex
 
 
 [正则表达式工具 - ok+](http://tool.chinaz.com/regex/)
-
+[Regex Generator正则表达式生成器 - ok+](https://regex-generator.olafneumann.org/)
 
 [正则表达式工具 - good](https://regexr.com/)
 https://github.com/gskinner/regexr/
@@ -17,9 +17,11 @@ https://github.com/gskinner/regexr/
 [regex101 - good++](https://regex101.com/)
 https://github.com/firasdib/Regex101
 
+[The Regular Expression Visualizer可视化](https://blog.robertelder.org/regular-expression-visualizer/)
 
+[在线正则表达式工具](https://www.regextester.com/)
 [在线正则表达式](http://www.regexe.com/)
-
+[在线正则表达式工具](https://www.computerhope.com/cgi-bin/text-tool.pl)
 [正则表达式教程 - Regex Tutorial](http://www.regular-expressions.info/wordboundaries.html)
 
 
@@ -44,7 +46,7 @@ https://github.com/lonekorean/regex-storm
 
 [正则表达式-不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
 [工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
-
+[.NET regular expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
 
 ## 教程
 [JavaScript RegExp](https://learnbyexample.github.io/learn_js_regexp/anchors.html)
