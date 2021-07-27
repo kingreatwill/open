@@ -1,15 +1,48 @@
 ## 常用操作
+[命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/wsl-config)
+[命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/reference)
+> 在 Windows 10 1903 之前的版本中，使用wslconfig命令；wslconfig /? 
 
-WSL2的卸载操作如下：
-wslconfig /l
-从列表中选择要卸载的发行版（例如Ubuntu）并键入命令
-wslconfig /u Ubuntu
-设置默认
-wslconfig /s Ubuntu-18.04 
+- 列出分发版
+> 老版本命令：wslconfig /l
 
+`wsl -l , wsl --list`
+列出可用于 WSL 的 Linux 分发版。 如果列出了某个分发版，表示该分发版已安装且可供使用。
 
-以下命令不行
-`lxrun /uninstall /full`
+`wsl --list --all` 列出所有分发，包括当前不可用的分发。 这些分发版可能正在安装、卸载或处于损坏状态。
+
+`wsl --list --running` 列出当前正在运行的所有分发。
+
+`wsl -l -v` 显示wsl版本
+
+- 卸载
+> wslconfig /u Ubuntu
+
+`wsl --unregister DistributionName`
+
+- 设置默认
+> wslconfig /s Ubuntu-18.04 ， wslconfig /setdefault Ubuntu-20.04
+
+`wsl -s DistributionName, wsl --setdefault DistributionName`
+
+- 进入WSL 实例
+`wsl --terminate CentOS`
+`wsl -d CentOS`
+
+- 以特定用户的身份运行
+`wsl -u Username, wsl --user Username`
+
+- 更改分发的默认用户
+`DistributionName config --default-user Username`
+
+- 运行特定的分发版
+
+`wsl -d DistributionName, wsl --distribution DistributionName`
+
+- 文件相互访问
+使用`/mnt/c` 从 WSL 访问 Windows 文件
+使用 `\\wsl$` 从 Windows 访问 Linux 文件
+
 
 ## 图形界面的安装
 ### 第一种：X-WINDOWS的安装使用图形化界面
