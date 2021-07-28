@@ -4,6 +4,8 @@
 [TOC]
 # 机器学习
 
+Education is not the learning of facts, but the **training of the mind to think**.
+
 [MLPerf -AI芯片的基准测试](https://www.mlperf.org/)
 
 [DNN，CNN和RNN的12种主要dropout方法的数学和视觉解释](https://blog.csdn.net/m0_46510245/article/details/106600133)
