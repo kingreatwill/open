@@ -61,6 +61,7 @@ Google Scholar（谷歌学术搜索）
 ## 其它
 [权威数据挖掘网站kdnuggets](https://www.kdnuggets.com/)
 [数据集仓库UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
+
 # 学习笔记
 
 ![](img/var-named.jpg)
@@ -79,6 +80,8 @@ https://www.wanweibaike.com/
 ## 机器学习
 https://www.ml-science.com/
 https://www.javatpoint.com/machine-learning
+
+[机器学习+概率+线性代数](https://dragonwarrior15.github.io/statistical-learning-notes/)
 
 ## kubernetes
 
