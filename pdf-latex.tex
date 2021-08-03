@@ -1,10 +1,39 @@
 % 需要先安装[TeX Live](https://www.tug.org/texlive/)
 % [LaTeX入门——制作一份朴实无华的pdf文档](https://blog.csdn.net/DwenKing/article/details/105440347)
+% https://github.com/sailist/LaTeXdoc
 \documentclass[UTF8]{ctexart}
+
+\usepackage{url} % \url{www.baidu.com} or \href{http://www.overleaf.com}{Something Linky}
+\usepackage[backref]{hyperref} % 然后本身的\cite和\ref就都可以跳转了
+% 问题：\tableofcontents命令可以显示目录，但目录会自动加各级标题加上红色的边框，如何去掉这个红色的边框
+% 解决：\usepackage[backref]{hyperref} 的设置
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = black,    % Colour for external hyperlinks（url和href的颜色）
+  linkcolor    = black,    % Colour of internal links (tableofcontents的颜色)
+  citecolor    = red      % Colour of citations
+}
+
 \title{你好，world!}
 \author{Liam}
 \date{\today}
 \begin{document}
-\maketitle
-你好，world!
+    \maketitle
+    \tableofcontents % 在\maketitle 后加入\tableofcontents 自动生成目录。
+    \section{你好中国}
+    中国在 East Asia.
+    \subsection{Hello Beijing}
+    北京是 capital of China.
+    \subsubsection{Hello Dongcheng District}
+    \paragraph{Tian'anmen Square}
+    is in the center of Beijing
+    \subparagraph{Chairman Mao}
+    is in the center of 天安门广场。
+    \subsection{Hello 山东}
+    \paragraph{山东大学} is one of the best university in 山东。
+
+    \url{www.baidu.com}
+
+    \href{http://www.overleaf.com}{Something Linky}
 \end{document}
+
