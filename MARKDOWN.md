@@ -1,5 +1,4 @@
-Markdown 目录：
-
+还有更NB的[Rmarkdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio ，就像jupyter一样
 ## 上标、下标
 
 - 
