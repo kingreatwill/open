@@ -187,6 +187,7 @@ $$
 试试 ~~删除~~
 #### 外链的超链接
 试试外链的超链接：[我是外链的超链接](http://blog.csdn.net/gary_yan/article/details/78645303),markdown对链接的语法为：`[]()`,如：`[我是外链的超链接](http://blog.csdn.net/gary_yan/article/details/78645303)`
+
 ####页内的超链接
 试试页内的超链接：[我是页内的超链接](#jump_1)，注：你先要在要跳转的到地方放置一个类似：`<a id="jump_1">任意内容</a>`的锚点。由`id="jump_1" `来匹配。
 
@@ -230,6 +231,12 @@ $$
 我是注脚[^10]。点点就能知到我跳到了那儿。
 或跳到放置：`<a id="footnote-10">任意内容</a>`的地方,[^10] 对应`id="footnote-10"`
 
+方式2
+这是第一个有注脚的文本。^[注脚内容 第一条]
+
+#### 锚点
+<span id = "jump_span">跳转位置</span>
+[span锚点](#jump_span)
 
 ####  TOC
 看内容目录就是用`[toc]`生成的
@@ -293,7 +300,7 @@ dart,r,delphi,vb(vbnet),vbs(vbscript),vbscript-html
 [Md2All版本更新记录](https://www.cnblogs.com/garyyan/p/9238405.html)
 
 ***
-<a id="jump_1">我是页内跳转到的位置</a>
+<a id="jump_1">我是页内跳转到的位置</a>（在`<a id="jump_1">`之间跳来跳去）
 [^10]: 注脚跳转位置
 111
 
