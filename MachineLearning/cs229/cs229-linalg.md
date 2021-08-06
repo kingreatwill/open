@@ -859,44 +859,58 @@ $$
 
 ### 3.13 对称矩阵的特征值和特征向量
 
-通常情况下，一般的方阵的特征值和特征向量的结构可以很细微地表示出来。
-值得庆幸的是，在机器学习的大多数场景下，处理对称实矩阵就足够了，其处理的对称实矩阵的特征值和特征向量具有显着的特性。
+一般而言，一般方阵的特征值和特征向量的结构很难表征。 幸运的是，在机器学习的大多数情况下，处理对称实矩阵就足够了，其特征值和特征向量具有显着的性质。
 
-在本节中，我们假设$A$是实对称矩阵, 具有以下属性：
+在本节中，我们假设$A$是实对称矩阵, 具有以下性质：
 
-1. $A$的所有特征值都是实数。 我们用用$\lambda_1,\cdots,\lambda_n$表示。
+1. $A$的所有特征值都是实数。 我们用$\lambda_1,\cdots,\lambda_n$表示。
 
-2. 存在一组特征向量$u_1，\cdots u_n$，对于所有$i$，$u_i$是具有特征值$\lambda_{i}$和$b$的特征向量。$u_1，\cdots u_n$是单位向量并且彼此正交。
+2. 存在一组特征向量$u_1,\cdots,u_n$，对于所有$i$，$u_i$是特征值$\lambda_{i}$对应的特征向量。以及$u_1,\cdots,u_n$是单位向量并且彼此正交[^9]。
 
-设$U$是包含$u_i$作为列的正交矩阵：
+[^9]: 在数学上，我们有$\forall{i},Au_i = \lambda_iu_i, \|u_i\|_2 = 1, \text{and } \forall{j} \neq i, u_i^Tu_j = 0$。此外，我们注意到任意矩阵 A（而这里我们主要描述对称矩阵）的特征向量，并不是都满足彼此正交，因为特征值可以是重复的，特征向量也是如此。
+
+设$U$是包含$u_i$作为列的正交矩阵[^10]：
+
+[^10]: 这里为了符号的简单性，我们偏离了前几节中矩阵列的符号约定(本来是应该用$u^i$表示的，这里我们用$u_i$来表示)。
 
 $$
 U=\left[\begin{array}{cccc}{ |} & { |} & {} & { |} \\ {u_{1}} & {u_{2}} & {\cdots} & {u_{n}} \\ { |} & { |} & {} & { |}\end{array}\right]
+\label{5}\tag{5}
 $$
 
-设$\Lambda= diag(\lambda_1,\cdots,\lambda_n)$是包含$\lambda_1,\cdots,\lambda_n$作为对角线上的元素的对角矩阵。 使用 2.3 节的方程（2）中的矩阵 - 矩阵向量乘法的方法，我们可以验证：
+设$\Lambda= \operatorname{diag}(\lambda_1,\cdots,\lambda_n)$是包含$\lambda_1,\cdots,\lambda_n$作为对角线上的元素的对角矩阵。 使用 2.3 节的方程$\eqref{2}$中的矩阵 - 矩阵向量乘法的方法，我们可以验证：
 
 $$
-A U=\left[\begin{array}{cccc}{ |} & { |} & {} & { |} \\ {A u_{1}} & {A u_{2}} & {\cdots} & {A u_{n}} \\ { |} & { |} & {} & { |}\end{array}\right]=\left[\begin{array}{ccc}{ |} & { |} & { |} & { |}\\ {\lambda_{1} u_{1}} & {\lambda_{2} u_{2}} & {\cdots} & {\lambda_{n} u_{n}} \\ { |} & { |} & {|} & { |}\end{array}\right]=U \operatorname{diag}\left(\lambda_{1}, \ldots, \lambda_{n}\right)=U \Lambda
+A U=\left[\begin{array}{cccc}
+{ |} & { |} & {} & { |} \\
+{A u_{1}} & {A u_{2}} & {\cdots} & {A u_{n}} \\
+{ |} & { |} & {} & { |}\end{array}\right]=
+\left[\begin{array}{ccc}
+{ |} & { |} & { } & { |}\\
+{\lambda_{1} u_{1}} & {\lambda_{2} u_{2}} & {\cdots} & {\lambda_{n} u_{n}} \\
+{ |} & { |} & {} & { |}
+\end{array}\right]=
+U \operatorname{diag}\left(\lambda_{1}, \ldots, \lambda_{n}\right)=U \Lambda
 $$
 
 考虑到正交矩阵$U$满足$UU^T=I$，利用上面的方程，我们得到：
 
 $$
 A=AUU^T=U\Lambda U^T
+\label{6}\tag{6}
 $$
 
-这种$A$的新的表示形式为$U\Lambda U^T$，通常称为矩阵$A$的对角化。术语对角化是这样来的：通过这种表示，我们通常可以有效地将对称矩阵$A$视为对角矩阵 , 这更容易理解。关于由特征向量$U$定义的基础， 我们将通过几个例子详细说明。
+这种$A$的新的表示形式为$U\Lambda U^T$，通常称为矩阵$A$的**对角化**<span id="diagonalizing"></span>。术语对角化是这样来的：通过这种表示，我们通常可以有效地将对称矩阵$A$视为对角矩阵--这更容易理解--关于由特征向量$U$定义的基础， 我们将通过几个例子详细说明。
 
-**背景知识**：代表另一个基的向量。
+**背景知识：关于另一个基的向量**。
 
-任何正交矩阵$U=\left[\begin{array}{cccc}{ |} & { |} & {} & { |} \\ {u_{1}} & {u_{2}} & {\cdots} & {u_{n}} \\ { |} & { |} & {} & { |}\end{array}\right]$定义了一个新的属于$\mathbb {R}^{n}$的基（坐标系），意义如下：对于任何向量$x \in\mathbb{R}^{n}$都可以表示为$u_1，\cdots u_n$的线性组合，其系数为$x_1,\cdots x_n$：
+任何正交矩阵$U=\left[\begin{array}{cccc}{ |} & { |} & {} & { |} \\ {u_{1}} & {u_{2}} & {\cdots} & {u_{n}} \\ { |} & { |} & {} & { |}\end{array}\right]$定义了一个新的属于$\mathbb {R}^{n}$的基（坐标系），意义如下：对于任何向量$x \in\mathbb{R}^{n}$都可以表示为$u_1,\cdots,u_n$的线性组合，其系数为$\hat x_1,\cdots,\hat x_n$：
 
 $$
-x=\hat x_1u_1+\cdots +\cdots \hat x_nu_n=U\hat x
+x=\hat x_1u_1+\cdots + \hat x_nu_n=U\hat x
 $$
 
-在第二个等式中，我们使用矩阵和向量相乘的方法。 实际上，这种$\hat x$是唯一存在的:
+在第二个等式中，我们使用矩阵和向量相乘的方法,查看式$\eqref{1}$。 实际上，这种$\hat x$是唯一存在的:
 
 $$
 x=U \hat{x} \Leftrightarrow U^{T} x=\hat{x}
@@ -904,8 +918,8 @@ $$
 
 换句话说，向量$\hat x=U^Tx$可以作为向量$x$的另一种表示，与$U$定义的基有关。
 
-**“对角化”矩阵向量乘法**<span id="diagonalizing"></span>。 通过上面的设置，我们将看到左乘矩阵$A$可以被视为左乘以对角矩阵关于特征向量的基。 假设$x$是一个向量，$\hat x$表示$U$的基。设$z=Ax$为矩阵向量积。现在让我们计算关于$U$的基$z$：
-然后，再利用$UU^T=U^T=I$和方程$A=AUU^T=U\Lambda U^T$，我们得到：
+**“对角化”矩阵向量乘法**。 通过上面的设置，我们将看到左乘矩阵$A$可以被视为左乘对角矩阵，也就是特征向量组成的基。 假设$x$是一个向量，$\hat x$是以$U$为基$x$的表示。设$z=Ax$为矩阵向量积。现在让我们计算以$U$为基来表示$z$：
+然后，再利用$UU^T=U^TU=I$和$A=AUU^T=U\Lambda U^T$，也就是式$\eqref{6}$，我们得到：
 
 $$
 \hat{z}=U^{T} z=U^{T} A x=U^{T} U \Lambda U^{T} x=\Lambda \hat{x}=\left[\begin{array}{c}{\lambda_{1} \hat{x}_{1}} \\ {\lambda_{2} \hat{x}_{2}} \\ {\vdots} \\ {\lambda_{n} \hat{x}_{n}}\end{array}\right]
@@ -915,32 +929,47 @@ $$
 在新的基上，矩阵多次相乘也变得简单多了。例如，假设$q=AAAx$。根据$A$的元素导出$q$的分析形式，使用原始的基可能是一场噩梦，但使用新的基就容易多了：
 
 $$
-\hat{q}=U^{T} q=U^{T} AAA x=U^{T} U \Lambda U^{T} U \Lambda U^{T} U \Lambda U^{T} x=\Lambda^{3} \hat{x}=\left[\begin{array}{c}{\lambda_{1}^{3} \hat{x}_{1}} \\ {\lambda_{2}^{3} \hat{x}_{2}} \\ {\vdots} \\ {\lambda_{n}^{3} \hat{x}_{n}}\end{array}\right]
+\hat{q}=
+U^{T} q=
+U^{T} AAA x=
+U^{T} U \Lambda U^{T} U \Lambda U^{T} U \Lambda U^{T} x=
+\Lambda^{3} \hat{x}=
+\left[\begin{array}{c}
+{\lambda_{1}^{3} \hat{x}_{1}} \\ {\lambda_{2}^{3} \hat{x}_{2}} \\ {\vdots} \\ {\lambda_{n}^{3} \hat{x}_{n}}
+\end{array}\right]
+\label{7}\tag{7}
 $$
 
-**“对角化”二次型**。作为直接的推论，二次型$x^TAx$也可以在新的基上简化。
+**“对角化”二次型**。作为直接推论，二次型$x^TAx$也可以在新的基上简化。
 
 $$
-x^{T} A x=x^{T} U \Lambda U^{T} x=\hat{x} \Lambda \hat{x}=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}
+x^{T} A x=x^{T} U \Lambda U^{T} x=\hat{x}^T \Lambda \hat{x}=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}
+\label{8}\tag{8}
 $$
 
 (回想一下，在旧的表示法中，$x^{T} A x=\sum_{i=1, j=1}^{n} x_{i} x_{j} A_{i j}$涉及一个$n^2$项的和，而不是上面等式中的$n$项。)利用这个观点，我们还可以证明矩阵$A$的正定性完全取决于其特征值的符号：
 
-1. 如果所有的$\lambda_i>0$，则矩阵$A$正定的，因为对于任意的$\hat x \ne 0$,$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}>0$
+1. 如果所有的$\lambda_i>0$，则矩阵$A$正定的，因为对于任意的$\hat x \ne 0$,$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}>0$[^11]
+
 2. 如果所有的$\lambda_i\geq 0$，则矩阵$A$是为正半定，因为对于任意的$\hat x $,$x^{T} A x=\sum*{i=1}^{n} \lambda*{i} \hat{x}\_{i}^{2} \geq 0$
+
 3. 同样，如果所有$\lambda_i<0$或$\lambda_i\leq 0$，则矩阵$A$分别为负定或半负定。
-4. 最后，如果$A$同时具有正特征值和负特征值，比如 λ$\lambda_i>0$和$\lambda_j<0$，那么它是不定的。这是因为如果我们让$\hat x$满足$\hat x_i=1$和$\hat x_k=0$，同时所有的$k\ne i$，那么$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}>0$ ,我们让$\hat x$满足$\hat x_i=1$和$\hat x_k=0$，同时所有的$k\ne i$，那么$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}<0$
+
+4. 最后，如果$A$同时具有正特征值和负特征值，比如 $\lambda_i>0$和$\lambda_j<0$，那么它是不定的。这是因为如果我们让$\hat x$满足$\hat x_i=1 \text{ and } \hat x_k=0, \forall k\ne i$，那么$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}>0$ ,同样的我们让$\hat x$满足$\hat x_j=1 \text{ and } \hat x_k=0,\forall k\ne j$，那么$x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}<0$[^12]
+
+[^11]: 注意$\hat x \ne 0  \hArr x \ne 0$
+[^12]: 注意$x=U \hat x$,因此构造$\hat x$给出来$x$的隐式构造
 
 特征值和特征向量经常出现的应用是最大化矩阵的某些函数。特别是对于矩阵$A \in \mathbb{S}^{n}$，考虑以下最大化问题：
 
 $$
 \max _{x \in \mathbb{R}^{n}} \ x^{T} A x=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2} \quad \text { subject to }\|x\|_{2}^{2}=1
+\label{9}\tag{9}
 $$
 
-也就是说，我们要找到（范数 1）的向量，它使二次型最大化。假设特征值的阶数为$\lambda_1 \geq \lambda _2 \geq \cdots \lambda_n$，此优化问题的最优值为$\lambda_1$，且与$\lambda_1$对应的任何特征向量$u_1$都是最大值之一。（如果$\lambda_1 > \lambda_2$，那么有一个与特征值$\lambda_1$对应的唯一特征向量，它是上面那个优化问题的唯一最大值。）
-我们可以通过使用对角化技术来证明这一点：注意，通过公式$\|U x\|_{2}=\|x\|_{2}$推出$\|x\|_{2}=\|\hat{x}\|_{2}$，并利用公式：
+也就是说，我们要找到（范数 1）的向量，它使二次型最大化。假设特征值的阶数为$\lambda_1 \geq \lambda _2 \geq \cdots \lambda_n$，此优化问题的最优值为$\lambda_1$，且与$\lambda_1$对应的任何特征向量$u_1$都是最大值之一。（如果$\lambda_1 > \lambda_2$，那么有一个与特征值$\lambda_1$对应的唯一特征向量，它是上面那个优化问题$\eqref{9}$的唯一最大值。）
 
-$x^{T} A x=x^{T} U \Lambda U^{T} x=\hat{x} \Lambda \hat{x}=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2}$，我们可以将上面那个优化问题改写为：
+我们可以通过使用对角化技术来证明这一点：注意，通过公式$\|U x\|_{2}\overset{\eqref{3}}{=}\|x\|_{2} $推出$\|x\|_{2}=\|\hat{x}\|_{2}$，并利用公式$x^{T} A x=x^{T} U \Lambda U^{T} x=\hat{x}^T \Lambda \hat{x}=\sum*{i=1}^{n} \lambda*{i} \hat{x}\_{i}^{2} ,\text{也就是式}\eqref{8}$，我们可以将上面那个优化问题改写为：
 
 $$
 \max _{\hat{x} \in \mathbb{R}^{n}}\ \hat{x}^{T} \Lambda \hat{x}=\sum_{i=1}^{n} \lambda_{i} \hat{x}_{i}^{2} \quad \text { subject to }\|\hat{x}\|_{2}^{2}=1
@@ -953,6 +982,251 @@ $$
 $$
 
 此外，设置$\hat{x}=\left[\begin{array}{c}{1} \\ {0} \\ {\vdots} \\ {0}\end{array}\right]$可让上述等式成立，这与设置$x=u_1$相对应。
+
+## 4.矩阵微积分
+
+虽然前几节中的主题通常在线性代数的标准课程中涵盖，但一个似乎不经常涉及（我们将广泛使用）的主题是微积分对向量设置的扩展。 尽管我们使用的所有实际微积分都相对微不足道，但符号通常会使事情看起来比实际困难得多。 在本节中，我们将介绍矩阵微积分的一些基本定义并提供一些示例。
+
+### 4.1 梯度
+
+假设$f: \mathbb{R}^{m \times n} \rightarrow \mathbb{R}$是将维度为$m \times n$的矩阵$A\in \mathbb{R}^{m \times n}$作为输入并返回实数值的函数。 然后$f$的**梯度**<span id="gradient"></span>（相对于$A\in \mathbb{R}^{m \times n}$）是偏导数矩阵，定义如下：
+
+$$
+\nabla_{A} f(A) \in \mathbb{R}^{m \times n}=\left[\begin{array}{cccc}{\frac{\partial f(A)}{\partial A_{11}}} & {\frac{\partial f(A)}{\partial A_{12}}} & {\cdots} & {\frac{\partial f(A)}{\partial A_{1n}}} \\ {\frac{\partial f(A)}{\partial A_{21}}} & {\frac{\partial f(A)}{\partial A_{22}}} & {\cdots} & {\frac{\partial f(A)}{\partial A_{2 n}}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\frac{\partial f(A)}{\partial A_{m 1}}} & {\frac{\partial f(A)}{\partial A_{m 2}}} & {\cdots} & {\frac{\partial f(A)}{\partial A_{m n}}}\end{array}\right]
+$$
+
+即，$m \times n$矩阵:
+
+$$
+\left(\nabla_{A} f(A)\right)_{i j}=\frac{\partial f(A)}{\partial A_{i j}}
+$$
+
+**请注意**，$\nabla_{A} f(A) $的维度始终与$A$的维度相同。特殊情况，如果$A$只是向量$A\in \mathbb{R}^{n}$，则
+
+$$
+\nabla_{x} f(x)=\left[\begin{array}{c}{\frac{\partial f(x)}{\partial x_{1}}} \\ {\frac{\partial f(x)}{\partial x_{2}}} \\ {\vdots} \\ {\frac{\partial f(x)}{\partial x_{n}}}\end{array}\right]
+$$
+
+重要的是要记住，只有当函数是实值时，即如果函数返回标量值，才定义函数的梯度。例如，$A\in \mathbb{R}^{m \times n}$相对于$x$，我们不能取$Ax$的梯度，因为这个量(输出)是向量值。
+
+直接从偏导数的等价性质得出：
+
+- $\nabla_{x}(f(x)+g(x))=\nabla_{x} f(x)+\nabla_{x} g(x)$
+
+- $\text{For }t \in \mathbb{R},\nabla_{x}(t f(x))=t \nabla_{x} f(x)$
+
+原则上，梯度是偏导数对多维变量函数的自然延伸。然而，在实践中，由于符号的原因，使用梯度有时是很棘手的。例如，假设$A\in \mathbb{R}^{m \times n}$是一个固定系数矩阵，假设$b\in \mathbb{R}^{m}$是一个固定系数向量。设$f: \mathbb{R}^{m} \rightarrow \mathbb{R}$为$f(z)=z^Tz$定义的函数，因此$\nabla_{z}f(z)=2z$。但现在考虑表达式，
+
+$$
+\nabla f(Ax)
+$$
+
+该表达式应该如何解释？ 至少有两种可能性：
+
+1. 在第一个解释中，回想起$\nabla_{z}f(z)=2z$。 在这里，我们将$\nabla f(Ax)$解释为评估点$Ax$处的梯度，因此:
+
+$$
+\nabla f(A x)=2(A x)=2 A x \in \mathbb{R}^{m}
+$$
+
+2. 在第二种解释中，我们将数量$f(Ax)$视为输入变量$x$的函数。 更正式地说，设$g(x) =f(Ax)$。 然后在这个解释中:
+
+$$
+\nabla f(A x)=\nabla_{x} g(x) \in \mathbb{R}^{n}
+$$
+
+在这里，我们可以看到这两种解释确实不同。 一种解释产生$m$维向量作为结果，而另一种解释产生$n$维向量作为结果($x$的维度是$n$，所以$\nabla_{x} g(x)$也是$n$，上面有讲到)！ 我们怎么解决这个问题？
+
+这里，关键是要明确我们要区分的变量。
+在第一种情况下，我们将函数$f$与其参数$z$进行区分，然后替换参数$Ax$。
+在第二种情况下，我们将复合函数$g(x)=f(Ax)$直接与$x$进行微分。
+
+我们将第一种情况表示为$\nabla zf(Ax)$，第二种情况表示为$\nabla xf(Ax)$[^13]。
+
+保持符号清晰是非常重要的，以后完成课程作业时候你就会发现。
+
+[^13]: 我们必须接受这种符号的一个缺点是，在第一种情况下，$\nabla zf(Ax)$ 似乎我们正在对一个变量进行微分，而这个变量甚至没有出现在被微分的表达式中！ 出于这个原因，第一种情况通常写为 $\nabla f(Ax)$，并且可以理解我们对 $f$ 的参数进行微分这一事实。 然而，第二种情况总是写成 $\nabla xf(Ax)$。
+
+### 4.2 黑塞矩阵
+
+假设$f: \mathbb{R}^{n} \rightarrow \mathbb{R}$是一个函数，它接受$\mathbb{R}^{n}$中的向量并返回实数。那么关于$x$的**黑塞矩阵**<span id="hessian"></span>（也有翻译作海森矩阵），写做：$\nabla_x ^2 f(A x)$，或者简单地说，$H$是$n \times n$的偏导数矩阵：
+
+$$
+\nabla_{x}^{2} f(x) \in \mathbb{R}^{n \times n}=\left[\begin{array}{cccc}{\frac{\partial^{2} f(x)}{\partial x_{1}^{2}}} & {\frac{\partial^{2} f(x)}{\partial x_{1} \partial x_{2}}} & {\cdots} & {\frac{\partial^{2} f(x)}{\partial x_{1} \partial x_{n}}} \\ {\frac{\partial^{2} f(x)}{\partial x_{2} \partial x_{1}}} & {\frac{\partial^{2} f(x)}{\partial x_{2}^{2}}} & {\cdots} & {\frac{\partial^{2} f(x)}{\partial x_{2} \partial x_{n}}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\frac{\partial^{2} f(x)}{\partial x_{n} \partial x_{1}}} & {\frac{\partial^{2} f(x)}{\partial x_{n} \partial x_{2}}} & {\cdots} & {\frac{\partial^{2} f(x)}{\partial x_{n}^{2}}}\end{array}\right]
+$$
+
+换句话说，$\nabla_{x}^{2} f(x) \in \mathbb{R}^{n \times n}$，其：
+
+$$
+\left(\nabla_{x}^{2} f(x)\right)_{i j}=\frac{\partial^{2} f(x)}{\partial x_{i} \partial x_{j}}
+$$
+
+注意：黑塞矩阵通常是对称阵：
+
+$$
+\frac{\partial^{2} f(x)}{\partial x_{i} \partial x_{j}}=\frac{\partial^{2} f(x)}{\partial x_{j} \partial x_{i}}
+$$
+
+与梯度相似，只有当$f(x)$为实值时黑塞矩阵才有定义。
+
+很自然地认为梯度与向量函数的一阶导数的相似，而黑塞矩阵与二阶导数的相似（我们使用的符号也暗示了这种关系）。 这种直觉通常是正确的，但需要记住以下几个注意事项。
+首先，对于一个变量$f: \mathbb{R} \rightarrow \mathbb{R}$的实值函数，它的基本定义：二阶导数是一阶导数的导数，即：
+
+$$
+\frac{\partial^{2} f(x)}{\partial x^{2}}=\frac{\partial}{\partial x} \frac{\partial}{\partial x} f(x)
+$$
+
+然而，对于向量的函数，函数的梯度是一个向量，我们不能取向量的梯度，即:
+
+$$
+\nabla_{x} \nabla_{x} f(x)=\nabla_{x}\left[\begin{array}{c}{\frac{\partial f(x)}{\partial x_{1}}} \\ {\frac{\partial f(x)}{\partial x_{2}}} \\ {\vdots} \\ {\frac{\partial f(x)}{\partial x_{n}}}\end{array}\right]
+$$
+
+上面这个表达式没有意义。 因此，黑塞矩阵不是梯度的梯度。 然而，下面这种情况却这几乎是正确的：如果我们看一下梯度$\left(\nabla_{x} f(x)\right)_{i}=\partial f(x) / \partial x_{i}$的第$i$个元素，并取关于于$x$的梯度我们得到：
+
+$$
+\nabla_{x} \frac{\partial f(x)}{\partial x_{i}}=\left[\begin{array}{c}{\frac{\partial^{2} f(x)}{\partial x_{i} \partial x_{1}}} \\ {\frac{\partial^{2} f(x)}{\partial x_{2} \partial x_{2}}} \\ {\vdots} \\ {\frac{\partial f(x)}{\partial x_{i} \partial x_{n}}}\end{array}\right]
+$$
+
+这是黑塞矩阵第$i$行（列）,所以：
+
+$$
+\nabla_{x}^{2} f(x)=\left[\nabla_{x}\left(\nabla_{x} f(x)\right)_{1} \quad \nabla_{x}\left(\nabla_{x} f(x)\right)_{2} \quad \cdots \quad \nabla_{x}\left(\nabla_{x} f(x)\right)_{n}\right]
+$$
+
+简单地说：我们可以说由于：$\nabla_{x}^{2} f(x)=\nabla_{x}\left(\nabla_{x} f(x)\right)^{T}$，只要我们理解，这实际上是取$\nabla_{x} f(x)$的每个元素的梯度，而不是整个向量的梯度。
+
+最后，请注意，虽然我们可以对矩阵$A\in \mathbb{R}^{n}$取梯度，但对于这门课，我们只考虑对向量$x \in \mathbb{R}^{n}$取黑塞矩阵。
+这会方便很多（事实上，我们所做的任何计算都不要求我们找到关于矩阵的黑森方程），因为关于矩阵的黑塞方程就必须对矩阵所有元素求偏导数$\partial^{2} f(A) /\left(\partial A_{i j} \partial A_{k \ell}\right)$，将其表示为矩阵相当麻烦。
+
+### 4.3 二次函数和线性函数的梯度和黑塞矩阵
+
+现在让我们尝试确定几个简单函数的梯度和黑塞矩阵。 应该注意的是，这里给出的所有梯度都是**CS229**讲义中给出的梯度的特殊情况。
+
+对于$x \in \mathbb{R}^{n}$, 设$f(x)=b^Tx$ 的某些已知向量$b \in \mathbb{R}^{n}$ ，则：
+
+$$
+f(x)=\sum_{i=1}^{n} b_{i} x_{i}
+$$
+
+所以：
+
+$$
+\frac{\partial f(x)}{\partial x_{k}}=\frac{\partial}{\partial x_{k}} \sum_{i=1}^{n} b_{i} x_{i}=b_{k}
+$$
+
+由此我们可以很容易地看出$\nabla_{x} b^{T} x=b$。 这应该与单变量微积分中的类似情况进行比较，其中$\partial /(\partial x) a x=a$。
+现在考虑$A\in \mathbb{S}^{n}$的二次函数$f(x)=x^TAx$。 记住这一点：
+
+$$
+f(x)=\sum_{i=1}^{n} \sum_{j=1}^{n} A_{i j} x_{i} x_{j}
+$$
+
+为了取偏导数，我们将分别考虑包括$x_k$和$x_2^k$因子的项：
+
+$$
+\begin{aligned} \frac{\partial f(x)}{\partial x_{k}} &=\frac{\partial}{\partial x_{k}} \sum_{i=1}^{n} \sum_{j=1}^{n} A_{i j} x_{i} x_{j} \\ &=\frac{\partial}{\partial x_{k}}\left[\sum_{i \neq k} \sum_{j \neq k} A_{i j} x_{i} x_{j}+\sum_{i \neq k} A_{i k} x_{i} x_{k}+\sum_{j \neq k} A_{k j} x_{k} x_{j}+A_{k k} x_{k}^{2}\right] \\ &=\sum_{i \neq k} A_{i k} x_{i}+\sum_{j \neq k} A_{k j} x_{j}+2 A_{k k} x_{k} \\ &=\sum_{i=1}^{n} A_{i k} x_{i}+\sum_{j=1}^{n} A_{k j} x_{j}=2 \sum_{i=1}^{n} A_{k i} x_{i} \end{aligned}
+$$
+
+最后一个等式，是因为$A$是对称的（我们可以安全地假设，因为它以二次形式出现）。 注意，$\nabla_{x} f(x)$的第$k$个元素是$A$和$x$的第$k$行的内积。 因此，$\nabla_{x} x^{T} A x=2 A x$。 同样，这应该提醒你单变量微积分中的类似事实，即$\partial /(\partial x) a x^{2}=2 a x$。
+
+最后，让我们来看看二次函数$f(x)=x^TAx$黑塞矩阵（显然，线性函数$b^Tx$的黑塞矩阵为零）。在这种情况下:
+
+$$
+\frac{\partial^{2} f(x)}{\partial x_{k} \partial x_{\ell}}=\frac{\partial}{\partial x_{k}}\left[\frac{\partial f(x)}{\partial x_{\ell}}\right]=\frac{\partial}{\partial x_{k}}\left[2 \sum_{i=1}^{n} A_{\ell i} x_{i}\right]=2 A_{\ell k}=2 A_{k \ell}
+$$
+
+因此，应该很清楚$\nabla_{x}^2 x^{T} A x=2 A$，这应该是完全可以理解的（同样类似于$\partial^2 /(\partial x^2) a x^{2}=2a$的单变量事实）。
+
+简要概括起来：
+
+- $\nabla_{x} b^{T} x=b$
+
+- $\nabla_{x} x^{T} A x=2 A x$ (如果$A$是对称阵)
+
+- $\nabla_{x}^2 x^{T} A x=2 A $  (如果$A$是对称阵)
+
+### 4.4 最小二乘法
+
+让我们应用上一节中得到的方程来推导最小二乘方程。假设我们得到矩阵$A\in \mathbb{R}^{m \times n}$（为了简单起见，我们假设$A$是满秩）和向量$b\in \mathbb{R}^{m}$，从而使$b \notin \mathcal{R}(A)$。在这种情况下，我们将无法找到向量$x\in \mathbb{R}^{n}$，由于$Ax = b$，因此我们想要找到一个向量$x$，使得$Ax$尽可能接近 $b$，用欧几里德范数的平方$\|A x-b\|\_{2}^{2} $来衡量。
+
+使用公式$\|x\|^{2}=x^Tx$，我们可以得到：
+
+$$
+\begin{aligned}\|A x-b\|_{2}^{2} &=(A x-b)^{T}(A x-b) \\ &=x^{T} A^{T} A x-2 b^{T} A x+b^{T} b \end{aligned}
+$$
+
+根据$x$的梯度，并利用上一节中推导的性质：
+
+$$
+\begin{aligned} \nabla_{x}\left(x^{T} A^{T} A x-2 b^{T} A x+b^{T} b\right) &=\nabla_{x} x^{T} A^{T} A x-\nabla_{x} 2 b^{T} A x+\nabla_{x} b^{T} b \\ &=2 A^{T} A x-2 A^{T} b \end{aligned}
+$$
+
+将最后一个表达式设置为零，然后解出$x$，得到了正规方程：
+
+$$
+x = (A^TA)^{-1}A^Tb
+$$
+
+这和我们在课堂上得到的相同。
+
+### 4.5 行列式的梯度
+
+现在让我们考虑一种情况，我们找到一个函数相对于矩阵的梯度，也就是说，对于$A\in \mathbb{R}^{n \times n}$，我们要找到$\nabla_{A}|A|$。回想一下我们对行列式的讨论：
+
+$$
+|A|=\sum_{i=1}^{n}(-1)^{i+j} A_{i j}\left|A_{\backslash i, \backslash j}\right| \quad(\text { for any } j \in 1, \ldots, n)
+$$
+
+所以：
+
+$$
+\frac{\partial}{\partial A_{k \ell}}|A|=\frac{\partial}{\partial A_{k \ell}} \sum_{i=1}^{n}(-1)^{i+j} A_{i j}\left|A_{\backslash i, \backslash j}\right|=(-1)^{k+\ell}\left|A_{\backslash k,\backslash \ell}\right|=(\operatorname{adj}(A))_{\ell k}
+$$
+
+从这里可以知道，它直接从伴随矩阵的性质得出：
+
+$$
+\nabla_{A}|A|=(\operatorname{adj}(A))^{T}=|A| A^{-T}
+$$
+
+现在我们来考虑函数$f : \mathbb{S}_{++}^{n} \rightarrow \mathbb{R}$，$f(A)=\log |A|$。注意，我们必须将$f$的域限制为正定矩阵，因为这确保了$|A|>0$，因此$|A|$的对数是实数。在这种情况下，我们可以使用链式法则（没什么奇怪的，只是单变量演算中的普通链式法则）来看看：
+
+$$
+\frac{\partial \log |A|}{\partial A_{i j}}=\frac{\partial \log |A|}{\partial|A|} \frac{\partial|A|}{\partial A_{i j}}=\frac{1}{|A|} \frac{\partial|A|}{\partial A_{i j}}
+$$
+
+从这一点可以明显看出：
+
+$$
+\nabla_{A} \log |A|=\frac{1}{|A|} \nabla_{A}|A|=A^{-1}
+$$
+
+我们可以在最后一个表达式中删除转置，因为$A$是对称的。注意与单值情况的相似性，其中$\partial /(\partial x) \log x=1 / x$。
+
+### 4.6 特征值优化
+
+最后，我们使用矩阵演算以直接导致特征值/特征向量分析的方式求解优化问题。 考虑以下等式约束优化问题：
+
+$$
+\max _{x \in \mathbb{R}^{n}} x^{T} A x \quad \text { subject to }\|x\|_{2}^{2}=1
+$$
+
+对于对称矩阵$A\in \mathbb{S}^{n}$。求解等式约束优化问题的标准方法是采用**拉格朗日**<span id="lagrangian"></span>形式，一种包含等式约束的目标函数[^14]，在这种情况下，拉格朗日函数可由以下公式给出：
+
+$$
+\mathcal{L}(x, \lambda)=x^{T} A x-\lambda x^{T} x
+$$
+
+其中，$\lambda $被称为与等式约束关联的拉格朗日乘子。可以确定，要使$x^{\star}$成为问题的最佳点，拉格朗日的梯度必须在$x^\star$处为零（这不是唯一的条件，但它是必需的）。也就是说，
+
+$$
+\nabla_{x} \mathcal{L}(x, \lambda)=\nabla_{x}\left(x^{T} A x-\lambda x^{T} x\right)=2 A^{T} x-2 \lambda x=0
+$$
+
+请注意，这只是线性方程$Ax =\lambda x$。 这表明假设$x^T x = 1$，可能最大化（或最小化）$x^T Ax$的唯一点是$A$的特征向量。
+
+[^14]: 如果您以前没有见过拉格朗日，请不要担心，因为我们将在后面的 CS229 中更详细地介绍它们。
 
 ## 名词索引
 

@@ -19,3 +19,4 @@ CDC的表不能truncate操作，truncate是物理删除数据不能捕获变更�
 https://github.com/Vanlightly/CDC-Tools
 https://github.com/VenuMeda/kafka-connect-cdc-mssql
 
+[SQL Server monitoring - Is It SQL?](https://www.scalesql.com/isitsql/)
