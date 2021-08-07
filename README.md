@@ -39,7 +39,7 @@ https://zh.wikipedia.wikicn.icu
 
 https://en.jinzhao.wiki/wiki/Main_Page
 https://encyclopedia.thefreedictionary.com/
-
+https://en.formulasearchengine.com/wiki/Main_Page
 
 Kiwix让您能够随身携带完整的维基百科！无论您搭乘船只，还是身处偏僻的地区，抑或身陷囹圄，Kiwix都使您能够接触到全人类的知识。您不需要连接因特网，因为所有的资料都储存在您的电脑，优盘或者DVD中！
 下载软件：https://www.kiwix.org/en/download/

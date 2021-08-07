@@ -304,3 +304,14 @@ https://blog.51cto.com/853056088/2162189
 
 ### 四、VS Code
 https://zhuanlan.zhihu.com/p/87887002
+
+### .ipynb 文件转换为 .md, .tex, .pdf 文件
+
+
+[命令行转换](https://nbconvert.readthedocs.io/en/latest/config_options.html#cli-flags-and-aliases)  
+参考-[ 如何将ipynb转换为html，md，pdf等格式](https://cloud.tencent.com/developer/article/1008571)
+
+`jupyter nbconvert --to format(such as pdf, latex, ...) [-template template_name such as article, report, ...] notebook.ipynb`
+如：`jupyter nbconvert --to markdown matrixcookbook.ipynb`
+
+> 如果需要导出pdf，需要安装[xelatex](https://nbconvert.readthedocs.io/en/latest/install.html#installing-tex), [win 下载](https://miktex.org/download)，当然也可以安装[TeX Live ++](https://www.tug.org/texlive/)
