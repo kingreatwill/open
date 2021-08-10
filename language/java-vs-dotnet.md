@@ -480,3 +480,7 @@ unsafe       ushort     using        virtual
 </pre></td></tr></tbody></table>
 </p></td></tr>
 </tbody></table>
+
+## .NET 与 JAVA 在 JIT 编译上的一些差异
+[关于 .NET 与 JAVA 在 JIT 编译上的一些差异](https://www.cnblogs.com/kklldog/p/net-java-jit-different.html)
+![](img/java-vs-dotnet-jit.png)

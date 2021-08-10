@@ -46,6 +46,13 @@ http://shenzhen.gov.cn/
 http://pnr.sz.gov.cn/
 
 
+## 教育学习
+[国家中小学网络云平台](https://ykt.eduyun.cn/)
+[国家教育资源公共服务平台](https://www.eduyun.cn/)
+[人民教育出版社](https://www.pep.com.cn/)
+[电子课本网](http://www.dzkbw.com/)
+[好慕课](https://haomooc.com/)
+
 ## 其它
 [中华人民共和国民法典](http://www.npc.gov.cn/npc/c30834/202006/75ba6483b8344591abd07917e1d25cc8.shtml)
 
