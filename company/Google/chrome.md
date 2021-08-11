@@ -211,3 +211,14 @@ https://greasyfork.org/zh-CN/scripts
 添加Github文件下载、复制按钮、图片点击放大(右击恢复)、issues中只查看用户相关态度的内容、issues列表项从新标签页打开
 
 [Github项目批量删除](https://greasyfork.org/zh-CN/scripts/412188-github%E9%A1%B9%E7%9B%AE%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4)
+
+### google stackoverflow
+gooreplacer 最初为解决国内无法访问 Google 资源（Ajax、API等）导致页面加载速度巨慢而生，新版在此基础上，增加了更多实用功能，可以方便用户屏蔽某些请求，修改 HTTP 请求/响应 的 headers。
+https://github.com/jiacai2050/gooreplacer
+
+将 Google CDN 替换为国内的
+https://github.com/justjavac/ReplaceGoogleCDN
+
+
+Gravatar，全称Globally Recognized Avatar。翻译成中文为全球通用头像。
+[Gravatar头像 镜像地址大全](https://zhuanlan.zhihu.com/p/115248957)
