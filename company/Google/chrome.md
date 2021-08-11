@@ -222,3 +222,13 @@ https://github.com/justjavac/ReplaceGoogleCDN
 
 Gravatar，全称Globally Recognized Avatar。翻译成中文为全球通用头像。
 [Gravatar头像 镜像地址大全](https://zhuanlan.zhihu.com/p/115248957)
+
+插件： Ghelper(谷歌上网助手)
+
+
+网站镜像（谷歌搜索，谷歌學術，維基百科，Github）：
+https://mirror.yaojiu.us/mirror/
+https://www.haoo.us/mirror
+https://www.library.ac.cn/
+
+https://github.yaojiu.us/
