@@ -1,9 +1,21 @@
 <!--toc-->
 [TOC]
 ## 文件系统
-
+对象存储
+objectstorage
+cloudstorage
+filesystem
+distributed-file-system
+distributed-storage
 [Ceph vs GlusterFS vs MooseFS vs HDFS vs DRBD](https://computingforgeeks.com/ceph-vs-glusterfs-vs-moosefs-vs-hdfs-vs-drbd/)
+
+### MinIO
+High Performance, Kubernetes Native Object Storage
+
+https://github.com/minio/minio golang 28.8k 
+
 ### Ceph
+https://github.com/ceph/ceph c++ 9.5k 
 Ceph是一个强大的存储系统，它在同一个系统中同时提供了对象，块（通过RBD）和文件存储。无论您是希望在虚拟机中使用块设备，还是将非结构化数据存储在对象存储中，Ceph都可以在一个平台上提供所有功能，并且还能获得出色的灵活性。 Ceph中的所有内容都以对象的形式存储，不管原始的数据类型是什么，RADOS（reliable autonomic distributed object store）都会把它们当做对象来进行存储。
 
 RADOS层确保数据始终保持一致状态并且可靠。Ceph会通过数据复制，故障检测和恢复，以及跨群集节点进行数据迁移和重新平衡来实现数据一致性。 Ceph提供了一个符合POSIX的网络文件系统（CephFS），旨在实现高性能，大数据存储以及与传统应用程序的最大兼容。Ceph可以通过各种编程语言或者radosgw（RGW）实现无缝的访问对象存储，（RGW）这是一种REST接口，它与为S3和Swift编写的应用程序兼容。另一方面，Ceph的RADOS块设备（RBD）可以访问在整个存储集群中条带化和复制的块设备映像。
@@ -20,6 +32,7 @@ RADOS层确保数据始终保持一致状态并且可靠。Ceph会通过数据�
 
 Ceph最适合用于块存储，大数据或直接与librados通信的任何其他应用程序。 这一切都会顺利运行的非常好。 更多Ceph的信息可以参见[Ceph文档](http://docs.ceph.com/)
 ### GlusterFS
+https://github.com/gluster/glusterfs C 3.2k 
 Gluster是一个免费的开源可扩展网络文件系统。 使用通用的现成硬件，您可以为媒体流，数据分析以及其他数据和带宽密集型任务创建大型的分布式存储解决方案。 基于GlusterFS的横向扩展存储系统适用于非结构化数据，例如文档，图像，音频和视频文件以及日志文件。 通常，分布式文件系统依赖于元数据服务器，但是Gluster不再使用元数据服务器。 元数据服务器是单点故障，并且可能是扩展的瓶颈。 相反，Gluster使用哈希机制来查找数据。
 
 #### Gluster特性
@@ -33,7 +46,8 @@ Gluster是一个免费的开源可扩展网络文件系统。 使用通用的现
 
 有关Gluster的其他详细信息，请参见[Gluster Docs](https://docs.gluster.org/)。
 
-### MooseFS 
+### MooseFS
+https://github.com/moosefs/moosefs C 1.1k 
 MooseFS是波兰公司Gemius SA公司在12年前推出的，是大数据存储行业中的突破性概念。 它使您可以使用负担得起的商用硬件将数据存储和数据处理结合在一个单元中。
 
 #### MooseFS特性
@@ -64,7 +78,7 @@ Hadoop分布式文件系统（HDFS）是一个分布式文件系统，它允许�
 
 有关HDFS的更多信息[请参见](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
 ### DRBD
-
+https://github.com/LINBIT/drbd 403 C
 DRBD是一个分布式冗余存储系统，由内核驱动程序，多个用户空间管理应用程序和一些Shell脚本实现。 分布式复制块设备（一个逻辑卷中的逻辑块设备）在多个主机之间镜像块设备，以实现高可用集群。 基于DRBD的群集通常用于为文件服务器，关系数据库（例如MySQL）和许多其他工作负载提供同步复制和高可用性。 DRBD实质上可以作为共享磁盘文件系统，额外的逻辑块设备（例如LVM），常规文件系统或需要直接访问块设备的任何应用程序的基础。
 
 #### DRDB特性
@@ -84,16 +98,16 @@ DRBD是一个分布式冗余存储系统，由内核驱动程序，多个用户�
 
 有关DRBD更多的信息[请参见](https://docs.linbit.com/)
 
-#### FastDFS
-https://github.com/happyfish100/fastdfs c 6.9k
+### FastDFS
+https://github.com/happyfish100/fastdfs c 7.5k
 
 轻量级分布式文件系统，他对文件进行管理，主要功能有：文件存储，文件同步，文件访问（文件上传/下载）,特别适合以文件为载体的在线服务，如图片网站，视频网站等
 
-#### SeaweedFS
-https://github.com/chrislusf/seaweedfs golang 10.9k
+### SeaweedFS
+https://github.com/chrislusf/seaweedfs golang 12.5k
 
-#### curve
-https://github.com/opencurve/curve c++ 590
+### curve
+https://github.com/opencurve/curve c++ 843
 CURVE是网易自主设计研发的高性能、高可用、高可靠分布式存储系统，具有非常良好的扩展性。基于该存储底座可以打造适用于不同应用场景的存储系统，如块存储、对象存储、云原生数据库等。当前我们基于CURVE已经实现了高性能块存储系统，支持快照克隆和恢复 ,支持QEMU虚拟机和物理机NBD设备两种挂载方式, 在网易内部作为高性能云盘使用。
 
 ### 其它文件共享

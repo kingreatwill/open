@@ -1,3 +1,10 @@
+
+### jupytext & MyST & Jupyter Book
+- [Jupyter Book](https://github.com/executablebooks/jupyter-book)
+- [MyST （Markedly Structured Text） Markdown语言](https://myst-parser.readthedocs.io/)
+- [jupytext](https://github.com/mwouts/jupytext) 提供内容管理器，允许 Jupyter 将 notebook 保存为你喜欢的格式，来补充或替代传统的.ipynb 文件。
+
+
 ### nteract
 nteract可以直接打开本地ipynb文件，可以直接双击ipynb文件直接打开笔记进行编辑，再不需要像以前一样，要先运行jupyter notebook，然后在浏览器中打开ipynb文件。
 
@@ -313,5 +320,100 @@ https://zhuanlan.zhihu.com/p/87887002
 
 `jupyter nbconvert --to format(such as pdf, latex, ...) [-template template_name such as article, report, ...] notebook.ipynb`
 如：`jupyter nbconvert --to markdown matrixcookbook.ipynb`
+支持：` [‘asciidoc’, ‘custom’, ‘html’, ‘latex’, ‘markdown’, ‘notebook’, ‘pdf’, ‘python’, ‘rst’, ‘script’, ‘slides’, ‘webpdf’]`
+
+[Jupytext](https://jupytext.readthedocs.io/en/latest/): 支持自动转换（Jupyter Notebooks as Markdown Documents, Julia, Python or R scripts）
+
 
 > 如果需要导出pdf，需要安装[xelatex](https://nbconvert.readthedocs.io/en/latest/install.html#installing-tex), [win 下载](https://miktex.org/download)，当然也可以安装[TeX Live ++](https://www.tug.org/texlive/)
+
+
+### Jupyter输出渲染latex公式
+```
+# display(Math(latex_s))和display(Latex(latex_s))输出的是latex类型，
+# display(Markdown(latex_s))输出的是markdown
+# 推荐markdown和Latex；而Math只支持纯latex
+from IPython.display import display,Latex, SVG, Math, Markdown
+
+latex_s = r"$\frac{{\partial {}}}{{\partial {}}}$".format(1, 2)
+display(Math(latex_s))
+```
+
+### Jupyter cell同时输出多行
+```
+# 如果对带有一个变量或是未赋值语句的cell执行操作，Jupyter将会自动打印该变量而无需一个输出语句。
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all" #默认为'last'
+```
+
+### python中print打印显示颜色
+- 方法一
+https://blog.csdn.net/qq_34857250/article/details/79673698
+```
+print('This is a \033[1;35m test \033[0m!')
+print('This is a \033[1;32;43m test \033[0m!')
+print('\033[1;33;44mThis is a test !\033[0m')
+```
+
+- 方法二
+```
+from sys import stdout
+from colorama import Fore
+
+# Option 1
+stdout.write(Fore.RED + "Test")
+# Option 2
+print(Fore.GREEN + "Test")
+```
+- 方法三
+```
+%%
+class ListOfColoredStrings(object):
+    def __init__(self, *args):
+        """
+        Expected input:
+        args = ["word_1", "color_1"], ["word_2", "color_2"]
+
+        :param args: pairs of [word, color], both given as strings
+        """
+        self.strings = [a[0] for a in args]
+        self.colors = [a[1] for a in args]
+
+    def _repr_html_(self):
+        return ''.join( [
+            "<span class='listofstr' style='color:{}'>{}</span>"
+                .format(self.colors[i], self.strings[i])
+            for i in range(len(self.strings))
+            ])
+
+%%html
+<style type='text/css'>
+     span.listofstr {
+          margin-left: 5px
+     }
+</style>
+
+%%
+ListOfColoredStrings(["hi", "red"], ["hello", "green"])
+```
+
+- 方法四
+```
+from IPython.display import Markdown, display
+import html
+
+for tag in tags:    
+    tag = html.escape(tag)
+    display(Markdown((f'this is your tag: <text style=color:red>{tag}</text>')))
+```
+- 方法五
+```
+from IPython.display import HTML, display
+display(HTML(f'this is your tag: <text style=color:red>xx</text>'))
+```
+
+### 自定义magic
+https://blog.csdn.net/u011702002/article/details/85829654
+```
+from IPython.core.magic import register_cell_magic, register_line_magic, register_line_cell_magic
+```

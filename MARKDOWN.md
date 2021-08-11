@@ -1,6 +1,26 @@
-还有更NB的[Rmarkdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio ，就像jupyter一样
+# Markdown
+还有更NB的[R-markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio ，就像jupyter一样
 
 同理也有[Python-Markdown](https://python-markdown.github.io/), haha,错了，这只是一个Markdown 转换的库
+
+[pandoc](https://pandoc.org/MANUAL.html#creating-jupyter-notebooks-with-pandoc) 将 Markdown 转换为格式化文档
+
+有个[MyST Markdown](https://myst-parser.readthedocs.io/en/latest/)不错,支持更多标记，如下（需要安装插件）:
+
+```{code-cell} ipython3
+---
+other:
+  more: true
+tags: [hide-output, show-input]
+---
+
+print("Hallo!")
+```
+
+```{tip}
+param = 5
+```
+
 ## 上标、下标
 
 - 
