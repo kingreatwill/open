@@ -19,7 +19,7 @@ Mi表示（1Mi=1024x1024）,M表示（1M=1000x1000）
 亲和性和反亲和性
 
 
-
+[《Kubernetes Hardening Guidance-Kubernetes 加固手册》（美国国家安全局出品）](https://jimmysong.io/kubernetes-hardening-guidance)
 ### 文档
 中文文档：https://kubernetes.io/zh/docs/
 

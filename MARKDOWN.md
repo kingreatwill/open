@@ -1,5 +1,5 @@
 # Markdown
-还有更NB的[R-markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio ，就像jupyter一样
+还有更NB的[R-markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio(可以直接转换为html，pdf和word)，就像jupyter一样
 
 同理也有[Python-Markdown](https://python-markdown.github.io/), haha,错了，这只是一个Markdown 转换的库
 
