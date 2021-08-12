@@ -205,6 +205,13 @@ https://github.com/rapidminer/rapidminer-studio
 
 ## 时间序列预测
 
+### statsmodels
+SARIMA模型（Seasonal Autoregressive Integrated Moving Average），季节性差分自回归滑动平均模型，时间序列预测分析方法之一
+
+ARIMA模型（英语：Autoregressive Integrated Moving Average model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是时间序列预测分析方法之一
+对应实现的库
+https://github.com/statsmodels/statsmodels
+
 ### tsfresh
 
 https://github.com/blue-yonder/tsfresh
