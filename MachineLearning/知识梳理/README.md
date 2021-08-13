@@ -17,8 +17,10 @@
 5. 统计学习是概率论、统计学、信息论、计算理论、最优化理论及计算机科学等多个领域的交叉学科，并且在发展中逐步形成独自的理论体系与方法论。
 
 **假设空间(hypothesis space)**：
-$$\mathcal H = \{ f(x;\theta) | \theta \in \mathbb{R}^D\}$$
-其中$f(x; \theta)$是参数为$\theta$ 的函数，也称为模型（Model），$D$ 为参数的数量．
+$$\mathcal H = \{ f(x;\theta) | \theta \in \mathbb{R}^D\} \\ or \quad \mathcal F = \{P|P(Y|X;\theta),\theta \in \mathbb{R}^D\}$$
+其中$f(x; \theta)$是参数为$\theta$ 的函数（**决策函数**），也称为模型（Model），参数向量$\theta$取值与$D$维欧式空间$\mathbb{R}^D$,也称为参数空间(parameter space)，$D$ 为参数的数量(维度)
+
+模型的假设空间(hypothesis space)包含所有可能的条件概率分布或决策函数
 
 **特征空间（feature space）**：
 每个具体的输入是一个实例（instance），通常由特征向量（feature vector）表示。这
@@ -37,7 +39,7 @@ $$\mathcal H = \{ f(x;\theta) | \theta \in \mathbb{R}^D\}$$
 > 以线性回归（Linear Regression）为例：
 > 模型： $f(x;w,b) = w^Tx +b$
 > 策略(strategy)或者学习准则: 平方损失函数 $\mathcal L(y,\hat{y}) = (y-f(x,\theta))^2$
-> 算法：也称为优化算法，如：梯度下降法
+> 算法：解析解analytical solution(闭式解closed-form solution)和数值解numerical solution，如：closed-form的最小二乘的解以及梯度下降法
 
 **机器学习的定义**：
 
@@ -49,9 +51,8 @@ graph LR;
     A-->G["模型 g≈f"]
 ```
 
-使用训练数据来计算接近目标 𝑓 的假设（hypothesis ）g [^1]
+使用训练数据来计算接近目标 𝑓 的假设（hypothesis ）g （来自：[Machine Learning Foundations（机器学习基石）,25 页](https://www.csie.ntu.edu.tw/~htlin/course/mlfound17fall/doc/01_handout.pdf)）
 
-[^1]: [Machine Learning Foundations,25 页](https://www.csie.ntu.edu.tw/~htlin/course/mlfound17fall/doc/01_handout.pdf)
 
 **监督学习**：
 监督学习(supervised learning)是指从标注数据中学习预测模型的机器学习问题。本质是**学习输入到输出的映射的统计规律**。
@@ -101,7 +102,7 @@ $$\mathrm{Bayes \; Rule:} \\ \underbrace{P(X|Y)}_{\mathrm{posterior}} = \frac{\o
 **核方法**是一类把低维空间的非线性可分问题，转化为高维空间的线性可分问题的方法。
 **核技巧**是一种利用核函数直接计算 $\lang \phi(x),\phi(z) \rang$ ，以避开分别计算 $\phi(x)$ 和 $\phi(z)$ ，从而加速核方法计算的技巧。
 
-**核函数**：设 $\mathcal X$ 是输入空间（即 $x_i \in \mathcal X $ ， $\mathcal X$ 是 $\mathbb R^n$ 的子集或离散集合 ），又设 $\mathcal H$ 为特征空间（​ $\mathcal H$ 是希尔伯特空间[^2]），如果存在一个从 $\mathcal X$ 到 $\mathcal H$ 的映射
+**核函数**：设 $\mathcal X$ 是输入空间（即 $x_i \in \mathcal X $ ， $\mathcal X$ 是 $\mathbb R^n$ 的子集或离散集合 ），又设 $\mathcal H$ 为特征空间（​ 希尔伯特空间$^{附加知识:各种空间介绍}$），如果存在一个从 $\mathcal X$ 到 $\mathcal H$ 的映射
 
 $$\phi(x) : \mathcal X \to \mathcal H$$
 
@@ -110,6 +111,178 @@ $$\phi(x) : \mathcal X \to \mathcal H$$
 $$K(x,z) = \phi(x).\phi(z) = \lang \phi(x),\phi(z) \rang$$
 
 则称 $K(x,z)$ 为核函数。其中 $\phi(x) $ 为映射函数， $\lang \phi(x),\phi(z) \rang$ 为内积。
+
+
+核技巧的想法是，在学习和预测中只定义核函数 $K(x,z)$ ，而不显式地定义映射函数 $\phi $。通常直接计算$K(x,z)$比较容易，而通过$\phi(x) $和$\phi(z) $计算$K(x,z)$并不容易。
+> 注意：$\phi $是输入空间$\mathbb{R}^n$到特征空间$\mathcal H$的映射，特征空间$\mathcal H$一般是高维的，甚至是无穷维的。所以$\phi$不好计算，甚至会带来**维度灾难**又称**维度诅咒（Curse of Dimensionality）**$^{附加知识:维度诅咒}$。
+
+
+### 附加知识
+
+
+#### 各种空间介绍
+
+**线性空间**就是定义了**加法和数乘**的空间(空间里的一个元素就可以由其他元素线性表示)。
+
+---
+
+**度量空间**就是定义了**距离**的空间（曼哈顿距离，欧氏距离，闵可夫斯基距离，马氏距离，切比雪夫距离）。
+定义距离时，有三条公理必须遵守：
+1. 非负性、同一性：$dist(x_i,x_j) \geq 0$(非负性)，$dist(x_i,x_j) = 0$当且仅当$x_i=x_j$(同一性)
+2. 对称性：$dist(x_i,x_j) = dist(x_j,x_i)$
+3. 三角不等式(也叫直递性)：$dist(x_i,x_j) \leq dist(x_i,x_k) + dist(x_k,x_j)$
+希尔伯特空间(Hilbert)
+> 文字解释：【两点之间距离不为负；两个点只有在 空间 上重合才可能距离为零；a 到 b 的距离等于 b 到 a 的距离;a 到 c 的距离加上 c 到 b 的距离大于等于 a 直接到 b 的距离;】
+
+---
+
+**赋范空间**就是定义了**范数**的空间。
+x的范数||x||就是x的**长度**。那么这里的长度和上一节中说的距离到底有什么区别呢。**距离的概念是针对两个元素来说的**，例如d(x,y)指的是x与y两个元素之间的距离，而**范数是针对一个元素来说的**，每一个元素都对应一个范数，可以将范数理解为一个元素到零点的距离（这只是一种理解，并不是定义），也就是它自己的长度。
+定义：
+称 映射$||.|| : \mathbb{R}^n \to \mathbb{R}$为  $\mathbb{R}^n$ 上的范数，当且仅当：
+1. 非负性： $\forall x \in \mathbb{R}^n ,||x|| \geq 0$ ,$||x|| = 0$当且仅当$x=0$
+2. 数乘：$\forall x \in \mathbb{R}^n ,a \in \mathbb{R}^n, ||ax|| = |a|.||x||$ 
+3. 三角不等式: $\forall x,y \in \mathbb{R}^n ,||x+y|| \leq ||x|| + ||y||$ 
+
+如果我们定义了范数，可以在这基础上定义距离：dist(x,y)=||x-y||。根据范数的三条性质，我们可以证明我们这样定义的距离也满足距离的定义，聪明的你可以自己证明一下（对称性的证明，提一个-1出来，一加绝对值就是1了）。
+
+也就是说范数其实是一个更加具体的概念，**有了范数一定能利用范数定义距离，但是有距离不能定义范数**。
+
+也许你会问，你不是说理解范数就是一个元素到零点的距离吗，那定义范数为||x||=dist(x,0) 不就行了吗。这样的话，对于范数的第二条性质就不一定会满足，||ax||=dist(ax,0)，而dist(ax,0)不一定等于|a|dist(x,0)，具体等不等于还要看你的距离是怎么定义的。
+
+了解到这里那么你会发现：
+欧式距离对应L2范数
+曼哈顿距离对应L1范数
+
+---
+
+**线性赋范空间**就是定义了加法、数乘和范数的空间。
+
+---
+
+**巴拿赫空间**就是**完备的赋范线性空间**。(Banach space)
+**完备的空间**的定义：如果一个空间是完备的，那么该空间中的任何一个柯西序列都收敛在该空间之内。
+
+首先来说一下柯西序列是什么，柯西序列就是随着序数增加，值之间的距离越来越小的序列。换一种说法是，柯西序列可以在去掉有限个值之后，使任意两个值之间的$\underline{\mathrm{距离}}$都小于任意给定正常数（其实这就是定义了一个极限而已）。
+
+那么任意一个柯西序列都收敛在该空间内是什么意思呢，举个例子你就明白了。
+
+设定义在有理数空间Q上的序列：$x_n = \frac{[\sqrt{2}n]}{n}$，其中[x]表示x取整数部分。
+对于这个数列来说，每一个元素的分子分母都是整数，所以每一个$x_n$都在有理数空间Q上，那这个序列的极限呢，稍有常识的人都能看出，这个序列的极限是$\sqrt{2}$，而这并不是一个有理数，所以这个柯西序列的极限不在该空间里面，也就是说有理数空间Q是不完备的。
+
+所以完备的意义我们可以这样理解，那就是**在一个空间上我们定义了极限，但是不论你怎么取极限，它的极限的值都不会跑出这个空间，那么这个空间就是完备空间**。
+
+另外，不知道你有没有发现，上面在解释什么是柯西序列的时候，有一个词我加了下划线，那就是距离，也就说说在定义完备空间之前，要先有距离的概念。所以**完备空间，其实也是完备度量空间**。
+
+所以，巴拿赫空间满足几条特性呢：距离、范数、完备。
+
+---
+
+**内积空间**就是定义了内积的空间。[Inner product space](https://en.jinzhao.wiki/wiki/Inner_product_space)
+有时也称准希尔伯特空间。
+内积就是我们所说的点乘、标积，它的定义方式也不是唯一的，但如同距离范数的定义一样，内积的定义也要满足某些条件，不能随便定义。
+
+定义映射$\lang .,. \rang : V \times V \to \mathbb{F}$, 其中$V$是向量，$\mathbb{F}$是标量
+有$x,y,z \in V ,s \in \mathbb{F}$，那么内积满足
+1. 第一个参数中的线性:
+$$\lang sx,y \rang = s\lang x,y \rang \\ \lang x+y,z \rang = \lang x,z \rang + \lang y,z \rang \\ \lang 0,x \rang = 0$$
+
+2. 共轭对称:$\lang x,y \rang = \overline{\lang y,x \rang }$
+
+3. 正定性:$\lang x,x \rang > 0 \quad\mathrm{if}\; x \neq 0$
+
+4. 正半定性或非负定性:$\forall{x}, \lang x,x \rang \geq 0 $
+
+5. 确定性：$\lang x,x \rang = 0 必然有 x=0$
+
+3，4，5可以跟上面定义范数和距离一样写成一个
+
+例子-欧几里得向量空间:
+$ x,y \in \mathbb{R}^n , \lang x,y \rang = x^Ty=\sum_{i=1}^n{x_iy_i}$
+
+
+**只有定义了内积，才会有夹角的概念，才会有正交的概念，另外内积也可以定义范数，也就是说内积是比范数更具体的一个概念。**
+
+---
+
+**欧式空间**就是定义了内积的有限维实线性空间。
+
+---
+
+**希尔伯特空间**就是完备的内积空间。(Hilbert space)
+希尔伯特空间中的元素一般是函数，因为一个函数可以视为一个无穷维的向量。
+
+
+```mermaid
+graph LR;
+    LS(("Linear Space"))-->NLS(("Normed Linear Space"));
+    NLS-->BS(("Banach Space"))
+    NLS-->IPS(("Inner Product Space"))
+    IPS-->HS(("Hilbert Space"))
+    IPS-->ES(("Euclid Space"))
+```
+
+![](https://pic2.zhimg.com/80/v2-be26b2ba1df2edc9636647a28b22238d_720w.jpg?source=1940ef5c)
+
+
+参考：[一片文章带你理解再生核希尔伯特空间（RKHS）以及各种空间](https://blog.csdn.net/ChangHengyi/article/details/80577318)
+
+#### 维度诅咒
+维度诅咒通常是指在涉及到向量的计算的问题中，随着维数的增加，计算量呈指数倍增长的一种现象。高维度有更大的特征空间，需要更多的数据才可以进行较准确的估计。
+> 若特征是二值的，则每增加一个特征，所需数据量都在以2的指数级进行增长，更何况很多特征不只是二值的。
+
+几何角度1：
+
+<svg width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="54" width="54" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" id="svg_1" height="50" width="50" y="1.134891" x="1.227186" stroke-width="1.5" fill="#fff"/>
+  <ellipse stroke="#000" ry="25" rx="25" id="svg_2" cy="26.316708" cx="25.727185" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_3" y2="26.363651" x2="49.090879" y1="26.363651" x1="23.636325" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <text stroke="#000" transform="matrix(0.8454890517551235,0,0,0.38060957631270753,66.36433546231878,120.48066499237646) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4" y="-262.016546" x="-56.089448" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">0.5</text>
+ </g>
+</svg>
+
+上图表示一个多维空间（以二维为例），设正方形边长为1，则其内切圆半径为$r=0.5$，则正方形面积为1，内切圆面积为$\pi(0.5)^2$ 。若将此变为三维情况下，正方体体积为1，内切球体积为$\frac{4}{3}\pi(0.5)^3$。
+
+因此球体的体积可以表示为$V(d) = \frac{\pi^{d/2}}{\varGamma(\frac{d}{2}+1)}0.5^d = k(0.5)^d$(d为维度),则 $\lim_{d \to \infty}k(0.5)^d = 0$，其内切超球体的体积为0。由此可知，**高维情况下，数据大都分布在四角（正方形内，内切圆外）**，稀疏性太大，不好分类。
+> 维度越大，超球体体积越小。说明落在超球体内的样本越少，因为超球体是超立方体的内切球。不在球内,那只能在角落！
+
+几何角度2：
+
+<svg width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="54" width="54" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse stroke="#000" ry="25" rx="25" id="svg_5" cy="25" cx="25" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <ellipse id="svg_6" cy="24.593763" cx="34.636353" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <ellipse ry="20" rx="20" id="svg_7" cy="25" cx="25" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+ </g>
+</svg>
+
+上图也表示一个多维空间（以二维为例），则其中图形的体积有如下关系：外圆半径$r=1$，内圆半径为$r−\varepsilon$ 。同样在高维情况下，外圆体积为$V_{外圆} = k.1^d = k$，中间的圆环体积为$V_{圆环} = k - k(1-\varepsilon)^d$，则：
+$$\lim_{d \to \infty}\frac{V_{圆环}}{V_{外圆}} = \lim_{d \to \infty}\frac{ k - k(1-\varepsilon)^d}{k} = \lim_{d \to \infty}(1-(1-\varepsilon)^d) = 1$$
+
+> 高维情况下，无论$\varepsilon$多小，只要d足够大，圆环几乎占据了整个外圆，内圆体积趋向于0，导致数据**稀疏**。
+
+参考：
+[The Curse of Dimensionality in classification](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)
+[机器学习-白板推导系列(五)-降维（Dimensionality Reduction）](https://www.bilibili.com/video/BV1vW411S7tH)
 
 ### 参考文献
 
