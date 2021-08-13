@@ -396,12 +396,16 @@ https://zhuanlan.zhihu.com/p/93109455
 
 ![](img/auto_ml_05.jpg)
 
-- [auto-sklearn](https://github.com/automl/auto-sklearn/) 自动机器学习工具包和scikit-learn估计器的直接替代品
+
+- [TPOT ++](https://github.com/rhiever/tpot) 一种自动化的机器学习工具包，可优化一系列scikit-learner操作员以设计机器学习管道，包括数据和功能预处理器以及估计器。可以替代scikit-learn估算器。
+
+- [auto-sklearn ++](https://github.com/automl/auto-sklearn/) 自动机器学习工具包和scikit-learn估计器的直接替代品
+
+- [pycaret ++](https://github.com/pycaret/pycaret) PyCaret是一个开源的、低代码的Python机器学习库，它允许您在选择的笔记本环境中，在几分钟内从准备数据到部署模型。
 
 - [autoviml](https://github.com/AutoViML/Auto_ViML/) 用单行代码自动构建多个机器学习模型。设计为使用scikit学习模型的更快方法，而无需预处理数据。
-
-- [TPOT](https://github.com/rhiever/tpot) 一种自动化的机器学习工具包，可优化一系列scikit-learner操作员以设计机器学习管道，包括数据和功能预处理器以及估计器。可以替代scikit-learn估算器。
 
 - [Featuretools](https://github.com/FeatureLabs/featuretools) 执行自动特征工程的框架。它可以用于将时间和关系数据集转换为用于机器学习的特征矩阵。
 
 - [Neuraxle](https://github.com/Neuraxio/Neuraxle) 一个用于构建整洁管道的库，提供正确的抽象以简化机器学习应用程序的研究，开发和部署。它与深度学习框架和scikit-learn API兼容，可以流式处理迷你批处理，使用数据检查点，构建时髦的管道以及使用自定义逐步保存程序序列化模型。
+
