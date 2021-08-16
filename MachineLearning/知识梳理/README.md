@@ -59,7 +59,7 @@ graph LR;
 
 输入变量与输出变量均为连续变量的预测问题称为**回归问题**；
 输出变量为有限个离散变量的预测问题称为**分类问题**；
-输入变量与输出变量均为变量序列的预测问题称为**标注问题**(可以理解为特殊的分类问题)。
+输入变量与输出变量均为变量序列的预测问题称为**标注问题**(分类问题的推广，如：隐马尔可夫模型HMM，条件随机场CRF)。
 
 监督学习的模型可以是概率模型或非概率模型，由**条件概率分布**$P(Y|X)$或**决策函数（decision function）**$Y=f(X)$表示，随具体学习方法而定。对具体的输入进行相应的输出预测时，写作$P(y|x)$或$Y=f(x)$。
 $$y =\displaystyle\argmax_{y}  P(y|x)$$
@@ -128,6 +128,11 @@ $$K(x,z) = \phi(x).\phi(z) = \lang \phi(x),\phi(z) \rang$$
 #### 模型选择
 
 参考：[模型选择](../Model-Selection.md)
+
+#### 生成模型和判别模型
+
+参考：[生成模型和判别模型](../生成模型和判别模型.md)
+
 
 #### 各种空间介绍
 
@@ -317,7 +322,7 @@ $$\lim_{d \to \infty}\frac{V_{圆环}}{V_{外圆}} = \lim_{d \to \infty}\frac{ k
 - **柯西-施瓦茨 (Cauchy–Schwarz) 不等式 - [Cauchy–Schwarz inequality](https://en.jinzhao.wiki/wiki/Cauchy%E2%80%93Schwarz_inequality)**
     $$[\sum_{i=1}^{n}{a_ib_i}]^2  \leq [\sum_{i=1}^{n}a_i^2].[\sum_{i=1}^{n}b_i^2] 等式成立：b_i=ka_i \\ 向量形式：|\braket{u,v}| \leq ||u||.||v|| \\ 概率中：|E(XY)|^2 \leq E(X^2)E(Y^2)$$
     证明：
-    $$\vec{A} = (a_1,...,a_n),  \vec{B} = (b_1,...,b_n) \\ \vec{A}.\vec{B} = (a_1b_1,...,a_nb_n) = |\vec{A}|.|\vec{B}|\cos\theta \leq |\vec{A}|.|\vec{B}| = \sqrt{a_1^2+...+a_n^2}.\sqrt{b_1^2+...+b_n^2}$$
+    $$\vec{A} = (a_1,...,a_n),  \vec{B} = (b_1,...,b_n) \\ \vec{A}.\vec{B} = (a_1b_1,...,a_nb_n) = ||\vec{A}||.||\vec{B}||\cos\theta \leq ||\vec{A}||.||\vec{B}|| = \sqrt{a_1^2+...+a_n^2}.\sqrt{b_1^2+...+b_n^2}$$
     应用:
     1. 证明covariance inequality：$Var(Y) \geq \frac{Cov(Y,X)^2}{Var(X)}$,有$\braket{X,Y} := E(XY)$
     $$|Cov(Y,X)|^2 = |E((X-\mu)(Y-v))|^2 = |\braket{X-\mu,Y-v}|^2 \\ \leq \braket{X-\mu,X-\mu}\braket{Y-v,Y-v} = E((X-\mu)^2)E((Y-v)^2) = Var(X)Var(Y)$$
@@ -374,3 +379,71 @@ $$\lim_{d \to \infty}\frac{V_{圆环}}{V_{外圆}} = \lim_{d \to \infty}\frac{ k
 [9] [Lecture Notes in MACHINE LEARNING](https://news.vidyaacademy.ac.in/wp-content/uploads/2018/10/NotesOnMachineLearningForBTech-1.pdf) Dr V N Krishnachandran
 
 ## 第 2 章 感知机
+
+感知机[Perceptron](https://en.jinzhao.wiki/wiki/Perceptron)是1957年，由Rosenblatt提出会，是**神经网络**和**支持向量机**的基础。
+
+要求：数据集线性可分(linearly separable data set)
+
+- **模型**：
+$$f(x) = sign(w.x + b)$$
+其中$x,w \in \mathbb{R}^n ,b \in \mathbb{R}$,$w$叫作权值（weight）或权值向量（weight vector），$b$叫作偏置（bias），sign是符号函数
+$$sign(x) = \begin{cases}
+   +1 & x \geq 0 \\
+   -1 & x<0
+\end{cases}$$
+
+感知机是一种线性分类模型，属于判别模型。感知机模型的假设空间是定义在特征空 间中的所有线性分类模型（linear classification model）或线性分类器(linear classifier)，即 函数集合$\{f|f(x)＝w·x+b\}$
+
+超平面S：$w.x+b = 0$,其中$w$是S的法向量，$b$是S的截距，超平面S称为分离超平面（separating hyperplane）
+
+- **策略**：
+$$L(w,b) = -\sum_{x_i \in M}{y_i(w.x_i + b)}$$
+其中$M$为误分类点的集合。误分类数据$M = \{ (x_i,y_i)|-y_i(w.x_i +b) > 0\}$
+
+函数间隔：$y(w.x + b)$
+几何间隔：$\frac{1}{||w||}|w.x + b|$ (在上面的loss function中没有考虑$\frac{1}{||w||}$)
+
+- **算法**：
+$$\min_{w,b} L(w,b) = -\sum_{x_i \in M}{y_i(w.x_i + b)}$$
+使用**随机梯度下降法（stochastic gradient）**:
+1. 初始化参数(随机法)：$w_0,b_0$
+2. 选取数据$(x_i,y_i)$
+3. 如果$(x_i,y_i)$是误分类点，也就是$y_i(w.x_i + b) \leq 0$，则对$w,b$进行更新
+$$在(x_i,y_i)点处梯度为：\\ \nabla_wL(w,b) = -y_ix_i \\ \nabla_bL(w,b) = -y_i\\ 更新w：w_{k+1} \gets w_{k}+\eta y_ix_i \\ 更新b：b_{k+1} \gets b_{k}+\eta y_i \\其中学习率\eta \in (0,1]$$
+4. 循环2-3，直到训练集中没有误分类点。
+
+- 上述**算法的收敛性**：
+
+Novikoff定理：
+设训练集$T = \{(x_1,y_1),...,(x_N,y_N)\}$是线性可分的，
+1. 设完美超平面$\hat{w}_{opt}.\hat{x} = 0 , ||\hat{w}_{opt}||=1$ 将训练集完全正确分开（简化起见 $\hat{w}_{opt}.\hat{x} = w_{opt}.x +b$），存在$\gamma >0$ ,对所有点有$y_i(\hat{w}_{opt}.\hat{x_i}) \geq \gamma$；
+
+2. 令$R = \max_{1\leq i\leq N}||\hat{x_i}||$,则算法会在有限步k满足不等式$k \leq (\frac{R}{\gamma})^2$
+
+证明(注意：带hat的表示扩充向量)：
+1. 因为数据线性可分，对于所有点$y_i(\hat{w}_{opt}.\hat{x_i}) > 0$,所以存在
+$$\gamma = \min_i{y_i(\hat{w}_{opt}.\hat{x_i})} \leq {y_i(\hat{w}_{opt}.\hat{x_i})} \label{2-1}\tag{2-1}$$
+所以这里的$\gamma$代表了所有点离完美超平面的最小距离；
+
+2. 为了方便计算 设 扩充向量$\hat{w} = (w^T,b)^T$， 有
+$$\hat{w}_{k} = \hat{w}_{k-1}+\eta y_i\hat{x_i} \label{2-2}\tag{2-2}$$
+
+3. 推导不等式
+$$\hat{w}_{k}.\hat{w}_{opt} \geq k\eta\gamma \label{2-3}\tag{2-3}$$
+
+由$\eqref{2-1}$和$\eqref{2-2}$
+$$\hat{w}_{k}.\hat{w}_{opt} = \hat{w}_{k-1}.\hat{w}_{opt} + \eta{y_i}\hat{w}_{opt}.\hat{x_i} \\ \geq \hat{w}_{k-1}.\hat{w}_{opt} + \eta\gamma \\ \geq \hat{w}_{k-2}.\hat{w}_{opt} + 2\eta\gamma \\ \geq k\eta\gamma$$
+
+4. 推导不等式
+$$||\hat{w}_{k}||^2 \leq k\eta^2R^2 \label{2-4}\tag{2-4}$$
+由$\eqref{2-2}$
+$$||\hat{w}_{k}||^2=||\hat{w}_{k-1}+\eta y_i\hat{x_i}||^2 = ||\hat{w}_{k-1}||^2 + 2\eta{y_i}\hat{w}_{k-1}.\hat{x}_{i} + \eta^2||\hat{x}_{i}||^2$$
+假设k次完全分完，那么k-1次有误分类点，则${y_i}\hat{w}_{k-1}.\hat{x}_{i} \leq 0$
+所以
+$$||\hat{w}_{k}||^2 =||\hat{w}_{k-1}||^2 + 2\eta{y_i}\hat{w}_{k-1}.\hat{x}_{i} + \eta^2||\hat{x}_{i}||^2 \\ \leq ||\hat{w}_{k-1}||^2 +  \eta^2||\hat{x}_{i}||^2 \\ \leq ||\hat{w}_{k-1}||^2 +  \eta^2R^2  \\ \leq ||\hat{w}_{k-2}||^2 +  2\eta^2R^2 \leq ... \\ \leq k\eta^2R^2$$
+
+5. 由$\eqref{2-3}$和$\eqref{2-4}$
+
+$$k\eta\gamma \leq \underbrace{\hat{w}_{k}.\hat{w}_{opt} \leq ||\hat{w}_{k}||.\underbrace{||\hat{w}_{opt}||}_{=1} }_{\text{柯西-施瓦茨 (Cauchy–Schwarz) 不等式}} \leq \sqrt{k} \eta R \\ \; \\ \Rightarrow k^2\gamma^2 \leq kR^2 \\ \Rightarrow k \leq (\frac{R}{\gamma})^2$$
+
+也就是k是有上界的。
