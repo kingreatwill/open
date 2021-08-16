@@ -152,6 +152,10 @@ dotnet monitor collect # 会开放 http://localhost:52323 和 http://localhost:5
 [.netcore利用perf分析高cpu使用率](https://www.cnblogs.com/wu_u/p/14263349.html)
 [利用dotnet-dump分析docker容器内存泄露](https://www.cnblogs.com/wu_u/p/14109333.html)
 
+
+[PerfView](https://github.com/Microsoft/perfview)是一款免费的性能分析工具，可帮助排查CPU和内存相关的性能问题。
+可以查看火焰图，也可以使用[speedscope](https://www.speedscope.app/)，一个交互式火焰图可视化工具，帮助我们分析。
+
 ## DataFrame
 https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/
 https://github.com/dotnet/corefxlab/tree/master/src/Microsoft.Data.Analysis

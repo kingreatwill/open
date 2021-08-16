@@ -205,6 +205,15 @@ Ionic 类似 React Native 的跨平台框架，支持vue等
 
 https://github.com/ionic-team/ionic-framework 42.9k
 
+### vue3
+#### quasar
+https://github.com/quasarframework/quasar 19.2k
+
+#### primevue
+Vue, Angular, React and Java
+https://github.com/primefaces/primevue 1.5k
+
+
 ### react
 #### evergreen
 https://github.com/segmentio/evergreen/ 10.4k
