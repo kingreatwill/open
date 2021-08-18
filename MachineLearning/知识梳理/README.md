@@ -695,11 +695,11 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 **点估计法：**
 
 - **极大似然估计([Maximum likelihood estimation, MLE](https://en.jinzhao.wiki/wiki/Maximum_likelihood_estimation))**
-  极大似然估计是典型的频率学派观点，它的基本思想是：待估计参数$\theta$ 是客观存在的，只是未知而已
+  极大似然估计是典型的**频率学派**观点，它的基本思想是：待估计参数$\theta$ 是客观存在的，只是未知而已
   $$L(\theta|x) = f(x|\theta) = P(X|\theta) \\ \hat{\theta}_{MLE} = \argmax_{\theta} L(\theta|x)$$
   这里用 | 和 ; 是等价的; 要最大化 L，对 L 求导数并令导数为 0 即可求解。
-  $P(X|\theta)$就是贝叶斯公式中的likelihood，$\theta$就是$c_k$
-  log-likelihood:$\ell(\theta|x) = \log L(\theta|x)$
+  $P(X|\theta)$就是贝叶斯公式中的 likelihood，$\theta$就是$c_k$
+  log-likelihood:$\ell(\theta|x) = \log L(\theta|x)$（log函数并不影响函数的凹凸性）
 
 - **最大后验估计([maximum a posteriori estimation, MAP](https://en.jinzhao.wiki/wiki/Maximum_a_posteriori_estimation))**
   贝叶斯定理：
@@ -709,19 +709,26 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
   这里分母与$\theta$无关，可以省略
   我们将likelihood变成log-likelihood：
   $$\hat{\theta}_{MAP} =  \argmax_{\theta}\log{f(x|\theta)g(\theta)} =  \argmax_{\theta} (\log{f(x|\theta)} + \log{g(\theta)})$$
-  这样我们可以将$\log{g(\theta)}$看作机器学习结构风险中的**正则化项**，那么带有正则化项的最大似然学习就可以被解释为MAP（如：[Ridge回归和Lasso回归](../图解数学/L1L2正则化和凸优化.md)）。
-  当然，这并不是总是正确的，例如，有些正则化项可能不是一个概率分布的对数，还有些正则化项依赖于数据，当然也不会是一个先验概率分布。不过，MAP提供了一个直观的方法来设计复杂但可解释的正则化项，例如，更复杂的惩罚项可以通过混合高斯分布作为先验得到，而不是一个单独的高斯分布。
+  这样我们可以将$\log{g(\theta)}$看作机器学习结构风险中的**正则化项**，那么带有正则化项的最大似然学习就可以被解释为 MAP（如：[Ridge 回归和 Lasso 回归](../图解数学/L1L2正则化和凸优化.md)）。
+  当然，这并不是总是正确的，例如，有些正则化项可能不是一个概率分布的对数，还有些正则化项依赖于数据，当然也不会是一个先验概率分布。不过，MAP 提供了一个直观的方法来设计复杂但可解释的正则化项，例如，更复杂的惩罚项可以通过混合高斯分布作为先验得到，而不是一个单独的高斯分布。
+
   > 最大后验估计就是**考虑后验分布极大化而求解参数**的极大似然估计；MAP = 最大似然估计 + 最大似然估计的正则化。
   > 要最大化 L，对 L 求导数并令导数为 0 即可求解。
 
 - **贝叶斯估计([Bayes estimation](https://en.jinzhao.wiki/wiki/Bayes_estimator))**
+  贝叶斯估计是典型的**贝叶斯学派**观点，它的基本思想是：待估计参数 $\theta$ 也是随机变量，因此需要根据观测样本估计参数 $\theta$ 的分布。**贝叶斯估计需要要计算整个后验概率的概率分布（而MAP值需要求解后验分布极大化时的参数$\theta$）**。
 
-> **共轭先验（[Conjugate prior](https://en.jinzhao.wiki/wiki/Conjugate_prior)）**：如果先验分布prior和后验分布posterior属于同一分布簇，则prior称为likehood的共轭先验
-> likehood为高斯分布，prior为高斯分布，则posterior也为高斯分布。
-> likehood为伯努利分布（二项式分布），prior为beta分布，则posterior也为beta分布。
-> likehood为多项式分布，prior为Dirichlet分布（beta分布的一个扩展），则posterior也为Dirichlet（狄利克雷）分布。beta分布可以看作是dirichlet分布的特殊情况。
+  贝叶斯估计和MAP挺像的，都是以最大化后验概率为目的。区别在于：
+   1. MLE和MAP都是只返回了的预估值
+   2. MAP在计算后验概率的时候，把分母p(X)给忽略了，在进行贝叶斯估计的时候则不能忽略
+   3. 贝叶斯估计要计算整个后验概率的概率分布
 
 
+
+> **共轭先验（[Conjugate prior](https://en.jinzhao.wiki/wiki/Conjugate_prior)）**：如果先验分布 prior 和后验分布 posterior 属于同一分布簇，则 prior 称为 likehood 的共轭先验
+> likehood 为高斯分布，prior 为高斯分布，则 posterior 也为高斯分布。
+> likehood 为伯努利分布（二项式分布），prior 为 beta 分布，则 posterior 也为 beta 分布。
+> likehood 为多项式分布，prior 为 Dirichlet 分布（beta 分布的一个扩展），则 posterior 也为 Dirichlet（狄利克雷）分布。beta 分布可以看作是 dirichlet 分布的特殊情况。
 
 最小二乘估计([Least squares estimation, LSE](https://en.jinzhao.wiki/wiki/Least_squares))
 
