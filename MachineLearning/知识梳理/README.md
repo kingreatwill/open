@@ -74,7 +74,7 @@ $$y =\displaystyle\argmax_{y}  P(y|x)$$
 $$z =\displaystyle\argmax_{z}  P(z|x)$$
 以及 条件概率分布$P(x|z)$ （用来做**概率密度估计**，比如 GMM 中$P(x|z)$属于高斯分布，如果假设知道数据来自哪个高斯分布，即知道$z$，我们可以用极大似然估计来估计相关参数）。
 
-[核密度估计 Kernel Density Estimation.](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html)
+[核密度估计 Kernel Density Estimation.](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html) - 应用密度估计检测离群值（outlier）的[LocalOutlierFactor](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html)
 
 **概率模型（probabilistic model）与非概率模型（non-probabilistic model）或者确定性模型（deterministic model）**：
 
@@ -385,6 +385,8 @@ $$\lim_{d \to \infty}\frac{V_{圆环}}{V_{外圆}} = \lim_{d \to \infty}\frac{ k
 
 ## 第 2 章 感知机
 
+判别模型
+
 感知机[Perceptron](https://en.jinzhao.wiki/wiki/Perceptron)是**神经网络**和**支持向量机**的基础。最早在 1957 年由 Rosenblatt 提出$^{参考文献[2-1]}$。Novikoff$^{参考文献[2-2]}$，Minsky 与 Papert$^{参考文献[2-3]}$等人对感知机进行了一系列理论研究。感知机的扩展学习方法包括口袋算法(pocket algorithm)$^{参考文献[2-4]}$、表决感知机(voted perceptron)$^{参考文献[2-5]}$、带边缘感知机(perceptron with margin)$^{参考文献[2-6]}$等。
 [Brief History of Machine Learning](https://erogol.com/brief-history-machine-learning/)
 
@@ -479,6 +481,8 @@ $$k\eta\gamma \leq \underbrace{\hat{w}_{k}.\hat{w}_{opt} \leq ||\hat{w}_{k}||.\u
 
 ## 第 3 章 k 近邻法
 
+判别模型
+
 k 近邻法（[k-nearest neighbor，k-NN](https://en.jinzhao.wiki/wiki/K-nearest_neighbors_algorithm)）1968 年由 Cover 和 Hart 提出，是一种基本分类与回归方法。本书只讨论分类问题中的 k 近邻法。
 k 值的选择、距离度量及分类决策规则是 k 近邻法的三个基本要素。
 最后讲述 k 近邻法的一个实现方法——kd 树，介绍构造 kd 树和搜索 kd 树的算法
@@ -499,8 +503,7 @@ k 值的选择：超参数，可以使用交叉验证法来选取最优 k 值
 - **算法**：
   直接计算（线性扫描 linear scan）,当训练集很大时，计算很耗时（每次都要计算所有距离，然后找到 k 个最近距离的点），因为没有学习。
   为了提高 k 近邻搜索的效率，可以考虑使用特殊的结构存储训练数据，以减少计算距离的次数。
-  具体方法很多，如：[kd_tree](https://en.jinzhao.wiki/wiki/K-d_tree)，[ball_tree](https://arxiv.org/pdf/1511.00628.pdf)，brute(蛮力实现,不算优化，只是把 sklearn 中的参数拿过来)
-  ![](img/kd-tree-vs-ball-tree.png)，以及其它[树结构](<https://en.jinzhao.wiki/wiki/Category:Trees_(data_structures)>)
+  具体方法很多，如：[kd_tree](https://en.jinzhao.wiki/wiki/K-d_tree)，[ball_tree](https://arxiv.org/pdf/1511.00628.pdf)，brute(蛮力实现,不算优化，只是把 sklearn 中的参数拿过来)，以及其它[树结构](<https://en.jinzhao.wiki/wiki/Category:Trees_(data_structures)>)
   为了改进 KDtree 的二叉树树形结构，并且沿着笛卡尔坐标进行划分的低效率，ball tree 将在一系列嵌套的超球体上分割数据。也就是说：使用超球面而不是超矩形划分区域。虽然在构建数据结构的花费上大过于 KDtree，但是在高维甚至很高维的数据上都表现的很高效。
 
   下面介绍其中的 kd 树（kd tree 是一个二叉树）方法（kd 树是存储 k 维空间数据的树结构，这里的 k 与 k 近邻法的 k 意义不同）。
@@ -621,7 +624,7 @@ k 值的选择：超参数，可以使用交叉验证法来选取最优 k 值
 
 朴素贝叶斯（[Naïve Bayes](https://en.jinzhao.wiki/wiki/Naive_Bayes_classifier)）法是基于**贝叶斯定理**与**特征条件独立假设**（Naive 天真的）的分类方法。
 对于给定的训练数据集，首先基于特征条件独立假设学习输入/输出的联合概率分布；然后基于此模型，对给定的输入 x，利用贝叶斯定理求出后验概率最大的输出 y。
-朴素贝叶斯法实现简单，学习与预测的效率都很高，是一种常用的方法。
+朴素贝叶斯法实现简单，学习与预测的效率都很高，是一种常用的方法。并且支持 online learning（有 partial_fit 方法）。
 
 朴素贝叶斯法是典型的**生成学习方法**。生成方法由训练数据学习联合概率分布 P(X,Y)，然后求得后验概率分布 P(Y|X)。具体来说，利用训练数据学习 P(X|Y)和 P(Y)的估计，得到联合概率分布：P(X,Y)＝ P(Y)P(X|Y) ；概率估计方法可以是极大似然估计或贝叶斯估计。
 
@@ -669,7 +672,7 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
      $$P(X^{(j)} = a_{jl}|Y=c_k) = \frac{\sum_{i=1}^N I(x_i^{(j)} =a_{jl} , y_i = c_k)}{\sum_{i=1}^N I(y_i=c_k)}$$
      其中$j = 1,2,...N; \quad l=1,2...S_j ;\quad k=1,2,...K$，$x_i^{(j)}$是第$i$个样本的第$j$个特征；$a_{jl}$是第$j$个特征可能取值的第$l$个值。
 
-  **贝叶斯估计**：
+  **贝叶斯估计**（smoothed version of maximum likelihood）：
   极大似然估计有一个问题就是条件概率$P(X^{(j)}=x^{(j)}|Y=c_k)$有一个为 0，就会出现无法估计的情况(就是概率为 0)，也就是给定要预测的特征向量的一个特征出现了新的类别（如：第$j$个特征$x^{(j)} = a_{jS_j+1}$），那么就会导致概率为 0，这是要么增加样本数量，要么使用贝叶斯估计
 
   > 注意：朴素贝叶斯法与贝叶斯估计（Bayesian estimation）是不同的概念。
@@ -682,8 +685,8 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
   其中$\lambda \geq 0$,当$\lambda = 0$时就等价于极大似然估计；当$\lambda = 1$时，称为拉普拉斯平滑（[Laplacian smoothing](https://en.jinzhao.wiki/wiki/Laplacian_smoothing)）；当$\lambda < 1$时为 Lidstone 平滑
 
   > 高斯朴素贝叶斯:条件概率(likelihood)
-  > $$P(X^{(j)} = x^{(j)}|Y=c_k) = \frac{1}{\sqrt{2\pi\sigma_k^2}} exp\bigg(-\frac{(x^{(j)}-\mu_k)^2}{2\sigma_k^2}\bigg) $$
-  > 其中$\mu_k$为样本中类别为$c_k$的 所有$x^{(j)}$的均值；$\sigma_k^2$为样本中类别为$c_k$的 所有$x^{(j)}$的方差（其实就是最大似然估计均值和方差）。
+  > $$P(X^{(j)} = x^{(j)}|Y=c_k) = \frac{1}{\sqrt{2\pi\sigma_{j,k}^2}} exp\bigg(-\frac{(x^{(j)}-\mu_{j,k})^2}{2\sigma_{j,k}^2}\bigg) $$
+  > 其中$\mu_{j,k}$为样本中类别为$c_k$的 所有$x^{(j)}$的均值；$\sigma_{j,k}^2$为样本中类别为$c_k$的 所有$x^{(j)}$的方差（其实就是最大似然估计均值和方差）。
   > sklearn 中 GaussianNB 类的主要参数仅有一个，即先验概率 priors ，对应 Y 的各个类别的先验概率$P(Y=c_k)$。这个值默认不给出，如果不给出此时$P(Y=c_k) = \frac{\sum_{i=1}^N I(y_i = c_k) + \lambda}{N + K\lambda}$。如果给出的话就以 priors 为准。
 
 ### 附加知识
@@ -699,7 +702,7 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
   $$L(\theta|x) = f(x|\theta) = P(X|\theta) \\ \hat{\theta}_{MLE} = \argmax_{\theta} L(\theta|x)$$
   这里用 | 和 ; 是等价的; 要最大化 L，对 L 求导数并令导数为 0 即可求解。
   $P(X|\theta)$就是贝叶斯公式中的 likelihood，$\theta$就是$c_k$
-  log-likelihood:$\ell(\theta|x) = \log L(\theta|x)$（log函数并不影响函数的凹凸性）
+  log-likelihood:$\ell(\theta|x) = \log L(\theta|x)$（log 函数并不影响函数的凹凸性）
 
 - **最大后验估计([maximum a posteriori estimation, MAP](https://en.jinzhao.wiki/wiki/Maximum_a_posteriori_estimation))**
   贝叶斯定理：
@@ -716,14 +719,13 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
   > 要最大化 L，对 L 求导数并令导数为 0 即可求解。
 
 - **贝叶斯估计([Bayes estimation](https://en.jinzhao.wiki/wiki/Bayes_estimator))**
-  贝叶斯估计是典型的**贝叶斯学派**观点，它的基本思想是：待估计参数 $\theta$ 也是随机变量，因此需要根据观测样本估计参数 $\theta$ 的分布。**贝叶斯估计需要要计算整个后验概率的概率分布（而MAP值需要求解后验分布极大化时的参数$\theta$）**。
+  贝叶斯估计是典型的**贝叶斯学派**观点，它的基本思想是：待估计参数 $\theta$ 也是随机变量，因此需要根据观测样本估计参数 $\theta$ 的分布。**贝叶斯估计需要要计算整个后验概率的概率分布（而 MAP 值需要求解后验分布极大化时的参数$\theta$）**。
 
-  贝叶斯估计和MAP挺像的，都是以最大化后验概率为目的。区别在于：
-   1. MLE和MAP都是只返回了的预估值
-   2. MAP在计算后验概率的时候，把分母p(X)给忽略了，在进行贝叶斯估计的时候则不能忽略
-   3. 贝叶斯估计要计算整个后验概率的概率分布
+  贝叶斯估计和 MAP 挺像的，都是以最大化后验概率为目的。区别在于：
 
-
+  1.  MLE 和 MAP 都是只返回了的预估值
+  2.  MAP 在计算后验概率的时候，把分母 p(X)给忽略了，在进行贝叶斯估计的时候则不能忽略
+  3.  贝叶斯估计要计算整个后验概率的概率分布
 
 > **共轭先验（[Conjugate prior](https://en.jinzhao.wiki/wiki/Conjugate_prior)）**：如果先验分布 prior 和后验分布 posterior 属于同一分布簇，则 prior 称为 likehood 的共轭先验
 > likehood 为高斯分布，prior 为高斯分布，则 posterior 也为高斯分布。
@@ -749,3 +751,183 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 [4-3] Bishop C. [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf),Springer,2006
 
 ## 第 5 章 决策树
+
+判别模型
+
+决策树（[decision tree](https://en.jinzhao.wiki/wiki/Decision_tree_learning)）是一种基本的分类与回归方法，具有良好的可解释性(可视化)，通常包括 3 个步骤：特征选择、决策树的生成和决策树的修剪
+![](https://scikit-learn.org/stable/_images/iris.png)
+**特征选择**：
+特征选择在于选取对训练数据具有分类能力的特征。（sklearn 中可以返回 feature*importances*特征重要性）
+特征选择的准则：
+
+- 信息增益([information gain](https://en.jinzhao.wiki/wiki/Mutual_information))（ID3）
+- 信息增益比([information gain ratio](https://en.jinzhao.wiki/wiki/Information_gain_ratio)) （C4.5）
+- 基尼指数([Gini coefficient](https://en.jinzhao.wiki/wiki/Gini_coefficient) or Gini index or Gini ratio)（CART）
+
+**决策树的生成**：
+常见算法（参见：[Decision tree learning](https://en.jinzhao.wiki/wiki/Decision_tree_learning)以及[Tree algorithms](https://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart)）：
+
+- [ID3](https://en.jinzhao.wiki/wiki/ID3_algorithm) (Iterative Dichotomiser 3)
+- [C4.5](https://en.jinzhao.wiki/wiki/C4.5_algorithm) (successor of ID3)
+- [CART](https://en.jinzhao.wiki/wiki/Predictive_analytics#Classification_and_regression_trees_.28CART.29) (Classification And Regression Tree)
+
+**[决策树的修剪 Decision tree pruning](https://en.jinzhao.wiki/wiki/Decision_tree_pruning)**：
+修剪是机器学习和搜索算法中的一种数据压缩技术，它通过删除树中对分类实例不重要和冗余的部分来减小决策树的大小。剪枝降低了最终分类器的复杂度，从而通过减少过拟合来提高预测精度。
+
+- 预剪枝（Pre-pruning，Top-down pruning）：
+
+  - max_depth
+    限制树的最大深度，超过设定深度的树枝全部剪掉
+
+  - min_samples_leaf
+    min_samples_leaf 限定，一个节点在分枝后的每个子节点都必须包含至少 min_samples_leaf 个训练样本，否则分枝就不会发生，或者，分枝会朝着满足每个子节点都包含 min_samples_leaf 个样本的方向去发生
+
+  - min_samples_split
+    min_samples_split 限定，一个节点必须要包含至少 min_samples_split 个训练样本，这个节点才允许被分枝，否则分枝就不会发生。
+
+  - max_features
+    一般 max_depth 使用，用作树的”精修“
+    max_features 限制分枝时考虑的特征个数，超过限制个数的特征都会被舍弃。和 max_depth 异曲同工，max_features 是用来限制高维度数据的过拟合的剪枝参数，但其方法比较暴力，是直接限制可以使用的特征数量而强行使决策树停下的参数，在不知道决策树中的各个特征的重要性的情况下，强行设定这个参数可能会导致模型学习不足。如果希望通过降维的方式防止过拟合，建议使用 PCA，ICA 或者特征选择模块中的降维算法。
+
+  - min_impurity_decrease
+    min_impurity_decrease 限制信息增益的大小，信息增益小于设定数值的分枝不会发生。这是在 0.19 版本种更新的功能，在 0.19 版本之前时使用 min_impurity_split。
+  - min_weight_fraction_leaf
+    基于权重的剪枝参数
+
+- 后剪枝（Post-pruning，Bottom-up pruning）：
+
+  - ccp_alpha：CCP(Cost Complexity Pruning)-[ccp_alpha 参数如何调优](https://scikit-learn.org/stable/auto_examples/tree/plot_cost_complexity_pruning.html#sphx-glr-auto-examples-tree-plot-cost-complexity-pruning-py)
+    [7 大后剪枝算法](https://blog.csdn.net/appleyuchi/article/details/83692381)
+    [7 大后剪枝算法 - 源码](https://github.com/appleyuchi/Decision_Tree_Prune)
+
+统计学习方法三要素：？
+
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
+
+#### 信息论（[Information Theory](https://en.jinzhao.wiki/wiki/Information_theory)）
+[Entropy, Relative Entropy, Cross Entropy](https://iitg.ac.in/cseweb/osint/slides/Anasua_Entropy.pdf)
+##### 熵（[Entropy](<https://en.jinzhao.wiki/wiki/Entropy_(information_theory)>)）
+
+在信息论中，熵用来衡量一个随机事件的**不确定性**。也叫香农熵 Shannon's（人名） entropy。
+$$H(X) = E_{p(x)}[I(X)] = E_{p(x)}[-\log {p(x)}] \\= -\sum_{i=1}^n {p(x_i)} \log {p(x_i)} \\= -\int_{X} {p(x)} \log {p(x)} dx$$
+其中$I(X) = -\log {p(x)}$ 称为**自信息**（[Self Information](https://en.jinzhao.wiki/wiki/Information_content)），是一个随机事件所包含的信息量。一个随机事件发生的概率越高，其自信息越低。如果一个事件必然发生，其自信息为 0。
+在自信息的定义中，对数的底可以使用 2、自然常数 𝑒 或是 10。当底为 2 时，自信息的单位为 bit；当底为 𝑒 时，自信息的单位为 nat。
+
+熵越高，则随机变量的信息越多（不确定性越大，系统越复杂）；熵越低，则随机变量的信息越少。
+
+求最大熵：假设概率分布
+
+| X    | 1   | 2   | ... | n   |
+| ---- | --- | --- | --- | --- |
+| p(x) | p₁  | p₂  | ... | pⁿ  |
+
+$$\max H(p) = \max -\sum_{i=1}^n p_i \log p_i \\ s.t. \sum_{i=1}^n p_i = 1$$
+
+由拉格朗日乘数法(Lagrange Multiplier)，最大变最小时去掉负号
+$$\mathcal L(p,\lambda) = \sum_{i=1}^n p_i \log p_i + \lambda(1-\sum_{i=1}^n p_i) \\偏导：\frac{\partial\mathcal L}{\partial p_i} = \log p_i + p_i.\frac{1}{p_i} - \lambda \\ 令偏导为0得：p_i^*=exp(\lambda-1)$$
+
+因为$\lambda$是一个超参数（常数），所以$p_i^*$是一个常数，所以 $p_1^*=p_2^*=...=p_n^*=\frac{1}{n}$
+
+所以**概率分布为一个均匀分布，则熵最大**，由此性质我们来证明熵的取值范围：设 p 是一个均匀分布$p = \frac{1}{n}$
+$$H(p) = -\sum_{i=1}^n \frac{1}{n} \log \frac{1}{n} \\= -\sum_{i=1}^n \frac{1}{n} \log n^{-1} \\= \sum_{i=1}^n \frac{1}{n} \log n \\= \log n$$
+所以：$$0 \leq H(p) \leq \log n$$
+
+$X$和$Y$的**联合熵**（[Joint Entropy](https://en.jinzhao.wiki/wiki/Joint_entropy)）为：
+$${\displaystyle \mathrm {H} (X,Y)=-\sum _{x\in {\mathcal {X}}}\sum _{y\in {\mathcal {Y}}}P(x,y)\log _{2}[P(x,y)]} \\=\mathbb {E} _{X,Y}[-\log p(x,y)]=-\sum _{x,y}p(x,y)\log p(x ,y)\,$$
+
+积分形式（连续）：
+$${\displaystyle h(X,Y)=-\int _{{\mathcal {X}},{\mathcal {Y}}}f(x,y)\log f(x,y)\,dxdy}$$
+
+多个随机变量：
+$${\displaystyle \mathrm {H} (X_{1},...,X_{n})=-\sum _{x_{1}\in {\mathcal {X}}_{1}}...\sum _{x_{n}\in {\mathcal {X}}_{n}}P(x_{1},...,x_{n})\log _{2}[P(x_{1},...,x_{n})]}$$
+多个随机变量的积分形式（连续）：
+$${\displaystyle h(X_{1},\ldots ,X_{n})=-\int f(x_{1},\ldots ,x_{n})\log f(x_{1},\ldots ,x_{n})\,dx_{1}\ldots dx_{n}}$$
+
+$X$和$Y$的**条件熵**（[Conditional Entropy](https://en.jinzhao.wiki/wiki/Conditional_entropy)）为：
+
+$${\displaystyle \mathrm {H} (Y|X)\ =-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log {\frac {p(x,y)}{p(x)}}}$$
+
+证明：
+$${\displaystyle {\begin{aligned}\mathrm {H} (Y|X)\ &\equiv \sum _{x\in {\mathcal {X}}}\,p(x)\,\mathrm {H} (Y|X=x)\\&=-\sum _{x\in {\mathcal {X}}}p(x)\sum _{y\in {\mathcal {Y}}}\,p(y|x)\,\log \,p(y|x)\\&=-\sum _{x\in {\mathcal {X}}}\sum _{y\in {\mathcal {Y}}}\,p(x,y)\,\log \,p(y|x)\\&=-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log \,p(y|x)\\&=-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log {\frac {p(x,y)}{p(x)}}.\\&=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log {\frac {p(x)}{p(x,y)}}.\\\end{aligned}}}$$
+
+积分形式（连续）：
+$${\displaystyle h(X|Y)=-\int _{{\mathcal {X}},{\mathcal {Y}}}f(x,y)\log f(x|y)\,dxdy}$$
+
+根据定义写作：
+$${\displaystyle \mathrm {H} (Y|X)\,=\,\mathrm {H} (X,Y)-\mathrm {H} (X)}$$
+一般形式：
+$${\displaystyle \mathrm {H} (X_{1},X_{2},\ldots ,X_{n})=\sum _{i=1}^{n}\mathrm {H} (X_{i}|X_{1},\ldots ,X_{i-1})}$$
+
+证明：
+$${\displaystyle {\begin{aligned}\mathrm {H} (Y|X)&=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log \left({\frac {p(x)}{p(x,y)}}\right)\\[4pt]&=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)(\log(p(x))-\log(p(x,y)))\\[4pt]&=-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log(p(x,y))+\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}{p(x,y)\log(p(x))}\\[4pt]&=\mathrm {H} (X,Y)+\sum _{x\in {\mathcal {X}}}p(x)\log(p(x))\\[4pt]&=\mathrm {H} (X,Y)-\mathrm {H} (X).\end{aligned}}}$$
+
+##### 互信息（[Mutual information](https://en.jinzhao.wiki/wiki/Mutual_information)）
+如果变量𝑋 和𝑌 互相独立，它们的互信息为零．
+
+$$I(X;Y)=\mathbb {E} _{X,Y}[SI(x,y)]=\sum _{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}$$
+其中SI（Specific mutual Information）是[pointwise mutual information](https://en.jinzhao.wiki/wiki/Pointwise_mutual_information)
+
+基本性质：
+$$I(X;Y)=H(X)-H(X|Y) =H(Y)- H(Y|X).\,$$
+对称性：
+$$I(X;Y)=I(Y;X)=H(X)+H(Y)-H(X,Y).\,$$
+
+互信息可以表示为给定Y值的 X的后验概率分布 与 X的先验分布之间的平均Kullback-Leibler散度:
+$$I(X;Y)=\mathbb {E} _{p(y)}[D_{\mathrm {KL} }(p(X|Y=y)\|p(X))].$$
+or
+$$I(X;Y)=D_{\mathrm {KL} }(p(X,Y)\|p(X)p(Y)).$$
+
+> 统计学习方法中讲到 信息增益等价互信息（74页），而维基百科中信息增益是[Kullback-Leibler散度](https://en.jinzhao.wiki/wiki/Information_gain) 
+
+##### 交叉熵（[Cross Entropy](https://en.jinzhao.wiki/wiki/Cross_entropy)）
+
+在给定 分布𝑝 的情况下，如果 分布𝑞 和 分布𝑝 越接近，交叉熵越小；如果 分布𝑞 和 分布𝑝 越远，交叉
+熵就越大．
+$${\displaystyle H(p,q)=-\operatorname {E} _{p}[\log q]} =-\sum _{x\in {\mathcal {X}}}p(x)\,\log q(x) = H(p)+D_{\mathrm {KL} }(p\|q)$$
+> 注意与联合熵${H} (X,Y)$的区别，联合熵描述一对随机变量平均所需的信息量，交叉熵描述两个分布之间的差异。
+> 也有说交叉熵$H(p,q)$是不标准的写法，应该是$H_q(p)$ (交叉熵不是对称的，而联合熵是对称的)，参见 [Difference of notation between cross entropy and joint entropy](https://stats.stackexchange.com/questions/373098/difference-of-notation-between-cross-entropy-and-joint-entropy) 以及[Relation between cross entropy and joint entropy](https://math.stackexchange.com/questions/2505015/relation-between-cross-entropy-and-joint-entropy)
+
+##### KL散度（[Kullback–Leibler divergence](https://en.jinzhao.wiki/wiki/Kullback%E2%80%93Leibler_divergence)）
+
+KL 散度（Kullback-Leibler Divergence），也叫KL 距离或相对熵(Relative Entropy)，是用概率分布 𝑞 来近似 𝑝 时所造成的信息损失量，KL 散度总是大于等于0的。**可以衡量两个概率分布之间的距离**．KL散度只有当𝑝 = 𝑞时，KL(𝑝, 𝑞) = 0．如果两个分布越接近，KL散度越小；如果两个分布越远，KL散度就越大．但KL散度并不是一个真正的度量或距离，一是KL散度不满足距离的对称性，二是KL散度不满足距离的三角不等式性质．
+
+$$D_{\mathrm {KL} }(p(X)\|q(X))=\sum _{x\in X}-p(x)\log {q(x)}\,-\,\sum _{x\in X}-p(x)\log {p(x)} \\=\sum _{x\in X}p(x)\log {\frac {p(x)}{q(x)}} = -\sum _{x\in X}p(x)\log {\frac {q(x)}{p(x)}}.$$
+也有写作：
+$$KL(p,q)  , KL(p|q) , KL(p\|q) , D_{KL}(p,q)$$
+
+##### JS散度（[Jensen-Shannon divergence](https://en.jinzhao.wiki/wiki/Jensen%E2%80%93Shannon_divergence)）
+JS散度（Jensen-Shannon Divergence）是一种对称的衡量两个分布相似度的度量方式，是 KL 散度一种改进．但两种散度都存在一个问题，即如果两个分布𝑝, 𝑞没有重叠或者重叠非常少时，KL散度和JS散度都很难衡量两个分布的距离．
+
+$${{\rm {D}_{JS}}}(P\parallel Q)={\frac  {1}{2}}D_{KL}(P\parallel M)+{\frac  {1}{2}}D_{KL}(Q\parallel M)$$
+其中$M={\frac  {1}{2}}(P+Q)$, JS散度也有写作$JSD(P\|Q), JS(P\|Q) ,JS(P,Q)$等。
+
+属于一种统计距离（[Statistical distance](https://en.jinzhao.wiki/wiki/Category:Statistical_distance)）
+
+统计距离还有**Wasserstein距离**[Wasserstein distance](https://en.jinzhao.wiki/wiki/Wasserstein_metric)，也用于衡量两个分布之间的距
+离．对于两个分布$\mu ,\nu，p^{th}-Wasserstein$距离定义为
+
+$${\displaystyle W_{p}(\mu ,\nu ):=\left(\inf _{\gamma \in \Gamma (\mu ,\nu )}\int _{M\times M}d(x,y)^{p}\,\mathrm {d} \gamma (x,y)\right)^{1/p},}$$
+
+### 参考文献
+
+[5-1] Olshen R A, Quinlan J R. Induction of decision trees. Machine Learning,1986,1(1): 81–106
+
+[5-2] Olshen R A, Quinlan J R. C4. 5: Programs for Machine Learning. Morgan Kaufmann,1992
+
+[5-3] Olshen R A, Breiman L,Friedman J,Stone C. Classification and Regression Trees. Wadsworth,1984
+
+[5-4] Ripley B. Pattern Recognition and Neural Networks. Cambridge UniversityPress,1996
+
+[5-5] Liu B. Web Data Mining: Exploring Hyperlinks,Contents and Usage Data. Springer-Verlag,2006
+
+[5-6] Hyafil L,Rivest R L. Constructing Optimal Binary Decision Trees is NP-complete.Information Processing Letters,1976,5(1): 15–17
+
+[5-7] Hastie T,Tibshirani R,Friedman JH. The Elements of Statistical Learning: DataMining,Inference,and Prediction. New York: Springer-Verlag,2001
+
+[5-8] Yamanishi K. A learning criterion for stochastic rules. Machine Learning,1992
+
+[5-9] Li H,Yamanishi K. Text classification using ESC-based stochastic decision lists.Information Processing & Management,2002,38(3): 343–361
