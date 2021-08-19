@@ -85,8 +85,9 @@ $$P(x) = \sum_yP(x,y) \\ P(x,y) = P(x)P(y|x)$$
 
 **参数化模型（parametric model）和非参数化模型（non-parametric model）**：
 
-参数化模型假设模型参数的维度固定，模型可以由有限维参数完全刻画，不随数据点的变化而变化。(如：感知机、GMM、logistic regression、朴素贝叶斯、k均值聚类、潜在语义分析、概率潜在语义分析、潜在狄利克雷分配)
-非参数化模型假设模型参数的唯独不固定或者说无穷大，随着训练数据量的增加而不断增大。(如：决策树、支持向量机、AdaBoost、k近邻)
+参数化模型假设模型参数的维度固定，模型可以由有限维参数完全刻画，不随数据点的变化而变化。(如：感知机、GMM、logistic regression、朴素贝叶斯、k 均值聚类、潜在语义分析、概率潜在语义分析、潜在狄利克雷分配)
+非参数化模型假设模型参数的唯独不固定或者说无穷大，随着训练数据量的增加而不断增大。(如：决策树、支持向量机、AdaBoost、k 近邻)
+
 > 非参数化模型意味着决策树没有假设空间分布和分类器结构?
 
 **在线学习（online learning）和批量学习（batch learning）**：
@@ -761,11 +762,14 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 ![](https://scikit-learn.org/stable/_images/iris.png)
 **特征选择**：
 特征选择在于选取对训练数据具有分类能力的特征。（sklearn 中可以返回 feature*importances*特征重要性）
+
+也就是计算每个特征的（信息增益，基尼指数）来选择特征（作为根节点）进行特征空间划分，注意：划分后再次计算每个特征的（信息增益，基尼指数），除非该特征所在的空间就只有一类了（也就是该特征不可分了，那么就直接生成叶子节点）；
+
 特征选择的准则：
 
-- 信息增益([information gain](https://en.jinzhao.wiki/wiki/Mutual_information))（ID3）
-- 信息增益比([information gain ratio](https://en.jinzhao.wiki/wiki/Information_gain_ratio)) （C4.5）
-- 基尼指数([Gini coefficient](https://en.jinzhao.wiki/wiki/Gini_coefficient) or Gini index or Gini ratio)（CART）
+- 信息增益([information gain](https://en.jinzhao.wiki/wiki/Mutual_information))（ID3），越大越好
+- 信息增益比([information gain ratio](https://en.jinzhao.wiki/wiki/Information_gain_ratio)) （C4.5），越大越好
+- 基尼指数([Gini coefficient](https://en.jinzhao.wiki/wiki/Gini_coefficient) or Gini index or Gini ratio)（CART），越小越好
 
 **决策树的生成**：
 常见算法（参见：[Decision tree learning](https://en.jinzhao.wiki/wiki/Decision_tree_learning)以及[Tree algorithms](https://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart)）：
@@ -806,7 +810,7 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 统计学习方法三要素：
 
 - **模型**：
-  决策树模型的关键是通过一系列if then决策规则的集合，将特征空间划分成不相交的子区域，落在相同子区域的样本具有相同的预测值。
+  决策树模型的关键是通过一系列 if then 决策规则的集合，将特征空间划分成不相交的子区域，落在相同子区域的样本具有相同的预测值。
   ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy80V2dJTEhCd1ZIOTR6dFI3QURGUUp3a2N2b2Z3MFNpY21CUTdzb2FScHplekRCMzZCUHB2WUx2Y054aWFGdGlhZm5nOTk5b0taUkpaU3loMnlINlZ2cGpMdy82NDA_d3hfZm10PXBuZw)
 - **策略**：
   策略一般包括两个方面：第一个是反应决策树对样本数据点拟合准确度的损失项，第二个是反应决策树模型复杂程度的正则化项。
@@ -814,7 +818,7 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
   正则化项可以取模型的叶子节点的数量。即决策树模型划分得到的不相交子区域越多，我们认为模型越复杂。
 
 - **算法**：
-  优化算法包括树的生成策略和树的剪枝策略。
+  优化算法（启发式算法）包括树的生成策略和树的剪枝策略。
   树的生成策略一般采用贪心的思想不断选择特征对特征空间进行切分。
   树的剪枝策略一般分为预剪枝和后剪枝策略。一般来说后剪枝策略生成的决策树效果较好，但其计算成本也更高。
 
@@ -827,7 +831,9 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 ### 附加知识
 
 #### 信息论（[Information Theory](https://en.jinzhao.wiki/wiki/Information_theory)）
+
 [Entropy, Relative Entropy, Cross Entropy](https://iitg.ac.in/cseweb/osint/slides/Anasua_Entropy.pdf)
+
 ##### 熵（[Entropy](<https://en.jinzhao.wiki/wiki/Entropy_(information_theory)>)）
 
 在信息论中，熵用来衡量一个随机事件的**不确定性**。也叫香农熵 Shannon's（人名） entropy。
@@ -884,35 +890,37 @@ $${\displaystyle \mathrm {H} (X_{1},X_{2},\ldots ,X_{n})=\sum _{i=1}^{n}\mathrm 
 $${\displaystyle {\begin{aligned}\mathrm {H} (Y|X)&=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log \left({\frac {p(x)}{p(x,y)}}\right)\\[4pt]&=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)(\log(p(x))-\log(p(x,y)))\\[4pt]&=-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p(x,y)\log(p(x,y))+\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}{p(x,y)\log(p(x))}\\[4pt]&=\mathrm {H} (X,Y)+\sum _{x\in {\mathcal {X}}}p(x)\log(p(x))\\[4pt]&=\mathrm {H} (X,Y)-\mathrm {H} (X).\end{aligned}}}$$
 
 ##### 互信息（[Mutual information](https://en.jinzhao.wiki/wiki/Mutual_information)）
-如果变量𝑋 和𝑌 互相独立，它们的互信息为零．
+
+如果变量 𝑋 和 𝑌 互相独立，它们的互信息为零．
 
 $$I(X;Y)=\mathbb {E} _{X,Y}[SI(x,y)]=\sum _{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}$$
-其中SI（Specific mutual Information）是[pointwise mutual information](https://en.jinzhao.wiki/wiki/Pointwise_mutual_information)
+其中 SI（Specific mutual Information）是[pointwise mutual information](https://en.jinzhao.wiki/wiki/Pointwise_mutual_information)
 
 基本性质：
 $$I(X;Y)=H(X)-H(X|Y) =H(Y)- H(Y|X).\,$$
 对称性：
 $$I(X;Y)=I(Y;X)=H(X)+H(Y)-H(X,Y).\,$$
 
-互信息可以表示为给定Y值的 X的后验概率分布 与 X的先验分布之间的平均Kullback-Leibler散度:
+互信息可以表示为给定 Y 值的 X 的后验概率分布 与 X 的先验分布之间的平均 Kullback-Leibler 散度:
 $$I(X;Y)=\mathbb {E} _{p(y)}[D_{\mathrm {KL} }(p(X|Y=y)\|p(X))].$$
 or
 $$I(X;Y)=D_{\mathrm {KL} }(p(X,Y)\|p(X)p(Y)).$$
 
-> 统计学习方法中讲到 信息增益等价互信息（74页），而维基百科中信息增益是[Kullback-Leibler散度](https://en.jinzhao.wiki/wiki/Information_gain) 
+> 统计学习方法中讲到 信息增益等价互信息（74 页），而维基百科中信息增益是[Kullback-Leibler 散度](https://en.jinzhao.wiki/wiki/Information_gain)
 
 ##### 交叉熵（[Cross Entropy](https://en.jinzhao.wiki/wiki/Cross_entropy)）
 
-在给定 分布𝑝 的情况下，如果 分布𝑞 和 分布𝑝 越接近，交叉熵越小；如果 分布𝑞 和 分布𝑝 越远，交叉
+在给定 分布 𝑝 的情况下，如果 分布 𝑞 和 分布 𝑝 越接近，交叉熵越小；如果 分布 𝑞 和 分布 𝑝 越远，交叉
 熵就越大．
 $${\displaystyle H(p,q)=-\operatorname {E} _{p}[\log q]} =-\sum _{x\in {\mathcal {X}}}p(x)\,\log q(x) = H(p)+D_{\mathrm {KL} }(p\|q)$$
+
 > 注意与联合熵${H} (X,Y)$的区别，联合熵描述一对随机变量平均所需的信息量，交叉熵描述两个分布之间的差异。
 > 也有说交叉熵$H(p,q)$是不标准的写法，应该是$H_q(p)$ (交叉熵不是对称的，而联合熵是对称的)，参见 [Difference of notation between cross entropy and joint entropy](https://stats.stackexchange.com/questions/373098/difference-of-notation-between-cross-entropy-and-joint-entropy) 以及[Relation between cross entropy and joint entropy](https://math.stackexchange.com/questions/2505015/relation-between-cross-entropy-and-joint-entropy)
 > 应用：一般在多分类问题中使用交叉熵作为损失函数，如：神经网络，逻辑回归
 
-##### KL散度（[Kullback–Leibler divergence](https://en.jinzhao.wiki/wiki/Kullback%E2%80%93Leibler_divergence)）
+##### KL 散度（[Kullback–Leibler divergence](https://en.jinzhao.wiki/wiki/Kullback%E2%80%93Leibler_divergence)）
 
-KL 散度（Kullback-Leibler Divergence），也叫KL 距离或相对熵(Relative Entropy)，是用概率分布 𝑞 来近似 𝑝 时所造成的信息损失量，KL 散度总是大于等于0的。**可以衡量两个概率分布之间的距离**．KL散度只有当𝑝 = 𝑞时，KL(𝑝, 𝑞) = 0．如果两个分布越接近，KL散度越小；如果两个分布越远，KL散度就越大．但KL散度并不是一个真正的度量或距离，一是KL散度不满足距离的对称性，二是KL散度不满足距离的三角不等式性质．
+KL 散度（Kullback-Leibler Divergence），也叫 KL 距离或相对熵(Relative Entropy)，是用概率分布 𝑞 来近似 𝑝 时所造成的信息损失量，KL 散度总是大于等于 0 的。**可以衡量两个概率分布之间的距离**．KL 散度只有当 𝑝 = 𝑞 时，KL(𝑝, 𝑞) = 0．如果两个分布越接近，KL 散度越小；如果两个分布越远，KL 散度就越大．但 KL 散度并不是一个真正的度量或距离，一是 KL 散度不满足距离的对称性，二是 KL 散度不满足距离的三角不等式性质．
 
 $$D_{\mathrm {KL} }(p(X)\|q(X))=\sum _{x\in X}-p(x)\log {q(x)}\,-\,\sum _{x\in X}-p(x)\log {p(x)} \\=\sum _{x\in X}p(x)\log {\frac {p(x)}{q(x)}} = -\sum _{x\in X}p(x)\log {\frac {q(x)}{p(x)}}.$$
 也有写作：
@@ -920,29 +928,27 @@ $$KL(p,q)  , KL(p|q) , KL(p\|q) , D_{KL}(p,q)$$
 
 > 应用：如：变分推断
 
-##### JS散度（[Jensen-Shannon divergence](https://en.jinzhao.wiki/wiki/Jensen%E2%80%93Shannon_divergence)）
-JS散度（Jensen-Shannon Divergence）是一种对称的衡量两个分布相似度的度量方式，是 KL 散度一种改进．但两种散度都存在一个问题，即如果两个分布𝑝, 𝑞没有重叠或者重叠非常少时，KL散度和JS散度都很难衡量两个分布的距离．
+##### JS 散度（[Jensen-Shannon divergence](https://en.jinzhao.wiki/wiki/Jensen%E2%80%93Shannon_divergence)）
+
+JS 散度（Jensen-Shannon Divergence）是一种对称的衡量两个分布相似度的度量方式，是 KL 散度一种改进．但两种散度都存在一个问题，即如果两个分布 𝑝, 𝑞 没有重叠或者重叠非常少时，KL 散度和 JS 散度都很难衡量两个分布的距离．
 
 $${{\rm {D}_{JS}}}(P\parallel Q)={\frac  {1}{2}}D_{KL}(P\parallel M)+{\frac  {1}{2}}D_{KL}(Q\parallel M)$$
-其中$M={\frac  {1}{2}}(P+Q)$, JS散度也有写作$JSD(P\|Q), JS(P\|Q) ,JS(P,Q)$等。
+其中$M={\frac  {1}{2}}(P+Q)$, JS 散度也有写作$JSD(P\|Q), JS(P\|Q) ,JS(P,Q)$等。
 
 属于一种统计距离（[Statistical distance](https://en.jinzhao.wiki/wiki/Category:Statistical_distance)）
 
-统计距离还有**Wasserstein距离**[Wasserstein distance](https://en.jinzhao.wiki/wiki/Wasserstein_metric)，也用于衡量两个分布之间的距
+统计距离还有**Wasserstein 距离**[Wasserstein distance](https://en.jinzhao.wiki/wiki/Wasserstein_metric)，也用于衡量两个分布之间的距
 离．对于两个分布$\mu ,\nu，p^{th}-Wasserstein$距离定义为
 
 $${\displaystyle W_{p}(\mu ,\nu ):=\left(\inf _{\gamma \in \Gamma (\mu ,\nu )}\int _{M\times M}d(x,y)^{p}\,\mathrm {d} \gamma (x,y)\right)^{1/p},}$$
 
-
-Wasserstein 距离相比 KL 散度和 JS 散度的优势在于：即使两个分布没有重叠或者重叠非常少，Wasserstein距离仍然能反映两个分布的远近．参见[pdf443页附录](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf)
-
-
+Wasserstein 距离相比 KL 散度和 JS 散度的优势在于：即使两个分布没有重叠或者重叠非常少，Wasserstein 距离仍然能反映两个分布的远近．参见[pdf443 页附录](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf)
 
 ### 参考文献
 
-[5-1] Olshen R A, Quinlan J R. Induction of decision trees. Machine Learning,1986,1(1): 81–106
+[5-1] Olshen R A, Quinlan J R. [Induction of decision trees](https://link.springer.com/content/pdf/10.1007%2FBF00116251.pdf). Machine Learning,1986,1(1): 81–106
 
-[5-2] Olshen R A, Quinlan J R. C4. 5: Programs for Machine Learning. Morgan Kaufmann,1992
+[5-2] Olshen R A, Quinlan J R. [C4. 5: Programs for Machine Learning](https://link.springer.com/content/pdf/10.1007/BF00993309.pdf). Morgan Kaufmann,1992
 
 [5-3] Olshen R A, Breiman L,Friedman J,Stone C. Classification and Regression Trees. Wadsworth,1984
 
@@ -952,8 +958,75 @@ Wasserstein 距离相比 KL 散度和 JS 散度的优势在于：即使两个分
 
 [5-6] Hyafil L,Rivest R L. Constructing Optimal Binary Decision Trees is NP-complete.Information Processing Letters,1976,5(1): 15–17
 
-[5-7] Hastie T,Tibshirani R,Friedman JH. The Elements of Statistical Learning: DataMining,Inference,and Prediction. New York: Springer-Verlag,2001
+[5-7] Hastie T,Tibshirani R,Friedman JH. [The Elements of Statistical Learning: DataMining,Inference,and Prediction](http://www.web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12_toc.pdf). New York: Springer-Verlag,2001
 
 [5-8] Yamanishi K. A learning criterion for stochastic rules. Machine Learning,1992
 
 [5-9] Li H,Yamanishi K. Text classification using ESC-based stochastic decision lists.Information Processing & Management,2002,38(3): 343–361
+
+## 第 6 章 逻辑斯谛回归与最大熵模型
+
+**逻辑斯谛回归**（[logistic regression](https://en.jinzhao.wiki/wiki/Logistic_regression)）（也有称 对数几率回归）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到**最大熵模型**（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）。逻辑斯谛回归模型与最大熵模型都属于**对数线性模型**（也有称最大熵分类或对数线性分类，所以这里的模型都是分类模型）。
+
+### 附加知识
+
+#### S 型函数（Logistic & Sigmoid 函数）
+
+**Logistic 函数**（[Logistic function](https://en.jinzhao.wiki/wiki/Logistic_function)）的公式定义：
+
+$${\displaystyle f(x)={\frac {L}{1+e^{-k(x-x_{0})}}}}$$
+其中$L$是最大值，$x_0$是中心点(位置参数)，$K$是曲线的倾斜度（形状参数，|K|>0越大，曲线在中心点附近增长越快）。
+
+**逻辑斯谛分布**[Logistic distribution](https://en.jinzhao.wiki/wiki/Logistic_distribution)：
+- 分布函数CDF(Cumulative distribution function)：
+  $${\displaystyle F(x;\mu ,s)={\frac {1}{1+e^{-(x-\mu )/s}}}={\frac {1}{2}}+{\frac {1}{2}}\operatorname {tanh} \left({\frac {x-\mu }{2s}}\right).}$$
+- 密度函数PDF(Probability density function)：
+  $${\displaystyle {\begin{aligned}f(x;\mu ,s)&={\frac {e^{-(x-\mu )/s}}{s\left(1+e^{-(x-\mu )/s}\right)^{2}}}\\[4pt]&={\frac {1}{s\left(e^{(x-\mu )/(2s)}+e^{-(x-\mu )/(2s)}\right)^{2}}}\\[4pt]&={\frac {1}{4s}}\operatorname {sech} ^{2}\left({\frac {x-\mu }{2s}}\right).\end{aligned}}}$$
+
+> $\mu$为均值，s是一个与标准差（[standard deviation](https://en.jinzhao.wiki/wiki/Standard_deviation)）成比例的参数
+
+**Sigmoid 函数**（[Sigmoid function](https://en.jinzhao.wiki/wiki/Sigmoid_function)）的公式定义：
+$${\displaystyle S(x)={\frac {1}{1+e^{-x}}}={\frac {e^{x}}{e^{x}+1}}=1-S(-x).}$$
+
+Sigmoid 函数是一个有界、可微的实函数，可以将输入压缩到(0,1)区间，经常用作激活函数和概率输出。
+Sigmoid 函数对于小于 0 的值是凸的，对于大于 0 的值是凹的。
+Sigmoid 函数是一个标准 Logistic 函数（standard logistic function(一般用$\sigma(x)$)：$K=1,x_0=0,L=1$）
+
+导数：
+$$  S'(x)= S(x)(1-S(x))$$
+推导：
+$$  S(x) = {\frac {1}{1+e^{-x}}} = (1+e^{-x})^{-1} \\ S'(x)=(-1)*(1+e^{-x})^{-2}*e^{-x}*(-1) \\= (1+e^{-x})^{-2}*e^{-x} \\= \frac{e^{-x}}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}-1}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}}{(1+e^{-x})^{2}} -  \frac{1}{(1+e^{-x})^{2}} \\=\frac{1}{1+e^{-x}} - \frac{1}{(1+e^{-x})^{2}} \\= \frac{1}{1+e^{-x}}(1-\frac{1}{1+e^{-x}})$$
+
+与**双曲正切函数**（ [hyperbolic tangent function](https://en.jinzhao.wiki/wiki/Hyperbolic_tangent)）：
+$${\displaystyle f(x)={\frac {1}{2}}+{\frac {1}{2}}\tanh \left({\frac {x}{2}}\right),} \\ {\displaystyle \tanh(x)=2f(2x)-1.}$$
+
+$${\displaystyle {\begin{aligned}\tanh(x)&={\frac {e^{x}-e^{-x}}{e^{x}+e^{-x}}}={\frac {e^{x}\cdot \left(1-e^{-2x}\right)}{e^{x}\cdot \left(1+e^{-2x}\right)}}\\&=f(2x)-{\frac {e^{-2x}}{1+e^{-2x}}}=f(2x)-{\frac {e^{-2x}+1-1}{1+e^{-2x}}}=2f(2x)-1.\end{aligned}}}$$
+
+#### 归一化指数函数（Softmax 函数）
+
+**Softmax 函数**（[Softmax function](https://en.jinzhao.wiki/wiki/Softmax_function)，也称为归一化指数函数 normalized exponential function）的公式定义：
+standard (unit) softmax function${\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}$
+
+$${\displaystyle \sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}}\ \ \ \ {\text{ for }}i=1,\dotsc ,K{\text{ and }}\mathbf {z} =(z_{1},\dotsc ,z_{K})\in \mathbb {R} ^{K}.}$$
+
+一般形式：
+$${\displaystyle \sigma (\mathbf {z} )_{i}={\frac {e^{\beta z_{i}}}{\sum _{j=1}^{K}e^{\beta z_{j}}}}{\text{ or }}\sigma (\mathbf {z} )_{i}={\frac {e^{-\beta z_{i}}}{\sum _{j=1}^{K}e^{-\beta z_{j}}}}{\text{ for }}i=1,\dotsc ,K.}$$
+
+性质：
+$${\displaystyle \sigma (\mathbf {z} +\mathbf {c} )_{j}={\frac {e^{z_{j}+c}}{\sum _{k=1}^{K}e^{z_{k}+c}}}={\frac {e^{z_{j}}\cdot e^{c}}{\sum _{k=1}^{K}e^{z_{k}}\cdot e^{c}}}=\sigma (\mathbf {z} )_{j}.}$$
+
+等式左边的${\displaystyle \mathbf {c} =(c,\dots ,c)}$
+
+> 如果$z_i$都等于一个参数C时会发生什么？从理论上输出为$(\frac{1}{K},...,\frac{1}{K}) \in \mathbb{R}^K$，但是从数值计算上说，当C很大时$e^C$会发生上溢，当C很小时$\sum _{k=1}^{K}e^C$会发生下溢，这时我们就可以利用上述性质，将$\mathbf {z}$减去$\max_i {z_i}$,那么最大值就是0，排除了上溢的可能，同样的分母至少有一个为1的项，排除了因为分母下溢而导致被0除的可能性。
+> $$\sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}} = {\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}}  = {\frac {e^{(z_{i}-z_{max})}}{1+\sum _{j=1,j\neq max}^{K}e^{(z_{j}-z_{max})}}}$$
+
+
+**log softmax**函数在深度学习中也经常遇见，其实就是求完softmax，再对其求log，如果直接计算可能会出现问题（当softmax很小时，log会得到$-\infty$）,这时我就要推导出log softmax的表达式：
+$$\log(\sigma (\mathbf {z} ))_{i}=\log{\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}} \\= \log e^{(z_{i}-z_{max})} - \log {\sum _{j=1}^{K}e^{(z_{j}-z_{max})}} \\= (z_{i}-z_{max})- \log {\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$$
+
+而${\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$是大于等于1的，并且不会大的离谱，所以不会出问题。
+
+**negative log-likelihood**（NLL），likelihood是一个概率（softmax也是概率），所以log-likelihood小于0，negative log-likelihood则大于0，这样就可以最小化negative log-likelihood了
+
+
+### 参考文献
