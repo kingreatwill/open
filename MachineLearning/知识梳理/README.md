@@ -968,22 +968,119 @@ Wasserstein 距离相比 KL 散度和 JS 散度的优势在于：即使两个分
 
 **逻辑斯谛回归**（[logistic regression](https://en.jinzhao.wiki/wiki/Logistic_regression)）（也有称 对数几率回归）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到**最大熵模型**（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）。逻辑斯谛回归模型与最大熵模型都属于**对数线性模型**（也有称最大熵分类或对数线性分类，所以这里的模型都是分类模型）。
 
+### 逻辑斯谛回归
+一个事件的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是 p，那么该事件的几率是$\frac{p}{1-p}$，该事件的**对数几率**（log odds）或 logit 函数是：
+$$logit(p) = \log\frac{p}{1-p} \label{6-1}\tag{6-1}$$
+
+- **模型**：
+  二项逻辑斯谛回归的模型如下(w 和 x 是增广向量，w.x 作为 Sigmoid 的输入,y∈{0,1})：
+  $$P(Y=1|x) = \frac{\exp{(w.x)}}{1+\exp{(w.x)}} = \sigma{(w.x)} \\ P(Y=0|x) = \frac{1}{1+\exp{(w.x)}} = 1 - \sigma{(w.x)} \label{6-2}\tag{6-2}$$
+
+  该事件的对数几率：
+  $$\log\frac{P(Y=1|x)}{1-P(Y=1|x)} = w.x$$
+  所以又叫对数几率回归。
+
+- **策略**：
+  损失函数:负对数似然,negative log likelihood(NLL), 负的 log 似然
+  数据集$T=\{(x_1,y_1),...,(x_N,y_N)\}  , x_i \in \mathbb{R}^n , y_i \in \{0,1\}$
+  likelihood(6-2 的两个式子合起来就是$[\sigma{(w.x_i)}]^{y_i}[1-\sigma{(w.x_i)}]^{1-y_i}$)：
+  $$L(w|y;x) = P(Y|X;w) = \prod_{i=1}^N P(y_i|x_i;w)= \prod_{i=1}^N [\sigma{(w.x_i)}]^{y_i}[1-\sigma{(w.x_i)}]^{1-y_i}$$
+
+  log likelihood（maximized）：
+  $$\log {L(w|y;x)} = \sum_{i=1}^N[y_i\log\sigma{(w.x_i)} + (1-y_i)\log(1-\sigma{(w.x_i)})]$$
+
+  negative log likelihood（minimize）：
+  $$-\log {L(w|y;x)}$$
+  这不就是交叉熵的定义的吗。
+
+- **算法**：
+  1. 极大似然估计MLE(Maximum Likelihood Estimation)
+  $$w^* = \argmin_w -\log {L(w|y;x)}$$
+  2. 然后使用随机梯度下降法（Stochastic Gradient Descent）求最优值处的参数
+  -log是一个连续的凸函数
+
+
+**[sklearn中代价函数](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)**：$y \in \{-1,+1\}$
+$$P(Y=+1|x) = \frac{\exp{(w.x)}}{1+\exp{(w.x)}} = \sigma{(w.x)} \\ P(Y=-1|x) = \frac{1}{1+\exp{(w.x)}} = 1 - \sigma{(w.x)} = \sigma{(-w.x)}$$
+两个式子合起来就是：$\sigma{(y_i.w.x_i)}$
+negative log likelihood：
+$$-\log\prod_{i=1}^N \sigma{(y_i.w.x_i)} = \sum_{i=1}^N-\log\sigma{(y_i.w.x_i)}= \sum_{i=1}^N \log\frac{1}{\sigma{(y_i.w.x_i)}} \\= 
+\sum_{i=1}^N \log\frac{1}{\frac{\exp{(y_i.w.x_i)}}{1+\exp{(y_i.w.x_i)}}}\\= \sum_{i=1}^N \log(1+\frac{1}{\exp{(y_i.w.x_i)}})\\= \sum_{i=1}^N \log(1+\exp{(-y_i.w.x_i)})$$
+
+当然sklearn中加入的正则项。
+
+> Softmax回归是Logistic回归的多分类情况。
+> LogisticRegression 就是一个被logistic方程归一化后的线性回归。将预测的输出映射到0,1之间。
+
+> 逻辑斯蒂回归模型的思想跟线性回归模型思想不一样，线性回归模型思想是最小化真实值与模型预测值的误差，而逻辑斯蒂回归模型思想就比较狠了，预测值预测对了损失函数就是0，错了损失就是无穷大，我个人的理解(一般采用的是-log(h(x)) 这是一个凸函数,刚好满足要求)
+
+### 最大熵模型
+[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)
+
+### 参考资料
+[逻辑回归（非常详细）](https://zhuanlan.zhihu.com/p/74874291)
+[机器学习实现与分析之四（广义线性模型）](http://blog.sina.com.cn/s/blog_13ec1876a0102xb47.html)
+
+[逻辑回归——Logistic的起源](https://www.bilibili.com/video/BV1W3411z71D)
+[Logistic回归的起源（上）](https://zhuanlan.zhihu.com/p/146206709)
+[Logistic回归的起源（中）](https://zhuanlan.zhihu.com/p/147708076)
+[Logistic回归的起源（下）](https://zhuanlan.zhihu.com/p/155027693)
+
+[6.2 Logistic Regression and the Cross Entropy Cost - Logistic regression - y属于0或1](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.html)
+
+
+[6.3 Logistic Regression and the Softmax Cost-Logistic regression ](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_3_Softmax.html) sklearn中的代价函数，这里的 [y属于-1或1](https://github.com/jermwatt/machine_learning_refined/blob/gh-pages/notes/6_Linear_twoclass_classification/6_3_Softmax.ipynb)
+
+
 ### 附加知识
+
+#### Generalized Linear Models 广义线性模型
+
+[Generalized Linear Models (GLM)](https://en.jinzhao.wiki/wiki/Generalized_linear_model)
+
+[Generalized Linear Models](https://www.statsmodels.org/devel/glm.html)
+
+[Generalized Linear Models Explained with Examples](https://vitalflux.com/generalized-linear-models-explained-with-examples/)
+
+[Generalized Linear Model Theory - 推荐](https://data.princeton.edu/wws509/notes/a2.pdf)
+
+[Generalized Linear Models](https://www.stat.cmu.edu/~ryantibs/advmethods/notes/glm.pdf)
+
+> 这一家族中的模型形式基本上都差不多，不同的就是因变量(Y)不同，如果是连续的，就是多重线性回归，如果是二项分布，就是logistic回归，如果是poisson分布，就是poisson回归，如果是负二项分布，就是负二项回归，等等。只要注意区分它们的因变量就可以了。logistic回归的因变量可以是二分类的(二项逻辑回归)，也可以是多分类的（多项逻辑回归或者softmax回归），但是二分类的更为常用，也更加容易解释。所以实际中最为常用的就是二分类的logistic回归。
+
+根据[sklearn中的广义线性回归Generalized Linear Regression](https://scikit-learn.org/stable/modules/linear_model.html#generalized-linear-regression)的第二种方式[exponential dispersion model (EDM)](https://en.jinzhao.wiki/wiki/Exponential_dispersion_model)：
+
+其实就是要让真实y与预测y之间的差异越小越好：
+$$\min_{w} \frac{1}{2 n_{\text{samples}}} \sum_i d(y_i, \hat{y}_i) + \frac{\alpha}{2} \|w\|_2$$
+
+假设y分别符合下列分布，求真实y与预测y之间的差异（Deviance）：
+- **Normal（Gaussian）**：
+  就相当于普通的线性回归（加上正则就是 Ridge, ElasticNet 等）
+  $$f(y;\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(y-\mu)^2}{2\sigma^2})$$
+  $$\log f(y;\mu,\sigma) = -\log\sqrt{2\pi\sigma^2} - \frac{y^2-2y\mu+\mu^2}{2\sigma^2}= -\log\sqrt{2\pi\sigma^2} - \frac{y^2}{2\sigma^2} + \frac{-2y\mu+\mu^2}{2\sigma^2}$$
+  Deviance(预测$\hat{y}$就是预测的均值)：
+  $$\log f(y;y,\sigma) - \log f(y;\hat{y},\sigma) $$
+- **Poisson**：
+  就相当于PoissonRegressor
+- **Binomial(sklearn中没有)**：
+  就相当于Logistic Regression
+
 
 #### S 型函数（Logistic & Sigmoid 函数）
 
 **Logistic 函数**（[Logistic function](https://en.jinzhao.wiki/wiki/Logistic_function)）的公式定义：
 
 $${\displaystyle f(x)={\frac {L}{1+e^{-k(x-x_{0})}}}}$$
-其中$L$是最大值，$x_0$是中心点(位置参数)，$K$是曲线的倾斜度（形状参数，|K|>0越大，曲线在中心点附近增长越快）。
+其中$L$是最大值，$x_0$是中心点(位置参数)，$K$是曲线的倾斜度（形状参数，|K|>0 越大，曲线在中心点附近增长越快）。
 
 **逻辑斯谛分布**[Logistic distribution](https://en.jinzhao.wiki/wiki/Logistic_distribution)：
-- 分布函数CDF(Cumulative distribution function)：
+
+- 分布函数 CDF(Cumulative distribution function)：
   $${\displaystyle F(x;\mu ,s)={\frac {1}{1+e^{-(x-\mu )/s}}}={\frac {1}{2}}+{\frac {1}{2}}\operatorname {tanh} \left({\frac {x-\mu }{2s}}\right).}$$
-- 密度函数PDF(Probability density function)：
+- 密度函数 PDF(Probability density function)：
   $${\displaystyle {\begin{aligned}f(x;\mu ,s)&={\frac {e^{-(x-\mu )/s}}{s\left(1+e^{-(x-\mu )/s}\right)^{2}}}\\[4pt]&={\frac {1}{s\left(e^{(x-\mu )/(2s)}+e^{-(x-\mu )/(2s)}\right)^{2}}}\\[4pt]&={\frac {1}{4s}}\operatorname {sech} ^{2}\left({\frac {x-\mu }{2s}}\right).\end{aligned}}}$$
 
-> $\mu$为均值，s是一个与标准差（[standard deviation](https://en.jinzhao.wiki/wiki/Standard_deviation)）成比例的参数
+> $\mu$为均值，s 是一个与标准差（[standard deviation](https://en.jinzhao.wiki/wiki/Standard_deviation)）成比例的参数
 
 **Sigmoid 函数**（[Sigmoid function](https://en.jinzhao.wiki/wiki/Sigmoid_function)）的公式定义：
 $${\displaystyle S(x)={\frac {1}{1+e^{-x}}}={\frac {e^{x}}{e^{x}+1}}=1-S(-x).}$$
@@ -993,9 +1090,9 @@ Sigmoid 函数对于小于 0 的值是凸的，对于大于 0 的值是凹的。
 Sigmoid 函数是一个标准 Logistic 函数（standard logistic function(一般用$\sigma(x)$)：$K=1,x_0=0,L=1$）
 
 导数：
-$$  S'(x)= S(x)(1-S(x))$$
+$$ S'(x)= S(x)(1-S(x))$$
 推导：
-$$  S(x) = {\frac {1}{1+e^{-x}}} = (1+e^{-x})^{-1} \\ S'(x)=(-1)*(1+e^{-x})^{-2}*e^{-x}*(-1) \\= (1+e^{-x})^{-2}*e^{-x} \\= \frac{e^{-x}}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}-1}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}}{(1+e^{-x})^{2}} -  \frac{1}{(1+e^{-x})^{2}} \\=\frac{1}{1+e^{-x}} - \frac{1}{(1+e^{-x})^{2}} \\= \frac{1}{1+e^{-x}}(1-\frac{1}{1+e^{-x}})$$
+$$ S(x) = {\frac {1}{1+e^{-x}}} = (1+e^{-x})^{-1} \\ S'(x)=(-1)*(1+e^{-x})^{-2}*e^{-x}*(-1) \\= (1+e^{-x})^{-2}*e^{-x} \\= \frac{e^{-x}}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}-1}{(1+e^{-x})^{2}} \\= \frac{1+e^{-x}}{(1+e^{-x})^{2}} - \frac{1}{(1+e^{-x})^{2}} \\=\frac{1}{1+e^{-x}} - \frac{1}{(1+e^{-x})^{2}} \\= \frac{1}{1+e^{-x}}(1-\frac{1}{1+e^{-x}})$$
 
 与**双曲正切函数**（ [hyperbolic tangent function](https://en.jinzhao.wiki/wiki/Hyperbolic_tangent)）：
 $${\displaystyle f(x)={\frac {1}{2}}+{\frac {1}{2}}\tanh \left({\frac {x}{2}}\right),} \\ {\displaystyle \tanh(x)=2f(2x)-1.}$$
@@ -1017,16 +1114,14 @@ $${\displaystyle \sigma (\mathbf {z} +\mathbf {c} )_{j}={\frac {e^{z_{j}+c}}{\su
 
 等式左边的${\displaystyle \mathbf {c} =(c,\dots ,c)}$
 
-> 如果$z_i$都等于一个参数C时会发生什么？从理论上输出为$(\frac{1}{K},...,\frac{1}{K}) \in \mathbb{R}^K$，但是从数值计算上说，当C很大时$e^C$会发生上溢，当C很小时$\sum _{k=1}^{K}e^C$会发生下溢，这时我们就可以利用上述性质，将$\mathbf {z}$减去$\max_i {z_i}$,那么最大值就是0，排除了上溢的可能，同样的分母至少有一个为1的项，排除了因为分母下溢而导致被0除的可能性。
+> 如果$z_i$都等于一个参数 C 时会发生什么？从理论上输出为$(\frac{1}{K},...,\frac{1}{K}) \in \mathbb{R}^K$，但是从数值计算上说，当 C 很大时$e^C$会发生上溢，当 C 很小时$\sum _{k=1}^{K}e^C$会发生下溢，这时我们就可以利用上述性质，将$\mathbf {z}$减去$\max_i {z_i}$,那么最大值就是 0，排除了上溢的可能，同样的分母至少有一个为 1 的项，排除了因为分母下溢而导致被 0 除的可能性。
 > $$\sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}} = {\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}}  = {\frac {e^{(z_{i}-z_{max})}}{1+\sum _{j=1,j\neq max}^{K}e^{(z_{j}-z_{max})}}}$$
 
-
-**log softmax**函数在深度学习中也经常遇见，其实就是求完softmax，再对其求log，如果直接计算可能会出现问题（当softmax很小时，log会得到$-\infty$）,这时我就要推导出log softmax的表达式：
+**log softmax**函数在深度学习中也经常遇见，其实就是求完 softmax，再对其求 log，如果直接计算可能会出现问题（当 softmax 很小时，log 会得到$-\infty$）,这时我就要推导出 log softmax 的表达式：
 $$\log(\sigma (\mathbf {z} ))_{i}=\log{\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}} \\= \log e^{(z_{i}-z_{max})} - \log {\sum _{j=1}^{K}e^{(z_{j}-z_{max})}} \\= (z_{i}-z_{max})- \log {\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$$
 
-而${\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$是大于等于1的，并且不会大的离谱，所以不会出问题。
+而${\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$是大于等于 1 的，并且不会大的离谱，所以不会出问题。
 
-**negative log-likelihood**（NLL），likelihood是一个概率（softmax也是概率），所以log-likelihood小于0，negative log-likelihood则大于0，这样就可以最小化negative log-likelihood了
-
+**negative log-likelihood**（NLL），likelihood 是一个概率（softmax 也是概率），所以 log-likelihood 小于 0，negative log-likelihood 则大于 0，这样就可以最小化 negative log-likelihood 了
 
 ### 参考文献

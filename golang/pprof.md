@@ -1,8 +1,23 @@
+# Profiling 
+## pyroscope
+https://github.com/pyroscope-io/pyroscope
+
+- Ruby (via rbspy)
+- Python (via py-spy)
+- Go (via pprof)
+- Linux eBPF (via `profile.py` from bcc-tools)
+- PHP (via phpspy)
+- .NET (via dotnet trace)
+- Java (coming soon)
+
+## pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
 
 [深度解密Go语言之 pprof](https://www.cnblogs.com/qcrao-2018/p/11832732.html)
 
 https://github.com/golang/go/wiki/Performance
+
+
 
 
 gops 分析机器上运行了哪些go进程
