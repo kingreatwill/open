@@ -1019,7 +1019,11 @@ $$
 
 ### 最大熵模型
 
-[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)
+熵的概念在统计学习与机器学习中真是很重要，最大熵模型（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）是概率模型学习中一个准则，其思想为：在学习概率模型时，所有可能的模型中熵最大的模型是最好的模型；若概率模型需要满足一些约束，则最大熵原理就是在满足已知约束的条件集合中选择熵最大模型。最大熵原理指出，对一个随机事件的概率分布进行预测时，预测应当满足全部已知的约束，而对未知的情况不要做任何主观假设。在这种情况下，概率分布最均匀，预测的风险最小，因此得到的概率分布的熵是最大。
+
+- **模型**：
+- **策略**：
+- **算法**：
 
 ### 参考资料
 
@@ -1050,10 +1054,12 @@ $$
 [Generalized Linear Models](https://www.stat.cmu.edu/~ryantibs/advmethods/notes/glm.pdf)
 
 在线性回归模型中的假设中，有两点需要提出：
+
 1. 假设因变量服从高斯分布：$Y={{\theta }^{T}}x+\xi$，其中误差项$\xi \sim N(0,{{\sigma }^{2}})$，那么因变量$Y\sim N({{\theta }^{T}}x,{{\sigma }^{2}})$
 2. 模型预测的输出为$E[Y]$，根据$Y={{\theta }^{T}}x+\xi$，$E[Y]=E[{{\theta }^{T}}x+\xi ]={{\theta }^{T}}x$,记$\eta ={{\theta }^{T}}x$，则$\eta =E[Y]$
 
 广义线性模型可以认为在以上两点假设做了扩展：
+
 1. 因变量分布不一定是高斯分布，服从一个指数分布族（[Exponential family](https://en.jinzhao.wiki/wiki/Exponential_family)）即可。
 2. 模型预测输出仍然可以认为是$E[Y]$（实际上是$E[T(Y)]$，许多情况下$T(Y)=Y$），但是$Y$的分布不一定是高斯分布，$E[Y]$和$\eta ={{\theta }^{T}}x$也不一定是简单的相等关系，它们的关系用$\eta =g(E[Y])$描述，称为连接函数(link function)，其中$\eta$称为自然参数。
 
@@ -1066,7 +1072,7 @@ $$
 其实就是要让真实 y 与预测 y 之间的差异越小越好：
 $$\min_{w} \frac{1}{2 n_{\text{samples}}} \sum_i d(y_i, \hat{y}_i) + \frac{\alpha}{2} \|w\|_2$$
 
-假设 y 分别符合下列分布，求真实 y 与预测 y 之间的差异（Deviance）（log相减不就是两个概率之间的比吗？不就是对数几率（log odds）吗？对数几率为0时不就是概率比为1吗？不就是差异最小么！）：
+假设 y 分别符合下列分布，求真实 y 与预测 y 之间的差异（Deviance）（log 相减不就是两个概率之间的比吗？不就是对数几率（log odds）吗？对数几率为 0 时不就是概率比为 1 吗？不就是差异最小么！）：
 
 - **Normal（Gaussian）**：
   就相当于普通的线性回归（加上正则就是 Ridge, ElasticNet 等）
@@ -1088,10 +1094,10 @@ $$\min_{w} \frac{1}{2 n_{\text{samples}}} \sum_i d(y_i, \hat{y}_i) + \frac{\alph
   $$\log f(y;n,p) =y\log p+(n-y)\log(1-p) + \log(\binom{n}{y})$$
   Deviance(log-likelihood ratio)(预测$\hat{y}$就是预测的均值(即期望$\hat{y} = \mu = np$))：
   $$\log f(y;n,\frac{y}{n}) - \log f(y;n,\frac{\hat{y}}{n})= y\log\frac{y}{\hat{y}} + (n-y)\log\frac{1-\frac{y}{n}}{1-\frac{\hat{y}}{n}} = y\log\frac{y}{\hat{y}} + (n-y)\log\frac{n-y}{n-\hat{y}}$$
-  Binomial distribution(B(n,p))，而Bernoulli distribution中n=1
+  Binomial distribution(B(n,p))，而 Bernoulli distribution 中 n=1
 
-> 上述计算都有一个2倍，不知道什么意思所以没有写出来。
-> 还有用link function解释的，目前不是很明白-参考[广义线性模型（GLM）](https://www.cnblogs.com/dreamvibe/p/4259460.html)。
+> 上述计算都有一个 2 倍，不知道什么意思所以没有写出来。
+> 还有用 link function 解释的，目前不是很明白-参考[广义线性模型（GLM）](https://www.cnblogs.com/dreamvibe/p/4259460.html)。
 
 #### S 型函数（Logistic & Sigmoid 函数）
 
@@ -1150,5 +1156,124 @@ $$\log(\sigma (\mathbf {z} ))_{i}=\log{\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{
 而${\sum _{j=1}^{K}e^{(z_{j}-z_{max})}}$是大于等于 1 的，并且不会大的离谱，所以不会出问题。
 
 **negative log-likelihood**（NLL），likelihood 是一个概率（softmax 也是概率），所以 log-likelihood 小于 0，negative log-likelihood 则大于 0，这样就可以最小化 negative log-likelihood 了
+
+### 参考文献
+
+[6-1] Berger A,Della Pietra SD,Pietra VD. A maximum entropy approach to naturallanguage processing. Computational Linguistics,1996,22(1),39–71
+
+[6-2] Berger A. The Improved Iterative Scaling Algorithm: A Gentle Introduction.http://www.cs.cmu.edu/ afs/cs/user/aberger/www/ps/scaling.ps
+
+[6-3] Hastie T,Tibshirani R，Friedman J. The Elements of Statistical Learning: DataMining,Inference,and Prediction. Springer-Verlag. 2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英等译。北京:电子工业出版社，2004）
+
+[6-4] Mitchell TM. Machine Learning. McGraw-Hill Companies,Inc. 1997（中译本：机器学习。北京:机械工业出版社，2003）
+
+[6-5] Collins M,Schapire RE,Singer Y. Logistic Regression,AdaBoost and BregmanDistances. Machine Learning Journal,2004
+
+[6-6] Canu S,Smola AJ. Kernel method and exponential family. Neurocomputing,2005,69:714–720
+
+## 第 7 章 支持向量机
+
+**支持向量机**（[support vector machine，SVM](https://en.jinzhao.wiki/wiki/Support-vector_machine)）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；支持向量机还包括**核技巧**，这使它成为实质上的非线性分类器。支持向量机的学习策略就是间隔最大化，可形式化为一个求解**凸二次规划**（convex quadratic programming）的问题，也等价于正则化的**合页损失函数**的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。
+
+支持向量机学习方法包含构建由简至繁的模型：**线性可分支持向量机**（linear supportvector machine in linearly separable case）、**线性支持向量机**（linear support vectormachine）及**非线性支持向量机**（non-linear support vector machine）。简单模型是复杂模型的基础，也是复杂模型的特殊情况。当训练数据线性可分时，通过**硬间隔最大化**（hardmargin maximization），学习一个线性的分类器，即线性可分支持向量机，又称为**硬间隔支持向量机**；当训练数据近似线性可分时，通过**软间隔最大化**（soft marginmaximization），也学习一个线性的分类器，即线性支持向量机，又称为**软间隔支持向量机**；当训练数据线性不可分时，通过使用**核技巧（kernel trick）及软间隔最大化，学习非线性支持向量机**。
+
+当输入空间为欧氏空间或离散集合、特征空间为希尔伯特空间时，核函数（kernelfunction）表示将输入从输入空间映射到特征空间得到的特征向量之间的内积。通过使用核函数可以学习非线性支持向量机，等价于隐式地在高维的特征空间中学习线性支持向量机。这样的方法称为核技巧。核方法（kernel method）是比支持向量机更为一般的机器学习方法。
+
+> SVM 有三宝：间隔、对偶、核技巧
+
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
+
+#### 拉格朗日乘数法
+
+[最优化：建模、算法与理论/最优化计算方法](http://bicmr.pku.edu.cn/~wenzw/optbook.html)
+[Stephen Boyd 的 Convex Optimization - 凸优化](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
+[Nonlinear Programming by Dimitri P. Bertsekas - 非线性规划](http://www.athenasc.com/nonlinbook.html)
+
+**凸优化**（[Convex optimization](https://en.jinzhao.wiki/wiki/Convex_optimization)）：
+凸优化问题是目标函数为凸函数，可行集为凸集的优化问题。
+标准形式：
+$${\displaystyle {\begin{aligned}&{\underset {\mathbf {x} }{\operatorname {minimize} }}&&f(\mathbf {x} )\\&\operatorname {subject\ to} &&g_{i}(\mathbf {x} )\leq 0,\quad i=1,\dots ,m\\&&&h_{i}(\mathbf {x} )=0,\quad i=1,\dots ,p,\end{aligned}}}$$
+其中$\mathbf {x} \in \mathbb {R} ^{n}$为优化变量，**目标函数**（objective function）${\displaystyle f:{\mathcal {D}}\subseteq \mathbb {R} ^{n}\to \mathbb {R} }$是凸的，**不等式约束**${\displaystyle g_{i}:\mathbb {R} ^{n}\to \mathbb {R} }$也是凸的，**等式约束**${\displaystyle h_{i}:\mathbb {R} ^{n}\to \mathbb {R} }$是**仿射**（[affine](https://en.jinzhao.wiki/wiki/Affine_transformation)）的
+
+**二次约束二次规划**（[Quadratically constrained quadratic program](https://en.jinzhao.wiki/wiki/Quadratically_constrained_quadratic_program)）：
+$${\begin{aligned}&{\text{minimize}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{0}x+q_{0}^{{\mathrm  {T}}}x\\&{\text{subject to}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{i}x+q_{i}^{{\mathrm  {T}}}x+r_{i}\leq 0\quad {\text{for }}i=1,\dots ,m,\\&&&Ax=b,\end{aligned}}$$
+其中$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$,$\mathbf {x} \in \mathbb {R} ^{n}$为优化变量
+如果$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$是半正定矩阵，那么问题是凸的，如果$P_1,..,P_m$为 0，那么约束是线性的，就是**二次规划**（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）,即目标函数是二次的，不等式以及等式约束也是线性的；二次规划的前提下，如果$P_0$是半正定矩阵那么就是**凸二次规划**；如果$P_0$为 0，就是**线性规划**（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)），即目标函数是线性的，不等式以及等式约束也是线性的。
+
+线性规划解法有[单纯形法](https://en.jinzhao.wiki/wiki/Simplex_algorithm)等。其它规划的[优化算法看这里](https://en.jinzhao.wiki/wiki/Category:Optimization_algorithms_and_methods):内点法，单纯形法等；有线性规划自然也有**动态规划**（[Dynamic programming](https://en.jinzhao.wiki/wiki/Dynamic_programming)）
+
+**最小二乘不就是凸二次规划么**（$\|y-f(x)\|^2,f(x) = Ax+c$）：
+$$\text{minimize} f(x) =\frac{1}{2} \|Ax-b\|^2 = \frac{1}{2}(Ax-b)^T(Ax-b) \\= \frac{1}{2}(x^TA^TAx - x^TA^Tb -b^TAx + b^tb) \\= \frac{1}{2}(x^TA^TAx - 2x^TA^Tb + b^tb)$$
+其中$A \in \mathbb{R}^{m \times n}，x \in \mathbb{R}^{n \times 1}，b \in \mathbb{R}^{m \times 1} $，所以$x^TA^Tb 和 b^TAx$都是相等的实数，$b^tb$也是实数$A^TA$是半正定矩阵
+
+**共轭函数**（[conjugate function](https://en.jinzhao.wiki/wiki/Convex_conjugate)）：
+设函数$f:\mathbb{R}^n \to \mathbb{R}$，定义 f 的共轭函数$f^*:\mathbb{R}^n \to \mathbb{R}$为：
+$$f^*(y) = \sup_{x \in \mathrm{dom} f} (y^Tx - f(x))$$
+共轭函数一定是凸的，supremum 为上界， infimum 为下界。
+
+**拉格朗日乘数法**（[Lagrange multiplier](https://en.jinzhao.wiki/wiki/Lagrange_multiplier)）：
+根据上面标准形式的优化问题，我们来构造一个拉格朗日函数：
+$$L(x,\lambda,\nu) = f(x) + +\sum _{i=1}^{m}\lambda _{i}g_{i}(x)+\sum _{ i=1}^{p}\nu _{i}h_{i}(x)$$
+其中$\lambda _{i},\nu _{i}$分别是不等式和等式对应的 Lagrange 乘子，当然如果用向量$\lambda,\nu$表示，称为原问题的 Lagrange 乘子向量。
+
+**对偶函数**（[Dual function](<https://en.jinzhao.wiki/wiki/Duality_(optimization)>)）：
+$$g(\lambda,\nu) = \inf L(x,\lambda,\nu)$$
+对偶函数一定是凹的，又称**Lagrange 对偶函数**。对偶函数$g(\lambda,\nu) \leq p^{\star}$, $p^{\star}$是原问题的最优值。Lagrange 对偶问题的最优值用$d^{\star}$表示，则$d^{\star}\leq p^{\star}$，这个性质称为**弱对偶性**（[Weak Duality](https://en.jinzhao.wiki/wiki/Weak_duality)），$p^{\star}- d^{\star}$称为原问题的**最优对偶间隙**（[Duality gap](https://en.jinzhao.wiki/wiki/Duality_gap)），当$d^{\star}= p^{\star}$时称为**强对偶性**（[Strong Duality](https://en.jinzhao.wiki/wiki/Strong_duality)）。
+
+当强对偶性成立时，那么$x^{\star},\lambda^{\star},\nu^{\star}$分别是原问题和对偶问题的最优解的充分必要条件是满足下面的**KKT 条件**（[Karush–Kuhn–Tucker conditions](https://en.jinzhao.wiki/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions)）：
+
+$$\nabla_x L(x^{\star},\lambda^{\star},\nu^{\star}) = 0 \\ \lambda_i^{\star}g_i(x^{\star}) = 0,i=1,2,...,m \quad (\text{Complementary slackness})\\ \lambda_i^{\star} \geq 0,i=1,2,...,m \quad (\text{Dual feasibility})\\ g_i(x^{\star}) \leq 0,i=1,2,...,m \quad (\text{Primal feasibility})\\ h_i(x^{\star}) = 0,i=1,2,...,p \quad (\text{Primal feasibility})$$
+
+其中**互补松弛**（Complementary slackness）条件用$\sum_{i=0}^m\lambda_i^{\star}g_i(x^{\star})=0$可能很合理，如果最优解$x^{\star}$出现在不等式约束的边界上$g_i(x) = 0$，则$\lambda_i^{\star} > 0$；如果最优解$x^{\star}$出现在不等式约束的内部$g_i(x) < 0$，则$\lambda_i^{\star} = 0$；**互补松弛条件说明当最优解出现在不等式约束的内部，则约束失效**，所以$\lambda_i^{\star} \geq 0,i=1,2,...,m$表示对偶可行性（Dual feasibility）。
+
+如何将不等式变成等式：
+
+1. $a^Tx \leq b$
+   只需要加上松弛变量（[Slack variable](https://en.jinzhao.wiki/wiki/Slack_variable)），松弛变量特别用于线性规划。松弛变量不能取负值，因为单纯形算法要求它们为正值或零。
+   $$a^Tx +s = b \\ s.t. \quad s \geq 0$$
+
+2. $a^Tx \geq b$
+   只需要减去剩余变量（surplus variable），剩余变量不能取负值。
+   $$a^Tx - e = b \\ s.t. \quad e \geq 0$$
+
+如何将任意变量转换：
+$${\begin{aligned}&z_{1}=z_{1}^{+}-z_{1}^{-}\\&z_{1}^{+},\,z_{1}^{-} \geq 0 \\& |z_{1}| = z_{1}^{+}+\,z_{1}^{-} \\&\braket{z_{1}^{+},z_{1}^{-}} = 0 \end{aligned}}$$
+如：
+$$5 = 5-0 \\ -5 = 0-5$$
+or
+$$
+\begin{pmatrix}
+   1 \\
+   2 \\
+   -3 \\
+   -4
+\end{pmatrix} =
+\begin{pmatrix}
+   1 \\
+   2 \\
+   0 \\
+   0
+\end{pmatrix} -
+\begin{pmatrix}
+   0 \\
+   0 \\
+   3 \\
+   4
+\end{pmatrix}
+$$
+
+### 参考文献
+
+## 第 8 章 提升方法
+
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
 
 ### 参考文献
