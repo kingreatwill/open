@@ -1181,8 +1181,33 @@ $$\log(\sigma (\mathbf {z} ))_{i}=\log{\frac {e^{(z_{i}-z_{max})}}{\sum _{j=1}^{
 
 > SVM 有三宝：间隔、对偶、核技巧
 
+函数间隔：$\hat\gamma = y(w.x + b), y\in \{-1,+1\}$
+几何间隔：$\gamma = \frac{1}{\|w\|}|w.x + b| = \frac{\hat\gamma}{\|w\|}$
+
 - **模型**：
+
+$$w.x + b=0$$
+
 - **策略**：
+
+1. 最大间隔
+
+   $$\begin{aligned} &\max_{w,b} &\frac{\hat\gamma}{\|w\|} \\ &\text{s.t.} &y_i(w.x_i+b) \geq \hat\gamma\end{aligned}$$
+   函数间隔$\hat\gamma$的大小是可以变的，我们让其等于 1，那么将上述问题改写下：
+   $$\begin{aligned} &\min_{w,b} &\frac{1}{2}\|w\|^2 \\ &\text{s.t.} &y_i(w.x_i+b) \geq 1\end{aligned}$$
+   这不就是一个标准的凸二次规划问题么！（$\frac{1}{\|w\|}$在$\|w\| = 0$处不可微，$\argmax \frac{1}{\|w\|} 与 \argmin \frac{1}{2}\|w\|^2$等价）
+   如果数据集线性可分，那么最大间隔分离超平面**存在且唯一**，具体证明就不证了（见统计学习方法 117 页）。
+   在线性可分的情况下，训练集中的样本点与分离超平面距离最近的点称为**支持向量**，也就是满足$y_i(w.x_i +b ) =1$的点。
+   而超平面$w.x_i +b = +1,w.x_i +b = -1$称为**间隔边界**，两个间隔边界之间的距离称为**间隔**（margin），间隔大小为$\frac{2}{\|w\|}$。
+   在决定分离超平面时**只有支持向量起作用**，而其它样本点并不起作用，所以该模型叫做支持向量机。
+
+2. 带正则项的合页损失函数
+   $$\min_{w,b} \underbrace{\sum_{i=1}^N[1-y_i(w.x_i+b)]_+}_{\text{hinge loss function}} + \underbrace{\lambda\|w\|^2}_{\text{正则化项}}$$
+   等价**软间隔**最大化的优化问题：
+   $$\begin{aligned} &\min_{w,b,\xi} & \sum _{i=1}^{n}\xi _{i}+\lambda \|\mathbf {w} \|^{2} \\ &\displaystyle {\text{subject to }} & y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}-b)\geq 1-\xi _{i}\\ &&\xi _{i}\geq 0,\,{\text{for all }}i.\end{aligned}$$
+  其中$\xi$是松弛变量，
+  $y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}-b)\geq 1-\xi _{i}$相当于分类点可以处于间隔中，对于软间隔支持向量机中的支持向量包含了间隔中的向量。
+
 - **算法**：
 
 ### 附加知识
@@ -1245,6 +1270,7 @@ $${\begin{aligned}&z_{1}=z_{1}^{+}-z_{1}^{-}\\&z_{1}^{+},\,z_{1}^{-} \geq 0 \\& 
 如：
 $$5 = 5-0 \\ -5 = 0-5$$
 or
+
 $$
 \begin{pmatrix}
    1 \\
