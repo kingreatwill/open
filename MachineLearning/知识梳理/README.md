@@ -761,7 +761,7 @@ $$(A\perp B|C) \iff P(A|B,C) = P(A|C) \\ (A\perp B|C) \iff P(A,B|C) = P(A|C)P(B|
 决策树（[decision tree](https://en.jinzhao.wiki/wiki/Decision_tree_learning)）是一种基本的分类与回归方法，具有良好的可解释性(可视化)，通常包括 3 个步骤：特征选择、决策树的生成和决策树的修剪
 ![](https://scikit-learn.org/stable/_images/iris.png)
 **特征选择**：
-特征选择在于选取对训练数据具有分类能力的特征。（sklearn 中可以返回 feature*importances*特征重要性）
+特征选择在于选取对训练数据具有分类能力的特征。（sklearn 中可以返回 `feature_importances_`特征重要性，属性越重要，特征空间划分的面积越大）
 
 也就是计算每个特征的（信息增益，基尼指数）来选择特征（作为根节点）进行特征空间划分，注意：划分后再次计算每个特征的（信息增益，基尼指数），除非该特征所在的空间就只有一类了（也就是该特征不可分了，那么就直接生成叶子节点）；
 
@@ -969,6 +969,7 @@ Wasserstein 距离相比 KL 散度和 JS 散度的优势在于：即使两个分
 **逻辑斯谛回归**（[logistic regression](https://en.jinzhao.wiki/wiki/Logistic_regression)）（也有称 对数几率回归）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到**最大熵模型**（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）。逻辑斯谛回归模型与最大熵模型都属于**对数线性模型**（也有称最大熵分类或对数线性分类，所以这里的模型都是分类模型）。
 
 ### 逻辑斯谛回归
+
 一个事件的几率（odds）是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是 p，那么该事件的几率是$\frac{p}{1-p}$，该事件的**对数几率**（log odds）或 logit 函数是：
 $$logit(p) = \log\frac{p}{1-p} \label{6-1}\tag{6-1}$$
 
@@ -994,43 +995,45 @@ $$logit(p) = \log\frac{p}{1-p} \label{6-1}\tag{6-1}$$
   这不就是交叉熵的定义的吗。
 
 - **算法**：
-  1. 极大似然估计MLE(Maximum Likelihood Estimation)
-  $$w^* = \argmin_w -\log {L(w|y;x)}$$
+  1. 极大似然估计 MLE(Maximum Likelihood Estimation)
+     $$w^* = \argmin_w -\log {L(w|y;x)}$$
   2. 然后使用随机梯度下降法（Stochastic Gradient Descent）求最优值处的参数
-  -log是一个连续的凸函数
+     -log 是一个连续的凸函数
 
-
-**[sklearn中代价函数](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)**：$y \in \{-1,+1\}$
+**[sklearn 中代价函数](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)**：$y \in \{-1,+1\}$
 $$P(Y=+1|x) = \frac{\exp{(w.x)}}{1+\exp{(w.x)}} = \sigma{(w.x)} \\ P(Y=-1|x) = \frac{1}{1+\exp{(w.x)}} = 1 - \sigma{(w.x)} = \sigma{(-w.x)}$$
 两个式子合起来就是：$\sigma{(y_i.w.x_i)}$
 negative log likelihood：
-$$-\log\prod_{i=1}^N \sigma{(y_i.w.x_i)} = \sum_{i=1}^N-\log\sigma{(y_i.w.x_i)}= \sum_{i=1}^N \log\frac{1}{\sigma{(y_i.w.x_i)}} \\= 
-\sum_{i=1}^N \log\frac{1}{\frac{\exp{(y_i.w.x_i)}}{1+\exp{(y_i.w.x_i)}}}\\= \sum_{i=1}^N \log(1+\frac{1}{\exp{(y_i.w.x_i)}})\\= \sum_{i=1}^N \log(1+\exp{(-y_i.w.x_i)})$$
 
-当然sklearn中加入的正则项。
+$$
+-\log\prod_{i=1}^N \sigma{(y_i.w.x_i)} = \sum_{i=1}^N-\log\sigma{(y_i.w.x_i)}= \sum_{i=1}^N \log\frac{1}{\sigma{(y_i.w.x_i)}} \\=
+\sum_{i=1}^N \log\frac{1}{\frac{\exp{(y_i.w.x_i)}}{1+\exp{(y_i.w.x_i)}}}\\= \sum_{i=1}^N \log(1+\frac{1}{\exp{(y_i.w.x_i)}})\\= \sum_{i=1}^N \log(1+\exp{(-y_i.w.x_i)})
+$$
 
-> Softmax回归是Logistic回归的多分类情况。
-> LogisticRegression 就是一个被logistic方程归一化后的线性回归。将预测的输出映射到0,1之间。
+当然 sklearn 中加入的正则项。
 
-> 逻辑斯蒂回归模型的思想跟线性回归模型思想不一样，线性回归模型思想是最小化真实值与模型预测值的误差，而逻辑斯蒂回归模型思想就比较狠了，预测值预测对了损失函数就是0，错了损失就是无穷大，我个人的理解(一般采用的是-log(h(x)) 这是一个凸函数,刚好满足要求)
+> Softmax 回归是 Logistic 回归的多分类情况。
+> LogisticRegression 就是一个被 logistic 方程归一化后的线性回归。将预测的输出映射到 0,1 之间。
+
+> 逻辑斯蒂回归模型的思想跟线性回归模型思想不一样，线性回归模型思想是最小化真实值与模型预测值的误差，而逻辑斯蒂回归模型思想就比较狠了，预测值预测对了损失函数就是 0，错了损失就是无穷大，我个人的理解(一般采用的是-log(h(x)) 这是一个凸函数,刚好满足要求)
 
 ### 最大熵模型
+
 [maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)
 
 ### 参考资料
+
 [逻辑回归（非常详细）](https://zhuanlan.zhihu.com/p/74874291)
 [机器学习实现与分析之四（广义线性模型）](http://blog.sina.com.cn/s/blog_13ec1876a0102xb47.html)
 
-[逻辑回归——Logistic的起源](https://www.bilibili.com/video/BV1W3411z71D)
-[Logistic回归的起源（上）](https://zhuanlan.zhihu.com/p/146206709)
-[Logistic回归的起源（中）](https://zhuanlan.zhihu.com/p/147708076)
-[Logistic回归的起源（下）](https://zhuanlan.zhihu.com/p/155027693)
+[逻辑回归——Logistic 的起源](https://www.bilibili.com/video/BV1W3411z71D)
+[Logistic 回归的起源（上）](https://zhuanlan.zhihu.com/p/146206709)
+[Logistic 回归的起源（中）](https://zhuanlan.zhihu.com/p/147708076)
+[Logistic 回归的起源（下）](https://zhuanlan.zhihu.com/p/155027693)
 
-[6.2 Logistic Regression and the Cross Entropy Cost - Logistic regression - y属于0或1](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.html)
+[6.2 Logistic Regression and the Cross Entropy Cost - Logistic regression - y 属于 0 或 1](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.html)
 
-
-[6.3 Logistic Regression and the Softmax Cost-Logistic regression ](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_3_Softmax.html) sklearn中的代价函数，这里的 [y属于-1或1](https://github.com/jermwatt/machine_learning_refined/blob/gh-pages/notes/6_Linear_twoclass_classification/6_3_Softmax.ipynb)
-
+[6.3 Logistic Regression and the Softmax Cost-Logistic regression ](https://jermwatt.github.io/machine_learning_refined/notes/6_Linear_twoclass_classification/6_3_Softmax.html) sklearn 中的代价函数，这里的 [y 属于-1 或 1](https://github.com/jermwatt/machine_learning_refined/blob/gh-pages/notes/6_Linear_twoclass_classification/6_3_Softmax.ipynb)
 
 ### 附加知识
 
@@ -1046,25 +1049,49 @@ $$-\log\prod_{i=1}^N \sigma{(y_i.w.x_i)} = \sum_{i=1}^N-\log\sigma{(y_i.w.x_i)}=
 
 [Generalized Linear Models](https://www.stat.cmu.edu/~ryantibs/advmethods/notes/glm.pdf)
 
-> 这一家族中的模型形式基本上都差不多，不同的就是因变量(Y)不同，如果是连续的，就是多重线性回归，如果是二项分布，就是logistic回归，如果是poisson分布，就是poisson回归，如果是负二项分布，就是负二项回归，等等。只要注意区分它们的因变量就可以了。logistic回归的因变量可以是二分类的(二项逻辑回归)，也可以是多分类的（多项逻辑回归或者softmax回归），但是二分类的更为常用，也更加容易解释。所以实际中最为常用的就是二分类的logistic回归。
+在线性回归模型中的假设中，有两点需要提出：
+1. 假设因变量服从高斯分布：$Y={{\theta }^{T}}x+\xi$，其中误差项$\xi \sim N(0,{{\sigma }^{2}})$，那么因变量$Y\sim N({{\theta }^{T}}x,{{\sigma }^{2}})$
+2. 模型预测的输出为$E[Y]$，根据$Y={{\theta }^{T}}x+\xi$，$E[Y]=E[{{\theta }^{T}}x+\xi ]={{\theta }^{T}}x$,记$\eta ={{\theta }^{T}}x$，则$\eta =E[Y]$
 
-根据[sklearn中的广义线性回归Generalized Linear Regression](https://scikit-learn.org/stable/modules/linear_model.html#generalized-linear-regression)的第二种方式[exponential dispersion model (EDM)](https://en.jinzhao.wiki/wiki/Exponential_dispersion_model)：
+广义线性模型可以认为在以上两点假设做了扩展：
+1. 因变量分布不一定是高斯分布，服从一个指数分布族（[Exponential family](https://en.jinzhao.wiki/wiki/Exponential_family)）即可。
+2. 模型预测输出仍然可以认为是$E[Y]$（实际上是$E[T(Y)]$，许多情况下$T(Y)=Y$），但是$Y$的分布不一定是高斯分布，$E[Y]$和$\eta ={{\theta }^{T}}x$也不一定是简单的相等关系，它们的关系用$\eta =g(E[Y])$描述，称为连接函数(link function)，其中$\eta$称为自然参数。
 
-其实就是要让真实y与预测y之间的差异越小越好：
+由于以上两点的扩展，广义线性模型的应用比基本线性模型广泛许多。对于广义线性这个术语，可以理解为广义体现在因变量的分布形式比较广，只要是一指数分布族即可，而线性则体现在自然参数$\eta ={{\theta }^{T}}x$是$\theta$的线性函数。
+
+> 这一家族中的模型形式基本上都差不多，不同的就是因变量(Y)不同，如果是连续的，就是多重线性回归，如果是伯努利分布，就是 logistic 回归，如果是 poisson 分布，就是 poisson 回归，如果是负二项分布，就是负二项回归，等等。只要注意区分它们的因变量就可以了。logistic 回归的因变量可以是二分类的(二项逻辑回归)，也可以是多分类的（多项逻辑回归或者 softmax 回归），但是二分类的更为常用，也更加容易解释。所以实际中最为常用的就是二分类的 logistic 回归。
+
+根据[sklearn 中的广义线性回归 Generalized Linear Regression](https://scikit-learn.org/stable/modules/linear_model.html#generalized-linear-regression)的第二种方式[exponential dispersion model (EDM)](https://en.jinzhao.wiki/wiki/Exponential_dispersion_model)：
+
+其实就是要让真实 y 与预测 y 之间的差异越小越好：
 $$\min_{w} \frac{1}{2 n_{\text{samples}}} \sum_i d(y_i, \hat{y}_i) + \frac{\alpha}{2} \|w\|_2$$
 
-假设y分别符合下列分布，求真实y与预测y之间的差异（Deviance）：
+假设 y 分别符合下列分布，求真实 y 与预测 y 之间的差异（Deviance）（log相减不就是两个概率之间的比吗？不就是对数几率（log odds）吗？对数几率为0时不就是概率比为1吗？不就是差异最小么！）：
+
 - **Normal（Gaussian）**：
   就相当于普通的线性回归（加上正则就是 Ridge, ElasticNet 等）
   $$f(y;\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(y-\mu)^2}{2\sigma^2})$$
-  $$\log f(y;\mu,\sigma) = -\log\sqrt{2\pi\sigma^2} - \frac{y^2-2y\mu+\mu^2}{2\sigma^2}= -\log\sqrt{2\pi\sigma^2} - \frac{y^2}{2\sigma^2} + \frac{-2y\mu+\mu^2}{2\sigma^2}$$
-  Deviance(预测$\hat{y}$就是预测的均值)：
-  $$\log f(y;y,\sigma) - \log f(y;\hat{y},\sigma) $$
-- **Poisson**：
-  就相当于PoissonRegressor
-- **Binomial(sklearn中没有)**：
-  就相当于Logistic Regression
+  $$\log f(y;\mu,\sigma) = -\log\sqrt{2\pi\sigma^2} - \frac{y^2-2y\mu+\mu^2}{2\sigma^2}= -\log\sqrt{2\pi\sigma^2} - \frac{y^2}{2\sigma^2} - \frac{-2y\mu+\mu^2}{2\sigma^2}$$
+  Deviance(log-likelihood ratio)(预测$\hat{y}$就是预测的均值(即期望$\mu$))：
+  $$\log f(y;y,\sigma) - \log f(y;\hat{y},\sigma) = - \frac{-2y.y+y^2}{2\sigma^2} - (- \frac{-2y.\hat{y}+\hat{y}^2}{2\sigma^2}) \\= \frac{y^2 -2y.\hat{y}+\hat{y}^2}{2\sigma^2} \\= \frac{(y-\hat{y})^2}{2\sigma^2} \\= \frac{D(y,\hat{y})}{2\sigma^2}$$
 
+- **Poisson**：
+  就相当于 PoissonRegressor
+  $$f(y;\mu) = \frac{\mu^y e^{-\mu}}{y!}$$
+  $$\log f(y;\mu) = y\log\mu -\mu -\log(y!)$$
+  Deviance(log-likelihood ratio)(预测$\hat{y}$就是预测的均值(即期望$\mu$))：
+  $$\log f(y;y) -\log f(y;\hat{y}) = y\log\frac{y}{\hat{y}} - y + \hat{y}$$
+
+- **Binomial(sklearn 中没有)**：
+  就相当于 Logistic Regression
+  $$f(y;n,p) = \binom{n}{y} p^y (1-p)^{n-y}$$
+  $$\log f(y;n,p) =y\log p+(n-y)\log(1-p) + \log(\binom{n}{y})$$
+  Deviance(log-likelihood ratio)(预测$\hat{y}$就是预测的均值(即期望$\hat{y} = \mu = np$))：
+  $$\log f(y;n,\frac{y}{n}) - \log f(y;n,\frac{\hat{y}}{n})= y\log\frac{y}{\hat{y}} + (n-y)\log\frac{1-\frac{y}{n}}{1-\frac{\hat{y}}{n}} = y\log\frac{y}{\hat{y}} + (n-y)\log\frac{n-y}{n-\hat{y}}$$
+  Binomial distribution(B(n,p))，而Bernoulli distribution中n=1
+
+> 上述计算都有一个2倍，不知道什么意思所以没有写出来。
+> 还有用link function解释的，目前不是很明白-参考[广义线性模型（GLM）](https://www.cnblogs.com/dreamvibe/p/4259460.html)。
 
 #### S 型函数（Logistic & Sigmoid 函数）
 
