@@ -463,7 +463,7 @@ $$k\eta\gamma \leq \underbrace{\hat{w}_{k}.\hat{w}_{opt} \leq ||\hat{w}_{k}||.\u
 
 也就是说 k 是有上界的。
 
-> 书中还介绍了原形式的**对偶形式**,也就是等价形式（SVM中7.2.2节127页也是等价的意思，区别于拉格朗日对偶），这两个地方的等价都是经过基本推导，求出w参数，然后对原问题进行了替换。
+> 书中还介绍了原形式的**对偶形式**,也就是等价形式（SVM 中 7.2.2 节 127 页也是等价的意思，区别于拉格朗日对偶），这两个地方的等价都是经过基本推导，求出 w 参数，然后对原问题进行了替换。
 
 ### 参考文献
 
@@ -1227,7 +1227,7 @@ $$w.x + b=0$$
 **核技巧**：
 首先写出了原形式的对偶形式，然后把$x用\phi (x)$代替，最终发现根本不需要知道$\phi (x)$，只需要核函数就行了，具体证明就不证了，很简单，上面也有介绍了核技巧知识。
 
-> 书中还介绍了原形式的**对偶形式**（区别于拉格朗日对偶）,也就是等价形式（感知机中2.3.3节44页 也是等价的意思），这两个地方的等价都是经过基本推导，求出w参数，然后对原问题进行了替换。
+> 书中还介绍了原形式的**对偶形式**（区别于拉格朗日对偶）,也就是等价形式（感知机中 2.3.3 节 44 页 也是等价的意思），这两个地方的等价都是经过基本推导，求出 w 参数，然后对原问题进行了替换。
 
 ### 附加知识
 
@@ -1255,7 +1255,7 @@ $${\begin{aligned}&{\text{minimize}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{0}x+q_{0}
 $$\text{minimize} f(x) =\frac{1}{2} \|Ax-b\|^2 = \frac{1}{2}(Ax-b)^T(Ax-b) \\= \frac{1}{2}(x^TA^TAx - x^TA^Tb -b^TAx + b^tb) \\= \frac{1}{2}(x^TA^TAx - 2x^TA^Tb + b^tb)$$
 其中$A \in \mathbb{R}^{m \times n}，x \in \mathbb{R}^{n \times 1}，b \in \mathbb{R}^{m \times 1} $，所以$x^TA^Tb 和 b^TAx$都是相等的实数，$b^tb$也是实数$A^TA$是半正定矩阵
 
-**L1和L2回归也能转化称相应的优化问题**，参考：[L1L2 正则化和凸优化](../图解数学/L1L2正则化和凸优化.md)
+**L1 和 L2 回归也能转化称相应的优化问题**，参考：[L1L2 正则化和凸优化](../图解数学/L1L2正则化和凸优化.md)
 
 **共轭函数**（[conjugate function](https://en.jinzhao.wiki/wiki/Convex_conjugate)）：
 设函数$f:\mathbb{R}^n \to \mathbb{R}$，定义 f 的共轭函数$f^*:\mathbb{R}^n \to \mathbb{R}$为：
@@ -1272,13 +1272,13 @@ $$g(\lambda,\nu) = \inf_{x} L(x,\lambda,\nu)$$
 对偶函数一定是凹的，又称**Lagrange 对偶函数**。对偶函数$g(\lambda,\nu) \leq p^{\star}$, $p^{\star}$是原问题的最优值。Lagrange 对偶问题的最优值用$d^{\star}$表示，则$d^{\star}\leq p^{\star}$，这个性质称为**弱对偶性**（[Weak Duality](https://en.jinzhao.wiki/wiki/Weak_duality)），$p^{\star}- d^{\star}$称为原问题的**最优对偶间隙**（[Duality gap](https://en.jinzhao.wiki/wiki/Duality_gap)），当$d^{\star}= p^{\star}$时称为**强对偶性**（[Strong Duality](https://en.jinzhao.wiki/wiki/Strong_duality)）。
 
 所以当强对偶性成立时，拉格朗日函数的最小等价于对偶函数的最大值$\min_{x} \max_{\lambda,\nu}L(x,\lambda,\nu) \iff \max_{\lambda,\nu} g(\lambda,\nu)$，**我们一般使用拉格朗日函数求最小化时的参数$x$，然后带入其中，利用对偶函数求其最大时的 Lagrange 乘子，即$\lambda,\nu$。**
-这里的$\max_{\lambda,\nu}L(x,\lambda,\nu)$是为了让约束起作用(描述不是很准确，其实就是目标函数和约束的交点，参见[附录C.3.2](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf))。
+这里的$\max_{\lambda,\nu}L(x,\lambda,\nu)$是为了让约束起作用(描述不是很准确，其实就是目标函数和约束的交点，参见[附录 C.3.2](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf))。
 
 当强对偶性成立时，那么$x^{\star},\lambda^{\star},\nu^{\star}$分别是原问题和对偶问题的最优解的充分必要条件是满足下面的**KKT 条件**（[Karush–Kuhn–Tucker conditions](https://en.jinzhao.wiki/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions)）：
 
 $$\nabla_x L(x^{\star},\lambda^{\star},\nu^{\star}) = 0 \\ \lambda_i^{\star}g_i(x^{\star}) = 0,i=1,2,...,m \quad (\text{Complementary slackness})\\ \lambda_i^{\star} \geq 0,i=1,2,...,m \quad (\text{Dual feasibility})\\ g_i(x^{\star}) \leq 0,i=1,2,...,m \quad (\text{Primal feasibility})\\ h_i(x^{\star}) = 0,i=1,2,...,p \quad (\text{Primal feasibility})$$
 
-> 可以看到我们只对x参数求导，没有对Lagrange乘子求导；
+> 可以看到我们只对 x 参数求导，没有对 Lagrange 乘子求导；
 
 其中**互补松弛**（Complementary slackness）条件用$\sum_{i=0}^m\lambda_i^{\star}g_i(x^{\star})=0$可能很合理，如果最优解$x^{\star}$出现在不等式约束的边界上$g_i(x) = 0$，则$\lambda_i^{\star} > 0$；如果最优解$x^{\star}$出现在不等式约束的内部$g_i(x) < 0$，则$\lambda_i^{\star} = 0$；**互补松弛条件说明当最优解出现在不等式约束的内部，则约束失效**，所以$\lambda_i^{\star} \geq 0,i=1,2,...,m$表示对偶可行性（Dual feasibility）。
 
@@ -1326,6 +1326,36 @@ b. 目标函数有带绝对值的(第二条性质)
 $$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \\ x^- \geq 0\end{aligned}$$
 
 ### 参考文献
+
+[7-1] Cortes C,Vapnik V. Support-vector networks. Machine Learning,1995,20
+
+[7-2] Boser BE,Guyon IM,Vapnik VN. A training algorithm for optimal margin classifiers.In: Haussler D,ed. Proc of the 5th Annual ACM Workshop on COLT. Pittsburgh,PA,1992,144–152
+
+[7-3] Drucker H,Burges CJC,Kaufman L,Smola A,Vapnik V. Support vector regressionmachines. In: Advances in Neural Information Processing Systems 9,NIPS 1996. MITPress,155–161
+
+[7-4] Vapnik Vladimir N. The Nature of Statistical Learning Theory. Berlin: Springer-Verlag,1995（中译本：张学工，译。统计学习理论的本质。北京：清华大学出版社，2000）
+
+[7-5] Platt JC. Fast training of support vector machines using sequential minimaloptimization. [Microsoft Research](https://www.microsoft.com/en-us/research/project/support-vector-machines/)
+
+[7-6] Weston JAE,Watkins C. Support vector machines for multi-class pattern recognition. In: Proceedings of the 7th European Symposium on Articial Neural Networks. 1999
+
+[7-7] Crammer K,Singer Y. On the algorithmic implementation of multiclass kernel-basedmachines. Journal of Machine Learning Research,2001,2(Dec): 265–292
+
+[7-8] Tsochantaridis I,Joachims T,Hofmann T,Altun Y. Large margin methods forstructured and interdependent output variables. JMLR,2005,6: 1453–1484
+
+[7-9] Burges JC. A tutorial on support vector machines for pattern recognition. BellLaboratories,Lucent Technologies. 1997
+
+[7-10] Cristianini N,Shawe-Taylor J. An Introduction to Support Vector Machines andOthre KernerBased Learning Methods. Cambridge University Press，2000（中译本：李国正，等译。支持向量机导论。北京：电子工业出版社，2004）
+
+[7-11] 邓乃扬，田英杰。数据挖掘中的新方法——支持向量机。北京：科学出版社，2004
+
+[7-12] 邓乃扬，田英杰。支持向量机——理论，算法与拓展。北京：科学出版社，2009
+
+[7-13] Scholkpf B,Smola AJ. Learning with Kernels: Support VectorMachines,Regularization,Optimization,and Beyond. MIT Press,2002
+
+[7-14] Herbrich R. Learning Kernel Classifiers,Theory and Algorithms. The MITPress,2002
+
+[7-15] Hofmann T,Scholkopf B,Smola AJ. Kernel methods in machine learning. The Annalsof Statistics,2008,36(3): 1171–1220
 
 ## 第 8 章 提升方法
 
