@@ -463,7 +463,7 @@ $$k\eta\gamma \leq \underbrace{\hat{w}_{k}.\hat{w}_{opt} \leq ||\hat{w}_{k}||.\u
 
 也就是说 k 是有上界的。
 
-> 书中还介绍了原形式的**对偶形式**,也就是等价形式。
+> 书中还介绍了原形式的**对偶形式**,也就是等价形式（SVM中7.2.2节127页也是等价的意思，区别于拉格朗日对偶），这两个地方的等价都是经过基本推导，求出w参数，然后对原问题进行了替换。
 
 ### 参考文献
 
@@ -1190,8 +1190,7 @@ $$w.x + b=0$$
 
 - **策略**：
 
-1. 最大间隔
-
+1. 最大间隔(硬间隔原始问题-凸二次规划)
    $$\begin{aligned} &\max_{w,b} &\frac{\hat\gamma}{\|w\|} \\ &\text{s.t.} &y_i(w.x_i+b) \geq \hat\gamma\end{aligned}$$
    函数间隔$\hat\gamma$的大小是可以变的，我们让其等于 1，那么将上述问题改写下：
    $$\begin{aligned} &\min_{w,b} &\frac{1}{2}\|w\|^2 \\ &\text{s.t.} &y_i(w.x_i+b) \geq 1\end{aligned}$$
@@ -1201,14 +1200,34 @@ $$w.x + b=0$$
    而超平面$w.x_i +b = +1,w.x_i +b = -1$称为**间隔边界**，两个间隔边界之间的距离称为**间隔**（margin），间隔大小为$\frac{2}{\|w\|}$。
    在决定分离超平面时**只有支持向量起作用**，而其它样本点并不起作用，所以该模型叫做支持向量机。
 
-2. 带正则项的合页损失函数
-   $$\min_{w,b} \underbrace{\sum_{i=1}^N[1-y_i(w.x_i+b)]_+}_{\text{hinge loss function}} + \underbrace{\lambda\|w\|^2}_{\text{正则化项}}$$
+   - 拉格朗日函数(求最小)
+     $$L(w,b,\alpha) = \frac{1}{2}\|w\|^2 + \sum_{i=1}^N \alpha_i(1-y_i(w.x_i+b))$$
+     $$\min_{w,b} \max_{\alpha} L(w,b,\alpha)$$
+
+   - 拉格朗日对偶函数（求最大）
+     $$\max_{\alpha} g(\alpha) = \max_{\alpha} \inf_{w,b} L(w,b,\alpha)$$
+
+2. 带正则项的合页损失函数(软间隔原始问题-凸二次规划)
+   $$\min_{w,b} \underbrace{\sum_{i=1}^N\max(0,1-y_i(w.x_i+b))}_{\text{hinge loss function}} + \underbrace{\lambda\|w\|^2}_{\text{正则化项}}$$
    等价**软间隔**最大化的优化问题：
-   $$\begin{aligned} &\min_{w,b,\xi} & \sum _{i=1}^{n}\xi _{i}+\lambda \|\mathbf {w} \|^{2} \\ &\displaystyle {\text{subject to }} & y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}-b)\geq 1-\xi _{i}\\ &&\xi _{i}\geq 0,\,{\text{for all }}i.\end{aligned}$$
-  其中$\xi$是松弛变量，
-  $y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}-b)\geq 1-\xi _{i}$相当于分类点可以处于间隔中，对于软间隔支持向量机中的支持向量包含了间隔中的向量。
+   $$\begin{aligned} &\min_{w,b,\xi} & \sum _{i=1}^{n}\xi _{i}+\lambda \|\mathbf {w} \|^{2} \\ &\displaystyle {\text{subject to }} & y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}+b)\geq 1-\xi _{i}\\ &&\xi _{i}\geq 0,\,{\text{for all }}i.\end{aligned}$$
+   其中${\displaystyle \xi _{i}=\max \left(0,1-y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}+b)\right)}$是松弛变量（松弛方法[Relaxation](<https://en.jinzhao.wiki/wiki/Category:Relaxation_(approximation)>)有很多，下面只是一种而已）（跟下面松弛变量定义不同，只有统计学习方法中有说到，其它地方没有找到）。
+   $y_{i}(\mathbf {w} ^{T}\mathbf {x} _{i}+b)\geq 1-\xi _{i}$相当于分类点可以处于间隔中(不太准确，处于间隔边界的一侧)，对于软间隔支持向量机中的支持向量包含了间隔中的向量。
+
+   - 拉格朗日函数(求最小)
+     $$L(w,b,\xi,\alpha,\mu) = \lambda\|w\|^2 + \sum_{i=1}^N \xi_{i} + \sum_{i=1}^N \alpha_i(1-\xi_{i}-y_i(w.x_i+b)) + \sum_{i=1}^N(\mu_i*(-\xi_{i}))$$
+     $$\min_{w,b,\xi} \max_{\alpha,\mu} L(w,b,\xi,\alpha,\mu)$$
+
+   - 拉格朗日对偶函数（求最大）
+     $$\max_{\alpha,\mu} g(\alpha,\mu) = \max_{\alpha,\mu} \inf_{w,b,\xi} L(w,b,\xi,\alpha,\mu)$$
 
 - **算法**：
+  直接求导，令其等于 0（其实就是最大似然估计）
+
+**核技巧**：
+首先写出了原形式的对偶形式，然后把$x用\phi (x)$代替，最终发现根本不需要知道$\phi (x)$，只需要核函数就行了，具体证明就不证了，很简单，上面也有介绍了核技巧知识。
+
+> 书中还介绍了原形式的**对偶形式**（区别于拉格朗日对偶）,也就是等价形式（感知机中2.3.3节44页 也是等价的意思），这两个地方的等价都是经过基本推导，求出w参数，然后对原问题进行了替换。
 
 ### 附加知识
 
@@ -1227,13 +1246,16 @@ $${\displaystyle {\begin{aligned}&{\underset {\mathbf {x} }{\operatorname {minim
 **二次约束二次规划**（[Quadratically constrained quadratic program](https://en.jinzhao.wiki/wiki/Quadratically_constrained_quadratic_program)）：
 $${\begin{aligned}&{\text{minimize}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{0}x+q_{0}^{{\mathrm  {T}}}x\\&{\text{subject to}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{i}x+q_{i}^{{\mathrm  {T}}}x+r_{i}\leq 0\quad {\text{for }}i=1,\dots ,m,\\&&&Ax=b,\end{aligned}}$$
 其中$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$,$\mathbf {x} \in \mathbb {R} ^{n}$为优化变量
-如果$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$是半正定矩阵，那么问题是凸的，如果$P_1,..,P_m$为 0，那么约束是线性的，就是**二次规划**（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）,即目标函数是二次的，不等式以及等式约束也是线性的；二次规划的前提下，如果$P_0$是半正定矩阵那么就是**凸二次规划**；如果$P_0$为 0，就是**线性规划**（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)），即目标函数是线性的，不等式以及等式约束也是线性的。
+如果$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$是半正定矩阵，那么问题是凸的，如果$P_1,..,P_m$为 0，那么约束是线性的，就是**二次规划**（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）,即目标函数是二次的，不等式以及等式约束也是线性的；二次规划的前提下，如果$P_0$是半正定矩阵那么就是**凸二次规划**；如果$P_0$为 0，就是**不标准的线性规划**（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)），即目标函数是线性的，不等式以及等式约束也是线性的。
+**标准的线性规划**：即目标函数是线性的，非负约束（优化变量是非负的），等式约束也是线性的。
 
 线性规划解法有[单纯形法](https://en.jinzhao.wiki/wiki/Simplex_algorithm)等。其它规划的[优化算法看这里](https://en.jinzhao.wiki/wiki/Category:Optimization_algorithms_and_methods):内点法，单纯形法等；有线性规划自然也有**动态规划**（[Dynamic programming](https://en.jinzhao.wiki/wiki/Dynamic_programming)）
 
 **最小二乘不就是凸二次规划么**（$\|y-f(x)\|^2,f(x) = Ax+c$）：
 $$\text{minimize} f(x) =\frac{1}{2} \|Ax-b\|^2 = \frac{1}{2}(Ax-b)^T(Ax-b) \\= \frac{1}{2}(x^TA^TAx - x^TA^Tb -b^TAx + b^tb) \\= \frac{1}{2}(x^TA^TAx - 2x^TA^Tb + b^tb)$$
 其中$A \in \mathbb{R}^{m \times n}，x \in \mathbb{R}^{n \times 1}，b \in \mathbb{R}^{m \times 1} $，所以$x^TA^Tb 和 b^TAx$都是相等的实数，$b^tb$也是实数$A^TA$是半正定矩阵
+
+**L1和L2回归也能转化称相应的优化问题**，参考：[L1L2 正则化和凸优化](../图解数学/L1L2正则化和凸优化.md)
 
 **共轭函数**（[conjugate function](https://en.jinzhao.wiki/wiki/Convex_conjugate)）：
 设函数$f:\mathbb{R}^n \to \mathbb{R}$，定义 f 的共轭函数$f^*:\mathbb{R}^n \to \mathbb{R}$为：
@@ -1242,32 +1264,40 @@ $$f^*(y) = \sup_{x \in \mathrm{dom} f} (y^Tx - f(x))$$
 
 **拉格朗日乘数法**（[Lagrange multiplier](https://en.jinzhao.wiki/wiki/Lagrange_multiplier)）：
 根据上面标准形式的优化问题，我们来构造一个拉格朗日函数：
-$$L(x,\lambda,\nu) = f(x) + +\sum _{i=1}^{m}\lambda _{i}g_{i}(x)+\sum _{ i=1}^{p}\nu _{i}h_{i}(x)$$
-其中$\lambda _{i},\nu _{i}$分别是不等式和等式对应的 Lagrange 乘子，当然如果用向量$\lambda,\nu$表示，称为原问题的 Lagrange 乘子向量。
+$$L(x,\lambda,\nu) = f(x) +\sum _{i=1}^{m}\lambda _{i}g_{i}(x)+\sum _{ i=1}^{p}\nu _{i}h_{i}(x)$$
+其中$\lambda _{i},\nu _{i}$分别是不等式和等式对应的 Lagrange 乘子，当然如果用向量$\lambda,\nu$表示，称为原问题的 **Lagrange 乘子向量**或**对偶变量**。
 
 **对偶函数**（[Dual function](<https://en.jinzhao.wiki/wiki/Duality_(optimization)>)）：
-$$g(\lambda,\nu) = \inf L(x,\lambda,\nu)$$
+$$g(\lambda,\nu) = \inf_{x} L(x,\lambda,\nu)$$
 对偶函数一定是凹的，又称**Lagrange 对偶函数**。对偶函数$g(\lambda,\nu) \leq p^{\star}$, $p^{\star}$是原问题的最优值。Lagrange 对偶问题的最优值用$d^{\star}$表示，则$d^{\star}\leq p^{\star}$，这个性质称为**弱对偶性**（[Weak Duality](https://en.jinzhao.wiki/wiki/Weak_duality)），$p^{\star}- d^{\star}$称为原问题的**最优对偶间隙**（[Duality gap](https://en.jinzhao.wiki/wiki/Duality_gap)），当$d^{\star}= p^{\star}$时称为**强对偶性**（[Strong Duality](https://en.jinzhao.wiki/wiki/Strong_duality)）。
+
+所以当强对偶性成立时，拉格朗日函数的最小等价于对偶函数的最大值$\min_{x} \max_{\lambda,\nu}L(x,\lambda,\nu) \iff \max_{\lambda,\nu} g(\lambda,\nu)$，**我们一般使用拉格朗日函数求最小化时的参数$x$，然后带入其中，利用对偶函数求其最大时的 Lagrange 乘子，即$\lambda,\nu$。**
+这里的$\max_{\lambda,\nu}L(x,\lambda,\nu)$是为了让约束起作用(描述不是很准确，其实就是目标函数和约束的交点，参见[附录C.3.2](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf))。
 
 当强对偶性成立时，那么$x^{\star},\lambda^{\star},\nu^{\star}$分别是原问题和对偶问题的最优解的充分必要条件是满足下面的**KKT 条件**（[Karush–Kuhn–Tucker conditions](https://en.jinzhao.wiki/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions)）：
 
 $$\nabla_x L(x^{\star},\lambda^{\star},\nu^{\star}) = 0 \\ \lambda_i^{\star}g_i(x^{\star}) = 0,i=1,2,...,m \quad (\text{Complementary slackness})\\ \lambda_i^{\star} \geq 0,i=1,2,...,m \quad (\text{Dual feasibility})\\ g_i(x^{\star}) \leq 0,i=1,2,...,m \quad (\text{Primal feasibility})\\ h_i(x^{\star}) = 0,i=1,2,...,p \quad (\text{Primal feasibility})$$
 
+> 可以看到我们只对x参数求导，没有对Lagrange乘子求导；
+
 其中**互补松弛**（Complementary slackness）条件用$\sum_{i=0}^m\lambda_i^{\star}g_i(x^{\star})=0$可能很合理，如果最优解$x^{\star}$出现在不等式约束的边界上$g_i(x) = 0$，则$\lambda_i^{\star} > 0$；如果最优解$x^{\star}$出现在不等式约束的内部$g_i(x) < 0$，则$\lambda_i^{\star} = 0$；**互补松弛条件说明当最优解出现在不等式约束的内部，则约束失效**，所以$\lambda_i^{\star} \geq 0,i=1,2,...,m$表示对偶可行性（Dual feasibility）。
 
-如何将不等式变成等式：
+如何将不标准的优化问题转换称标准的优化问题（线性规划）：参考[线性规划问题](https://www.bilibili.com/video/BV1TK4y1t74p)
+A. 如何将不等式约束变成等式约束：
 
 1. $a^Tx \leq b$
-   只需要加上松弛变量（[Slack variable](https://en.jinzhao.wiki/wiki/Slack_variable)），松弛变量特别用于线性规划。松弛变量不能取负值，因为单纯形算法要求它们为正值或零。
-   $$a^Tx +s = b \\ s.t. \quad s \geq 0$$
+   只需要加上松弛变量（[Slack variable](https://en.jinzhao.wiki/wiki/Slack_variable)），松弛变量是添加到不等式约束以将其转换为等式的变量，松弛变量特别用于线性规划。松弛变量不能取负值，因为单纯形算法要求它们为正值或零。
+   $$a^Tx +s = b \\  s \geq 0$$
 
 2. $a^Tx \geq b$
    只需要减去剩余变量（surplus variable），剩余变量不能取负值。
-   $$a^Tx - e = b \\ s.t. \quad e \geq 0$$
+   $$a^Tx - e = b \\  e \geq 0$$
 
-如何将任意变量转换：
-$${\begin{aligned}&z_{1}=z_{1}^{+}-z_{1}^{-}\\&z_{1}^{+},\,z_{1}^{-} \geq 0 \\& |z_{1}| = z_{1}^{+}+\,z_{1}^{-} \\&\braket{z_{1}^{+},z_{1}^{-}} = 0 \end{aligned}}$$
+B. 无约束变量变成有非负约束变量：
+$${\begin{aligned}&z_{1}=z_{1}^{+}-z_{1}^{-} \\& |z_{1}| = z_{1}^{+}+\,z_{1}^{-} \\&\braket{z_{1}^{+},z_{1}^{-}} = 0 \\&z_{1}^{+},\,z_{1}^{-} \geq 0\end{aligned}}$$
+
 如：
+a. 利用上述第一条性质
 $$5 = 5-0 \\ -5 = 0-5$$
 or
 
@@ -1291,6 +1321,9 @@ $$
    4
 \end{pmatrix}
 $$
+
+b. 目标函数有带绝对值的(第二条性质)
+$$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \\ x^- \geq 0\end{aligned}$$
 
 ### 参考文献
 
