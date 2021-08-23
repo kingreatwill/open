@@ -1359,6 +1359,124 @@ $$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \
 
 ## 第 8 章 提升方法
 
+**集成学习**（[Ensemble Learning](https://en.jinzhao.wiki/wiki/Ensemble_learning)）也叫集成方法（Ensemble methods）是一种将多种学习算法组合在一起以取得更好表现的一种方法。
+
+利用成员模型的多样性来纠正某些成员模型错误的能力，常用的**多样性技术**有：
+
+- 最流行的方法是使用不同的数据集来训练每一个分类器，这些数据集通过从总体数据集中有放回的随机采样获得，例如 bootstrapping 或 bagging 技术
+- 在分类的场景中，可使用**弱分类器**或者不稳定模型（unstable model）作为成员模型来提高多样性，因为即使对训练参数进行微调，也会得到完全不同的决策边界；
+- 也可以使用不同类型的分类器，如决策树，最近邻，支持向量机等混合到一起来增加多样性；
+
+> 弱分类器:比随机猜测略好，如二分类中，准确率大于 0.5 就可以了（如 0.51）。
+
+参见的集成学习类型：
+
+- Bayes optimal classifier
+- [Bootstrap aggregating (bagging,bootstrap aggregating 的缩写)](https://en.jinzhao.wiki/wiki/Bootstrap_aggregating)
+- [Boosting](<https://en.jinzhao.wiki/wiki/Boosting_(meta-algorithm)>)
+- Bayesian model averaging
+- Bayesian model combination
+- Bucket of models
+- Stacking
+
+模型的组合(blending)方法：
+
+- 线性组合(平均法-加权平均法) - 用于回归和分类问题
+  其中 x 输入向量，估计类别 y 的概率，那么模型集合整体对类别 y 的概率估计为：
+  $$\overline{f}(y|x) = \sum_{t=1}^T w_t f_t(y|x)$$
+  权重确定比较困难，还存在过拟合的风险，因此平均权重是最常用的（$w_t = \frac{1}{T}$即简单平均法）。
+
+- 投票组合 - 用于分类问题
+  $$H(\textbf{x}) = sign( \sum_{t=1}^{T}w_t h_t(y|\textbf{x} ) )$$
+  如二分类问题：$h_t(y|\textbf{x} ) \in \{-1,+1\}$,同样，权重可以是均匀的(相对多数投票法)，也可以不均匀(加权投票法)。
+
+- 乘积组合
+  $$\overline f(y|\textbf{x}) = \frac{1}{Z}\prod_{t=1}^{T} f_t(y | \textbf{x})^{w_t}$$
+  在各模型的类别条件概率估计相互独立的假设下，乘积组合在理论上是最好的组合策略，但是在实际中，这种假设很难成立，同时权重与线性组合一样不好确定。
+
+- 学习组合
+  当训练数据很多时，一种更为强大的组合策略叫“学习法”，即通过一个学习器来进行组合，这种方法叫 Stacking。
+  这里把基学习器称为初级学习器，把用来组合的学习器称为次级学习器。
+  Stacking 先从初始数据集训练出**初级学习器**，再把**初级学习器的输出**组合成新的数据集，用于训练**次级学习器**。对于测试集，我们首先用初级学习器预测一次，得到次级学习器的输入样本，再用次级学习器预测一次，得到最终的预测结果。
+
+| aggregation type | blending         | learning      |
+| ---------------- | ---------------- | ------------- |
+| uniform          | voting/averaging | Bagging       |
+| non-uniform      | linear           | AdaBoost      |
+| conditional      | stacking         | Decision Tree |
+
+> [参考](https://github.com/openjw/penter/blob/master/scikit-learn/api/ensemble.ipynb)
+
+[AdaBoost](https://scikit-learn.org/stable/modules/ensemble.html#adaboost) ：
+
+训练集$T = \{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}, x_i \in \mathbb{R}^n,y_i\in \{-1,+1\}$
+
+- **模型**：
+
+  1. 首先初始化数据集的权值分布：$D_1 = (w_{11},...w_{1i},...,w_{iN}), w_{1i} = \frac{1}{N}$
+  2. 对$m=1,2...M$使用具有权值分布$D_m$的训练数据进行学习，得到基本分类器$G_m(x):\mathbb{R}^n \to \{-1,+1\}$  
+     a. 计算$\alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}$是$G_m(x)$的系数（基本\个体分类器的权值，区别于 w 是训练数据的权重）,$e$越大错的越多,那么$\alpha$就越小（小于0，接近负无穷）；
+     b. 计算$e_m = \sum_{i=1}^N P(G_m(x_i) \neq y_i)= \sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)$是$G_m(x)$在训练集上的分类误差率（越大错的越多）；
+     c. 更新权值分布$D_{m+1} = (w_{m+1,1},...w_{m+1,i},...,w_{m+1,N})$,其中
+     $$w_{m+1,i} = \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))$$
+     $\alpha$越小（小于0，接近负无穷）$w$就越大，也就是被分错的样本权重大。
+     $Z_m = \sum_{i=1}^N w_{mi}\exp(-\alpha_m y_i G_m(x_i))$是归一化因子（因为 D 是一个概率分布）
+  3. 构建基本分类器的线性组合，得到最终分类器
+     $$G(x) =\mathrm{sign} ( \sum_{m=1}^M \alpha_m G_m(x))$$
+
+- **策略**：
+  使$e$（分类误差率）越小越好
+- **算法**：
+
+[Gradient Tree Boosting](https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting)：
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
+
+### 参考文献
+
+[8-1] Freund Y，Schapire RE. A short introduction to boosting. Journal of Japanese Societyfor Artificial Intelligence,1999,14(5): 771–780
+
+[8-2] Hastie T,Tibshirani R,Friedman J. The Elements of Statistical Learning: DataMining,Inference,and Prediction. Springer-Verlag,2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英，等译。北京：电子工业出版社，2004）
+
+[8-3] Valiant LG. A theory of the learnable. Communications of the ACM,1984,27(11):1134–1142
+
+[8-4] Schapire R. The strength of weak learnability. Machine Learning,1990,5(2): 197–227
+
+[8-5] Freund Y,Schapire RE. A decision-theoretic generalization of on-line learning and anapplication to boosting. Computational Learning Theory. Lecture Notes in ComputerScience,Vol. 904,1995,23–37
+
+[8-6] Friedman J,Hastie T,Tibshirani R. Additive logistic regression: a statistical view ofboosting(with discussions). Annals of Statistics,2000,28: 337–407
+
+[8-7] Friedman J. Greedy function approximation: a gradient boosting machine. Annals ofStatistics,2001,29(5)
+
+[8-8] Schapire RE,Singer Y. Improved boosting algorithms using confidence-ratedpredictions. Machine Learning,1999,37(3): 297–336
+
+[8-9] Collins M,Schapire R E,Singer Y. Logistic regression,AdaBoost and Bregmandistances. Machine Learning Journal,2004
+
+## 第 9 章 EM 算法及其推广
+
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
+
+### 参考文献
+
+## 第 10 章 隐马尔可夫模型
+
+- **模型**：
+- **策略**：
+- **算法**：
+
+### 附加知识
+
+### 参考文献
+
+## 第 11 章 条件随机场
+
 - **模型**：
 - **策略**：
 - **算法**：
