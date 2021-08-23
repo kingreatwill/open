@@ -323,6 +323,12 @@ $$\lim_{d \to \infty}\frac{V_{圆环}}{V_{外圆}} = \lim_{d \to \infty}\frac{ k
 
 - **闵可夫斯基 (Minkowski) 不等式 - [Minkowski inequality](https://en.jinzhao.wiki/wiki/Minkowski_inequality)**
 
+- **吉布斯 (Gibbs) 不等式 - [Gibbs' inequality](https://en.jinzhao.wiki/wiki/Gibbs%27_inequality)**
+$${\displaystyle -\sum _{i=1}^{n}p_{i}\log p_{i}\leq -\sum _{i=1}^{n}p_{i}\log q_{i}}$$
+
+由KL divergence就能证明
+$${\displaystyle D_{\mathrm {KL} }(P\|Q)\equiv \sum _{i=1}^{n}p_{i}\log {\frac {p_{i}}{q_{i}}}\geq 0.}$$
+
 ##### 概率不等式 Probabilistic inequalities
 
 - **柯西-施瓦茨 (Cauchy–Schwarz) 不等式 - [Cauchy–Schwarz inequality](https://en.jinzhao.wiki/wiki/Cauchy%E2%80%93Schwarz_inequality)**
@@ -1372,8 +1378,10 @@ $$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \
 参见的集成学习类型：
 
 - Bayes optimal classifier
-- [Bootstrap aggregating (bagging,bootstrap aggregating 的缩写)](https://en.jinzhao.wiki/wiki/Bootstrap_aggregating)
+- [Bootstrap aggregating](https://en.jinzhao.wiki/wiki/Bootstrap_aggregating) (也称为 bagging 来自 **b**ootstrap **agg**regat**ing**)
+  Bagging 就是采用有放回的方式进行抽样，用抽样的样本建立子模型,对子模型（并行训练）进行训练，这个过程重复多次，最后进行融合。
 - [Boosting](<https://en.jinzhao.wiki/wiki/Boosting_(meta-algorithm)>)
+  Boosting 的思想是一种迭代的方法(串行)，每一次训练的时候都更加关心分类错误的样例，给这些分类错误的样例增加更大的权重，下一次迭代的目标就是能够更容易辨别出上一轮分类错误的样例。最终将这些弱分类器进行加权相加。
 - Bayesian model averaging
 - Bayesian model combination
 - Bucket of models
@@ -1407,7 +1415,7 @@ $$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \
 
 > [参考](https://github.com/openjw/penter/blob/master/scikit-learn/api/ensemble.ipynb)
 
-[AdaBoost](https://scikit-learn.org/stable/modules/ensemble.html#adaboost) ：
+[AdaBoost](https://scikit-learn.org/stable/modules/ensemble.html#adaboost) ：[AdaBoost](https://en.jinzhao.wiki/wiki/AdaBoost)是 Adaptive Boosting 的缩写
 
 训练集$T = \{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}, x_i \in \mathbb{R}^n,y_i\in \{-1,+1\}$
 
@@ -1415,53 +1423,126 @@ $$\begin{aligned} \max |x| \\ 等价：\max x^+ + x^- \\ s.t. \quad x^+ \geq 0 \
 
   1. 首先初始化数据集的权值分布：$D_1 = (w_{11},...w_{1i},...,w_{iN}), w_{1i} = \frac{1}{N}$
   2. 对$m=1,2...M$使用具有权值分布$D_m$的训练数据进行学习，得到基本分类器$G_m(x):\mathbb{R}^n \to \{-1,+1\}$  
-     a. 计算$\alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}$是$G_m(x)$的系数（基本\个体分类器的权值，区别于 w 是训练数据的权重）,$e$越大错的越多,那么$\alpha$就越小（小于0，接近负无穷）；
+     a. 计算$\alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}$是$G_m(x)$的系数（基本\个体分类器的权值，区别于 w 是训练数据的权重）,$e$越大错的越多,那么$\alpha$就越小（小于 0，接近负无穷）；
      b. 计算$e_m = \sum_{i=1}^N P(G_m(x_i) \neq y_i)= \sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)$是$G_m(x)$在训练集上的分类误差率（越大错的越多）；
      c. 更新权值分布$D_{m+1} = (w_{m+1,1},...w_{m+1,i},...,w_{m+1,N})$,其中
      $$w_{m+1,i} = \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))$$
-     $\alpha$越小（小于0，接近负无穷）$w$就越大，也就是被分错的样本权重大。
+     $\alpha$越小（小于 0，接近负无穷）$w$就越大，也就是被分错的样本权重大。
      $Z_m = \sum_{i=1}^N w_{mi}\exp(-\alpha_m y_i G_m(x_i))$是归一化因子（因为 D 是一个概率分布）
   3. 构建基本分类器的线性组合，得到最终分类器
      $$G(x) =\mathrm{sign} ( \sum_{m=1}^M \alpha_m G_m(x))$$
 
 - **策略**：
-  使$e$（分类误差率）越小越好
+  使每次迭代的$e$（分类误差率）越小越好
+  $$e_m = \sum_{i=1}^N P(G_m(x_i) \neq y_i)= \sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i) \\ 推导出 e_m = \sum_{G_m(x_i) \neq y_i} w_{mi}$$
 - **算法**：
 
-[Gradient Tree Boosting](https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting)：
+[Gradient Tree Boosting](https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting)：梯度提升（[Gradient boosting](https://en.jinzhao.wiki/wiki/Gradient_boosting)）是一种用于回归、分类和其他任务的机器学习技术，它以弱预测模型（通常是决策树）的集合形式生成预测模型。当决策树是弱学习器时，产生的算法称为**梯度提升树**(Gradient Tree Boosting or Gradient boosted trees or Gradient Boosted Decision Trees(GBDT))，通常优于随机森林（[Random forest](https://en.jinzhao.wiki/wiki/Random_forest)它是 Bagging 算法的进化版，也就是说，它的思想仍然是 bagging,但是进行了独有的改进。）
+
 - **模型**：
 - **策略**：
 - **算法**：
 
-### 附加知识
+随机森林与一般的 bagging 相比：（参考：[Bagging 与随机森林算法原理小结](https://www.cnblogs.com/pinard/p/6156009.html)和[机器学习算法系列（五）：bagging 与随机森林对比及随机森林模型参数介绍](https://blog.csdn.net/qq_20106375/article/details/94383076)）
+
+- bagging 方法的的随机性仅仅来自样本扰动，随机林模型中引入了属性扰动，这样使得最终模型的泛化性能可以通过个体学习器之间的差异度的增加而进一步提升。
+
+- 和 bagging 相比，随机森林的起始性能往往比较差，然而随着个体学习器数目的增加，随机森林会收敛到更小的误差。
+
+- 随机森林的训练效率优于 bagging，因为 bagging 中的每棵树是对所有特征进行考察，而随机森林仅仅考虑一个特征子集（max_features：随机森林允许单个决策树使用特征的最大数量。）。
+
+因为 Bagging 使用的有放回采样，所以 BaggingClassifier or RandomForestClassifier 都具有 oob*score*属性：约有 37%（$\lim_{n \to -\infty}(1-1/n)^n=1/e$）的样本没有用来训练,这一部分称为 out-of-bag(oob),因为模型没有见过这部分样本，所以可以拿来当验证集合，而不需要再划分验证集或者交叉验证了。 比如我们计算 accuracy*score 时，也可以看下 oob_score*的情况
 
 ### 参考文献
 
-[8-1] Freund Y，Schapire RE. A short introduction to boosting. Journal of Japanese Societyfor Artificial Intelligence,1999,14(5): 771–780
+[8-1] Freund Y，Schapire RE. [A short introduction to boosting](http://www.cs.columbia.edu/~jebara/6772/papers/IntroToBoosting.pdf). Journal of Japanese Societyfor Artificial Intelligence,1999,14(5): 771–780
 
-[8-2] Hastie T,Tibshirani R,Friedman J. The Elements of Statistical Learning: DataMining,Inference,and Prediction. Springer-Verlag,2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英，等译。北京：电子工业出版社，2004）
+[8-2] Hastie T,Tibshirani R,Friedman J. [The Elements of Statistical Learning: DataMining,Inference,and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12_toc.pdf). Springer-Verlag,2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英，等译。北京：电子工业出版社，2004）
 
-[8-3] Valiant LG. A theory of the learnable. Communications of the ACM,1984,27(11):1134–1142
+[8-3] Valiant LG. [A theory of the learnable](http://web.mit.edu/6.435/www/Valiant84.pdf). Communications of the ACM,1984,27(11):1134–1142
 
-[8-4] Schapire R. The strength of weak learnability. Machine Learning,1990,5(2): 197–227
+[8-4] Schapire R. [The strength of weak learnability](https://www.cs.princeton.edu/~schapire/papers/strengthofweak.pdf). Machine Learning,1990,5(2): 197–227
 
-[8-5] Freund Y,Schapire RE. A decision-theoretic generalization of on-line learning and anapplication to boosting. Computational Learning Theory. Lecture Notes in ComputerScience,Vol. 904,1995,23–37
+[8-5] Freund Y,Schapire RE. [A decision-theoretic generalization of on-line learning and anapplication to boosting](https://www.ee.columbia.edu/~sfchang/course/spr/papers/freund95decisiontheoretic-adaboost.pdf). Computational Learning Theory. Lecture Notes in ComputerScience,Vol. 904,1995,23–37 （[55, 119-139 (1997)](http://www.cim.mcgill.ca/~dmeger/mrlRead/papers/Boosting/AdaOrig.pdf)）
 
-[8-6] Friedman J,Hastie T,Tibshirani R. Additive logistic regression: a statistical view ofboosting(with discussions). Annals of Statistics,2000,28: 337–407
+[8-6] Friedman J,Hastie T,Tibshirani R. [Additive logistic regression: a statistical view ofboosting(with discussions)](https://web.stanford.edu/~hastie/Papers/AdditiveLogisticRegression/alr.pdf). Annals of Statistics,2000,28: 337–407
 
-[8-7] Friedman J. Greedy function approximation: a gradient boosting machine. Annals ofStatistics,2001,29(5)
+[8-7] Friedman J. [Greedy function approximation: a gradient boosting machine](http://biostat.jhsph.edu/~mmccall/articles/friedman_1999.pdf). Annals ofStatistics,2001,29(5)
 
-[8-8] Schapire RE,Singer Y. Improved boosting algorithms using confidence-ratedpredictions. Machine Learning,1999,37(3): 297–336
+[8-8] Schapire RE,Singer Y. [Improved boosting algorithms using confidence-ratedpredictions](<https://sci2s.ugr.es/keel/pdf/algorithm/articulo/1999-ML-Improved%20boosting%20algorithms%20using%20confidence-rated%20predictions%20(Schapire%20y%20Singer).pdf>). Machine Learning,1999,37(3): 297–336
 
-[8-9] Collins M,Schapire R E,Singer Y. Logistic regression,AdaBoost and Bregmandistances. Machine Learning Journal,2004
+[8-9] Collins M,Schapire R E,Singer Y. [Logistic regression,AdaBoost and Bregmandistances](https://link.springer.com/content/pdf/10.1023%2FA%3A1013912006537.pdf). Machine Learning Journal,2004
 
 ## 第 9 章 EM 算法及其推广
 
+EM 算法（[Expectation–maximization algorithm](https://en.jinzhao.wiki/wiki/Expectation%E2%80%93maximization_algorithm)）是一种迭代算法，用于含有**隐变量**（hidden（unseen or unmeasurable） variable or Latent variable）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法的每次迭代由两步组成：E 步，求期望（expectation）；M 步，求极大（maximization）。所以这一算法称为期望极大算法（expectation maximization algorithm），简称 EM 算法。
+
+概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单地使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。
+
+本章首先叙述 EM 算法，然后讨论 EM 算法的收敛性；作为 EM 算法的应用，介绍高斯混合模型的学习；最后叙述 EM 算法的推广——GEM 算法（generalized expectation maximization (GEM) algorithm，广义 EM 算法）。
+
+> EM 算法是一个优化算法，不是一个统计学习模型。
+> EM算法优点:不需要调参数，没有超参数；编程简单，只需要迭代；理论优美，收敛性。
+> EM 算法的推广:F 函数（F function） 的极大-极大算法 F-MM or MM（maximization maximization algorithm），MCEM，VBEM or VEM，GEM
+
+观测数据$X=\{x_i\}_{i=1}^N$ ，对应的隐含(隐藏)数据$Z=\{z_i\}_{i=1}^N$，模型参数$\theta$，完全数据$T=\{(x_1,z_1),...,(x_N,z_N)\}$
+
+> 注意下列公式中$|$也有用$;$表示的，是一个意思，因为$\theta$是一个未知的参数，最开始时会初始化$\theta^{(0)}$
+> 公式中的大 P 和小 p 以及大 X 和小 x 没有统一，不是很严谨
+
+如果不考虑隐藏数据，我们就可以直接使用极大似然估计的方法估计出参数 $\theta$ :
+$$\theta_{MLE} = \arg\max\limits_\theta\log p(x|\theta) = \arg\max\limits_\theta\sum_i^N\log p(x_i|\theta) $$
+
+但由于隐藏数据的存在， 我们有 x 的边际似然函数（[Marginal Likelihood](https://en.jinzhao.wiki/wiki/Marginal_likelihood)）,在贝叶斯统计的上下文中，边际似然也称为证据（Evidence）
+$$p(x|\theta) = \sum_{z} p(x, z|\theta) = \int_Z p(x, z|\theta)dz$$
+将 x 的边际似然函数带入极大似然估计中，在 log 里面会出现积分(求和)符号，导致对似然函数的求导变得困难，无法求解。对于这种无法直接求解的问题，我们通常会采用迭代求解的策略，一步一步逼近最终的结果，在 EM 算法中就是 E 步和 M 步的交替进行，直至收敛。
+
+下面来介绍**EM 算法**：
+
+1. 随机化参数$\theta^{(0)}$的初始值；
+2. 假设在第 $t$ 次迭代后，参数的估计值为 $\theta^{(t)}$ ，对于第 $t+1$ 次迭代，具体分为两步：
+   a. E-step：求期望
+   Q函数的定义：
+   $$Q(\theta,\theta^{(t)}) = \int_Z P(Z|X,\theta^{(t)}) \log P(X,Z|\theta) dZ \\ =\mathbb{E}_{Z|X,\theta^{(t)}}[\log P(X,Z|\theta)]$$
+   **全数据的对数似然函数$\log p(x, z|\theta)$关于在给定观测数据$X$和当前参数$\theta^{(t)}$下对未观测数据$Z$的条件概率分布$p(z|x,\theta^{(t)})$的期望称为Q函数**
+   > 注意Q函数的第一个参数是自变量，第二个参数是已知的（上一步求得的）
+
+   b. M-step: 最大化$Q(\theta,\theta^{(t)})$ 并求解$\theta^{(t+1)}$
+   $$\theta^{(t+1)} = \arg\max\limits_\theta Q(\theta, \theta^{(t)}) $$
+
+3. 重复2，直到收敛。
+一般判断收敛有两种方法：1. 判断参数是否收敛$\theta^{(t+1)}-\theta^{(t)} \leq \varepsilon$；2. 判断函数值是否收敛$Q(\theta^{(t+1)},\theta^{(t)})-Q(\theta^{(t)},\theta^{(t)}) \leq \varepsilon$。
+
+**EM算法的导出**：
+
+
+**EM算法的收敛性**：
+证明$p(\mathbf {X} \mid {\boldsymbol {\theta }})$是单调递增的，就是证明$\log p(\mathbf {X} \mid {\boldsymbol {\theta }})$是单调递增的，即：
+$$\log p(\mathbf {X} \mid {\boldsymbol {\theta^{(t+1)} }}) \geq \log p(\mathbf {X} \mid {\boldsymbol {\theta^{(t)} }})$$
+
+- 方法一：根据维基百科 
+$${\displaystyle \log p(\mathbf {X} \mid {\boldsymbol {\theta }})=\log p(\mathbf {X} ,\mathbf {Z} \mid {\boldsymbol {\theta }})-\log p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }}).}$$
+$${\displaystyle {\begin{aligned}\log p(\mathbf {X} \mid {\boldsymbol {\theta }})&=\sum _{\mathbf {Z} }p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }}^{(t)})\log p(\mathbf {X} ,\mathbf {Z} \mid {\boldsymbol {\theta }})-\sum _{\mathbf {Z} }p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }}^{(t)})\log p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }})\\&=Q({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)})+H({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)}),\end{aligned}}}$$
+
+$${\displaystyle \log p(\mathbf {X} \mid {\boldsymbol {\theta }})-\log p(\mathbf {X} \mid {\boldsymbol {\theta }}^{(t)}) =Q({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)})-Q({\boldsymbol {\theta }}^{(t)}\mid {\boldsymbol {\theta }}^{(t)})+H({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)})-H({\boldsymbol {\theta } }^{(t)}\mid {\boldsymbol {\theta }}^{(t)}),}$$
+
+由吉布斯不等式(Gibbs' inequality)${\displaystyle H({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)})\geq H({\boldsymbol {\theta }}^{(t)}\mid {\boldsymbol {\theta }}^{(t)})}$得：
+$${\displaystyle \log p(\mathbf {X} \mid {\boldsymbol {\theta }})-\log p(\mathbf {X} \mid {\boldsymbol {\theta }}^{(t)})\geq Q({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)})-Q({\boldsymbol {\theta }}^{(t)}\mid {\boldsymbol {\theta }}^{(t)}).}$$
+
+- 方法二：根据统计学习方法
+
+
+**高斯混合模型**（[Gaussian mixture model](https://en.jinzhao.wiki/wiki/Mixture_model#Gaussian_mixture_model)）：
+
 - **模型**：
+  GMM
 - **策略**：
 - **算法**：
+  EM 算法
 
 ### 附加知识
+
+#### 变分推断
 
 ### 参考文献
 
