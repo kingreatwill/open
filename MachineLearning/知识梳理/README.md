@@ -1525,11 +1525,15 @@ $$\mathbb{E}_Z[\log P(X|\theta)] = \mathbb{E}\_Z[\log \frac{P(X,Z|\theta)}{q(Z)}
 将期望写成积分的形式
 $$\int_Z q(Z)\log P(X|\theta)dZ = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ - \int_Zq(Z)\log \frac{P(Z|X,\theta)}{q(Z)}dZ$$
 等式左边和$Z$无关（$\int_Zq(Z)dZ = 1$），所以
-$$\log P(X|\theta) = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ - \int_Zq(Z)\log \frac{P(Z|X,\theta)}{q(Z)}dZ \\ = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ + D_{KL}(q(Z)||P(Z|X,\theta)) \\= ELBO + D_{KL}(q(Z)||P(Z|X,\theta))$$
-我们直接令$D_{KL} = 0, 即 q(Z)=P(Z|X,\theta^{(t)})$，然后最大化ELBO
+$$\log P(X|\theta) = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ - \int_Zq(Z)\log \frac{P(Z|X,\theta)}{q(Z)}dZ \\ = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ + D_{KL}(q(Z)||P(Z|X,\theta)) \\= ELBO + D*{KL}(q(Z)||P(Z|X,\theta))$$
+我们直接令$D*{KL} = 0, 即 q(Z)=P(Z|X,\theta^{(t)})$，然后最大化ELBO
 $$\hat{\theta} = \argmax_{\theta}\int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ \\ = \argmax_{\theta}\int_Z P(Z|X,\theta^{(t)})\log \frac{P(X,Z|\theta)}{P(Z|X,\theta^{(t)})}dZ$$
 $\theta^{(t)}$是上一步求出的，可以看作已知的参数
 $$\hat{\theta} = \argmax_{\theta} \int_Z P(Z|X,\theta^{(t)})\log P(X,Z|\theta)dZ - \int_Z P(Z|X,\theta^{(t)})\log {P(Z|X,\theta^{(t)})}dZ \\  = \argmax_{\theta} \int_Z P(Z|X,\theta^{(t)})\log P(X,Z|\theta)dZ - C \\  = \argmax_{\theta} \int_Z P(Z|X,\theta^{(t)})\log P(X,Z|\theta)dZ \\= \argmax_{\theta} Q(\theta,\theta^{(t)})$$
+
+> 参考[EM 算法 11.2.2.1 节](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf)
+> 参考[深入理解 EM 算法（ELBO+KL 形式）](https://zhuanlan.zhihu.com/p/365641813)
+> 参考[深入理解 EM 算法-Jensen 不等式](https://zhuanlan.zhihu.com/p/366365408)
 
 **EM 算法的收敛性**：
 证明$p(\mathbf {X} \mid {\boldsymbol {\theta }})$是单调递增的（概率大于等于 0，小于等于 1，单调增一定能收敛），就是证明$\log p(\mathbf {X} \mid {\boldsymbol {\theta }})$是单调递增的，即：
@@ -1552,19 +1556,112 @@ $$\log p(\mathbf {X} \mid {\boldsymbol {\theta^{(t+1)} }}) \geq \log p(\mathbf {
 - 方法三：根据 **KL divergence 的定义**，并且大于等于 0
   $$H({\boldsymbol {\theta }}\mid {\boldsymbol {\theta }}^{(t)}) -H({\boldsymbol {\theta } }^{(t)}\mid {\boldsymbol {\theta }}^{(t)}) = -\sum _{\mathbf {Z} }p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }}^{(t)})\log \frac{p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }})}{p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }^{(t)}})} \\ = D_{KL}(p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }}^{(t)}) || p(\mathbf {Z} \mid \mathbf {X} ,{\boldsymbol {\theta }})) \geq 0$$
 
+> 参考[深入理解 EM 算法-收敛性证明](https://zhuanlan.zhihu.com/p/367072875)
+
+**广义 EM**（generalized expectation maximization (GEM) algorithm）
+我们以 EM 算法的 ELBO+KL 形式为例(书中的形式自己了解，这里不做介绍)
+$$\log P(X|\theta) = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ + D_{KL}(q(Z)||P(Z|X,\theta))$$
+为了简单起见，我们令
+$$\mathcal{L}(q, \theta) = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ$$
+其实就是变分函数（泛函的极值问题，输入是函数 q）
+在前面，我们一直是让$D_{KL} = 0$，然后最大化 $\mathcal{L}(q,\theta)$ 以增大 $\log P(X|\theta)$ 。但是我们现在无法直接让$q(Z) = P(Z|X,\theta)$ ，因为后验本身也比较难求，所以我们希望能够求出某个 $q(Z)$ ，能够使得在固定 $\theta$ 时 $D_{KL}$ 尽可能小，尽可能等于 0：
+$$q = \arg\min\limits_q D_{KL}(q(Z)||P(Z|X,\theta))= \arg\max\limits_q \mathcal{L}(q, \theta)$$
+
+- E-step：固定$\theta = \theta^{(t)}$
+  $$q^{(t)} = \arg\max\limits_q \mathcal{L}(q, \theta^{(t)})$$
+- M-step：固定$q = q^{(t)}$
+  $$\theta^{(t+1)} = \arg\max\limits_\theta \mathcal{L}(q^{(t)}, \theta)$$
+
+> 参考[深入理解 EM 算法-广义 EM](https://zhuanlan.zhihu.com/p/367076459)
+
 **高斯混合模型**（[Gaussian mixture model](https://en.jinzhao.wiki/wiki/Mixture_model#Gaussian_mixture_model)）：
 
+有样本$Data = \{x_1,...,x_N\}$，生成模型，对完全数据$T = \{(x_1,z_1),...,(x_N,z_N)\}$建模，给定输入$x_i$预测：$\text{arg max}_{k \in \{1, \dots, K \}} P(Z_i = k \mid \boldsymbol{x}_i ; \hat{\Theta})$，想要预测模型，就需要求出模型的参数$\hat{\Theta}$，其中
+$$\begin{align*} P(Z_i = k \mid \boldsymbol{x}_i ; \hat{\Theta}) &= \frac{p(\boldsymbol{x}_i \mid Z_i = k ; \hat{\Theta})P(Z_i = k; \hat{\Theta})}{\sum_{h=1}^K p(\boldsymbol{x}_i \mid Z_i = h ; \hat{\Theta})P(Z_i = h; \hat{\Theta})} \\ &= \frac{\phi(\boldsymbol{x}_i \mid \hat{\boldsymbol{\mu}}_k, \hat{\boldsymbol{\Sigma}}_k) \hat{\alpha}_k}{\sum_{h=1}^K \phi(\boldsymbol{x}_i \mid \hat{\boldsymbol{\mu}_h}, \hat{\boldsymbol{\Sigma}}_h) \hat{\alpha}_h} \end{align*}$$
+
 - **模型**：
-  GMM
+  $$P(x;\theta) = \sum_{k=1}^K P(x,z=k;\theta) = \sum_{k=1}^K \underbrace{P(x|z=k;\theta)}_{\text{服从高斯分布}} \underbrace{P(z=k;\theta)}_{\text{属于k类的概率}} \\ = \sum_{k=1}^K \alpha_k \phi(x;\theta_k)$$
+  其中$\alpha_k \geq 0, \sum_{k=1}^K \alpha_k = 1$是系数,$\theta_k = (\mu_k,\sigma_k^2)$,
+  $$\phi(x;\theta_k) = \frac{1}{\sqrt{2\pi\sigma_k^2}}\exp(-\frac{(x-\mu_k)^2}{2\sigma_k^2})$$
+
 - **策略**：
+  求取参数$\hat{\Theta} $，使用极大似然估计
+  $$\hat{\Theta} := \argmax_{\Theta} \prod_{i=1}^N p(\boldsymbol{x}_i ; \Theta) \\ = \argmax_{\Theta} \prod_{i=1}^N \sum_{k=1}^K \alpha_k \phi(x_i;\theta_k)$$
+  log 求解，会发现 log 中有求和，求导很难解出来
+
 - **算法**：
-  EM 算法
+  根据 EM 算法确定 Q 函数
+  $$Q(\theta,\theta^{(t)}) = \sum_{Z \in \{1,2...K\}} P(Z|X,\theta^{(t)}) \log P(X,Z|\theta) $$
+
+具体算法求解参考：[Gaussian mixture models](https://mbernste.github.io/posts/gmm_em/)
+[极大似然估计、EM 算法及高斯混合模型](https://blog.csdn.net/chris_xy/article/details/88970322)
+[EM 算法与 GMM（高斯混合聚类）Jensen 不等式和变分法两种推导](https://zhuanlan.zhihu.com/p/50686800)
+[Expectation-maximization algorithm EM 算法](https://encyclopedia.thefreedictionary.com/Expectation-maximization+algorithm)
+[Mixture model](https://encyclopedia.thefreedictionary.com/Mixture+model)
+[Gaussian Mixture Model](https://brilliant.org/wiki/gaussian-mixture-model/)
 
 ### 附加知识
 
 #### 变分推断
 
+**变分推断**（[Variational Inference](https://en.jinzhao.wiki/wiki/Variational_Bayesian_methods)）也称为变分贝叶斯（Variational Bayesian），而变分法主要是研究变分问题，即泛函的极值问题（函数的输入也是函数），根据贝叶斯公式，后验概率
+$${\displaystyle P(\mathbf {Z} \mid \mathbf {X} )={\frac {P(\mathbf {X} \mid \mathbf {Z} )P(\mathbf {Z} )}{P(\mathbf {X} )}}={\frac {P(\mathbf {X} \mid \mathbf {Z} )P(\mathbf {Z} )}{\int _{\mathbf {Z} }P(\mathbf {X} ,\mathbf {Z} ')\,d\mathbf {Z} '}}}$$
+
+上面公式中的积分对于很多情况下是不可行的（所以有些模型忽略了 P(x)），要么积分没有闭式解，要么是指数级别的计算复杂度，所以很难求出后验概率，这时我们需要寻找一个简单分布${\displaystyle q(\mathbf {Z} )\approx P(\mathbf {Z} \mid \mathbf {X} )}$，这样推断问题转化成一个泛函优化问题：
+$$\hat{q(Z)} = \argmin_{q(Z) \in 候选的概率分布族Q} KL(q(Z)|P(Z|X))$$
+
+我们有上面**EM 算法的导出**得到
+$${\displaystyle \log P(\mathbf {X} )=D_{\mathrm {KL} }(q\parallel P)+{\mathcal {L}}(q)}$$
+KL-divergence 大于等于 0，所以$\log P(\mathbf {X} ) \geq {\mathcal {L}}(q)$，所以${\mathcal {L}}(q)$称为证据下界（[Evidence Lower BOund,ELBO](https://en.jinzhao.wiki/wiki/Evidence_lower_bound)），也就是所谓的变分函数。
+
+KL-divergence 中有后验概率 P(Z|X)，本身就是难以计算，才想找个简单分布 q(z)来近似，因此我们不能直接优化 KL-divergence，进而转化成优化 ELBO
+$$\hat{q(Z)} = \argmax_{q(z) \in Q} ELBO(q,x)$$
+
+分布族 Q 一般选择是**平均场**（Mean field）分布族，即可以将 Z 拆分为多组相互独立的变量，那么
+$$q({\mathbf  {Z}})=\prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m})$$
+
+那么
+$$ELBO(q,x) = \int_Zq(Z)\log \frac{P(X,Z|\theta)}{q(Z)}dZ \\ = \int_Z (\prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m}) ) \log P(X,Z|\theta)dZ - \int_Z (\prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m}) ) \log \prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m})dZ$$
+
+假设我们只关心其中一个子集(分量)$Z_j$的近似分布$q_j(Z_j)$（先求一个子集，其它子集也就求出来了）
+先看减号后面的项(进行展开)：
+$$\int_Z (\prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m}) ) \sum_{m=1}^M \log q_{m}({\mathbf  {Z}}_{m})dZ \\ = \int_Z q_1(Z_1).q_2(Z_2)...q_M(Z_M).[\log q_1(Z_1)+...+\log q_M(Z_M)]dZ$$
+
+只看其中一项
+$$\int_{Z_1Z_2...Z_M} q_1(Z_1).q_2(Z_2)...q_M(Z_M).\log q_1(Z_1){dZ_1dZ_2...dZ_M} = \int_{Z_1} q_1(Z_1).\log q_1(Z_1)dZ_1.\int_{Z_2}q_2(Z_2)dZ_2....\int_{Z_M}q_M(Z_M)dZ_M$$
+
+那么最终我们得到减号后面的项
+$$\sum_{m=1}^M \int_{Z_m} q_m(Z_m).\log q_m(Z_m)dZ_m$$
+
+前面说了，我们只关注其中一个子集$Z_j$，其它$m \neq j$的对其来说可以看作常数项，得到
+$$\int_{Z_j} q_j(Z_j).\log q_j(Z_j)dZ_j + C$$
+
+再看减号前面的项
+$$\int_{Z_1Z_2...Z_M} (\prod _{{m=1}}^{M}q_{m}({\mathbf  {Z}}_{m}) ) \log P(X,Z|\theta){dZ_1dZ_2...dZ_M} \\= \int_{Z_j}q_j(Z_j) \bigg(\int_{Z_i} \prod_{i \neq j}^M q_i(Z_i) \log P(X,Z|\theta) dZ_i \bigg)dZ_j \\= \int_{Z_j}q_j(Z_j) \bigg(E_{\prod_{i \neq j}^M q_i(Z_i)}[\log P(X,Z|\theta)] \bigg)dZ_j \\= \int_{Z_j}q_j(Z_j) \bigg(\log \tilde{p}(X,Z_j) \bigg)dZ_j$$
+
+最终：
+$$ELBO(q,x) =\int_{Z_j}q_j(Z_j) \bigg(\log \tilde{p}(X,Z_j) \bigg)dZ_j - \int_{Z_j} q_j(Z_j).\log q_j(Z_j)dZ_j - C \\= -KL(q_j(Z_j) \| \tilde{p}(X,Z_j)) -C$$
+所以：
+$$\argmax ELBO(q,x) = \argmin KL(q_j(Z_j) \| \tilde{p}(X,Z_j))$$
+当$q_j(Z_j) = \tilde{p}(X,Z_j)$取 KL 最小值
+
+具体求最优算法这里不做介绍，可以参考[变分推断（二）—— 进阶](https://www.cnblogs.com/kai-nutshell/p/13156319.html) 以及 [【一文学会】变分推断及其求解方法](https://blog.csdn.net/weixin_40255337/article/details/83088786)
+
+> 参考[11.4 节变分推断](https://github.com/nndl/nndl.github.io/blob/master/nndl-book.pdf)
+
 ### 参考文献
+
+[9-1] Dempster AP,Laird NM,Rubin DB. Maximum-likelihood from incomplete data via theEM algorithm. J. Royal Statist. Soc. Ser. B.,1977，39
+
+[9-2] Hastie T,Tibshirani R,Friedman J. The Elements of Statistical Learning: DataMining,Inference,and Prediction. Springer-Verlag,2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英等译。北京：电子工业出版社，2004）
+
+[9-3] McLachlan G,Krishnan T. The EM Algorithm and Extensions. New York: John Wiley& Sons,1996
+
+[9-4] 茆诗松，王静龙，濮晓龙。高等数理统计。北京：高等教育出版社；海登堡：斯普林格出版社，1998
+
+[9-5] Wu CFJ. On the convergence properties of the EM algorithm. The Annals ofStatistics,1983,11: 95–103
+
+[9-6] Radford N,Geoffrey H,Jordan MI. A view of the EM algorithm that justifiesincremental,sparse,and other variants. In: Learning in Graphical Models. Cambridge,MA: MITPress,1999,355–368
 
 ## 第 10 章 隐马尔可夫模型
 
