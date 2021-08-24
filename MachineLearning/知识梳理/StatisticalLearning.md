@@ -1664,21 +1664,7 @@ $$\argmax ELBO(q,x) = \argmin KL(q_j(Z_j) \| \tilde{p}(X,Z_j))$$
 [9-6] Radford N,Geoffrey H,Jordan MI. A view of the EM algorithm that justifiesincremental,sparse,and other variants. In: Learning in Graphical Models. Cambridge,MA: MITPress,1999,355–368
 
 ## 第 10 章 隐马尔可夫模型
-
-- **模型**：
-- **策略**：
-- **算法**：
-
-### 附加知识
-
-### 参考文献
+[隐马尔可夫模型](./StatisticalLearning_02.md)
 
 ## 第 11 章 条件随机场
-
-- **模型**：
-- **策略**：
-- **算法**：
-
-### 附加知识
-
-### 参考文献
+[条件随机场](./StatisticalLearning_02.md)
