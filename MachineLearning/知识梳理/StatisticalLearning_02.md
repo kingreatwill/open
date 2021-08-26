@@ -11,15 +11,15 @@
 $$Q = \{q_1,q_2,...,q_N\} , V= \{v_1,v_2,...,v_M\}$$
 长度为 T 的状态序列$I = (i_1,i_2,...,i_T)$以及与状态序列对应的长度为 T 的观测序列$O = (o_1,o_2,...,o_T)$
 
-**状态转移矩阵(状态转移概率分布)**：
+**状态转移矩阵(状态转移概率分布)**：（就是初始化参数[transmat_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)，也可以用params和求出的属性transmat_）
 $$A=[a_{ij}]_{N\times N}$$
 其中$a_{ij} = P(i_{t+1} = q_j | i_t = q_i) ,下标i,j = 1,...,N$表示在时刻$t$处于状态$q_i$的条件下 在时刻$t+1$转移到状态$q_j$的概率
 
-**观测矩阵(观测概率分布)**：
+**观测矩阵(观测概率分布)**：（对于MultinomialHMM用params和求出的属性emissionprob_，叫发生概率矩阵；对于GMMHMM有n_mix 、means_prior、covars_prior ；对于GaussianHMM有means_prior、covars_prior ）
 $$B = [b_j(k)]_{N \times M}$$
 其中$b_j(k) = P(o_t = v_k | i_t = q_j) ,k = 1,...,M,j = 1,...,N$表示在时刻$t$处于状态$q_j$的条件下生成观测$v_k$的概率
 
-**初始状态概率向量（初始概率分布）**：
+**初始状态概率向量（初始概率分布）**：（就是初始化参数[startprob_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)和求出的属性startprob_ ）
 $$\pi = (\pi_i)$$
 其中$\pi_i = P(i_1 =q_i) ,下标i = 1,...,N$表示时刻$t=1$时 处于状态$q_i$的概率
 
@@ -109,7 +109,9 @@ $$\beta_T(i) = P(i_T = q_i,\lambda) = 1 \\ \vdots \\ \beta_t(i) = P(o_{t+1},o_{t
   那么
    $$\sum_{j=1}^N\bigg[P(i_1 = q_j,O|\lambda^{(t)}) + \gamma\pi_j \bigg]=0 \\ \Darr \\ P(O|\lambda^{(t)}) + \gamma = 0$$
    带入上面得到的式子中，有：
-   $$\pi_j = \frac{P(i_1 = q_j,O|\lambda^{(t)})}{P(O|\lambda^{(t)})}$$
+   $$\pi_j^{(t+1)} = \frac{P(i_1 = q_j,O|\lambda^{(t)})}{P(O|\lambda^{(t)})}$$
+   式子中分母可以根据前向算法和后向算法求解出来。
+
 
 
 ### 附加知识
