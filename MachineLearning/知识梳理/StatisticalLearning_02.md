@@ -112,7 +112,10 @@ $$\beta_T(i) = P(i_T = q_i,\lambda) = 1 \\ \vdots \\ \beta_t(i) = P(o_{t+1},o_{t
    $$\pi_j^{(t+1)} = \frac{P(i_1 = q_j,O|\lambda^{(t)})}{P(O|\lambda^{(t)})}$$
    式子中分母可以根据前向算法和后向算法求解出来。
 
+**预测问题，也称为解码（decoding）问题**：
+维特比算法实际是用动态规划解隐马尔可夫模型预测问题，即用动态规划（dynamic programming）求概率最大路径（最优路径），这里的最优路径就是最优状态序列$I$。
 
+> 请参考书籍和[机器学习-白板推导系列(十四)-隐马尔可夫模型HMM（Hidden Markov Model）](https://www.bilibili.com/video/BV1MW41167Rf?p=6)
 
 ### 附加知识
 
