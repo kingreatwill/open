@@ -11,15 +11,15 @@
 $$Q = \{q_1,q_2,...,q_N\} , V= \{v_1,v_2,...,v_M\}$$
 长度为 T 的状态序列$I = (i_1,i_2,...,i_T)$以及与状态序列对应的长度为 T 的观测序列$O = (o_1,o_2,...,o_T)$
 
-**状态转移矩阵(状态转移概率分布)**：（就是初始化参数[transmat_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)，也可以用params和求出的属性transmat_）
-$$A=[a_{ij}]_{N\times N}$$
-其中$a_{ij} = P(i_{t+1} = q_j | i_t = q_i) ,下标i,j = 1,...,N$表示在时刻$t$处于状态$q_i$的条件下 在时刻$t+1$转移到状态$q_j$的概率
+**状态转移矩阵(状态转移概率分布)**：（就是初始化参数[transmat_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)，也可以用 params 和求出的属性 transmat*）
+$$A=[a*{ij}]_{N\times N}$$
+其中$a_{ij} = P(i\_{t+1} = q_j | i_t = q_i) ,下标 i,j = 1,...,N$表示在时刻$t$处于状态$q_i$的条件下 在时刻$t+1$转移到状态$q_j$的概率
 
-**观测矩阵(观测概率分布)**：（对于MultinomialHMM用params和求出的属性emissionprob_，叫发生概率矩阵；对于GMMHMM有n_mix 、means_prior、covars_prior ；对于GaussianHMM有means_prior、covars_prior ）
-$$B = [b_j(k)]_{N \times M}$$
+**观测矩阵(观测概率分布)**：（对于 MultinomialHMM 用 params 和求出的属性 emissionprob*，叫发生概率矩阵；对于 GMMHMM 有 n_mix 、means_prior、covars_prior ；对于 GaussianHMM 有 means_prior、covars_prior ）
+$$B = [b_j(k)]*{N \times M}$$
 其中$b_j(k) = P(o_t = v_k | i_t = q_j) ,k = 1,...,M,j = 1,...,N$表示在时刻$t$处于状态$q_j$的条件下生成观测$v_k$的概率
 
-**初始状态概率向量（初始概率分布）**：（就是初始化参数[startprob_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)和求出的属性startprob_ ）
+**初始状态概率向量（初始概率分布）**：（就是初始化参数[startprob_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)和求出的属性 startprob\_ ）
 $$\pi = (\pi_i)$$
 其中$\pi_i = P(i_1 =q_i) ,下标i = 1,...,N$表示时刻$t=1$时 处于状态$q_i$的概率
 
@@ -90,32 +90,32 @@ $$\beta_T(i) = P(i_T = q_i,\lambda) = 1 \\ \vdots \\ \beta_t(i) = P(o_{t+1},o_{t
 
 - **算法**：
   Baum-Welch 算法，其实就是 EM 算法的一个实现
-  根据EM算法得Q函数
+  根据 EM 算法得 Q 函数
   $$Q(\lambda,\={\lambda}) = \sum_{I} \log P(O,I|\lambda) P(I|O,\={\lambda}) = \sum_{I} \log P(O,I|\lambda) P(I,O|\={\lambda}).\frac{1}{P(O|\={\lambda})}$$
   因为我们要求$\lambda$,而$1/{P(O|\={\lambda})}$对于$\lambda$而言，可以看作常数，所以
   $$Q(\lambda,\={\lambda}) =\sum_{I} \log P(O,I|\lambda) P(I,O|\={\lambda})$$
   因为
   $$P(O,I|\lambda) = \sum_{I} \pi_{i_1}b_{i_1}(o_1)\prod_{t=2}^T a_{i_{t-1}i_{t}}b_{i_t}(o_t)  = \sum_{I} \pi_{i_1}\prod_{t=2}^T a_{i_{t-1}i_{t}}\prod_{t=1}^T b_{i_t}(o_t) $$
   所以
-  $$Q(\lambda,\={\lambda}) = \sum_{I}\bigg[ \log\pi_{i_1}+ \sum_{t=2}^T\log a_{i_{t-1}i_{t}} + \sum_{t=1}^T \log b_{i_t}(o_t) \bigg]P(I,O|\={\lambda})$$
+  $$Q(\lambda,\={\lambda}) = \sum*{I}\bigg[ \log\pi*{i*1}+ \sum*{t=2}^T\log a*{i*{t-1}i*{t}} + \sum*{t=1}^T \log b*{i_t}(o_t) \bigg]P(I,O|\={\lambda})$$
   这里我们以求$\pi$（概率向量）为例子（A,B就不推导了），发现只有一项与$\pi$有关系
-  $$\pi^{(t+1)} = \argmax_{\pi} Q(\lambda,\lambda^{(t)}) \\= \argmax_{\pi} \sum_{I}\bigg[ \log\pi_{i_1}P(I,O|\lambda^{(t)})\bigg] \\= \argmax_{\pi} \sum_{i_1}\sum_{i_2}...\sum_{i_T}\bigg[ \log\pi_{i_1}P(i_1,i_2,...,i_T,O|\lambda^{(t)})\bigg] \\ 我们观察一下，发现边缘分布 可以只保留一项来计算\\ =\argmax_{\pi} \sum_{i_1}\bigg[ \log\pi_{i_1}P(i_1,O|\lambda^{(t)})\bigg] \\ 我们把i_1替换掉 \\ =\argmax_{\pi} \sum_{j=1}^N \bigg[ \log\pi_{j}P(i_1 = q_j,O|\lambda^{(t)})\bigg]$$
-  我们知道$\pi = (\pi_1,..,\pi_N)$是概率向量，$ \sum_{j=1}^N \pi_{j} =1$，利用拉格朗日乘子法，写出拉格朗日函数：
-  $$L(\pi,\gamma) = \sum_{j=1}^N \bigg[ \log\pi_{j}P(i_1 = q_j,O|\lambda^{(t)})\bigg] + \gamma\bigg(\sum_{j=1}^N \pi_{j} -1\bigg)$$
+  $$\pi^{(t+1)} = \argmax*{\pi} Q(\lambda,\lambda^{(t)}) \\= \argmax*{\pi} \sum*{I}\bigg[ \log\pi_{i_1}P(I,O|\lambda^{(t)})\bigg] \\= \argmax*{\pi} \sum*{i*1}\sum*{i*2}...\sum*{i*T}\bigg[ \log\pi*{i*1}P(i_1,i_2,...,i_T,O|\lambda^{(t)})\bigg] \\ 我们观察一下，发现边缘分布 可以只保留一项来计算\\ =\argmax*{\pi} \sum*{i_1}\bigg[ \log\pi*{i*1}P(i_1,O|\lambda^{(t)})\bigg] \\ 我们把 i_1 替换掉 \\ =\argmax*{\pi} \sum*{j=1}^N \bigg[ \log\pi*{j}P(i*1 = q_j,O|\lambda^{(t)})\bigg]$$
+  我们知道$\pi = (\pi_1,..,\pi_N)$是概率向量，$ \sum*{j=1}^N \pi*{j} =1$，利用拉格朗日乘子法，写出拉格朗日函数：
+  $$L(\pi,\gamma) = \sum*{j=1}^N \bigg[ \log\pi_{j}P(i_1 = q_j,O|\lambda^{(t)})\bigg] + \gamma\bigg(\sum*{j=1}^N \pi*{j} -1\bigg)$$
   求其中一个分量$\pi_j$，则对其求偏导，令偏导数为0得：
-  $$\frac{\partial L}{\partial \pi_j} = \frac{1}{\pi_j}P(i_1 = q_j,O|\lambda^{(t)})+\gamma = 0$$
+  $$\frac{\partial L}{\partial \pi*j} = \frac{1}{\pi_j}P(i_1 = q_j,O|\lambda^{(t)})+\gamma = 0$$
   得
   $$P(i_1 = q_j,O|\lambda^{(t)}) + \gamma\pi_j=0$$
   那么
-   $$\sum_{j=1}^N\bigg[P(i_1 = q_j,O|\lambda^{(t)}) + \gamma\pi_j \bigg]=0 \\ \Darr \\ P(O|\lambda^{(t)}) + \gamma = 0$$
+   $$\sum*{j=1}^N\bigg[P(i_1 = q_j,O|\lambda^{(t)}) + \gamma\pi_j \bigg]=0 \\ \Darr \\ P(O|\lambda^{(t)}) + \gamma = 0$$
    带入上面得到的式子中，有：
    $$\pi_j^{(t+1)} = \frac{P(i_1 = q_j,O|\lambda^{(t)})}{P(O|\lambda^{(t)})}$$
-   式子中分母可以根据前向算法和后向算法求解出来。
+  式子中分母可以根据前向算法和后向算法求解出来。
 
 **预测问题，也称为解码（decoding）问题**：
-维特比算法实际是用动态规划解隐马尔可夫模型预测问题，即用动态规划（dynamic programming）求概率最大路径（最优路径），这里的最优路径就是最优状态序列$I$。
+维特比算法（[Viterbi algorithm](https://en.jinzhao.wiki/wiki/Viterbi_algorithm)）实际是用动态规划解隐马尔可夫模型预测问题，即用动态规划（[dynamic programming](https://en.jinzhao.wiki/wiki/Dynamic_programming)）求概率最大路径（最优路径），这里的最优路径就是最优状态序列$I$。
 
-> 请参考书籍和[机器学习-白板推导系列(十四)-隐马尔可夫模型HMM（Hidden Markov Model）](https://www.bilibili.com/video/BV1MW41167Rf?p=6)
+> 请参考书籍和[机器学习-白板推导系列(十四)-隐马尔可夫模型 HMM（Hidden Markov Model）](https://www.bilibili.com/video/BV1MW41167Rf?p=6)
 
 ### 附加知识
 
@@ -207,6 +207,68 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 其特征值为$\lambda_1=1，\lambda_2=-1$
 
 > 也可以参考第 21 章 PageRank 算法
+
+#### 规划论
+
+规划论又称数学规划,运筹学（[Operations research](https://en.jinzhao.wiki/wiki/Category:Operations_research)）的一个分支。 规划论是指在既定条件（约束条件）下，按照某一衡量指标（目标函数）在多种 方案中寻求最优方案（取最大或最小值）。规划论包括线性规划、非线性规划和动态规划等，是一种优化算法或方法（[Optimization algorithms and methods](https://en.jinzhao.wiki/wiki/Category:Optimization_algorithms_and_methods)）
+
+数学优化（[Mathematical optimization](https://en.jinzhao.wiki/wiki/Category:Mathematical_optimization)）
+
+[优化技术](https://en.jinzhao.wiki/wiki/Mathematical_optimization#Computational_optimization_techniques)：
+
+- 优化算法 Optimization algorithms
+  [优化算法列表](https://en.jinzhao.wiki/wiki/List_of_algorithms#Optimization_algorithms)
+
+- 迭代方法 Iterative methods
+  [Iterative method](https://en.jinzhao.wiki/wiki/Iterative_method)
+
+- 全局收敛 Global convergence
+- 启发式 Heuristics
+  [Heuristic algorithm](<https://en.jinzhao.wiki/wiki/Heuristic_(computer_science)>)
+
+##### 线性规划
+
+当目标函数与约束条件都是线形的，则称为线性规划（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)‎）。
+
+求解方法：图解法(graphical method)、单纯形法（[simplex algorithm](https://en.jinzhao.wiki/wiki/Simplex_algorithm)）、对偶单纯形法等
+
+##### 非线性规划
+
+除去线性规划，则为非线性规划（[Nonlinear programming](https://en.jinzhao.wiki/wiki/Nonlinear_programming)）。其中，凸规划（前面的章节有讲到凸优化）、二次规划（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）、几何规划都是一种特殊的非线性规划。
+
+求解方法：拉格朗日乘子法、可行方向法、制约函数法(constrained function method )等。
+
+内点法([Interior point methods](https://en.jinzhao.wiki/wiki/Interior-point_method))是一种求解线性规划或非线性凸优化问题的算法。
+
+##### 无约束优化问题
+
+去除带约束的规划问题，则为无约束优化问题（Unconstrained convex optimization，对应的有约束优化（[Constrained optimization](https://en.jinzhao.wiki/wiki/Constrained_optimization)））。
+
+求解方法： 1、 最速下降法(也叫梯度下降) 2、 共轭梯度下降 3、 牛顿法 4、 拟牛顿法
+
+##### 动态规划
+
+若规划问题与时间有关，则称为动态规划（[Dynamic programming‎](https://en.jinzhao.wiki/wiki/Dynamic_programming)）；
+
+> 把多阶段过程转化为一系列单阶段问题，逐个求解，解决这类问题的方法称为动态规划，它是一种方法、考察问题的一种途径，但不是一种特殊的算法。 没有统一的标准模型，也没有构造模型的通用方法，甚至还没有判断一个问题能否构造动态规划模型的准则。这样就只能对每类问题进行具体分析，构造具体的模型。对于较复杂的问题在选择状态、决策、确定状态转移规律等方面需要丰富的想象力和灵活的技巧性，这就带来了应用上的局限性。
+
+动态规划一般可分为线性动规，区域动规，树形动规，背包动规（[Knapsack problem](https://en.jinzhao.wiki/wiki/Knapsack_problem)）四类。
+线性动规：拦截导弹，合唱队形，挖地雷，建学校，剑客决斗等；
+区域动规：石子合并， 加分二叉树，统计单词个数，炮兵布阵等；
+树形动规：贪吃的九头龙，二分查找树，聚会的欢乐，数字三角形等；
+背包问题：背包问题，完全背包问题，分组背包问题，二维背包，装箱问题，挤牛奶
+
+##### 随机规划
+
+若规划问题与随机变量有关，则称为随机规划（[Stochastic programming](https://en.jinzhao.wiki/wiki/Stochastic_programming)）。
+
+##### 随机动态规划
+
+[Stochastic dynamic programming](https://en.jinzhao.wiki/wiki/Stochastic_dynamic_programming)
+
+##### 组合规划
+
+若规划问题与有限个事物的排列组合有关，则称为组合规划([combinatorial optimization](https://en.jinzhao.wiki/wiki/Combinatorial_optimization))
 
 ### 参考文献
 
