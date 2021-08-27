@@ -1,3 +1,4 @@
+[TOC]
 ## 第 10 章 隐马尔可夫模型
 
 **隐马尔可夫模型**（[Hidden Markov Model,HMM](https://en.jinzhao.wiki/wiki/Hidden_Markov_model)）是可用于**标注问题**的统计学习模型，描述由隐藏的马尔可夫链随机生成观测序列的过程，属于生成模型。
@@ -11,12 +12,12 @@
 $$Q = \{q_1,q_2,...,q_N\} , V= \{v_1,v_2,...,v_M\}$$
 长度为 T 的状态序列$I = (i_1,i_2,...,i_T)$以及与状态序列对应的长度为 T 的观测序列$O = (o_1,o_2,...,o_T)$
 
-**状态转移矩阵(状态转移概率分布)**：（就是初始化参数[transmat_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)，也可以用 params 和求出的属性 transmat*）
-$$A=[a*{ij}]_{N\times N}$$
+**状态转移矩阵(状态转移概率分布)**：（就是初始化参数[transmat_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)，也可以用 params 和求出的属性 transmat_）
+$$A=[a_{ij}]_{N\times N}$$
 其中$a_{ij} = P(i\_{t+1} = q_j | i_t = q_i) ,下标 i,j = 1,...,N$表示在时刻$t$处于状态$q_i$的条件下 在时刻$t+1$转移到状态$q_j$的概率
 
-**观测矩阵(观测概率分布)**：（对于 MultinomialHMM 用 params 和求出的属性 emissionprob*，叫发生概率矩阵；对于 GMMHMM 有 n_mix 、means_prior、covars_prior ；对于 GaussianHMM 有 means_prior、covars_prior ）
-$$B = [b_j(k)]*{N \times M}$$
+**观测矩阵(观测概率分布)**：（对于 MultinomialHMM 用 params 和求出的属性 emissionprob_，叫发生概率矩阵；对于 GMMHMM 有 n_mix 、means_prior、covars_prior ；对于 GaussianHMM 有 means_prior、covars_prior ）
+$$B = [b_j(k)]_{N \times M}$$
 其中$b_j(k) = P(o_t = v_k | i_t = q_j) ,k = 1,...,M,j = 1,...,N$表示在时刻$t$处于状态$q_j$的条件下生成观测$v_k$的概率
 
 **初始状态概率向量（初始概率分布）**：（就是初始化参数[startprob_prior](https://hmmlearn.readthedocs.io/en/latest/api.html#hmmlearn-hmm)和求出的属性 startprob\_ ）
@@ -246,13 +247,13 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 - 启发式 Heuristics
   [Heuristic algorithm](<https://en.jinzhao.wiki/wiki/Heuristic_(computer_science)>)
 
-##### 线性规划
+**线性规划**：
 
 当目标函数与约束条件都是线形的，则称为线性规划（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)‎）。
 
 求解方法：图解法(graphical method)、单纯形法（[simplex algorithm](https://en.jinzhao.wiki/wiki/Simplex_algorithm)）、对偶单纯形法等
 
-##### 非线性规划
+**非线性规划**：
 
 除去线性规划，则为非线性规划（[Nonlinear programming](https://en.jinzhao.wiki/wiki/Nonlinear_programming)）。其中，凸规划（前面的章节有讲到凸优化）、二次规划（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）、几何规划都是一种特殊的非线性规划。
 
@@ -260,13 +261,13 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 
 内点法([Interior point methods](https://en.jinzhao.wiki/wiki/Interior-point_method))是一种求解线性规划或非线性凸优化问题的算法。
 
-##### 无约束优化问题
+**无约束优化问题**：
 
 去除带约束的规划问题，则为无约束优化问题（Unconstrained convex optimization，对应的有约束优化（[Constrained optimization](https://en.jinzhao.wiki/wiki/Constrained_optimization)））。
 
 求解方法： 1、 最速下降法(也叫梯度下降) 2、 共轭梯度下降 3、 牛顿法 4、 拟牛顿法
 
-##### 动态规划
+**动态规划**：
 
 若规划问题与时间有关，则称为动态规划（[Dynamic programming‎](https://en.jinzhao.wiki/wiki/Dynamic_programming)）；
 
@@ -278,15 +279,15 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 树形动规：贪吃的九头龙，二分查找树，聚会的欢乐，数字三角形等；
 背包问题：背包问题，完全背包问题，分组背包问题，二维背包，装箱问题，挤牛奶
 
-##### 随机规划
+**随机规划**：
 
 若规划问题与随机变量有关，则称为随机规划（[Stochastic programming](https://en.jinzhao.wiki/wiki/Stochastic_programming)）。
 
-##### 随机动态规划
+**随机动态规划**：
 
 [Stochastic dynamic programming](https://en.jinzhao.wiki/wiki/Stochastic_dynamic_programming)
 
-##### 组合规划
+**组合规划**：
 
 若规划问题与有限个事物的排列组合有关，则称为组合规划([combinatorial optimization](https://en.jinzhao.wiki/wiki/Combinatorial_optimization))
 
@@ -315,8 +316,14 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 [10-10] J. Li, J. Z. Wang, `Studying digital imagery of ancient paintings by mixtures of stochastic models`, IEEE Transactions on Image Processing, 12(3):340-353, 2004. [Mixture of 2-D MHMMs] ([download](http://www-db.stanford.edu/~wangz/project/imsearch/ART/TIP03/li_ip.pdf))
 
 ## 第 11 章 条件随机场
+条件随机场（[Conditional random field, CRF](https://en.jinzhao.wiki/wiki/Conditional_random_field)）条件随机场(CRFs)是一类常用的统计建模方法（[statistical modeling methods](https://en.jinzhao.wiki/wiki/Statistical_model)），常用于模式识别（[pattern recognition](https://en.jinzhao.wiki/wiki/Pattern_recognition)）和机器学习，并用于结构预测（[structured prediction](https://en.jinzhao.wiki/wiki/Structured_prediction)）。
 
-[Conditional random field](https://en.jinzhao.wiki/wiki/Conditional_random_field)
+相关的机器学习库有[PyStruct](https://github.com/pystruct/pystruct)和[python-crfsuite](https://github.com/scrapinghub/python-crfsuite)
+
+条件随机场是在无向图上的判别模型。
+
+条件随机场是给定一组输入随机变量条件下另一组输出随机变量的条件概率分布模型，其特点是假设输出随机变量构成马尔可夫随机场。
+条件随机场可以用于不同的预测问题，本书仅论及它在标注问题的应用。因此主要讲述线性链（linear   chain）条件随机场，这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。
 
 - **模型**：
 - **策略**：
@@ -329,8 +336,110 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 [Random field](https://en.jinzhao.wiki/wiki/Random_field)
 
 #### 概率图模型
+介绍概率图模型（Probabilistic Graphical Model）之前，先简单了解下**结构学习**（[Structured Learning](https://en.jinzhao.wiki/wiki/Structured_prediction)），相比于回归，输出一个标量或者预测，输出一个向量，结构化学习的输出更加复杂，可以是图像，可以是语句，可以是树结构，等。
+那么与概率图模型有什么关系呢？
+概率图形模型形成了大量的结构化预测模型。特别是，贝叶斯网络和随机场很受欢迎。[参见](https://en.jinzhao.wiki/wiki/Structured_prediction#Techniques)
 
-[Probabilistic Graphical Model](https://en.jinzhao.wiki/wiki/Graphical_model)
+
+[什么是结构化学习？What is structured learning?](https://pystruct.github.io/intro.html#intro)
+结构化预测是监督学习、分类和回归标准范式的概括。所有这些都可以被认为是找到一个函数来最小化训练集上的一些损失。区别在于使用的函数类型和损失。
+在分类中，目标域是离散的类标签，损失通常是0-1的损失，即对误分类进行计数。在回归中，目标域是实数，损失通常是均方误差。在结构化预测中，目标域和损失或多或少都是任意的。这意味着目标不是预测标签或数字，而是可能更复杂的对象，如序列或图形。
+
+
+**概率图模型**（[Probabilistic Graphical Model，PGM](https://en.jinzhao.wiki/wiki/Graphical_model)），简称图模型（Graphical Model，GM），是指一种用图结构来描述多元随机变量之间条件独立关系的概率模型，从而给研究高维空间中的概率模型带来了很大的便捷性。
+很多机器学习模型都可以归结为概率模型，即建模输入和输出之间的条件概率分布．因此，图模型提供了一种新的角度来解释机器学习模型，并且这种角度有很多优点，比如了解不同机器学习模型之间的联系，方便设计新模型（Developing Bayesian networks）等．在机器学习中，图模型越来越多地用来设计和分析各种学习算法．
+
+
+**图模型有三个基本问题**：
+1. 表示（Representation）问题：对于一个概率模型，如何通过图结构来描述变量之间的依
+赖关系．
+1. 学习（Learning）问题：图模型的学习包括图结构的学习和参数的学习．在本章中，
+我们只关注在给定图结构时的参数学习，即参数估计问题．
+1. 推断（Inference）问题：在已知部分变量时，计算其他变量的条件概率分布
+
+**图的表示**：
+图可以用$G=(V,E)$表示，$V$是顶点vertices(nodes or points)集合，
+${\displaystyle E\subseteq \{(x,y)\mid (x,y)\in V^{2}\;{\textrm {and}}\;x\neq y\}}$是边的集合edges;对于有向图而言，边是有向的（directed edges, directed links, directed lines, arrows or arcs）它们是有序的顶点对，代表着方向;对于无向图而言，边是无向的。
+
+也有些地方有向边一般用尖括号表示<>；而无向边一般用弧形括号表示（）；如：
+有向图：
+$$G1=(V,E) \\ V(G1)=\{v1,v2,v3\}\\  E(G1)=\{\braket{v1,v2},\braket{v1,v3},\braket{v2,v3}\}$$
+无向图：
+$$G2=(V,E) \\ V(G2)=\{v1,v2,v3,v4\} \\ E(G2)=\{(vl,v2),(v1,v3),(v1,v4),(v2,v3),(v2,v4),(v3,v4)\}$$
+
+##### （概率）无向图模型
+无向图模型（Undirected Graphical Model）又称马尔可夫随机场（[Markov random field, MRF](https://en.jinzhao.wiki/wiki/Markov_random_field)）或马尔可夫网络（Markov network）是一类用无向图（[Undirected Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Undirected_graph)）来描述一组具有局部马尔可夫性质的随机向量𝑿的联合概率分布的模型．
+
+成对马尔可夫性（Pairwise Markov property）
+局部马尔可夫性（Local Markov property）
+全局马尔可夫性（Global Markov property）
+团分解（Clique factorization）
+
+##### （概率）有向图模型
+有向图模型（Directed Graphical Model）又称贝叶斯网络（[Bayesian Network](https://en.jinzhao.wiki/wiki/Bayesian_network)）或信念网络（Belief Network，BN）是一类用有向图（[Directed Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Directed_graph)）来描述随机向量概率分布的模型．
+
+> 这里是 有向无环图(DAG)
+
+定义和概率 Definitions and concepts：
+> parent 父节点
+> descendants 后代
+> non-descendants 非后代（不包括父代，也就是all-parent-descendants）
+
+- **概率分布的分解（Factorization definition）**：
+$X$是一个关于$G$的贝叶斯网络，如果$X$的联合概率分布(联合概率密度函数)可以写成【单个密度函数的乘积，条件是它们的父变量】也就是局部条件概率分布（Local Conditional Probability Distribution）的连乘形式:
+$$p(X)=\prod _{v\in V}p\left(x_{v}\,{\big |}\,x_{\operatorname {pa} (v)}\right)$$
+其中$x_{\operatorname {pa} (v)}$表示$x_{v}$的父亲节点集合。
+如：
+```mermaid
+graph LR
+    x1(("x₁"))-->x2(("x₂"))-->x4(("x₄"))
+    x1-->x3(("x₃"))
+    x2-->x3
+    x3-->x5(("x₅"))
+```
+$X=x_1,x_2,x_3,x_4,x_5$
+$V=\{x_1,x_2,x_3,x_4,x_5\}$
+$E=\{\braket{x_1,x_2},\braket{x_1,x_3},\braket{x_2,x_3},\braket{x_2,x_4}\},\braket{x_3,x_5}$
+$G=(V,E)$
+有向图对应的概率分布可以分解为
+$$p(X) = p(x_1,x_2,x_3,x_4,x_5) = p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)p(x_4|x_2)p(x_5|x_3)$$
+
+- **因果网络(Causal networks)**：
+在贝叶斯网络中，如果两个节点是直接连接的，它们肯定是非条件独立的，是直接因果关系．父节点是“因”(tail)，子节点是“果”（也就是箭头指向的，也称head）$tail \rightarrow head (因\rightarrow 果)$。如果两个节点不是直接连接的，但可以由一条经过其他节点的路径来连接，那么这两个节点之间的**条件独立性**就比较复杂。
+以三个节点的贝叶斯网络为例
+```mermaid
+graph LR
+    X-->Y-->Z
+```
+```mermaid
+graph TD
+    Y-->Z
+    Y-->X
+```
+```mermaid
+graph TD
+    X-->Y
+    Z-->Y
+```
+
+Pattern|Model | 条件独立性
+---|---|---
+Chain（间接因果关系/tail to head）	|$X\rightarrow Y\rightarrow Z$ | 已知Y时,X和Z为条件独立，即 $X \perp \!\!\!\perp Z\mid Y$
+Fork（共因关系/tail to tail）|$X\leftarrow Y\rightarrow Z$ | 已知Y时,X和Z为条件独立，即 $X \perp \!\!\!\perp Z \mid Y$ （Y未知时，X和Z为不独立）
+Collider（共果关系/head to head）	|$X\rightarrow Y\leftarrow Z$ | 已知Y时,X和Z为不独立，即 $X \perp \!\!\!\perp \!\!\!\!\!\!/ \;\; Z \mid Y$（Y未知时，X和Z为独立）
+
+
+- **局部马尔可夫性质（Local Markov property）**：
+对一个更一般的贝叶斯网络，其局部马尔可夫性质为：每个随机变量在给定父节点的情况下，条件独立于它的非后代节点． 
+$${\displaystyle X_{v}\perp \!\!\!\perp X_{V\,\smallsetminus \,\operatorname {de} (v)}\mid X_{\operatorname {pa} (v)}\quad {\text{for all }}v\in V}$$
+其中$X_{V\,\smallsetminus \,\operatorname {de} (v)}$表示非后代集合
+
+- **马尔可夫毯**（[Markov blanket](https://en.jinzhao.wiki/wiki/Markov_blanket)）：
+
+- **D划分（d-separation）**：
+
+- **常见的有向图模型**：
+如朴素贝叶斯分类器、隐马尔可夫模型、深度信念网络等
 
 ### 参考文献
 
