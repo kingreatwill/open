@@ -117,6 +117,21 @@ $$\beta_T(i) = P(i_T = q_i,\lambda) = 1 \\ \vdots \\ \beta_t(i) = P(o_{t+1},o_{t
 
 > 请参考书籍和[机器学习-白板推导系列(十四)-隐马尔可夫模型 HMM（Hidden Markov Model）](https://www.bilibili.com/video/BV1MW41167Rf?p=6)
 
+
+
+这一类模型需要求解的问题的大体框架为：
+其中$X$代表观测序列，$Z$代表隐变量序列，$\lambda$代表参数。
+
+$$\begin{cases}
+   Representation &  \text{Probabilistic graphical model} \\
+   Learning & \lambda_{MLE}=arg \underset{\lambda}{\max} P(X|\lambda)  \boxed{\text{Baum Welch Algorithm(EM)}}\\
+   Inference & \begin{cases} Decoding & Z=arg\underset{Z}{\max}P(Z|X,\lambda) or P(z_1,z_2,\cdots,z_t|x_1,x_2,\cdots,x_t,\lambda) \boxed{\text{Viterbi Algorithm}}\\ \text{Prob of evidence} & P(X|\lambda)  \boxed{\text{Forward Algorithm,Backward Algorithm}} \\ Filtering & P(z_t|x_1,x_2,\cdots,x_t,\lambda) \boxed{\text{(online)Forward Algorithm}}\\ Smothing & P(z_t|x_1,x_2,\cdots,x_T,\lambda) \boxed{\text{(offline)Forward-Backward Algorithm}}\\Prediction & \begin{Bmatrix} P(z_{t+1},z_{t+2},...|x_1,x_2,\cdots,x_t,\lambda) \\ P(x_{t+1},x_{t+2},...|x_1,x_2,\cdots,x_t,\lambda) \end{Bmatrix} \boxed{\text{Forward Algorithm}} \end{cases}\\
+\end{cases}$$
+
+[Filtering problem (stochastic processes)](https://en.jinzhao.wiki/wiki/Filtering_problem_(stochastic_processes))：
+[Smoothing problem (stochastic processes)](https://en.jinzhao.wiki/wiki/Smoothing_problem_(stochastic_processes))
+
+
 ### 附加知识
 
 #### 随机过程
@@ -132,6 +147,8 @@ $${\displaystyle \{X(t):t\in T\}} or {\displaystyle \{X(t,\omega ):t\in T\}}$$
 映射$X(t,\omega):T \times \Omega \to R$，即$X(.,.)$是定义在$T \times \Omega$上的二元值函数;
 $\forall t \in T$（固定$t \in T$）,$ X(t,.)$是定义在样本空间$\Omega $上的函数，称为**随机变量**; 
 $\forall \omega \in \Omega$,映射$X(.,\omega):T \to S$（其实就是固定$\omega \in \Omega $，变成关于T的函数）,被称为**样本函数**（sample function）,特别是当$T$表示时间时，称为随机过程${\displaystyle \{X(t,\omega ):t\in T\}}$的**样本路径**（sample path）。
+
+
 
 #### 傻傻分不清楚的马尔可夫
 
@@ -272,17 +289,27 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 
 ### 参考文献
 
-[10-1] Rabiner L,Juang B. An introduction to hidden markov Models. IEEE ASSPMagazine,January 1986
+[10-1] Rabiner L,Juang B. [An introduction to hidden markov Models](http://ai.stanford.edu/~pabbeel/depth_qual/Rabiner_Juang_hmms.pdf). IEEE ASSPMagazine,January 1986
 
-[10-2] Rabiner L. A tutorial on hidden Markov models and selected applications in speechrecognition. Proceedings of IEEE,1989
+[10-2] Rabiner L. [A tutorial on hidden Markov models and selected applications in speechrecognition](https://courses.physics.illinois.edu/ece417/fa2017/rabiner89.pdf). Proceedings of IEEE,1989
 
-[10-3] Baum L,et al. A maximization technique occuring in the statistical analysis ofprobabilistic functions of Markov chains. Annals of Mathematical Statistics,1970,41: 164–171
+[10-3] Baum L,et al. [A maximization technique occuring in the statistical analysis of probabilistic functions of Markov chains](https://projecteuclid.org/download/pdf_1/euclid.aoms/1177697196). Annals of Mathematical Statistics,1970,41: 164–171
 
-[10-4] Bilmes JA. [A gentle tutorial of the EM algorithm and its application to parameterestimation for Gaussian mixture and hidden Markov models](https://people.ece.uw.edu/bilmes/p/mypubs/bilmes1997-em.pdf).
+[10-4] Bilmes JA. [A gentle tutorial of the EM algorithm and its application to parameter estimation for Gaussian mixture and hidden Markov models](https://people.ece.uw.edu/bilmes/p/mypubs/bilmes1997-em.pdf).
 
 [10-5] Lari K,Young SJ. Applications of stochastic context-free grammars using the Inside-Outside algorithm,Computer Speech & Language,1991,5(3): 237–257
 
-[10-6] Ghahramani Z. Learning Dynamic Bayesian Networks. Lecture Notes in ComputerScience,Vol. 1387,1997,168–197
+[10-6] Ghahramani Z. [Learning Dynamic Bayesian Networks](https://courses.cs.duke.edu//compsci662/current/pdf/ghahramani.1998.pdf). Lecture Notes in ComputerScience,Vol. 1387,1997,168–197
+
+以下来自[隐马尔可夫模型](http://infolab.stanford.edu/~jiali/hmm.html)
+
+[10-7] J. Li, A. Najmi, R. M. Gray, `Image classification by a two dimensional hidden Markov model`,IEEE Transactions on Signal Processing , 48(2):517-33, February 2000. [2-D HMM]   ([download](http://www.stat.psu.edu/~jiali/pub/sp00.pdf))
+
+[10-8] J. Li, R. M. Gray, R. A. Olshen, `Multiresolution image classification by hierarchical modeling with two dimensional hidden Markov models`, IEEE Transactions on Information Theory , 46(5):1826-41, August 2000. [2-D MHMM]   ([download](http://www.stat.psu.edu/~jiali/pub/it00.pdf))
+
+[10-9] J. Li, W. Miller, `Significance of inter-species matches when evolutionary rate varies`, Journal of Computational Biology , 10(3-4):537-554, 2003. [HMMMO]   ([download](http://www.stat.psu.edu/~jiali/pub/jcb03.pdf))
+
+[10-10] J. Li, J. Z. Wang, `Studying digital imagery of ancient paintings by mixtures of stochastic models`, IEEE Transactions on Image Processing, 12(3):340-353, 2004. [Mixture of 2-D MHMMs]   ([download](http://www-db.stanford.edu/~wangz/project/imsearch/ART/TIP03/li_ip.pdf))
 
 ## 第 11 章 条件随机场
 
