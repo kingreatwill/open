@@ -320,10 +320,20 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 
 相关的机器学习库有[PyStruct](https://github.com/pystruct/pystruct)和[python-crfsuite](https://github.com/scrapinghub/python-crfsuite)
 
+这里推荐学习：[机器学习-白板推导系列(十七)-条件随机场CRF（Conditional Random Field）](https://www.bilibili.com/video/BV19t411R7QU)
+
 条件随机场是在无向图上的判别模型。
 
 条件随机场是给定一组输入随机变量条件下另一组输出随机变量的条件概率分布模型，其特点是假设输出随机变量构成马尔可夫随机场。
 条件随机场可以用于不同的预测问题，本书仅论及它在标注问题的应用。因此主要讲述线性链（linear   chain）条件随机场，这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。
+
+
+条件随机场（conditional  random  field）是给定随机变量X条件下，随机变量Y的马尔可夫随机场。
+这里主要介绍定义在线性链上的特殊的条件随机场，称为线性链条件随机场（linear chain conditional random field）。
+线性链条件随机场可以用于标注等问题。
+这时，在条件概率模型P(Y|X)中，Y是输出变量，表示标记序列，X是输入变量，表示需要标注的观测序列。也把标记序列称为状态序列。
+学习时，利用训练数据集通过极大似然估计或正则化的极大似然估计得到条件概率模型$\hat{P}(Y|X)$；
+预测时，对于给定的输入序列x，求出条件概率$\hat{P}(Y|X)$最大的输出序列$\hat{y}$。
 
 - **模型**：
 - **策略**：
@@ -357,6 +367,15 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 我们只关注在给定图结构时的参数学习，即参数估计问题．
 1. 推断（Inference）问题：在已知部分变量时，计算其他变量的条件概率分布
 
+$$
+\begin{cases}
+   Representation(表示) &  \begin{cases} \text{有向图 Bayesian Network} \\ \text{无向图 Markov Network} \end{cases} \\
+   Learning(学习) & \begin{cases} \text{参数学习} & \begin{cases} \text{完备数据} \\ \text{隐变量} \to EM \end{cases} \\ \text{结构学习} \end{cases}\\
+   Inference(推断) & \begin{cases} \text{精确推断} \\ \text{近似推断} & \begin{cases} \text{确定性近似} \to 变分推断 \\ \text{随机近似} \to MCMC \end{cases} \end{cases} \\
+\end{cases}
+$$
+
+
 **图的表示**：
 图可以用$G=(V,E)$表示，$V$是顶点vertices(nodes or points)集合，
 ${\displaystyle E\subseteq \{(x,y)\mid (x,y)\in V^{2}\;{\textrm {and}}\;x\neq y\}}$是边的集合edges;对于有向图而言，边是有向的（directed edges, directed links, directed lines, arrows or arcs）它们是有序的顶点对，代表着方向;对于无向图而言，边是无向的。
@@ -364,19 +383,27 @@ ${\displaystyle E\subseteq \{(x,y)\mid (x,y)\in V^{2}\;{\textrm {and}}\;x\neq y\
 也有些地方有向边一般用尖括号表示<>；而无向边一般用弧形括号表示（）；如：
 有向图：
 $$G1=(V,E) \\ V(G1)=\{v1,v2,v3\}\\  E(G1)=\{\braket{v1,v2},\braket{v1,v3},\braket{v2,v3}\}$$
+
+```mermaid
+graph LR
+    v1(("v1"))-->v2(("v2"))
+    v1-->v3(("v3"))
+    v2-->v3
+```
+
 无向图：
 $$G2=(V,E) \\ V(G2)=\{v1,v2,v3,v4\} \\ E(G2)=\{(vl,v2),(v1,v3),(v1,v4),(v2,v3),(v2,v4),(v3,v4)\}$$
-
-##### （概率）无向图模型
-无向图模型（Undirected Graphical Model）又称马尔可夫随机场（[Markov random field, MRF](https://en.jinzhao.wiki/wiki/Markov_random_field)）或马尔可夫网络（Markov network）是一类用无向图（[Undirected Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Undirected_graph)）来描述一组具有局部马尔可夫性质的随机向量𝑿的联合概率分布的模型．
-
-成对马尔可夫性（Pairwise Markov property）
-局部马尔可夫性（Local Markov property）
-全局马尔可夫性（Global Markov property）
-团分解（Clique factorization）
-
+```mermaid
+graph LR
+    v1(("v1"))---v2(("v2"))
+    v1---v3(("v3"))
+    v1---v4(("v4"))
+    v2---v3
+    v2---v4
+    v3---v4
+```
 ##### （概率）有向图模型
-有向图模型（Directed Graphical Model）又称贝叶斯网络（[Bayesian Network](https://en.jinzhao.wiki/wiki/Bayesian_network)）或信念网络（Belief Network，BN）是一类用有向图（[Directed Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Directed_graph)）来描述随机向量概率分布的模型．
+有向图模型（Directed Graphical Model）又称贝叶斯网络（[Bayesian Network](https://en.jinzhao.wiki/wiki/Bayesian_network)）或信念网络（Belief Network，BN）或（causal networks）是一类用有向图（[Directed Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Directed_graph)）来描述随机向量概率分布的模型．
 
 > 这里是 有向无环图(DAG)
 
@@ -386,7 +413,7 @@ $$G2=(V,E) \\ V(G2)=\{v1,v2,v3,v4\} \\ E(G2)=\{(vl,v2),(v1,v3),(v1,v4),(v2,v3),(
 > non-descendants 非后代（不包括父代，也就是all-parent-descendants）
 
 - **概率分布的分解（Factorization definition）**：
-$X$是一个关于$G$的贝叶斯网络，如果$X$的联合概率分布(联合概率密度函数)可以写成【单个密度函数的乘积，条件是它们的父变量】也就是局部条件概率分布（Local Conditional Probability Distribution）的连乘形式:
+$X$是一个关于$G$的贝叶斯网络，如果$X$的联合概率分布(联合概率密度函数)可以写成【单个密度函数的乘积，条件是它们的父变量】也就是局部条件概率分布（Local Conditional Probability Distribution）的连乘形式（广义的一阶马可夫性质）:
 $$p(X)=\prod _{v\in V}p\left(x_{v}\,{\big |}\,x_{\operatorname {pa} (v)}\right)$$
 其中$x_{\operatorname {pa} (v)}$表示$x_{v}$的父亲节点集合。
 如：
@@ -407,20 +434,6 @@ $$p(X) = p(x_1,x_2,x_3,x_4,x_5) = p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)p(x_4|x_2)p(x_5|
 - **因果网络(Causal networks)**：
 在贝叶斯网络中，如果两个节点是直接连接的，它们肯定是非条件独立的，是直接因果关系．父节点是“因”(tail)，子节点是“果”（也就是箭头指向的，也称head）$tail \rightarrow head (因\rightarrow 果)$。如果两个节点不是直接连接的，但可以由一条经过其他节点的路径来连接，那么这两个节点之间的**条件独立性**就比较复杂。
 以三个节点的贝叶斯网络为例
-```mermaid
-graph LR
-    X-->Y-->Z
-```
-```mermaid
-graph TD
-    Y-->Z
-    Y-->X
-```
-```mermaid
-graph TD
-    X-->Y
-    Z-->Y
-```
 
 Pattern|Model | 条件独立性
 ---|---|---
@@ -435,11 +448,132 @@ $${\displaystyle X_{v}\perp \!\!\!\perp X_{V\,\smallsetminus \,\operatorname {de
 其中$X_{V\,\smallsetminus \,\operatorname {de} (v)}$表示非后代集合
 
 - **马尔可夫毯**（[Markov blanket](https://en.jinzhao.wiki/wiki/Markov_blanket)）：
+在随机变量的全集U UU中，对于给定的变量$X\in U$和变量集$MB\subset U(X\notin MB)$，若有
+$$X\perp \!\!\!\perp\{U-MB-\{X\}\}|MB$$
+则称能满足上述条件的最小变量集$MB$为$X$的马尔可夫毯(Markov Blanket)。
+
 
 - **D划分（d-separation）**：
+d表示方向（directional）。p是u to v的去除方向的路径。p被一组节点Z分隔。
+  - 如果p是这样的路径 ${\displaystyle u\cdots \leftarrow m\leftarrow \cdots v}$ or ${\displaystyle u\cdots \rightarrow m\rightarrow \cdots v}$ 并且$m \in Z$
+  - 如果p是这样的路径 ${\displaystyle u\cdots \leftarrow m\rightarrow \cdots v}$ 并且$m \in Z$
+  - 如果p是这样的路径 ${\displaystyle u\cdots \rightarrow m\leftarrow \cdots v}$ 并且$m \notin Z$
+$$X_{u}\perp \!\!\!\perp X_{v}\mid X_{Z}$$
+
 
 - **常见的有向图模型**：
 如朴素贝叶斯分类器、隐马尔可夫模型、深度信念网络等
+朴素贝叶斯：假设输入X有三个特征
+```mermaid
+graph TD
+    y(("y"))
+    y-->x1(("x₁"))
+    y-->x2(("x₂"))
+    y-->x3(("x₃"))
+    style y fill:#fff
+    style x1 fill:#f96
+    style x2 fill:#f96
+    style x3 fill:#f96
+```
+由图可得
+$$P(y,x_1,x_2,x_3) = P(y)P(x_1|y)P(x_2|y)P(x_3|y) = P(x_1,x_2,x_3|y)P(y) \\ \Darr\\  P(x_1,x_2,x_3|y)=P(x_1|y)P(x_2|y)P(x_3|y)$$
+这不就是朴素贝叶斯的条件相互独立的假设么?$P(X|y) = \prod_{i=1}^n P(x_i|y)$
+而这个独立假设太强了，每个特征之间没有任何关系（独立同分布i.i.d.）；
+那么我们假设当前只与前一时刻有关，与其它无关，那么我们就有了Markov假设，如隐马尔可夫模型：
+其中y为隐变量，x为观测变量
+```mermaid
+graph LR
+    y1(("y₁"))
+    y1-->x1(("x₁"))
+    y1-->y2(("y₂"))
+    y2-->x2(("x₂"))
+    y2-->y3(("y₃"))
+    y3-->x3(("x₃"))
+    y3-->y4(("y₄"))
+    y4-->x4(("x₄"))
+    style y1 fill:#fff
+    style y2 fill:#fff
+    style y3 fill:#fff
+    style y4 fill:#fff
+    style x1 fill:#f96
+    style x2 fill:#f96
+    style x3 fill:#f96
+    style x4 fill:#f96
+```
+我们能从图中直接得到
+$P(y_t|y_{t-1},...,y_1,x_{t-1},...,x_1) = P(y_t|y_{t-1})$，即Markov假设；
+$P(x_t|x_{T},...,x_{t+1},x_{t-1},...,x_1,Y) = P(x_t|y_{t})$，即观测独立性假设；
+
+##### （概率）无向图模型
+无向图模型（Undirected Graphical Model）又称马尔可夫随机场（[Markov random field, MRF](https://en.jinzhao.wiki/wiki/Markov_random_field)）或马尔可夫网络（Markov network）是一类用无向图（[Undirected Graphical](https://en.jinzhao.wiki/wiki/Graph_(discrete_mathematics)#Undirected_graph)）来描述一组具有局部马尔可夫性质的随机向量𝑿的联合概率分布的模型．
+以下定义是等价的
+$$\text{Global Markov} \iff \text{Local Markov}\iff\text{Pair Markov}\xLeftrightarrow{Hammesley−Clifford } 因子分解$$
+
+
+
+- **团分解，因子分解**（Clique factorization）：
+无向图G中任何两个结点均有边连接的结点子集称为**团**（clique）。若C是无向图G的一个团，并且不能再加进任何一个G的结点使其成为一个更大的团，则称此C为**最大团**（maximal clique）。
+将概率无向图模型的联合概率分布表示为其最大团上的随机变量的函数的乘积形式的操作，称为概率无向图模型的因子分解（factorization）。
+给定概率无向图模型，设其无向图为G，随机变量${\displaystyle X=(X_{v})_{v\in V}}$，C为G上的最大团，$X_C$表示C对应的随机变量。那么概率无向图模型的联合概率分布$P(X)$可写作图中所有最大团C上的函数$\phi_C (x_C)$的乘积形式，即
+$$P(X) =\frac{1}{Z} \prod_{C \in \operatorname{cl}(G)} \phi_C (X_C) $$
+$$Z=\sum_{X}\prod_{C \in \operatorname{cl}(G)} \phi_C (X_C)$$
+Z是规范化因子（normalization factor）或归一化因子也被称为配分函数（partition function）;
+$\phi_C (X_C)$称为势函数（potential function or factor potentials or clique potentials），势函数要求是严格正的，通常定义为指数函数：
+$$\phi_C (X_C) = \exp\{-E(X_C)\}$$
+其中E为能量函数（energy function）。
+实际上用这种形式表达的p(x)，为Gibbs Distribution，或者又被称之为Boltzman Distribution。可以写成：
+$$P(x) = \frac{1}{Z} \prod_{i=1}^K \phi (x_{C_{i}}) = \frac{1}{Z} \prod_{i=1}^K \exp\{-E(x_{C_{i}})\} =  \frac{1}{Z}\exp\{-\sum_{i=1}^K E(x_{C_{i}})\}$$
+我们将指数族分布和势函数联系起来：
+$${\displaystyle p(x\mid {\boldsymbol {\eta }})=h(x)\,\exp {\Big (}{\boldsymbol {\eta^T }}\cdot \mathbf {T} (x)-A({\boldsymbol {\eta }}){\Big )}} = h(x) \frac{1}{Z(\eta)}\exp\{\eta^T \cdot \mathbf {T} (x)\}$$
+发现势函数(Gibbs Distribution)是一个指数族分布。Gibbs是来自统计物理学，形式上和指数族分布时一样的。而指数族分布实际上是由最大熵分布得到的，那么我们可以理解Gibbs分布也是有最大熵原理得到的。而马尔可夫随机场(Markov Random Field)实际上等价于Gibbs分布。即：
+最大熵原理 ⇒ 指数族分布(Gibbs分布).
+Markov Random Field ⇔ Gibbs Distribution.
+
+- **成对马尔可夫性**（Pairwise Markov property）：
+任意两个不相邻的变量在给定其他变量的条件下是独立的:${\displaystyle X_{u}\perp \!\!\!\perp X_{v}\mid X_{V\setminus \{u,v\}}}$
+- **局部马尔可夫性**（Local Markov property）：
+一个变量在给定其相邻变量的条件下是独立于所有其他变量:${\displaystyle X_{v}\perp \!\!\!\perp X_{V\setminus \operatorname {N} [v]}\mid X_{\operatorname {N} (v)}}$
+其中$\operatorname {N} (v)$是v的邻居（neighbor）节点；${\displaystyle \operatorname {N} [v]=v\cup \operatorname {N} (v)}$
+- **全局马尔可夫性**（Global Markov property）：
+给定一个分离子集（separating subset），任意两个变量子集都是条件独立的:$X_A \perp\!\!\!\perp X_B \mid X_S$
+A中的节点到B中的节点都要经过S；
+
+- **道德图**（Moral graph）：
+有向图和无向图可以相互转换，但将无向图转为有向图通常比较困难．在实际应用中，将有向图转为无向图更加重要，这样可以利用无向图上的精确推断算法，比如联合树算法（Junction Tree Algorithm）．
+有向图转化成无向图的过程称为道德化（Moralization），转化后的无向图称为道德图（[Moral graph](https://en.jinzhao.wiki/wiki/Moral_graph)）。
+每个有向图分解的因子要处于一个最大团中，如：
+$$P(X) = p(x_1)p(x_2)p(x_3)p(x_4|x_1,x_2,x_3)$$
+其中$p(x_4|x_1,x_2,x_3)$有四个变量，那么：
+```mermaid
+graph TD
+    x1(("x₁"))
+    x2(("x₂"))
+    x3(("x₃"))
+    x4(("x₄"))
+    x1-->x4
+    x2-->x4
+    x3-->x4
+    y1(("x₁"))
+    y2(("x₂"))
+    y3(("x₃"))
+    y4(("x₄"))
+    y1---y2
+    y1---y3
+    y1---y4
+    y2---y3
+    y2---y4
+    y3---y4
+```
+> 道德化的过程中，原有的一些条件独立性会丢失。
+
+- **因子图**（Factor graph）：
+这里不作介绍，目前不太明白用处。
+
+
+- **常见的有向图模型**：
+对数线性模型（最大熵模型）、条件随机场、玻尔兹曼机、受限玻尔兹曼机等．
+
+> 以上内容只是讲到了概率图的表示。
 
 ### 参考文献
 
