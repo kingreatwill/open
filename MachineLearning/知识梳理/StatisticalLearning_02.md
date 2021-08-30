@@ -320,7 +320,7 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 
 相关的机器学习库有[PyStruct](https://github.com/pystruct/pystruct)和[python-crfsuite](https://github.com/scrapinghub/python-crfsuite)
 
-这里推荐学习：[机器学习-白板推导系列(十七)-条件随机场CRF（Conditional Random Field）](https://www.bilibili.com/video/BV19t411R7QU)
+这里推荐学习：[机器学习-白板推导系列(十七)-条件随机场CRF（Conditional Random Field）](https://www.bilibili.com/video/BV19t411R7QU) 以及论文[Conditional Random Fields: Probabilistic Models for Segmenting and Labeling Sequence Data](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1162&context=cis_papers)
 
 条件随机场是在无向图上的判别模型。
 
@@ -344,6 +344,19 @@ $$A=\begin{bmatrix}0&1\\1&0\\\end{bmatrix}$$
 #### 随机场
 
 [Random field](https://en.jinzhao.wiki/wiki/Random_field)
+
+#### MEMM(Maximum Entropy Markov Model)
+判别模型
+[Maximum Entropy Markov Models for Information Extraction and Segmentation](http://www.ai.mit.edu/courses/6.891-nlp/READINGS/maxent.pdf)
+[Maximum Entropy Markov Models](http://www.cs.cornell.edu/courses/cs778/2006fa/lectures/05-memm.pdf)
+[Hidden Markov Model and Naive Bayes relationship](https://aman.ai/primers/ai/hmm-and-naive-bayes/)
+[Maximum Entropy Markov Models and Logistic Regression](https://aman.ai/primers/ai/maximum-entropy-markov-models-and-logistic-reg/)
+
+[Maximum-Entropy Markov Model](https://devopedia.org/maximum-entropy-markov-model)
+
+![](https://devopedia.org/images/article/225/8864.1570601314.png)
+MEMM与HMM
+![](https://devopedia.org/images/article/225/6824.1570601351.png)
 
 #### 概率图模型
 介绍概率图模型（Probabilistic Graphical Model）之前，先简单了解下**结构学习**（[Structured Learning](https://en.jinzhao.wiki/wiki/Structured_prediction)），相比于回归，输出一个标量或者预测，输出一个向量，结构化学习的输出更加复杂，可以是图像，可以是语句，可以是树结构，等。
