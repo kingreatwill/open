@@ -849,6 +849,7 @@ $$H(X) = E_{p(x)}[I(X)] = E_{p(x)}[-\log {p(x)}] \\= -\sum_{i=1}^n {p(x_i)} \log
 
 熵越高，则随机变量的信息越多（不确定性越大，系统越复杂）；熵越低，则随机变量的信息越少。
 
+---
 求最大熵：假设概率分布
 
 | X    | 1   | 2   | ... | n   |
@@ -865,6 +866,37 @@ $$\mathcal L(p,\lambda) = \sum_{i=1}^n p_i \log p_i + \lambda(1-\sum_{i=1}^n p_i
 所以**概率分布为一个均匀分布，则熵最大**，由此性质我们来证明熵的取值范围：设 p 是一个均匀分布$p = \frac{1}{n}$
 $$H(p) = -\sum_{i=1}^n \frac{1}{n} \log \frac{1}{n} \\= -\sum_{i=1}^n \frac{1}{n} \log n^{-1} \\= \sum_{i=1}^n \frac{1}{n} \log n \\= \log n$$
 所以：$$0 \leq H(p) \leq \log n$$
+
+---
+已知连续随机变量的均值为$\mu$，方差为$\sigma^2$，求熵最大对应的概率分布：
+$$\argmax_{p(x)} -\int p(x)\log p(x)dx \\ s.t. \int p(x)dx =1 \\ \int xp(x)dx = \mu \\ \int (x-\mu)^2p(x)dx=\sigma^2$$
+拉格朗日函数
+$$L(p(x),\lambda_1,\lambda_2,\lambda_3) = -\int p(x)\log p(x)dx +\lambda_1(\int p(x)dx - 1)+\lambda_2(\int xp(x)dx - \mu) +\lambda_3(\int (x-\mu)^2p(x)dx - \sigma^2)$$
+令$F(p)=(-\log p(x) + \lambda_{1} +\lambda_{2}x+ \lambda_{3}(x-\mu)^{2})p(x)$
+求偏导并令其为0（可以把求积分当做求和，这样求偏导就容易想象了）
+$$\frac{\partial L}{\partial p(x)} = -[\log p(x)+1]+\lambda_1+\lambda_2x+\lambda_3(x-\mu)^2$$
+得
+$$p(x) = \exp\{\lambda_1-1+\lambda_2x+\lambda_3(x-\mu)^2\}$$
+把跟x有关的保留，其它的设为常数，有
+$$p(x) = \exp\{\lambda_1-1+\lambda_2x+\lambda_3(x-\mu)^2\}\\ =e^{-1+\lambda_{1}}\cdot e^{\lambda_{2}x+ \lambda_{3}(x-\mu)^{2}}=C e^{\lambda_{2}x+ \lambda_{3}(x-\mu)^{2}} \\ = Ce^{\lambda_{3}(x^{2} -2(\mu-\frac{\lambda_{2}}{2\lambda_{3}})x+ u^{2})} = C e^{\lambda_{3}(x -\mu+ \frac{\lambda_{2}}{2\lambda_{3}})^{2}} \\= C.\exp\{\lambda_3(x-\mu+\frac{\lambda_2}{2\lambda_3})^2\}$$
+
+根据$(x-\mu+\frac{\lambda_2}{2\lambda_3})^2$得到$p(x)$关于$\mu - \frac{\lambda_{2}}{2\lambda_{3}}$对称(偶函数关于x=0对称$p(x) = p(-x)$)，所以$E[p(x)] = \mu - \frac{\lambda_{2}}{2\lambda_{3}} = \mu$，得$\lambda_{2} = 0$
+
+那么
+$$p(x)= C e^{\lambda_{3}(x -\mu)^{2}} $$
+因为 $p(x)>0$ ，所以 $C>0,\lambda_{3}<0$
+令$\lambda = -\lambda_3$
+根据积分为1的约束 以及$\int e^{-\frac{x^2}{2}}dx = \sqrt{2\pi}$，得：
+$$\int p(x)dx = 1 = C\int e^{-\lambda(x -\mu)^{2}} dx = C\sqrt{\frac{\pi}{\lambda}}$$
+得到$C = \sqrt{\frac{\lambda}{\pi}}$
+根据方差的约束，得：
+$$\int (x-\mu)^2p(x)dx=\sigma^2 = \int (x-\mu)^2e^{-\lambda(x -\mu)^{2}}dx = C\sqrt{\frac{\pi}{\lambda}}.\frac{1}{2\lambda} = \frac{1}{2\lambda}$$
+得到$\lambda_3 = -\frac{1}{2\sigma^2}$以及$C = \sqrt{\frac{\lambda}{\pi}} = \sqrt{\frac{1}{2\pi\sigma^2}}$
+所以
+$$p(x) = \sqrt{\frac{1}{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+
+---
 
 $X$和$Y$的**联合熵**（[Joint Entropy](https://en.jinzhao.wiki/wiki/Joint_entropy)）为：
 $${\displaystyle \mathrm {H} (X,Y)=-\sum _{x\in {\mathcal {X}}}\sum _{y\in {\mathcal {Y}}}P(x,y)\log _{2}[P(x,y)]} \\=\mathbb {E} _{X,Y}[-\log p(x,y)]=-\sum _{x,y}p(x,y)\log p(x ,y)\,$$
@@ -1025,13 +1057,46 @@ $$
 
 ### 最大熵模型
 
-熵的概念在统计学习与机器学习中真是很重要，最大熵模型（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）是概率模型学习中一个准则，其思想为：在学习概率模型时，所有可能的模型中熵最大的模型是最好的模型；若概率模型需要满足一些约束，则最大熵原理就是在满足已知约束的条件集合中选择熵最大模型。最大熵原理指出，对一个随机事件的概率分布进行预测时，预测应当满足全部已知的约束，而对未知的情况不要做任何主观假设。在这种情况下，概率分布最均匀，预测的风险最小，因此得到的概率分布的熵是最大。
+熵的概念在统计学习与机器学习中真是很重要，最大熵模型（[maximum entropy model](https://en.jinzhao.wiki/wiki/Principle_of_maximum_entropy)）是概率模型学习中一个准则，其思想为：在学习概率模型时，所有可能的模型中熵最大的模型是最好的模型；若概率模型需要满足一些约束，则最大熵原理（Principle of maximum entropy）就是在满足已知约束的条件集合中选择熵最大模型。
+最大熵原理指出，对一个随机事件的概率分布进行预测时，预测应当满足全部已知的约束，而对未知的情况不要做任何主观假设。在这种情况下，概率分布最均匀，预测的风险最小，因此得到的概率分布的熵是最大。
 
-> 给定均值和方差，高斯分布的熵最大（也可以说已知均值和方差时，高斯分布随机性最大）
+> 均值和方差也被称为一阶矩和二阶矩
+> 对于连续分布：给定均值和方差，高斯分布的熵最大（也可以说已知均值和方差时，高斯分布随机性最大 [证明](#熵entropyhttpsenjinzhaowikiwikientropy_information_theory)）
+> 对于连续分布：已知区间，连续均匀分布的熵最大
+> 对于连续分布：已知均值（一阶矩），指数分布的熵最大
+> 对于离散分布：离散均匀分布的熵最大（这里在将熵时有[证明](#熵entropyhttpsenjinzhaowikiwikientropy_information_theory)过）
+
 
 - **模型**：
+设 X∼p(x) 是一个连续型随机变量，其微分熵定义为
+$$h(X) = - \int p(x)\log p(x) dx$$
+其中，log 一般取自然对数 ln, 单位为 奈特（nats）
+
 - **策略**：
+考虑如下优化问题：
+$$\begin{array}{ll}
+&\underset{p}{\text{Maximize}} & \displaystyle h(p) = - \int_S p(x)\log p(x) dx \\
+&\text{Subject to} &\displaystyle \int_S p(x) dx = 1 \\[2pt]
+&~ & p(x) \ge 0 \\[2pt]
+&~ & \displaystyle \int_S p(x) f_i(x) dx = \alpha_i, ~i=1,2,3,\dots,n
+\end{array}$$
+其中，集合 S 是随机变量的support，即其所有可能的取值。我们意图找到这样的概率分布 p, 他满足所有的约束（前两条是概率公理的约束，最后一条叫做**矩约束**（均值和方差也被称为一阶矩和二阶矩），在模型中有时会假设随机变量的矩为常数），并且能够使得熵最大。将上述优化问题写成标准形式：
+$$\begin{array}{ll}
+&\underset{p}{\text{Minimize}} & \displaystyle  \int_S p(x)\log p(x) dx \\
+&\text{Subject to} &-p(x) \le 0 \\[2pt]
+&~ &\displaystyle \int_S p(x) dx = 1 \\ 
+&~ & \displaystyle \int_S p(x) f_i(x) dx = \alpha_i, ~i=1,2,3,\dots,n
+\end{array}$$
+
 - **算法**：
+使用Lagrange乘数法得到其Lagrangian函数
+$$L(p,\boldsymbol{\lambda}) = \int_S p\log p ~dx - \mu_{-1}p + \mu_0 \left(\int_S p ~dx - 1\right) + \sum_{j=1}^n \lambda_j \left(\int_S pf_j~dx - \alpha_j\right)$$
+根据KKT条件对Lagrangian求导令为0，可得最优解。
+$$\begin{gathered}
+\frac{\partial L}{\partial p} = \ln p + 1 - \mu_{-1} + \mu_0 + \sum_{j=1}^n \lambda_jf_j := 0 \\
+\implies p = \exp\left(-1 + \mu_{-1} - \mu_0 - \sum_{j=1}^n \lambda_j f_j \right) =\displaystyle c^* e^{-\sum_{j=1}^n\lambda_j^* f_j(x)} := p^*
+\end{gathered}$$
+其中，我们要选择 c∗,λ∗ 使得 p(x) 满足约束。到这里我们知道，在所有满足约束的概率分布当中，p∗ 是使得熵达到最大的那一个！
 
 ### 参考资料
 
