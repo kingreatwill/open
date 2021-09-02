@@ -227,8 +227,61 @@ ${\displaystyle {\tilde {s}}\left(k\right)}$表示一个簇的平均轮廓值。
 $$DI=\min_{1\leq i\leq k}\bigg\{ \min_{j\neq i}\bigg(\frac{d_{min}(C_i,C_j)}{\max_{1\leq l \leq k}diam(C_l)}\bigg) \bigg\}$$
 DI值越大越好，解释同DBI
 
+
+- **CH指数**（[Calinski-Harabasz Index](https://scikit-learn.org/stable/modules/clustering.html#calinski-harabasz-index)）
+该指数是所有簇的簇间离散度（between-clusters dispersion）和簇内离散度（within-cluster dispersion）之和的比值（其中离散度定义为距离平方和）
+$$s = \frac{\mathrm{tr}(B_k)/{k - 1}}{\mathrm{tr}(W_k) / {n_E - k}}  = \frac{\mathrm{tr}(B_k)}{\mathrm{tr}(W_k)} \times \frac{n_E - k}{k - 1} $$
+其中两个矩阵（类间离散度矩阵$B_k$和类内离散度矩阵$W_k$）的定义
+$$W_k = \sum_{q=1}^k \sum_{x \in C_q} (x - c_q) (x - c_q)^T$$
+$$B_k = \sum_{q=1}^k n_q (c_q - c_E) (c_q - c_E)^T$$
+$\mathrm{tr}(B_k)$表示矩阵的迹；
+大$C_q$表示簇$q$的集合;小$c_q$表示簇$q$的中心；小$c_E$表示数据集$E$的中心；
+$n_q$表示簇$q$的数量；$E$表示数据集；$n_E$表示数据集$E$的数量；$k$表示簇的个数；
+该指数越大越好
+> metrics.calinski_harabasz_score
+
 **External evaluation**（就是需要人为标记每个样本所属的类）
 有监督的方法，需要基准数据或者参考模型。用一定的度量评判聚类结果与基准数据的符合程度。（基准是一种理想的聚类，通常由专家构建）
+
+- 纯度（Purity）
+我们假定数据集有N个数据。分类classes使用$C = \{c_i|i=1,…,n \}$；聚类clusters结果$K= \{k_i|1,…,m\}$；
+purity方法是极为简单的一种聚类评价方法，只需计算正确聚类的文档数占总文档数的比例：
+$${\displaystyle {\frac {1}{N}}\sum _{k_i\in K}\max _{c_j\in C}{|k_i\cap c_j|}}$$
+值在[0,1]之间，完全错误的聚类方法值为0，完全正确的方法值为1
+![](img/purity.jpg)
+
+- [F-score](https://en.jinzhao.wiki/wiki/F-score)
+F1 score, also known as balanced F-score or F-measure
+$$P(\text{precision rate})={\frac {TP}{TP+FP}}, R(\text{recall rate})={\frac {TP}{TP+FN}}$$
+$$F_{\beta }={\frac {(\beta ^{2}+1)\cdot P\cdot R}{\beta ^{2}\cdot P+R}}$$
+F1 score就是$\beta = 1$时的F-measure；当$\beta = 0, F_0=P$；
+> [Precision and recall](https://en.jinzhao.wiki/wiki/Precision_and_recall)
+> metrics.f1_score
+
+- [Jaccard index](https://en.jinzhao.wiki/wiki/Jaccard_coefficient)
+$${\displaystyle {\text{Jaccard index}}=J(A,B)={\frac {|A\cap B|}{|A\cup B|}}={\frac {TP}{TP+FP+FN}}}$$
+> metrics.jaccard_score
+
+- [Dice index](https://en.jinzhao.wiki/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient)
+$${\displaystyle DSC={\frac {2TP}{2TP+FP+FN}}}$$
+
+- [Homogeneity, completeness and V-measure](https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness-and-v-measure)
+同质性（Homogeneity）：每一个cluster(聚类结果簇)中所包含的数据应归属于一个class(类)。
+完整性（completeness）：所有属于同一个class的数据应该被归到相同的cluster中。
+我们假定数据集有N个数据。分类classes使用$C = \{c_i|i=1,…,n \}$；聚类clusters结果$K= \{k_i|1,…,m\}$；
+$A = [a_{ij}]_{n \times m}$，其中 $a_{ij}$ 表示$c_i$属于$k_j$的数量（就是contingency table，下面有讲）
+$$h = 1 - \frac{H(C|K)}{H(C)} , c = 1 - \frac{H(K|C)}{H(K)}$$
+$$H(C|K) = - \sum_{k=1}^{|K|} \sum_{c=1}^{|C|} \frac{a_{ck}}{N}
+\cdot \log\left(\frac{a_{ck}}{\sum_{c=1}^{|C|}a_{ck}}\right) \quad,\quad H(C) = - \sum_{c=1}^{|C|} \frac{\sum_{k=1}^{|K|}a_{ck}}{N} \cdot \log\left(\frac{\sum_{k=1}^{|K|}a_{ck}}{N}\right)$$
+$$H(K|C) = - \sum_{c=1}^{|C|} \sum_{k=1}^{|K|} \frac{a_{ck}}{N}
+\cdot \log\left(\frac{a_{ck}}{\sum_{k=1}^{|K|}a_{ck}}\right) \quad,\quad H(K) = - \sum_{k=1}^{|K|} \frac{\sum_{c=1}^{|C|}a_{ck}}{N} \cdot \log\left(\frac{\sum_{c=1}^{|C|}a_{ck}}{N}\right)$$
+$当H(C)=0时，h=1；当H(K)=0时，c=1;$
+两者的调和平均v_measure_score：
+$$v = \frac{(1 + \beta) \times \text{homogeneity} \times \text{completeness}}{(\beta \times \text{homogeneity} + \text{completeness})}$$
+$\beta$默认为1；当$\beta>1$时completeness影响更大，更多[参考](https://aclanthology.org/D07-1043.pdf)
+三个指标都在[0,1]区间，越大越好
+> metrics.homogeneity_score, metrics.completeness_score, metrics.v_measure_score
+> 三个指数一起返回metrics.homogeneity_completeness_v_measure
 
 - **Rand指数**（[Rand index](https://en.jinzhao.wiki/wiki/Rand_index)）
 $$RI={\frac {TP+TN}{TP+FP+FN+TN}}=\frac{a+d}{n(n-1)/2}$$
@@ -237,29 +290,49 @@ $$RI={\frac {TP+TN}{TP+FP+FN+TN}}=\frac{a+d}{n(n-1)/2}$$
 > 1.0 是完美匹配分数。未调整 Rand 指数的得分范围为 [0, 1]，调整后(adjusted)的 Rand 指数为 [-1, 1]
 > metrics.rand_score 、metrics.adjusted_rand_score
 
-- 纯度（Purity）
-- [F-score](https://en.jinzhao.wiki/wiki/F-score)
-- [Jaccard index](https://en.jinzhao.wiki/wiki/Jaccard_coefficient)
-- [Dice index](https://en.jinzhao.wiki/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient)
 - FM指数（[Fowlkes–Mallows index](https://en.jinzhao.wiki/wiki/Fowlkes%E2%80%93Mallows_Index)）
 $$\text{FMI} = \frac{\text{TP}}{\sqrt{(\text{TP} + \text{FP}) (\text{TP} + \text{FN})}}$$
 > metrics.fowlkes_mallows_score
 
-- 混淆矩阵（[Confusion matrix](https://en.jinzhao.wiki/wiki/Confusion_matrix)）
+- **情形分析表**（[Contingency Matrix](https://en.jinzhao.wiki/wiki/Contingency_table)）
 
-行Predicted
-列Actual
+```
+from sklearn.metrics.cluster import contingency_matrix
+x = ["a", "a", "a", "b", "b", "b"]
+y = [0, 0, 1, 1, 2, 2]
+contingency_matrix(x, y)
+array([[2, 1, 0],
+       [0, 1, 2]])
+```
+列数代表y中不重复的个数；行代表x中不重复的个数；
+第一行分别表示：2个a属于0，1个a属于1，0个a属于2
+第二行分别表示：0个b属于0，1个b属于1，2个b属于2
+> metrics.cluster.contingency_matrix
+- **混淆矩阵**（[Confusion matrix](https://en.jinzhao.wiki/wiki/Confusion_matrix)）
+
+行Predicted (expectation)
+列Actual (observation)
+TN表示预测negative正确
+TP表示预测positive正确
+FN表示预测negative错误
+FP表示预测positive错误
 
 Actual\Predicted |P|N
 ---|---|---
 P(positive)|TP	|FN
 N(negative)|FP	|TN
 
+![https://en.jinzhao.wiki/wiki/Template:Diagnostic_testing_diagram](img/confusion_matrix.png)
 
-
+> 注意正常的confusion matrix中的四个元素相加为$C_n^2=n(n-1)/2$，而pair_confusion_matrix是$(n-1)$，并且混淆矩阵
+$$\begin{split}C = \left[\begin{matrix}
+C_{00}(FN) & C_{01}(FP) \\
+C_{10}(TN) & C_{11}(TP)
+\end{matrix}\right]\end{split}$$
 > metrics.cluster.pair_confusion_matrix
+> metrics.plot_confusion_matrix可以绘制混淆矩阵
 
-- [mutual information](https://en.jinzhao.wiki/wiki/Mutual_information)
+- **互信息**（[mutual information](https://en.jinzhao.wiki/wiki/Mutual_information)）
 数据集$S=\{s_{1},s_{2},\ldots s_{N}\}$, 簇$U=\{U_{1},U_{2},\ldots ,U_{R}\}$以及簇$V=\{V_{1},V_{2},\ldots ,V_{C}\}$,满足${\displaystyle U_{i}\cap U_{j}=\varnothing =V_{i}\cap V_{j}}$以及$\cup _{{i=1}}^{R}U_{i}=\cup _{{j=1}}^{C}V_{j}=S$
 有这样一个表(R*C)$M=[n_{{ij}}]_{{j=1\ldots C}}^{{i=1\ldots R}}$,称为[contingency table](https://en.jinzhao.wiki/wiki/Contingency_table),其中$n_{{ij}}=\left|U_{i}\cap V_{j}\right|$
 ${\displaystyle P_{U}(i)={\frac {|U_{i}|}{N}}}$表示随机选取一个数据，属于$U_i$簇的概率。
@@ -278,6 +351,15 @@ $a_{i}=\sum _{{j=1}}^{C}n_{{ij}}$;$b_{j}=\sum _{{i=1}}^{R}n_{{ij}}$
 
 **Cluster tendency**（聚类趋势）
 - **霍普金斯统计量**（[Hopkins statistic](https://en.jinzhao.wiki/wiki/Hopkins_statistic)）
+聚类趋势（聚类可行性）：应用聚类算法之前，应该考虑聚类可行性；如：即使数据不包含任何cluster，聚类方法也会返回cluster；因此，评估数据集是否包含有意义的cluster（即：非随机结构）有时会变得有必要。此过程被定义为 聚类趋势的评估 或 聚类可行性的分析。
+与非随机结构相对的是均匀分布（随机结构），霍普金斯统计量的计算原理，便是检查数据是否符合均匀分布（或者说随机性）。
+有数据集$X=\{x_1,x_2,...,x_n\},x_i \in \mathbb{R}^d$
+生成随机数据集$Y=\{y_1,y_2,...,y_m\}, m \ll n $,即从样本的可能取值范围内随机生成m个点
+$u_{i} = \min dist(y_i,x_j\in X)$就是一个随机点与数据集X中的点的最小距离；
+从所有样本中随机找m个点，$w_{i} = \min dist(x_i,x_j\in X_{i\neq j})$就是每个点在样本空间(X)中找到一个离他最近的点之间的距离；
+$${\displaystyle H={\frac {\sum _{i=1}^{m}{u_{i}^{d}}}{\sum _{i=1}^{m}{u_{i}^{d}}+\sum _{i=1}^{m}{w_{i}^{d}}}}\,,}$$
+随机生成的点（样本可能的取值范围内）与从样本中找出点的空间比值
+根据这个定义，均匀随机数据的值应该趋向于接近0.5（不可行），而聚集数据的值应该趋向于接近1（可行）【$\sum u \gg \sum w$，也就是说，如果聚类趋势明显，则随机生成的样本点距离应该远大于实际样本点的距离】。
 
 > 参考[Clustering performance evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation)以及[Evaluation and assessment](https://en.jinzhao.wiki/wiki/Cluster_analysis#Evaluation_and_assessment)
 
