@@ -98,6 +98,10 @@ Neural models：如
 **基于连接的聚类（层次聚类）** Connectivity-based clustering（[Hierarchical clustering](https://en.jinzhao.wiki/wiki/Hierarchical_clustering)）：
 层次聚类有聚合Agglomerative（自下而上"bottom-up"）和分裂 Divisive（自上而下"top-down"）两种方法。
 - [sklearn.cluster.AgglomerativeClustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html)
+从下而上地把小的cluster合并聚集,开始时将每个样本各自分到一个cluster，之后将距离最短的两个cluster合并成一个新的cluster，重复此步骤直到满足停止条件；
+
+- DIANA (DIvisive ANAlysis Clustering) algorithm
+开始将所有样本归为一个cluster，之后将距离最远的两个样本分到两个新的cluster，重复此步骤直到满足停止条件；
 
 **基于质心的聚类** Centroid-based clustering：
 - K均值聚类（[k-means clustering](https://en.jinzhao.wiki/wiki/K-means_clustering)），[sklearn.cluster.KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
@@ -367,6 +371,7 @@ $${\displaystyle H={\frac {\sum _{i=1}^{m}{u_{i}^{d}}}{\sum _{i=1}^{m}{u_{i}^{d}
 - **模型**：
 - **策略**：
 - **算法**：
+
 ### 附加知识
 ### 参考文献
 
