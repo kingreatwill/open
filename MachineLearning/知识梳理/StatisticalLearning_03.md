@@ -99,6 +99,10 @@ Neural models：如
 层次聚类有聚合Agglomerative（自下而上"bottom-up"）和分裂 Divisive（自上而下"top-down"）两种方法。
 - [sklearn.cluster.AgglomerativeClustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html)
 从下而上地把小的cluster合并聚集,开始时将每个样本各自分到一个cluster，之后将距离最短的两个cluster合并成一个新的cluster，重复此步骤直到满足停止条件；
+书中提到三个要素：
+1. 距离度量或相似度
+1. 合并规则（cluster间的距离规则，cluster间的距离可以是最短、最长、中心距离、平均距离等）
+1. 停止条件（达到k值，也就是cluster的个数达到阈值；cluster的直径达到阈值；）
 
 - DIANA (DIvisive ANAlysis Clustering) algorithm
 开始将所有样本归为一个cluster，之后将距离最远的两个样本分到两个新的cluster，重复此步骤直到满足停止条件；
@@ -368,63 +372,56 @@ $${\displaystyle H={\frac {\sum _{i=1}^{m}{u_{i}^{d}}}{\sum _{i=1}^{m}{u_{i}^{d}
 > 参考[Clustering performance evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation)以及[Evaluation and assessment](https://en.jinzhao.wiki/wiki/Cluster_analysis#Evaluation_and_assessment)
 
 
+k-means: 样本集合$X=\{x_1,x_2,...,x_n\},x_i \in \mathbb{R}^m$，算法的目标是将n个样本分到不同的cluster中$C = \{ C_1,...,C_k\},k \lt n,C_i \cap C_j =\empty , \cup_{i=1}^kC_i =X$;
+用$F: x_i \to l,l\in \{1,...,k\}$表示划分函数，输入样本，输出所在的cluster
 - **模型**：
+$$l = F(x_i) = F(i) ,i \in \{1,...,n\} $$
+
 - **策略**：
+$$F^* = \argmin_{F} W(F) = \argmin_{F} \sum_{l=1}^k \sum_{F(i)=l}^{n_l} \|x_i - \bar{x}_l\|^2$$
+其中损失函数$W(F)$为样本与其所属cluster的中心之间的距离的总和；
+$n_l = \sum_{i=1}^n I(F(i)=l)$；
+
+n个样本分到k个cluster的所有分法的种类有$S(n,k)$种，这个数字是指数级的，所以最优问题是个NP困难问题
+$$S(n,k) = \frac{1}{k!}\sum_{l=1}^k(-1)^{k-l}\dbinom{k}{l}k^n$$
+
 - **算法**：
+迭代算法,不能保证全局最优
+1. 随机选择k个中心$(m_1,m_2,...,m_k)$,
+1. 将样本分别划分到与其最近的中心的cluster中
+1. 更新每个cluster的均值$(m_1,m_2,...,m_k)$作为cluster的新的中心
+1. 重复2，3直到收敛（中心变化很小）
 
-### 附加知识
+---
+
+K-means算法有以下不足：
+1. 算法对初始值的选取依赖性极大。初始值不同，往往得到不同的局部极小值。
+1. 由于将均值点作为聚类中心进行新一轮计算，远离数据密集区的孤立点和噪声点会导致聚类中心偏离真正的数据密集区，所以K-均值算法对噪声点和孤立点很敏感。
+
+
+K-mediods算法优缺点
+K-中心点轮换算法是一种使目标函数下降最快的方法，它属于启发式搜索算法，能从n个对象中找出以k个中心点为代表的一个局部优化划分聚类。与K-均值算法比较，K-中心点轮换算法解决了K-均值算法本身的缺陷：
+1. 解决了K-均值算法对初始值选择依赖度大的问题。K-均值算法对于不同的初始值，结果往往得到不同的局部极小值。而K-中心点轮换算法采用轮换替换的方法替换中心点，从而与初始值的选择没有关系。
+1. 解决了K-均值算法对噪声和离群点的敏感性问题。由于该算法不使用平均值来更改中心点而是选用位置最靠近中心的对象作为中心代表点，因此并不容易受极端数据的影响，具有很好的鲁棒性。
+
+K-中心点轮换算法也存有以下缺点：
+1. 由于K-中心点轮换算法是基于划分的一种聚类算法，仍然要求输入要得到的簇的数目k，所以当k的取值不正确时，对聚类的结果影响甚大。
+1. 从以上的时间复杂度也可以看出，当n和k较大时，计算代价很高，所以将该算法应用于大数据集时不是很理想。
+
 ### 参考文献
+[14-1] Jain A, Dubes R. Algorithms for clustering data. Prentice-Hall, 1988.
 
-## 第 15 章 奇异值分解
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-2] Aggarwal C C, Reddy C K. Data clustering: algorithms and applications. CRC Press, 2013.
 
-## 第 16 章 主成分分析
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-3] MacQueen J B. Some methods for classification and analysis of multivariate observations. Proceedings of the 5th Berkeley Symposium on Mathematical Statistics and Probability. Volume 1,pp.396-410. 1967.
 
+[14-4] Hastie T,Tibshirani R,Friedman J. [The Elements of Statistical Learning: DataMining,Inference,and Prediction](http://www.web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12_toc.pdf). Springer. 2001（中译本：统计学习基础——数据挖掘、推理与预测。范明，柴玉梅，昝红英等译。北京：电子工业出版社，2004）
 
-## 第 17 章 潜在语义分析
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-5] Pelleg D, Moore A W. X-means:  Extending K-means with Efficient Estimation of the Number of Clusters. Proceedings of ICML, pp. 727-734, 2000.
 
-## 第 18 章 概率潜在语义分析
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-6] Ester M, Kriegel H, Sander J, et al. [A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise](https://www.aaai.org/Papers/KDD/1996/KDD96-037.pdf). Proceedings of ACM SIGKDD, pp. 226-231, 1996.
 
-## 第 19 章 马尔科夫链蒙特卡罗法
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-7] Shi J, Malik J. Normalized cuts and image segmentation. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000,22(8):888-905.
 
-## 第 20 章 潜在狄利克雷分配
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+[14-8] Dhillon I S. Co-clustering documents and words using bipartite spectral graph partitioning. Proceedings of ACM SIGKDD, pp. 269-274. 2001.
 
-## 第 21 章 PageRank算法
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
-
-## 第 22 章 无监督学习方法总结
-### 附加知识
-### 参考文献
