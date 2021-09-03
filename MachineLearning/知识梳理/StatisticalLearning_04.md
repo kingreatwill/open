@@ -146,10 +146,129 @@ R是上三角矩阵（[right(upper) triangular matrix](https://en.jinzhao.wiki/w
 [15-5] Kolda T G,Bader B W. [Tensor decompositions and applications](https://old-www.sandia.gov/~tgkolda/pubs/pubfiles/SAND2007-6702.pdf). SIAM Review, 2009, 51(3):455-500.
 
 ## 第 16 章 主成分分析
+
 - **模型**：
 - **策略**：
 - **算法**：
+
 ### 附加知识
+
+
+#### 协方差
+协方差（[Covariance](https://en.jinzhao.wiki/wiki/Covariance)）的定义：
+
+$${\displaystyle \operatorname {cov} (X,Y)=\operatorname {E} {{\big [}(X-\operatorname {E} [X])(Y-\operatorname {E} [Y]){\big ]}}} \\ {\displaystyle \operatorname {cov} (X,Y)={\frac {1}{n}}\sum _{i=1}^{n}(x_{i}-E(X))(y_{i}-E(Y)).}$$
+
+性质：
+$${\displaystyle {\begin{aligned}\operatorname {cov} (X,Y)&=\operatorname {E} \left[\left(X-\operatorname {E} \left[X\right]\right)\left(Y-\operatorname {E} \left[Y\right]\right)\right]\\&=\operatorname {E} \left[XY-X\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]Y+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\right]\\&=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\\&=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right],\end{aligned}}}$$
+
+
+$${\displaystyle {\begin{aligned}\operatorname {cov} (X,a)&=0\\\operatorname {cov} (X,X)&=\operatorname {var} (X)\\\operatorname {cov} (X,Y)&=\operatorname {cov} (Y,X)\\\operatorname {cov} (aX,bY)&=ab\,\operatorname {cov} (X,Y)\\\operatorname {cov} (X+a,Y+b)&=\operatorname {cov} (X,Y)\\\operatorname {cov} (aX+bY,cW+dV)&=ac\,\operatorname {cov} (X,W)+ad\,\operatorname {cov} (X,V)+bc\,\operatorname {cov} (Y,W)+bd\,\operatorname {cov} (Y,V)\end{aligned}}}$$
+
+##### 协方差矩阵
+协方差矩阵（[Covariance matrix](https://en.jinzhao.wiki/wiki/Covariance_matrix)）的定义：
+
+##### 期望
+期望（[Expectation](https://en.jinzhao.wiki/wiki/Expected_value)）的定义：
+$${\displaystyle \operatorname {E} [X]=\sum _{i=1}^{k}x_{i}\,p_{i}=x_{1}p_{1}+x_{2}p_{2}+\cdots +x_{k}p_{k}.} \\ {\displaystyle p_{1}+p_{2}+\cdots +p_{k}=1,}$$
+
+性质：
+$${\displaystyle {\begin{aligned}\operatorname {E} [X+Y]&=\operatorname {E} [X]+\operatorname {E} [Y],\\\operatorname {E} [aX]&=a\operatorname {E} [X],\end{aligned}}}$$
+
+如果$X,Y$是相互独立的，那么${\displaystyle \operatorname {E} [XY]=\operatorname {E} [X]\operatorname {E} [Y]}$
+
+常数的期望等于常数本身$E(a) = a$
+
+$x_i$是随机变量$X$的一个实例，$X$服从什么分布，$x_i$也是服从什么分布的，所以$E(x_i) = E(X),D(x_i) = D(X)$
+
+$E(X)$为一阶矩
+$E(X^2)$为二阶矩
+
+原点矩（[raw moment](https://en.jinzhao.wiki/wiki/Moment_(mathematics))）和中心矩（[central moment](https://en.jinzhao.wiki/wiki/Central_moment)）
+$E(X^k)$为k阶远点矩，一阶原点矩是数学期望
+$E(X-E(X))^k$为k阶中心矩，二阶原点矩是方差（以$E(X)$为中心）
+
+##### 方差
+方差（[Variance](https://en.jinzhao.wiki/wiki/Variance)）的定义：
+$$\operatorname {Var} (X)=\operatorname {E} \left[(X-\mu )^{2}\right] \\ {\displaystyle \mu =\operatorname {E} [X]}$$
+
+性质：
+$D(X)$ 和 $Var(X)$ 都是表示方差；方差大于等于0；参数的方差为0；
+
+$\operatorname {Var} (X)=\operatorname {Cov} (X,X).$
+$${\displaystyle {\begin{aligned}\operatorname {Var} (X)&=\operatorname {E} \left[(X-\operatorname {E} [X])^{2}\right]\\[4pt]&=\operatorname {E} \left[X^{2}-2X\operatorname {E} [X]+\operatorname {E} [X]^{2}\right]\\[4pt]&=\operatorname {E} \left[X^{2}\right]-2\operatorname {E} [X]\operatorname {E} [X]+\operatorname {E} [X]^{2}\\[4pt]&=\operatorname {E} \left[X^{2}\right]-\operatorname {E} [X]^{2}\end{aligned}}}$$
+
+$${\displaystyle {\begin{aligned}\operatorname {Var} (X+Y)&=\operatorname {E} \left[(X+Y)^{2}\right]-(\operatorname {E} [X+Y])^{2}\\[5pt]&=\operatorname {E} \left[X^{2}+2XY+Y^{2}\right]-(\operatorname {E} [X]+\operatorname {E} [Y])^{2} \\&=\operatorname {E} \left[X^{2}\right]+2\operatorname {E} [XY]+\operatorname {E} \left[Y^{2}\right]-\left(\operatorname {E} [X]^{2}+2\operatorname {E} [X]\operatorname {E} [Y]+\operatorname {E} [Y]^{2}\right)\\[5pt]&=\operatorname {E} \left[X^{2}\right]+\operatorname {E} \left[Y^{2}\right]-\operatorname {E} [X]^{2}-\operatorname {E} [Y]^{2}\\[5pt]&=\operatorname {Var} (X)+\operatorname {Var} (Y)\end{aligned}}}$$
+
+$\operatorname {Var} (X+a)=\operatorname {Var} (X).$
+$\operatorname {Var} (aX)=a^{2}\operatorname {Var} (X).$
+$\operatorname {Var} (aX+bY)=a^{2}\operatorname {Var} (X)+b^{2}\operatorname {Var} (Y)+2ab\,\operatorname {Cov} (X,Y),$
+$\operatorname {Var} (aX-bY)=a^{2}\operatorname {Var} (X)+b^{2}\operatorname {Var} (Y)-2ab\,\operatorname {Cov} (X,Y),$
+
+${\displaystyle \operatorname {Var} (XY)=\operatorname {E} \left(X^{2}\right)\operatorname {E} \left(Y^{2}\right)-[\operatorname {E} (X)]^{2}[\operatorname {E} (Y)]^{2}.}$
+
+#### 有偏估计和无偏估计
+
+**参数估计**需要未知参数的估计量和一定置信度
+估计方法：用点估计估计一个值；用区间估计估计值的可能区间和是该值的可能性。
+估计的**偏差**的定义：
+$$bias(\hat{\theta}_m) = E(\hat{\theta}_m)-\theta$$
+$\theta$是数据分布真实参数（完美）
+$\theta$的估计量或统计量$\hat{\theta}_m$
+
+对估计值的评价标准：
+- 无偏性（Unbiasedness）：是估计量（不一定是样本均值）抽样分布的数学期望等与总体参数的真值。
+$m$为样本数量（抽样数量）
+如果$bias(\hat{\theta}_m) = 0$那么估计量$\hat{\theta}_m$被称为**无偏**(unbiased)的,意味着$E(\hat{\theta}_m) = \theta$
+如果$\lim_{m \to \infty}bias(\hat{\theta}_m) = 0$那么估计量$\hat{\theta}_m$被称为 **渐近无偏** (asymptotically unbiased) 的,意味着 $\lim_{m \to \infty}E(\hat{\theta}_m) = \theta$
+
+- 有效性（Efficiency）：是有时几组数据都是无偏的，但是此时有效数是方差最小的。
+如：样本$(x_1,...,x_m)$，其均值为$\mu$，方差为$\sigma^2$
+第一种情况：随机取一个样本$x_i$，那么$E(x_i)=E(x_1)=...=\mu$，方差为$D(x_i)=D(x_1)=...=\sigma^2$（因为每个值都有可能取到，所以随机取一个样本得期望就是均值，方差就是$\sigma^2$）
+第二种情况：取平均值$\bar{x}$,那么$E(\bar{x}) = E[\frac{1}{m}\sum_m x_i] =\frac{1}{m}E[\sum_mx_i] = \frac{1}{m}[\sum_mE(x_i)] = \frac{1}{m}[\sum_m \mu] = \mu$;
+$D(\bar{x}) = D(\frac{1}{m}\sum_m x_i) = \frac{1}{m^2}D(\sum_m x_i) = \frac{1}{m^2}\sum_m D(x_i) = \frac{1}{m^2} m\sigma^2 = \frac{\sigma^2}{m}$
+很明显第二种的方差小
+
+- 一致性（Consistency）：是指样本变大，估计越准。
+$\lim_{m \to \infty}P(|\hat{\theta}_m - \theta | \lt \epsilon) = 1$
+
+
+**无偏估计**
+例如样本均值的估计为$\hat{\mu} = \sum_{i=1}^m x_i$，真实的均值为$\mu$，如何知道这个估计是有偏还是无偏？根据定义判断偏差是否为0；$bias(\hat{\mu}) = E(\hat{\mu}) - \mu$
+这里的证明再有效性已经证明过了。
+
+**有偏估计**
+如果样本方差的估计为$\hat{\sigma}^2 = \frac{1}{m}\sum_{i=1}^m(x_i-\hat{\mu})^2$,$\hat{\mu} = \sum_{i=1}^m x_i$，那么偏差$bias(\hat{\sigma}^2) = E[\hat{\sigma}^2] - \sigma^2$不为0，就证明这个估计是有偏的。
+我们来求$E[\hat{\sigma}^2]$
+$$ E[\hat{\sigma}^2] = E[\frac{1}{m}\sum_{i=1}^m(x_i-\hat{\mu})^2] \\= E[\frac{1}{m}\sum_{i=1}^m(x_i^2- 2\hat{\mu}x_i +\hat{\mu}^2)] \\= E[\frac{1}{m}\sum_{i=1}^mx_i^2-\frac{1}{m}\sum_{i=1}^m 2\hat{\mu}x_i +\frac{1}{m}\sum_{i=1}^m\hat{\mu}^2]\\= E[\frac{1}{m}\sum_{i=1}^mx_i^2-2\hat{\mu}\frac{1}{m}\sum_{i=1}^m x_i +\frac{1}{m}\sum_{i=1}^m\hat{\mu}^2]\\= E[\frac{1}{m}\sum_{i=1}^mx_i^2-2\hat{\mu}\hat{\mu} +\hat{\mu}^2]= E[\frac{1}{m}\sum_{i=1}^mx_i^2-\hat{\mu}^2] \\= E[\frac{1}{m}\sum_{i=1}^mx_i^2]-E[\hat{\mu}^2] = \frac{1}{m}E[\sum_{i=1}^mx_i^2]-E[\hat{\mu}^2]$$
+
+$E[\hat{\mu}^2] = D(\hat{\mu}) + E(\hat{\mu})^2$
+而$D(\hat{\mu}) = \frac{1}{m} \sigma^2 和 E(\hat{\mu}) = \mu$在上面的有效性中已经证明了
+所以$E[\hat{\mu}^2] = \frac{1}{m} \sigma^2 + \mu^2$
+
+$E[{x_i}^2] = D(x_i) + E(x_i)^2$
+而$D(x_i) = \sigma^2 和 E(x_i) = \mu$在上面的有效性中已经证明了
+所以$ \frac{1}{m}E[\sum_{i=1}^mx_i^2] = \frac{1}{m}\sum_{i=1}^m E[x_i^2]= \sigma^2 + \mu^2$
+
+所以$E[\hat{\sigma}^2] = \sigma^2 + \mu^2 - (\frac{1}{m} \sigma^2 + \mu^2) =\frac{m-1}{m}\sigma^2$
+所以估计是有偏估计。
+
+所以方差的无偏估计为$\tilde{\sigma}^2 = \frac{1}{m-1}\sum_{i=1}^m(x_i-\hat{\mu})^2$
+
+当$\lim_{m \to \infty}\frac{1}{m}\sum_{i=1}^m(x_i-\hat{\mu})^2 = \frac{1}{m-1}\sum_{i=1}^m(x_i-\hat{\mu})^2$，也就是说有偏估计是一个渐近无偏估计。
+
+无偏估计不一定是最好的估计！
+
+---
+[Non-negative matrix factorization (NMF or NNMF)](https://en.jinzhao.wiki/wiki/Non-negative_matrix_factorization)
+
+[Factor analysis](https://en.jinzhao.wiki/wiki/Factor_analysis)
+
+[Independent component analysis](https://en.jinzhao.wiki/wiki/Independent_component_analysis)
+
+[Principal component analysis](https://en.jinzhao.wiki/wiki/Principal_component_analysis)
+[Sparse PCA](https://en.jinzhao.wiki/wiki/Sparse_PCA)
+
 ### 参考文献
 
 
