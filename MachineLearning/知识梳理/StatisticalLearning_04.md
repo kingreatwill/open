@@ -147,12 +147,45 @@ R是上三角矩阵（[right(upper) triangular matrix](https://en.jinzhao.wiki/w
 
 ## 第 16 章 主成分分析
 
+主成分分析（[Principal component analysis, PCA](https://en.jinzhao.wiki/wiki/Principal_component_analysis)）是一种常用的无监督学习方法，PCA利用正交变换把由线性相关变量表示的观测数据转换为少数几个由线性无关变量表示的数据，线性无关的变量称为主成分。
+
+主成分分析步骤如下：
+1. 对给定数据进行规范化，使得数据每一变量的平均值为0,方差为1（StandardScaler）。
+
+1. 对数据进行正交变换，原来由线性相关变量表示的数据,通过正交变换变成由若干个线性无关的新变量表示的数据。
+
+新变量是可能的正交变换中变量的方差的和(信息保存)最大的，方差表示在新变量上信息的大小。将新变量依次称为第一主成分、第二主成分等。
+
+> 我们通常表示一个样本是在实数空间中用正交坐标系表示，规范化的数据分布在原点附近
+
+主成分分析就是对数据进行正交变换，对原坐标系进行旋转变换，并将数据在新坐标系中表示；我们将选择方差最大的方向作为新坐标系的第一坐标轴。方差最大代表着在该方向上的投影（不就是在这个坐标系的坐标轴上的表示么）分散的最开。
+
+根据方差的定义，每个方向上方差就是在该坐标系（变换后的新坐标系）上表示所对应的维度的方差$var(a) = \frac{1}{N-1}\sum_{i=1}^N (a_i - \mu)^2$（用第一个方向来说明, N个样本的第一个维度组成向量$a$）；由于我们已经对数据进行的规范化，所以均值为0；$var(a) = \frac{1}{N-1}\sum_{i=1}^N (a_i)^2$ ;$a_i$就是第$i$个样本$x^{(i)}$与第一个方向的内积。
+
+我们的目的就是为了$var(a)$最大，我们要求的就是找到变换后的新坐标系，假设方差最大的方向的单位向量为$v_1$，数据集$T = \{x^{(1)},x^{(2)},...,x^{(N)}\} , x=\{x_1,...,x_m\}$，m维
+
+$$\max \frac{1}{N-1}\sum_{i=1}^N \braket{x^{(i)},v_1}^2 = \frac{1}{N-1}\sum_{i=1}^N \|{x^{(i)}}^{T}.v_1\|^2$$
+
 - **模型**：
 - **策略**：
 - **算法**：
 
 ### 附加知识
 
+#### 基变换
+我们常说的向量(3,2)其实隐式引入了一个定义：以 x 轴和 y 轴上正方向长度为 1 的向量为标准。向量 (3,2) 实际是说在 x 轴投影为 3 而 y 轴的投影为 2。注意投影是一个标量，所以可以为负。
+而x 轴和 y 轴的方向的单位向量就是(1,0)和(0,1)，所以(1,0)和(0,1)就是坐标系的基
+
+如：另一组基(单位向量)$(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$和$(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$
+那么(3,2)在该坐标系中如何表示呢？我们知道一个向量$a$在一个方向（$单位向量x$）上的投影可以用内积表示$\braket{a,x} = \|a\|.\|x\|\cos \theta = \|a\|\cos \theta$，其中$\theta$表示两个向量的夹角。
+
+$a=(3,2)$在$x=(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$这个方向的投影为$\braket{a,x} = \frac{5}{\sqrt{2}}$
+$a=(3,2)$在$y=(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$这个方向的投影为$\braket{a,y} = -\frac{1}{\sqrt{2}}$
+
+所以新坐标为$(\frac{5}{\sqrt{2}},-\frac{1}{\sqrt{2}})$
+
+我们也可以用矩阵来表示(x,y是行向量;a用列向量)
+$$\begin{bmatrix} x \\  y\end{bmatrix}\begin{bmatrix} 3 \\ 2\end{bmatrix} = \begin{bmatrix} \frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}} \\  -\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\end{bmatrix}\begin{bmatrix} 3 \\ 2\end{bmatrix} = \begin{bmatrix} \frac{5}{\sqrt{2}} \\  -\frac{1}{\sqrt{2}}\end{bmatrix}$$
 
 #### 协方差
 协方差（[Covariance](https://en.jinzhao.wiki/wiki/Covariance)）的定义：
@@ -166,7 +199,23 @@ $${\displaystyle {\begin{aligned}\operatorname {cov} (X,Y)&=\operatorname {E} \l
 $${\displaystyle {\begin{aligned}\operatorname {cov} (X,a)&=0\\\operatorname {cov} (X,X)&=\operatorname {var} (X)\\\operatorname {cov} (X,Y)&=\operatorname {cov} (Y,X)\\\operatorname {cov} (aX,bY)&=ab\,\operatorname {cov} (X,Y)\\\operatorname {cov} (X+a,Y+b)&=\operatorname {cov} (X,Y)\\\operatorname {cov} (aX+bY,cW+dV)&=ac\,\operatorname {cov} (X,W)+ad\,\operatorname {cov} (X,V)+bc\,\operatorname {cov} (Y,W)+bd\,\operatorname {cov} (Y,V)\end{aligned}}}$$
 
 ##### 协方差矩阵
-协方差矩阵（[Covariance matrix](https://en.jinzhao.wiki/wiki/Covariance_matrix)）的定义：
+协方差矩阵（[Covariance matrix](https://en.jinzhao.wiki/wiki/Covariance_matrix)）的定义：**对称的方阵**
+$X$是个随机向量（random vector），每个实体（随机变量）就是一个列向量，就是矩阵用列向量表示；
+$${\displaystyle \mathbf {X} =(X_{1},X_{2},...,X_{n})^{\mathrm {T} }}$$
+$X$的协方差矩阵用${\displaystyle \operatorname {K} _{\mathbf {X} \mathbf {X} }}$表示，矩阵中的每个元素${\displaystyle \operatorname {K} _{X_{i}X_{j}}=\operatorname {cov} [X_{i},X_{j}]=\operatorname {E} [(X_{i}-\operatorname {E} [X_{i}])(X_{j}-\operatorname {E} [X_{j}])]}$
+
+$${\displaystyle \operatorname {K} _{\mathbf {X} \mathbf {X} }={\begin{bmatrix}\mathrm {E} [(X_{1}-\operatorname {E} [X_{1}])(X_{1}-\operatorname {E} [X_{1}])]&\mathrm {E} [(X_{1}-\operatorname {E} [X_{1}])(X_{2}-\operatorname {E} [X_{2}])]&\cdots &\mathrm {E} [(X_{1}-\operatorname {E} [X_{1}])(X_{n}-\operatorname {E} [X_{n}])]\\\\\mathrm {E} [(X_{2}-\operatorname {E} [X_{2}])(X_{1}-\operatorname {E} [X_{1}])]&\mathrm {E} [(X_{2}-\operatorname {E} [X_{2}])(X_{2}-\operatorname {E} [X_{2}])]&\cdots &\mathrm {E} [(X_{2}-\operatorname {E} [X_{2}])(X_{n}-\operatorname {E} [X_{n}])]\\\\\vdots &\vdots &\ddots &\vdots \\\\\mathrm {E} [(X_{n}-\operatorname {E} [X_{n}])(X_{1}-\operatorname {E} [X_{1}])]&\mathrm {E} [(X_{n}-\operatorname {E} [X_{n}])(X_{2}-\operatorname {E} [X_{2}])]&\cdots &\mathrm {E} [(X_{n}-\operatorname {E} [X_{n}])(X_{n}-\operatorname {E} [X_{n}])]\end{bmatrix}}}$$
+
+**样本的协方差**（无偏）
+$$cov(X,Y) = \frac{1}{n - 1}\sum_{i=1}^{n}\left ( X_{i} - \bar{X} \right )\left ( Y_{i} - \bar{Y} \right )$$
+
+**样本的协方差矩阵**：
+$$cov[X_{n \times p}]_{n \times n} = cov[X_1,...,X_n] = \frac{1}{n-1}{K} _{\mathbf {X} \mathbf {X} }$$
+这里很多协方差函数都有参数，可以设置到底是按行向量还是列向量计算协方差。
+也有些地方是用$\frac{1}{n}$，就是无偏与有偏的区别。
+
+> $\text{np.cov}(X_{3 \times 2},rowvar = False)$输出$2 \times 2$（rowvar = False表示一列是一个特征）;默认是输出$3 \times 3$（默认是行表示一个特征）
+> $\text{np.cov}(x,y,z)$输出$3 \times 3$
 
 ##### 期望
 期望（[Expectation](https://en.jinzhao.wiki/wiki/Expected_value)）的定义：
@@ -266,7 +315,7 @@ $E[{x_i}^2] = D(x_i) + E(x_i)^2$
 
 [Independent component analysis](https://en.jinzhao.wiki/wiki/Independent_component_analysis)
 
-[Principal component analysis](https://en.jinzhao.wiki/wiki/Principal_component_analysis)
+
 [Sparse PCA](https://en.jinzhao.wiki/wiki/Sparse_PCA)
 
 ### 参考文献
