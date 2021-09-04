@@ -164,7 +164,9 @@ R是上三角矩阵（[right(upper) triangular matrix](https://en.jinzhao.wiki/w
 
 我们的目的就是为了$var(a)$最大，我们要求的就是找到变换后的新坐标系，假设方差最大的方向的单位向量为$v_1$，数据集$T = \{x^{(1)},x^{(2)},...,x^{(N)}\} , x=\{x_1,...,x_m\}$，m维
 
-$$\max \frac{1}{N-1}\sum_{i=1}^N \braket{x^{(i)},v_1}^2 = \frac{1}{N-1}\sum_{i=1}^N \|{x^{(i)}}^{T}.v_1\|^2$$
+$$\max \frac{1}{N-1}\sum_{i=1}^N \braket{x^{(i)},v_1}^2 = \frac{1}{N-1}\sum_{i=1}^N \|{x^{(i)}}^{T}.v_1\|^2 \\= \frac{1}{N-1}\sum_{i=1}^N ({x^{(i)}}^{T}.v_1)^T({x^{(i)}}^{T}.v_1) \\= \frac{1}{N-1}\sum_{i=1}^N v_1^T{x^{(i)}}{x^{(i)}}^{T}v_1 \\= \frac{1}{N-1} v_1^T \sum_{i=1}^N[{x^{(i)}}{x^{(i)}}^{T}]v_1$$
+设矩阵$X = [x^{(1)},x^{(2)},...,x^{(N)}]$那么$XX^T =\sum_{i=1}^N[{x^{(i)}}{x^{(i)}}^{T}]$，得到
+$$\max \frac{1}{N-1} v_1^T XX^T v_1 \\ s.t. \quad v_1^Tv_1 =1$$
 
 - **模型**：
 - **策略**：
