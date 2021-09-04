@@ -162,15 +162,48 @@ R是上三角矩阵（[right(upper) triangular matrix](https://en.jinzhao.wiki/w
 
 根据方差的定义，每个方向上方差就是在该坐标系（变换后的新坐标系）上表示所对应的维度的方差$var(a) = \frac{1}{N-1}\sum_{i=1}^N (a_i - \mu)^2$（用第一个方向来说明, N个样本的第一个维度组成向量$a$）；由于我们已经对数据进行的规范化，所以均值为0；$var(a) = \frac{1}{N-1}\sum_{i=1}^N (a_i)^2$ ;$a_i$就是第$i$个样本$x^{(i)}$与第一个方向的内积。
 
-我们的目的就是为了$var(a)$最大，我们要求的就是找到变换后的新坐标系，假设方差最大的方向的单位向量为$v_1$，数据集$T = \{x^{(1)},x^{(2)},...,x^{(N)}\} , x=\{x_1,...,x_m\}$，m维
+我们的目的就是为了$var(a)$最大，我们要求的就是找到变换后的新坐标系，假设方差最大的方向的单位向量为$v_1$，数据集$T = \{x^{(1)},x^{(2)},...,x^{(N)}\} , x=\{x_1,...,x_m\}^T$，m维
 
 $$\max \frac{1}{N-1}\sum_{i=1}^N \braket{x^{(i)},v_1}^2 = \frac{1}{N-1}\sum_{i=1}^N \|{x^{(i)}}^{T}.v_1\|^2 \\= \frac{1}{N-1}\sum_{i=1}^N ({x^{(i)}}^{T}.v_1)^T({x^{(i)}}^{T}.v_1) \\= \frac{1}{N-1}\sum_{i=1}^N v_1^T{x^{(i)}}{x^{(i)}}^{T}v_1 \\= \frac{1}{N-1} v_1^T \sum_{i=1}^N[{x^{(i)}}{x^{(i)}}^{T}]v_1$$
 设矩阵$X = [x^{(1)},x^{(2)},...,x^{(N)}]$那么$XX^T =\sum_{i=1}^N[{x^{(i)}}{x^{(i)}}^{T}]$，得到
 $$\max \frac{1}{N-1} v_1^T XX^T v_1 \\ s.t. \quad v_1^Tv_1 =1$$
+拉格朗日函数（参见[矩阵求导](https://en.jinzhao.wiki/wiki/Matrix_calculus#Scalar-by-vector_identities)）
+$$L = - \frac{1}{N-1} v_1^T XX^T v_1 + \lambda_1(v_1^Tv_1 - 1)$$
+$$\frac{\partial L}{\partial v_1} = -2\frac{1}{N-1}v_1^T XX^T + 2\lambda_1 v_1^T =0 $$
+$$\frac{1}{N-1}v_1^T XX^T = \lambda_1 v_1^T \implies  \frac{1}{N-1}XX^Tv_1 = \lambda_1 v_1$$
+其实$\frac{1}{N-1}XX^T$就是$X_{m \times N}$样本的协方差矩阵$\Sigma_{m \times m}$
+
+$\lambda_1$是$\Sigma_{m \times m}$的特征值，$v_1$(列向量)是其对应的特征值向量；
+
+接着求第二个主成分$v_2$,主成分是相互正交的
+$$\max \frac{1}{N-1} v_2^T XX^T v_2 \\ s.t. \quad v_2^Tv_2 =1 ,v_2^Tv_1 =0$$
+注意到
+$$v_1^T XX^T v_2 = \lambda_1 v_1^T v_2 = 0 = v_2^T XX^T v_1 =  \lambda_1 v_2^T v_1$$
+依次求得其它成分。
+
+最终有主成分组成的矩阵
+$V_{m \times m } = [v_1,v_2,...,v_m]$
+降维到k维就是一次取前k个向量组成的矩阵与X作乘积，那么降维后的数据：
+
+$$Y_{k \times N} = V_{m \times k }^T X_{m \times N}$$
+
+> 前面学习了SVD需要求$A^TA$的特征值分解;而PCA需要求$\frac{1}{N-1}XX^T$的特征值分解;
+> 只需要取$A = \frac{X^T}{\sqrt{N-1}}$就可以将PCA问题可以转化为SVD问题求解
+> 其实，PCA只与SVD的右奇异向量的压缩效果相同。
+> 一般 $X$ 的维度很高，$XX^T$ 的计算量很大，并且方阵的特征值分解计算效率不高，SVD除了特征值分解这种求解方式外，还有更高效且更准确的迭代求解法，避免了$XX^T$的计算
 
 - **模型**：
 - **策略**：
 - **算法**：
+
+**稀疏主成分分析**（[Sparse PCA](https://en.jinzhao.wiki/wiki/Sparse_PCA)）
+$${\displaystyle \Sigma ={\frac {1}{n-1}}X^{\top }X}$$
+$${\begin{aligned}\max \quad &v^{{T}}\Sigma v\\{\text{subject to}}\quad &\left\Vert v\right\Vert _{{2}}=1\\&\left\Vert v\right\Vert _{{0}}\leq k.\end{aligned}}$$
+
+如果k的维度=v的维度就是普通的PCA
+
+还没有看完
+https://web.stanford.edu/~hastie/Papers/sparsepc.pdf
 
 ### 附加知识
 
@@ -310,18 +343,14 @@ $E[{x_i}^2] = D(x_i) + E(x_i)^2$
 
 无偏估计不一定是最好的估计！
 
+### 参考文献
+
 ---
 [Non-negative matrix factorization (NMF or NNMF)](https://en.jinzhao.wiki/wiki/Non-negative_matrix_factorization)
 
 [Factor analysis](https://en.jinzhao.wiki/wiki/Factor_analysis)
 
 [Independent component analysis](https://en.jinzhao.wiki/wiki/Independent_component_analysis)
-
-
-[Sparse PCA](https://en.jinzhao.wiki/wiki/Sparse_PCA)
-
-### 参考文献
-
 
 ## 第 17 章 潜在语义分析
 - **模型**：
