@@ -119,7 +119,7 @@ $$U^{H} = U^{-1}$$
 > numpy.linalg中也有很多关于线性代数的方法：np.linalg.svd；更多[参考](https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.linalg.html)
 
 
-除了SVD和PCA，NMF以外，还有很多矩阵分解（[Matrix decomposition](https://en.jinzhao.wiki/wiki/Matrix_decomposition)）的方法。不过有很多分解是有要求的，比如必须是方阵（特征值分解就要求必须是方阵）等。
+除了SVD和PCA，还有很多矩阵分解（[Matrix decomposition](https://en.jinzhao.wiki/wiki/Matrix_decomposition)）的方法。不过有很多分解是有要求的，比如必须是方阵（特征值分解就要求必须是方阵）等。
 - **LU分解**（[LU decomposition](https://en.jinzhao.wiki/wiki/LU_decomposition)）
 $${\displaystyle A=LU.}$$
 L是下三角矩阵（[lower triangular matrix](https://en.jinzhao.wiki/wiki/Triangular_matrix)）
@@ -132,6 +132,13 @@ $$A = QR$$
 Q是正交矩阵（[Orthogonal Matrix](https://en.jinzhao.wiki/wiki/Orthogonal_matrix)）；
 R是上三角矩阵（[right(upper) triangular matrix](https://en.jinzhao.wiki/wiki/Triangular_matrix)）
 > 类似的可以定义QL、RQ 和 LQ，L是下三角矩阵（[left(lower) triangular matrix](https://en.jinzhao.wiki/wiki/Triangular_matrix)）
+
+
+- **非负矩阵分解**（[Non-negative matrix factorization (NMF or NNMF)](https://en.jinzhao.wiki/wiki/Non-negative_matrix_factorization)）
+$$\mathbf {A} =\mathbf {W} \mathbf {H} \,.$$
+将矩阵$A$分解为两个非负矩阵的乘积(近似相等)
+$$minimize  {\displaystyle \left\|V-WH\right\|_{F},} \\ s.t. W\geq 0,H\geq 0.$$
+这里有讲到[不同的表示方法对应这不同说法](https://en.jinzhao.wiki/wiki/Non-negative_matrix_factorization#Clustering_property)，这里有[不同的表示方法](https://scikit-learn.org/stable/modules/decomposition.html#nmf-with-a-beta-divergence)
 
 ### 参考文献
 
@@ -346,50 +353,232 @@ $E[{x_i}^2] = D(x_i) + E(x_i)^2$
 
 无偏估计不一定是最好的估计！
 
+#### 因子分析FA
+
+因子分析（[Factor analysis, FA](https://en.jinzhao.wiki/wiki/Factor_analysis)）
+
+每个变量都可以表示成公共因子的线性函数与特殊因子之和
+$$X_i = a_{i1}F_1 + a_{i2}F_2 +...++ a_{im}F_m  + \epsilon_i  ,(i=1,2,...,p) $$
+式中的F1，F2，…，Fm称为公共因子，εi称为Xi的特殊因子。该模型可用矩阵表示为：`X = AF+ε`
+X 表示原始数据，矩阵A称为因子载荷矩阵,F表示公共因子， ε是特殊因子
+aij称为因子“载荷”，是第i个变量在第j个因子上的负荷，如果把变量Xi看成m维空间中的一个点，则aij表示它在坐标轴Fj上的投影。
+$X = [X_1,X_2...X_p]^T$
+$A= \begin{bmatrix}
+a_{11} & a_{12} & ... & a_{1m} \\\\
+a_{21} & a_{22} & ... & a_{2m} \\\\
+... & ... & ... & ... \\\\
+a_{p1} & a_{p2} & ... & a_{pm} \\\\
+\end{bmatrix}$
+$F = [F_1,F_2...F_m]^T$
+$\epsilon = [\epsilon_1,\epsilon_2...\epsilon_p]^T$
+
+> 主成分分析，是分析维度属性的主要成分表示。
+> 因子分析，是分析属性们的公共部分的表示。
+> 二者均应用于高斯分布的数据，非高斯分布的数据采用独立成分分析ICA算法
+
+#### 独立成分分析ICA
+独立成分分析（[Independent component analysis, ICA](https://en.jinzhao.wiki/wiki/Independent_component_analysis)）
+
+`X=AS`
+`Y=WX=WAS  ， A = inv(W)`
+ICA(Independent Component Correlation Algorithm)是一种函数，X为n维观测信号矢量，S为独立的m（m<=n)维未知源信号矢量，矩阵A被称为混合矩阵。
+ICA的目的就是寻找解混矩阵W（A的逆矩阵），然后对X进行线性变换，得到输出向量Y。
+
+ICA是找出构成信号的相互独立部分(不需要正交)，对应高阶统计量分析。ICA理论认为用来观测的混合数据阵X是由独立元S经过A线性加权获得。
+ICA理论的目标就是通过X求得一个分离矩阵W，使得W作用在X上所获得的信号Y是独立源S的最优逼近，
+
+
+[独立成分分析 (ICA) 应用参考(Origin来做ICA分析)](https://www.bilibili.com/video/BV1w54y1G7bw)
+
+[独立成分分析 - 讲解的原理](https://www.bilibili.com/video/BV1mQ4y1M7wB)
+
+[Independent Component Analysis (ICA)](http://www.sci.utah.edu/~shireen/pdfs/tutorials/Elhabian_ICA09.pdf)
+
 ### 参考文献
+[16-1] 方开泰. 实用多元统计分析. 上海：华东师范大学出版社, 1989.
+[16-2] 夏绍玮，杨家本，杨振斌. 系统工程概论. 北京：清华大学出版社，1995.
+[16-3] Jolliffe I. Principal component analysis, Sencond Edition. John Wiley & Sons, 2002.
+[16-4] Shlens J. A tutorial on principal component analysis. arXiv preprint arXiv: 14016.1100, 2014.
+[16-5] Schölkopf B, Smola A, Müller K-R. Kernel principal component analysis. Artificial Neural Networks-ICANN'97. Springer, 1997:583-588.
+[16-6] Hardoon D R, Szedmak S, Shawe-Taylor J. Canonical correlation analysis: an overview with application to learning methods. Neural Computation, 2004, 16(12):2639-2664.
+[16-7] Candes E J, Li X D, Ma Y, et al. Robust Principal component analysis? Journal of the ACM(JACM), 2011, 58(3):11.
 
----
-[Non-negative matrix factorization (NMF or NNMF)](https://en.jinzhao.wiki/wiki/Non-negative_matrix_factorization)
 
-[Factor analysis](https://en.jinzhao.wiki/wiki/Factor_analysis)
-
-[Independent component analysis](https://en.jinzhao.wiki/wiki/Independent_component_analysis)
 
 ## 第 17 章 潜在语义分析
+我们先介绍下文本信息处理中的一些问题：
+1. 一词多义（多义现象）[polysemy](https://en.jinzhao.wiki/wiki/Polysemy)
+分类时：比如bank 这个单词如果和mortgage, loans, rates 这些单词同时出现时，bank 很可能表示金融机构的意思。可是如果bank 这个单词和lures, casting, fish一起出现，那么很可能表示河岸的意思。
+
+1. 一义多词（同义现象）[synonymy](https://en.jinzhao.wiki/wiki/Synonym)
+检索时：比如用户搜索“automobile”，即汽车，传统向量空间模型仅仅会返回包含“automobile”单词的页面，而实际上包含“car”单词的页面也可能是用户所需要的。
+
+> LSA能解决同义（语义相似度）问题：发现单词与主题之间的关系，这里主题是汽车；也能解决一定程度的多义问题，同一个单词在不同文档中表示不同话题
+
+潜在语义分析（[Latent semantic analysis, LSA](https://en.jinzhao.wiki/wiki/Latent_semantic_analysis)）旨在 解决这种方法不能准确表示语义的问题，试图从大量的文本数据中发现潜在的话题，以话题向量表示文本的语义内容，以话题向量空间的度量更准确地表示文本之间的语义相似度。
+
+文本doc集合$D = \{d_1,d_2,...,d_n\}$
+文本集合中出现的单词word集合$W = \{w_1,w_2,...,w_m\}$
+单词-文本矩阵(word-document matrix)
+$$X = \begin{bmatrix}
+   x_{11} & x_{12} & \cdots & x_{1n} \\
+   x_{21} & x_{22} & \cdots & x_{2n} \\
+   \vdots & \vdots &  & \vdots \\
+   x_{m1} & x_{m2} & \cdots & x_{mn} \\
+\end{bmatrix}$$
+每一列表示一个文本;$x_{ij}$表示单词$w_i$在文本$d_j$中出现的频数或权值。
+每个文本中不可能出现所有单词，所以该矩阵是稀疏矩阵。
+
+权值通常用**单词频率-逆文档频率**（[term frequency–inverse document frequency，TFIDF](https://en.jinzhao.wiki/wiki/Tf%E2%80%93idf)）表示，定义为：
+$${\displaystyle \text {tf-idf} (t,d,D)=\mathrm {tf} (t,d)\cdot \mathrm {idf} (t,D)}$$
+t为某一个单词（term，word）；d为某一个文档（document）；$x_{ij} = \text {tf-idf} (w_i,d_j,D)$;D表示文档集合，$N = |D|$表示文档总数；
+$${\displaystyle \mathrm {tf} (t,d)={\frac {f_{t,d}}{\sum _{t'\in d}{f_{t',d}}}} = \frac{t在d中出现的频数}{d中出现的所有单词的频数和}}$$
+$$ \mathrm{idf}(t, D) =  \log \frac{N}{|\{d \in D: t \in d\}| } = \log \frac{文档总数}{含有单词t的文本总数}$$
+
+直观上理解：
+一个单词在一个文本中出现的频数越高，这个单词在这个文本中的重要度（TF）就越高;
+一个单词在整个文档集合中出现的文档数越少，这个单词就越能表示其所在文档的特点，重要度（TDF）就越高；
+两种重要度的积，表示综合重要度。
+意思就是重要的单词在一个文本中出现的越多越重要，在越少的文本中出现越重要；如：的，可能在每个文档中出现都很多（TF大），并且每个文档都有出现过（TDF小），所以反而不重要了。
+
+**相似度(余弦相似度)** （[Cosine similarity](https://en.jinzhao.wiki/wiki/Cosine_similarity)）可以表示两个文本之间的语义相似度，越大越相似。
+我们知道训练点积${\displaystyle \mathbf {A} \cdot \mathbf {B} =\left\|\mathbf {A} \right\|\left\|\mathbf {B} \right\|\cos \theta }$,而相似度就是向量之间的夹角${\displaystyle {\text{similarity}}=\cos(\theta )={\mathbf {A} \cdot \mathbf {B}  \over \|\mathbf {A} \|\|\mathbf {B} \|}={\frac {\sum \limits _{i=1}^{n}{A_{i}B_{i}}}{{\sqrt {\sum \limits _{i=1}^{n}{A_{i}^{2}}}}{\sqrt {\sum \limits _{i=1}^{n}{B_{i}^{2}}}}}},}$
+
+文档用向量表示：$d_i = x_{.i} = \begin{bmatrix}  x_{1i} \\  x_{2i} \\ \vdots \\  x_{mi} \end{bmatrix}$
+那么$d_i,d_j$之间的相似度为
+$$\text{similarity} = \frac{x_{.i}\cdot x_{.j}}{\|x_{.i}\|\|x_{.j}\|}$$
+这里比较相似度用在了**单词向量空间**(word vector space model)中，有一个问题就是多义和同义现象，这时我们就可以考虑**话题向量空间**(topic vector space model):
+假设用一个向量表示文档，该向量的每一个分量表示一个话题，其数值为该话题在该文本中的权值，然后比较两个文档相似度（一般话题数远小于单词数）。 
+潜在语义分析就是构建这样一个话题向量空间的方法。
+
+单词-文本矩阵
+$$X = \begin{bmatrix}
+   x_{11} & x_{12} & \cdots & x_{1n} \\
+   x_{21} & x_{22} & \cdots & x_{2n} \\
+   \vdots & \vdots &  & \vdots \\
+   x_{m1} & x_{m2} & \cdots & x_{mn} \\
+\end{bmatrix}$$
+假设所有文档共含有k个话题，话题向量空间$T$(单词-话题矩阵)
+$$T = \begin{bmatrix}
+   t_{11} & t_{12} & \cdots & t_{1k} \\
+   t_{21} & t_{22} & \cdots & t_{2k} \\
+   \vdots & \vdots &  & \vdots \\
+   t_{m1} & t_{m2} & \cdots & t_{mk} \\
+\end{bmatrix}$$
+
+
+那么文档在话题向量空间的表示（话题-文本矩阵）
+$$Y = \begin{bmatrix}
+   y_{11} & y_{12} & \cdots & y_{1n} \\
+   y_{21} & y_{22} & \cdots & y_{2n} \\
+   \vdots & \vdots &  & \vdots \\
+   y_{k1} & y_{k2} & \cdots & y_{kn} \\
+\end{bmatrix}$$
+
 - **模型**：
+$$X_{m \times n} \approx T_{m \times k}Y_{k \times n}$$
+其中$X_{m \times n}$是单词-文本矩阵（就是单词向量空间）；$T_{m \times k}$是单词-话题矩阵（就是话题向量空间）；$Y_{k \times n}$是话题-文本矩阵，**就是我们想要的输出**；
+m单词总数，n是文档总数，k是话题总数；
 - **策略**：
+$$minimize \|X - TY\|^2$$
+可以看到跟NMF非常像，也可以用TruncatedSVD
 - **算法**：
-### 附加知识
+TruncatedSVD:
+$$X_{m \times n} \approx X_{rank(k)} = U_{m \times k}\Sigma_{k \times k} V^T_{n \times k}$$
+那么话题空间$T=U_k$以及本文在话题空间的表示$Y = \Sigma_kV_k^T$
+NMF:
+$$X \approx WH$$
+那么话题空间$T=W$以及本文在话题空间的表示$Y = H$
+
 ### 参考文献
+[17-1] Deerwester S C, Dumais S T, Landauer T K, et al. Indexing by latent semantic analysis. Journal of the Association for Information Science and Technology ,1990, 41: 391-407.
+[17-2] Landauer T K. Latent semantic analysis. In: Encyclopedia of Cognitive Science, Wiley, 2006.
+[17-3] Lee D D, Seung H S. [Learning the parts of objects by non-negative matrix factorization](http://www.cs.columbia.edu/~blei/fogm/2020F/readings/LeeSeung1999.pdf). Nature, 1999, 401(6755):788-791.
+[17-4] Lee D D, Seung H S. Algorithms for non-negative matrix factorization. Advances in Neural Information Processing Systems, 2001: 556-562.
+[17-5] Xu W, Liu X, Gong Y. Document clustering based on non-negative matrix factorization. Proceedings of the 26th Annual International ACM [SIGIR](https://en.jinzhao.wiki/wiki/Special_Interest_Group_on_Information_Retrieval) Conference in Research and Development in [Information Retrieval](https://en.jinzhao.wiki/wiki/Information_retrieval), 2003.
+[17-6] Wang Q, Xu J, Li H, et al. Regularized latent semantic indexing. Proceedings of the 34th International ACM [SIGIR](https://en.jinzhao.wiki/wiki/Special_Interest_Group_on_Information_Retrieval) Conference in Research and Development in [Information Retrieval](https://en.jinzhao.wiki/wiki/Information_retrieval), 2011.
+
 
 ## 第 18 章 概率潜在语义分析
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+> 生成模型，用隐变量表示话题
 
-## 第 19 章 马尔科夫链蒙特卡罗法
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+概率潜在语义分析（[Probabilistic latent semantic analysis, PLSA](https://en.jinzhao.wiki/wiki/Probabilistic_latent_semantic_analysis)）
 
-## 第 20 章 潜在狄利克雷分配
-- **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+概率有向图模型：
+![](https://img-blog.csdnimg.cn/2020050116564379.png)
+阴影圆表示观测变量，空心圆表示隐变量；箭头表示概率关系；方框表示多次重复，方框内的字母表示重复次数；
+文档d是一个观测变量；话题变量z是隐变量(话题的个数是超参数)；单词变量w是一个观测变量；
 
-## 第 21 章 PageRank算法
 - **模型**：
-- **策略**：
-- **算法**：
-### 附加知识
-### 参考文献
+单词集合$W = \{w_1,...,w_M\}$；
+文本集合$D=\{d_1,...,d_N\}$；
+话题集合$Z=\{z_1,...,z_K\}$，K是超参数；
+$$P(w,d) =P(d)P(w|d) = P(d)\sum_{z} P(w,z|d)=P(d)\sum _{z}P(z|d)P(w|z)$$
+$P(w,z|d) = P(z|d)P(w|z,d) = P(z|d)P(w|z)$即给定z的情况下w和d相互独立$w \perp d |z$
+$P(w,d)$是“每个单词-文本对(w,d)”的生成概率
+P(d)表示生成文本d的概率,
+条件概率分布P(z|d)表示文本d生成话题z的概率,
+条件概率分布P(w|z)表示话题z生成单词w 的概率。
+生成（成文本-单词共现数据）步骤：
+1. 依据概率分布P(d)，从文本集合中随机选取一个文本d，共生成N个文本；针对每个文本，执行下一步操作
+1. 在文本d给定条件下，依据条件概率分布P(z|d)，从话题集合中随机选取一个话题z，共生成L个话题，这里L是文本长度（每个话题生成一个单词，所以生成的文本d的长度是L）
+1. 在话题z给定条件下，依据概率分布P(w|z)，从单词集合中随机选取一个单词w
 
-## 第 22 章 无监督学习方法总结
-### 附加知识
+
+文本-单词共现数据(矩阵T)的生成概率为所有单词-文本对（w，d）的生成概率乘积，
+$$P(T) = \prod_{(w,d)} P(w,d)^{n(w,d)} \\ T = [n(w_i,d_j)] i=1,2,...,M; j=1,2,...,N$$
+$n(w,d)$表示（w，d）出现的次数;
+矩阵T的行表示单词，列表示文本，元素表示（w，d）出现的次数，用$n(w,d)$表示；
+单词-文本对 出现的总次数为N×L 
+
+> 这里假设文本的长度都是等长的，正常情况是第一个文本的长度是L1,...，第N个文本的长度是LN;
+> 正常情况下单词-文本对 出现的总次数为$\sum_{i=1}^N L_i$
+
+
+书中还讲到了等价的**共现模型（对称模型）**
+$$P(w,d)=\sum _{z}P(z)P(d|z)P(w|z)$$
+![](https://img-blog.csdnimg.cn/20200501171318598.png)
+
+- **策略**：
+$$ L =\log P(T) = \log \prod_{i=1}^{M} \prod_{j=1}^{N} {P\left(w_{i}, d_{j}\right)}^{n\left(w_{i}, d_{j}\right) } \\=\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log P\left(w_{i}, d_{j}\right) \\ =\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \left[\log P(d)+\log \sum_{k=1}^{K} P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)\right]$$
+因为logP(d)对需要求的模型参数无关，我们可以将其省去，于是得到：
+$$L =\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log \left[ \sum_{k=1}^{K} P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)\right]$$
+极大化，得到最优参数
+$$\arg \max _{\theta} L(\theta)=\arg \max _{\theta} \sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log \left[ \sum_{k=1}^{K} P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right) \right]$$
+
+- **算法**：
+EM：
+1. 现在进行E步，计算Q函数
+$$\arg \max _{\theta} L(\theta)=\arg \max _{\theta} \sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log \sum_{k=1}^{K} P\left(z_{k} \mid w_{i}, d_{j}\right) \frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}$$
+其中log右边为关于z的期望：
+$$E_z \left[\frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}\right] = \sum_{k=1}^{K} P\left(z_{k} \mid w_{i}, d_{j}\right) \frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}$$
+所以：
+$$\arg \max _{\theta} L(\theta)=\arg \max _{\theta} \sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log E_z \left[\frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}\right]$$
+根据jensen不等式，我们可以得到：
+$$\log E_{z}\left[\frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}\right] \geq E_{z}\left[\log \frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}\right]$$
+得到L(θ)的下界：
+$$\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right)  E_z \left[\log \frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{P\left(z_{k} \mid w_{i}, d_{j}\right)}\right] \\ =\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \sum_{k=1}^{K} P\left(z_{k} \mid w_{i}, d_{j}\right)\left[\log P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)-\log P\left(z_{k} \mid w_{i}, d_{j}\right)\right]$$
+最后，我们将K的累加项拆开，可以得到一项 $\sum_{k=1}^{K} P\left(z_{k} \mid w_{i}, d_{j}\right) \log P\left(z_{k} \mid w_{i}, d_{j}\right)$ ，这一项在M步中没有作用，可以省去，于是我们可以得到Q函数为：
+$$Q=\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \sum_{k=1}^{K} P\left(z_{k} \mid w_{i}, d_{j}\right) \log \left[P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)\right]$$
+需要优化的参数为 $P\left(z_{k} \mid w_{i}, d_{j}\right)，P\left(w_{i} \mid z_{k}\right)，  P\left(z_{k} \mid d_{j}\right)$ 这三项，在Q步中，第一项是变量，后两项是常量，于是可以由贝叶斯公式获得：
+$$P\left(z_{k} \mid w_{i}, d_{j}\right)=\frac{P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}{\sum_{k=1}^{K} P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)}$$
+
+1. M步
+在M步中，我们需要优化的是$P\left(w_{i} \mid z_{k}\right)，  P\left(z_{k} \mid d_{j}\right)$ 这两项（两项的乘积代表的完全数据，是未知变量），此时 $P\left(z_{k} \mid w_{i}, d_{j}\right)$为常量（代表不完全数据，是已知变量），极大化Q函数的M步可以使用拉格朗日乘子法来优化两个参数，即：
+$$\max Q \\s.t. \quad \begin{array}{l}\sum_{i=1}^{M} P\left(w_{i} \mid z_{k}\right)=1, \quad k=1,2, \cdots, K \\ \sum_{k=1}^{K} P\left(z_{k} \mid d_{j}\right)=1, \quad j=1,2, \cdots, N\end{array}$$
+根据上述约束条件构造拉格朗日函数：
+$$\Lambda=Q^{\prime}+\sum_{k=1}^{K} \tau_{k}\left(1-\sum_{i=1}^{M} P\left(w_{i} \mid z_{k}\right)\right)+\sum_{j=1}^{N} \rho_{j}\left(1-\sum_{k=1}^{K} P\left(z_{k} \mid d_{j}\right)\right)$$
+分别对两个参数$P\left(w_{i} \mid z_{k}\right)，  P\left(z_{k} \mid d_{j}\right)$求偏导，并令偏导数为0：
+$$\begin{array}{l}\sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) P\left(z_{k} \mid w_{i}, d_{j}\right)-\tau_{k} P\left(w_{i} \mid z_{k}\right)=0, \quad i=1,2, \cdots, M ; \quad k=1,2, \cdots, K \\ \sum_{i=1}^{M} n\left(w_{i}, d_{j}\right) P\left(z_{k} \mid w_{i}, d_{j}\right)-\rho_{j} P\left(z_{k} \mid d_{j}\right)=0, \quad j=1,2, \cdots, N ; \quad k=1,2, \cdots, K\end{array}$$
+求解上面的方程组，就可以得到M步的参数估计：
+$$P\left(w_{i} \mid z_{k}\right)=\frac{\sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) P\left(z_{k} \mid w_{i}, d_{j}\right)}{\sum_{m=1}^{M} \sum_{j=1}^{N} n\left(w_{m}, d_{j}\right) P\left(z_{k} \mid w_{m}, d_{j}\right)}$$
+$$P\left(z_{k} \mid d_{j}\right)=\frac{\sum_{i=1}^{M} n\left(w_{i}, d_{j}\right) P\left(z_{k} \mid w_{i}, d_{j}\right)}{n\left(d_{j}\right)}$$
+最后，在E步和M步间不停迭代，直到得到优化后的两个参数
+$n(d_j) = \sum_{i=1}^M n(w_i,d_j)$表示文本$d_j$中的单词个数，$n(w_i,d_j)$表示单词$w_i$在文本$d_j$中出现的次数。
+
 ### 参考文献
+[18-1] Hofmann T. Probabilistic Latent Semantic analysis. Proceedings of the Fifteenth Conference on Uncertainty in Artificial Intelligence, 1999: 289-296.
+[18-2] Hofmann T. [Probabilistic Latent Semantic Indexing](https://arxiv.org/abs/1301.6705). Proceedings of the 22nd Annual International ACM [SIGIR](https://en.jinzhao.wiki/wiki/Special_Interest_Group_on_Information_Retrieval) Conference in Research and Development in [Information Retrieval](https://en.jinzhao.wiki/wiki/Information_retrieval), 1999.
+[18-3] Hofmann T. [Unsupervised learning by probabilistic latent semantic analysis](https://link.springer.com/content/pdf/10.1023%2FA%3A1007617005950.pdf). Machine Learning, 2001, 42: 177-196.
+[18-4] Ding C, Li T, Peng W. On the equivalence between non-negative matrix factorization and probabilistic latent semantic indexing. Computational Statistics & Data Analysis, 2008, 52(8): 3913-3927.
+
