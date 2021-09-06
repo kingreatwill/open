@@ -197,13 +197,16 @@ $$Y_{k \times N} = V_{m \times k }^T X_{m \times N}$$
 - **算法**：
 
 **稀疏主成分分析**（[Sparse PCA](https://en.jinzhao.wiki/wiki/Sparse_PCA)）
-$${\displaystyle \Sigma ={\frac {1}{n-1}}X^{\top }X}$$
-$${\begin{aligned}\max \quad &v^{{T}}\Sigma v\\{\text{subject to}}\quad &\left\Vert v\right\Vert _{{2}}=1\\&\left\Vert v\right\Vert _{{0}}\leq k.\end{aligned}}$$
+稀疏 PCA 问题有许多不同的公式，以下是使用[Structured Sparse Principal Component Analysis](https://www.di.ens.fr/~fbach/sspca_AISTATS2010.pdf)以及[Online Dictionary Learning for Sparse Coding](https://www.di.ens.fr/sierra/pdfs/icml09.pdf)
 
-如果k的维度=v的维度就是普通的PCA
+$$\begin{split}(U^*, V^*) = \underset{U, V}{\operatorname{arg\,min\,}} & \frac{1}{2}
+             ||X-UV||_2^2+\alpha||V||_1 \\
+             \text{subject to } & ||U_k||_2 = 1 \text{ for all }
+             0 \leq k < n_{components}\end{split}$$
 
-还没有看完
-https://web.stanford.edu/~hastie/Papers/sparsepc.pdf
+> 意思就是求UV让其近似等于X，然后得到一个稀疏矩阵V
+> sklearn.decomposition.SparsePCA.components_ 就是其稀疏的矩阵$V$
+> SPCA的含义参考 [Matrix decomposition](https://github.com/kingreatwill/files/tree/main/ebook/Matrix%20decomposition%20.pdf)
 
 ### 附加知识
 
