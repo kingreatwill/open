@@ -156,6 +156,8 @@ $\forall \omega \in \Omega$,映射$X(.,\omega):T \to S$（其实就是固定$\om
 
 #### 傻傻分不清楚的马尔可夫
 
+> 参见书中第19章
+
 **马尔可夫性质**（[Markov property](https://en.jinzhao.wiki/wiki/Markov_property)）：
 如果**随机过程**（[Stochastic process](https://en.jinzhao.wiki/wiki/Stochastic_process)）的未来状态的条件概率分布（以过去和现在值为条件）仅取决于当前状态，则随机过程具有马尔可夫性质；与此属性的过程被认为是**马氏**或**马尔可夫过程**（[Markov process](https://en.jinzhao.wiki/wiki/Markov_chain)）。最著名的马尔可夫过程是**马尔可夫链**（[Markov chain](https://en.jinzhao.wiki/wiki/Markov_chain)）。**布朗运动**（[Brownian motion](https://en.jinzhao.wiki/wiki/Brownian_motion)）是另一个著名的马尔可夫过程。马尔可夫过程是不具备记忆特质的（[Memorylessness](https://en.jinzhao.wiki/wiki/Memorylessness)）
 
@@ -166,7 +168,7 @@ $${\displaystyle P(X_{n}=x_{n}\mid X_{n-1}=x_{n-1},\dots ,X_{0}=x_{0})=P(X_{n}=x
 $${\displaystyle {\begin{aligned}&\Pr(X_{n}=x_{n}\mid X_{n-1}=x_{n-1},X_{n-2}=x_{n-2},\dots ,X_{1}=x_{1})\\={}&\Pr(X_{n}=x_{n}\mid X_{n-1}=x_{n-1},X_{n-2}=x_{n-2},\dots ,X_{n-m}=x_{n-m}){\text{ for }}n>m\end{aligned}}}$$
 
 **时间齐次**（Time-homogeneous）
-$${\displaystyle \Pr(X_{n+1}=x\mid X_{n}=y)=\Pr(X_{n}=x\mid X_{n-1}=y)}$$
+$${\displaystyle \Pr(X_{t+s}=x\mid X_{t+s-1}=y)=\Pr(X_{t}=x\mid X_{t-1}=y)}$$
 
 **马尔可夫模型**（[Markov model](https://en.jinzhao.wiki/wiki/Markov_model)）：
 .|System state is fully observable |System state is partially observable
