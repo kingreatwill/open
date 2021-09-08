@@ -225,6 +225,9 @@ $$(x_1^{(1)}, x_2^{(1)}) \to  (x_1^{(1)}, x_2^{(2)}) \to (x_1^{(2)}, x_2^{(2)}) 
 - **策略**：
 - **算法**：
 ### 附加知识
+#### 指数族分布
+前面讲贝叶斯估计时有提到**共轭先验**（[Conjugate prior](https://en.jinzhao.wiki/wiki/Conjugate_prior)）
+
 ### 参考文献
 [20-1] Blei D M, Ng A Y, Jordan M I. Latent Dirichlet allocation. In: Advances in Neural Information Processing Systems 14. MIT Press, 2002.
 [20-2] Blei D M, Ng A Y, Jordan M I. Latent Dirichlet allocation. Journal of Machine Learning Research, 2003, 3:933-1022.
