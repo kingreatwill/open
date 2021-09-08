@@ -221,23 +221,120 @@ $$(x_1^{(1)}, x_2^{(1)}) \to  (x_1^{(1)}, x_2^{(2)}) \to (x_1^{(2)}, x_2^{(2)}) 
 
 
 ## 第 20 章 潜在狄利克雷分配
+> 生成概率模型
+
+潜在狄利克雷分配（[latent Dirichlet allocation，LDA](https://en.jinzhao.wiki/wiki/Latent_Dirichlet_allocation)），作为基于 贝叶斯学习的话题模型，是潜在语义分析、概率潜在语义分析的扩展，于2002年由Blei等提出。LDA在文本数据挖掘、图像处理、生物信息处理等领域被广泛使用。
+
+
+![https://scikit-learn.org/stable/modules/decomposition.html#latentdirichletallocation](https://scikit-learn.org/stable/_images/lda_model_graph.png)
+
+> 上图来源以及解释：“[Stochastic Variational Inference](http://www.columbia.edu/~jwp2128/Papers/HoffmanBleiWangPaisley2013.pdf)” M. Hoffman, D. Blei, C. Wang, J. Paisley, 2013
+
+> 在介绍概率图时有讲过各种图形代表的含义，这里的图更全面也很标准：实心圆点代表超参数；箭头代表因果关系；方框代表重复；方框右下角的字母代表重复次数；无阴影圆圈代表隐变量；阴影圆圈代表观测变量；
+
+假设每个文本由话题的一个多项分布表示，每个话题由单词的一个多项分布表示；
+特别假设文本的话题分布的先验分布是狄利克雷分布，话题的单词分布的先验分布也是狄利克雷分布。
+
+
+$D$个文档组成的语料库（corpus），每个文档有$N_d$个单词；
+假设整个语料库有$K$个话题（sklearn参数n_components）；方框代表重复抽样；
+$w_{d,n}$表示第$d$个文档中的第$n$个单词（注意整个集合（圆圈）是一个概率分布）；
+$N_d$表示第$d$个文档中的单词个数；
+$Z_{d,n}$表示第$d$个文档中的第$n$个话题；
+$\theta_d$表示第$d$个文档的话题分布（document topic distribution）参数；
+$\beta_k$表示第$k$个话题的单词分布（topic word distribution）参数；
+$\eta$（sklearn参数topic_word_prior）
+$\alpha$（sklearn参数doc_topic_prior）
+
+$${\displaystyle {\begin{aligned}{\boldsymbol {\beta }}_{k=1\dots K}&\sim \operatorname {Dirichlet} _{V}({\boldsymbol {\eta }})\\{\boldsymbol {\theta }}_{d=1\dots D}&\sim \operatorname {Dirichlet} _{K}({\boldsymbol {\alpha }})\\z_{d=1\dots D,n=1\dots N_{d}}&\sim \operatorname {Categorical} _{K}({\boldsymbol {\theta }}_{d})\\w_{d=1\dots D,n=1\dots N_{d}}&\sim \operatorname {Categorical} _{V}({\boldsymbol {\beta }}_{z_{dn}})\end{aligned}}}$$
+
+其中$V$单词总数
+
+每个doc的每个word，都是通过一定概率选择了某个topic并从这个topic中以一定概率选择了某个word。
+具体生成（doc）过程：
+1. 根据超参数$\eta, K$生成$K$个topic的word分布的参数$\beta_k$
+$\beta_k ∼ Dir(\eta) \text{ for } k \in \{1,...,K\}$
+1. For each doc $d \in \{1,...,D\}$
+    ---$\theta_d ∼ Dir(\alpha)$ 每个doc的topic分布
+    ---For each word $n \in \{1,...,N_d\}$
+    ------$Z_{d,n} ∼ Mult(\theta_d)$ 确定一个topic
+    ------$w_{d,n} ∼ Mult(\beta_{Z_{d,n}})$ 根据topic生成word($Z_{d,n} \in \{1,...,K\}$)
+
+
+
+
+Var| Type |Conditional|Param|Relevant Expectations
+---|---|---|---|---
+$Z_{d,n}$|Multinomial|$\log \theta_{dk} + \log \beta_{k,w_{d,n}}$|$\phi_{dn}$|$E[Z^k_{dn}]=\phi_{dn}^k$
+$\theta_d$|Dirichlet|$\alpha + \sum_{n=1}^{N_d} Z_{dn}$|$\gamma_d$|$E[\log \theta_{dk}]=\Psi(\gamma_{dk}) -\sum_{j=1}^K \Psi(\gamma_{dj})$
+$\beta_k$|Dirichlet|$\eta + \sum_{d=1}^D\sum_{n=1}^{N_d} Z_{dn}^k w_{dn}$|$\lambda_k$|$$E[\log \beta_{kv}]=\Psi(\lambda_{kv}) -\sum_{y=1}^V \Psi(\lambda_{ky})$
+
+
 - **模型**：
+后验分布posterior distribution：
+$$p(z, \theta, \beta |w, \alpha, \eta) =  \frac{p(z, \theta, \beta, w|\alpha, \eta)}{p(w|\alpha, \eta)}$$
+已知$w, \alpha, \eta$，求$z, \theta, \beta$
 - **策略**：
+假设三个隐变量
 - **算法**：
+Gibbs采样和变分EM算法
+
+### 参考文章
+[spark-ml LDA](/BigData/spark-ml-source-analysis/聚类/LDA/lda.md)
+
+[徐亦达机器学习：Variational Inference for LDA 用变分推断做LDA【2015年版-全集】](https://www.bilibili.com/video/BV1pp411d7US)
+
+[主题模型-潜在狄利克雷分配-Latent Dirichlet Allocation(LDA)](https://www.bilibili.com/video/BV1t54y127U8)
+
+
 ### 附加知识
+#### Dirichlet Process 狄利克雷过程
+[徐亦达机器学习：Dirichlet Process 狄利克雷过程【2015年版-全集】](https://www.bilibili.com/video/BV1Tp411R7Sf)
+
 #### 指数族分布
+参考：[概率分布](../图解数学/概率分布.md)
+
+**狄利克雷分布**（[Dirichlet distribution](https://en.jinzhao.wiki/wiki/Dirichlet_distribution)）
+
+**单纯形**（[Simplex](https://en.jinzhao.wiki/wiki/Simplex)）
+
+```mermaid
+graph LR
+    x1["狄利克雷分布"]
+    x2["多项分布"]
+    x3["类别分布"]
+    x4["贝塔分布"]
+    x5["二项分布"]
+    x6["伯努利分布"]
+    x1--"共轭先验"-->x2
+    x1--"包含"-->x4
+    x2--"包含"-->x3
+    x2--"包含"-->x5
+    x3--"包含"-->x6
+    x4--"共轭先验"-->x5
+    x5--"包含"-->x6
+```
+
 前面讲贝叶斯估计时有提到**共轭先验**（[Conjugate prior](https://en.jinzhao.wiki/wiki/Conjugate_prior)）
+如果先验分布 prior 和后验分布 posterior 属于同一分布簇，则 prior 称为 likehood 的共轭先验。
+
+$$\underbrace{p(\theta|data)}_{\text{后验分布posterior distribution}} = \frac{\overbrace{p(data|\theta)}^{\text{似然(数据)likelihood }}\overbrace{p(\theta)}^{\text{ 先验分布prior distribution}}}{\underbrace{p(data)}_{\text{证据evidence}}}$$
+
+常见的共轭先验：
+- likehood 为高斯分布，prior 为高斯分布，则 posterior 也为高斯分布。
+- likehood 为伯努利分布（二项式分布），prior 为 beta 分布，则 posterior 也为 beta 分布。
+- likehood 为多项式分布，prior 为 Dirichlet 分布（beta 分布的一个扩展），则 posterior 也为 Dirichlet（狄利克雷）分布。beta 分布可以看作是 dirichlet 分布的特殊情况。
 
 ### 参考文献
 [20-1] Blei D M, Ng A Y, Jordan M I. Latent Dirichlet allocation. In: Advances in Neural Information Processing Systems 14. MIT Press, 2002.
-[20-2] Blei D M, Ng A Y, Jordan M I. Latent Dirichlet allocation. Journal of Machine Learning Research, 2003, 3:933-1022.
+[20-2] Blei D M, Ng A Y, Jordan M I. [Latent Dirichlet allocation](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf). Journal of Machine Learning Research, 2003, 3:933-1022.
 [20-3] Griffiths T L, Steyvers M. Finding scientific topics. Proceedings of the National Academy of Science, 2004, 101:5288-5235.
 [20-4] Steyvers M, Griffiths T. Probabilistic topic models. In: Landauer T, McNamara D, Dennis S, et al. (eds.) Handbook of Latent Semantic Analysis, Psychology Press, 2014.
 [20-5] Gregor Heinrich. Parameter estimation for text analysis. Techniacl note, 2004.
 [20-6] Blei D M, Kucukelbir A, McAuliffe J D. Variational inference: a review for statisticians. Journal of the American Statistical Association, 2017, 112(518).
 [20-7] Newman D, Smyth P, Welling M, Asuncion A U. Distributed inference for latent Dirichlet allocation. In: Advances in Neural Information Processing Systems, 2008: 1081-1088
 [20-8] Porteous I, Newman D, Ihler A, et al. Fast collapsed Gibbs sampling for latent Dirichlet allocation. Proceedings of the 14th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2008: 569-577.
-[20-9] Hoffiman M, Bach F R, Blei D M. Online learning for latent Dirichlet allocation. In: Advances in Neural Information Processing Systems, 2010:856-864.
+[20-9] Hoffiman M, Bach F R, Blei D M. [Online learning for latent Dirichlet allocation](https://papers.nips.cc/paper/2010/file/71f6278d140af599e06ad9bf1ba03cb0-Paper.pdf). In: Advances in Neural Information Processing Systems, 2010:856-864.
 
 ## 第 21 章 PageRank算法
 - **模型**：
@@ -257,6 +354,16 @@ $$(x_1^{(1)}, x_2^{(1)}) \to  (x_1^{(1)}, x_2^{(2)}) \to (x_1^{(2)}, x_2^{(2)}) 
 
 ## 第 22 章 无监督学习方法总结
 ### 附加知识
+#### 线性代数
+[【完整版-麻省理工-线性代数】全34讲+配套教材](https://www.bilibili.com/video/BV1ix411f7Yp)
+
+[中科大-凸优化](https://www.bilibili.com/video/BV1Jt411p7jE)
+
+#### 徐亦达机器学习
+EM， MCMC，HMM， LDA, 变分推断， 指数族分布等讲的都非常好，[B站](https://space.bilibili.com/97068901/)
+#### 【机器学习】白板推导系列
+强烈建议看完，[B站](https://space.bilibili.com/327617676)
+
 ### 参考文献
 [22-1] Singh A P, Gordon G J. A unified view of matrix factorization models. In: Daelemans W, Goethals B, Morik K,(eds) Machine Learning and Knowledge Discovery in Databases. ECML PKDD 2008. Lecture Notes in Computer Science, vol 5212. Berlin: Springer, 2008.
 [22-2] Wang Q, Xu J, Li H, et al. Regularized latent semantic indexing:a new approach to large-scale topic modeling. ACM Transactions on Information Systems (TOIS), 2013, 31(1), 5.
