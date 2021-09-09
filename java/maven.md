@@ -14,3 +14,13 @@ export PATH=${PATH}:${MAVEN_HOME}/bin
 ```
 记得执行source /etc/profile使环境变量生效。
 输入mvn -version 返回版本信息则安装正常。
+
+## docker maven
+```
+#maven:3.6.3-jdk-8 
+#maven:3.6.3-jdk-8-alpine
+FROM maven:3.6.3-jdk-8-alpine
+COPY settings.xml /usr/share/maven/ref/
+
+-v $HOME/.m2:/root/.m2
+```

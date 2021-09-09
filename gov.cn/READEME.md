@@ -60,4 +60,6 @@ http://pnr.sz.gov.cn/
 
 [全球各个国家商标数据库地址](https://mp.weixin.qq.com/s/EDuFpmGo0AV1tlBF6UMqbA)
 
+[蒲标网-中国药典-蒲公英APP](http://db.ouryao.com/)
+
 

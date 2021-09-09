@@ -139,3 +139,41 @@ panic: main.MyString("hello")
 $ go install golang.org/dl/gotip
 $ gotip download
 ```
+
+# go1.17
+[草案](https://github.com/godghdai/deployment-logs/blob/main/Go/Type%20Parameters%20Proposal.md)
+使用是 -G 标识做为泛型的开关。
+
+计划如下：
+
+-G=0：继续使用传统的类型检查器。
+-G=1：使用 type2，但不支持泛型。
+-G=2：使用 type2，支持泛型。
+在完成 types2 的错误和现有的错误的开发协调后，计划在 Go 1.17 将 -G=1 设置为默认值。
+
+未来也许可以在 Go 1.18 中放弃对 -G=0 的支持，这样后续在默认启用 -G=2 上会变得更容易。
+```
+package main
+
+import (
+    "fmt"
+)
+
+type Addable interface {
+type int, int8, int16, int32, int64,
+    uint, uint8, uint16, uint32, uint64, uintptr,
+    float32, float64, complex64, complex128,
+    string
+}
+
+func add[T Addable](a, b T) T {
+    return a + b
+}
+
+func main() {
+    fmt.Println(add(1,2))
+    fmt.Println(add("1", "2"))
+} 
+```
+`go run -gcflags=all=-G=3 main.go`
+`go run -gcflags=-G=3 main.go`

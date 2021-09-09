@@ -34,6 +34,10 @@ Sun公司初始设立的开发Java源码组织，是组织也是开源JDK的名�
 
 # JDK
 
+[Java 8—Java 10 特性详解](https://mp.weixin.qq.com/s/mOKbrEkY4xmPilCSwjMwaA)
+
+[Java 11—Java 17特性详解](https://mp.weixin.qq.com/s/SVleHYFQeePNT7q67UoL4Q)
+
 版本号|名称|中文名|发布日期
 --|--|--|--
 JDK 1.1.4|Sparkler|宝石|1997-09-12
@@ -2732,9 +2736,43 @@ http://openjdk.java.net/projects/jdk/15/
 > 385:[Deprecate RMI Activation for Removal](https://openjdk.java.net/jeps/385)
 ## JDK16
 http://openjdk.java.net/projects/jdk/16/
+
+
+> 338:[Vector API (Incubator)](https://openjdk.java.net/jeps/338)
+> 347:[Enable C++14 Language Features](https://openjdk.java.net/jeps/347)
+> 357:[Migrate from Mercurial to Git](https://openjdk.java.net/jeps/357)
+> 369:[Migrate to GitHub](https://openjdk.java.net/jeps/369)
+> 376:[ZGC: Concurrent Thread-Stack Processing](https://openjdk.java.net/jeps/376)
+> 380:[Unix-Domain Socket Channels](https://openjdk.java.net/jeps/380)
+> 386:[Alpine Linux Port](https://openjdk.java.net/jeps/386)
+> 387:[Elastic Metaspace](https://openjdk.java.net/jeps/387)
+> 388:[Windows/AArch64 Port](https://openjdk.java.net/jeps/388)
+> 389:[Foreign Linker API (Incubator)](https://openjdk.java.net/jeps/389)
+> 390:[Warnings for Value-Based Classes](https://openjdk.java.net/jeps/390)
+> 392:[Packaging Tool](https://openjdk.java.net/jeps/392)
+> 393:[Foreign-Memory Access API (Third Incubator)](https://openjdk.java.net/jeps/393)
+> 394:[Pattern Matching for instanceof](https://openjdk.java.net/jeps/394)
+> 395:[Records](https://openjdk.java.net/jeps/395)
+> 396:[Strongly Encapsulate JDK Internals by Default](https://openjdk.java.net/jeps/396)
+> 397:[Sealed Classes (Second Preview)](https://openjdk.java.net/jeps/397)
+
 ## JDK17
 http://openjdk.java.net/projects/jdk/17/
 
+>306:[Restore Always-Strict Floating-Point Semantics](https://openjdk.java.net/jeps/306)
+>356:[Enhanced Pseudo-Random Number Generators](https://openjdk.java.net/jeps/356)
+>382:[New macOS Rendering Pipeline](https://openjdk.java.net/jeps/382)
+>391:[macOS/AArch64 Port](https://openjdk.java.net/jeps/391)
+>398:[Deprecate the Applet API for Removal](https://openjdk.java.net/jeps/398)
+>403:[Strongly Encapsulate JDK Internals](https://openjdk.java.net/jeps/403)
+>406:[Pattern Matching for switch (Preview)](https://openjdk.java.net/jeps/406)
+>407:[Remove RMI Activation](https://openjdk.java.net/jeps/407)
+>409:[Sealed Classes](https://openjdk.java.net/jeps/409)
+>410:[Remove the Experimental AOT and JIT Compiler](https://openjdk.java.net/jeps/410)
+>411:[Deprecate the Security Manager for Removal](https://openjdk.java.net/jeps/411)
+>412:[Foreign Function & Memory API (Incubator)](https://openjdk.java.net/jeps/412)
+>414:[Vector API (Second Incubator)](https://openjdk.java.net/jeps/414)
+>415:[Context-Specific Deserialization Filters](https://openjdk.java.net/jeps/415)
 
 ## 9-11移除内容
 - com.sun.awt.AWTUtilities。
