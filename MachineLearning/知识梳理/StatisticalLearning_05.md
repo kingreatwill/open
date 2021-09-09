@@ -224,8 +224,11 @@ $$(x_1^{(1)}, x_2^{(1)}) \to  (x_1^{(1)}, x_2^{(2)}) \to (x_1^{(2)}, x_2^{(2)}) 
 > 生成概率模型
 
 潜在狄利克雷分配（[latent Dirichlet allocation，LDA](https://en.jinzhao.wiki/wiki/Latent_Dirichlet_allocation)），作为基于 贝叶斯学习的话题模型，是潜在语义分析、概率潜在语义分析的扩展，于2002年由Blei等提出。LDA在文本数据挖掘、图像处理、生物信息处理等领域被广泛使用。
+书中的模型以及参数（推导参考[Latent Dirichlet allocation](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)以及书中的推导）
+![](https://www.researchgate.net/publication/326140642/figure/fig1/AS:644129876873217@1530583938944/Graphical-model-of-latent-Dirichlet-allocation-LDA.png)
+![](https://www.researchgate.net/profile/Diego-Buenano-Fernandez/publication/339368709/figure/fig1/AS:860489982689280@1582168207260/Schematic-of-LDA-algorithm.png)
 
-
+sklearn中的模型以及参数（下面的介绍以此图为准）
 ![https://scikit-learn.org/stable/modules/decomposition.html#latentdirichletallocation](https://scikit-learn.org/stable/_images/lda_model_graph.png)
 
 > 上图来源以及解释：“[Stochastic Variational Inference](http://www.columbia.edu/~jwp2128/Papers/HoffmanBleiWangPaisley2013.pdf)” M. Hoffman, D. Blei, C. Wang, J. Paisley, 2013
@@ -275,7 +278,21 @@ $\beta_k$|Dirichlet|$\eta + \sum_{d=1}^D\sum_{n=1}^{N_d} Z_{dn}^k w_{dn}$|$\lamb
 $$p(z, \theta, \beta |w, \alpha, \eta) =  \frac{p(z, \theta, \beta, w|\alpha, \eta)}{p(w|\alpha, \eta)}$$
 已知$w, \alpha, \eta$，求$z, \theta, \beta$
 - **策略**：
-假设三个隐变量
+假设三个隐变量$(z, \theta, \beta)$分别由独立分布$(\phi,\gamma,\lambda)$形成，则联合的变分分布为$q(z, \theta, \beta |\phi,\gamma,\lambda)$，变分推断的目的就是用$q(z, \theta, \beta |\phi,\gamma,\lambda)$来近似$p(z, \theta, \beta |w, \alpha, \eta)$
+$$(\phi^*,\gamma^*,\lambda^*) = \argmin_{\phi,\gamma,\lambda} KL(q\|p)$$
+直接求解不好求，我们来看下证据（数据）
+$$\log p(w|\alpha, \eta) = \log p(z, \theta, \beta, w|\alpha, \eta) - \log p(z, \theta, \beta |w, \alpha, \eta) \\= \log \frac{p(z, \theta, \beta, w|\alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}  - \log \frac{ p(z, \theta, \beta |w, \alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}$$
+等式两边同时对$q(z, \theta, \beta |\phi,\gamma,\lambda)$求期望
+$$LHS = E_q[\log p(w|\alpha, \eta)] = \int_{z, \theta, \beta} q(z, \theta, \beta |\phi,\gamma,\lambda) \log p(w|\alpha, \eta) dz d\theta d\beta = \log p(w|\alpha, \eta)$$
+$$RHS = E_q[\log \frac{p(z, \theta, \beta, w|\alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}  - \log \frac{ p(z, \theta, \beta |w, \alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}] \\= \int_{z, \theta, \beta} q(z, \theta, \beta |\phi,\gamma,\lambda) \log \frac{p(z, \theta, \beta, w|\alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}dz d\theta d\beta - \int_{z, \theta, \beta} q(z, \theta, \beta |\phi,\gamma,\lambda) \log \frac{ p(z, \theta, \beta |w, \alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)} dz d\theta d\beta \\= \int_{z, \theta, \beta} q(z, \theta, \beta |\phi,\gamma,\lambda) \log \frac{p(z, \theta, \beta, w|\alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}dz d\theta d\beta + KL(q\|p)$$
+令
+$$ELBO = \int_{z, \theta, \beta} q(z, \theta, \beta |\phi,\gamma,\lambda) \log \frac{p(z, \theta, \beta, w|\alpha, \eta)}{q(z, \theta, \beta |\phi,\gamma,\lambda)}dz d\theta d\beta \\=   E_{q}[\log\:p(w,z,\theta,\beta|\alpha,\eta)] - E_{q}[\log\:q(z, \theta, \beta)]$$
+
+$$\log\: P(w | \alpha, \eta) \geq L(w,\phi,\gamma,\lambda) \overset{\triangle}{=}
+  E_{q}[\log\:p(w,z,\theta,\beta|\alpha,\eta)] - E_{q}[\log\:q(z, \theta, \beta)]$$
+我们希望最大证据，而KL最小，所以最终是：
+$$\max ELBO$$
+接着就用EM算法
 - **算法**：
 Gibbs采样和变分EM算法
 
@@ -337,10 +354,22 @@ $$\underbrace{p(\theta|data)}_{\text{后验分布posterior distribution}} = \fra
 [20-9] Hoffiman M, Bach F R, Blei D M. [Online learning for latent Dirichlet allocation](https://papers.nips.cc/paper/2010/file/71f6278d140af599e06ad9bf1ba03cb0-Paper.pdf). In: Advances in Neural Information Processing Systems, 2010:856-864.
 
 ## 第 21 章 PageRank算法
+[PageRank](https://en.jinzhao.wiki/wiki/PageRank)是衡量网站页面重要性的一种方式。PageRank 的工作原理是计算页面链接的数量和质量，以确定对网站重要性的粗略估计。
+目前，PageRank 并不是 Google 用于对搜索结果进行排序的唯一算法，但它是该公司使用的第一个算法，并且是最著名的算法。
+
+PageRank 是一种链接分析算法，它为超链接文档集（例如万维网）的每个元素分配数字权重，目的是“衡量”其在集合中的相对重要性。该算法可以应用于具有相互引用和引用的任何实体集合。它分配给任何给定元素$E$的数字权重称为$E$的PageRank，表示为 ${\displaystyle PR(E).}$。
+
+一个状态转移矩阵的平稳分布就对应各个元素的PageRank
+
 - **模型**：
+$$MR = R$$
+含有n个节点的有向图是强连通且非周期的，在其基础上定义随机游走模型（即一阶马尔可夫链具有平稳分布）；
+$M=[m_{ij}]_{n \times n}$ 是马尔可夫链的状态转移矩阵，其中的元素 $m_{ij}$表示节点$j$跳到节点$i$的概率；$R$是平稳分布向量，称为这个有向图的PageRank
 - **策略**：
+$$\lim_{t \to \infty} M^tR_0 = R$$
 - **算法**：
-### 附加知识
+迭代，幂法，代数算法
+
 ### 参考文献
 [21-1] Page L, Brin S, Motwani R, et al. The PageRank citation ranking: bringing order to the Web. Stanford University, 1999.
 [21-2] Rajaraman A, Ullman J D. Mining of massive datasets. Cambridge University Press, 2014.
@@ -353,6 +382,38 @@ $$\underbrace{p(\theta|data)}_{\text{后验分布posterior distribution}} = \fra
 [21-9] Gyöngyi Z, Garcia-Molina H, Pedersen J. Combating Web spam with TrustRank. Proceedings of VLDB Conference, 2004:576-587.
 
 ## 第 22 章 无监督学习方法总结
+
+无监督学习方法之间的关系
+![](https://img-blog.csdnimg.cn/20200601152905315.png)
+
+无监督学习方法的特点
+.|方法|模型|策略|算法
+---|---|---|---|---
+聚类| 层次聚类|聚类树|类内样本距离最小|启发式算法
+聚类|k均值聚类|k中心聚类|样本与类中心距离最小|迭代算法
+聚类|高斯混合模型|高斯混合模型|似然函数最大|EM算法
+降维|PCA|低维正交空间|方差最大|SVD
+话题分析|LSA|矩阵分解模型|平方损失最小|SVD
+话题分析|NMF|矩阵分解模型|平方损失最小|非负矩阵分解
+话题分析|PLSA|PLSA模型|似然函数最大|EM算法
+话题分析|LDA|LDA模型|后验概率估计|吉布斯抽样，变分推理
+图分析|PageRank|有向图上的马尔可夫链|平稳分布求解|幂法
+
+含有隐变量概率模型的学习方法的特点
+算法|基本原理|收敛性|收敛速度|实现难易度|适合问题
+---|---|---|---|---|---
+EM算法| 迭代计算、后验概率估计|收敛于局部最优|较快|容易|简单模型
+变分推理|迭代计算、后验概率近似估计|收敛于局部最优|较慢|较复杂|复杂模型
+吉布斯抽样|随机抽样、后验概率估计|以概率收敛于全局最优|较慢|容易|复杂模型
+
+
+矩阵分解的角度看话题模型(B表示[Bregman散度](https://en.jinzhao.wiki/wiki/Bregman_divergence))
+方法|一般损失函数$B(D\|UV)$|矩阵$U$的约束条件|矩阵$V$的约束条件
+---|---|---|---
+LSA| $\|D-UV\|^2_F$|$U^TU = I$|$VV^T=\Lambda^2$
+NMF| $\|D-UV\|^2_F$|$u_{mk} \geq 0$|$u_{kn} \geq 0$
+PLSA|$\sum_{mn}d_{mn} \log\frac{d_{mn}}{(UV)_{mn}}$| $U^T1=1 \\ u_{mk} \geq 0$ |$V^T1=1 \\ u_{kn} \geq 0$
+
 ### 附加知识
 #### 线性代数
 [【完整版-麻省理工-线性代数】全34讲+配套教材](https://www.bilibili.com/video/BV1ix411f7Yp)
