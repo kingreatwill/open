@@ -22,5 +22,5 @@ export PATH=${PATH}:${MAVEN_HOME}/bin
 FROM maven:3.6.3-jdk-8-alpine
 COPY settings.xml /usr/share/maven/ref/
 
--v $HOME/.m2:/root/.m2
+# -v $HOME/.m2:/root/.m2 # Maven都会在下载依赖项之前查看本地目录.
 ```
