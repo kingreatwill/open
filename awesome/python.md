@@ -178,6 +178,27 @@ VizTracer 是一个这样的工具，它通过跟踪和可视化 Python 代码�
 
 [Understand your Python code with this open source visualization tool](https://opensource.com/article/20/11/python-code-viztracer)
 
+### Cyberbrain
+https://github.com/laike9m/Cyberbrain
+
+重新定义python的debug
+可视化
+
+### Debug Visualizer
+https://github.com/hediet/vscode-debug-visualizer
+
+vs code插件，支持多种语言
+- JavaScript/TypeScript/
+- Dart/Flutter
+- Go
+- Python 
+- C#
+- PHP 
+- Java 
+- C++
+- Swift 
+- Rust 
+
 ## jupyter
 ### lux
 https://github.com/lux-org/lux

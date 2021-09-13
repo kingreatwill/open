@@ -294,3 +294,27 @@ git remote add origin git@codechina.csdn.net:kingreatwill/open.git
 git push -u origin --all
 git push -u origin --tags
 ```
+
+# git 查看最近或某一次提交修改的文件列表相关命令整理
+```
+git log --name-status #每次修改的文件列表, 显示状态
+git log --name-only #每次修改的文件列表
+git log --name-only -1 #查看最近一次提交的文件列表
+git log --stat #每次修改的文件列表, 及文件修改的统计
+git log --pretty=format:"" -1 # --pretty=format:"" 格式化commit message 这里什么都不显示
+git log --pretty=format:"" --name-only -1 # --pretty=format:"" 格式化commit message 这里什么都不显示
+
+git whatchanged #每次修改的文件列表
+git whatchanged --stat #每次修改的文件列表, 及文件修改的统计
+
+git show #显示最后一次的文件改变的具体内容
+git show -5 #显示最后 5 次的文件改变的具体内容
+git show <commit-id> #显示某个 commitid 改变的具体内容
+git show --name-only #显示最后一次的文件列表
+git show --pretty=format:"" --name-only #显示最后一次的文件列表 # --pretty=format:"" 格式化commit message 这里什么都不显示
+git show --pretty=format:"" --name-only <commit-id> #显示某个 commitid 的文件列表
+
+git diff --name-only <commit-id-1> <commit-id-2> #比较两次commit修改的文件列表
+
+
+```
