@@ -1,6 +1,6 @@
 据可视化是 Business Intelligence(简称 BI)中的核心功能
 
-老牌的 Tableau, Qilk，新生代的 Looker，国内的 FineBI,微软的 Power BI 等等
+老牌的 Tableau, Qilk, microstrategy，新生代的 Looker，国内的 FineBI,微软的 Power BI 等等
 
 [数据可视化的开源方案: Superset vs Redash vs Metabase (二)](https://zhuanlan.zhihu.com/p/33164124)
 [数据可视化的开源方案: Superset vs Redash vs Metabase (一)](https://zhuanlan.zhihu.com/p/33164027)
@@ -13,6 +13,29 @@ https://superset.incubator.apache.org/
 
 支持数据库：https://superset.incubator.apache.org/#databases
 支持 Spark SQL
+```
+docker run -d -p 8080:8088 --name superset apache/superset
+```
+1. Setup your local admin account
+```
+linux
+$ docker exec -it superset superset fab create-admin \
+               --username admin \
+               --firstname Superset \
+               --lastname Admin \
+               --email admin@superset.com \
+               --password admin
+
+winddows
+docker exec -it superset superset fab create-admin     --username admin      --firstname Superset    --lastname Admin   --email admin@superset.com     --password admin
+```
+1. Migrate local DB to latest
+`$ docker exec -it superset superset db upgrade`
+1. Load Examples
+`$ docker exec -it superset superset load_examples`
+1. Setup roles
+`$ docker exec -it superset superset init`
+1. Login and take a look -- navigate to http://localhost:8080/login/ -- u/p: [admin/admin]
 
 非官方
 docker pull amancevice/superset:0.36.0

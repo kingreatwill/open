@@ -43,6 +43,12 @@
 - 联机分析处理 OLAP（On-Line Analytical Processing）
   OLAP 是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。
 
+OLAP（On-line Analytical Processing，联机分析处理）根据存储数据的方式不同可以分为ROLAP、MOLAP、HOLAP。ROLAP表示基于关系数据库存储的OLAP实现（Relational OLAP），以关系数据库为核心,以关系型结构进行多维数据的表示和存储；MOLAP表示基于多维数据存储的OLAP实现（Multidimensional OLAP）；HOLAP表示基于混合数据存储的OLAP实现（Hybrid OLAP），如低层用关系型数据库存储，高层是多维数组存储。接下来主要介绍基于关系型数据库的ROLAP的建模原理。
+
+ROLAP将多维数据库中的表分为两类：事实表和维度表。事实表用于存储维度关键字和数值类型的事实数据，一般是围绕业务过程进行设计，例如：销售事实表，一般来存储用户在什么时间、地点购买了产品，销量和销售额等信息。维度表用于存储维度的详细数据，例如销售事实表中存储了产品维度的ID，产品维度表中存储产品的名称、品牌信息，两者通过产品ID进行关联。
+
+ROLAP根据事实表、维度表间的关系，又可分为星型模型(Star Schema)、雪花模型(Snowflake Schema)。
+
 ### OLAP 开源引擎
 
 目前市面上主流的开源 OLAP 引擎包含不限于：Hive、Hawq、Presto、Kylin、Impala、Sparksql、Druid、Clickhouse、Greeplum 等，可以说目前没有一个引擎能在数据量，灵活程度和性能上做到完美，用户需要根据自己的需求进行选型。
