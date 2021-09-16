@@ -553,6 +553,11 @@ Windows效率神器(不仅仅是搜索)
 
 #### everything
 everything 也支持全文本文档搜索
+#### anytxt
+支持快速**文件内容搜索**，支持结果预览和高亮显示
+据说比everything还快
+https://anytxt.net/
+
 #### Listary Pro
 好用的搜索工具
 #### Recoll 全文搜索工具
@@ -569,6 +574,12 @@ https://github.com/koniu/recoll-webui
 #### Archivarius 3000
 全文本文档搜索
 #### 其它
+
+- filelocator pro
+- Textseek
+- BBdoc
+- 闪电
+
 https://alternativeto.net/software/recoll/?platform=windows
 - DocFetcher 开源
 - Search Monkey 免费
