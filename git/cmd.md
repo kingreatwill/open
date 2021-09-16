@@ -286,6 +286,15 @@ git add .
 git commit -m "Initial commit"
 git push -u origin master
 ```
+`git add xx`命令可以将xx文件添加到暂存区，如果有很多改动可以通过 
+`git add -A .`来一次添加所有改变的文件。
+注意 `-A` 选项后面还有一个句点。
+`git add -A`表示添加所有内容， 
+`git add .` 表示添加新文件和编辑过的文件不包括删除的文件; 
+`git add -u` 表示添加编辑或者删除的文件，不包括新添加的文件
+`git clone https://git.coding.net/gamedaybyday/HelloGit.git D:\Git\HelloGit`
+`git pull https://zhangsan:123456@github.com`
+
 推送现有的 Git 仓库
 ```
 cd existing_repo
@@ -318,3 +327,6 @@ git diff --name-only <commit-id-1> <commit-id-2> #比较两次commit修改的文
 
 
 ```
+# git pull在指定位置的本地仓库
+`git --work-tree=E:/xxx --git-dir=E:/xxx/.git pull`
+`git -C "E:/xxx" pull`
