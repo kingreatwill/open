@@ -295,6 +295,27 @@ git push -u origin master
 `git clone https://git.coding.net/gamedaybyday/HelloGit.git D:\Git\HelloGit`
 `git pull https://zhangsan:123456@github.com`
 
+git clone 带用户名密码的形式但包含@等特殊符号无法正常解析
+```
+正常使用git clone 的方式
+
+git clone https：//remote
+
+使用带用户名密码的方式（可以避免后续每次都要输入用户名密码）
+
+git clone https://[username]:[password]@/remote
+
+但有时会出现用户名或密码中含有像@这样的特殊符号，而不能被正常解析
+
+我们需要通过下面方式进行重新编码
+
+String c = URLEncoder.encode("@","utf-8");
+System.out.println(c);
+
+console -> %40
+所有这样就可以知道@在url中需要写成%40的形式
+```
+
 推送现有的 Git 仓库
 ```
 cd existing_repo

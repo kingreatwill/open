@@ -164,6 +164,14 @@ docker pause :暂停容器中所有的进程。
 
 docker unpause :恢复容器中所有的进程。
 
+```
+# 删除 exited container
+# docker rm -v $(docker ps -a -q -f status=exited)
+#  删除没用的 image # dangling=true 按照中文来翻译的话，意思是指『悬空』的 image，我理解成『没有被使用的 image』。
+# docker rmi $(docker images -f "dangling=true" -q)
+#  删除没用的 volumn
+# docker volume rm $(docker volume ls -qf dangling=true)
+```
 
 
 docker ps
@@ -191,10 +199,10 @@ docker update --restart=always `<CONTAINER ID>`
 { "insecure-registries":["harbor.xxx.com"] }
 不添加报错，https证书问题
 
-2. docker login -u user harbor.xxx.com
+2. docker login -u user -p pwd harbor.xxx.com
 or docker login harbor.xxx.com
 
-git bash: winpty docker login -u demo images.lingcb.net
+git bash: winpty docker login -u demo harbor.xxx.com
 需要添加winpty
 
 
