@@ -139,6 +139,10 @@ https://github.com/IgnaceMaes/MaterialSkin
 https://github.com/Raiffeisen-DGTL/ViennaNET
 https://github.com/jamesmh/coravel
 
+## 自动更新
+https://github.com/ravibpatel/AutoUpdater.NET
+https://github.com/iccfish/FSLib.App.SimpleUpdater
+
 ## 扩展
 ### String
 https://github.com/axuno/SmartFormat
