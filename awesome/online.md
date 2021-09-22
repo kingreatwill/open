@@ -14,6 +14,12 @@ online
 
 - [TiDB](http://play.pingcap.com/) - TiDB in your browser! [code](https://github.com/pingcap/tidb)
 
+### dbdoc
+把你的数据库生成文档，并且可以在线使用和分享。
+
+你可以使用简单的 DSL 语言将数据表结构生成可视化文档：https://dbdocs.io/
+
+
 ## OS
 
 - [JSLinux](https://bellard.org/jslinux/) - [JSLinux](http://jslinux.org/) Run Linux or other Operating Systems in your browser! [open](https://github.com/levskaya/jslinux-deobfuscated)
@@ -85,7 +91,10 @@ https://repl.it/languages/csharp
 - [webssh](https://github.com/huashengdun/webssh)
 - https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run
 - VS Codespaces, GithubCodespaces
+- 这是一个在线的 VIM 指令交互工具，你可以在上面练习很多的 VIM 快捷键。在这里一边解释如何使用，一边让你直接操作，实在是方便：https://www.openvim.com/
 
+### 协作办公
+明道、teambition、http://Tower.im、Worktile、trello、SeaTable、Airtable
 
 ## Excel
 https://github.com/mengshukeji/Luckysheet

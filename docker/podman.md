@@ -5,6 +5,9 @@ Podman 可以管理和运行任何符合 OCI（Open Container Initiative）规�
 Podman 官网地址：https://podman.io/
 Podman 项目地址：https://github.com/containers/libpod
 
+> 类似的：https://github.com/lima-vm/lima
+> https://github.com/containerd/nerdctl
+
 ## Podman 和docker不同之处？
 
 - docker 需要在我们的系统上运行一个守护进程(docker daemon)，而podman 不需要
