@@ -55,6 +55,72 @@ RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 ENV LANG zh_CN.utf8
 ```
 
+### 使用windows字体
+> TTC是几个TTF合成的字库，安装后字体列表中会看到两个以上的字体。
+> 虽然都是字体文件，但.ttc是microsoft开发的新一代字体格式标准，可以使多种truetype字体共享同一笔划信息，有效地节省了字体文件所占空间，增加了共享性。
+> python 加载 fontforge 模块实现ttc字体文件 转换 为ttf字体文件，解析出每一个压缩字库中的ttf字库
+安装 fontforge
+`apt-get install python-fontforge`
+使用
+`split_ttc_font_to_ttf.py Droid.ttc`
+参考程序
+```
+import sys
+import fontforge
+
+fonts = fontforge.fontsInFile(sys.argv[1])
+print(fonts)
+
+
+for fontName in fonts:
+    font = fontforge.open('%s(%s)'%(sys.argv[1], fontName))
+    font.generate('%s.ttf'%fontName)
+    font.close()
+```
+或者
+https://github.com/yhchen/ttc2ttf
+
+
+
+https://stackoverflow.com/questions/60934639/install-fonts-in-linux-container-for-asp-net-core
+
+使用mscorefonts（没有中文字体）
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+
+#Add these two lines
+RUN sed -i'.bak' 's/$/ contrib/' /etc/apt/sources.list
+RUN apt-get update; apt-get install -y ttf-mscorefonts-installer fontconfig
+
+WORKDIR /app
+EXPOSE 80
+```
+
+或者 fonts-liberation（没有中文字体）
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+
+#Add these two lines for fonts-liberation instead
+RUN apt-get update; apt-get install -y fontconfig fonts-liberation
+RUN fc-cache -f -v
+
+WORKDIR /app
+EXPOSE 80
+```
+
+也可以把windows字体拷贝过去安装
+https://wiki.debian.org/Fonts#Adding_fonts
+
+```
+RUN apt-get -y install fontconfig
+COPY /fonts ~/.fonts
+COPY /fonts /usr/shared/fonts
+COPY /fonts /usr/share/fonts/truetype
+# refresh system font cache
+RUN fc-cache -f -v
+```
+> fc-list :lang=zh
+
 ## CentOS8
 
 ```
