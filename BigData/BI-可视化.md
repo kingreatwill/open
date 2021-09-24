@@ -5,6 +5,7 @@
 [数据可视化的开源方案: Superset vs Redash vs Metabase (二)](https://zhuanlan.zhihu.com/p/33164124)
 [数据可视化的开源方案: Superset vs Redash vs Metabase (一)](https://zhuanlan.zhihu.com/p/33164027)
 
+![](img/bi-vs.png)
 ## Superset
 
 Superset 最初是由 Airbnb 的数据团队开源的，目前已进入 Apache Incubator(孵化器)，算是明星级的开源项目。
@@ -68,15 +69,39 @@ https://github.com/pentaho/pentaho-platform
 
 https://github.com/TuiQiao/CBoard
 
-## stimulsoft Dashboards
-
-商业，付费
-
 ## Grafana
 
 目前已经支持绝大部分常用的时序数据库
 
+## stimulsoft Dashboards
+
+商业，付费
+
+## 自定义报表
+- [Stimulsoft](https://www.stimulsoft.com/en)
+- [ReportServer](https://reportserver.net/en/download/)
+- [pentaho](http://www.pentaho.com/download/)
+- [SpagoBI](http://www.spagobi.org/product/)
+支持Portal、report、OLAP、QbE、ETL、dashboard、文档管理、元数据管理、数据挖掘与地理信息分析。
+- [BIRT](http://www.eclipse.org/birt/)
+- [KNIME](https://github.com/knime)
+数据集成，数据处理，数据分析和数据勘探平台
+- Seal-Report
+https://github.com/ariacom/Seal-Report
+- JasperReports
+https://github.com/TIBCOSoftware/jasperreports
+- OpenReports
+
+
+
 ## 其它
+
+- openI http://openi.sourceforge.net
+- jaspersoft http://www.jaspersoft.com/
+- spagoBI http://spago.eng.it
+- pentaho http://www.pentaho.com/
+
+[DataEase](https://github.com/dataease) 应该是最接近 Tableau 的开源软件。
 
 [16 个免费和开源商业智能工具](https://blog.csdn.net/qiansg123/article/details/80129400)
 

@@ -376,6 +376,7 @@ go tool cover -mode=count -var=CoverageVariableName xxxx.go
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 
+[面部检测库](https://github.com/esimov/pigo)
 
 ## 流程图
 https://github.com/blushft/go-diagrams

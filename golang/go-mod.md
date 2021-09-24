@@ -87,6 +87,14 @@ We do this by using our good old friend go get:
 
 version 1.0.1. go get -u will not get version 2.0.0.
 
+
+### Go1.17 go get变化
+go get 只用来下载普通的包,不做编译和安装（以前go get 有一个 flag -d，指示 go get 下载对应的包，但不做编译和安装。将来的版本，-d 会成为默认行为，这样会更快。此外，因为不编译，即使目标依赖在特定平台编译报错，go get 也能正常执行完。）
+
+go install 安装可执行程序
+
+废弃 -insecure；使用 GOINSECURE 环境变量
+
 ## Module dependencies
 ![](../img/go/module_gopath.png)
 
@@ -215,7 +223,7 @@ index.golang.org-一个索引，用于提供新模块版本的供稿， proxy.go
 - 'limit'：返回列表的最大长度。默认值= 2000，最大值= 2000，例如 https://index.golang.org/index?limit=10
 
 
-## 
+## go mod
 go mod why
 go mod why github.com/coreos/etcd
 go mod graph 依赖输出
@@ -264,4 +272,5 @@ go list -u -f '{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Vers
 
 安装go-mod-upgrade
 ![](img/go-mod-upgrade.jpg)
+
 

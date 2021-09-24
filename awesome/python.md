@@ -145,6 +145,9 @@ Pandas Profiling、Sweetviz和PandasGUI都很不错，旨在简化我们的EDA�
 #### Altair
 
 ## Python神器
+### 收集
+[轻量级 Python 流水线工具Mara Pipelines](https://github.com/mara/mara-pipelines)
+
 ### 为Python应用程序创建调用图可视化
 https://github.com/gak/pycallgraph
 https://pycallgraph.readthedocs.io/en/develop/examples/regexp_ungrouped.html#regexp-ungrouped-example
@@ -183,6 +186,11 @@ https://github.com/laike9m/Cyberbrain
 
 重新定义python的debug
 可视化
+### pyinstrument
+堆栈分析器
+https://github.com/joerick/pyinstrument
+
+Python 代码性能分析库，优化 Python 代码的工具。支持 Python 3.7+ 能够分析异步代码，仅需一条命令即可显示具体到函数的耗时，快速指出影响代码性能的地方，帮助提高代码性能让你的代码快人一步。
 
 ### Debug Visualizer
 https://github.com/hediet/vscode-debug-visualizer
