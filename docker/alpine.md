@@ -1,3 +1,85 @@
+[TOC]
+# 制作 Docker 镜像时调整时区
+
+## Alpine
+[Setting the timezone](https://wiki.alpinelinux.org/wiki/Setting_the_timezone)
+```
+ENV TZ Asia/Shanghai
+
+RUN apk add tzdata && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && apk del tzdata
+```
+## Debian
+Debian 基础镜像 中已经安装了 tzdata 包，我们可以将以下代码添加到 Dockerfile 中：
+```
+ENV TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
+```
+## Ubuntu
+Ubuntu 基础镜像中没有安装了 tzdata 包，因此我们需要先安装 tzdata 包。
+
+我们可以将以下代码添加到 Dockerfile 中。
+```
+ENV TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN apt update \
+    && apt install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
+```
+## CentOS
+CentOS 基础镜像 中已经安装了 tzdata 包，我们可以将以下代码添加到 Dockerfile 中。
+```
+ENV TZ Asia/Shanghai
+
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone
+```
+
+# 中文环境
+
+## Debian
+```
+RUN apt-get update && apt-get install -y locales
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+# RUN rm -rf /var/lib/apt/lists/*
+ENV LANG zh_CN.utf8
+```
+
+## CentOS8
+
+```
+RUN dnf -y install langpacks-zh_CN.noarch \
+	&& echo "LANG=\"zh_CN.UTF-8\"" > /etc/locale.conf \
+	&& echo "LC_ALL=\"zh_CN.UTF-8\"" >> /etc/locale.conf
+ENV LANG zh_CN.UTF-8
+```
+
+# dotnet 设置中文环境，上海时区，以及绘图
+```
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+RUN apt-get update && apt-get install -y libgdiplus locales
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+ENV LANG zh_CN.utf8
+
+ENV TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
+```
+
 # Alpine
 ## Alpine 镜像
 a. 编辑 /etc/apk/repositories
