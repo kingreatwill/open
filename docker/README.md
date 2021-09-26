@@ -164,6 +164,8 @@ docker pause :暂停容器中所有的进程。
 
 docker unpause :恢复容器中所有的进程。
 
+### docker删除未使用的容器、镜像
+linux
 ```
 # 删除 exited container
 # docker rm -v $(docker ps -a -q -f status=exited)
@@ -171,6 +173,18 @@ docker unpause :恢复容器中所有的进程。
 # docker rmi $(docker images -f "dangling=true" -q)
 #  删除没用的 volumn
 # docker volume rm $(docker volume ls -qf dangling=true)
+```
+or linux & windows
+
+https://docs.docker.com/engine/reference/commandline/container_prune/
+https://docs.docker.com/engine/reference/commandline/image_prune/
+https://docs.docker.com/engine/reference/commandline/system_prune/
+
+```
+docker container prune
+docker image prune
+
+docker system prune # 删除未使用的数据 Remove all unused containers, networks, images (both dangling and unreferenced), and optionally, volumes.
 ```
 
 

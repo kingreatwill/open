@@ -175,6 +175,7 @@ git rm
 git checkout -b dev：git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
 git branch dev
 git checkout dev
+git push origin dev # 推送本地分支到远程分支（远程没有会自动创建）
 git branch：查看当前分支，git branch命令会列出所有分支，当前分支前面会标一个*号。
 git branch -d dev：删除dev分支了
 git merge
