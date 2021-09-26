@@ -59,6 +59,12 @@ ENV LANG zh_CN.utf8
 > TTC是几个TTF合成的字库，安装后字体列表中会看到两个以上的字体。
 > 虽然都是字体文件，但.ttc是microsoft开发的新一代字体格式标准，可以使多种truetype字体共享同一笔划信息，有效地节省了字体文件所占空间，增加了共享性。
 > python 加载 fontforge 模块实现ttc字体文件 转换 为ttf字体文件，解析出每一个压缩字库中的ttf字库
+
+> windows进入bash
+> copy /mnt/c/Windows/Fonts/*.ttf /mnt/d/Fonts
+> copy /mnt/c/Windows/Fonts/*.ttc /mnt/d/Fonts
+> 然后把ttc转换成ttf
+
 安装 fontforge
 `apt-get install python-fontforge`
 使用
@@ -84,7 +90,7 @@ https://github.com/yhchen/ttc2ttf
 
 https://stackoverflow.com/questions/60934639/install-fonts-in-linux-container-for-asp-net-core
 
-使用mscorefonts（没有中文字体）
+- 使用mscorefonts（没有中文字体）
 ```
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 
@@ -96,7 +102,7 @@ WORKDIR /app
 EXPOSE 80
 ```
 
-或者 fonts-liberation（没有中文字体）
+- 或者 fonts-liberation（没有中文字体）
 ```
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 
@@ -108,7 +114,7 @@ WORKDIR /app
 EXPOSE 80
 ```
 
-也可以把windows字体拷贝过去安装
+- 也可以把windows字体拷贝过去安装
 https://wiki.debian.org/Fonts#Adding_fonts
 
 ```
@@ -120,6 +126,133 @@ COPY /fonts /usr/share/fonts/truetype
 RUN fc-cache -f -v
 ```
 > fc-list :lang=zh
+
+- 安装中文字体 以及安装 JRE LibreOfiice ImageMagick FFMPEG 环境
+https://github.com/microestc/Containers
+安装中字体， 在windows 下打包 C:/windows/fonts 字体 
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+COPY fonts /usr/share/fonts/windows/
+RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free \
+    deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free \
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free \
+    deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free \
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free \
+    deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free \
+    deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free \
+    deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free" > /etc/apt/sources.list
+RUN apt-get update && apt-get install fontconfig -y \
+    && fc-cache -f -v
+CMD ["/bin/bash"]
+```
+安装 Jre 环境 因为 libreoffice 需要
+
+jre 这里用的是 jre-8u221-linux-x64.tar.gz 下载链接 https://sdlc-esd.oracle.com/ESD6/JSCDL/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jre-8u221-linux-x64.tar.gz?GroupName=JSC&FilePath=/ESD6/JSCDL/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jre-8u221-linux-x64.tar.gz&BHost=javadl.sun.com&File=jre-8u221-linux-x64.tar.gz&AuthParam=1569560572_a9dbaa64abfbf26b1afb9359ff05adb9&ext=.gz
+
+```
+ARG runenv=dotnetcoreaspnetcn
+FROM $runenv:3.0-buster-slim AS base
+COPY /src /src
+ENV JAVA_HOME=/usr/java/jre1.8.0_221
+ENV PATH=$PATH:/usr/java/jre1.8.0_221/bin
+RUN mkdir /usr/java && tar -zxvf /src/jre-8u221-linux-x64.tar.gz -C /usr/java && rm -rf /src
+CMD ["/bin/bash"]
+```
+前面用了中文字体的docker 镜像
+建立的镜像名称 ：dotnetcoreaspnetcn-jre:3.0-buster-slim-8u221
+接下里 build libreoffice
+```
+FROM dotnetcoreaspnetcn-jre:3.0-buster-slim-8u221 AS base
+COPY /src /src
+RUN apt-get update && apt-get install libxinerama1 dbus libsm6 libgio-cil libcairo2 libcups2 -y \
+    && tar -zxvf /src/LibreOffice_6.2.7_Linux_x86-64_deb.tar.gz -C /src \
+    && dpkg -i /src/LibreOffice_6.2.7.1_Linux_x86-64_deb/DEBS/*.deb \
+    && rm -rf /src && ln -s /usr/local/bin/libreoffice6.2 /usr/local/bin/libreoffice
+CMD ["/bin/bash"]
+```
+LibreOffice_6.2.7_Linux_x86-64_deb.tar.gz 自己去官方网站下载 
+链接直接给了：https://mirror-hk.koddos.net/tdf/libreoffice/stable/6.2.7/deb/x86_64/LibreOffice_6.2.7_Linux_x86-64_deb.tar.gz
+
+最后是建立 imagemagick  同样需要中文字体环境
+```
+FROM dotnetcoreaspnetcn:3.0-buster-slim AS base
+COPY /src /src
+RUN apt-get update && apt-get install imagemagick -y && cp -f /src/policy.xml /etc/ImageMagick-6/policy.xml && rm -rf /src
+CMD ["/bin/bash"]
+```
+policy.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policymap [
+  <!ELEMENT policymap (policy)+>
+  <!ATTLIST policymap xmlns CDATA #FIXED ''>
+  <!ELEMENT policy EMPTY>
+  <!ATTLIST policy xmlns CDATA #FIXED '' domain NMTOKEN #REQUIRED
+    name NMTOKEN #IMPLIED pattern CDATA #IMPLIED rights NMTOKEN #IMPLIED
+    stealth NMTOKEN #IMPLIED value CDATA #IMPLIED>
+]>
+<!--
+  Configure ImageMagick policies.
+  Domains include system, delegate, coder, filter, path, or resource.
+  Rights include none, read, write, execute and all.  Use | to combine them,
+  for example: "read | write" to permit read from, or write to, a path.
+  Use a glob expression as a pattern.
+  Suppose we do not want users to process MPEG video images:
+    <policy domain="delegate" rights="none" pattern="mpeg:decode" />
+  Here we do not want users reading images from HTTP:
+    <policy domain="coder" rights="none" pattern="HTTP" />
+  The /repository file system is restricted to read only.  We use a glob
+  expression to match all paths that start with /repository:
+    <policy domain="path" rights="read" pattern="/repository/*" />
+  Lets prevent users from executing any image filters:
+    <policy domain="filter" rights="none" pattern="*" />
+  Any large image is cached to disk rather than memory:
+    <policy domain="resource" name="area" value="1GP"/>
+  Define arguments for the memory, map, area, width, height and disk resources
+  with SI prefixes (.e.g 100MB).  In addition, resource policies are maximums
+  for each instance of ImageMagick (e.g. policy memory limit 1GB, -limit 2GB
+  exceeds policy maximum so memory limit is 1GB).
+  Rules are processed in order.  Here we want to restrict ImageMagick to only
+  read or write a small subset of proven web-safe image types:
+    <policy domain="delegate" rights="none" pattern="*" />
+    <policy domain="filter" rights="none" pattern="*" />
+    <policy domain="coder" rights="none" pattern="*" />
+    <policy domain="coder" rights="read|write" pattern="{GIF,JPEG,PNG,WEBP}" />
+-->
+<policymap>
+  <!-- <policy domain="system" name="shred" value="2"/> -->
+  <!-- <policy domain="system" name="precision" value="6"/> -->
+  <!-- <policy domain="system" name="memory-map" value="anonymous"/> -->
+  <!-- <policy domain="system" name="max-memory-request" value="256MiB"/> -->
+  <!-- <policy domain="resource" name="temporary-path" value="/tmp"/> -->
+  <!-- <policy domain="resource" name="memory" value="2GiB"/> -->
+  <!-- <policy domain="resource" name="map" value="4GiB"/> -->
+  <policy domain="resource" name="width" value="10MP"/>
+  <policy domain="resource" name="height" value="10MP"/>
+  <!-- <policy domain="resource" name="list-length" value="128"/> -->
+  <!-- <policy domain="resource" name="area" value="100MP"/> -->
+  <!-- <policy domain="resource" name="disk" value="16EiB"/> -->
+  <!-- <policy domain="resource" name="file" value="768"/> -->
+  <!-- <policy domain="resource" name="thread" value="4"/> -->
+  <!-- <policy domain="resource" name="throttle" value="0"/> -->
+  <!-- <policy domain="resource" name="time" value="3600"/> -->
+  <!-- <policy domain="coder" rights="none" pattern="MVG" /> -->
+  <!-- <policy domain="module" rights="none" pattern="{PS,PDF,XPS}" /> -->
+  <policy domain="delegate" rights="none" pattern="HTTPS" />
+  <!-- <policy domain="path" rights="none" pattern="@*" /> -->
+  <!-- <policy domain="cache" name="memory-map" value="anonymous"/> -->
+  <!-- <policy domain="cache" name="synchronize" value="True"/> -->
+  <policy domain="cache" name="shared-secret" value="passphrase" stealth="true" />
+</policymap>
+```
+最后一个 FFMPEG
+```
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+ADD ffmpeg-git-amd64-static.tar.xz /
+RUN mv /ffmpeg*/ffmpeg /usr/bin/ && rm -rf /ffmpeg*
+CMD [ "/bin/bash" ]
+```
+ffmpeg-git-amd64-static.tar.xz 自己去官方网站下载
 
 ## CentOS8
 
