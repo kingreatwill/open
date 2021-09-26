@@ -86,8 +86,26 @@ for fontName in fonts:
 或者
 https://github.com/yhchen/ttc2ttf
 
+使用C#实现1
+https://stackoverflow.com/questions/28225303/equivalent-in-c-sharp-of-pythons-struct-pack-unpack
+
+使用C#实现2
+`Install-Package IronPython -Version 3.4.0-alpha1`
+`IronPython.Modules.PythonStruct.unpack_from`
+使用
+```csharp
+Microsoft.Scripting.Hosting.ScriptRuntime runtime = IronPython.Hosting.Python.CreateRuntime();
+Microsoft.Scripting.Hosting.ScriptEngine engine = runtime.GetEngine("py");
+IronPython.Runtime.PythonContext cxt = (IronPython.Runtime.PythonContext)Microsoft.Scripting.Hosting.Providers.HostingHelpers.GetLanguageContext(engine);
+IronPython.Runtime.PythonDictionary dict = new IronPython.Runtime.PythonDictionary();
+IronPython.Runtime.ModuleContext modctx = new IronPython.Runtime.ModuleContext(dict, cxt);
+IronPython.Runtime.CodeContext context = new IronPython.Runtime.CodeContext(dict, modctx);
+
+var ttf_count = IronPython.Modules.PythonStruct.unpack_from(context,"!L", buf, 0x08)[0];
+```
 
 
+参考
 https://stackoverflow.com/questions/60934639/install-fonts-in-linux-container-for-asp-net-core
 
 - 使用mscorefonts（没有中文字体）
