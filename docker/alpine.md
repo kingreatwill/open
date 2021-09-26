@@ -65,7 +65,8 @@ ENV LANG zh_CN.utf8
 > copy /mnt/c/Windows/Fonts/*.ttc /mnt/d/Fonts
 > 然后把ttc转换成ttf
 
-安装 fontforge
+https://fontforge.org/docs/scripting/python.html
+安装 fontforge(注意不是pip安装，是系统安装)
 `apt-get install python-fontforge`
 使用
 `split_ttc_font_to_ttf.py Droid.ttc`
@@ -84,7 +85,34 @@ for fontName in fonts:
     font.close()
 ```
 或者
+`python ttc2ttf.py [TTC_file_Path]`
 https://github.com/yhchen/ttc2ttf
+或者(可以转换多个，也可以一个目录)【利用[FontTools](https://github.com/fonttools/fonttools)来转换的】
+`pip install font-rename`
+`font-rename insert/directory/file/path/here`
+https://github.com/whtsky/font-rename
+部分代码
+```
+from fontTools.ttLib import TTCollection
+def unpack_ttc(filepath: Path) -> None:
+    try:
+        collection = TTCollection(str(filepath.resolve()))
+    except:
+        print(f"Failed to parse {filepath}, ignore")
+        return
+    for font in collection.fonts:
+        ttf_path = filepath.parent / f"{get_font_name(font)}.ttf"
+        font.save(ttf_path)
+        print(f"{filepath} -> {ttf_path}")
+    filepath.unlink()
+```
+
+
+node js
+`npm i -g ttc2ttf`
+`ttc2ttf <ttc file path> [output dir path]`
+https://github.com/oysterlab/ttc2ttf
+
 
 使用C#实现1
 https://stackoverflow.com/questions/28225303/equivalent-in-c-sharp-of-pythons-struct-pack-unpack
@@ -103,6 +131,14 @@ IronPython.Runtime.CodeContext context = new IronPython.Runtime.CodeContext(dict
 
 var ttf_count = IronPython.Modules.PythonStruct.unpack_from(context,"!L", buf, 0x08)[0];
 ```
+
+online
+https://transfonter.org/ttc-unpack
+
+工具
+https://peter.upfold.org.uk/projects/dfontsplitter
+fontforge（前面有讲用代码实现）【File > Open 然后 File > Generate Fonts...】
+
 
 
 参考
