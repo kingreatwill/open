@@ -7,6 +7,10 @@ https://contribute.freecodecamp.org/#/
 
 [Snowpack 打包工具](https://github.com/pikapkg/snowpack)
 实现直接在浏览器中运行npm软件包。SnowPack 是基于 ESM 的工具。
+## 如何对html源码中的数字加密
+用字体
+为了防止别人爬取网页价格，可以把价格加密，用字体显示
+参考https://i.jzj9999.com/quoteh5/
 
 ## js学习
 学习js必须要掌握的++
