@@ -10,7 +10,19 @@ https://contribute.freecodecamp.org/#/
 ## 如何对html源码中的数字加密
 用字体
 为了防止别人爬取网页价格，可以把价格加密，用字体显示
-参考https://i.jzj9999.com/quoteh5/
+参考1：https://i.jzj9999.com/quoteh5/
+参考2：https://sz.58.com/chuzu/
+[python解析字体反爬](https://www.cnblogs.com/eastonliu/p/9925652.html)
+
+```
+from fontTools.ttLib import TTFont
+font = TTFont('58.ttf') # 打开本地的ttf文件
+font.saveXML('58.xml')  # 转换成xml
+```
+
+如果是爬取的话有更简单的方式，一般数字就是0-9以及小数点，把密文复制出来找到所有的数字和小数点，然后转成unicode（当然如果简单的也可以不用转unicode，直接比对），做一个map映射就好了
+https://www.bejson.com/convert/unicode_chinese/
+
 
 ## js学习
 学习js必须要掌握的++
