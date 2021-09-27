@@ -149,7 +149,28 @@ https://github.com/axuno/SmartFormat
 ```csharp
 var s = Smart.Format("{Model.Name} is {Session.Name2}", new { Model =new { Name = "na1", Name2 = "King1" }, Session = new { Name = "na2", Name2 = "King2" } });
 var s = Smart.Format("{0.Name} is {1.Name2}", new { Name = "na1", Name2 = "King1" }, new { Name = "na2", Name2 = "King2" });
-var s = Strings.Format("{Key} is {Value}", new Dictionary<string, string>() { { "Key", "站点" }, { "Value", "站点2" } });
+
+```
+
+```csharp
+Smart.Default.Settings.Formatter.ErrorAction = FormatErrorAction.Ignore;
+{
+    var s = Smart.Format("{Key} is {Value:was on|will be on}", new Dictionary<string, string>() { { "Key", "站点" } });
+    Console.WriteLine(s);
+}
+{
+    var s = Smart.Format("{Key} is {Value:was on|will be on}", new Dictionary<string, string>() { { "Key", "站点" }, { "Value", "" } });
+    Console.WriteLine(s);
+}
+{
+    var s = Smart.Format("{Key} is {Value:was on|will be on}", new Dictionary<string, string>() { { "Key", "站点" }, { "Value", "站点2" } });
+    Console.WriteLine(s);
+}
+
+OUTPUT:
+站点 is
+站点 is will be on
+站点 is was on
 ```
 
 https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=net-5.0
