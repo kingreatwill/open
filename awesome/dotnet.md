@@ -146,6 +146,14 @@ https://github.com/iccfish/FSLib.App.SimpleUpdater
 ## 扩展
 ### String
 https://github.com/axuno/SmartFormat
+```csharp
+var s = Smart.Format("{Model.Name} is {Session.Name2}", new { Model =new { Name = "na1", Name2 = "King1" }, Session = new { Name = "na2", Name2 = "King2" } });
+var s = Smart.Format("{0.Name} is {1.Name2}", new { Name = "na1", Name2 = "King1" }, new { Name = "na2", Name2 = "King2" });
+var s = Strings.Format("{Key} is {Value}", new Dictionary<string, string>() { { "Key", "站点" }, { "Value", "站点2" } });
+```
+
+https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=net-5.0
+https://golangdocs.com/string-formatting-in-golang
 
 ## plugins
 ### OrchardCore
