@@ -153,7 +153,7 @@ var s = Strings.Format("{Key} is {Value}", new Dictionary<string, string>() { { 
 ```
 
 https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=net-5.0
-https://golangdocs.com/string-formatting-in-golang
+
 
 ## plugins
 ### OrchardCore

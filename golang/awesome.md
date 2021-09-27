@@ -389,6 +389,104 @@ go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分�
 https://github.com/urfave/negroni
 https://github.com/urfave/negroni#third-party-middleware
 
+## 扩展
+### mapper
+https://github.com/petersunbag/coven
+
+### 字符串format
+
+https://github.com/sirkon/go-format 功能最强大
+```
+type t struct {
+	A     string
+	Field int
+}
+var s = t{
+	A:     "str",
+	Field: 12,
+}
+var d struct {
+	F     t
+	Entry float64
+}
+d.F = s
+d.Entry = 0.5
+res := format.Formatg("${F.A} ${F.Field} $Entry", d)
+// res = "str 12 0.500000"
+```
+
+https://github.com/chonla/format
+
+```
+var params = map[string]interface{}{
+    "sister": "Susan",
+    "brother": "Louis",
+}
+format.Printf("%<brother> loves %<sister>.", params)
+```
+
+https://github.com/go-ffmt/ffmt/blob/master/format.go
+```
+Format("hello {name}", "ffmt") to "hello ffmt"
+```
+
+https://github.com/Wissance/stringFormatter
+```
+FormatComplex("Hello {user} what are you doing here {app} ?", map[string]interface{}{"user":"vpupkin", "app":"mn_console"})
+```
+
+https://github.com/delicb/gstring
+```
+// outpits "Bracket {, }, key value, key value, key value"
+gstring.Printm("Bracket {{, }}, {key}, {key}, {key}", map[string]interaface{}{"key", "key value"})
+```
+
+https://github.com/mgenware/go-string-format
+```
+strf.Format("🐆{0} {1} {0}", "leopard", -3)
+// returns "🐆leopard -3 leopard" 
+```
+
+https://github.com/taloric/strfmt
+```
+format_string := "Today is a {what} {desc}"
+args := make(map[string]string)
+args["what"] = "wonderful"
+args["desc"] = "day"
+res,err := strfmt.FormatMap(format_string, &args)
+fmt.Println(res)
+```
+
+https://github.com/yangchenxing/go-string-mapformatter
+```
+fmt.Println(mapformatter.MustFormat("Hello %(name|s), you owe me %(money|.2f) dollar.",
+    map[string]interface{}{
+        "name": "anyone",
+        "money": 10.3,
+    }))
+// Output: Hello anyone, you owe me 10.30 dollar.
+```
+
+https://github.com/christianhujer/tfmt/blob/master/main.go
+
+
+https://golangdocs.com/string-formatting-in-golang
+https://zetcode.com/golang/string-format/
+
+### go-humanize
+https://github.com/dustin/go-humanize
+```
+fmt.Printf("That file is %s.", humanize.Bytes(82854982)) // That file is 83 MB.
+fmt.Printf("This was touched %s.", humanize.Time(someTimeInstance)) // This was touched 7 hours ago.
+```
+### dateparse
+支持多种格式
+https://github.com/araddon/dateparse
+
+### 驼峰、下划线等转换
+https://github.com/WnP/go-sfmt
+
+
 ## 其它
 ### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
 https://github.com/augmentable-dev/gitqlite
