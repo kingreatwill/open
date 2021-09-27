@@ -151,9 +151,14 @@ var s = Smart.Format("{Model.Name} is {Session.Name2}", new { Model =new { Name 
 var s = Smart.Format("{0.Name} is {1.Name2}", new { Name = "na1", Name2 = "King1" }, new { Name = "na2", Name2 = "King2" });
 
 ```
-
+https://github.com/axuno/SmartFormat/wiki/Data-Sources
+Using a Dictionary(性能更好，前面是需要反射)
 ```csharp
-Smart.Default.Settings.Formatter.ErrorAction = FormatErrorAction.Ignore;
+Smart.Default.Settings.Formatter.ErrorAction = FormatErrorAction.Ignore; //忽略错误;
+Smart.Default.OnFormattingFailure += (sender, args) => {
+    Console.WriteLine(args.Placeholder);  // 打印错误占位符;
+};
+Smart.Default.Settings.CaseSensitivity = CaseSensitivityType.CaseInsensitive;// 忽略大小写;
 {
     var s = Smart.Format("{Key} is {Value:was on|will be on}", new Dictionary<string, string>() { { "Key", "站点" } });
     Console.WriteLine(s);
@@ -166,11 +171,16 @@ Smart.Default.Settings.Formatter.ErrorAction = FormatErrorAction.Ignore;
     var s = Smart.Format("{Key} is {Value:was on|will be on}", new Dictionary<string, string>() { { "Key", "站点" }, { "Value", "站点2" } });
     Console.WriteLine(s);
 }
+{
+    var s = Smart.Format("{Key} is {Value}", (new Dictionary<string, string>() { { "Key", "站点" } }, new Dictionary<string, string>() {  { "Value", "站点2" } }));
+    Console.WriteLine(s);
+}
 
 OUTPUT:
 站点 is
 站点 is will be on
 站点 is was on
+站点 is 站点2
 ```
 
 https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=net-5.0
