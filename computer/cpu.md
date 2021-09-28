@@ -455,6 +455,8 @@ CPU存取缓存都是按行为最小单位操作的. 在这儿我将不提及缓
 MESI（Modified Exclusive Shared Or Invalid）(也称为伊利诺斯协议，是因为该协议由伊利诺斯州立大学提出的）是一种广泛使用的支持写回策略的缓存一致性协议。为了保证多个CPU缓存中共享数据的一致性，定义了缓存行(Cache Line)的四种状态，而CPU对缓存行的四种操作可能会产生不一致的状态，因此缓存控制器监听到本地操作和远程操作的时候，需要对地址一致的缓存行的状态进行一致性修改，从而保证数据在多个缓存之间保持一致性。
 
 #### MESI协议中的状态
+[理解CPU缓存一致性协议](https://www.toutiao.com/i7012483826572067341)
+[在线体验 MESI 协议状态转换](https://www.scss.tcd.ie/Jeremy.Jones/VivioJS/caches/MESIHelp.htm)
 CPU中每个缓存行（Caceh line)使用4种状态进行标记，使用2bit来表示:
 
 状态 |	描述 |	监听任务|	状态转换
