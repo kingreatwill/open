@@ -72,6 +72,9 @@ Apriori定律2：如果一个集合不是频繁项集，则它的所有超集都
 ##### FP-growth算法
 `fpgrowth(df, min_support=0.5, use_colnames=False, max_len=None, verbose=0)`
 FP代表频繁模式（Frequent Pattern）
+![http://www.csc.lsu.edu/~jianhua/FPGrowth.pdf](img/FP-tree.png)
+
+树中的每一条路径代表一条数据
 
 ##### FP-max算法
 `fpmax(df, min_support=0.5, use_colnames=False, max_len=None, verbose=0)`
@@ -157,6 +160,9 @@ association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
 [Mining Frequent Patterns Without Candidate Generation](http://hanj.cs.illinois.edu/pdf/dami04_fptree.pdf)
 [Frequent Pattern (FP) Growth Algorithm In Data Mining](https://www.softwaretestinghelp.com/fp-growth-algorithm-data-mining/)
 [High Performance Mining of Maximal Frequent Itemsets](http://www.philippe-fournier-viger.com/spmf/fpmax.pdf)
+
+[Introduction to Data Mining (Second Edition)](https://www-users.cse.umn.edu/~kumar001/dmbook/index.php)
+
 
 [相关开源算法](http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.frequent_patterns/)
 [mlxtend](https://github.com/rasbt/mlxtend)是一款高级的机器学习扩展库，可用于日常机器学习任务的主要工具，也可以作为sklearn的一个补充和辅助工具。
