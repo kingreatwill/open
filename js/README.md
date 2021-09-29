@@ -246,3 +246,21 @@ https://github.com/microsoft/fluentui 10.3k
 https://developer.microsoft.com/en-us/fluentui#/get-started
 #### geist-ui
 https://github.com/geist-org/react 1.4k
+
+## Gantt
+### 商业
+#### dhtmlx
+https://dhtmlx.com/docs/products/dhtmlxGantt/
+#### bryntum
+https://www.bryntum.com/
+
+### gantt-schedule-timeline-calendar
+https://github.com/neuronetio/gantt-elastic
+https://github.com/neuronetio/gantt-schedule-timeline-calendar
+
+### 国产
+https://github.com/w1301625107/Vue-Gantt-chart
+https://github.com/hql7/wl-gantt
+
+### 其它
+https://github.com/robicch/jQueryGantt

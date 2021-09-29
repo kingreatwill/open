@@ -14,3 +14,12 @@ Multi-criteria recommender systems
 Risk-aware recommender systems
 [Mobile recommender systems](https://en.jinzhao.wiki/wiki/Location_based_recommendation)
 Hybrid recommender systems
+
+
+## xx
+### 基于显式反馈（explicit feedback）的数据集
+比如评分相关的推荐算法[Surprise](http://surpriselib.com/)
+
+
+
+### 基于隐式反馈（implicit feedback）的数据集

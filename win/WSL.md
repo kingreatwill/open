@@ -92,6 +92,10 @@ ccsm
 #### 链接
 在CMD中搜索MSTSC，或者点击远程桌面连接，点击进入，计算机栏输入【本机IP：端口】，用户名栏输入子系统用户名，点击连接。
 
+### 第三种：官方：WSLG系统 （Windows Subsystem for Linux GUI）
+https://github.com/microsoft/wslg
+
+
 ## 文件目录在win10文件系统中的位置
 
 C:\Users\xxx\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\
