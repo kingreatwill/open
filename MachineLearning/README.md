@@ -443,3 +443,8 @@ https://github.com/tensorspace-team/tensorspace
 《机器学习》西瓜书以"机器学习"为主，涉及线性回归、SVM、决策树和神经网络（NN）；
 
 《深度学习》花书以"深度学习"为主，主要就是 NN，如 CNN、RNN，还有一些围绕 NN 的知识点，如正则化、优化、学习率等。
+
+## 人工智能量化平台
+https://github.com/bigquant
+https://github.com/microsoft/qlib
+<video id="video" x-webkit-airplay="true" webkit-playsinline="true" x5-video-player-type="h5" x5-video-orientation="portraint" autoplay="" loop="" preload="true" muted="" type="video/mp4" src="https://bigquant.com/static/img/index/index20200908/index_video.mp4" poster="https://bigquant.com/static/img/index/index20200908/banner-img.png"></video>

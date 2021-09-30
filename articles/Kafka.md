@@ -30,6 +30,11 @@ Kafka 2.8  [What’s New in Apache Kafka 2.8.0](https://blogs.apache.org/kafka/e
 我们很高兴地宣布2.8引入了不带ZooKeeper的Kafka的抢先体验！
 该实现尚未完成功能，不应在生产中使用，但是可以在没有ZooKeeper的情况下启动新集群
 
+Kafka 3.0 - 2021.09.20 进度：还没有完全移除ZooKeeper
+改进了 KRaft--Apache Kafka 的内置共识机制，该机制将取代 Apache ZooKeeper™。
+https://downloads.apache.org/kafka/3.0.0/RELEASE_NOTES.html
+
+
 ## 文章
 Kafka 总结（一）：Kafka 概述
 https://blog.csdn.net/qq_36807862/article/details/81283142

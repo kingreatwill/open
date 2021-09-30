@@ -1,9 +1,83 @@
 <!--toc-->
 [TOC]
+# JVM运行时参数
 
-![什么是JVM运行时参数？](img/JVM运行时参数-1.png)
+## JVM都有哪些参数类型
+### JVM参数有多少
+大概有1000多个
+PerfMa社区：https://my.oschina.net/PerfMa
+https://www.heapdump.cn/
 
-我们接着上一章节[[JVM教程与调优] JVM都有哪些参数类型？](https://mp.weixin.qq.com/s?__biz=MzIwMTg3NzYyOA==&mid=2247484247&idx=2&sn=a1f732611bab89f0db84d3ab162e8763&chksm=96e67244a191fb52a4d6b292112cc94c412d3c90a688bc6da533dec8cfe9cfa693af65b16dd5&token=89408735&lang=zh_CN#rd)的内容继续讲解，这章我们来介绍一下：如何查看JVM运行时参数。这一点十分重要，因为我们在进行JVM参数调优的时候，我们首先得知道目前系统运行的值是什么，然后相应的根据相关参数进行调优。
+### JVM参数类型
+- 标准参数
+```
+-help
+-server -client
+-version -showversion
+-cp -classpath
+
+-verbose:gc
+```
+标准参数，在各个版本的JVM里面中，基本保持不变。相对比较稳定
+例如：java -help
+
+- X参数
+非标准参数:也就是说在各个版本的JVM中可能会变，但是变化的也比较小。
+但是我们这块X参数平时用的并不多，用的更多而是后面这块XX参数。
+```
+-Xint：解释执行 #设置成解释模式,可以用java -Xint -version
+-Xcomp：第一次使用就编译成本地代码  #设置成编译模式,可以用java -Xcomp -version
+-Xmixed：混合模式,JVM自己来决定是否编译成本地代码 #默认混合模式,可以用java -version看到
+```
+
+- XX参数
+特点：
+非标准化参数化
+相对不稳定
+主要用于JVM调优和Debug
+
+主要分为两大类(Boolean是带有+-号，而非Boolean类型是key,value形式存在，中间用等号。)
+1. Boolean类型：
+格式：-XX:[+-]表示启用或者禁用name属性。其中+号表示启用该参数，-号表示禁用该参数。
+如：`-XX:+UseG1GC`表示启用了G1垃圾收集器
+2. 非Boolean类型：
+格式：-XX:=表示name属性的值是value，主要是以key，value形式存在。
+如:`-XX:MaxGCPauseMillis=500`表示GC最大的停顿时间是500ms。
+
+
+
+其中`-X`和`-`开头的通常会被转换为一个或者多个`-XX:`开头的参数，只是一个简化的写法，比如说`-Xmx100M`，JVM里会自动转化为`-XX:MaxHeapSize=100M`，`-verbose:class`会自动转换为`-XX:+TraceClassLoading` `-XX:+TraceClassUnloading`
+
+-Xms等价于-XX:InitialHeapSize
+-Xmx等价于-XX:MaxHeapSize
+-Xss等价于-XX:ThreadStackSize
+InitialHeapSize初始堆的大小。MaxHeapSize最大的堆大小。ThreadStackSize线程堆栈大小
+查看进程的堆栈大小
+`jinfo -flag MaxHeapSize p_id`
+查看线程的堆栈大小
+`jinfo -flag ThreadStackSize p_id`
+
+### JVM参数文件
+#### 通过Flags参数指定JVM参数文件
+`java -XX:Flags=/home/admin/flags Main arg1 arg2`
+在这个文件里指定所有的JVM参数就可以了，但是对flags文件里的参数写法会有些要求，`-X`之类的参数**不能设置**，但是可以用其等价的`-XX`的参数来替代，比如说`-Xmx100M`，只能用`-XX:MaxHeapSize=100M`来取代，同时在文件里**不要出现** `-XX:`，只要key=value或许+/-key就可以了，不同的参数之间用**换行或者空格**分开即可，比如flags文件的内容如下：
+```
+MaxHeapSize=8G +UseG1GC
+```
+其实等价于
+```
+-Xmx8G -XX:+UseG1GC
+```
+可以通过加上`-XX:+PrintVMOptions`可以打印设置过的JVM参数来验证，比如
+`java -XX:Flags=/home/admin/flags -XX:+PrintVMOptions Main arg1 arg2`
+
+#### 通过VMOptionsFile参数来指定JVM参数文件
+使用上面的Flags参数可能会比较别扭，因为设置参数和我们正常的写法不太一样，如果我们的JDK版本大于1.8的话，JVM提供了一个更人性化的参数，那就是VMOptionsFile来取代Flags，这也是指定一个文件，这个文件里的JVM参的写法和我们在java命令后写的JVM参数写法完全一样
+`java -XX:VMOptionsFile=/home/admin/flags Main arg1 arg2`
+在flags文件里我们可以这么写
+`-Xmx8G -XX:+UseG1GC`
+
+## 如何查看JVM运行时参数
 
 1.-XX:+PrintFlagsInitial（查看初始值）
 

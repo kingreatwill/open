@@ -2,7 +2,8 @@
 
 [推荐系统](../../BigData/推荐引擎.md)([recommender system](https://en.jinzhao.wiki/wiki/Recommender_system) or recommendation system) 有时也称为推荐平台或推荐引擎(platform or engine)，是[Information filtering system](https://en.jinzhao.wiki/wiki/Information_filtering_system)的一个子类。
 
-
+todo:
+https://www.zhihu.com/question/314773668?sort=created
 
 ## 方法Approaches或算法Recommended Algorithms
 
