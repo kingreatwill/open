@@ -1,3 +1,4 @@
+[TOC]
 # Time Series
 
 时间序列分析（[Time Series Analysis](https://en.jinzhao.wiki/wiki/Time_series)）包括分析时间序列数据以提取有意义的统计数据和数据的其他特征的方法。
@@ -44,9 +45,8 @@ https://www.jianshu.com/p/68016de16984
 [应用时间序列分析备课笔记](https://www.math.pku.edu.cn/teachers/lidf/course/atsa/atsanotes/html/_atsanotes/index.html)
 
 ## 相关模型
-
-
-
+[Python 中11 种经典时间序列预测方法](https://zhuanlan.zhihu.com/p/407589768)
+[11 Classical Time Series Forecasting Methods in Python (Cheat Sheet)](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
 
 Seasonal Autoregressive Integrated Moving Average
 SARIMA模型（Seasonal Autoregressive Integrated Moving Average），季节性差分自回归滑动平均模型，时间序列预测分析方法之一
@@ -60,6 +60,8 @@ Prophet - Modeling Multiple Seasonality With Linear or Non-linear Growth
 HWAAS - Exponential Smoothing With Additive Trend and Additive Seasonality
 HWAMS - Exponential Smoothing with Additive Trend and Multiplicative Seasonality
 Hidden Markov Models (HMM)
+
+
 
 ## 相关开源库
 
