@@ -167,10 +167,13 @@ apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启
 在使用 pandas 进行数据分析时，进行一定的数据探索性分析（EDA）是必不可少的一个步骤，例如常见统计指标计算、缺失值、重复值统计等。
 使用 `df.describe()` 等函数进行探索当然是常见操作，但若要进行更完整、详细的分析缺则略显不足。
 
-- pandas_profiling
+- [pandas_profiling 8.1k](https://github.com/pandas-profiling/pandas-profiling)
 ```
 pip install pandas_profiling
-df.profile_report()
+
+from pandas_profiling import ProfileReport
+profile = ProfileReport(df), title='Pandas Profiling Report', explorative = True)
+profile
 ```
     - 类型推断：检测数据帧中列的数据类型。
     - 要点：类型，唯一值，缺失值
@@ -183,7 +186,7 @@ df.profile_report()
     - 文本分析：了解文本数据的类别（大写，空格），脚本（拉丁，西里尔字母）和块（ASCII）
 
 
-- sweetviz
+- [sweetviz 1.8k](https://github.com/fbdesignpro/sweetviz)
 ```
 import sweetviz as sv
 report = sv.analyze(df)
@@ -201,6 +204,14 @@ report.show_html()
     1. 概要信息
     - 类型、唯一值、缺失值、重复行、最常见值
     - 数值分析：最小值/最大值/范围、四分位数、平均值、众数、标准偏差、总和、中值绝对偏差、变异系数、峰态、偏度
+
+- [PandasGUI 2.4k](https://github.com/adamerose/pandasgui)
+```
+from pandasgui import show
+# 部署GUI的数据集
+gui = show(df)
+```
+
 
 ### 数据可视化工具
 #### python的matplotlib

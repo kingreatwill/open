@@ -7,6 +7,8 @@ https://github.com/PowerShell/PowerShell
 
 [兼容性别名](https://docs.microsoft.com/zh-cn/powershell/scripting/learn/compatibility-aliases?view=powershell-7.1)
 
+[兼容性别名2](https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#map-book-for-experienced-bash-users)
+
 获取当前会话中的所有别名`Get-Alias`
 
 ```
