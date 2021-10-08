@@ -1,4 +1,4 @@
-
+[TOC]
 Python应用生态
 https://www.pythonstacks.com/
 
@@ -80,6 +80,42 @@ Calibre 是一款功能强大的电子书管理软件，支持 Amazon、Apple、
 ### pyforest 自动导入需要的包
 https://github.com/8080labs/pyforest
 
+### 装饰器(decorators)
+- `@lru_cache`来自 functools 模块，该模块包含在标准库中，非常易于使用。
+- `@jit`JIT 是即时编译(Just In Time)的缩写。`from numba import jit`
+- `@do_twice`此装饰器可用于通过一次调用运行两次函数。该函数由 Python 中的装饰器模块提供，该模块位于标准库中。`from decorators import do_twice`
+- `@count_calls`装饰器可用于提供有关函数在软件中使用多少次的信息。这个装饰器也在标准库的装饰器模块中。`from decorators import count_calls`
+- `@singleton`
+```python
+def singleton(cls):
+    instances = {}
+    def wrapper(*args, \*\*kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, \*\*kwargs)
+            return instances[cls]
+        return wrapper
+
+@singleton
+class cls:
+    def func(self):
+```
+- `@use_unit`此装饰器可用于更改返回结果的表示单位。
+```python
+def use_unit(unit):
+    """Have a function return a Quantity with given unit"""
+    use_unit.ureg = pint.UnitRegistry()
+    def decorator_use_unit(func):
+        @functools.wraps(func)
+        def wrapper_use_unit(*args, \*\*kwargs):
+            value = func(*args, \*_kwargs)
+            return value _ use_unit.ureg(unit)
+        return wrapper_use_unit
+    return decorator_use_unit
+
+@use_unit("meters per second")
+def average_speed(distance, duration):
+    return distance / duration
+```
 
 ### 日期处理
 #### Arrow Python时间日期库
@@ -125,6 +161,46 @@ huey：一个比较小型的任务队列，依赖于redis或sqlite。
 #### apscheduler
 apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启动信息。
 官方文档：https://apscheduler.readthedocs.io/en/latest/
+
+### 统计分析
+#### Pandas数据探索分析
+在使用 pandas 进行数据分析时，进行一定的数据探索性分析（EDA）是必不可少的一个步骤，例如常见统计指标计算、缺失值、重复值统计等。
+使用 `df.describe()` 等函数进行探索当然是常见操作，但若要进行更完整、详细的分析缺则略显不足。
+
+- pandas_profiling
+```
+pip install pandas_profiling
+df.profile_report()
+```
+    - 类型推断：检测数据帧中列的数据类型。
+    - 要点：类型，唯一值，缺失值
+    - 分位数统计信息，例如最小值，Q1，中位数，Q3，最大值，范围，四分位数范围
+    - 描述性统计数据，例如均值，众数，标准偏差，总和，中位数绝对偏差，变异系数，峰度，偏度
+    - 最常使用的值
+    - 直方图
+    - 相关性矩阵
+    - 缺失值矩阵，计数，热图和缺失值树状图
+    - 文本分析：了解文本数据的类别（大写，空格），脚本（拉丁，西里尔字母）和块（ASCII）
+
+
+- sweetviz
+```
+import sweetviz as sv
+report = sv.analyze(df)
+report.show_html()
+```
+    1. 目标分析
+    - 显示目标值，例如泰坦尼克号数据集中的“幸存”，与其他特征的关系）
+    1. 可视化和比较
+    - 不同的数据集（例如训练与测试数据）
+    - 组内特征（例如男性与女性）
+    1. 混合型联想
+    - Sweetviz 无缝集成了数值（Pearson 相关）、分类（不确定系数）和分类-数值（相关比）数据类型的关联，为所有数据类型提供最大的信息。
+    1. 类型推断
+    - 自动检测数字、分类和文本特征，可选择手动覆盖
+    1. 概要信息
+    - 类型、唯一值、缺失值、重复行、最常见值
+    - 数值分析：最小值/最大值/范围、四分位数、平均值、众数、标准偏差、总和、中值绝对偏差、变异系数、峰态、偏度
 
 ### 数据可视化工具
 #### python的matplotlib

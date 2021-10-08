@@ -187,7 +187,8 @@ docker run -it --init -p 3000:3000 --expose 9229 -p 9229:9229 -v "%cd%:/home/pro
 web IDE
 https://github.com/eclipse-theia/theia
 
-## CMD
+## 终端命令行
+### CMD
 https://www.jianshu.com/p/4b2b7074d9e2
 
 Windows Terminal
@@ -195,7 +196,8 @@ Fluent Terminal
 Hyper
 Terminus
 
-
+### terminal
+https://github.com/lcomplete/TechShare/blob/master/docs/10x/terminal.md
 
 ## WinSCP
 https://github.com/winscp/winscp
@@ -542,6 +544,17 @@ https://github.com/kekingcn/kkFileView
 - 使用 spring-boot 开发，预览服务搭建部署非常简便
 - rest 接口提供服务，跨语言、跨平台特性(java,php,python,go,php，....)都支持，应用接入简单方便
 - 抽象预览服务接口，方便二次开发，非常方便添加其他类型文件预览支持
+
+#### zfile
+https://github.com/zhaojun1998/zfile
+
+#### Web File Browser
+https://github.com/filebrowser/filebrowser
+
+https://filebrowser.org/installation
+
+
+[阿里云盘的 webdav 协议](https://github.com/zxbu/webdav-aliyundriver)
 
 #### QTTabBar
 #### Clover

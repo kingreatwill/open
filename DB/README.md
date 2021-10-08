@@ -358,6 +358,7 @@ Databricks 的 [Delta](https://github.com/delta-io/delta)
 #### Apache Iceberg
 
 Netflix 的 [Apache Iceberg](https://github.com/apache/iceberg)
+也有用Iceberg做湖仓一体化
 
 #### Apache Hudi
 

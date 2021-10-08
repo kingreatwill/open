@@ -1,4 +1,5 @@
 
+> [Caddy](https://github.com/caddyserver/caddy) 是一个 Go 编写的 Web 服务器,类似于 Nginx
 
 ## docker 安装nginx
 

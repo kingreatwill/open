@@ -307,20 +307,20 @@ or
 ./whaler -sV=1.36 nginx:latest
 
 ### Dozzle  实时日志查看器的docker容器
-https://github.com/amir20/dozzle
+https://github.com/amir20/dozzle 1k
 Dozzle 是 Docker 容器的实时日志查看器。Dozzle 将能够从用户的容器中捕获所有日志并将其实时发送到用户的浏览器。Dozzle 不是数据库，它不存储或保存任何日志，使用 Dozzle 时只能看到实时日志。
 
 ### dive 分析docker镜像
-https://github.com/wagoodman/dive 23k
+https://github.com/wagoodman/dive 27.8k
 > 用来探索 docker 镜像每一层文件系统，以及发现缩小镜像体积方法的命令行工具。启动命令：dive 镜像名
 
 ### diving 分析docker镜像web展示基于dive
-https://github.com/vicanso/diving 147
+https://github.com/vicanso/diving 185
 > 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
 > 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
 
 ### skopeo
-https://github.com/containers/skopeo
+https://github.com/containers/skopeo 3.8k
 除了基本的 inspect 之外，Skopeo 还提供了 skopeo copy 命令来复制镜像，可以直接在远程注册表之间复制镜像，无需将它们拉取到本地注册表。如果你使用了本地注册表，这个命令也可以作为拉取 / 推送的替代方案。
 
 - 通过各种存储机制复制镜像，例如，可以在不需要特权的情况下将镜像从一个注册表复制到另一个注册表
@@ -366,21 +366,21 @@ https://github.com/nexdrew/rekcod 237
 ## docker GUI
 
 ### Portainer
-https://github.com/portainer/portainer 16.2k
+https://github.com/portainer/portainer 19.7k
 
 ### DockStation
 桌面应用程序
-https://github.com/DockStation/dockstation
+https://github.com/DockStation/dockstation 1.7k
 
 ### Docker Desktop
 桌面应用程序
 
 ### Lazydocker（UI终端）
-https://github.com/jesseduffield/lazydocker
+https://github.com/jesseduffield/lazydocker 18.4k
 > 带命令行 UI 的 docker 管理工具。可以通过点点点来管理 docker，却又不需要装 rancher 这样的企业级容器管理平台
 
 ### Docui (UI终端)
-https://github.com/skanehira/docui
+https://github.com/skanehira/docui 2.1k
 > 终端 Docker 管理工具，自带一个终端界面。使用该工具可以方便的通过界面管理 docker 不用再记那些命令。
 
 ### Shipyard

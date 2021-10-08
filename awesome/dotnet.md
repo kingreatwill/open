@@ -18,6 +18,10 @@ https://github.com/sebastienros/jint
 go  的js解释器
 https://github.com/robertkrimen/otto
 
+### 合并压缩资源文件
+https://github.com/madskristensen/BundlerMinifier
+https://www.cnblogs.com/zglblogs/p/13127578.html
+
 ## Headless Browser
 
 前端就有了对 headless 浏览器的需求，最多的应用场景有两个

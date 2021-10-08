@@ -1,4 +1,10 @@
+[TOC]
 # Profiling 
+## go-perfbook
+https://github.com/dgryski/go-perfbook
+本文概述了编写高性能Go代码的最佳实践。
+第一节介绍了用任何语言编写优化代码。后面的部分将介绍go特定的技术。
+
 ## pyroscope
 https://github.com/pyroscope-io/pyroscope
 
@@ -11,6 +17,7 @@ https://github.com/pyroscope-io/pyroscope
 - Java (coming soon)
 
 ## pprof
+https://github.com/google/pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
 
 [深度解密Go语言之 pprof](https://www.cnblogs.com/qcrao-2018/p/11832732.html)
@@ -145,17 +152,26 @@ https://github.com/hatlonely/easygolang/blob/master/pprof/pprof.go
 
 ## 参考
 
-go tool pprof 使用介绍 ：https://segmentfault.com/a/1190000016412013
+[go tool pprof 使用介绍](https://segmentfault.com/a/1190000016412013)
 
-Go 内存监控介绍：https://golang.org/src/runtime/mstats.go
+[Go 内存监控介绍](https://golang.org/src/runtime/mstats.go)
 
-Go 内存优化介绍：https://blog.golang.org/profiling-go-programs
+[Go 内存优化介绍](https://blog.golang.org/profiling-go-programs)
 
-高性能Go服务内存分配：https://segment.com/blog/allocation-efficiency-in-high-performance-go-services
+[高性能Go服务内存分配](https://segment.com/blog/allocation-efficiency-in-high-performance-go-services)
 
-Go stack 优化分析：https://studygolang.com/articles/10597
+[Go stack 优化分析](https://studygolang.com/articles/10597)
 
-Go内存泄漏？不是那么简单! https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/
+[Go内存泄漏？不是那么简单! ](https://colobu.com/2019/08/28/go-memory-leak-i-dont-think-so/)
+
+
+[Go Execution Tracer设计文档](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview)
+[Go应用诊断](https://tip.golang.org/doc/diagnostics#execution-tracer)
+[Go tool trace介绍](https://about.sourcegraph.com/go/an-introduction-to-go-tool-trace-rhys-hiltner/)
+[Go execution tracer](https://blog.gopheracademy.com/advent-2017/go-execution-tracer/)
+[go tool trace](https://making.pusher.com/go-tool-trace/)
+
+[通过实例理解Go Execution Tracer](https://tonybai.com/2021/06/28/understand-go-execution-tracer-by-example/)
 
 
 ## 内存不归还系统
