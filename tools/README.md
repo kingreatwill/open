@@ -398,6 +398,22 @@ ZIP 压缩包管理器 - 免费版含广告
 - docsify 文档网站生成器（md文件在线浏览）
 - Docute
 - Wikitten
+- amWiki
+- Wikitten and MDwiki https://github.com/zohead/wikitten-and-mdwiki
+- WordBook
+- http://www.knowledgebase-script.com/
+- https://github.com/lordlamer/knowledgeroot
+- http://www.phpmyfaq.de/ 
+- http://sourceforge.net/projects/kbpublisher/
+- http://sourceforge.net/projects/openkbs/
+- https://www.knowledgebase.ai/ 
+- https://www.notion.so
+- https://www.igloosoftware.com/product/features/
+- https://www.commbox.io/
+- https://knowmax.ai/case-studies/
+- Obie  https://obie.ai/
+- Vaticle   https://docs.vaticle.com/docs/general/quickstart
+- Grakn COSMOS  https://docs.vaticle.com/docs/general/quickstart
 
 #### Xwiki
 #### confluence
@@ -653,6 +669,16 @@ https://github.com/jitsi
     - http://bbs.sdbeta.com/read-htm-tid-566717-page-1.html
     - https://github.com/Deltafox79/Navicat_Keygen/releases
     - https://www.cnblogs.com/poloyy/p/12231357.html
+- datagrip
+- sqyog
+- Tableplus mac
+- heidisql
+    - https://www.heidisql.com/download.php
+- SPSS 
+- MySQL-Front 
+- phpMyAdmin
+
+> MDF Viewer， MDF Open File Tool 
 
 ## Web 调试神器
 https://github.com/microsoft/playwright-cli

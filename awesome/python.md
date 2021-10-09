@@ -163,7 +163,7 @@ apscheduler：定时任务库，可使用Linux的cron语法来配置任务的启
 官方文档：https://apscheduler.readthedocs.io/en/latest/
 
 ### 统计分析
-#### Pandas数据探索分析
+#### Pandas探索性数据分析(Exploratory Data Analysis,EDA)
 在使用 pandas 进行数据分析时，进行一定的数据探索性分析（EDA）是必不可少的一个步骤，例如常见统计指标计算、缺失值、重复值统计等。
 使用 `df.describe()` 等函数进行探索当然是常见操作，但若要进行更完整、详细的分析缺则略显不足。
 
@@ -212,6 +212,13 @@ from pandasgui import show
 gui = show(df)
 ```
 
+- [Lux 2.9k](https://github.com/lux-org/lux)
+```
+pip install lux-api
+
+jupyter nbextension install --py luxwidget
+jupyter nbextension enable --py luxwidget
+```
 
 ### 数据可视化工具
 #### python的matplotlib
