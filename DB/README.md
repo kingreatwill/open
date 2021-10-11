@@ -48,6 +48,23 @@ kudu加impala
 再结合面向分析场景的Schema设计，数据仓库就可以高效率、全方位、多维度的扛起“联机分析”重任了。
 ![](img/data_vs_data_02.png)
 
+
+围绕数据仓库的分析基础设施包含以下内容：
+
+• 元数据（Metadata）– 一个关于数据位于何处的指南；
+• 数据模型（A data model）– 数据仓库中数据的抽象；
+• 数据血缘（Data lineage）– 数据仓库中数据的起源和转换；
+• 摘要（Summarization）– 用于创建数据的算法工作的描述；
+• KPIs – 关键绩效指标在哪里；
+• ETL – 允许将应用程序数据转换为公司数据。
+
+
+一般情况下，数据仓库里面的数据是结构化的数据。但是现在公司中有许多其他的数据类型，包括结构化（Structured data）、文本数据（Textual data）以及非结构化（unstructured data）的数据。
+
+结构化数据通常是组织为执行日常业务活动而生成的基于事务（transaction-based）的数据。文本数据是由公司内部发生的信件、电子邮件和对话生成的数据。非结构化数据是其他来源的数据，如物联网数据、图像、视频和基于模拟的数据。
+> 数据湖是企业中所有不同类型数据的集合。
+
+
 ### 数据湖（Data Lake）
 数据库负责干**事务处理**相关的事，数据仓库负责干**业务分析**相关的事，还有新兴的HTAP数据库既干事务又干分析，都已经这么内卷了，还要数据湖来干个毛线？
 
@@ -75,7 +92,7 @@ kudu加impala
 
 ![](img/data_lake_02.png)
 
-### 湖仓一体(Lake house)
+### 湖仓一体(Lake house / data lakehouse)
 为什么要把“湖”和“仓”糅到一起？
 曾经，数据仓库擅长的BI、数据洞察离业务更近、价值更大，而数据湖里的数据，更多的是为了远景画饼。
 随着大数据和AI的上纲上线，原先的“画的饼”也变得炙手可热起来，为业务赋能，价值被重新定义。
@@ -90,6 +107,21 @@ kudu加impala
 比如，让“数仓”在进行数据分析的时候，可以直接访问数据湖里的数据（Amazon Redshift Spectrum是这么干的）。再比如，让数据湖在架构设计上，就“原生”支持数仓能力（DeltaLake是这么干）。
 
 [数据库、数据湖、数据仓库、湖仓一体、智能湖仓，分别都是什么鬼](https://www.toutiao.com/i6971051074694169096/)
+[OPPO数据湖统一存储技术实践](https://blog.csdn.net/weixin_59152315/article/details/119750978)
+
+![https://databricks.com/blog/2021/05/19/evolution-to-the-data-lakehouse.html](img/d-d-d.webp)
+
+|                         | Data warehouse                                                         | Data lake                                                                               | Data lakehouse                                                                          |
+|-------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| Data format             | Closed, proprietary format                                             | Open format                                                                             | Open format                                                                             |
+| Types of data           | Structured data, with limited support for semi-structured data         | All types: Structured data, semi-structured data, textual data, unstructured (raw) data | All types: Structured data, semi-structured data, textual data, unstructured (raw) data |
+| Data access             | SQL-only, no direct access to file                                     | Open APIs for direct access to files with SQL, R, Python and other languages            | Open APIs for direct access to files with SQL, R, Python and other languages            |
+| Reliability             | High quality, reliable data with ACID transactions                     | Low quality, data swamp                                                                 | High quality, reliable data with ACID transactions                                      |
+| Governance and security | Fine-grained security and governance for row/columnar level for tables | Poor governance as security needs to be applied to files                                | Fine-grained security and governance for row/columnar level for tables                  |
+| Performance             | High                                                                   | Low                                                                                     | High                                                                                    |
+| Scalability             | Scaling becomes exponentially more expensive                           | Scales to hold any amount of data at low cost, regardless of type                       | Scales to hold any amount of data at low cost, regardless of type                       |
+| Use case support        | Limited to BI, SQL applications and decision support                   | Limited to machine learning                                                             | One data architecture for BI, SQL and machine learning                                  |
+
 
 ## 简述数据仓库、OLAP、数据挖掘之间的关系
 1. 数据仓库是基础：无论是数据挖掘还是OLAP分析，他们成功的关键之一是能够访问正确的、完整的和集成的数据。这也是对数据仓库的要求。数据仓库不仅是集成数据的一种方式和一个焦点，而且所有的数据仓库的解决方案都源自和依赖于数据源部件的质量和效果(这种部件在数据仓库中称为抽取、变换和装载)。数据仓库的特点（集成的、随时间变化、稳定的、面向主题的）为OLAP分析、数据挖掘的成功提供了坚实的数据基础。

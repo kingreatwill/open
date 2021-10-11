@@ -1,6 +1,16 @@
 
 > [Caddy](https://github.com/caddyserver/caddy) 是一个 Go 编写的 Web 服务器,类似于 Nginx
 
+## 在线进行配置
+
+### nginxconfig
+https://nginxconfig.io/
+https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN
+https://github.com/digitalocean/nginxconfig.io
+
+### 其它
+https://www.nginxedit.cn/
+
 ## docker 安装nginx
 
 docker run -d -p 8080:80 --name nginx  nginx:1.17.4

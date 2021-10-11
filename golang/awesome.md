@@ -490,3 +490,12 @@ https://github.com/WnP/go-sfmt
 ## 其它
 ### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
 https://github.com/augmentable-dev/gitqlite
+
+### Webmail 服务器（SMTP、POP3、email）
+https://github.com/inbucket/inbucket
+
+### SSH
+
+[massh](https://github.com/DiscoRiver/massh)：通过 SSH 方式运行 Linux 分布式 Shell 命令。
+
+[sh](https://github.com/mvdan/sh): 一个支持 Bash 的 Shell 解析器、格式化器。

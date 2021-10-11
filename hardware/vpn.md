@@ -1,5 +1,56 @@
+[TOC]
+
 ## VPN
 在这一类P2P VPN中比较出名的几种有N2N、Tinc、PeerVPN以及ZeroTier
+
+## 端口映射
+https://www.cnblogs.com/connect/p/server-port-proxy.html
+
+### Windows下实现端口映射
+[netsh命令](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netsh)
+
+查询端口映射情况
+`netsh interface portproxy show v4tov4`
+
+查询某一个IP的所有端口映射情况
+`netsh interface portproxy show v4tov4 | find "[IP]"`
+例：
+`netsh interface portproxy show v4tov4 | find "192.168.1.1"`
+
+增加一个端口映射
+`netsh interface portproxy add v4tov4 listenaddress=[外网IP] listenport=[外网端口] connectaddress=[内网IP] connectport=[内网端口]`
+例：
+`netsh interface portproxy add v4tov4 listenaddress=2.2.2.2 listenport=8080 connectaddress=192.168.1.50 connectport=80`
+
+删除一个端口映射
+`netsh interface portproxy delete v4tov4 listenaddress=[外网IP] listenport=[外网端口]`
+例：
+`netsh interface portproxy delete v4tov4 listenaddress=2.2.2.2 listenport=8080`
+
+
+### Linux下实现端口映射
+1. 允许数据包转发
+```
+echo 1 >/proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -A FORWARD -i [内网网卡名称] -j ACCEPT
+iptables -t nat -A POSTROUTING -s [内网网段] -o [外网网卡名称] -j MASQUERADE
+```
+例：
+```
+echo 1 >/proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -A FORWARD -i ens33 -j ACCEPT
+iptables -t nat -A POSTROUTING -s 192.168.50.0/24 -o ens37 -j MASQUERADE
+```
+2. 设置端口映射
+```
+iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-destination [内网地址]:[内网端口]
+```
+例：
+```
+iptables -t nat -A PREROUTING -p tcp -m tcp --dport 6080 -j DNAT --to-destination 10.0.0.100:6090
+```
 
 ## 内网穿透工具
 内网穿透系列——N2N（简单的P2P组网方案）
