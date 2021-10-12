@@ -40,6 +40,15 @@ js的[PhantomJS ](https://phantomjs.org/)
 [puppeteer-sharp](https://github.com/hardkoded/puppeteer-sharp)
 [PuppeteerSharp 扩展](https://github.com/hlaueriksson/puppeteer-sharp-contrib)
 
+## html2pdf
+[wkhtmltopdf](https://wkhtmltopdf.org/)
+
+[wkhtmltopdf项目开源地址](https://github.com/wkhtmltopdf/wkhtmltopdf)
+
+[WkHtmlToPdf-DotNet开源地址](https://github.com/HakanL/WkHtmlToPdf-DotNet)
+
+[.NET下HTML动态转PDF报告的技术实践](https://mp.weixin.qq.com/s/ZjlVb_ev5Aa1vLvD33a8-w)
+
 ## Colorful Console
 
 [Colorful Console](https://github.com/tomakita/Colorful.Console)

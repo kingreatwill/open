@@ -432,3 +432,11 @@ https://github.com/xwmx/nb
 ### winapps 
 运行windows APP
 https://github.com/Fmstrat/winapps
+
+### 有趣的工具
+- asciiview 
+```
+sudo apt-get install aview imagemagick
+asciiview kobe.jpg # 将图片转化成字符输出
+```
+[N个Linux耍酷命令](https://www.toutiao.com/a6820664143654158861/)
