@@ -181,3 +181,9 @@ mlxtend主要包括以下模块：
 - 预处理
 - 回归器
 - 文本
+
+
+### RFM
+https://help.aliyun.com/document_detail/135054.html
+https://joaocorreia.io/blog/rfm-analysis-increase-sales-by-segmenting-your-customers.html
+https://wiki.mbalib.com/wiki/RFM%E6%A8%A1%E5%9E%8B
