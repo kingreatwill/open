@@ -70,6 +70,16 @@ GPT-3 paper  - 72 pages
 
 https://github.com/elyase/awesome-gpt3
 
+### MT-NLG
+2021-10-11
+https://www.microsoft.com/en-us/research/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/
+https://developer.nvidia.com/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/
+
+微软和英伟达今天宣布了由 DeepSpeed 和 Megatron 驱动的 Megatron-Turing 自然语言生成模型（MT-NLG），这是迄今为止训练的最大和最强大的解码语言模型。这个模型包括 5300 亿个参数，与现有最大的模型 GPT-3 相比，参数数量是其 3 倍。
+微软英伟达发布 5300 亿 NLP 模型“威震天-图灵”，花了 4480 块 A100
+此模型简称 MT-NLG，是微软Turing NLG和英伟达Megatron-LM两者的“继任者”。
+Turing NLG 由微软于 2020 年 2 月推出，参数为 170 亿；Megatron-LM 来自英伟达，2019 年 8 月推出，参数 83 亿。
+
 ### Turing Natural Language Generation (T-NLG)  （Turing-NLG）
 https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/
 ![](img/TurningNGL_Model.png)
