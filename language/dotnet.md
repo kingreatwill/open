@@ -163,3 +163,134 @@ https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/
 https://github.com/dotnet/corefxlab/tree/master/src/Microsoft.Data.Analysis
 
 dotnet spark ML python 能很好的一起工作，可以向pandas一样读取CVS
+
+## Linux守护进程
+Microsoft.Extensions.Hosting.Systemed，是利用Linux systemd机制，由sytemd将你的.net core控制台应用程序作为后台服务程序进行开机启动和管控。
+而本文是让你的程序本身就是一个后台程序（Linux daemon，守护进程），是“原生”的，不需要借助任何工具（包括systemd、supervisor等等）！
+换句话说，借助其它的工具或方式把你的程序“变成后台服务”与你的程序“本身就是后台服务”程序，是完全不同的两回事。
+
+```csharp
+using System.Threading;
+using System.Timers;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Text;
+ 
+ 
+/************************************************
+ * .Net Core/.Net5+ Linux Daemon示例，作者宇内流云 *
+ ************************************************/
+ 
+namespace daemon
+{
+    class Program
+    {
+ 
+        static unsafe void Main(string[] args)
+        {
+            // 进入守护状态
+            int pid = fork();
+            if (pid != 0) exit(0);
+            setsid();
+            pid = fork();
+            if (pid != 0) exit(0);
+            umask(0);
+ 
+ 
+            // 关闭所有打开的文件描述符
+            int fd_nul = open("/dev/null", 0);
+            for (var i = 0; i <= fd_nul; i++)
+            {
+                if (i < 3)
+                    dup2(fd_nul, i);
+                else
+                    close(i);
+            }
+ 
+            // 进入主方法
+            //（本示例的功能很简单，就是定时向某个文件写入点内容）
+            DaemonMain(args);
+        }
+ 
+ 
+        /// <summary>
+        /// Daemon工作状态的主方法
+        /// </summary>
+        /// <param name="aargs"></param>
+        static void DaemonMain(string[] aargs)
+        {
+            //启动一个线程去处理一些事情
+            (new Thread(DaemonWorkFunct) { IsBackground = true }).Start();
+ 
+ 
+            //daemon时，控制台输入、输出流已经关闭
+            // 因此，请不要再用Console.Write/Read等方法
+ 
+            //阻止daemon进程退出
+            (new AutoResetEvent(false)).WaitOne();
+        }
+ 
+ 
+        static FileStream fs;
+        static int count = 0;
+        static void DaemonWorkFunct()
+        {
+            try
+            {
+                fs = File.Open(Path.Combine("/tmp", "daemon.txt"), FileMode.OpenOrCreate);
+            }
+            catch
+            {
+                exit(1);
+                return;
+            }
+ 
+            var t = new System.Timers.Timer() { Interval = 1000 };
+            t.Elapsed += OnElapsed;
+            t.Start();
+        }
+ 
+        private static void OnElapsed(object sender, ElapsedEventArgs e)
+        {
+            var s = DateTime.Now.ToString("yyy-MM-dd HH:mm:ss") + "\n";
+            var b = Encoding.ASCII.GetBytes(s);
+            fs.Write(b, 0, b.Length);
+            fs.Flush();
+ 
+            count++;
+            if (count > 100)
+            {
+                fs.Close();
+                fs.Dispose();
+                exit(0);
+            }
+        }
+ 
+ 
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int fork();
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int setsid();
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int umask(int mask);
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int open([MarshalAs(UnmanagedType.LPStr)] string pathname, int flags);
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int close(int fd);
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int exit(int code);
+ 
+        [DllImport("libc", SetLastError = true)]
+        static extern int dup2(int oldfd, int newfd);
+ 
+    }
+}
+```
+[linux系统编程之进程（八）：守护进程详解及创建，daemon()使用](https://www.cnblogs.com/mickole/p/3188321.html)
+[.NET跨平台实践：.NetCore、.Net5/6 Linux守护进程设计](https://www.cnblogs.com/yunei/p/15367709.html)
