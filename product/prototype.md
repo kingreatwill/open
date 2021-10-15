@@ -8,8 +8,15 @@
 免费试用30天
 
 [Axure｜引入图表ECharts的4种方式](https://www.jianshu.com/p/b298c391ebc2)
+[关于Axure中引入Echarts图表的几种方式](https://zhuanlan.zhihu.com/p/105028531)
+[Axure制作可视化图表的几种方法](https://www.jianshu.com/p/a40f8b4b4686)
+[Axure嵌入Highcharts图表--javascript (js)注入](https://blog.csdn.net/shirenkan/article/details/109766956)
+[Axure中插入Highcharts动态图表](https://blog.csdn.net/qq_15781625/article/details/80620055)
+
+> 主要分为“内联框架”组件（双击内联框架添加链接） 以及 js注入，两种方式；
 
 [如何在Axure中动态加载图表（Axhub Charts）](https://blog.csdn.net/sunhuansheng/article/details/99407935)
+
 
 ```
 打开软件，可以看到是中文界面，点击enter license输入axure rp 9授权码。
