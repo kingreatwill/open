@@ -84,6 +84,26 @@ https://github.com/aylei/kubectl-debug 这个是别人开发的插件
 https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/#kubectl-debug-graduates-to-beta
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
 
+#### Mizu
+[Kubernetes的API流量查看器](https://github.com/up9inc/mizu)
+
+类似TCPDump and Chrome Dev Tools的组合
+
+```
+mizu tap pod-name
+# 正则
+mizu tap "(catalo*|front-end*)"
+mizu tap "^ca.*" # 以ca开头的所有pod
+
+# User agent filtering（任何包含具有指定值(kube-probe或prometheus)的User-Agent报头的请求都不会被捕获）
+mizu tap "^ca.*" --set tap.ignored-user-agents=kube-probe --set tap.ignored-user-agents=prometheus  
+
+mizu tap # 当前命名空间中的所有pod
+mizu tap ".*" # 所有pod
+mizu tap ".*" -n sock-shop # 查看sock-shop命名空间中的pod
+# 然后打开 http://localhost:8899 查看
+```
+
 #### Kubewatch
 Kubewatch是一个很好用的工具，kubewatch能够监控那些特定的Kubernetes事件，并将此类事件以通知的形式推送到诸如Slack和PagerDuty的端点上。可以确保你的容器是安全的，并使用行业最佳实践进行打包，同时监视软件的漏洞和更新。但是，用户表示，添加对多个实例的支持将会更有帮助。支持多个端点，且易于部署。
 
