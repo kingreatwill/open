@@ -294,3 +294,18 @@ namespace daemon
 ```
 [linux系统编程之进程（八）：守护进程详解及创建，daemon()使用](https://www.cnblogs.com/mickole/p/3188321.html)
 [.NET跨平台实践：.NetCore、.Net5/6 Linux守护进程设计](https://www.cnblogs.com/yunei/p/15367709.html)
+
+## dotnet tool
+https://docs.microsoft.com/zh-cn/dotnet/core/tools/global-tools#install-a-global-tool
+https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-tool-search
+https://www.nuget.org/packages?packagetype=dotnettool
+
+
+### dotnet tool install -g Microsoft.dotnet-httprepl
+https://docs.microsoft.com/zh-cn/aspnet/core/web-api/http-repl/?view=aspnetcore-5.0&tabs=windows
+
+### dotnet tool install --global dotnet-serve
+https://github.com/natemcmaster/dotnet-serve
+
+### dotnet运行时诊断工具
+https://github.com/dotnet/diagnostics
