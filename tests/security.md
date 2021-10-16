@@ -11,6 +11,10 @@ kali-linux
 enter 123456
 kex
 ```
+kali基于Debian
+
+## Blackarch
+Blackarch 是一款基于 arch linux 为渗透测试和安全研究人员的渗透测试系统，它包含2700多种安全工具。
 
 ## 工具
 ### 端口扫描
