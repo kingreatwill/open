@@ -99,6 +99,7 @@ selenium 是一个 web 的自动化测试工具，不少学习功能自动化的
 - 支持多平台：windows、linux、MAC ，支持多浏览器：ie、ff、safari、opera、chrome
 - 支持分布式测试用例的执行，可以把测试用例分布到不同的测试机器的执行，相当于分发机的功能。
 
+> 4.0在2021.10.13发布
 
 #### Selenium Grid
 https://blog.csdn.net/ouyanggengcheng/article/details/79935657
