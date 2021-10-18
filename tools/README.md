@@ -366,6 +366,7 @@ ZIP 压缩包管理器 - 免费版含广告
 - 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine、Xwiki、confluence
 - takenote 基于 Web 的 Markdown 笔记应用
 
+- [开源笔记本软件 Joplin](https://github.com/laurent22/joplin)
 
 ### Wiki  知识库
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
@@ -582,6 +583,10 @@ Windows效率神器(不仅仅是搜索)
 
 #### everything
 everything 也支持全文本文档搜索
+#### text seek
+#### filelocator
+#### grepWin
+https://github.com/stefankueng/grepWin
 #### anytxt
 支持快速**文件内容搜索**，支持结果预览和高亮显示
 据说比everything还快
@@ -925,6 +930,14 @@ Dism++优化软件
 EV录屏
 迅捷PDF转换器
 Poppler ，PDF 生成工具
+
+### Sysinternals Suite
+Sysinternals Suite 整合了许多 Windows 实用程序，其中包括进程资源管理器（Process Explorer）、进程监视器（Process Monitor）、系统监测（Sysmon）、自动运行（Autoruns）、进程转储（ProcDump）等。
+
+AccessChk、AccessEnum、ADExplorer、ADInsight、ADRestore、Autologon、Autoruns、BGInfo、CacheSet、ClockRes、Contig、Coreinfo、CPU Stress、DebugView、Desktops、Disk2vhd、DiskExt、DiskMon、DiskView、DU（磁盘使用率）、EFSDump、FindLinks、Handle、Hex2dec、Junction、ListDLLs、LiveKd、LoadOrder、LogonSessions、MoveFile、NotMyFault、NTFSInfo、PendMoves、PipeList、ProcDump、Process Explorer、Process Monitor、PsExec、PsFile、PsGetSid、PsInfo、PsKill、PsList、PsLoggedOn、PsLogList、PsPasswd、PsPing、PsService、PsShutdown、PsSuspend、RamMap、RDCMan、RegDelNull、Regjump、RU（注册表使用）、SDelete、ShareEnum、ShellRunas、Sigcheck、Streams、Strings、Sync、Sysmon、TCPView、Testlimit、VMMap、VolumeID、WhoIs、WinObj、以及 ZoomIt 。
+
+
+Microsoft Store中安装
 
 ## PPT
 [OfficePlus - Office模板网站](http://www.officeplus.cn/Template/Home.shtml)

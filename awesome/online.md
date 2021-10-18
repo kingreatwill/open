@@ -66,6 +66,8 @@ online
 > Theia based on Monaco.
 
 - [Strukture IDE](https://github.com/thestrukture/IDE)
+
+- [Ace (Ajax.org Cloud9 Editor) 23.7k](https://github.com/ajaxorg/ace)
 ## Language
 
 - [csharp](https://sharplab.io/) SharpLab is a .NET code playground that shows intermediate steps and results of code compilation.[open](https://github.com/ashmind/SharpLab)

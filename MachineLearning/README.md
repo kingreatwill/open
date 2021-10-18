@@ -211,6 +211,23 @@ Scikit-learn 是仅 Python 的实现，因此尽管它对 Java / Javascript 框�
 
 Scikit-learn 之所以与众不同，是因为它提供了庞大的高质量文档，以及所有部分的一致 API。
 
+### mlpack 3.8k
+https://github.com/mlpack/mlpack
+
+| Dataset   | mlpack  | WEKA     | Shogun    | mlpy      | sklearn  |
+|-----------|---------|----------|-----------|-----------|----------|
+| 1000x10   | 0.078s  | 0.271s   | 0.132s    | 0.179s    | 0.341s   |
+| 3162x10   | 0.267s  | 1.065s   | 1.093s    | 0.974s    | 0.916s   |
+| 10000x10  | 1.332s  | 4.734s   | 11.890s   | 9.961s    | 3.549s   |
+| 31622x10  | 7.270s  | 27.890s  | 120.320s  | 116.965s  | 15.213s  |
+| 100000x10 | 47.350s | 171.313s | 1357.910s | 1621.045s | 75.039s  |
+| 10000x100 | 18.075s | 192.548s | 27.251s   | 29.039s   | 198.953s |
+
+他的性能超出大量类似的机器学习库，如WEKA、Shogun、MATLAB、mlpy及sklearn。
+
+mlpack含有丰富的文档和教程，可以参考项目主页。教程中包含的算法有：近邻搜索（NeighborSearch）、范围搜索（RangeSearch）、线性回归（LinearRegression）、欧几里德最小生成树（The Euclidean Minimum Spanning Tree）、K-均值（K-Means）、FastMKS（Fast max-kernel search）等。
+
+
 ### Microsoft Cognitive Toolkit(CNTK) 15K+
 
 https://github.com/microsoft/CNTK

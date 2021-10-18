@@ -320,3 +320,7 @@ QuickBI助力餐饮行业大数据快速分析
 <video controls="" preload="none">
 <source id="mp4" src="files/shenz.mp4" type="video/mp4"/>
 </video>
+
+
+## 大屏
+https://gitee.com/smartchart/smartchart/

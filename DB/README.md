@@ -274,9 +274,10 @@ https://github.com/memsql/dbbench
 - pgsql
 
 ### 数据库同步
+[Change Data Capture](../BIgData/CDC.md)
 
 #### canal
-
+#### Maxwell
 #### Debezium
 
 https://github.com/debezium/debezium 3.8k
