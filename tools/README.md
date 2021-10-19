@@ -274,6 +274,10 @@ https://github.com/NickeManarin/ScreenToGif
 ## 截图
 https://github.com/lupoDharkael/flameshot
 老牌截图工具Snagit
+
+### 代码截图：carbon
+https://carbon.now.sh/
+
 ## 视频处理
 Subtitle Edit - 开源字幕编辑器
 ## 录屏

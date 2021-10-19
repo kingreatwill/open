@@ -71,6 +71,11 @@ https://github.com/paramiko/paramiko
 https://github.com/mitmproxy/mitmproxy
 
 ## Tools
+### print
+https://github.com/willmcgugan/rich
+
+支持emoji表情、table表格、markdown、json等几十种
+
 ### linq
 https://github.com/viralogic/py-enumerable
 
