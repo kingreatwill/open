@@ -99,10 +99,13 @@ https://repl.it/languages/csharp
 明道、teambition、http://Tower.im、Worktile、trello、SeaTable、Airtable
 
 ## Excel
-https://github.com/mengshukeji/Luckysheet
+- https://github.com/mengshukeji/Luckysheet
+- （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/
 
 [在web中使用Python编辑excel](https://github.com/ricklamers/gridstudio)
 
+## 工具
+- https://tableconvert.com/
 
 ## playground
 
