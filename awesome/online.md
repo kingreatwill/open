@@ -101,8 +101,15 @@ https://repl.it/languages/csharp
 ## Excel
 - https://github.com/mengshukeji/Luckysheet
 - （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/
+- https://github.com/SheetJS/sheetjs
+- https://github.com/nocodb/nocodb
+- https://github.com/handsontable/handsontable
+- https://github.com/myliang/x-spreadsheet
 
 [在web中使用Python编辑excel](https://github.com/ricklamers/gridstudio)
+
+[更多](https://github.com/topics/spreadsheet)
+
 
 ## 工具
 - https://tableconvert.com/

@@ -63,6 +63,9 @@ https://github.com/lonekorean/regex-storm
 [Regex 正则表达式入门](https://www.cnblogs.com/codeshell/p/12825243.html)
 [工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
 
+## 常用的正则表达式
+[常用正则表达式汇总](https://www.cnblogs.com/cxsabc/p/10627631.html)
+[正则表达式汇总](https://mp.weixin.qq.com/s/h11xHEPxjy1IPE514IjYyw)
 
 ## 其它
 vs code 插件any-rule   F1

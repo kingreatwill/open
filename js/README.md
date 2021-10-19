@@ -167,6 +167,8 @@ https://github.com/eKoopmans/html2pdf.js
 ### excel
 https://github.com/mengshukeji/Luckysheet
 
+[其它](../awesome/online.md#excel)
+
 ## D3.js
 https://github.com/d3/d3 95k
 D3的全称是（Data-Driven Documents），顾名思义可以知道是一个关于数据驱动的文档的javascript类库。说得简单一点，D3.js主要是用于操作数据的，它通过使用HTML、SVG、CSS来给你的数据注入生命，即转换为各种简单易懂的绚丽的图形。
