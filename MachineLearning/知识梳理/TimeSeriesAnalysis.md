@@ -47,6 +47,7 @@ https://www.jianshu.com/p/68016de16984
 ## 相关模型
 [Python 中11 种经典时间序列预测方法](https://zhuanlan.zhihu.com/p/407589768)
 [11 Classical Time Series Forecasting Methods in Python (Cheat Sheet)](https://machinelearningmastery.com/time-series-forecasting-methods-in-python-cheat-sheet/)
+[7 methods to perform Time Series forecasting (with Python codes)](https://www.analyticsvidhya.com/blog/2018/02/time-series-forecasting-methods)  [数据集](https://gitee.com/myles2019/dataset/raw/master/jetrail/jetrail_train.csv)
 
 Seasonal Autoregressive Integrated Moving Average
 SARIMA模型（Seasonal Autoregressive Integrated Moving Average），季节性差分自回归滑动平均模型，时间序列预测分析方法之一
