@@ -576,6 +576,15 @@ https://filebrowser.org/installation
 #### QTTabBar
 #### Clover
 Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。
+### 文本编辑器(轻量级IDE)
+#### notepad++
+
+#### Geany
+https://github.com/geany/geany
+https://github.com/geany/geany-plugins
+
+#### vs code
+
 
 ### 搜索相关
 #### Quicker
