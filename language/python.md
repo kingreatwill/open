@@ -416,3 +416,26 @@ https://github.com/marazt/object-mapper
 http://www.pymunk.org/en/latest/
 https://pypi.org/project/pymunk/
 https://github.com/viblo/pymunk
+
+## python 新版本
+### Python 3.10
+
+https://towardsdatascience.com/6-new-awesome-features-in-python-3-10-a0598e87689f
+
+- 更好的错误跟踪（错误位置，以及具体的错误类型）；
+- match-case 结构模式匹配；
+- 新型 Union 运算符。
+```
+def func(num: Union[int, float]) -> Union[int, float]: 
+    return num + 5
+```
+```
+def func(num: int | float) -> int | float: 
+    return num + 5
+```
+- Stricter Zipping
+在以前的版本中，你可以使用具有不同长度序列的 zip，但是现在引入了一个新的参数 strict，用来检查传递给 zip 函数的所有可迭代对象是否具有相同的长度。
+- 自动文本编码
+有时编码会遇到这种情况，代码在一台机器上可以运行，但是在另一台机器上会出错。导致这种情况的原因很多，有些是文本编码造成的。在 Python 的早期版本中，如果没有显式声明编码类型，首选的本地编码可能会导致代码在其他计算机上出现错误。在新版本的 Python3.10 中，如果用户打开没有特定编码类型的文本文件时，可以激活一个警告来通知用户。
+- 异步迭代
+有两个新的异步内置函数 aiter 和 anext 使代码更具可读性。

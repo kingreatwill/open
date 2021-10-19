@@ -180,3 +180,15 @@ https://github.com/cloudinary/cloudinary_pubnub_demo
 
 在“Power BI 服务”新建新仪表板，然后选择“添加磁贴” > “自定义流式处理数据” ，然后选择“下一步” 按钮。
 从窗口右上角中的链接中选择“+ 添加流式处理数据” 。选择“PubNub” ，然后选择“下一步” 。
+
+
+### 图表工具
+
+#### Highcharts
+https://www.highcharts.com/
+#### 数据地图 Power Map
+https://support.office.com/en-us/article/get-started-with-power-map-88a28df6-8258-40aa-b5cc-577873fb0f4a
+#### Echarts
+https://echarts.apache.org/zh/index.html
+#### AntV
+https://antv.vision/zh
