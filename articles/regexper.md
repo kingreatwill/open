@@ -93,3 +93,98 @@ func main() {
 	fmt.Printf("by name: %s %s\n", result["first"], result["second"])
 }
 ```
+
+
+# Cron Expression
+## 工具
+https://www.pppet.net/
+## 将cron表达式转换为人类可读描述的
+dotnet - https://github.com/bradymholt/cron-expression-descriptor
+JavaScript - https://github.com/bradymholt/cRonstrue
+Java - https://github.com/RedHogs/cron-parser
+Java - https://github.com/voidburn/cron-expression-descriptor
+Ruby - https://github.com/alpinweis/cronex
+Python - https://github.com/Salamek/cron-descriptor
+Go - https://github.com/lnquy/cron
+
+## linux crontab任务(5位)
+cron表达式　
+表达式： `* * * * *`
+含义：分钟(0-59) 小时(0-23) 日期(1-31) 月份(1-12) 星期(0-6)
+
+crontab任务配置基本格式： 
+`* *　 *　 *　 *　　command`
+
+星号（*）可以用来代表所有有效的值。譬如，月份值中的星号意味着在满足其它制约条件后每月都执行该命令。
+整数间的短线（-）指定一个整数范围。譬如，1-4 意味着整数 1、2、3、4。
+用逗号（,）隔开的一系列值指定一个列表。譬如，1，2，3，4 标明这四个指定的整数。
+正斜线（/）可以用来指定间隔频率。譬如：*/2用在日期字段中表示每2天执行一次该命令。
+
+> 查看用户下的定时任务:crontab -l 或 cat /var/spool/cron/用户名
+
+## 6位
+Seconds Minutes Hours DayofMonth Month DayofWeek [Year]
+*： 匹配所有值
+?：匹配dayofMonth 和DayofWeek的一个值。
+-：表范围。例如在分钟域中写1-10，表示第1到第10分钟每分钟触发一次。
+/：前的表示起始，后的表示间隔。例如在Minutes域使用5/20,则意味着5分钟触发一次，而25,45等分别触发一次.
+L：表示最后一个。在DayofWeek，4L表示每个月最后一个星期五
+W:表示有效工作日(周一到周五)， 只能出现在DayofMonth域，系统将在离指定日期的最近的有效工作日触发事件。例如在DayofMonth使用5W，如果5日是星期六，则将在最近的工作日星期五，即4日触发。另外一点，W的最近寻找不会跨过月份。
+
+LW:这两个字符可以连用，表示在某个月最后一个工作日，即最后一个星期五。
+
+## 7位
+
+cron的表达式被用来配置CronTrigger实例。 cron的表达式是字符串，实际上是由七子表达式，描述个别细节的时间表。这些子表达式是分开的空白，代表：
+
+1. Seconds
+
+2. Minutes
+
+3. Hours
+
+4. Day-of-Month
+
+5. Month
+
+6. Day-of-Week
+
+7. Year (可选字段)
+
+例 "0 0 12 ? * WED" 在每星期三下午12:00 执行,
+
+个别子表达式可以包含范围, 例如，在前面的例子里("WED")可以替换成 "MON-FRI", "MON, WED, FRI"甚至"MON-WED,SAT". “*” 代表整个时间段.
+每一个字段都有一套可以指定有效值，如
+
+Seconds (秒) ：可以用数字0－59 表示，
+
+Minutes(分) ：可以用数字0－59 表示，
+
+Hours(时) ：可以用数字0-23表示,
+
+Day-of-Month(天) ：可以用数字1-31 中的任一一个值，但要注意一些特别的月份
+
+Month(月) ：可以用0-11 或用字符串 “JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC” 表示
+
+Day-of-Week(每周)：可以用数字1-7表示（1 ＝ 星期日）或用字符口串“SUN, MON, TUE, WED, THU, FRI and SAT”表示
+
+“/”：为特别单位，表示为“每”如“0/15”表示每隔15分钟执行一次,“0”表示为从“0”分开始, “3/20”表示表示每隔20分钟执行一次，“3”表示从第3分钟开始执行
+
+“?”：表示每月的某一天，或第周的某一天
+
+“L”：用于每月，或每周，表示为每月的最后一天，或每个月的最后星期几如“6L”表示“每月的最后一个星期五”
+
+“W”：表示为最近工作日，如“15W”放在每月（day-of-month）字段上表示为“到本月15日最近的工作日”
+
+““#”：是用来指定“的”每月第n个工作日,例 在每周（day-of-week）这个字段中内容为"6#3" or "FRI#3" 则表示“每月第三个星期五”
+
+## 常用Cron表达式
+
+0 15 10 * * ? *	每天10点15分触发
+0 15 10 * * ? 2017	2017年每天10点15分触发
+0 * 14 * * ?	每天下午的 2点到2点59分每分触发
+0 0/5 14 * * ?	每天下午的 2点到2点59分(整点开始，每隔5分触发)
+0 0/5 14,18 * * ?	每天下午的 2点到2点59分、18点到18点59分(整点开始，每隔5分触发)
+0 0-5 14 * * ?	每天下午的 2点到2点05分每分触发
+0 15 10 ? * 6L	每月最后一周的星期五的10点15分触发
+0 15 10 ? * 6#3	每月的第三周的星期五开始触发
