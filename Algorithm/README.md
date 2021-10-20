@@ -13,3 +13,7 @@
 [动画模拟算法](https://github.com/chefyuan/algorithm-base)
 
 [机器学习算法的动画可视化](https://davpinto.github.io/ml-simulations)
+
+[JavaScript Algorithms and Data Structures](https://github.com/trekhleb/javascript-algorithms)
+
+![https://www.bigocheatsheet.com/](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
