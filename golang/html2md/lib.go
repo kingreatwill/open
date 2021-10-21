@@ -160,7 +160,7 @@ func (s *suport) saveImg(doc *goquery.Document) string {
 	content_selection.Find("img").Each(func(i int, img_selection *goquery.Selection) {
 		if img_src, exists := img_selection.Attr("src"); exists {
 			ss := strings.Split(strings.Split(img_src, "?")[0], ".")
-			// 下载图片;
+			// 下载图片;如果图片路径不是http开头的可以考虑使用https://github.com/PuerkitoBio/purell 来处理；
 			resp, _ := http.Get(img_src)
 			body, _ := ioutil.ReadAll(resp.Body)
 			imgName := fmt.Sprintf("img/%v-%v.%v", s.file, i+1, ss[len(ss)-1])
