@@ -1,3 +1,5 @@
+[TOC]
+# Windows Subsystem for Linux
 ## 常用操作
 [命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/wsl-config)
 [命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/reference)
@@ -43,6 +45,15 @@
 使用`/mnt/c` 从 WSL 访问 Windows 文件
 使用 `\\wsl$` 从 Windows 访问 Linux 文件
 
+## WSL的一些用法
+### vs code
+https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-vscode
+在WSL中执行命令`code .` 相当于在win中打开vs code并链接到wsl中
+
+### docker
+https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-containers
+
+Docker Desktop可以直接使用wsl中的docker环境（设置 > 资源 > WSL 集成 | Settings -> Resources -> WSL INTEGRATION）
 
 ## 图形界面的安装
 ### 第一种：X-WINDOWS的安装使用图形化界面
@@ -93,8 +104,11 @@ ccsm
 在CMD中搜索MSTSC，或者点击远程桌面连接，点击进入，计算机栏输入【本机IP：端口】，用户名栏输入子系统用户名，点击连接。
 
 ### 第三种：官方：WSLG系统 （Windows Subsystem for Linux GUI）
+win11
+
 https://github.com/microsoft/wslg
 
+https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps
 
 ## 文件目录在win10文件系统中的位置
 
@@ -153,3 +167,19 @@ sudo apt-get update
 
 更新已安装的软件：
 sudo apt-get upgrade
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Windows Subsystem for Android™
+Win11安卓子系统
+https://docs.microsoft.com/zh-cn/windows/android/wsa/
