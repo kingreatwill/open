@@ -588,7 +588,7 @@ https://github.com/geany/geany
 https://github.com/geany/geany-plugins
 
 #### vs code
-
+https://vscode.dev/
 
 ### 搜索相关
 #### Quicker

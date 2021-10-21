@@ -1,5 +1,140 @@
+[TOC]
 # Monitoring System
 [List Of 11 Best Open Source & Free Monitoring Tools](https://devopscube.com/best-opensource-monitoring-tools/)
+
+## Netdata
+
+[Netdata](https://github.com/netdata/netdata) 是一款 Linux 性能实时监测工具.。以web的可视化方式展示系统及应用程序的实时运行状态（包括cpu、内存、硬盘输入/输出、网络等linux性能的数据）。
+1.CPU的使用率,中断，软中断和频率(总量和每个单核)
+
+2.RAM，互换和内核内存的使用率（包括KSM和内核内存deduper）
+
+3.硬盘输入/输出(每个硬盘的带宽，操作，整理，利用等)
+
+4.IPv4网络（数据包，错误，分片）：
+TCP：连接，数据包，错误，握手
+UDP:数据包，错误
+广播：带宽，数据包
+组播：带宽，数据包
+
+5.Netfilter/iptables Linux防火墙(连接，连接跟踪事件，错误等)
+
+6.进程(运行，受阻，分叉，活动等)
+
+7.熵
+
+8.NFS文件服务器，v2,v3,v4(输入/输出，缓存，预读，RPC调用)
+
+9.网络服务质量（唯一一个可实时可视化网络状况的工具）
+11.应用程序，通过对进程树进行分组（CPU,内存，硬盘读取，硬盘写入，交换，线程，管道，套接字等）
+12.Apache Web服务器状态(v2.2, v2.4)
+
+13.Nginx Web服务器状态
+
+14.Mysql数据库（多台服务器，单个显示：带宽，查询/s, 处理者，锁，问题，临时操作，连接，二进制日志，线程，innodb引擎等）
+
+15.ISC Bind域名服务器（多个服务器，单个显示：客户，请求，查询，更新，失败等）
+
+16.Postfix邮件服务器的消息队列（条目，大小）
+
+17.Squid代理服务器（客户带宽和请求，服务带宽和请求）
+
+18.硬件传感器（温度，电压，风扇，电源，湿度等）
+
+19.NUT UPSes（负载，充电，电池电压，温度，使用指标，输出指标）
+
+Netdata management and configuration cheatsheet:
+![](https://learn.netdata.cloud/assets/images/netdata-cheatsheet-e09a6f8706934ebf3bb5ac1c5b4a50d4.png)
+
+
+用脚本安装：
+```
+# 基本安装（适合所有Linux系统）
+$ bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+
+# 或者从头安装（安装所有依赖包）
+$ bash <(curl -Ss https://my-netdata.io/kickstart-static64.sh) 
+```
+通过报管理器安装：
+```
+Arch Linux (sudo pacman -S netdata)
+Alpine Linux (sudo apk add netdata)
+Debian Linux (sudo apt-get install netdata)
+Gentoo Linux (sudo emerge --ask netdata)
+OpenSUSE (sudo zypper install netdata)
+Solus Linux (sudo eopkg install netdata)
+Ubuntu Linux >= 18.04 (sudo apt install netdata)
+MacOS (brew install netdata)
+```
+> localhost:19999
+
+开关控制：
+```
+# 启动：位置根据系统会有不同。建议加上-D参数前台运行，不要后台运行
+$ sudo netdata -D
+$ 或
+$ sudo /usr/sbin/netdata -D
+# 或（Mac上）
+$ sudo /usr/local/sbin/netdata -D
+
+# 关闭（方法很多种，往往只有一种生效）
+$ sudo killall netdata
+# 或
+$ sudo pkill -9 netdata
+# 或
+$ sudo service netdata stop
+# 或
+$ sudo /etc/init.d/netdata stop
+# 或
+$ sudo systemctl stop netdata
+```
+卸载：
+```
+# 找到卸载脚本位置(我的在/usr/src/netdata.git)
+whereis netdata.git
+#  进入那个位置
+cd /usr/src/netdata.git
+# 开始卸载
+yes | sudo ./netdata-uninstaller.sh --force
+# 删除其它遗留信息
+sudo userdel netdata
+sudo groupdel netdata
+sudo gpasswd -d netdata adm
+sudo gpasswd -d netdata proxy
+```
+卸载其它被安装的软件：
+```
+yes | sudo apt-get purge ntop snapd
+```
+
+Nginx代理
+```
+location ~ /netdata/(?<ndpath>.*) {
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_pass_request_headers on;
+            proxy_set_header Connection "keep-alive";
+            proxy_store off;
+            proxy_pass http://127.0.0.1:19999/$ndpath$is_args$args;
+            gzip on;
+            gzip_proxied any;
+            gzip_types *;
+        }
+```
+重启Nginx，然后应该就可以通过域名/netdata访问Netdata面板了。
+
+> 注意，安装后会严重影响服务器运行速度，且默认安装的话安全性很低（默认没有密码，默认端口访问可以直接看到全部系统信息）
+
+## Prometheus
+
+## Zabbix
+
+https://www.zabbix.com/
+Zabbix 是开源监控软件，界面简单易用，用户学习曲线较平滑，并且可为大型企业提供企业级解决方案。
+它是一个集中式系统，存储的数据是一个关系型数据库，可以对其进行高效地处理。
+
 ## Nagios
 
 https://www.nagios.org/
@@ -9,11 +144,6 @@ Nagios 是一款开源的监控工具，1999 年就已经问世。
 考虑到 Nagios 这一领域已经存在已久，因此生态比较完善，有很多为它编写的插件。
 它可以监控各种组件，包括 Oss、应用程序、网站、中间件、Web 服务器等。
 
-## Zabbix
-
-https://www.zabbix.com/
-Zabbix 是开源监控软件，界面简单易用，用户学习曲线较平滑，并且可为大型企业提供企业级解决方案。
-它是一个集中式系统，存储的数据是一个关系型数据库，可以对其进行高效地处理。
 
 ## Open-Falcon
 
@@ -24,7 +154,6 @@ http://open-falcon.org/
 
 https://github.com/didi/nightingale
 
-## Prometheus
 
 ## Rieman
 
