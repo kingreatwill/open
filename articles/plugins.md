@@ -47,6 +47,9 @@ Polacode-2020
 【使用：File > Preferences > Color Theme > Night Owl  (文件->首选项->颜色主题)】
 【使用：ctrl+k ctrl+T】
 
+Linux & Windows => File > Preferences > File Icon Theme > VSCode Icons.
+MacOS => Code > Preferences > File Icon Theme > VSCode Icons.
+
 体验一个主题 可以使用https://vscode.dev 规则是https://vscode.dev/theme/itemName  ，itemName是https://marketplace.visualstudio.com/items?itemName=sdras.night-owl
 
 - [night owl](https://github.com/sdras/night-owl-vscode-theme) - [体验](https://vscode.dev/theme/sdras.night-owl)
