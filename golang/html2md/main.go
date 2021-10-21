@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"html2md/lib"
 	"os"
 )
 
@@ -16,11 +15,10 @@ func main() {
 	case 4:
 		do(os.Args[1], os.Args[2], os.Args[3])
 	default:
-		fmt.Println("html2md.exe url file slector")
+		fmt.Println("html2md.exe url file selector")
 	}
 }
 
-func do(url, file, slector string) {
-	suport := lib.New(url, slector, file)
-	lib.Do(suport)
+func do(url, file, selector string) {
+	New(url, file, selector).Do()
 }

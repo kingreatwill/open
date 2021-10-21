@@ -1,40 +1,64 @@
 package main
 
 import (
+	"fmt"
+	"regexp"
+	"testing"
+
 	md "github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/JohannesKaufmann/html-to-markdown/plugin"
-	"github.com/PuerkitoBio/goquery"
-	"testing"
 )
 
-var html =`<p>1. xxx <br/>2. xxxx<br/>3. xxx</p><p><span class="img-wrap"><img src="xxx"></span><br>4. golang<br>a. xx<br>b. xx</p> jmap –histo[:live]`
+// go get -u all
 
-var html2 =`<code>last_30_days</code>`
+func conv(html_str string) string {
 
-func Test_md(t *testing.T) {
 	//opt := &md.Options{
 	//	StrongDelimiter: "__", // default: **
 	//}
 	var converter = md.NewConverter("", true, nil)
-	newline := md.Rule{
-		Filter: []string{"br"}, // register <br>
-		Replacement: func(content string, selec *goquery.Selection, opt *md.Options) *string {
-			return md.String("\n") // return markdown
-		},
-	}
+	// newline := md.Rule{
+	// 	Filter: []string{"br"}, // register <br>
+	// 	Replacement: func(content string, selec *goquery.Selection, opt *md.Options) *string {
+	// 		return md.String("\n") // return markdown
+	// 	},
+	// }
 
 	converter.Use(plugin.GitHubFlavored())
 	converter.Use(plugin.TaskListItems())
-	converter.AddRules(plugin.EXPERIMENTAL_Table...)
-	converter.AddRules(newline)
-	md_str,_ := converter.ConvertString(html2)
-	println(md_str)
+	converter.Use(plugin.Table())
+	//converter.AddRules(newline)
+	md_str, _ := converter.ConvertString(html_str)
+	return md_str
+}
+
+func Test_md(t *testing.T) {
+	//html := `<p>1. xxx <br/>2. xxxx<br/>3. xxx</p><p><span class="img-wrap"><img src="xxx"></span><br>4. golang<br>a. xx<br>b. xx</p> jmap –histo[:live]`
+	html := `<code>last_30_days</code>`
+	md_str := conv(html)
+	t.Log(md_str)
+}
+
+func Test_request(t *testing.T) {
+	doc := New("https://segmentfault.com/a/1190000014395186", "file", "selector").request()
+	html_str, _ := doc.Html()
+	md_str := conv(html_str)
+	t.Log(md_str)
 }
 
 func Test_default(t *testing.T) {
 	do("https://www.xx.com/a6746056891136213515", "", "")
 	// html2md.exe https://www.xx.com/a6746056891136213515
 }
+
+func Test_regexp(t *testing.T) {
+	// 特殊字符的查找
+	reg := regexp.MustCompile(`[\[\]|/&\\]`)
+	s := fmt.Sprintf("%v", reg.ReplaceAllString("[]|/&\\", "-"))
+	t.Log(s)
+}
+
+// cnblogs_post_body
 
 func Test_segmentfault(t *testing.T) {
 	do("https://segmentfault.com/a/1190000014395186", "", "")
