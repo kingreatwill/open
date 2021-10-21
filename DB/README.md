@@ -245,6 +245,9 @@ Apache Doris 可以满足多种数据分析需求，例如固定历史报表，�
 
 ## 其它
 ### 数据库监控
+#### sqlwatch
+[SQL Server Performance Monitor](https://github.com/marcingminski/sqlwatch)
+
 #### Percona Monitoring and Management
 [Percona Monitoring and Management, PMM](https://github.com/percona)
 **PMM Client**
