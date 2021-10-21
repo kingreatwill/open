@@ -51,6 +51,11 @@ Polacode-2020
 
 - [night owl](https://github.com/sdras/night-owl-vscode-theme) - [体验](https://vscode.dev/theme/sdras.night-owl)
 - [Cobalt2 Theme](https://github.com/wesbos/cobalt2-vscode) - [体验](https://vscode.dev/theme/wesbos.theme-cobalt2)
+- [GitHub.github-vscode-theme](https://github.com/primer/github-vscode-theme)
+
+- [vscode-icons](https://github.com/vscode-icons/vscode-icons)
+- [PKief.material-icon-theme](https://github.com/PKief/vscode-material-icon-theme)
+
 
 ### 语言
 Ctrl+Shift+P 输入configure language
