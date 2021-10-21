@@ -244,6 +244,98 @@ Apache Doris 的分布式架构非常简洁，易于运维，并且可以支持 
 Apache Doris 可以满足多种数据分析需求，例如固定历史报表，实时数据分析，交互式数据分析和探索式数据分析等。使得数据分析工作更加简单高效！
 
 ## 其它
+### 数据库监控
+#### Percona Monitoring and Management
+[Percona Monitoring and Management, PMM](https://github.com/percona)
+**PMM Client**
+![](img/PMM-Client.jfif)
+每个PMM客户端收集有关常规系统和数据库性能的各种数据，并将该数据发送到相应的PMM服务器。
+PMM客户端软件包包括以下内容：
+
+- pmm-admin是用于管理PMM客户端的命令行工具，例如，添加和删除要监视的数据库实例。
+- pmm-agent是客户端组件，是最小的命令行界面，它是带来客户端功能的中央入口点：它进行客户端的身份验证，将客户端配置存储在PMM服务器上，管理导出器和其他代理商。
+- node_exporter是一个Prometheus导出器，用于收集常规系统指标。
+- mysqld_exporter是Prometheus导出器，用于收集MySQL服务器指标。
+- mongodb_exporter是一个Prometheus导出器，用于收集MongoDB服务器指标。
+- postgres_exporter是Prometheus导出器，用于收集PostgreSQL性能指标。
+- proxysql_exporter是一个Prometheus导出器，用于收集ProxySQL性能指标。
+
+**PMM Server**
+![](img/PMM-Server.png)
+
+PMM服务器包括以下工具：
+使用查询分析（QAN），您可以分析一段时间内的MySQL查询性能。除客户端QAN代理外，它还包括以下内容：
+- QAN API是用于存储和访问由PMM客户端上运行的QAN代理收集的查询数据的后端。
+- QAN Web App是用于可视化收集的查询分析数据的Web应用程序。
+
+指标监视器提供了对MySQL或MongoDB服务器实例至关重要的指标的历史视图。它包括以下内容：
+- Prometheus是第三方时间序列数据库，它连接到在PMM客户端上运行的出口商，并汇总由出口商收集的指标。
+- ClickHouse是第三方的面向列的数据库，可促进Query Analytics功能。
+- Grafana是第三方仪表板和图形构建器，用于在直观的Web界面中可视化Prometheus聚合的数据。
+
+我们可以从PMM Server Web界面（登录页面）访问所有工具。
+
+1. 部署PMM Server
+```
+# 拉取镜像
+docker pull percona/pmm-server:2.9.1
+# 建立持久化数据卷
+docker create --volume /srv --name pmm-data percona/pmm-server:2.9.1 /bin/true
+# 启动server
+docker run --detach --restart always --publish 80:80 --publish 443:443 --volumes-from pmm-data --name pmm-server percona/pmm-server:2.9.1
+```
+2. 部署PMM Client
+（2.1）添加基础监控
+```
+# 1.安装client
+# pmm-client 和 pmm-server版本一定要匹配，都为2 或 都为1。
+# percona/pmm-server:latest 的版本为1.X
+yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+yum install pmm2-client
+
+# 2.配置并连接server
+# pmm-admin config --server-insecure-tls --server-url=https://admin:admin@192.168.3.101:443
+
+Checking local pmm-agent status...
+pmm-agent is running.
+Registering pmm-agent on PMM Server...
+Registered.
+Configuration file /usr/local/percona/pmm2/config/pmm-agent.yaml updated.
+Reloading pmm-agent configuration...
+Configuration reloaded.
+Checking local pmm-agent status...
+pmm-agent is running.
+
+# 3. 查看监控列表
+# pmm-admin list
+Service type  Service name         Address and port  Service ID
+
+Agent type                  Status     Agent ID                                        Service ID
+pmm_agent                   Connected  /agent_id/83d7c918-099f-4f62-aab8-c2024b0f1227  
+node_exporter               Running    /agent_id/83e09526-d877-4019-a574-a8da90e6dcbc
+```
+pmm client 与server 建立连接后，默认使用node_exporter收集服务器CPU、Memory、Disk等基本状态信息。
+
+（2）添加mysql监控
+```
+# 1.添加监控账户
+grant all on *.* to grafana@'%' identified by 'grafana';
+# 2.添加mysql监控
+pmm-admin add mysql --username=grafana --password=grafana  --query-source=perfschema --service-name=perfschema-mysql --host=127.0.0.1 --port=3306 --disable-tablestats-limit=50000
+# 3.查看监控
+# pmm-admin list
+Service type  Service name         Address and port  Service ID
+MySQL         perfschema-mysql     127.0.0.1:3306    /service_id/ea7032c2-1000-47b3-84e7-f2d41c58a065
+
+Agent type                  Status     Agent ID                                        Service ID
+pmm_agent                   Connected  /agent_id/83d7c918-099f-4f62-aab8-c2024b0f1227  
+node_exporter               Running    /agent_id/83e09526-d877-4019-a574-a8da90e6dcbc  
+mysqld_exporter             Running    /agent_id/cb95c179-58e7-46d1-a43e-76874df07889  /service_id/ea7032c2-1000-47b3-84e7-f2d41c58a065
+mysql_perfschema_agent      Running    /agent_id/f920ffe3-2f79-4be9-ad65-93ef5fbe19a3  /service_id/ea7032c2-1000-47b3-84e7-f2d41c58a065
+
+# 4. 删除监控
+pmm-admin remove mysql perfschema-mysql
+```
 
 ### 数据库性能测试工具
 
