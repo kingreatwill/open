@@ -12,6 +12,9 @@ https://trends.google.com/trends/?geo=US
 
 ## stackoverflow 调查统计
 https://insights.stackoverflow.com/survey/
+
+https://insights.stackoverflow.com/survey/2021#most-loved-dreaded-and-wanted-language-want
+
 ### 2020技术调查
 https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-other-frameworks-libraries-and-tools
 
@@ -43,6 +46,18 @@ https://www.infoworld.com/category/open-source-tools/
 https://www.tiobe.com/tiobe-index/
 
 ## 语言排行 IEEE Spectrum
+IEEE Spectrum 排行榜根据以下几种数据指标来完成：
+
+1、Google 搜索：Google  搜索 "X programming" 的点击数，TIOBE 指数排行也用到这个指标。
+2、Google 趋势指数："X programming" 的趋势指数。
+3、推特搜索：推特搜索 "X programming" 近 12 个月的点击数。
+4、GitHub 仓库数：近 12 个月 Github  上各种语言所创建的仓库数和活跃数。
+5、Stack Overflow：近 12 个月在 Stack Overflow 上各语言发布的问题的数量。
+6、Reddit："X programming" 近 12 个月在  Reddit 的帖子数。
+7、Hacker News："X programming" 近 12 个月在 Hacker News 上的帖子数。
+8、CareerBuilder：CareerBuilder是一个招聘网站，查看各种语言的招聘需求数。
+### 2021
+https://spectrum.ieee.org/top-programming-languages-2021
 ### 2020
 https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2020
 
