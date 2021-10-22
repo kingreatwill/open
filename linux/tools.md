@@ -4,6 +4,46 @@
 Linux最常用命令：简单易学，但能解决95%以上的问题
 https://www.toutiao.com/a6763990899924926989/
 
+### wget
+1. 使用 wget 命令下载文件`wget http://www.lxlinux.net` 默认情况下，下载的文件将保存到当前工作目录中的同名文件中。
+如果你不想将下载的文件保存在本地，而只是想将其显示在标准输出（stdout）里，可以使用 `--output-document` 选项，同时后面再跟上一个 `-` 号。
+`wget http://www.lxlinux.net --output-document - | head -n4`
+如果你想给下载的文件重新命名，那么可以使用 `--output-document` 选项（或者更简便，直接使用 `-o` 即可）：`wget http://www.lxlinux.net --output-document newfile.html`
+
+2. 断点续传:就可以使用 `--continue` 选项（或者 `-c` ）实现断点续传。
+`wget --continue https://www.lxlinux.net/linux-distro.iso`
+
+3. 下载一系列文件. 比如：file_1.txt，file_2.txt，file_3.txt，等等
+`wget http://www.lxlinux.net/file_{1..4}.txt`
+
+4. 镜像(下载)整个站点
+如果你想对某个网站进行整站下载，包括其目录结构，那么你就需要使用 `--mirror` 选项。
+这个选项等同于 `--recursive --level inf --timestamping --no-remove-listing`，这意味着它是无限递归的，因此你可以下载到指定域上的所有内容。
+如果你使用 `wget` 存档站点，那么这些选项 `--no-cookies --page-requisites --convert-links` 也可用于确保每个页面都是最新的、最完整的。
+
+5. 修改 HTML 请求标头
+可以使用 `--debug` 选项查看 wget 每次请求发送的标头信息：`wget --debug www.lxlinux.net`
+你可以使用 `--header` 选项修改请求标头。
+`wget --debug --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59" http://www.lxlinux.net`
+除此之外，你还可以伪装成特定的移动设备（比如 iPhone ）：
+```
+$ wget --debug \
+--header = "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari /604.1" \
+HTTP：// www.lxlinux.net
+```
+
+6. 查看响应标头
+同样地，你可以使用 `--debug` 选项查看响应标头
+
+7. 响应 301 响应
+熟悉网络协议的都知道，200 响应码意味着一切都按预期进行。而 301 响应则意味着 URL 已经指向不同的网站。
+这种情况下，如果你需要下载文件，那么就需要使用 wget 的重定向功能。所以，如果你遇到 301 响应时，就需要使用 `--max-redirect` 选项。
+如果你不想要重定向，那么可以将 `--max-redirect` 设置为 0 。
+`wget --max-redirect 0 http://www.lxlinux.net`
+
+8. 展开短链接
+这里依然使用 `--max-redirect` 选项：输出的倒数第二行，在 Location 部分，后面你就看到了短链展开之后的真面目。
+
 
 ### osquery
 使用SQL查询你的 Linux 操作系统信息

@@ -1,5 +1,11 @@
 [TOC]
 # Windows Subsystem for Linux
+wsl1:https://docs.microsoft.com/zh-cn/windows/wsl/install-win10
+wsl2:https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-install
+
+wslconfig /l
+
+wslconfig /setdefault Name #设置默认Linux发行版
 ## 常用操作
 [命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/wsl-config)
 [命令参考](https://docs.microsoft.com/zh-cn/windows/wsl/reference)

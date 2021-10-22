@@ -30,7 +30,7 @@ online
 ## IDE
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) A browser based code editor.[open](https://github.com/microsoft/monaco-editor)
 
-- [code-server](https://github.com/cdr/code-server) VS Code in the browser
+- [code-server](https://github.com/cdr/code-server) - VS Code in the browser - [Install](https://coder.com/docs/code-server/latest/install)
 > https://github.com/cdr/enterprise-images/tree/main/images
 > intellij in the browser
 > pycharm in the browser

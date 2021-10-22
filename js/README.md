@@ -277,6 +277,8 @@ https://github.com/robicch/jQueryGantt
 [GoogleAnalytics分析](https://developers.google.cn/analytics/devguides/platform/)
 [mixpanel](https://github.com/mixpanel/mixpanel-js)
 
+[PostHog](https://github.com/PostHog/posthog)
+
 ### 开源工具
 - https://github.com/matomo-org/matomo      15.5k
 - https://github.com/plausible/analytics    9k

@@ -84,6 +84,12 @@ https://github.com/aylei/kubectl-debug 这个是别人开发的插件
 https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/#kubectl-debug-graduates-to-beta
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
 
+#### Pixie
+Instant Kubernetes-Native Application Observability
+https://github.com/pixie-io/pixie
+
+Pixie 是 Kubernetes 应用的可观察性工具，它可以查看集群的高级状态，如服务地图、集群资源和应用流量；还可以深入到更详细的视图，如 pod 状态、火焰图和单个 full-body 应用请求。Pixie 使用 eBPF 自动收集遥测数据，它在集群本地收集、存储和查询所有的遥测数据，使用不到 5% 的集群 CPU。Pixie的用例包括集群内的网络监控、基础设施健康、服务性能和数据库查询剖析。
+
 #### Mizu
 [Kubernetes的API流量查看器](https://github.com/up9inc/mizu)
 

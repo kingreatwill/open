@@ -105,6 +105,10 @@ https://github.com/TIBCOSoftware/jasperreports
 
 [16 个免费和开源商业智能工具](https://blog.csdn.net/qiansg123/article/details/80129400)
 
+[Awesome Data Science](https://github.com/academic/awesome-datascience)
+### Orange Data Mining
+https://github.com/biolab/orange3
+
 ### Microsoft Power BI
 
 Microsoft Power BI 提供该平台的免费版本，每个用户数据容量限制为 1 GB，每天一次数据刷新计划。Power BI 的仪表板可以提供 Salesforce，Google Analytics 以及桌面和移动设备上其他平台的洞察力。用户还可以使用自然语言（换句话说，简单的英语）查询软件。
