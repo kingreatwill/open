@@ -55,3 +55,74 @@ http://www.wiscorp.com
 [适用于SQL-92，SQL-99和SQL-2003的BNF语法](https://github.com/ronsavage/SQL)
 
 https://ronsavage.github.io/SQL/sql-92.bnf.html
+
+## SQL统计
+### mysql按日、月进行统计，不全的记录补0
+1、生成日期表
+```sql
+select @cdate:=DATE_ADD(@cdate,INTERVAL -1 day) as DAY_TIME
+from(select @cdate:=DATE_ADD(STR_TO_DATE('2021-10-31','%Y-%m-%d'),INTERVAL 1 day)
+from b2b_order limit 31) aa 
+where @cdate>'2021-10-01' and @cdate<='2021-11-01'
+```
+2、生成日期表后，就是进行左关联
+```sql
+select STR_TO_DATE(a.DAY_TIME,'%Y-%m-%d'),round(COALESCE(b.totalMoney,0),2)
+from 
+(select @cdate:=DATE_ADD(@cdate,INTERVAL -1 day) as DAY_TIME
+from(select @cdate:=DATE_ADD(STR_TO_DATE('2021-10-31','%Y-%m-%d'),INTERVAL 1 day)
+from b2b_order limit 31) aa 
+where @cdate>'2021-10-01' and @cdate<='2021-11-01') a 
+left join
+(select STR_TO_DATE(t.ORDER_DATE,'%Y-%m-%d') as DAY_TIME,sum(t.TOTAL_DEAL_AMOUNT) as totalMoney
+from  BASE_ORDER t
+where t.dr = 0 
+ and t.ORDER_DATE>= STR_TO_DATE('2021-10-01','%Y-%m-%d')
+ and t.ORDER_DATE<= STR_TO_DATE('2021-11-01','%Y-%m-%d')
+GROUP BY STR_TO_DATE(t.ORDER_DATE,'%Y-%m-%d')
+) b
+on a.DAY_TIME = b.DAY_TIME
+order by a.day_time
+```
+3、如果按照月份进行统计思路一样的，先构建月份表
+```sql
+select @cdate:=DATE_ADD(@cdate,INTERVAL -1 month),
+DATE_FORMAT(@cdate,'%Y-%m') as DAY_TIME
+from
+ (select @cdate:=DATE_ADD(STR_TO_DATE('2021-12-01','%Y-%m-%d'),INTERVAL 1 month)
+from b2b_order limit 12) aa
+where @cdate>'2021-01-01' and @cdate<='2022-01-01'
+```
+4、再进行关联查询
+```sql
+select a.DAY_TIME,round(COALESCE(tttt.total_money,0),2)
+ from 
+ (select @cdate:=DATE_ADD(@cdate,INTERVAL -1 month),DATE_FORMAT(@cdate,'%Y-%m') as DAY_TIME 
+    from 
+     (select @cdate:=DATE_ADD(STR_TO_DATE('2021-12-01','%Y-%m-%d'),INTERVAL 1 month) 
+        from b2b_order limit 12) aa
+        where @cdate>'2021-01-01' and @cdate<='2022-01-01') a
+left join
+  (select ttt.DAY_TIME ,sum(ttt.total_money) as total_money
+   from 
+     (select DATE_FORMAT(tt.DAY_TIME,'%Y-%m') as DAY_TIME,tt.total_money
+      from 
+        (select STR_TO_DATE(t.ORDER_DATE,'%Y-%m-%d') as DAY_TIME,sum(t.TOTAL_DEAL_AMOUNT) as total_money
+         from  BASE_ORDER t 
+          where t.dr = 0
+           and t.ORDER_DATE>= STR_TO_DATE('2021-01-01','%Y-%m-%d')
+           and t.ORDER_DATE<= STR_TO_DATE('2022-01-01','%Y-%m-%d')
+            GROUP BY STR_TO_DATE(t.ORDER_DATE,'%Y-%m-%d')
+        ) tt 
+      ) ttt
+      GROUP BY ttt.DAY_TIME
+    ) tttt
+on a.DAY_TIME = tttt.DAY_TIME 
+order by a.day_time
+```
+5、这几个sql中涉及到的函数
+- STR_TO_DATE（'字符串'，'%Y-%M-%D'）
+- DATE_UP()
+- DATE_FORMAT()
+- ROUND
+- COALESCE --没有记录则为0
