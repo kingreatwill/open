@@ -59,6 +59,9 @@ func (s *suport) parse() {
 	case "www.cnblogs.com", "cnblogs.com":
 		s.selector = "#cnblogs_post_body"
 		s.useHeadlessChrome = false
+	case "zhuanlan.zhihu.com":
+		s.selector = ".Post-RichText"
+		s.useHeadlessChrome = false
 	}
 
 }
@@ -158,7 +161,10 @@ func (s *suport) saveImg(doc *goquery.Document) string {
 
 	content_selection := doc.Find(s.selector).First()
 	content_selection.Find("img").Each(func(i int, img_selection *goquery.Selection) {
-		if img_src, exists := img_selection.Attr("src"); exists {
+		if img_src, exists := img_selection.Attr("data-actualsrc"); exists {
+			if !strings.HasPrefix(strings.ToLower(img_src), "http") {
+				return
+			}
 			ss := strings.Split(strings.Split(img_src, "?")[0], ".")
 			// 下载图片;如果图片路径不是http开头的可以考虑使用https://github.com/PuerkitoBio/purell 来处理；
 			resp, _ := http.Get(img_src)
@@ -167,6 +173,22 @@ func (s *suport) saveImg(doc *goquery.Document) string {
 			s.saveFile(imgName, body)
 			// 更改属性;
 			img_selection.SetAttr("src", imgName)
+			return
+		}
+
+		if img_src, exists := img_selection.Attr("src"); exists {
+			if !strings.HasPrefix(strings.ToLower(img_src), "http") {
+				return
+			}
+			ss := strings.Split(strings.Split(img_src, "?")[0], ".")
+			// 下载图片;如果图片路径不是http开头的可以考虑使用https://github.com/PuerkitoBio/purell 来处理；
+			resp, _ := http.Get(img_src)
+			body, _ := ioutil.ReadAll(resp.Body)
+			imgName := fmt.Sprintf("img/%v-%v.%v", s.file, i+1, ss[len(ss)-1])
+			s.saveFile(imgName, body)
+			// 更改属性;
+			img_selection.SetAttr("src", imgName)
+			return
 		}
 	})
 

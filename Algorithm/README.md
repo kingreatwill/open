@@ -1,7 +1,7 @@
 
 
 [手撕LeetCode题目](https://github.com/labuladong/fucking-algorithm)
-
+[LeetCode 题目用动画的形式演示](https://github.com/MisterBooo/LeetCodeAnimation)
 
 [哈弗大学 排序算法动画](https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html)
 

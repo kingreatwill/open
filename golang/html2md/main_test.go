@@ -96,8 +96,9 @@ func Test_cloud_tencent(t *testing.T) {
 }
 
 func Test_zhuanlan_zhihu(t *testing.T) {
-	do("https://zhuanlan.zhihu.com/p/100511637", "", "")
+	do("https://zhuanlan.zhihu.com/p/421829961", "", "")
 	// html2md.exe https://zhuanlan.zhihu.com/p/100511637
+	// https://api.zhihu.com/articles/421829961
 }
 
 func Test_toutiao(t *testing.T) {
