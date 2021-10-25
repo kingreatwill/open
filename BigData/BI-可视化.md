@@ -86,12 +86,10 @@ https://github.com/TuiQiao/CBoard
 - [BIRT](http://www.eclipse.org/birt/)
 - [KNIME](https://github.com/knime)
 数据集成，数据处理，数据分析和数据勘探平台
-- Seal-Report
-https://github.com/ariacom/Seal-Report
-- JasperReports
-https://github.com/TIBCOSoftware/jasperreports
+- [Seal-Report](https://github.com/ariacom/Seal-Report)
+- [JasperReports](https://github.com/TIBCOSoftware/jasperreports)
 - OpenReports
-
+- [葡萄城 ActiveReports](https://github.com/activereports)
 
 
 ## 其它

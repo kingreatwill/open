@@ -375,6 +375,14 @@ ZIP 压缩包管理器 - 免费版含广告
 - takenote 基于 Web 的 Markdown 笔记应用
 
 - [开源笔记本软件 Joplin](https://github.com/laurent22/joplin)
+### 笔记
+- [印象笔记](https://www.yinxiang.com/)（[Evernote](https://evernote.com) ）
+- [我来 wolai](https://www.wolai.com/)
+- [Notion](https://www.notion.so/zh-cn)
+### 协作办公
+明道、teambition、http://Tower.im、Worktile、trello、SeaTable、Airtable
+
+https://github.com/seatable/seatable
 
 ### Wiki  知识库
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
