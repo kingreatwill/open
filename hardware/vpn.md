@@ -3,6 +3,16 @@
 ## VPN
 在这一类P2P VPN中比较出名的几种有N2N、Tinc、PeerVPN以及ZeroTier
 
+
+https://github.com/shadowsocks
+https://github.com/shadowsocks/openwrt-shadowsocks
+https://github.com/gfwlist/gfwlist
+
+
+[Shadowsocks + GfwList 实现 OpenWRT / LEDE 路由器自动科学上网](https://cokebar.info/archives/962)
+
+[科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
+
 ## 端口映射
 https://www.cnblogs.com/connect/p/server-port-proxy.html
 
@@ -99,3 +109,14 @@ https://github.com/FastTunnel/FastTunnel
 - iot物联网
 - 联机游戏
 - 等等场景，不局限以上
+
+## 微信调试
+远程调试手机页面和抓包的工具
+h5/wap端调试、移动端调试
+
+- https://github.com/wuchangming/spy-debugger
+- https://github.com/Tencent/vConsole
+类似小程序的调试工具，可以在手机上看见打印，真机调试h5时，我们只能看alert,但有些内容无法alert,但vconsole能做到，就像谷歌的f12一样
+
+- https://github.com/liriliri/eruda
+和vconsole 相似
