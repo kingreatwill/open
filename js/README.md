@@ -124,6 +124,8 @@ https://app.wireflow.co/
 -zwibbler
 https://zwibbler.com/
 
+- [Gitmind 在线思维导图](https://gitmind.com/) https://gitmind.cn/
+
 
 > [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)
 

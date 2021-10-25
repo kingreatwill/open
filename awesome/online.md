@@ -23,9 +23,10 @@ online
 ## OS
 
 - [JSLinux](https://bellard.org/jslinux/) - [JSLinux](http://jslinux.org/) Run Linux or other Operating Systems in your browser! [open](https://github.com/levskaya/jslinux-deobfuscated)
-
-
 - [Windows 11](https://github.com/blueedgetechno/windows11)
+- [终端应用程序Xterm.js](https://github.com/xtermjs/xterm.js)
+- [在线运行Android ](https://github.com/openstf/stf)
+
 
 ## IDE
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) A browser based code editor.[open](https://github.com/microsoft/monaco-editor)
@@ -130,6 +131,32 @@ https://repl.it/languages/csharp
 - https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run
 
 - 这是一个在线的 VIM 指令交互工具，你可以在上面练习很多的 VIM 快捷键。在这里一边解释如何使用，一边让你直接操作，实在是方便：https://www.openvim.com/
+
+
+### 可视化在线绘图引擎 Topology（类似draw.io）
+
+https://github.com/le5le-com/topology/
+A diagram (topology, UML) framework uses canvas and typescript. 一个轻量（100k左右）、功能丰富的绘图工具（微服务架构图、拓扑图、流程图、类图等UML图、脑图，动画、视频支持）。 【在线使用】：
+
+topology.le5le.com/
+
+- drawio
+draw.io
+
+https://github.com/jgraph/drawio-desktop
+
+- Excalidraw: 虚拟白板，用于素描手绘图
+https://github.com/excalidraw
+https://github.com/excalidraw/excalidraw
+https://excalidraw.com/
+
+- [wireflow.co](https://github.com/vanila-io/wireflow) https://app.wireflow.co/
+- [zwibbler](https://zwibbler.com/)
+- [Gitmind 在线思维导图](https://gitmind.com/) https://gitmind.cn/
+- [Whimscal 在线流程绘制工具](https://whimsical.com/)
+- [MindMup 在线的思维导图工具](https://www.mindmup.com/)
+> [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)
+
 
 ### 协作办公
 明道、teambition、http://Tower.im、Worktile、trello、SeaTable、Airtable
