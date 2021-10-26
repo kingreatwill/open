@@ -175,6 +175,7 @@ https://github.com/seatable/seatable
 - [webix](https://webix.com/spreadsheet/)
 - [Syncfusion](https://ej2.syncfusion.com/)
 - [JExcel](https://www.software4pc.ru/download/file-jexcel-66441)
+- [treegrid](http://www.treegrid.com/Sheet)
 
 [在web中使用Python编辑excel](https://github.com/ricklamers/gridstudio)
 

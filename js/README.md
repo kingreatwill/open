@@ -267,6 +267,9 @@ https://webix.com/gantt/
 #### Syncfusion
 https://ej2.syncfusion.com/
 
+
+#### treegrid
+http://www.treegrid.com/Gantt
 #### bryntum
 https://www.bryntum.com/
 
