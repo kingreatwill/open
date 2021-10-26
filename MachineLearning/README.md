@@ -38,7 +38,10 @@ https://arxiv.org/pdf/2006.03511.pdf
 
 学术界：这东西有创新，有难度，能写出好文章，还能报奖！
 
-## 模型可解释工具（可解性模型/可解性工具）
+## 模型可解释工具（可解性模型/可解性工具）Interpretable
+### imodels
+https://github.com/csinva/imodels
+
 ### ELI5
 它可以为以下机器学习框架和软件包提供支持：
 

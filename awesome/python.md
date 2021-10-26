@@ -224,6 +224,14 @@ pip install lux-api
 jupyter nbextension install --py luxwidget
 jupyter nbextension enable --py luxwidget
 ```
+### 交互UI / 交互式
+#### Streamlit / 数据应用
+Streamlit是第一个专门针对机器学习和数据科学团队的应用开发框架，它是开发自定义机器学习工具的最快的方法，你可以认为它的目标是取代Flask在机器学习项目中的地位，可以帮助机器学习工程师快速开发用户交互工具。
+[github](https://github.com/streamlit/streamlit)
+[Streamlit docs](https://docs.streamlit.io/)
+
+#### 高维数据
+https://github.com/facebookresearch/hiplot
 
 ### 数据可视化工具
 #### python的matplotlib
@@ -370,8 +378,6 @@ https://github.com/TheAlgorithms/Python/
 PrettyErrors只做一件事并且做得很好。
 https://github.com/onelivesleft/PrettyErrors
 
-### 交互式
-https://github.com/facebookresearch/hiplot
 
 ### CPU和内存探查器
 Scalene是用于Python脚本的CPU和内存探查器，能够正确处理多线程代码并区分运行Python和本机代码所花费的时间。

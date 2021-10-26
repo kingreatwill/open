@@ -354,6 +354,41 @@ https://zhuanlan.zhihu.com/p/364921771
 
 https://scikit-learn.org/stable/modules/classes.html#module-sklearn.inspection
 
+## 模型可解释工具（可解性模型/可解性工具）
+### imodels
+https://github.com/csinva/imodels
+
+### ELI5
+它可以为以下机器学习框架和软件包提供支持：
+
+- scikit-learn
+- Keras
+- xgboost
+- LightGBM
+- CatBoost
+- sklearn-crfsuite
+
+https://eli5.readthedocs.io/en/latest/
+https://github.com/eli5-org/eli5 2.4k(项目本身60star，但是是从一个2.4k的项目迁移过来的)
+
+### LIME
+LIME主要提供三种解释方法，这三种方法都处理不同类型的数据：
+
+- 表格解释
+- 文字翻译
+- 图像解释。
+
+https://github.com/marcotcr/lime 9.1k
+
+### SHAP
+SHAP（SHapley Additive exPlanations）是一种博弈论方法，用于解释任何机器学习模型的输出。
+https://github.com/slundberg/shap 14k
+
+### MLXTEND
+Mlxtend（机器学习扩展）是一个用于数据科学和机器学习任务的非常有用 Python 工具库。
+
+https://github.com/rasbt/mlxtend 3.6k
+
 # AutoML
 ![](img/auto_ml_01.jpg)
 
