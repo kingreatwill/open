@@ -171,11 +171,15 @@ https://github.com/seatable/seatable
 - https://github.com/handsontable/handsontable
 - https://github.com/myliang/x-spreadsheet
 - [葡萄城 ActiveReports](https://github.com/activereports)
+- [葡萄城 SpreadJS](https://www.grapecity.com/spreadjs)
+- [webix](https://webix.com/spreadsheet/)
+- [Syncfusion](https://ej2.syncfusion.com/)
+- [JExcel](https://www.software4pc.ru/download/file-jexcel-66441)
 
 [在web中使用Python编辑excel](https://github.com/ricklamers/gridstudio)
 
 [更多](https://github.com/topics/spreadsheet)
-
+[5 Free JavaScript Spreadsheet Libraries in 2021](https://hackernoon.com/5-free-javascript-spreadsheet-libraries-in-2021-581r3zfn)
 
 ## 工具
 - https://tableconvert.com/

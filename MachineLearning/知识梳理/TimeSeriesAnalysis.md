@@ -498,7 +498,9 @@ Prophet是一种基于可加模型预测时间序列数据的程序，其中非�
 > 深度学习:[sktime-dl](https://github.com/sktime/sktime-dl)
 > 遵循sklearn模型 API
 
-
+### Tigramite
+因果序列分析;Tigramite is a causal time series analysis python package. 
+[Tigramite 552](https://github.com/jakobrunge/tigramite)
 
 ## 参考资料
 

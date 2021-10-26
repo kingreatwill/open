@@ -80,3 +80,26 @@
 - 短期规划(进入行业)： 熟悉公司所有系统和业务、熟悉珠宝行业，有一个更全面的认识
 
 - 行业产品: 商业(10万家珠宝门店)、产品(互联网+新零售)、技术(微服务+大数据、技术竞争力)、团队建设和管理、风控
+
+
+### 统计分析 报表
+http://opendigger-oss.x-lab.info/global-study.html
+
+github api doc
+https://docs.github.com/en/rest/reference/repos#list-languages
+https://docs.github.com/en/rest/reference/repos#get
+
+github api 
+https://github.com/github-tools/github
+https://github.com/PyGithub/PyGithub
+https://github.com/google/go-github
+
+github readme
+https://github.com/anuraghazra/github-readme-stats
+https://github.com/lowlighter/metrics
+
+awesome
+https://github.com/abhisheknaiidu/awesome-github-profile-readme
+https://github.com/topics/profile-readme
+https://github.com/topics/readme-generator
+https://github.com/topics/readme-stats

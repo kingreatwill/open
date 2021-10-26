@@ -253,9 +253,37 @@ https://github.com/zhimengzhe/iBarn
 #### KODExplorer
 https://github.com/kalcaddle/KODExplorer
 
-## Web文件浏览器
+## Web文件浏览器 、Web File Manager
+[Top 10 Javascript File Managers](https://hackernoon.com/top-10-javascript-file-managers-8o2p34vw)
 ### filebrowser
 https://github.com/filebrowser/filebrowser
+### elFinder
+https://github.com/Studio-42/elFinder
+
+### Webix File Manager
+https://webix.com/filemanager/
+### Syncfusion File Explorer
+https://www.syncfusion.com/javascript-ui-controls/js-file-manager
+### Bootstrap File Manager SDK
+https://js.plus/products/file-manager
+### DHTMLX File Manager
+https://dhtmlx.com/docs/products/dhtmlxFileManager/
+
+### DevExtreme
+https://js.devexpress.com/Demos/WidgetsGallery/Demo/FileManager/Overview/jQuery/Light/
+### MooTools FileManager
+https://mootools.net/forge/p/mootools_filemanager
+
+### AjaXplorer
+https://pydio.com/en/
+
+### CKFinder
+https://ckeditor.com/ckfinder/
+### FileRun
+https://www.filerun.com/
+
+
+
 ## 图床
 [盘点国内免费好用的图床](https://zhuanlan.zhihu.com/p/35270383)
 ### 免费素材图片
