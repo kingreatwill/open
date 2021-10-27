@@ -9,6 +9,7 @@ CAP 里面规定 A 是 100% 的可用性，但实际上，我们只需要提供 
 ![](../img/cap-1.jpeg)
 ![](../img/cap-2.jpeg)
 ![](../img/cap-3.png)
+![](img/new_cap.webp)
 
 [从分布式一致性到共识机制（一）Paxos算法](https://www.cnblogs.com/binyue/p/8645565.html)
 [从分布式一致性到共识机制（二）Raft算法](https://www.cnblogs.com/binyue/p/8647733.html)
