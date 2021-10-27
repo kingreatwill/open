@@ -79,3 +79,107 @@ https://github.com/topics/security-scanner?l=python
 12、Spoodle：大量子域名+Poodle漏洞扫描器
 
 13、SMBMap：枚举域中的Samba共享驱动器
+
+## 安全工具
+[2006年100款最佳安全工具](https://blog.51cto.com/switch/7400)
+1、Nessus ：最好的UNIX漏洞扫描工具
+2、Wireshark ：嗅探网络粘合胶水（网络协议）
+3、Snort ：一款广受欢迎的开源IDS（Intrusion Detection System）（入侵检测系统）工具
+4、Netcat ：网络瑞士×××
+5、Metasploit Framework ： 黑掉整个星球
+6、Hping2 ：一种网络探测工具，是ping的超级变种
+7、Kismet ：一款超强的无线嗅探器
+8、Tcpdump ：最经典的网络监控和数据捕获嗅探器
+9、Cain and Abel ： Windows平台上最好的密码恢复工具
+10、John the Ripper ：一款强大的、简单的以及支持多平台的密码哈希破解器
+11、Ettercap ：为交换式局域网提供更多保护
+12、Nikto ：非常全面的网页扫描器
+13、Ping/telnet/dig/traceroute/whois/netstat ：基本命令
+14、OpenSSH / PuTTY / SSH ：访问远程计算机的安全途径
+15、THC Hydra ：支持多种服务的最快的网络认证破解器
+16、Paros proxy ： 网页程序漏洞评估代理
+17、Dsniff ：一款超强的网络评估和渗透检测工具套装
+18、NetStumbler ： 免费的Windows 802.11嗅探器
+19、THC Amap ：一款应用程序指纹扫描器
+20、GFI LANguard ：一款Windows平台上的商业网络安全扫描器
+21、Aircrack ： 最快的WEP/WPA破解工具
+22、Superscan ：只运行于Windows平台之上的端口扫描器、ping工具和解析器
+23、Netfilter ： 最新的Linux核心数据包过滤器/防火墙
+24、Sysinternals ：一款强大的非常全面的Windows工具合集
+25、Retina ： eEye出品的商业漏洞评估扫描器
+26、Perl / Python / Ruby ：简单的、多用途的脚本语言
+27、L0phtcrack ： Windows密码猜测和恢复程序
+28、Scapy ：交互式数据包处理工具
+29、Sam Spade ： Windows网络查询免费工具
+30、GnuPG / PGP ：对您的文件和通讯进行高级加密
+31、Airsnort ： 802.11 WEP加密破解工具
+32、BackTrack ：一款极具创新突破的Live（刻在光盘上的，光盘直接启动）光盘自启动Linux系统平台
+33、P0f ：万能的被动操作系统指纹工具
+34、Google ：人人喜爱的搜索引擎
+35、WebScarab ：一个用来分析使用HTTP和HTTPS协议的应用程序框架
+36、Ntop ：网络通讯监控器
+37、Tripwire ：祖爷爷级的文件完整性检查器
+38、Ngrep ：方便的数据包匹配和显示工具
+39、Nbtscan ： 在Windows网络上收集NetBIOS信息
+40、WebInspect ：强大的网页程序扫描器
+41、OpenSSL ： 最好的SSL/TLS加密库
+42、Xprobe2 ：主动操作系统指纹工具
+43、EtherApe ： EtherApe是Unix平台上的模仿etherman的图形界面网络监控器
+44、Core Impact ： 全自动的全面入侵检测工具
+45、IDA Pro ： Windows或Linux反编译器和调试器
+46、SolarWinds ： 网络发现/监控/攻击系列工具
+47、Pwdump ：一款Windows密码恢复工具
+48、LSoF ：打开文件列表
+49、RainbowCrack ：极具创新性的密码哈希破解器
+50、Firewalk ：高级路由跟踪工具
+51、Angry IP Scanner ： 一款非常快的Windows IP 扫描器和端口扫描器
+52、RKHunter ： 一款Unix平台上的Rootkit检测器
+53、Ike-scan ： ×××检测器和扫描器
+54、Arpwatch ： 持续跟踪以太网/IP地址配对，可以检查出中间人攻击
+55、KisMAC ： 一款Mac OS X上的图形化被动无线网络搜寻器
+56、OSSEC HIDS ：一款开源的基于主机的入侵检测系统
+57、Openbsd PF ： OpenBSD数据包过滤器
+58、Nemesis ：简单的数据包注入
+59、Tor ：匿名网络通讯系统
+60、Knoppix ：一款多用途的CD或DVD光盘自启动系统
+61、ISS Internet Scanner ：应用程序漏洞扫描器
+62、Fport ： Foundstone出品的加强版netstat
+63、chkrootkit ： 本地rootkit检测器
+64、SPIKE Proxy ： HTTP攻击
+65、OpenBSD ：被认为是最安全的操作系统
+66、Yersinia ：一款支持多协议的底层攻击工具
+67、Nagios ：一款开源的主机、服务和网络监控程序
+68、Fragroute/Fragrouter ：一款网络入侵检测逃避工具集
+69、X-scan ：一款网络漏洞扫描器
+70、Whisker/libwhisker ： Rain.Forest.Puppy出品的CGI漏洞扫描器和漏洞库
+71、Socat ：双向数据传输中继
+72、Sara ：安全评审研究助手
+73、QualysGuard ：基于网页的漏洞扫描器
+74、ClamAV ：一款UNIX平台上的基于GPL（通用公开许可证：General Public License）的反病毒工具集
+75、cheops / cheops-ng ：提供许多简单的网络工具，例如本地或远程网络映射和识别计算机操作系统
+76、Burpsuite ：一款网页程序攻击集成平台
+77、Brutus ：一款网络验证暴力破解器
+78、Unicornscan ：另类端口扫描器
+79、Stunnel ：用途广泛的SSL加密封装器
+80、Honeyd ： 您私人的honeynet
+81、Fping ：一个多主机同时ping扫描程序
+82、BASE ：基础分析和安全引擎（Basic Analysis and Security Engine）
+83、Argus ： IP网络事务评审工具
+84、Wikto ：网页服务器评估工具
+85、Sguil ：网络安全监控器命令行分析器
+86、Scanrand ：一个异常快速的无状态网络服务和拓朴结构发现系统
+87、IP Filter ： 小巧的UNIX数据包过滤器
+88、Canvas ：一款全面的漏洞检测框架
+89、VMware ：多平台虚拟软件
+90、Tcptraceroute ： 一款基于TCP数据包的路由跟踪工具
+91、SAINT ：安全管理综合网络工具
+92、Open××× ：全功能SSL ×××解决方案
+93、OllyDbg ：汇编级Windows调试器
+94、Helix ： 一款注重安全防护的Linux版本
+95、Bastille ： Linux、Mac OS X和HP-UX的安全加强脚本
+96、Acunetix Web Vulnerability Scanner ：商业漏洞扫描器
+97、TrueCrypt ：开源的Windows和Linux磁盘加密软件
+98、Watchfire AppScan ：商业网页漏洞扫描器
+99、N-Stealth ：网页服务器扫描器
+100、MBSA ：微软基准安全分析器（Microsoft Baseline Security Analyzer）
+

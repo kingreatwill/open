@@ -427,6 +427,9 @@ UI自动化测试工具
 
 
 ### Burp Suite
+在全球最受安全人员欢迎的工具榜单中，Burp Suite这个安全工具排名第一，并且排名第二的工具和它的功能和作用是一样的，并且还是免费的。burp这个工具还是付费的，还能一直保持第一。可见burp这个工具在我们安全圈他的地位。
+Burp Suite是一款信息安全从业人员必备的集成型的渗透测试工具，它采用自动测试和半自动测试的方式，包含了 Proxy,Spider,Scanner,Intruder,Repeater,Sequencer,Decoder,Comparer等工具模块。
+通过拦截HTTP/HTTPS的web数据包，充当浏览器和相关应用程序的中间人，进行拦截、修改、重放数据包进行测试。
 
 ### Jmeter+ant+Jenkins
 看最终报告
