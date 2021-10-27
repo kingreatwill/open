@@ -1,5 +1,5 @@
 [分布式一致性与共识算法](https://www.jianshu.com/p/f73cee95821e)
-
+[CAP Theorem](https://raghumb.gitbooks.io/a-guide-to-software-architecture/content/database_concepts/cap_theorem.html)
 ## CAP讲解
 在分布式环境下面，P 是铁定存在的，也就是只要我们有多台机器，那么网络隔离分区就一定不可避免，所以在设计系统的时候我们就要选择到底是设计的是 AP 系统还是 CP 系统，但实际上，我们只要深入理解下 CAP，就会发现其实有时候系统设计上面没必要这么纠结，主要表现在：
 网络分区出现的概率虽然市场发生，但是我们可以感知心跳强行剔除下线，将流量平均分往其他节点，毕竟谁也不能保证网络百分百稳定，不出现网络分区。自然而然的没必要刻意 A、C 中选一个，而是可以都做得不错。也就是说的 AC 系统。

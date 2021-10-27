@@ -7,6 +7,8 @@ https://www.oodesign.com/
 
 更多可以参考[对开发人员有用的定律、理论、原则和模式](https://github.com/nusr/hacker-laws-zh)
 
+[A Guide to Software Architecture - 软件架构指南](https://raghumb.gitbooks.io/a-guide-to-software-architecture/content/)
+
 ## 软件设计模式(Software design patterns)
 
 

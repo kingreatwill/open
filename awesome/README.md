@@ -83,7 +83,7 @@ CEF是包含Chromium浏览器的应用框架
 
 [为什么所有主要浏览器的 User-Agent 都是 Mozilla/x.0 开头？](https://www.zhihu.com/question/19553117)
 
-
+[UAParser.js](https://github.com/faisalman/ua-parser-js)
 ## 开放源码发现服务
 https://github.com/librariesio/libraries.io
 
