@@ -46,7 +46,8 @@ https://fishshell.com/
 ### Putty、telnet
 
 ### OpenSSH
-
+### WinSCP
+https://github.com/winscp/winscp
 ### webssh
 https://pypi.org/project/webssh/
 在linux机器上安装python环境，并且使用命令pip3 install webssh,装上这个模块

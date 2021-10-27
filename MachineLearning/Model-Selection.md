@@ -354,7 +354,7 @@ https://zhuanlan.zhihu.com/p/364921771
 
 https://scikit-learn.org/stable/modules/classes.html#module-sklearn.inspection
 
-## 模型可解释工具（可解性模型/可解性工具）
+## 模型可解释性工具（可解性模型/可解性工具/可视化工具）
 ### imodels
 https://github.com/csinva/imodels
 
@@ -388,6 +388,22 @@ https://github.com/slundberg/shap 14k
 Mlxtend（机器学习扩展）是一个用于数据科学和机器学习任务的非常有用 Python 工具库。
 
 https://github.com/rasbt/mlxtend 3.6k
+
+
+### HiddenLayer
+网络结构的可视化
+https://github.com/waleedka/hiddenlayer 1.5k
+### PyTorchViz
+网络结构的可视化
+https://github.com/szagoruyko/pytorchviz 2k
+
+### tensorboardX
+训练过程可视化;tensorboardX来让pytorch的玩家也能享受tensorboard的福利
+https://github.com/lanpa/tensorboardX 7.1k
+
+### Visdom
+Visdom是Facebook为pytorch开发的一块可视化工具。类似于tensorboard，visdom也是通过在本地启动前端服务器来实现可视化的，而在具体操作上，visdom又类似于matplotlib.pyplot。所以使用起来很灵活。
+https://github.com/fossasia/visdom 8.7k
 
 # AutoML
 ![](img/auto_ml_01.jpg)
