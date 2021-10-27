@@ -474,9 +474,27 @@ https://github.com/xwmx/nb
 https://github.com/Fmstrat/winapps
 
 ### 有趣的工具
-- asciiview 
+#### asciiview 
 ```
 sudo apt-get install aview imagemagick
 asciiview kobe.jpg # 将图片转化成字符输出
 ```
 [N个Linux耍酷命令](https://www.toutiao.com/a6820664143654158861/)
+
+#### neofetch
+在终端中显示Linux系统信息
+https://github.com/dylanaraps/neofetch
+#### onefetch
+在终端中显示Git存储库摘要
+https://github.com/o2sh/onefetch
+```
+wget https://github.com/o2sh/onefetch/releases/download/v2.5.0/onefetch-linux.tar.gz
+sudo mv onefetch-linux/onefetch /usr/local/bin/
+
+# 使用Onefetch在终端中显示Git存储库摘要
+onefetch openjw/open/
+# or cd openjw/open/  然后 onefetch
+```
+由于Onefetch的主要部分是在 Rust，它显示了Rust语言的ASCII艺术。 您也可以使用其他语言的ASCII `-a`， `--ascii-language` 。 以下命令显示Onefetch Git存储库摘要以及 蟒蛇 ASCII徽标：`onefetch -a python`
+您还可以使用自定义图片，例如使用 `-i`， `--image` 。如：`onefetch -i ~/ostechnix.png`
+默认情况下，Onefetch仅显示三个作者。 一些作者可能会为Git项目做出贡献。 要显示要显示的作者数量，请使用 `-A`， `--authors-number`。如：`onefetch -A 10`

@@ -94,6 +94,11 @@ https://github.com/github-tools/github
 https://github.com/PyGithub/PyGithub
 https://github.com/google/go-github
 
+
+https://github.com/o2sh/onefetch/blob/main/docs/README.cn.md
+https://zhuanlan.zhihu.com/p/329042221
+
+
 github readme
 https://github.com/anuraghazra/github-readme-stats
 https://github.com/lowlighter/metrics
