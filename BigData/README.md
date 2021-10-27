@@ -324,3 +324,19 @@ QuickBI助力餐饮行业大数据快速分析
 
 ## 大屏
 https://gitee.com/smartchart/smartchart/
+
+## DIKW模型/DIKUW模型
+![](img/DIKW.webp)
+![https://wiki.mbalib.com/wiki/DIKW%E6%A8%A1%E5%9E%8B](img/DIKW模型.jpg)
+
+![](img/DIKUW-Content-Model.jpg)
+![](img/DIKUW.jpg)
+
+[Data, Information, Knowledge, and Wisdom](http://www.systems-thinking.org/dikw/dikw.htm)
+Data 数据: symbols
+Information 信息: data that are processed to be useful; provides answers to "who", "what", "where", and "when" questions
+Knowledge 知识: application of data and information; answers "how" questions
+Understanding 理解: appreciation of "why"
+Wisdom 智慧: evaluated understanding.
+
+![https://www.taus.net/think-tank/articles/the-circle-of-data-information-knowledge-understanding-and-wisdom](img/DIKUW-02.jpg)
