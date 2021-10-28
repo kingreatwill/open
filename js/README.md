@@ -285,12 +285,14 @@ https://github.com/hql7/wl-gantt
 https://github.com/robicch/jQueryGantt
 
 ## 数据分析
-[原CNZZ站长工具](https://www.umeng.com/)
+[原CNZZ站长工具 - 被阿里收购](https://www.umeng.com/)
 [百度统计](https://tongji.baidu.com/web/demo/overview/index?siteId=16847648)
 [GoogleAnalytics分析](https://developers.google.cn/analytics/devguides/platform/)
 [mixpanel](https://github.com/mixpanel/mixpanel-js)
 
-[PostHog](https://github.com/PostHog/posthog)
+[PostHog - 开源，可以自己托管数据](https://github.com/PostHog/posthog)
+[PostHog doc](https://posthog.com/docs/contribute/developing-locally)
+
 
 ### 开源工具
 - https://github.com/matomo-org/matomo      15.5k

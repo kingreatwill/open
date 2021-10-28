@@ -296,7 +296,7 @@ https://obsproject.com/
 
 ### Shotcut
 Shotcut 是一款跨平台的视频编辑工具，允许人们在应用效果和分层的同时，对音频和视频轨道进行所有的标准修正
-https://github.com/mltframework/shotcut
+https://github.com/mltframework/shotcut 5.1k
 
 ### Captura 
 https://github.com/MathewSachin/Captura 5k

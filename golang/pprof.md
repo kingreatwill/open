@@ -1,11 +1,15 @@
 [TOC]
-# Profiling 
-## go-perfbook
+# Profiling
+## 相关参考
+### go-perfbook
 https://github.com/dgryski/go-perfbook
 本文概述了编写高性能Go代码的最佳实践。
 第一节介绍了用任何语言编写优化代码。后面的部分将介绍go特定的技术。
+### go-profiler-notes
+https://github.com/DataDog/go-profiler-notes
 
-## pyroscope
+## Profiling相关库
+### pyroscope
 https://github.com/pyroscope-io/pyroscope
 
 - Ruby (via rbspy)
@@ -15,8 +19,20 @@ https://github.com/pyroscope-io/pyroscope
 - PHP (via phpspy)
 - .NET (via dotnet trace)
 - Java (coming soon)
+### statsview
+A real-time Golang runtime stats visualization profiler
+https://github.com/go-echarts/statsview
 
-## pprof
+### parca
+https://github.com/parca-dev/parca
+
+启动parca，打开链接，选择profile
+
+### profefe
+https://github.com/profefe/profefe
+### fgprof
+https://github.com/felixge/fgprof
+### pprof
 https://github.com/google/pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
 
@@ -85,7 +101,7 @@ go tool pprof http://localhost:6060/debug/pprof/profile?seconds=60
 go tool pprof -svg    http://localhost:8080/debug/pprof/heap > cpu.svg
 
 
-### 安装 Graphviz 
+#### 安装 Graphviz 
 https://graphviz.gitlab.io/_pages/Download/Download_windows.html
 
 go tool pprof --http :9090 http://localhost:8080/debug/pprof/heap
@@ -97,7 +113,7 @@ $ go tool pprof -http=:8080 cpu.prof
 $ go tool pprof cpu.prof 
 $ (pprof) web
 
-## 另一种可视化数据的方法是火焰图，需手动安装原生 PProf 工具：
+#### 另一种可视化数据的方法是火焰图，需手动安装原生 PProf 工具：
 
 （1） 安装 PProf
 
@@ -111,7 +127,7 @@ $ pprof -http=:8080 cpu.prof
 
 它就是本次的目标之一，它的最大优点是动态的。调用顺序由上到下（A -> B -> C -> D），每一块代表一个函数，越大代表占用 CPU 的时间更长。同时它也支持点击块深入进行分析！
 
-## go tool trace trace.out
+#### go tool trace trace.out
 ```
 	f, _ := os.Create("trace.out")
 	defer f.Close()
@@ -119,7 +135,7 @@ $ pprof -http=:8080 cpu.prof
 	defer trace.Stop()
 ```
 
-## 也可以写入文件
+#### 也可以写入文件
 
 golang 的性能分析库在 runtime/pprof 里，主要提供下面几个接口
 
@@ -150,7 +166,7 @@ https://github.com/hatlonely/easygolang/blob/master/pprof/pprof.go
 
 
 
-## 参考
+#### 参考
 
 [go tool pprof 使用介绍](https://segmentfault.com/a/1190000016412013)
 
