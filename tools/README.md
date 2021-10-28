@@ -311,6 +311,7 @@ web录制
 https://github.com/rrweb-io/rrweb
 
 ### ShareX
+免费的 Windows 截屏录制工具。功能强大支持全屏截图、滚动截图、检测窗口截图、GIF 录制等，截图后还支持在图片上增加文字、水印、特效、马赛克等
 https://github.com/ShareX/ShareX 15k
 ## 图片处理
 ### ShareX
@@ -568,6 +569,8 @@ Wise Folder Hider - 电脑文件隐藏与加密工具
 - Files2Folder
 - Quicklook
 - Files UWP
+
+- [terminal file manager](https://github.com/jarun/nnn)
 
 1.Q-dir：多窗口资源管理器
 2.Wise Folder Hider：文件隐藏加密
