@@ -184,6 +184,9 @@ mlxtend主要包括以下模块：
 
 
 ### RFM
-https://help.aliyun.com/document_detail/135054.html
-https://joaocorreia.io/blog/rfm-analysis-increase-sales-by-segmenting-your-customers.html
-https://wiki.mbalib.com/wiki/RFM%E6%A8%A1%E5%9E%8B
+
+[用户分析>RFM分析](https://help.aliyun.com/document_detail/135054.html)
+
+[How to segment your customers and increase sales with RFM analysis](https://joaocorreia.io/blog/rfm-analysis-increase-sales-by-segmenting-your-customers.html)
+
+[RFM模型](https://wiki.mbalib.com/wiki/RFM%E6%A8%A1%E5%9E%8B)
