@@ -108,3 +108,178 @@ https://github.com/abhisheknaiidu/awesome-github-profile-readme
 https://github.com/topics/profile-readme
 https://github.com/topics/readme-generator
 https://github.com/topics/readme-stats
+
+获取star数量
+curl https://api.github.com/repos/openjw/open
+```
+{
+  "id": 214067474,
+  "node_id": "MDEwOlJlcG9zaXRvcnkyMTQwNjc0NzQ=",
+  "name": "open",
+  "full_name": "openjw/open",
+  "private": false,
+  "owner": {
+    "login": "openjw",
+    "id": 54665915,
+    "node_id": "MDEyOk9yZ2FuaXphdGlvbjU0NjY1OTE1",
+    "avatar_url": "https://avatars.githubusercontent.com/u/54665915?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/openjw",
+    "html_url": "https://github.com/openjw",
+    "followers_url": "https://api.github.com/users/openjw/followers",
+    "following_url": "https://api.github.com/users/openjw/following{/other_user}",
+    "gists_url": "https://api.github.com/users/openjw/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/openjw/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/openjw/subscriptions",
+    "organizations_url": "https://api.github.com/users/openjw/orgs",
+    "repos_url": "https://api.github.com/users/openjw/repos",
+    "events_url": "https://api.github.com/users/openjw/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/openjw/received_events",
+    "type": "Organization",
+    "site_admin": false
+  },
+  "html_url": "https://github.com/openjw/open",
+  "description": "Learning notes & research",
+  "fork": false,
+  "url": "https://api.github.com/repos/openjw/open",
+  "forks_url": "https://api.github.com/repos/openjw/open/forks",
+  "keys_url": "https://api.github.com/repos/openjw/open/keys{/key_id}",
+  "collaborators_url": "https://api.github.com/repos/openjw/open/collaborators{/collaborator}",
+  "teams_url": "https://api.github.com/repos/openjw/open/teams",
+  "hooks_url": "https://api.github.com/repos/openjw/open/hooks",
+  "issue_events_url": "https://api.github.com/repos/openjw/open/issues/events{/number}",
+  "events_url": "https://api.github.com/repos/openjw/open/events",
+  "assignees_url": "https://api.github.com/repos/openjw/open/assignees{/user}",
+  "branches_url": "https://api.github.com/repos/openjw/open/branches{/branch}",
+  "tags_url": "https://api.github.com/repos/openjw/open/tags",
+  "blobs_url": "https://api.github.com/repos/openjw/open/git/blobs{/sha}",
+  "git_tags_url": "https://api.github.com/repos/openjw/open/git/tags{/sha}",
+  "git_refs_url": "https://api.github.com/repos/openjw/open/git/refs{/sha}",
+  "trees_url": "https://api.github.com/repos/openjw/open/git/trees{/sha}",
+  "statuses_url": "https://api.github.com/repos/openjw/open/statuses/{sha}",
+  "languages_url": "https://api.github.com/repos/openjw/open/languages",
+  "stargazers_url": "https://api.github.com/repos/openjw/open/stargazers",
+  "contributors_url": "https://api.github.com/repos/openjw/open/contributors",
+  "subscribers_url": "https://api.github.com/repos/openjw/open/subscribers",
+  "subscription_url": "https://api.github.com/repos/openjw/open/subscription",
+  "commits_url": "https://api.github.com/repos/openjw/open/commits{/sha}",
+  "git_commits_url": "https://api.github.com/repos/openjw/open/git/commits{/sha}",
+  "comments_url": "https://api.github.com/repos/openjw/open/comments{/number}",
+  "issue_comment_url": "https://api.github.com/repos/openjw/open/issues/comments{/number}",
+  "contents_url": "https://api.github.com/repos/openjw/open/contents/{+path}",
+  "compare_url": "https://api.github.com/repos/openjw/open/compare/{base}...{head}",
+  "merges_url": "https://api.github.com/repos/openjw/open/merges",
+  "archive_url": "https://api.github.com/repos/openjw/open/{archive_format}{/ref}",
+  "downloads_url": "https://api.github.com/repos/openjw/open/downloads",
+  "issues_url": "https://api.github.com/repos/openjw/open/issues{/number}",
+  "pulls_url": "https://api.github.com/repos/openjw/open/pulls{/number}",
+  "milestones_url": "https://api.github.com/repos/openjw/open/milestones{/number}",
+  "notifications_url": "https://api.github.com/repos/openjw/open/notifications{?since,all,participating}",
+  "labels_url": "https://api.github.com/repos/openjw/open/labels{/name}",
+  "releases_url": "https://api.github.com/repos/openjw/open/releases{/id}",
+  "deployments_url": "https://api.github.com/repos/openjw/open/deployments",
+  "created_at": "2019-10-10T02:23:31Z",
+  "updated_at": "2021-10-28T08:22:41Z",
+  "pushed_at": "2021-10-28T08:22:38Z",
+  "git_url": "git://github.com/openjw/open.git",
+  "ssh_url": "git@github.com:openjw/open.git",
+  "clone_url": "https://github.com/openjw/open.git",
+  "svn_url": "https://github.com/openjw/open",
+  "homepage": "",
+  "size": 622217,
+  "stargazers_count": 15,
+  "watchers_count": 15,
+  "language": "Roff",
+  "has_issues": true,
+  "has_projects": true,
+  "has_downloads": true,
+  "has_wiki": true,
+  "has_pages": false,
+  "forks_count": 3,
+  "mirror_url": null,
+  "archived": false,
+  "disabled": false,
+  "open_issues_count": 0,
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "allow_forking": true,
+  "is_template": false,
+  "topics": [
+
+  ],
+  "visibility": "public",
+  "forks": 3,
+  "open_issues": 0,
+  "watchers": 15,
+  "default_branch": "master",
+  "temp_clone_token": null,
+  "organization": {
+    "login": "openjw",
+    "id": 54665915,
+    "node_id": "MDEyOk9yZ2FuaXphdGlvbjU0NjY1OTE1",
+    "avatar_url": "https://avatars.githubusercontent.com/u/54665915?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/openjw",
+    "html_url": "https://github.com/openjw",
+    "followers_url": "https://api.github.com/users/openjw/followers",
+    "following_url": "https://api.github.com/users/openjw/following{/other_user}",
+    "gists_url": "https://api.github.com/users/openjw/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/openjw/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/openjw/subscriptions",
+    "organizations_url": "https://api.github.com/users/openjw/orgs",
+    "repos_url": "https://api.github.com/users/openjw/repos",
+    "events_url": "https://api.github.com/users/openjw/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/openjw/received_events",
+    "type": "Organization",
+    "site_admin": false
+  },
+  "network_count": 3,
+  "subscribers_count": 5
+}
+
+```
+
+subscribers_count
+stargazers_count
+forks_count、forks
+license
+open_issues
+language
+size
+
+curl --silent 'https://api.github.com/repos/jasonrudolph/keyboard' -H 'Accept: application/vnd.github.preview' | jq '.watchers_count'
+
+获取限制信息（如果没有任何授权直接访问的话，单IP限制每小时60次requests。如果有授权的话（基本身份认证 basic Authorization），每小时5000次。）
+https://blog.csdn.net/weixin_36300623/article/details/113451650
+
+[root@build-center ~]# curl -I https://api.github.com/repos/openjw/open
+HTTP/1.1 200 OK
+Server: GitHub.com
+Date: Thu, 28 Oct 2021 08:50:13 GMT
+Content-Type: application/json; charset=utf-8
+Cache-Control: public, max-age=60, s-maxage=60
+Vary: Accept, Accept-Encoding, Accept, X-Requested-With
+ETag: W/"5c56fca32bccbf26f013e9e77e4afb16adc5ee9e8c056a665fa88d187f48a055"
+Last-Modified: Thu, 28 Oct 2021 08:22:41 GMT
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 51
+X-RateLimit-Reset: 1635413103
+X-RateLimit-Resource: core
+X-RateLimit-Used: 9
+Accept-Ranges: bytes
+Content-Length: 6226
+X-GitHub-Request-Id: 7FA4:50FD:543211:5E1E49:617A6444
