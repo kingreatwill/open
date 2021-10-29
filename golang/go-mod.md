@@ -1,3 +1,4 @@
+[TOC]
 go mod 1.13
 
 https://github.com/golang/go/wiki/Modules
@@ -87,13 +88,21 @@ We do this by using our good old friend go get:
 
 version 1.0.1. go get -u will not get version 2.0.0.
 
-
+### go get 指定版本
+```
+go get github.com/kataras/iris/v12@master
+go get github.com/kataras/iris/v12@v12.2.0-alpha2
+```
 ### Go1.17 go get变化
 go get 只用来下载普通的包,不做编译和安装（以前go get 有一个 flag -d，指示 go get 下载对应的包，但不做编译和安装。将来的版本，-d 会成为默认行为，这样会更快。此外，因为不编译，即使目标依赖在特定平台编译报错，go get 也能正常执行完。）
 
 go install 安装可执行程序
 
 废弃 -insecure；使用 GOINSECURE 环境变量
+
+在模块外，不带 `@version` 是无法安装的!
+如果你在模块目录中，并且你不带 `@version` 执行安装的话，只能安装 go.mod 中已经包含的版本。并且不能安装未出现在 go.mod 中的包。
+
 
 ## Module dependencies
 ![](../img/go/module_gopath.png)

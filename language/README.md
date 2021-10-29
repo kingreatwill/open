@@ -104,3 +104,51 @@ https://github.com/prettier
 - GraphQL
 - Markdown, including GFM and MDX
 - YAML
+
+## 命令行服务器(最小web服务器)
+### dotnet
+https://github.com/natemcmaster/dotnet-serve
+```
+dotnet tool install --global dotnet-serve
+
+dotnet serve -o
+```
+
+### jdk 18
+经过一周的评审，JEP 408，也就是 Simple Web Server 由 JDK 18 的 Proposed to Target 状态进入到了 Targeted。这个 JEP 提供了一个基于 HTTP 命令行的、最小化的、只提供静态文件的 Web 服务器。这个工具主要用于构建原型、临时编码和测试，特别是在培训环境中。这个 Web 服务器可以通过以下命令来启动：
+`java -m jdk.httpserver [-b bind address] [-p port] [-d directory] [-h to show help message] [-o none|default|verbose]`
+
+### python
+#### python2
+```
+python -m SimpleHTTPServer 8888
+python -m SimpleHTTPServer 8888 &
+nohup python -m SimpleHTTPServer 8000 &
+```
+#### python3
+```
+python3 -m http.server 8888
+python3 -m http.server 8888 &
+nohup python3 -m http.server 8888 &
+```
+
+### node
+```
+npm install -g http-server
+
+http-server <path> -a 0.0.0.0 -p 8080
+```
+
+### golang
+#### devd
+https://github.com/cortesi/devd
+```
+go install github.com/cortesi/devd/cmd/devd@latest
+
+devd -w ./src http://localhost:8080
+
+# Serve the current directory, open it in the browser (-o), and livereload when files change (-l):
+devd -ol .
+```
+#### Swego
+https://github.com/nodauf/Swego
