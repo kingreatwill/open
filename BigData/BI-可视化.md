@@ -77,8 +77,13 @@ https://github.com/TuiQiao/CBoard
 
 商业，付费
 
-## 自定义报表
+## 自定义报表/Dashboard
 - [Stimulsoft](https://www.stimulsoft.com/en)
+- [葡萄城 ActiveReports](https://github.com/activereports)
+- [Bold Reports](https://www.boldreports.com/)
+- [Bold BI](https://www.boldbi.com/)
+- [Telerik Reporting](https://www.telerik.com/products/reporting/creating-reports.aspx)
+
 - [ReportServer](https://reportserver.net/en/download/)
 - [pentaho](http://www.pentaho.com/download/)
 - [SpagoBI](http://www.spagobi.org/product/)
@@ -89,9 +94,8 @@ https://github.com/TuiQiao/CBoard
 - [Seal-Report](https://github.com/ariacom/Seal-Report)
 - [JasperReports](https://github.com/TIBCOSoftware/jasperreports)
 - OpenReports
-- [葡萄城 ActiveReports](https://github.com/activereports)
-- [Bold Reports](https://www.boldreports.com/)
-- [Bold BI](https://www.boldbi.com/)
+- [inet software](https://www.inetsoftware.de/products/clear-reports/designer)
+- [dbxtra](https://dbxtra.com/report-designer/)
 
 ## 其它
 
