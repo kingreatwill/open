@@ -383,6 +383,11 @@ https://github.com/blushft/go-diagrams
 可以生成graphviz DOT file
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
 
+## charts图表
+https://github.com/vdobler/chart 695
+https://github.com/Arafatk/glot 354
+https://github.com/wcharczuk/go-chart 3.2k
+https://github.com/gonum/plot 2k
 
 ## http
 ### http中间件negroni

@@ -257,7 +257,7 @@ https://github.com/geist-org/react 1.4k
 
 ## Gantt
 ### 商业
-> dhtmlx,GrapeCity,webix,Syncfusion 都有dotnet
+> dhtmlx,GrapeCity,Syncfusion 都有dotnet
 #### dhtmlx
 https://dhtmlx.com/docs/products/dhtmlxGantt/
 #### GrapeCity
@@ -266,7 +266,7 @@ https://www.grapecity.com/dataviewsjs
 https://webix.com/gantt/
 #### Syncfusion
 https://ej2.syncfusion.com/
-
+https://syncfusion.com/
 
 #### treegrid
 http://www.treegrid.com/Gantt

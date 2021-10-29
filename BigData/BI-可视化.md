@@ -90,7 +90,8 @@ https://github.com/TuiQiao/CBoard
 - [JasperReports](https://github.com/TIBCOSoftware/jasperreports)
 - OpenReports
 - [葡萄城 ActiveReports](https://github.com/activereports)
-
+- [Bold Reports](https://www.boldreports.com/)
+- [Bold BI](https://www.boldbi.com/)
 
 ## 其它
 
