@@ -9,6 +9,10 @@
 `pyinstaller -w --icon=h.ico auto_organize_gui.py --add-data="h.ico;."`
 如何防止exe被反编译呢
 `pyinstaller -Fw --icon=h.ico auto_organize_gui.py --add-data="h.ico;/" --key 123456`
+#### auto-py-to-exe
+auto-py-to-exe 是基于 pyinstaller 的
+https://github.com/brentvollebregt/auto-py-to-exe
+
 #### 将 exe 文件反编译成 Python 脚本
 1. 抽取exe中的pyc文件
 提取pyc文件的方法：

@@ -71,10 +71,15 @@ https://github.com/paramiko/paramiko
 https://github.com/mitmproxy/mitmproxy
 
 ## Tools
+### 图片
+- [Haishoku - 自动化图表配色](https://github.com/LanceGin/haishoku)
+
 ### print
 https://github.com/willmcgugan/rich
 
 支持emoji表情、table表格、markdown、json等几十种
+
+https://github.com/carpedm20/emoji
 
 ### linq
 https://github.com/viralogic/py-enumerable
@@ -321,7 +326,30 @@ https://github.com/lux-org/lux
 ### PyXLL-Jupyter
 [将Jupyter Notebook嵌入到Excel中](https://github.com/pyxll/pyxll-jupyter)
 
+### mitosheet
+Mito是Jupyter notebook的一个插件，作用是编辑电子表格，并在编辑表格（带格式转换功能）时，可以生成相对应的Python代码。
 
+```
+python -m pip install mitoinstaller
+python -m mitoinstaller install
+python -m jupyter lab
+```
+等价
+```
+pip install mitosheet
+jupyter labextension install @jupyter-widgets/jupyterlab-manager@2
+jupyter lab
+```
+
+
+
+```
+import mitosheet
+mitosheet.sheet()
+```
+
+### Latex 公式/python代码输出数学公式
+https://github.com/connorferster/handcalcs
 
 ## 流程图
 https://github.com/mingrammer/diagrams
