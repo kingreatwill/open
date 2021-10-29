@@ -93,6 +93,18 @@ Java SE 17.0(LTS)	| | |
 2014年3月18日| Java8.0发布，这是继Java5.0以来变化最大的版本。一共有10大新特性。最主要的是Lambda表达式和强大的StreamAPI和新版的日期时间API，函数式接口和接口的默认方法和静态方法等。
 2017年9月21日| Java9的发布。Java 9的最主要目标是最大限度实现模块化以帮助人们实现积木式的应用编写。目的是帮助人们从JAR的束缚中解脱出来。该特性将贯穿整个Java库，并以单依赖图的方式重新整理依赖。Java 9会把所有三个Java开发平台统一起来，模块化特性会使得Java ME的可复用性得到增强，这将是反击Android和iOS的有力武器。
 
+## 9-11移除内容
+- com.sun.awt.AWTUtilities。
+- sun.misc.Unsafe.defineClass 使用java.lang.invoke.MethodHandles.Lookup.defineClass来替代。
+- Thread.destroy() 以及 Thread.stop(Throwable) 方法。
+- sun.nio.ch.disableSystemWideOverlappingFileLockCheck 属性。
+- sun.locale.formatasdefault 属性。
+- jdk snmp 模块。
+- javafx，openjdk 是从java10版本就移除了，oracle java10还尚未移除javafx ，而java11版本将javafx也移除了。
+- Java Mission Control，从JDK中移除之后，需要自己单独下载。
+- Root Certificates ：Baltimore Cybertrust Code Signing CA，SECOM ，AOL and Swisscom。
+- 在java11中将java9标记废弃的Java EE及CORBA模块移除掉。
+
 ## JDK1.4
 ### 正则表达式
 ### 异常链
@@ -2774,22 +2786,14 @@ http://openjdk.java.net/projects/jdk/17/
 >414:[Vector API (Second Incubator)](https://openjdk.java.net/jeps/414)
 >415:[Context-Specific Deserialization Filters](https://openjdk.java.net/jeps/415)
 
-## 9-11移除内容
-- com.sun.awt.AWTUtilities。
-- sun.misc.Unsafe.defineClass 使用java.lang.invoke.MethodHandles.Lookup.defineClass来替代。
-- Thread.destroy() 以及 Thread.stop(Throwable) 方法。
-- sun.nio.ch.disableSystemWideOverlappingFileLockCheck 属性。
-- sun.locale.formatasdefault 属性。
-- jdk snmp 模块。
-- javafx，openjdk 是从java10版本就移除了，oracle java10还尚未移除javafx ，而java11版本将javafx也移除了。
-- Java Mission Control，从JDK中移除之后，需要自己单独下载。
-- Root Certificates ：Baltimore Cybertrust Code Signing CA，SECOM ，AOL and Swisscom。
-- 在java11中将java9标记废弃的Java EE及CORBA模块移除掉。
+
+## JDK18
+https://openjdk.java.net/projects/jdk/18/
 
 
-
-
-
-
-
+> 400:	[UTF-8 by Default](https://openjdk.java.net/jeps/400)
+> 408:	[Simple Web Server](https://openjdk.java.net/jeps/408)
+> 413:	[Code Snippets in Java API Documentation](https://openjdk.java.net/jeps/413)
+> 416:	[Reimplement Core Reflection with Method Handles](https://openjdk.java.net/jeps/416)	2021/10/26
+> 417:	[Vector API (Third Incubator)](https://openjdk.java.net/jeps/417)
 
