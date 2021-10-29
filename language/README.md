@@ -105,7 +105,7 @@ https://github.com/prettier
 - Markdown, including GFM and MDX
 - YAML
 
-## 命令行服务器(最小web服务器)
+## 命令行服务器(最小web服务器)/Simple Web Server
 ### dotnet
 https://github.com/natemcmaster/dotnet-serve
 ```
@@ -115,7 +115,7 @@ dotnet serve -o
 ```
 
 ### jdk 18
-经过一周的评审，JEP 408，也就是 Simple Web Server 由 JDK 18 的 Proposed to Target 状态进入到了 Targeted。这个 JEP 提供了一个基于 HTTP 命令行的、最小化的、只提供静态文件的 Web 服务器。这个工具主要用于构建原型、临时编码和测试，特别是在培训环境中。这个 Web 服务器可以通过以下命令来启动：
+经过一周的评审，[JEP 408](https://openjdk.java.net/jeps/408)，也就是 Simple Web Server 由 JDK 18 的 Proposed to Target 状态进入到了 Targeted。这个 JEP 提供了一个基于 HTTP 命令行的、最小化的、只提供静态文件的 Web 服务器。这个工具主要用于构建原型、临时编码和测试，特别是在培训环境中。这个 Web 服务器可以通过以下命令来启动：
 `java -m jdk.httpserver [-b bind address] [-p port] [-d directory] [-h to show help message] [-o none|default|verbose]`
 
 ### python
