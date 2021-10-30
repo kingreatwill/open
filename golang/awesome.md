@@ -383,7 +383,7 @@ https://github.com/blushft/go-diagrams
 可以生成graphviz DOT file
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
 
-## charts图表/plotting
+## charts图表/plotting绘制/graphing绘图
 ### golang
 https://github.com/vdobler/chart 695
 https://github.com/Arafatk/glot 354
@@ -396,12 +396,27 @@ https://github.com/oxyplot/oxyplot 2.4k
 https://github.com/Live-Charts/Live-Charts 5k
 https://github.com/beto-rodriguez/LiveCharts2 771
 https://github.com/microcharts-dotnet/Microcharts 1.6k
-
-### gnuplot
+### 统计绘图
+#### gnuplot
 交互式绘图工具
 http://www.gnuplot.info/
 
 你可以在c#程序中编写数据文件，从c#调用gnuplot可执行文件，并在c#图片框中显示生成的图像。
+#### Graph
+http://www.padowan.dk/
+#### Meta-chart.com
+#### Infogr.am
+https://infogram.com
+#### Desmos
+https://www.desmos.com/
+#### Orange
+https://orange.biolab.si/
+#### GeoGebra
+https://www.geogebra.org
+
+#### AmCharts
+https://www.amcharts.com
+
 
 ## http
 ### http中间件negroni
