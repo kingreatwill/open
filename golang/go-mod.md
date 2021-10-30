@@ -87,6 +87,12 @@ We do this by using our good old friend go get:
 - run go get package@version to update to a specific version (say, github.com/robteix/testmod@v1.0.1)
 
 version 1.0.1. go get -u will not get version 2.0.0.
+## go get
+`go get -d -v ./...`
+`-d`标志只下载代码包，不执行安装命令；
+`-v`打印详细日志和调试日志。这里加上这个标志会把每个下载的包都打印出来；
+`./...`这个表示路径，代表当前目录下所有的文件。
+`-u` 强制使用网络去更新包和它的依赖包
 
 ### go get 指定版本
 ```
@@ -97,6 +103,7 @@ go get github.com/kataras/iris/v12@v12.2.0-alpha2
 go get 只用来下载普通的包,不做编译和安装（以前go get 有一个 flag -d，指示 go get 下载对应的包，但不做编译和安装。将来的版本，-d 会成为默认行为，这样会更快。此外，因为不编译，即使目标依赖在特定平台编译报错，go get 也能正常执行完。）
 
 go install 安装可执行程序
+`go install -v ./...`
 
 废弃 -insecure；使用 GOINSECURE 环境变量
 

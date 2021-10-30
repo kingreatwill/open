@@ -1,6 +1,9 @@
 
 ![](https://github.com/polaris1119/golangweekly/raw/master/docs/imgs/issue054/history-of-go.png)
-在现有go版本中安装其他版本
+
+
+
+## 在现有go版本中安装其他版本
 https://pkg.go.dev/golang.org/dl
 go get golang.org/dl/go1.10.7
 go get golang.org/dl/go1.13.6
@@ -16,8 +19,12 @@ go get golang.org/dl/go1.13.6
 go1.13.9 download 下载源码到用户目录下的sdk/go1.13.9 下
 
 运行go1.13.6 version 相当于运行 sdk/go1.13.9/bin/go.exe version
+### 使用docker编译不同版本
+`docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp golang:1.17 go build -v`
 
+`-w, --workdir string`       指定工作目录
 
+## 其它
 https://go.dev/
 
 https://godoc.org/
@@ -28,6 +35,8 @@ GolangCI-Lint 检查代码
 更严格的gofmt https://github.com/mvdan/gofumpt
 
 检查没有使用的函数https://github.com/mvdan/unparam
+
+## 待整理
 
 [推荐算法、相似度算法、布隆过滤器、均值算法、一致性Hash、数据结构、leetcode练习](https://github.com/hwholiday/algorithm_coding)
 
