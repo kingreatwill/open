@@ -21,6 +21,16 @@ print("Hallo!")
 param = 5
 ```
 
+## 展开 收缩
+<details open>
+<summary>主题</summary>
+
+<br/>
+
+> 默认收缩， open属性默认展开
+
+</details>
+
 ## 上标、下标
 
 - 

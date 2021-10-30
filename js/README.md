@@ -59,6 +59,12 @@ https://github.com/transloadit/uppy
 ### 图片处理
 https://github.com/nhn/tui.image-editor
 
+### SQL
+#### 解析sql、sql2ast
+https://github.com/DTStack/dt-sql-parser
+https://github.com/JavaScriptor/js-sql-parser
+https://github.com/godmodelabs/flora-sql-parser
+
 ## 网页构建  Web Builder Framework
 ### grapesjs
 https://github.com/artf/grapesjs 12k
@@ -229,6 +235,10 @@ D3 是最流行的可视化库之一，它被很多其他的表格插件所使�
 
 
 ## UI
+### 桌面UI
+- [YLUI](https://github.com/yuri2peter/ylui)
+- [win10-ui](https://github.com/yuri2peter/win10-ui)
+- https://github.com/LuckyZmj/LuckyZmj.github.io
 
 ### ionic-framework
 Ionic 类似 React Native 的跨平台框架，支持vue等
