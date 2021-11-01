@@ -397,6 +397,10 @@ https://keybase.io/docs/kbfs
 predates Perkeep, file-centric
 ### Unhosted
 
+### openoffice、在线预览 word、excel、ppt
+通过第三方工具openoffice，将word、excel、ppt、txt等文件转换为pdf文件流；
+[如何用Java实现word、excel、ppt、txt等办公文件在线预览功能](https://blog.csdn.net/weixin_40986713/article/details/109527294)
+
 
 ## 办公套件
 

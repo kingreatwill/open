@@ -235,6 +235,9 @@ Streamlit是第一个专门针对机器学习和数据科学团队的应用开�
 [github](https://github.com/streamlit/streamlit)
 [Streamlit docs](https://docs.streamlit.io/)
 
+#### PyWebIO
+[PyWebIO](https://github.com/pywebio/PyWebIO)
+
 #### 高维数据
 https://github.com/facebookresearch/hiplot
 

@@ -86,6 +86,10 @@ bandzip 7开始出现广告了
 https://github.com/nmoinvaz/minizip
 #### picozip
 
+### 有趣
+[模仿系统升级](https://fakeupdate.net/)
+
+
 ## 视频下载
 
 [视频下载1](https://github.com/soimort/you-get)
