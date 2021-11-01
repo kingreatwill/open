@@ -85,6 +85,19 @@ $$f(t) = \sum_{-\infty}^{\infty} C_n e^{in\omega t}$$
 
 非周函数，也就是周期$T \to \infty$
 
+$$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt e^{i\omega t} d\omega$$
+
+
+Fourier transform(FT) :就是中间部分
+$$F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt$$
+
+Fourier inversion transform(FIT):
+$$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega t} d\omega$$
+
+
+Laplace transform: $s=i\omega$  (Fourier transform看作一种特殊的Laplace transform)
+$$F(s) = \int_{-\infty}^{\infty} f(t) e^{-s t} dt$$
+
 ## tools
 ### 微积分
 
