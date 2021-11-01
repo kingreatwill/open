@@ -1,9 +1,19 @@
+[TOC]
 
+### 欧拉公式
+[Euler's formula](https://en.jinzhao.wiki/wiki/Euler%27s_formula):
+$$e^{i\theta} = \cos\theta  + i\sin\theta$$
+证明(Proofs):
+令函数
+$${\displaystyle f(\theta )=e^{-i\theta }(\cos \theta +i\sin \theta )}$$
+求导
+$${\displaystyle f'(\theta )=e^{-i\theta }(i\cos \theta -\sin \theta )-ie^{-i\theta }(\cos \theta +i\sin \theta )=0}$$
 
+所以$f(\theta )$是个常数，我们知道$f(0) = 1$所以，对于所有的自变量$f(\theta) = 1$，得证。
 
 ### 傅里叶分析、傅立叶变换、傅立叶级数
 [傅里叶分析之掐死教程（完整版）更新于2014.06.06](https://zhuanlan.zhihu.com/p/19763358)
-[视频](https://www.bilibili.com/video/BV1Et411R78v)
+[视频 - 纯干货数学推导_傅里叶级数与傅里叶变换](https://www.bilibili.com/video/BV1Et411R78v)
 ![](https://up.jinzhao.wiki/wikipedia/commons/1/1a/Fourier_series_square_wave_circles_animation.gif)
 ![](https://up.jinzhao.wiki/wikipedia/commons/7/7e/Fourier_series_sawtooth_wave_circles_animation.gif)
 
@@ -56,6 +66,24 @@ $$\int_{-\pi}^{\pi} f(x)\cos (mx) dx = \int_{-\pi}^{\pi} \frac{a_0}{2} \cos(mx) 
 所以$\int_{-\pi}^{\pi} f(x)\cos (mx) dx = a_n\pi ,m=n$不就是$a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos(nx)dx$
 同理求$b_n$时， 对等式左右两边同时乘以$\sin(mx)$,再求积分
 
+---
+以$T=2L$为周期的函数的Fourier级数展开为:$\omega = \frac{\pi}{L}= \frac{2\pi}{T}$
+$$f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty}[a_n \cos(n\omega t) +b_n\sin(n\omega t)]$$
+$$a_n = \frac{2}{T} \int_{0}^{T}f(t)\cos(n\omega t)dt$$
+$$b_n = \frac{2}{T} \int_{0}^{T}f(t)\sin(n\omega t)dt$$
+
+---
+傅里叶级数的复数形式：$\cos x = \frac{1}{2}(e^{ix} + e^{-ix})  , \sin x = -\frac{1}{2}i(e^{ix} - e^{-ix})$
+带入[得到](https://blog.csdn.net/qq_28404829/article/details/103054656)
+$$f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \frac{a_n -ib_n}{2}e^{in\omega t}  + \sum_{n=-\infty}^{-1} \frac{a_{-n} + ib_{-n}}{2}e^{in\omega t} $$
+而$\frac{a_0}{2} = \sum_{n=0}^0 \frac{a_0}{2} e^{in\omega t}$
+所以
+$$f(t) = \sum_{-\infty}^{\infty} C_n e^{in\omega t}$$
+
+---
+从傅里叶级数推导傅里叶变换
+
+非周函数，也就是周期$T \to \infty$
 
 ## tools
 ### 微积分
