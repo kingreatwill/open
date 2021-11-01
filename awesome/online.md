@@ -160,6 +160,9 @@ https://excalidraw.com/
 - [wireflow.co](https://github.com/vanila-io/wireflow) https://app.wireflow.co/
 - [zwibbler](https://zwibbler.com/)
 - [Gitmind 在线思维导图](https://gitmind.com/) https://gitmind.cn/
+- [mindnode 思维导图](https://www.mindnode.com/)
+- [百度脑图](https://naotu.baidu.com/)
+- [xmind](https://www.xmind.cn/)
 - [Whimscal 在线流程绘制工具](https://whimsical.com/)
 - [MindMup 在线的思维导图工具](https://www.mindmup.com/)
 > [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)

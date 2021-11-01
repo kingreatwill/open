@@ -89,6 +89,24 @@ https://github.com/nmoinvaz/minizip
 ### 有趣
 [模仿系统升级](https://fakeupdate.net/)
 
+### 时间管理
+time tracking / code time
+[wakatime](https://wakatime.com)
+[code time](https://www.software.com/product/code-time)
+[RescueTime](https://www.rescuetime.com/)
+与上面两个不同的是，不需要在每个IDE上安装插件；手机和电脑都可使用
+
+
+时间管理工具按功能不同主要分为三大类
+
+- 清单提醒：代表产品滴答清单、微软Todo、Omnifocus
+- 时间记录：代表产品aTimeLogger、iHours
+- 习惯养成：代表产品HabitMinder、iBetter
+
+### 数据收集表单
+数据收集表单的用途是在于意见征询、问卷调查等方面。
+- [麦克CRM](https://www.mikecrm.com/)
+
 
 ## 视频下载
 
