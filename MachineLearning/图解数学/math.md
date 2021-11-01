@@ -114,3 +114,9 @@ https://www.wolframalpha.com/ 这个网站其实是一个计算知识引擎
 http://www.gnuplot.info/
 
 你可以在c#程序中编写数据文件，从c#调用gnuplot可执行文件，并在c#图片框中显示生成的图像。
+
+### Desmos
+[图形计算器](https://www.desmos.com/)
+比如：在[网站](https://www.desmos.com/calculator?lang=zh-CN)中输入`cos x + 0.1 cos 10x + 0.1 cos 100x`
+
+[科学计算器](https://www.desmos.com/scientific?lang=zh-CN)
