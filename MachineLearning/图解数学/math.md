@@ -1,4 +1,38 @@
 [TOC]
+### 卡尔曼滤波器
+[卡尔曼滤波器](https://www.bilibili.com/video/BV1ez4y1X7eR)
+
+[Kalman filter](https://en.jinzhao.wiki/wiki/Kalman_filter)
+
+卡尔曼滤波器是一种有效的递推滤波器，通过一系列噪声测量估计线性动态系统的内部状态.
+> The Kalman filter is an efficient recursive filter estimating the internal-state of a linear dynamic system from a series of noisy measurements.
+
+估计误差：$e_{EST}$ error estimate
+测量误差：$e_{MEA}$ error measurement
+卡尔曼增益:$K_k$ Kalman Gain
+$$\hat{x}_k = \hat{x}_{k-1} + K_k(x_k -\hat{x}_{k-1})$$
+$$K_k = \frac{{e_{EST}}_{k-1}}{{e_{EST}}_{k-1}+{e_{MEA}}_{k}}$$
+
+
+
+如：在k时刻
+① ${e_{EST}}_{k-1} \gg {e_{MEA}}_{k}$ 那么$K_k \to 1$ , $\hat{x}_k = x_k$
+① ${e_{EST}}_{k-1} \ll {e_{MEA}}_{k}$ 那么$K_k \to 0$ , $\hat{x}_k = \hat{x}_{k-1}$
+
+step 1:计算$K_k$
+step 2:计算$\hat{x}_k = \hat{x}_{k-1} + K_k(x_k -\hat{x}_{k-1})$
+step 3:更新估计误差$e_{EST} = (1-K_k){e_{EST}}_{k-1}$
+
+![](img/kalman_01.png)
+
+#### 取均值
+比如k次x均值：
+均值$\hat{x}_k = \frac{1}{k}(x_1+...+x_k) = \frac{1}{k} \frac{k-1}{k-1} (x_1+...+x_{k-1}) + \frac{1}{k} x_k = \frac{k-1}{k} \hat{x}_{k-1} + \frac{1}{k} x_k = \hat{x}_{k-1} + \frac{1}{k}(x_k -\hat{x}_{k-1})$
+
+当前的估计值 = 上一次的估计值 + 系数 x (当前测量值-上一次的估计值)
+系数就是卡尔曼增益，用$K_k$
+随着k的增加，测量的结果不再重要
+
 
 ### 欧拉公式
 [Euler's formula](https://en.jinzhao.wiki/wiki/Euler%27s_formula):
@@ -97,6 +131,8 @@ $$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega t} d\omega$
 
 Laplace transform: $s=i\omega$  (Fourier transform看作一种特殊的Laplace transform)
 $$F(s) = \int_{-\infty}^{\infty} f(t) e^{-s t} dt$$
+
+
 
 ## tools
 ### 微积分

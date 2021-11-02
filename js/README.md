@@ -305,6 +305,7 @@ https://github.com/robicch/jQueryGantt
 [PostHog - 开源，可以自己托管数据](https://github.com/PostHog/posthog)
 [PostHog doc](https://posthog.com/docs/contribute/developing-locally)
 
+[华为分析服务](https://developer.huawei.com/consumer/cn/hms/huawei-analyticskit?ha_source=hms1)
 
 ### 开源工具
 - https://github.com/matomo-org/matomo      15.5k
