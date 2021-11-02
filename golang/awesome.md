@@ -5,32 +5,38 @@
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
 
-## goweight 分析模块大小
+
+## 分析/debug
+### pprof
+[Profiling](./pprof.md)
+### visualgdb 工具
+https://visualgdb.com/gdbreference/commands/x
+
+### goweight 分析模块大小
 ```
 $ cd current-project
 $ goweight
 ```
 
-## godebug:一个跨平台的Go程序调试工具
+### godebug:一个跨平台的Go程序调试工具
 https://github.com/mailgun/godebug  已过时
 
-NEW
-https://github.com/derekparker/delve
+### godebug:delve
+https://github.com/go-delve/delve
 
-
-## yaegi  go解释器
+### yaegi  go解释器
 https://github.com/containous/yaegi
 可以提供交互环境
 
 https://github.com/topxeq/gotx
 
-## 热更新
+### 热更新
 https://github.com/cosmtrek/air
 
 
 https://github.com/topics/live-reload?l=go
 
-## gops 分析机器上运行了哪些go进程
+### gops 分析机器上运行了哪些go进程
 go get -u github.com/google/gops
 
 ```
@@ -181,6 +187,14 @@ https://github.com/fullstorydev/grpcui
 
 grpcui -plaintext 127.0.0.1:9901
 127.0.0.1:9901 是grpc server的地址
+
+### bloomrpc
+GUI Client for GRPC Services
+https://github.com/uw-labs/bloomrpc
+
+### insomnia
+GraphQL、REST和gRPC的开源、跨平台API客户端。
+https://github.com/Kong/insomnia
 
 ## dingtalk
 ```

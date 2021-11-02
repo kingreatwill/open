@@ -64,7 +64,8 @@ online
     那么如果是vscode.dev： https://vscode.dev/github/openjw/open
     > [以上内容来自2021-10-20](https://code.visualstudio.com/blogs/2021/10/20/vscode-dev)
 
-
+- [github1s](https://github.com/conwnet/github1s)
+Just add 1s after github and press Enter in the browser address bar for any repository you want to read. eg: https://github1s.com/microsoft/vscode
 
 - [StackBlitz](https://stackblitz.com/) The same editing experience. Now in your browser. Online IDE powered by Visual Studio Code.[core](https://github.com/stackblitz/core/)
 
