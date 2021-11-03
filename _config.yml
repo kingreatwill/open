@@ -1,5 +1,7 @@
-theme: jekyll-theme-architect
+# theme: jekyll-theme-architect
+remote_theme: jeffreytse/jekyll-theme-yat
 markdown: kramdown
 
 plugins:
   - jekyll-spaceship
+  - jekyll-remote-theme
