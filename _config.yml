@@ -1,7 +1,6 @@
 theme: jekyll-theme-architect
 markdown: kramdown
-kramdown:
-    math_engine: mathjax
+
 
 header_pages:
   - index.html
