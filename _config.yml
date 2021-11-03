@@ -2,25 +2,18 @@ theme: jekyll-theme-architect
 markdown: kramdown
 kramdown:
     math_engine: mathjax
-    mathjax:
-        src: "//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-        config:
-            tex2jax:
-                inlineMath: [['$','$'], ["\\(","\\)"]]
-mathjax:
-    src: "//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    config:
-        tex2jax:
-            inlineMath: [['$','$'], ["\\(","\\)"]]
-mathjax:
-    tex2jax:
-        inlineMath: [['$','$'], ["\\(","\\)"]]
-math:
-    engine: mathjax
-    mathjax:
-        src: "//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-        config:
-            tex2jax:
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ]
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-                processEscapes: true
+
+header_pages:
+  - index.html
+  - archives.html
+  - categories.html
+  - tags.html
+  - about.md
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-spaceship
+  - jekyll-remote-theme
