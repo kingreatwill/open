@@ -6,7 +6,15 @@ kramdown:
         src: "//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
         config:
             tex2jax:
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ]
+                inlineMath: [['$','$'], ["\\(","\\)"]]
+mathjax:
+    src: "//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    config:
+        tex2jax:
+            inlineMath: [['$','$'], ["\\(","\\)"]]
+mathjax:
+    tex2jax:
+        inlineMath: [['$','$'], ["\\(","\\)"]]
 math:
     engine: mathjax
     mathjax:
@@ -14,3 +22,5 @@ math:
         config:
             tex2jax:
                 inlineMath: [ ['$','$'], ["\\(","\\)"] ]
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+                processEscapes: true
