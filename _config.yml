@@ -1,18 +1,5 @@
 theme: jekyll-theme-architect
 markdown: kramdown
 
-
-header_pages:
-  - index.html
-  - archives.html
-  - categories.html
-  - tags.html
-  - about.md
-
 plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-paginate
   - jekyll-spaceship
-  - jekyll-remote-theme

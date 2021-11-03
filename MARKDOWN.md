@@ -255,6 +255,9 @@ $$
 
 注：表格在公众号预览时，可能在PC端显示的不是正确的全屏，但在手机上预览时就会正常显示为全屏的了。
 
+> 这里有合并单元格
+> https://github.com/jeffreytse/jekyll-spaceship#1-table-usage
+
 #### 任务列表
 - [x] 任务1，已完成;
 - [x] 任务2，已完成;
