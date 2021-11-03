@@ -47,6 +47,7 @@ H<sub>2</sub>O  CO<sub>2</sub>
 
 
 [Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
+[GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
 
 [Markdown: Syntax 语法](https://daringfireball.net/projects/markdown/syntax)
 
