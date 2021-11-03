@@ -38,3 +38,11 @@ https://github.com/ant-design/ant-design-pro
 
 #### Semi-UI/抖音
 https://github.com/DouyinFE/semi-design
+
+#### modern.js/字节跳动（Bytedance ）
+https://github.com/modern-js-dev/modern.js
+
+#### arco-design/字节跳动（Bytedance ）
+> vue/react
+
+https://github.com/arco-design
