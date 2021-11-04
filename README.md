@@ -1,6 +1,55 @@
-# 学习资源
+# Summary
 
-## 维基百科
+* [说明](README.md)
+* [文章](articles/README.md)
+    * [分布式系统](articles/分布式系统.md)
+    * [内存屏障](articles/Memory-Barrier.md)
+    * [CAP](articles/CAP.md)
+    * [ZooKeeper](articles/zookeeper.md)
+* [计算机相关](computer/README.md)
+* [java](java/README.md)
+    * [Java内存模型FAQ](java/memory-model-faq.md)
+    * [JDK介绍](java/JDK-Info.md)
+    * [JDK新特性](java/jdk.md)
+* [golang](golang/README.md)
+    * [Golang编译信息注入程序](golang/build-a-installsuffix.md)
+    * [Go语言代码建议](golang/Real-world-advice-for-writing-maintainable-Go-programs.md)
+    * [Go 语言内存分配可视化指南](golang/go-memory-allocator-visual-guide.md)
+    * [Go内存详解](golang/Go内存详解.md)
+    * [Golang 的内存管理](golang/go-mem.md)
+    * [Go Memory Management](golang/go-memory-management.md)
+    * [Go pprof](golang/pprof.md)
+    * [Go Module](golang/go-mod.md)
+    * [Golang 笔记之深入浮点数](golang/float.md)
+    * [Go-Questions](golang/Go-Questions/README.md)
+    * [golangbot](golang/golangbot/README.md)
+    * [日常翻译](golang/watermelo/README.md)
+* [kubernetes](kubernetes/README.md)
+    * [k8s安装(kuboard)](kubernetes/install.md)
+    * [docker for desktop](kubernetes/docker-for-desktop.md)
+* [ETCD](etcd/README.md)
+* [ElasticSearch 优化](es/README.md)
+    * [Elasticsearch中的一些基本概念](es/elasticsearch.md)
+    * [BINLOG](es/binlog.md)
+* [大数据](BigData/README.md)
+    * [Flink](BigData/Flink.md)
+    * [Flink-SQL](BigData/Flink-SQL.md)
+    * [Spark](BigData/Spark.md)
+* [机器学习](MachineLearning/README.md)
+    * [tensorflow](MachineLearning/tensorflow.md)
+* [文件](files/README.md)
+    * [分布式一致性协议](files/paxos_raft_protocol/README.md)
+        * [raft](files/paxos_raft_protocol/raft/raft.md)
+        * [Raft一致性算法论文的中文翻译](files/paxos_raft_protocol/raft/raft-zh_cn.md)
+        * [基于hashicorp/raft的分布式一致性实战](files/paxos_raft_protocol/raft/raft-demo.md)
+* [工具](tools/README.md)
+    * [wireshark](tools/wireshark.md)
+    * [mermaid流程图](tools/mermaid.md)
+* [Markdown 示例](MARKDOWN.md)
+* [维基百科](#Wikipedia)
+
+
+## Wikipedia
 
 https://www.wikipedia.org/
 https://zh.wikipedia.org/zh/
@@ -20,6 +69,7 @@ http://en.wiki.sxisa.org/wiki/Main_Page
 https://ja.jinzhao.wiki/wiki/
 
 http://ja.wiki.sxisa.org/wiki/
+
 
 镜像地址：
 英文： https://en.wikimirror.ga
@@ -50,13 +100,18 @@ github:https://github.com/kiwix
 
 [维基百科 Wikipedia 镜像网站列表 | 更新](https://zgc261.com/wikipedia.html)
 
-## 网站镜像（谷歌搜索，谷歌學術，維基百科，Github）
+
+[万维百科](https://www.wanweibaike.com/)
+
+[万维百科](https://www.wanweibaike.net/)
+
+### 网站镜像（谷歌搜索，谷歌學術，維基百科，Github）
 
 https://mirror.yaojiu.us/mirror/
 https://www.haoo.us/mirror
 https://www.library.ac.cn/
 
-### 学术
+#### 学术
 
 Google Scholar（谷歌学术搜索）
 [谷歌学术镜像（用于找出文章的 DOI 号）](https://gfsoso.99lb.net/)
@@ -70,9 +125,8 @@ Google Scholar（谷歌学术搜索）
 [权威数据挖掘网站 kdnuggets](https://www.kdnuggets.com/)
 [数据集仓库 UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
 
-# 学习笔记
+### 笔记/课程
 
-![](img/var-named.jpg)
 
 [技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++ https://cyc2018.github.io/CS-Notes](https://github.com/CyC2018/CS-Notes)
 
@@ -82,91 +136,3 @@ Google Scholar（谷歌学术搜索）
 
 [欢迎参加 Istio 系列课程](https://developer.ibm.com/cn/os-academy-istio/)
 
-https://www.wanweibaike.com/
-
-## 机器学习
-
-https://www.ml-science.com/
-https://www.javatpoint.com/machine-learning
-
-[机器学习+概率+线性代数](https://dragonwarrior15.github.io/statistical-learning-notes/)
-
-## kubernetes
-
-中文文档 1：https://kubernetes.io/zh/docs/
-
-中文文档 2：https://jimmysong.io/kubernetes-handbook/  https://github.com/rootsongjc/kubernetes-handbook
-
-中文文档 3： https://blog.frognew.com/
-
-中文文档 4:  https://www.kubernetes.org.cn/k8s
-
-所有安装方式列表：https://kubernetes.io/docs/setup/
-
-中文二进制文件安装方式文档： https://github.com/opsnull/follow-me-install-kubernetes-cluster
-
-英文二进制文件安装方式文档： https://github.com/kelseyhightower/kubernetes-the-hard-way
-
-使用 Ansible 脚本安装文档：https://github.com/gjmzj/kubeasz （在自建机房,建议使用此方法）
-
-k8s-kubeasz-阿里云 vpc 部署记录: https://li-sen.github.io/2018/09/27/k8s-kubeasz-阿里云vpc部署记录/
-
-kops 在 AWS 中国区安装 k8s 文档：
-
-https://github.com/nwcdlabs/kops-cn （建议使用此方法，该项目由 aws 中国区维护）
-
-https://github.com/kubernetes/kops/blob/master/docs/aws-china.md
-
-http://senlinzhan.github.io/2018/01/11/k8s-on-aws/
-
-https://blog.csdn.net/cloudvtech/article/details/80539086
-
-中文社区 1： https://www.kubernetes.org.cn
-
-中文社区 2：http://dockone.io/
-
-kubernetes 相关的工具：https://github.com/kubernetes-sigs/ （你会发现很多有实用的工具可以使用）
-
-这里有一个在 aws 上管理 k8s 的 pdf 文档：https://s3.cn-north-1.amazonaws.com.cn/sides-share/AWS+Webinar+2018/PDF/EKS+Webinar+Chinese.pdf
-
-这里介绍 Terraform 管理 EKS：https://www.hashicorp.com/blog/hashicorp-announces-terraform-support-aws-kubernetes
-
-## istio
-
-中文文档：https://istio.io/zh/
-
-中文社区： http://www.servicemesher.com/
-
-历届 Meetup 视频: http://www.servicemesher.com/activity/
-
-中文论坛：http://www.servicemesh.cn
-
-## helm
-
-中文文档：https://whmzsu.github.io/helm-doc-zh-cn/
-
-helm 工具集合：https://github.com/helm/charts/tree/master/stable
-
-## gitlab
-
-中文文档：https://docs.gitlab.com.cn
-
-## elk
-
-中文社区：https://elasticsearch.cn
-
-## AWS 中国区文档
-
-官方文档：https://docs.amazonaws.cn
-
-视频教程：http://aws.amazon.bokecc.com/
-
-aws 真实云场景的动手练习网站：https://amazonaws-china.com/cn/training/self-paced-labs/
-
-## python  基础教程
-
-python2: https://www.runoob.com/python/python-tutorial.html
-
-python3: https://www.runoob.com/python3/python3-tutorial.html
-
-Python - 100 天从新手到大师: https://github.com/jackfrued/Python-100-Days

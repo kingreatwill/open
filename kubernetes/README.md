@@ -34,11 +34,16 @@ https://github.com/opsnull/follow-me-install-kubernetes-cluster
 中文文档: https://github.com/rootsongjc/kubernetes-handbook
 中文文档: https://www.kubernetes.org.cn/k8s
 中文文档: https://kubernetes.io/zh/docs/
+中文文档：https://jimmysong.io/kubernetes-handbook/  https://github.com/rootsongjc/kubernetes-handbook
+中文文档： https://blog.frognew.com/
+
 所有安装方式列表：https://kubernetes.io/docs/setup/
 
 中文二进制文件安装方式文档： https://github.com/opsnull/follow-me-install-kubernetes-cluster
 
 英文二进制文件安装方式文档： https://github.com/kelseyhightower/kubernetes-the-hard-way
+
+
 
 使用Ansible脚本安装文档：https://github.com/gjmzj/kubeasz （在自建机房,建议使用此方法）
 
@@ -67,6 +72,12 @@ kubernetes相关的工具：https://github.com/kubernetes-sigs/ （你会发现
 [图解kubernetes调度器SchedulingQueue核心源码实现](https://m.toutiao.com/i6781307442589336067/)
 
 [Kubernetes REST API](https://www.jianshu.com/p/0de6bc64c423)
+
+## helm
+
+中文文档：https://whmzsu.github.io/helm-doc-zh-cn/
+
+helm 工具集合：https://github.com/helm/charts/tree/master/stable
 ## K less S
 ### k0s
 k0s,一个单文件的kubernetes

@@ -1,4 +1,8 @@
 [TOC]
+
+![](../img/var-named.jpg)
+
+### go build dll
 [编译出 dll](https://www.cnblogs.com/timeddd/p/11731160.html)
 
 ```
