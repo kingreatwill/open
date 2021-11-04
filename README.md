@@ -1,6 +1,5 @@
 # Summary
 
-* [说明](README.md)
 * [文章](articles/README.md)
     * [分布式系统](articles/分布式系统.md)
     * [内存屏障](articles/Memory-Barrier.md)
@@ -46,7 +45,7 @@
     * [wireshark](tools/wireshark.md)
     * [mermaid流程图](tools/mermaid.md)
 * [Markdown 示例](MARKDOWN.md)
-* [维基百科](#Wikipedia)
+* [维基百科](#wikipedia)
 
 
 ## Wikipedia
@@ -108,14 +107,19 @@ github:https://github.com/kiwix
 ### 网站镜像（谷歌搜索，谷歌學術，維基百科，Github）
 
 https://mirror.yaojiu.us/mirror/
+
 https://www.haoo.us/mirror
+
 https://www.library.ac.cn/
 
 #### 学术
 
 Google Scholar（谷歌学术搜索）
+
 [谷歌学术镜像（用于找出文章的 DOI 号）](https://gfsoso.99lb.net/)
+
 [sci-hub（利用 DOI 号，免费下载文章）](https://sci-hub.shop/)
+
 [参考](https://www.zhihu.com/topic/19653450/top-answers)
 
 [百度学术](https://xueshu.baidu.com/)
@@ -123,6 +127,7 @@ Google Scholar（谷歌学术搜索）
 ## 其它
 
 [权威数据挖掘网站 kdnuggets](https://www.kdnuggets.com/)
+
 [数据集仓库 UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
 
 ### 笔记/课程
