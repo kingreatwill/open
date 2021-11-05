@@ -307,8 +307,6 @@ $$
 <a id="footnote-1"></a>
 <a id="jump_20"></a>
 ###赞赏Md2All
-如果你觉得到Md2All对你有帮助，欢迎赞赏，有你的支持，Md2All一定会越来越好！
-![大少赞赏码](http://img.blog.csdn.net/20171012155402463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2FyeV95YW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ###版本更新记录
 ***
@@ -359,7 +357,7 @@ Markdown 插入链接：
 [链接文字](链接网址 "标题")
 
 Markdown 插入图片：
-![alt text](/path/to/img.jpg "Title")
+![alt text](img/helm.webp "Title")
 
 Markdown 插入代码块：
     ```python
@@ -429,6 +427,7 @@ Structurizr DSL ：https://structurizr.com/dsl  https://github.com/structurizr/d
 Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
+
 ```flow
 st=>start: 开始
 e=>end: 结束
@@ -467,7 +466,9 @@ graph TD;
     B-->D;
     C-->D;
 ```
+
 顺序图
+
 ```mermaid
 sequenceDiagram
     participant Alice
@@ -481,7 +482,9 @@ sequenceDiagram
     John->>Bob: How about you?
     Bob-->>John: Jolly good!
 ```
+
 甘特图
+
 ```mermaid
 gantt
 dateFormat  YYYY-MM-DD
@@ -496,6 +499,7 @@ Future task2               :         des4, after des3, 5d
 ```
 
 类图-：实验性
+
 ```
 classDiagram
 Class01 <|-- AveryLongClass : Cool
@@ -515,6 +519,7 @@ Class08 <--> C2: Cool label
 
 总结来说js-sequence模块对sequence代码的语法解析执行过程如下图
 ![](img/o/grammar.png)
+
 ```sequence
 title: 序列图sequence(示例)
 participant A
