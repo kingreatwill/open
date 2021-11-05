@@ -432,6 +432,7 @@ Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
 
+### flowchart.js
 ```flow
 st=>start: 开始
 e=>end: 结束
@@ -462,7 +463,7 @@ cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
 ```
-
+### mermaid
 ```mermaid
 graph TD;
     A-->B;
@@ -504,7 +505,7 @@ Future task2               :         des4, after des3, 5d
 
 类图-：实验性
 
-```
+```mermaid
 classDiagram
 Class01 <|-- AveryLongClass : Cool
 Class03 *-- Class04
@@ -521,6 +522,7 @@ Class01 : int gorilla
 Class08 <--> C2: Cool label
 ```
 
+### js-sequence
 总结来说js-sequence模块对sequence代码的语法解析执行过程如下图
 ![](img/o/grammar.png)
 
