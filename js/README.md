@@ -66,6 +66,8 @@ https://github.com/JavaScriptor/js-sql-parser
 https://github.com/godmodelabs/flora-sql-parser
 
 ## 网页构建  Web Builder Framework
+### appsmith
+https://github.com/appsmithorg/appsmith 8.1k
 ### grapesjs
 https://github.com/artf/grapesjs 12k
 ### VvvebJs
@@ -235,6 +237,9 @@ D3 是最流行的可视化库之一，它被很多其他的表格插件所使�
 
 
 ## UI
+
+[UI整理](../awesome/ui.md)
+
 ### 桌面UI
 - [YLUI](https://github.com/yuri2peter/ylui)
 - [win10-ui](https://github.com/yuri2peter/win10-ui)
@@ -303,6 +308,7 @@ https://github.com/robicch/jQueryGantt
 [PostHog - 开源，可以自己托管数据](https://github.com/PostHog/posthog)
 [PostHog doc](https://posthog.com/docs/contribute/developing-locally)
 
+[华为分析服务](https://developer.huawei.com/consumer/cn/hms/huawei-analyticskit?ha_source=hms1)
 
 ### 开源工具
 - https://github.com/matomo-org/matomo      15.5k

@@ -235,12 +235,21 @@ Streamlit是第一个专门针对机器学习和数据科学团队的应用开�
 [github](https://github.com/streamlit/streamlit)
 [Streamlit docs](https://docs.streamlit.io/)
 
+#### PyWebIO
+[PyWebIO](https://github.com/pywebio/PyWebIO)
+
 #### 高维数据
 https://github.com/facebookresearch/hiplot
 
 ### 数据可视化工具
 #### python的matplotlib
 - [D3渲染Matplotlib图形](https://github.com/mpld3/mpld3) 新版的matplotlib自带了mpld3
+#### 高维数据的可视化分析
+
+[dimensions visualization](https://github.com/openjw/penter/scikit-learn/dimensions_visualization.ipynb)
+
+[AutoViz](https://github.com/AutoViML/AutoViz)（自动完成数据可视化）
+
 #### R语言的ggplot2
 #### pandas_alive
 Pandas_Alive，它以 matplotlib 绘图为后端，不仅可以创建出令人惊叹的动画可视化，而且使用方法非常简单。

@@ -9,6 +9,7 @@
 - js VuePress https://github.com/vuejs/vuepress 17.5k
 - go MinDoc
 - go BookStack
+- c# https://github.com/webmaster442/BookGen
 - mdbook https://github.com/rust-lang/mdBook 4.5k
 - peach https://github.com/peachdocs/peach 1.1k 
 - gohugo+git book theme  https://github.com/gohugoio/hugo 45.1k

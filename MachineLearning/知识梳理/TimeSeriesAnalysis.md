@@ -1,6 +1,9 @@
 [TOC]
 # Time Series
 
+时间序列是很多数据不可缺少的特征之一，其应用很广泛，如应用在天气预测，人流趋势，金融预测等。感觉在时间序列的使用上大致可以分为两部分，一种是基于时间序列的分类任务，一种是基于时间序列对未来的预测。
+
+
 **时间序列分析**（[Time Series Analysis](https://en.jinzhao.wiki/wiki/Time_series)）包括分析时间序列数据以提取有意义的统计数据和数据的其他特征的方法。
 按照时间的顺序把随机事件变化发展的过程记录下来就构成了一个时间序列。对时间序列进行观察、研究、找寻它变化发展的规律，预测它将来的走势就是时间序列分析。
 
@@ -304,6 +307,7 @@ $X_t = T_t \times (S_t + C_t + I_t - 1), t =1,2,\dots$
 
 - **统计时序分析**
 统计时序分析，就是我们用一些规律和统计方法来分析寻找时序的规律。
+以时间作为参照来观察动态世界的方法我们称其为时域分析。
 
 - **频域分析方法**(Frequency domain)：频域分析方法也被称为“频谱分析”或“谱分析”（spectral Analysis）方法
 任何一种无趋势的时间序列都可以分解成若干不同频率的周期波动。大家看到分解为若干不同频率的周期波动，就会想起傅立叶分析，傅立叶变换不但被应用在语音和图像，也可以通过傅立叶变换将时间序列分解为若干正弦和余弦的函数。
@@ -501,6 +505,10 @@ Prophet是一种基于可加模型预测时间序列数据的程序，其中非�
 ### Tigramite
 因果序列分析;Tigramite is a causal time series analysis python package. 
 [Tigramite 552](https://github.com/jakobrunge/tigramite)
+
+### Time Series Classification
+#### pyts
+https://github.com/johannfaouzi/pyts
 
 ## 参考资料
 

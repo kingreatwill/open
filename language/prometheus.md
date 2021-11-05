@@ -21,7 +21,7 @@ Contains built-in support for AppOptics, Azure Monitor, Netflix Atlas, CloudWatc
 
 ```
 
-``` java
+```java
 public static void main(String[] args) {
         run();
 		SpringApplication.run(PrometheusDemoApplication.class, args);
@@ -344,6 +344,7 @@ jvm_gc_memory_allocated_bytes_total 2.21006848E8
 # TYPE jvm_threads_live_threads gauge
 jvm_threads_live_threads 27.0
 ```
+
 | stpring actuator自带很多组件的监控      | 类型    | label                                                                                                                                                                                                  | 说明                                                                                                                                                 | 翻译                                                 |
 |-----------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | logback_events_total                    | counter | level="warn",debug,error,trace,info                                                                                                                                                                    | HELP logback_events_total Number of error level events that made it to the logs                                                                      | 进入日志的错误级别事件数                             |

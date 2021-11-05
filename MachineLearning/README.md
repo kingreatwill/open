@@ -74,6 +74,11 @@ Mlxtend（机器学习扩展）是一个用于数据科学和机器学习任务�
 https://github.com/rasbt/mlxtend 3.6k
 
 ## 学习地址
+[ml-science](https://www.ml-science.com/)
+
+[machine-learning](https://www.javatpoint.com/machine-learning)
+
+[机器学习+概率+线性代数](https://dragonwarrior15.github.io/statistical-learning-notes/)
 
 [机器学习相关教程](https://github.com/MorvanZhou/tutorials)
 [动手学深度学习](https://github.com/d2l-ai/d2l-zh)

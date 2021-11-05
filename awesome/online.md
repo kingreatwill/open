@@ -64,7 +64,8 @@ online
     那么如果是vscode.dev： https://vscode.dev/github/openjw/open
     > [以上内容来自2021-10-20](https://code.visualstudio.com/blogs/2021/10/20/vscode-dev)
 
-
+- [github1s](https://github.com/conwnet/github1s)
+Just add 1s after github and press Enter in the browser address bar for any repository you want to read. eg: https://github1s.com/microsoft/vscode
 
 - [StackBlitz](https://stackblitz.com/) The same editing experience. Now in your browser. Online IDE powered by Visual Studio Code.[core](https://github.com/stackblitz/core/)
 
@@ -160,6 +161,9 @@ https://excalidraw.com/
 - [wireflow.co](https://github.com/vanila-io/wireflow) https://app.wireflow.co/
 - [zwibbler](https://zwibbler.com/)
 - [Gitmind 在线思维导图](https://gitmind.com/) https://gitmind.cn/
+- [mindnode 思维导图](https://www.mindnode.com/)
+- [百度脑图](https://naotu.baidu.com/)
+- [xmind](https://www.xmind.cn/)
 - [Whimscal 在线流程绘制工具](https://whimsical.com/)
 - [MindMup 在线的思维导图工具](https://www.mindmup.com/)
 > [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)

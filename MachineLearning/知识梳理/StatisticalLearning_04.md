@@ -56,7 +56,8 @@ $${\begin{aligned}\mathbf {M} ^{T}\mathbf {M} &=\mathbf {V} {\boldsymbol {\Sigma
 共轭（[Complex conjugate](https://en.jinzhao.wiki/wiki/Complex_conjugate)）是复数上的概念
 对于一个复数$z =a + bi$，其共轭为$\bar{z} = a-bi$，所以有$z\bar{z} = a^2 + b^2$
 共轭转置也有其它叫法，如：Hermitian conjugate, bedaggered matrix, adjoint matrix or transjugate。值得注意的是adjoint matrix而不是 这个[Adjugate matrix](https://en.jinzhao.wiki/wiki/Adjugate_matrix)，虽然有时候他们都用$A^*$表示。这里为了统一我用$A^H$表示A的共轭转置矩阵。可以参考[共轭转置矩阵与伴随矩阵都用A*表示合理吗？](https://zhuanlan.zhihu.com/p/87330558)
-> 有个神奇的公式：欧拉公式 $e^{\pi i}+1=0$
+> 有个神奇的公式：欧拉公式 $e^{\pi i}+1=0$ ，准确的说欧拉公式为：$e^{ix}=\cos x + i\sin x$，前面只是当$x=\pi$时的结果。
+> 这个公式里既有自然底数e，自然数1和0，虚数i还有圆周率pi，它是这么简洁，这么美丽啊！
 
 $${\displaystyle \left({\boldsymbol {A}}^{\mathrm {H} }\right)_{ij}={\overline {{\boldsymbol {A}}_{ji}}}}$$
 

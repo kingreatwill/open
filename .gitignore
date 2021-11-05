@@ -109,7 +109,11 @@ venv.bak/
 # gitbook
 _book
 _output
-
+# jekyll
+_site
+.jekyll-cache
+# ruby
+Gemfile.lock
 # npm
 node_modules
 

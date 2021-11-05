@@ -970,7 +970,7 @@ $$KL(p,q)  , KL(p|q) , KL(p\|q) , D_{KL}(p,q)$$
 
 JS 散度（Jensen-Shannon Divergence）是一种对称的衡量两个分布相似度的度量方式，是 KL 散度一种改进．但两种散度都存在一个问题，即如果两个分布 𝑝, 𝑞 没有重叠或者重叠非常少时，KL 散度和 JS 散度都很难衡量两个分布的距离．
 
-$${{\rm {D}_{JS}}}(P\parallel Q)={\frac  {1}{2}}D_{KL}(P\parallel M)+{\frac  {1}{2}}D_{KL}(Q\parallel M)$$
+$${\rm {D}_{JS}}(P\parallel Q)={\frac  {1}{2}}D_{KL}(P\parallel M)+{\frac  {1}{2}}D_{KL}(Q\parallel M)$$
 其中$M={\frac  {1}{2}}(P+Q)$, JS 散度也有写作$JSD(P\|Q), JS(P\|Q) ,JS(P,Q)$等。
 
 属于一种统计距离（[Statistical distance](https://en.jinzhao.wiki/wiki/Category:Statistical_distance)）
@@ -1128,8 +1128,8 @@ $$\begin{gathered}
 
 在线性回归模型中的假设中，有两点需要提出：
 
-1. 假设因变量服从高斯分布：$Y={{\theta }^{T}}x+\xi$，其中误差项$\xi \sim N(0,{{\sigma }^{2}})$，那么因变量$Y\sim N({{\theta }^{T}}x,{{\sigma }^{2}})$
-2. 模型预测的输出为$E[Y]$，根据$Y={{\theta }^{T}}x+\xi$，$E[Y]=E[{{\theta }^{T}}x+\xi ]={{\theta }^{T}}x$,记$\eta ={{\theta }^{T}}x$，则$\eta =E[Y]$
+1. 假设因变量服从高斯分布：$Y={\theta }^{T}x+\xi$，其中误差项$\xi \sim N(0,{{\sigma }^{2}})$，那么因变量$Y\sim N({\theta }^{T}x,{{\sigma }^{2}})$
+2. 模型预测的输出为$E[Y]$，根据$Y={\theta }^{T}x+\xi$，$E[Y]=E[{\theta }^{T}x+\xi ]={\theta }^{T}x$,记$\eta ={\theta }^{T}x$，则$\eta =E[Y]$
 
 广义线性模型可以认为在以上两点假设做了扩展：
 
@@ -3012,7 +3012,8 @@ $${\begin{aligned}\mathbf {M} ^{T}\mathbf {M} &=\mathbf {V} {\boldsymbol {\Sigma
 共轭（[Complex conjugate](https://en.jinzhao.wiki/wiki/Complex_conjugate)）是复数上的概念
 对于一个复数$z =a + bi$，其共轭为$\bar{z} = a-bi$，所以有$z\bar{z} = a^2 + b^2$
 共轭转置也有其它叫法，如：Hermitian conjugate, bedaggered matrix, adjoint matrix or transjugate。值得注意的是adjoint matrix而不是 这个[Adjugate matrix](https://en.jinzhao.wiki/wiki/Adjugate_matrix)，虽然有时候他们都用$A^*$表示。这里为了统一我用$A^H$表示A的共轭转置矩阵。可以参考[共轭转置矩阵与伴随矩阵都用A*表示合理吗？](https://zhuanlan.zhihu.com/p/87330558)
-> 有个神奇的公式：欧拉公式 $e^{\pi i}+1=0$
+> 有个神奇的公式：欧拉公式 $e^{\pi i}+1=0$，准确的说欧拉公式为：$e^{ix}=\cos x + i\sin x$，前面只是当$x=\pi$时的结果。
+> 这个公式里既有自然底数e，自然数1和0，虚数i还有圆周率pi，它是这么简洁，这么美丽啊！
 
 $${\displaystyle \left({\boldsymbol {A}}^{\mathrm {H} }\right)_{ij}={\overline {{\boldsymbol {A}}_{ji}}}}$$
 

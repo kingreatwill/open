@@ -22,6 +22,9 @@ https://dzone.com/articles/5-major-software-architecture-patterns
 微内核架构模式也称为插件模式
 
 ### 微服务模式 (Microservices Pattern )
+
+[Architecture design for microservice](https://github.com/alextanhongpin/full-stack-microservice)
+
 ### 分层架构模式( Layered Architecture Pattern)
 ### 基于事件的模式(Event-based Pattern)
 

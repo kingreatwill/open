@@ -1,3 +1,8 @@
+[TOC]
+
+![](../img/var-named.jpg)
+
+### go build dll
 [编译出 dll](https://www.cnblogs.com/timeddd/p/11731160.html)
 
 ```
@@ -7,6 +12,18 @@ dotnet
 ```
 ### 六大主流语言代码漏洞分析
 https://www.veracode.com/sites/default/files/pdf/resources/ipapers/security-flaw-heatmap/index.html
+
+### 多线程
+
+.NET 提供了两种机制，用于将线程本地存储 (Thread Local Storage,TLS) ：thread-relative static fields, and data slots.
+- [ThreadStaticAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.threadstaticattribute?view=net-5.0)
+- [LocalDataStoreSlot](https://docs.microsoft.com/en-us/dotnet/api/system.localdatastoreslot?view=net-5.0)
+
+dotnet的ThreadStatic对应java的ThreadLocal
+
+dotnet的LocalDataStoreSlot
+
+java volatile
 
 ### 让出 CPU 时间片
 

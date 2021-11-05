@@ -625,5 +625,9 @@ Force overwriting the backup with -f
 
 [git lfs migrate](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.1.ronn)
 
+> github限制LFS的存储大小（全部仓库）是1GB，超过后需要付费；
+> 如果你已经删除后仍然无法使用LFS，请联系官方客服：developer@githubsupport.com
+> 使用注册Github的邮箱账号发送邮件,用英语提供必要信息：账号、描述问题、截图
+
 #### git archive
 生成一个可供发布的压缩包

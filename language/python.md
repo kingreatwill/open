@@ -12,6 +12,14 @@ https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20
 数据科学 Python 笔记本:深度学习(TensorFlow、Theano、Caffe、Keras)、scikit-learn、Kaggle、大数据(Spark、Hadoop MapReduce、HDFS)、matplotlib、panda、NumPy、SciPy、Python essentials、AWS 和各种命令行。
 https://github.com/donnemartin/data-science-ipython-notebooks
 
+### python  基础教程
+
+python2: https://www.runoob.com/python/python-tutorial.html
+
+python3: https://www.runoob.com/python3/python3-tutorial.html
+
+Python - 100 天从新手到大师: https://github.com/jackfrued/Python-100-Days
+
 ## IronPython vs. Python .NET
 
 https://stackoverflow.com/questions/1168914/ironpython-vs-python-net

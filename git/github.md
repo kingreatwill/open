@@ -72,9 +72,14 @@ python
 
 ## github profile readme
 https://github.com/abhisheknaiidu/awesome-github-profile-readme
-
-
 https://docs.github.com/en/github/setting-up-and-managing-your-github-profile
+https://github.com/anuraghazra/github-readme-stats
+https://github.com/DenverCoder1/github-readme-streak-stats
+https://github.com/sallar/github-contributions-chart  静态生成所有年的
+https://github.com/jasonlong/isometric-contributions
+https://github.com/IonicaBizau/github-contributions
+https://github.com/IonicaBizau/git-stats
+https://github.com/2016rshah/githubchart-api 实时生成今年的
 
 ##  徽章工具
 https://github.com/badges/shields
