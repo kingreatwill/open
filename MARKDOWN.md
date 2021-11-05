@@ -139,37 +139,28 @@ https://github.com/mathjax/MathJax
 https://khan.github.io/KaTeX/docs/supported.html
 “复制”时会自动把Latex数学公式转换为图片，并自动上传到云图床（如果在“图片”设置了“...,自动上传到云图床”）。
 [请参考：Md2All,让公众号完美显示Latex数学公式](https://www.cnblogs.com/garyyan/p/9228994.html)
-#### 行内公式：$...$
-是的，我就是行内公式：
 
-$$
-e^{x^2}\neq{e^x}^2
-$$
+#### 行内公式：`$...$`
 
-，排得OK吗？
-#### 块公式：
-$$
-...
+是的，我就是行内公式：$e^{x^2}\neq{e^x}^2$，排得OK吗？
 
-$$
+#### 块公式：`$$...$$`
 
+$$e^{x^2}\neq{e^x}^2$$
 
-
-$$
-e^{x^2}\neq{e^x}^2$$
 来个 *"复杂点"* 的:
+
 $$H(D_2) = -(\frac{2}{4}\ log_2 \frac{2}{4} + \frac{2}{4}\ log_2 \frac{2}{4}) = 1$$
+
 矩阵：
 
-$$
-
-    \begin{pmatrix}
+$$\begin{pmatrix}
     1 & a_1 & a_1^2 & \cdots & a_1^n \\
     1 & a_2 & a_2^2 & \cdots & a_2^n \\
     \vdots & \vdots & \vdots & \ddots & \vdots \\
     1 & a_m & a_m^2 & \cdots & a_m^n \\
-    \end{pmatrix}
-$$
+    \end{pmatrix}$$
+
 对应“一键排版”的css样式关键字为：`.katex`
 #### Latex复制到公众号等各平台的特别说明
 ##### 复杂的行内公式（顶部和底部突出很多那种），转换后，如果显示不完整，请改为块公式
