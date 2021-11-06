@@ -306,6 +306,7 @@ https://github.com/JohannesKaufmann/html-to-markdown
 ## 嵌入文件
 
 [golang将静态资源文件打包进二进制文件](https://zhuanlan.zhihu.com/p/351931501)
+[golang1.16内嵌静态资源指南](https://www.cnblogs.com/apocelipes/p/13907858.html)
 
 https://github.com/golang/proposal/blob/master/design/draft-embed.md#background
 
@@ -329,7 +330,6 @@ Embed 设计提案：https://github.com/golang/proposal/blob/master/design/draft
 示例参考：https://github.com/mattn/go-embed-example
 tip 相关文档：https://tip.golang.org
 
-> go run . live (相当于hotreload)和 go run .
 
 ### go-bindata
 https://github.com/go-bindata/go-bindata
