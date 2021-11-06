@@ -329,6 +329,8 @@ Embed 设计提案：https://github.com/golang/proposal/blob/master/design/draft
 示例参考：https://github.com/mattn/go-embed-example
 tip 相关文档：https://tip.golang.org
 
+> go run . live (相当于hotreload)和 go run .
+
 ### go-bindata
 https://github.com/go-bindata/go-bindata
 
