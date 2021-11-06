@@ -42,6 +42,11 @@ https://www.infoworld.com/category/open-source-tools/
 [2021年最佳开源软件榜单出炉](https://mp.weixin.qq.com/s/cmT1_yObF1nD9U1-gxHz7g) 
 [The best open source software of 2021](https://www.infoworld.com/article/3637038/the-best-open-source-software-of-2021.html#slide1)
 
+## TechEmpower web框架
+https://www.techempower.com/benchmarks/
+
+https://github.com/smallnest/go-web-framework-benchmark
+
 ## 语言排行 tiobe
 https://www.tiobe.com/tiobe-index/
 
