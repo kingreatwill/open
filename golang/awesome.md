@@ -304,6 +304,9 @@ https://github.com/po3rin/gofmtmd
 https://github.com/JohannesKaufmann/html-to-markdown
 
 ## 嵌入文件
+
+[golang将静态资源文件打包进二进制文件](https://zhuanlan.zhihu.com/p/351931501)
+
 https://github.com/golang/proposal/blob/master/design/draft-embed.md#background
 
 - github.com/alecthomas/gobundle
