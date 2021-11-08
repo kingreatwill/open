@@ -135,6 +135,8 @@ $$F(s) = \int_{-\infty}^{\infty} f(t) e^{-s t} dt$$
 
 
 ## tools
+[几个好用的数学软件](https://www.bilibili.com/read/cv760567)
+> 比如几何画板，Graphing Calculator 3D，grafeq, chaoscope,Mathstudio
 ### 微积分
 
 [在线计算矩阵微积分](http://www.matrixcalculus.org/)
@@ -144,15 +146,34 @@ https://www.wolframalpha.com/ 这个网站其实是一个计算知识引擎
 
 - 在线积分计算器
 - 逆矩阵、行列式、利息、房贷等
-
+### mathematica
+https://www.wolfram.com/mathematica/
 ### gnuplot
 交互式绘图工具
 http://www.gnuplot.info/
 
 你可以在c#程序中编写数据文件，从c#调用gnuplot可执行文件，并在c#图片框中显示生成的图像。
 
-### Desmos
+### 数学动画、数学图形
+
+#### Desmos
 [图形计算器](https://www.desmos.com/)
 比如：在[网站](https://www.desmos.com/calculator?lang=zh-CN)中输入`cos x + 0.1 cos 10x + 0.1 cos 100x`
 
 [科学计算器](https://www.desmos.com/scientific?lang=zh-CN)
+
+
+
+李萨如曲线:
+[Meta的Logo](https://www.desmos.com/calculator/8ap4y8uyhg?lang=zh-CN)
+[What is the Meta logo?](https://nathanielbd.github.io/posts/what-is-the-meta-logo/)
+
+
+> https://student.desmos.com/?prepopulateCode=z44ema
+
+#### Manim 
+https://github.com/3b1b/manim
+
+#### Geogebra
+各种计算机（图形、科学）
+https://www.geogebra.org/graphing
