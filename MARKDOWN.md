@@ -139,37 +139,28 @@ https://github.com/mathjax/MathJax
 https://khan.github.io/KaTeX/docs/supported.html
 “复制”时会自动把Latex数学公式转换为图片，并自动上传到云图床（如果在“图片”设置了“...,自动上传到云图床”）。
 [请参考：Md2All,让公众号完美显示Latex数学公式](https://www.cnblogs.com/garyyan/p/9228994.html)
-#### 行内公式：$...$
-是的，我就是行内公式：
 
-$$
-e^{x^2}\neq{e^x}^2
-$$
+#### 行内公式：`$...$`
 
-，排得OK吗？
-#### 块公式：
-$$
-...
+是的，我就是行内公式：$e^{x^2}\neq{e^x}^2$，排得OK吗？
 
-$$
+#### 块公式：`$$...$$`
 
+$$e^{x^2}\neq{e^x}^2$$
 
-
-$$
-e^{x^2}\neq{e^x}^2$$
 来个 *"复杂点"* 的:
+
 $$H(D_2) = -(\frac{2}{4}\ log_2 \frac{2}{4} + \frac{2}{4}\ log_2 \frac{2}{4}) = 1$$
+
 矩阵：
 
-$$
-
-    \begin{pmatrix}
+$$\begin{pmatrix}
     1 & a_1 & a_1^2 & \cdots & a_1^n \\
     1 & a_2 & a_2^2 & \cdots & a_2^n \\
     \vdots & \vdots & \vdots & \ddots & \vdots \\
     1 & a_m & a_m^2 & \cdots & a_m^n \\
-    \end{pmatrix}
-$$
+    \end{pmatrix}$$
+
 对应“一键排版”的css样式关键字为：`.katex`
 #### Latex复制到公众号等各平台的特别说明
 ##### 复杂的行内公式（顶部和底部突出很多那种），转换后，如果显示不完整，请改为块公式
@@ -311,8 +302,6 @@ $$
 <a id="footnote-1"></a>
 <a id="jump_20"></a>
 ###赞赏Md2All
-如果你觉得到Md2All对你有帮助，欢迎赞赏，有你的支持，Md2All一定会越来越好！
-![大少赞赏码](http://img.blog.csdn.net/20171012155402463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2FyeV95YW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ###版本更新记录
 ***
@@ -363,7 +352,7 @@ Markdown 插入链接：
 [链接文字](链接网址 "标题")
 
 Markdown 插入图片：
-![alt text](/path/to/img.jpg "Title")
+![alt text](img/helm.webp "Title")
 
 Markdown 插入代码块：
     ```python
@@ -433,6 +422,8 @@ Structurizr DSL ：https://structurizr.com/dsl  https://github.com/structurizr/d
 Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
+
+### flowchart.js
 ```flow
 st=>start: 开始
 e=>end: 结束
@@ -463,7 +454,7 @@ cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
 ```
-
+### mermaid
 ```mermaid
 graph TD;
     A-->B;
@@ -471,7 +462,9 @@ graph TD;
     B-->D;
     C-->D;
 ```
+
 顺序图
+
 ```mermaid
 sequenceDiagram
     participant Alice
@@ -485,7 +478,9 @@ sequenceDiagram
     John->>Bob: How about you?
     Bob-->>John: Jolly good!
 ```
+
 甘特图
+
 ```mermaid
 gantt
 dateFormat  YYYY-MM-DD
@@ -500,7 +495,8 @@ Future task2               :         des4, after des3, 5d
 ```
 
 类图-：实验性
-```
+
+```mermaid
 classDiagram
 Class01 <|-- AveryLongClass : Cool
 Class03 *-- Class04
@@ -517,8 +513,10 @@ Class01 : int gorilla
 Class08 <--> C2: Cool label
 ```
 
+### js-sequence
 总结来说js-sequence模块对sequence代码的语法解析执行过程如下图
 ![](img/o/grammar.png)
+
 ```sequence
 title: 序列图sequence(示例)
 participant A
