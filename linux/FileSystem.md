@@ -1,5 +1,9 @@
 # Linux 之文件系统
 
+![](img/chmod_ll.png)
+
+`chmod +0`相当于没变化。
+`chmod 0`那么就没人能访问这个文件（但root除外）。
 ## 一、文件系统特性
 
 磁盘分区后还要进行格式化，操作系统才能使用这个文件系统。每个操作系统能识别和使用的文件系统不完全相同，如 Windows98 以前支持 FAT，Windows2000 后支持 NTFS。Linux 传统的操作系统是 ext2(Linux second Extended file system,ext2fs)。以前一个分区只能格式化为一个文件系统，而一些新的技术可以将一个分区格式化为多个文件系统（如 LVM 逻辑卷）。

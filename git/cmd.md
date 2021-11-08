@@ -1,6 +1,9 @@
 [TOC]
 # git
-https://git-scm.com/docs/
+[git doc](https://git-scm.com/docs/)
+
+[Git知识点整理](https://bigjun2017.github.io/2018/09/24/ruan-jian-gong-ju/git/git-zhi-shi-dian-zheng-li/)
+
 ## 相关名词解释
 master: 默认开发分支
 origin: 默认远程版本库
