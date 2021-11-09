@@ -242,6 +242,8 @@ Streamlit是第一个专门针对机器学习和数据科学团队的应用开�
 https://github.com/facebookresearch/hiplot
 
 ### 数据可视化工具
+#### 缺失值可视化
+https://github.com/ResidentMario/missingno
 #### python的matplotlib
 - [D3渲染Matplotlib图形](https://github.com/mpld3/mpld3) 新版的matplotlib自带了mpld3
 #### 高维数据的可视化分析
