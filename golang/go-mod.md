@@ -111,6 +111,11 @@ go install 安装可执行程序
 如果你在模块目录中，并且你不带 `@version` 执行安装的话，只能安装 go.mod 中已经包含的版本。并且不能安装未出现在 go.mod 中的包。
 
 
+## Workspace Mode（工作区模式）
+https://mp.weixin.qq.com/s/S3I919YZb-bgaEnHgKq7fg
+
+https://go.googlesource.com/proposal/+/master/design/45713-workspace.md
+
 ## Module dependencies
 ![](../img/go/module_gopath.png)
 

@@ -244,6 +244,14 @@ https://github.com/facebookresearch/hiplot
 ### 数据可视化工具
 #### 缺失值可视化
 https://github.com/ResidentMario/missingno
+#### Kepler.gl
+[Kepler.gl](https://kepler.gl/)相信很多人都听说过，作为Uber几年前开源的交互式地理信息可视化工具，kepler.gl依托WebGL强大的图形渲染能力，可以在浏览器端以多种形式轻松展示大规模数据集。
+https://github.com/keplergl/kepler.gl
+
+##### Geo Data Viewer
+https://github.com/RandomFractals/geo-data-viewer
+
+
 #### python的matplotlib
 - [D3渲染Matplotlib图形](https://github.com/mpld3/mpld3) 新版的matplotlib自带了mpld3
 #### 高维数据的可视化分析
