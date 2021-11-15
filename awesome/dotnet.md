@@ -227,6 +227,8 @@ https://github.com/fholm/IronJS
 ### Pyjion
 [Pyjion - A JIT for Python based upon CoreCLR](https://github.com/tonybaloney/Pyjion)
 
+[NumPy aware dynamic Python compiler using LLVM](https://github.com/numba/numba)
+
 ### peachpie
 [PeachPie - the PHP compiler and runtime for .NET and .NET Core](https://github.com/peachpiecompiler/peachpie)
 

@@ -25,7 +25,7 @@ online
 - [JSLinux](https://bellard.org/jslinux/) - [JSLinux](http://jslinux.org/) Run Linux or other Operating Systems in your browser! [open](https://github.com/levskaya/jslinux-deobfuscated)
 - [Windows 11](https://github.com/blueedgetechno/windows11)
 - [终端应用程序Xterm.js](https://github.com/xtermjs/xterm.js)
-- [在线运行Android ](https://github.com/openstf/stf)
+- [在线运行Android](https://github.com/openstf/stf)
 
 
 ## IDE
