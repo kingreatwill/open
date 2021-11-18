@@ -392,6 +392,10 @@ go tool cover -mode=count -var=CoverageVariableName xxxx.go
     - 实现机制基于rpc调用，基于本地网络调用，调用性能高效
     - 插件可用多种语言实现，跨语言支持良好
 
+## mock
+- https://github.com/golang/mock
+- https://github.com/brianvoe/gofakeit
+
 ## 机器学习
 https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 
