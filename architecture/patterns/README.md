@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Template:Design_Patterns_patterns
 https://www.runoob.com/design-pattern/design-pattern-tutorial.html
 
 
-
+[分布式系统模式](https://github.com/dreamhead/patterns-of-distributed-systems)
 
 ### 创建型模式 Creational design patterns
 

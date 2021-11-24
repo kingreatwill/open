@@ -9,7 +9,7 @@ https://github.com/dgryski/go-perfbook
 https://github.com/DataDog/go-profiler-notes
 
 ## Profiling相关库
-### pyroscope
+### pyroscope/性能监控
 https://github.com/pyroscope-io/pyroscope
 
 - Ruby (via rbspy)

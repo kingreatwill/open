@@ -8,6 +8,17 @@ https://nginxconfig.io/
 https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN
 https://github.com/digitalocean/nginxconfig.io
 
+### playground
+曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 https://play.golang.org/，Rust 发布也有 https://play.rust-lang.org/。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。
+
+https://nginx-playground.wizardzines.com/
+
+后端的完整代码见这里：https://gist.github.com/jvns/edf78e7775fea8888685a9a2956bc477。
+
+这个网站的作者写了一篇文章介绍它，包括安全问题、性能问题等，有兴趣的可以查看：https://jvns.ca/blog/2021/09/24/new-tool--an-nginx-playground/。另外，还有一个 Nginx location match 测试的网址：https://nginx.viraptor.info/。
+
+[Nginx 竟然也有 playground：还是 Go 语言构建的](https://mp.weixin.qq.com/s/meBX4v3B2XusLVxwdicfeA)
+
 ### 其它
 https://www.nginxedit.cn/
 
