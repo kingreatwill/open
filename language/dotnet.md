@@ -162,7 +162,25 @@ dotnet monitor collect # 会开放 http://localhost:52323 和 http://localhost:5
 可以查看火焰图，也可以使用[speedscope](https://www.speedscope.app/)，一个交互式火焰图可视化工具，帮助我们分析。
 
 [pyroscope](https://github.com/pyroscope-io/pyroscope)
+## 调试工具
+- dnSpy
+dnSpy 是用于 .NET 调试的最有用的工具之一。它是一个很好的反编译器。但是它的主要用途是作为调试器。dnSpy允许你调试任何 .NET程序你，而无需考虑符号或者源代码。
 
+- dotPeek
+dotPeek是JetBrains的免费.NET反编译器。它们的许多工具实际上进入了该列表。其它两个反编译器（如ILSpy或JustDecompile）
+
+- dotTrace
+- SciTech's .NET Memory Profiler
+- OzCode
+- SysInternals Suite
+  SysInternals是一套用于对Windows软件进行故障排除和监视的实用程序。它包括一些我们调试所需的最重要的工具。
+  Process Explorer
+  Process Monitor 也称为ProcMon，允许你监视流程活动事件。
+  ProcDump是用于保存转储文件的命令行工具。
+
+- Performance Monitor (PerfMon)
+- PerfView
+- Fiddler
 ## DataFrame
 https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/
 https://github.com/dotnet/corefxlab/tree/master/src/Microsoft.Data.Analysis

@@ -545,6 +545,8 @@ https://github.com/WnP/go-sfmt
 
 
 ## 其它
+### 搜索引擎
+https://github.com/prabhatsharma/zinc
 ### 一款用 SQL 方式查询 Git 仓库的开源项目进入 GitHub 趋势榜
 https://github.com/augmentable-dev/gitqlite
 

@@ -30,7 +30,8 @@ nano ~/.ssh/authorized_keys     # Ctrl+O 保存   Ctrl+X 退出
 [家庭/学校免费](https://www.netsarang.com/zh/free-for-home-school/)
 
 [公测版 7 免费 - 公测版本可以一直试用到正式版上线。](https://www.netsarang.com/zh/version-7-open-beta/)
-
+### WindTerm
+https://github.com/kingToolbox/WindTerm
 ### MobaXterm
 全能终端神器
 ### electerm

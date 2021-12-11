@@ -303,6 +303,8 @@ http://dotnet.aspx.cc/
 
 ## 基于.NET Core的优秀开源项目合集
 https://www.cnblogs.com/myshowtime/p/14315080.html
+
+[基于.NET Core的优秀开源项目合集](https://www.toutiao.com/i7038781917931651598)
 ### demo
 https://github.com/dotnet-architecture/eShopOnContainers eShopOnContainers是一个示例参考应用程序，演示了Microsoft的基于容器的微服务的各种体系结构模式。
 https://github.com/dotnet-architecture/eShopOnWeb eShopOnWeb是一个示例参考应用程序，演示了Microsoft提供支持的单体架构。
