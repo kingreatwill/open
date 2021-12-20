@@ -4,6 +4,7 @@
 [LeetCode 题目用动画的形式演示](https://github.com/MisterBooo/LeetCodeAnimation)
 
 [哈弗大学 排序算法动画](https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html)
+[Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
 
 [算法可视化 Algorithm Visualizer](https://github.com/algorithm-visualizer/algorithm-visualizer)
 [算法可视化 demo](https://algorithm-visualizer.org/simple-recursive/cellular-automata)

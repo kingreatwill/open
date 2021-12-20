@@ -406,6 +406,15 @@ https://github.com/blushft/go-diagrams
 可以生成graphviz DOT file
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
 
+## img/image
+### Imagor
+https://github.com/cshum/imagor
+Imagor 是一个用 Go 编写的快速、支持 Docker 的图像处理服务器。
+Imagor 使用最高效的图像处理库 libvips 之一（使用govips）。它通常比使用最快的 ImageMagick 和 GraphicsMagick 设置快4-8倍。
+Imagor 是一个易于扩展的 Go 库，可以在任何 Unix 环境中安装和使用，并且可以使用 Docker 进行容器化。
+Imagor 采用Thumbor URL 语法，涵盖了大多数 Web 图像处理用例。如果这些符合您的要求，Imagor 将是一种轻便、高性能的替代品。
+
+
 ## charts图表/plotting绘制/graphing绘图
 ### golang
 https://github.com/vdobler/chart 695
