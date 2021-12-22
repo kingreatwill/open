@@ -36,6 +36,9 @@ GolangCI-Lint 检查代码
 
 检查没有使用的函数https://github.com/mvdan/unparam
 
+## Gopher China
+https://github.com/fanjindong/GopherChina
+
 ## 待整理
 
 [推荐算法、相似度算法、布隆过滤器、均值算法、一致性Hash、数据结构、leetcode练习](https://github.com/hwholiday/algorithm_coding)
