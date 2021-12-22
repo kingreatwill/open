@@ -81,6 +81,11 @@ key_buffer_size 512M
 
 # 5.7 key_buffer_size, innodb_buffer_pool_size, innodb_additional_mem_pool_size（8.0无），innodb_log_buffer_size, query_cache_size （8.0无）
 
+范围索引 有限制，当区间大了可能不会使用索引：
+（range_optimizer_max_mem_size默认8388608即8M。0表示不限制。
+show variables like 'range_optimizer_max_mem_size';）
+
+join_buffer_size 262144 256KB
 其它
 innodb_page_size 16kb
 tmp_table_size 512M
@@ -94,6 +99,14 @@ MAX(innodb_buffer_pool_chunk_size) = innodb_buffer_pool_size / innodb_buffer_poo
 https://dev.mysql.com/doc/refman/5.7/en/innodb-buffer-pool-resize.html
 ```
 
+## sql
+- 对于给定的查询，使用优化器提示：
+SELECT /*+ SET_VAR(optimizer_switch = 'condition_fanout_filter=off') */ ...
+
+
+- 查看优化sql
+explain SELECT * FROM t1 WHERE 1 ;
+show warnings;
 
 ## MySQL新增用户及赋予权限
 
