@@ -254,6 +254,15 @@ https://github.com/RandomFractals/geo-data-viewer
 
 #### python的matplotlib
 - [D3渲染Matplotlib图形](https://github.com/mpld3/mpld3) 新版的matplotlib自带了mpld3
+
+
+ • Matplotlib：标杆，必须知道
+ • Seaborn：更漂亮、更好用的Matplotlib
+ • Mpld3：Matplotlib + 交互式(D3实现)
+ • Bokeh：更漂亮 + Matplotlib + 交互式
+ • Altair：声明式统计数据可视化
+ • Folium：交互式地图可视化
+
 #### 高维数据的可视化分析
 
 [dimensions visualization](https://github.com/openjw/penter/scikit-learn/dimensions_visualization.ipynb)

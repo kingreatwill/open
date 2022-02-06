@@ -379,7 +379,9 @@ https://github.com/memsql/dbbench
 
 ### 数据库同步
 [Change Data Capture](../BIgData/CDC.md)
-
+#### GoldenGate
+#### DataPipeline
+#### Pglogical
 #### canal
 #### Maxwell
 #### Debezium
