@@ -402,6 +402,8 @@ ZIP 压缩包管理器 - 免费版含广告
 - [印象笔记](https://www.yinxiang.com/)（[Evernote](https://evernote.com) ）
 - [我来 wolai](https://www.wolai.com/)
 - [Notion](https://www.notion.so/zh-cn)
+- flomo
+- 思源笔记
 - 语雀
 - 飞书
 - 石墨

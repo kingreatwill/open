@@ -255,6 +255,9 @@ https://github.com/kalcaddle/KODExplorer
 
 ## Web文件浏览器 、Web File Manager
 [Top 10 Javascript File Managers](https://hackernoon.com/top-10-javascript-file-managers-8o2p34vw)
+
+### Photoview
+https://github.com/photoview/photoview
 ### filebrowser
 https://github.com/filebrowser/filebrowser
 ### elFinder

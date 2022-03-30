@@ -18,3 +18,30 @@
 
 #### 多目标跟踪：ByteTrack
 [ByteTrack](https://github.com/ifzhang/ByteTrack) 轻量级的多目标检测、跟踪工具。这里简单介绍下多目标跟踪工作原理：通过检测画面中的物体，并检测其同目标物体相似度给予一定的分数，而之前对检测得分低的物体会进行简单、粗暴地丢弃，这样会导致真实推丢失以及目标轨迹碎片化，为此 ByteTrack 团队关联每个检测框而是单一靠记分函数来解决该问题。下图为常见多目标跟踪工具同 ByteTrack 对比。
+
+### 2022.03.30
+#### SVG 矢量图转换: VTracer
+VTracer 是 GitHub 上一款开源工具，可快速将 JPG、PNG 等格式的图片快速转换为 SVG 矢量图，并支持过滤斑点、色彩精度、曲线拟合等多种参数配置。
+
+在线体验：
+https://www.visioncortex.org/vtracer/
+
+GitHub：https://github.com/visioncortex/vtracer
+
+#### 轻量级 Web 绘画 App: tldraw
+tldraw 是一个轻量级，功能强大的绘画 App，自带画笔、橡皮、线框、文字等工具，用户可自定义画笔颜色、线框样式等。
+Demo：https://www.tldraw.com/
+GitHub：https://github.com/tldraw/tldraw
+
+#### UI 设计与原型制作平台: Penpot
+
+地址：https://penpot.app/
+
+GitHub：https://github.com/penpot/penpot
+
+#### DevOps 开发工具
+
+GitHub 上一款开源的 DevOps 开发工具：Dev Lake，可将 DevOps 数据以实用、个性化、可扩展的视图呈现，完成数据的收集、分析和可视化。
+
+工具内置 20+ 效能指标与下钻分析能力，可快速归集 DevOps 全流程效能数据，并支持接入新数据源，完成自定义 SQL 分析及拖拽搭建场景化数据视图等功能。
+GitHub：https://github.com/merico-dev/lake

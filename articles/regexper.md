@@ -7,6 +7,7 @@ https://gitlab.com/javallone/regexper-static
 [图解正则 - ok++](https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24)
 https://github.com/CJex/regulex
 
+[Regex visualizer & editor](https://github.com/Bowen7/regex-vis)
 
 [正则表达式工具 - ok+](http://tool.chinaz.com/regex/)
 [Regex Generator正则表达式生成器 - ok+](https://regex-generator.olafneumann.org/)

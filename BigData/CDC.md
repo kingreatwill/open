@@ -11,6 +11,9 @@ CDC的全称是Change Data Capture，即变更数据捕获，它是数据库领�
 
 业界有很多开源的binlog的解析器，比较通用和流行的有[Debezium](https://github.com/debezium/debezium)、Canal，以及Maxwell。基于这些binlog解析器就可以构建ETL管道。
 
+Debezium是一个为了捕获数据变更(CDC)的开源分布式平台。Debezium记录的是数据库表行级别的变更事件，包括 insert/update/delete 等等操作。同时debezium是构建在kafka之上的，与kafka深度耦合，所以提供了Debezium Connector。
+支持的数据库有MySQL、MongoDB、PostgreSQL、Oracle、SQL server
+
 ## flink-cdc-connectors
 https://github.com/ververica/flink-cdc-connectors
 

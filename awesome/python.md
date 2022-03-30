@@ -282,6 +282,10 @@ Pandas Profiling、Sweetviz和PandasGUI都很不错，旨在简化我们的EDA�
 [Sweetviz](https://github.com/fbdesignpro/sweetviz) 适用于数据集之间和目标变量之间的分析。
 [PandasGUI](https://github.com/adamerose/pandasgui)适用于具有手动拖放功能的深度分析。
 
+[AutoViz](https://pypi.org/project/autoviz/)
+
+还有其他有趣的 AutoEDA 库，如 Dora、D-Tale 和 DataPrep
+
 #### Altair
 
 ## Python神器
@@ -321,7 +325,7 @@ VizTracer 是一个这样的工具，它通过跟踪和可视化 Python 代码�
 
 [Understand your Python code with this open source visualization tool](https://opensource.com/article/20/11/python-code-viztracer)
 
-### Cyberbrain
+### 可视化调试工具: Cyberbrain
 https://github.com/laike9m/Cyberbrain
 
 重新定义python的debug
