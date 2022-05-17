@@ -1,5 +1,9 @@
 [TOC]
 # Profiling
+## holmes 
+WithMemDump(3, 25, 80) 指定进程的mem占用率超过3%后（线上建议设置成30），如果有25%突增，或者总占用率超过80%后进行采样
+https://github.com/mosn/holmes
+
 ## 相关参考
 ### static analysis (SAST) tools 静态分析工具
 https://github.com/analysis-tools-dev/static-analysis
