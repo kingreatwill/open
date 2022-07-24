@@ -418,6 +418,9 @@ ZIP 压缩包管理器 - 免费版含广告
 - 在线协作沟通工具 - [miro](https://miro.com/)
 - [SeaTable](https://github.com/seatable/seatable)
 
+### Monica 一个很棒的开源个人关系管理系统
+https://www.toutiao.com/article/7088293362721178147/
+
 ### Wiki  知识库
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
 [wiki比较](https://www.wikimatrix.org/) https://github.com/topics/wiki

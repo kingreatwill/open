@@ -15,6 +15,8 @@
 [LSivan](https://github.com/LSivan)
 [GCTT Go中文网翻译组](https://github.com/studygolang/GCTT)
 
+[Go 垃圾回收器指南](https://mp.weixin.qq.com/s/hbh9drP9pPBcOY7hLNeIAQ)
+
 [浅析 Golang 垃圾回收机制](https://xie.infoq.cn/article/e4078a4d149f6bc80139159f1)
 ## GC 基础
 ### 简介

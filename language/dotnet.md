@@ -6,6 +6,8 @@
 dotnet tool install -g dotnet-try
 dotnet tool install --global dotnet-serve
 
+[【ASP.NET Core】配置应用程序地址的N多种方法](https://www.cnblogs.com/tcjiaan/p/16347491.html)
+
 [sdmap](https://github.com/sdcb/sdmap) ORM 类iBatis，不是xml配置!
 
 [Automatonymous](https://github.com/MassTransit/Automatonymous) 状态机

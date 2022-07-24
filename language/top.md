@@ -47,6 +47,10 @@ https://www.techempower.com/benchmarks/
 
 https://github.com/smallnest/go-web-framework-benchmark
 
+### The Benchmarks Game 专门面向主流编程语言设计了性能测试。
+https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html
+https://goodmanwen.github.io/Programming-Language-Benchmarks-Visualization/
+
 ## 语言排行 tiobe
 https://www.tiobe.com/tiobe-index/
 
