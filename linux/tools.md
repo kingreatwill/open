@@ -455,6 +455,10 @@ macOS status monitoring app written in SwiftUI.
 
 https://github.com/gao-sun/eul
 
+### glances、dstat、pidstat
+Glances 是一个由 Python 编写，使用 psutil 库来从系统抓取信息的基于 curses 开发的跨平台命令行系统监视工具。
+
+dstat命令是一个用来替换vmstat、iostat、netstat、nfsstat和ifstat这些命令的工具，是一个全能系统信息统计工具。
 ## 系统工具
 ### crash
 https://github.com/crash-utility/crash

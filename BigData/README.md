@@ -325,6 +325,8 @@ QuickBI助力餐饮行业大数据快速分析
 ## 大屏
 https://gitee.com/smartchart/smartchart/
 
+[大屏数据展示模板](https://gitee.com/kingreatwill/DaShuJuZhiDaPingZhanShi)
+
 ## DIKW模型/DIKUW模型
 ![](img/DIKW.webp)
 ![https://wiki.mbalib.com/wiki/DIKW%E6%A8%A1%E5%9E%8B](img/DIKW模型.jpg)

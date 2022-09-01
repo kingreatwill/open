@@ -305,6 +305,8 @@ https://github.com/LucasPilla/Sorting-Algorithms-Visualizer
 有点像图解python运行过程
 http://www.pythontutor.com/
 
+### 可视化Python调试工具 - Birdseye
+https://mp.weixin.qq.com/s/4aCfBq1xA_ctrtHXnxcYlA
 ### 优秀的Debug神器---pysnooper
 有点像日志输出python运行过程
 https://github.com/cool-RR/PySnooper 13.8k

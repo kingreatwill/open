@@ -4,6 +4,9 @@
 [白话 Go 语言内存管理（一）内存分配原理](https://xie.infoq.cn/article/ee1d2416d884b229dfe57bbcc)
 [白话 Go 语言内存管理（二）解密栈内存管理](https://xie.infoq.cn/article/530c735982a391604d0eebe71)
 
+[一站式Golang内存洗髓经](https://mp.weixin.qq.com/s/9dZ4BqqiPVi36jieKeqCBw)
+[一文彻底理解Go语言栈内存/堆内存](https://mp.weixin.qq.com/s/Hjtf-QJ0ThZNeFwtV9pehw)
+
 # Golang 的内存管理
 Golang 的内存管理基于 tcmalloc，可以说起点挺高的。但是 Golang 在实现的时候还做了很多优化，我们下面通过源码来看一下 Golang 的内存管理实现。下面的源码分析基于go1.8rc3。
 

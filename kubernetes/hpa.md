@@ -10,6 +10,7 @@
 -- [custom.metrics.k8s.io](#custom.metrics.k8s.io)
 -- [external.metrics.k8s.io](#external.metrics.k8s.io)
 
+
 ## 指标类型
 在HorizontalPodAutoscaler 中包含以下几种指标源类型：
 - Object(v2beta1)
@@ -172,3 +173,10 @@ hpa controller可通过以下api来获取指标实现自动扩容：
 - https://github.com/kubernetes/community/blob/master/contributors/design-proposals/autoscaling/hpa-external-metrics.md
 - https://github.com/kubernetes/api/tree/master/autoscaling/v2beta2
 - https://github.com/kubernetes/metrics/tree/master/pkg/apis
+
+
+
+## KEDA｜Kubernetes中基于事件驱动的自动伸缩
+https://keda.sh/
+
+## Knative Serving

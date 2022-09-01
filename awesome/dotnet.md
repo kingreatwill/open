@@ -11,6 +11,31 @@ https://github.com/dotnet-state-machine/stateless
 ## 内存
 https://github.com/ZenLulz/MemorySharp
 
+## 图片处理
+https://github.com/SixLabors/ImageSharp
+https://github.com/JimBobSquarePants/ImageProcessor
+https://github.com/mono/SkiaSharp
+https://github.com/kleisauke/net-vips
+
+## 定时任务
+- Coravel
+Coravel是一款框架轻，使用简单，支持秒级定时任务。
+
+官网地址：https://docs.coravel.net/
+
+- FluentScheduler
+Github地址：https://github.com/fluentscheduler/FluentScheduler
+
+文档地址：https://fluentscheduler.github.io/
+
+- Hangfire
+
+- 其它
+
+Timer,FluentScheduler,TaskScheduler,Gofer.NET,Coravel,Quartz.NET还是Hangfire
+https://github.com/2881099/FreeScheduler
+
+
 ## javascript
 Javascript Interpreter js解释器
 https://github.com/sebastienros/jint
