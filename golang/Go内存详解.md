@@ -1,7 +1,9 @@
 <!-- toc -->
 [TOC]
 # Go语言内存详解
+[一文彻底理解Go语言栈内存/堆内存](https://mp.weixin.qq.com/s/Hjtf-QJ0ThZNeFwtV9pehw)
 
+[一站式Golang内存洗髓经[Go三关典藏版]](https://mp.weixin.qq.com/s/9dZ4BqqiPVi36jieKeqCBw)
 ## 常用命令
 ### size
 size filename

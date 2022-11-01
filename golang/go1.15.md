@@ -177,3 +177,7 @@ func main() {
 ```
 `go run -gcflags=all=-G=3 main.go`
 `go run -gcflags=-G=3 main.go`
+
+## go1.18
+
+[工作区模式](https://mp.weixin.qq.com/s/pR2rOWM2cgOk191IbifwGQ)

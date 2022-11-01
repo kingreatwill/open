@@ -4,6 +4,9 @@
 
 [面试官：volatile关键字用过吧？说一下作用和实现吧](http://www.ergzcode.com/2019/01/27/java-interview_0017.html)
 
+
+[JVM常见线上问题 → CPU 100%、内存泄露 问题排查](https://www.toutiao.com/article/6881508437667086856/)
+
 主要理解：
 1 可见性
 2 有序性
