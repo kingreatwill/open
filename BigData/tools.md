@@ -1,4 +1,7 @@
 datax sqoop kettle flume StreamSets
+
+开源数据同步中间件：Canal、Debezium、DataX、Databus、FlinkX、Bifrost
+
 # 数据集成工具
 对于数据集成类应用，通常会采用ETL工具辅助完成。ETL，是英文 Extract-Transform-Load 的缩写，用来描述将数据从来源端经过抽取（extract）、交互转换（transform）、加载（load）至目的端的过程。当前的很多应用也存在大量的ELT应用模式。
 

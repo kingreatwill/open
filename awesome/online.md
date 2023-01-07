@@ -203,6 +203,21 @@ https://github.com/seatable/seatable
 ## 工具
 - https://tableconvert.com/
 
+- json 可视化 https://github.com/AykutSarac/jsoncrack.com
+也可以安装vs code插件JSON CRACK
+
+### 流程图
+[flowchat](http://flowchart.js.org/)
+[Sequence](https://bramp.github.io/js-sequence-diagrams/)
+[Mermaid](https://mermaid-js.github.io/mermaid/#/)
+[PlantUML](https://plantuml.com/zh/)
+
+Diagrams： https://diagrams.mingrammer.com/
+Structurizr DSL ：https://structurizr.com/dsl  https://github.com/structurizr/dsl
+Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
+WebSequenceDiagrams： https://www.websequencediagrams.com/
+ilograph：http://app.ilograph.com/
+
 ## playground
 
 ### go

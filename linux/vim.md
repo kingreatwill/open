@@ -15,3 +15,9 @@ Vim Cheat Sheet for Programmers Vim 速查卡
 
 ## vi
 ## vim
+
+## Hacking Tools Cheat Sheet 
+https://www.stationx.net/hacking-tools-cheat-sheet
+https://github.com/CompassSecurity/Hacking_Tools_Cheat_Sheet
+![](img/hacking_tools_cheat_sheet_1.png)
+![](img/hacking_tools_cheat_sheet_2.png)

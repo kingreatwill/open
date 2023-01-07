@@ -292,6 +292,10 @@ Pandas Profiling、Sweetviz和PandasGUI都很不错，旨在简化我们的EDA�
 #### Altair
 
 ## Python神器
+
+### 性能分析/代码分析器
+cProfile
+
 ### 收集
 [轻量级 Python 流水线工具Mara Pipelines](https://github.com/mara/mara-pipelines)
 
