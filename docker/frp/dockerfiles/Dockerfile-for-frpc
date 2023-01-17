@@ -1,0 +1,12 @@
+FROM golang:1.19 AS building
+
+COPY . /building
+WORKDIR /building
+
+RUN make frpc
+
+FROM alpine:3
+
+COPY --from=building /building/bin/frpc /usr/bin/frpc
+
+ENTRYPOINT ["/usr/bin/frpc"]

@@ -89,6 +89,10 @@ https://www.ngrok.cc/
 ### frp: 内网穿透
 开源
 https://github.com/fatedier/frp 41.1k
+
+[安装参考](../docker/frp.md)
+
+
 ### inlets
 开源
 https://github.com/inlets/inlets 6.9k

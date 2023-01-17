@@ -262,6 +262,8 @@ InitialHeapSize := 130023424
 - [[JVM教程与调优] JVM都有哪些参数类型？](https://mp.weixin.qq.com/s?__biz=MzIwMTg3NzYyOA==&mid=2247484247&idx=2&sn=a1f732611bab89f0db84d3ab162e8763&chksm=96e67244a191fb52a4d6b292112cc94c412d3c90a688bc6da533dec8cfe9cfa693af65b16dd5&token=89408735&lang=zh_CN#rd)
     
 
+- [JVM调优](https://www.toutiao.com/article/7186081080473223712/)
+
 ## 文末
 
 文章收录至
