@@ -660,7 +660,7 @@ https://anytxt.net/
 #### Listary Pro
 好用的搜索工具
 
-[官网](https://www.listary.com/)下载Listary Pro6
+[官网下载](https://www.listary.com/download)Listary Pro 6
 ```
 姓  名：准女婿
 邮  箱：welcome5201311@163.com
