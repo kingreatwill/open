@@ -69,7 +69,10 @@ Just add 1s after github and press Enter in the browser address bar for any repo
 
 - [StackBlitz](https://stackblitz.com/) The same editing experience. Now in your browser. Online IDE powered by Visual Studio Code.[core](https://github.com/stackblitz/core/)
 
-
+- [InspireCloud](https://qingfuwu.cn​)
+- [CodeSandbox](https://codesandbox.io/)
+- [Replit](​https://replit.com​)是一个在线开发和协作的工具，支持超过 50 种编程语言。
+- 
 - [Jupyter Notebook](https://jupyter.org/) Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages.[open](https://github.com/jupyter/notebook)
 
 - [Polynote](https://polynote.io/) Write your notes together,in real-time.A better notebook for Scala (and more). [code](https://github.com/polynote/polynote)
@@ -105,9 +108,24 @@ Just add 1s after github and press Enter in the browser address bar for any repo
 
 - [Goormide](https://ide.goorm.io/) Goormide是韩国的一款在线IDE工具，基于Docker。
 
+- [CloudPebble](https://cloudpebble.net/)无需 Linux、虚拟机、编译器或 Python 来编写应用
+
+### 在线运行前端/playground
+- CodingGround
+- CodePen https://codepen.io/
+- JSRUN(支持手机端的在线JS编辑器) http://jsrun.net/
+- jsFiddle https://jsfiddle.net/
+- Ideone(C和C++的在线编译和调试工具,支持其他的60种语言)  https://www.ideone.com/
+- Codechef https://www.codechef.com/ide
+- JDoodle 
+- OnlineGDB https://www.onlinegdb.com/
+- GCC资源管理器 https://gcc.godbolt.org/
+- plnkr edit在线编辑器 http://plnkr.co/edit/
 ### 商业云IDE WebIDE
 - [阿里云 - 云端开发平台 DevStudio](https://ide.aliyun.com/)
 - [腾讯Coding - Cloud Studio](https://ide.coding.net/) or [cloudstudio](https://cloudstudio.net/) or [cloudstudio](https://studio.coding.net/)
+- [lightly](https://lightly.teamcode.com/)
+- [行云创新 TitanIDE](https://www.cloudtogo.cn/)
 ## Language
 
 - [csharp](https://sharplab.io/) SharpLab is a .NET code playground that shows intermediate steps and results of code compilation.[open](https://github.com/ashmind/SharpLab)

@@ -89,6 +89,54 @@ worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 010000
 ### 如何构建高性能服务器（以Nginx为例）
 https://www.cnblogs.com/kukafeiso/p/13957174.html
 
+### ngx_http_auth_digest 模块进行登录认证
+
+生成登录密码：
+
+apt-get install -y apache2-utils
+htdigest -c /usr/local/passwd.digest theia admin
+
+- /usr/local/passwd.digest 为密码文件路径
+- theia 为 realm，必须与后面要提到的 nginx 配置文件保持一致。
+- admin 为登录用户名
+
+在 nginx 配置文件中添加 server 段：
+```
+server {
+	listen 80 default_server;
+
+    auth_digest_user_file /usr/local/passwd.digest;
+    auth_digest_shm_size  8m;   # the storage space allocated for tracking active sessions
+    
+    location / {
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        auth_digest 'theia';
+        auth_digest_timeout 60s;    # allow users to wait 1 minute between receiving the
+                                    # challenge and hitting send in the browser dialog box
+        auth_digest_expires 600s;   # after a successful challenge/response, let the client
+                                    # continue to use the same nonce for additional requests
+                                    # for 600 seconds before generating a new challenge
+        auth_digest_replays 60;     # also generate a new challenge if the client uses the
+                                    # same nonce more than 60 times before the expire time limit
+
+        proxy_pass http://127.0.0.1:3000;
+    }
+}
+```
+
+- auth_digest_user_file 必须与设置密码的 htdigest 命令中的密码文件参数保持一致。
+- auth_digest 必须与设置密码的 htdigest 命令的 realm 参数保持一致。
+- 这两行必须有，否则不能正确代理 websocket。
+proxy_set_header Upgrade $http_upgrade; 
+proxy_set_header Connection "upgrade";
+   
+这个配置相当于每 (auth_digest_timeout+auth_digest_expires)=660s 允许 auth_digest_shm_size/((48 + ceil(auth_digest_replays/8))bytes)=(8*1024*1024)/(48+8)=149.8k 次请求，即每 660s 允许约 149.8k 次请求。登录认证 10min 后过期。
+
+最后启动 nginx，会弹出登录认证框，输入用户名和密码后即可登录，跳转到 theia 界面。
+
+
 ### 设置HTTP强制跳转HTTPS
 ```
 server {

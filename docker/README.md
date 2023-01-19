@@ -240,6 +240,25 @@ docker push {Harbor地址}:{端口}/{自定义镜像名}:{自定义tag}
 docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 ```
 
+## 不同网桥下的容器间通信
+1. 先手动建立一个 bridge 模式的新 网桥， docker network  create --driver  bridge  --subnet=172.18.0.0/16  --gateway=172.18.0.1  new_bridge
+
+2. docker network ls   可以查看 docker 下现在的网络模式（新加的那个）
+
+3.  docker  run  -name test1  -ti  --net=new_bridge   镜像名   (用新网桥的一个容器 test1)
+
+4. docker  run  -name test2  -ti   --net=bridge  镜像名   (用 docker 默认网桥的一个容器test2)
+
+5. 进入到其中一个容器 ，ip a  查看网卡，ping  另一个容器IP  
+
+6. 进另一个容器，同上。 两个容器IP段不一样。 不同网桥，会创建不同网段的虚拟网卡给容器　。
+
+7. 不同网桥下的容器间 不能ping通， 在于docker 设计时候就隔离了不同网桥 　
+
+8. docker  network  connect   new_bridge   test2   //  为  test2 容器添加一块 new_bridge的 虚拟网卡，这样test2 上会 创建一个新的虚拟网卡，网段就是 新网桥设置的。
+
+9. 如此就能互相ping通。
+
 # docker三剑客  docker-machine compose swarm
 
 # 有趣的docker项目
