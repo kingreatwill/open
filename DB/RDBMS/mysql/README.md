@@ -98,7 +98,27 @@ innodb_buffer_pool_chunk_size 的最大值估算如下：
 MAX(innodb_buffer_pool_chunk_size) = innodb_buffer_pool_size / innodb_buffer_pool_instances
 https://dev.mysql.com/doc/refman/5.7/en/innodb-buffer-pool-resize.html
 ```
+和内存相关的几个参数
+```
 
+innodb_buffer_pool_instances
+join_buffer_size
+tmp_table_size
+```
+和IO相关的几个参数
+```
+sync_binlog
+innodb_flush_logs_at_trx_commit
+innodb_io_capacity
+innodb_io_capacity_max
+```
+和连接相关的几个参数
+```
+back_log
+table_open_cache
+thread_cache_size
+loose_thread_pool_enabled
+```
 ## sql
 - 对于给定的查询，使用优化器提示：
 SELECT /*+ SET_VAR(optimizer_switch = 'condition_fanout_filter=off') */ ...
