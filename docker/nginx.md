@@ -97,7 +97,7 @@ apt-get install -y apache2-utils
 htdigest -c /usr/local/passwd.digest theia admin
 
 - /usr/local/passwd.digest 为密码文件路径
-- theia 为 realm，必须与后面要提到的 nginx 配置文件保持一致。
+- theia 为 realm(领域，范围)，必须与后面要提到的 nginx 配置文件保持一致。
 - admin 为登录用户名
 
 在 nginx 配置文件中添加 server 段：
