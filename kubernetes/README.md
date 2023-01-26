@@ -20,6 +20,125 @@ Mi表示（1Mi=1024x1024）,M表示（1M=1000x1000）
 
 
 [《Kubernetes Hardening Guidance-Kubernetes 加固手册》（美国国家安全局出品）](https://jimmysong.io/kubernetes-hardening-guidance)
+
+### 常见Pods错误
+
+错误有两种类型，
+
+1. 启动错误
+
+2. 运行时错误
+
+启动错误包括以下几种:
+
+• ImagePullBackoff
+
+• ImageInspectError
+
+• ErrImagePull
+
+• ErrImageNeverPull
+
+• RegistryUnavailable
+
+• InvalidImageName
+
+运行时错误包括:
+
+• CrashLoopBackOff
+
+• RunContainerError
+
+• KillContainerError
+
+• VerifyNonRootError
+
+• RunInitContainerError
+
+• CreatePodSandboxError
+
+• ConfigPodSandboxError
+
+• KillPodSandboxError
+
+• SetupNetworkError
+
+• TeardownNetworkError
+
+#### ImagePullBackoff
+这个错误意味着 K8s 无法为Pod中的一个容器拉取镜像。
+
+常见的错误原因可能是以下之一，
+
+1. 镜像名称无效
+
+2. 您为镜像指定了不存在的标记
+
+3. 您试图拉取的镜像属于私有注册中心，k8s没有访问它的凭据。
+
+前两种情况可以通过纠正镜像名称和标记来解决。
+
+最后，您应该在Secret中将凭证添加到您的私有注册表中，并在您的Pods中引用它。
+
+#### CrossLoopBackOff
+如果容器不能启动，那么K8s将显示 CrashLoopBackOff 消息作为状态。
+
+通常，容器在以下情况下不能启动:
+
+1. 应用程序中有一个错误，阻止它启动。
+
+2. 您错误地配置了容器。
+
+3. alive探测失败了太多次。
+
+您应该尝试从该容器检索日志，以调查它失败的原因。
+
+如果因为容器重启太快而看不到日志，可以使用以下命令:
+
+`kubectl logs <pod-name> --previous`
+
+它打印来自前一次容器的错误信息。
+
+#### RunContainerError
+当容器无法启动时出现该错误。
+
+这甚至是在容器内的应用程序启动之前。
+
+该问题通常是由错误配置造成的，例如:
+
+• 挂载不存在的卷，如ConfigMap、Secrets等。
+
+• 将只读卷挂载为可读写。
+
+你应该使用 `kubectl describe pod <pod-name>` 来检查和分析错误。
+
+#### pod 处于挂起(Pending)状态:
+当你创建一个Pod时，Pod保持在Pending状态。
+
+为什么?
+
+假设您的调度程序组件运行良好，以下是可能原因:
+
+1. 集群没有足够的资源(如CPU和内存)来运行Pod。
+
+2. 当前的命名空间有一个ResourceQuota对象，创建Pod将使命名空间超过配额。
+
+3. Pod被绑定到Pending PersistentVolumeClaim。
+
+你最好的选择是检查 kubectl description 命令中的Events部分:
+
+`kubectl describe pod <pod-name>`
+
+对于由于 ResourceQuotas 而产生的错误，您可以使用以下方法检查集群的日志:
+`kubectl get events --sort-by=.metadata.creationTimestamp`
+
+#### Pods 处于未就绪(not Ready)状态:
+如果一个Pod是Running 但不是 Ready(Deployment 等控制类型状态)，这意味着 Readiness探测失败。
+
+当Readiness探测失败时，Pod不会附加到Service，并且没有流量被转发到该实例。
+
+Readiness 探测失败是应用程序特有的错误，因此您应该检查 kubectl describe 中的Events部分来识别错误。
+
 ### 文档
 中文文档：https://kubernetes.io/zh/docs/
 

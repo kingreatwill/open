@@ -259,6 +259,9 @@ docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 
 9. 如此就能互相ping通。
 
+## Docker之Cgroup对于CPU，内存，磁盘资源的限制
+https://blog.csdn.net/boyuser/article/details/110487436
+
 # docker三剑客  docker-machine compose swarm
 
 # 有趣的docker项目
@@ -337,6 +340,12 @@ https://github.com/wagoodman/dive 27.8k
 https://github.com/vicanso/diving 185
 > 基于 dive 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。
 > 便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便
+
+### runlinke 查看指定docker container的启动命令
+https://github.com/lavie/runlike
+
+`pip install runlike`
+`runlike <container-name>`
 
 ### dockerfilegraph
 可视化多阶段Dockerfiles
