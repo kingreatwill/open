@@ -81,6 +81,8 @@ Just add 1s after github and press Enter in the browser address bar for any repo
 
 - [Eclipse Che](https://github.com/eclipse/che) The Kubernetes-Native IDE for Developer Teams. Theia based IDE?
 
+- [Alibaba OpenSumi](https://opensumi.com/zh)
+
 - [gitpod](gitpod.io) online vs code . chrome https://chrome.google.com/webstore/detail/gitpod-online-ide/dodmmooeoklaejobgleioelladacbeki
 
 - [Red Hat CodeReady Workspaces](https://developers.redhat.com/products/codeready-workspaces/overview)
