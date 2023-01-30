@@ -49,6 +49,12 @@ Gatsby
 用来为旧浏览器提供它没有原生支持的较新的功能。
 https://github.com/financial-times/polyfill-service
 
+## 出错时录屏
+[前端录屏+定位源码，帮你快速定位线上bug](https://juejin.cn/post/7173596154297810957) [Github源码](https://github.com/xy-sea/web-see-demo)
+
+
+[基于H5的录屏工具开发](https://juejin.cn/post/6915287057795874824)
+
 ## 工具
 ### 上传
 #### FilePond

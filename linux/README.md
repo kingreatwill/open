@@ -57,13 +57,36 @@ SELINUXTYPE=targeted
 [xf@xuexi ~]$ getenforce
 Disabled
 
-4. 关闭swap(Linux的Swap内存交换机制会影响性能以及稳定性。)
+4. 关闭swap(Linux的Swap内存交换机制会影响性能以及稳定性。) 虚拟内存
 ```
 swapoff -a #临时关闭
 vi /etc/fstab #注释掉swap即可永久关闭
 或
 sed -i '/ swap / s/^/#/' /etc/fstab #永久关闭
 ```
+
+4.1. 关闭swap之前先看看开启了哪些swap，执行`cat /proc/swaps`
+```
+[wcoder@NAS-WCODER ~]$ cat /proc/swaps
+Filename				Type		Size		Used		Priority
+/dev/md321                              partition	8283708		1752652		-2
+/dev/md256                              partition	530108		0		-3
+/dev/md322                              partition	7235132		0		-4
+/share/CACHEDEV1_DATA/.swap/qnap_swap   file		16777212	0		-5
+```
+/dev/md256和/dev/md322是分布在hdd上的两个分区，对应资源监控的HDD。/share/CACHEDEV1_DATA/.swap/qnap_swap是一个分布在卷上的文件，对应资源监控的卷。
+可以执行`swapon /dev/md256，swapon /dev/md322，swapon /share/CACHEDEV1_DATA/.swap/qnap_swap`这三条命令把交换分区再次启用。
+
+也可以使用`swap -a`启用 
+#-a:--all                启用 /etc/fstab 中的所有交换区
+[root@centos8 ~]# swapon -a
+
+
+4.2. 修改系统配置，缓解激进的交换策略
+`cat /proc/sys/vm/swappiness`
+可以看到默认值是30，这个swappiness值的含义是内存剩余空间小于多少时进行交换。30这个值是linux的默认值，代表了剩余空间小于30%时启用虚拟内存交换。
+修改这个配置的方法也很简单，只需要执行 `echo 15 > /proc/sys/vm/swappiness`
+修改以后可能不会马上有感觉，用一段时间以后会发现虚拟内存的占用下降，物理内存的占用上升。
 
 5. 设置固定IP
 ```
