@@ -23,6 +23,8 @@ wslconfig /setdefault Name #设置默认Linux发行版
 
 `wsl -l -v` 显示wsl版本
 
+`wsl --set-version Ubuntu-18.04 2` 设置Ubuntu-18.04的wsl版本
+
 - 卸载
 > wslconfig /u Ubuntu
 
