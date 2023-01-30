@@ -69,10 +69,10 @@ Just add 1s after github and press Enter in the browser address bar for any repo
 
 - [StackBlitz](https://stackblitz.com/) The same editing experience. Now in your browser. Online IDE powered by Visual Studio Code.[core](https://github.com/stackblitz/core/)
 
-- [InspireCloud](https://qingfuwu.cn​)
+- [InspireCloud](https://qingfuwu.cn)
 - [CodeSandbox](https://codesandbox.io/)
-- [Replit](​https://replit.com​)是一个在线开发和协作的工具，支持超过 50 种编程语言。
-- 
+- [Replit](https://replit.com)是一个在线开发和协作的工具，支持超过 50 种编程语言。
+
 - [Jupyter Notebook](https://jupyter.org/) Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages.[open](https://github.com/jupyter/notebook)
 
 - [Polynote](https://polynote.io/) Write your notes together,in real-time.A better notebook for Scala (and more). [code](https://github.com/polynote/polynote)
