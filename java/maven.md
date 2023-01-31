@@ -46,3 +46,43 @@ mvn package -Dmaven.test.skip=true -U -e -X -B -P dev
 #使用场景： 需要将当前项目构建结果发布到私有依赖仓库以供其他maven项目引用时使用
 #mvn deploy -Dmaven.test.skip=true -U -e -X -B
 ```
+
+## java dockerfile
+```
+FROM openjdk:17-slim-bullseye as base
+WORKDIR /app
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+ENV JAVA_OPTS="-XX:InitialRAMPercentage=75 -XX:MaxRAMPercentage=75"
+
+FROM maven:3.8-openjdk-17-slim as build
+WORKDIR /src
+# 这里可以修改settings.xml
+# 方案一:修改镜像中的settings.xml ;
+# 方案二: 把settings.xml复制到源代码中,copy到镜像中后 使用mvn命令指定settings.xml
+COPY . ./
+# -P dev
+RUN mvn package --settings settings.xml -Dmaven.test.skip=true -U -e -X -B
+
+
+FROM base as final
+WORKDIR /app
+COPY --from=build /src/target/springboot-0.0.1-SNAPSHOT.jar .
+ENTRYPOINT ["java", "-jar", "springboot-0.0.1-SNAPSHOT.jar"]
+
+
+
+#FROM openjdk:17-slim-bullseye
+#WORKDIR /app
+#RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#RUN echo 'Asia/Shanghai' >/etc/timezone
+#ENV JAVA_OPTS="-XX:InitialRAMPercentage=75 -XX:MaxRAMPercentage=75"
+#
+#WORKDIR /app
+#EXPOSE 80
+#ADD ./target/springboot-0.0.1-SNAPSHOT.jar .
+
+# docker build -t springbootdemo:v1 .
+# docker run -it --rm -p 9808:80 springbootdemo:v1
+# 访问http://localhost:9808/test/get
+```
