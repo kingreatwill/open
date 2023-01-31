@@ -7,3 +7,42 @@
 [事务 @Transactional](https://mp.weixin.qq.com/s/AZr5i6FR9xwj_1nFQvX20g)
 
 [SpringBoot教程(7) @ConditionalOnProperty 详细讲解和示例](https://blog.csdn.net/winterking3/article/details/114822929)
+
+## profile
+spring.profiles.active=@profiles.active@
+项目级别pom.xml
+```xml
+<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<properties>
+				<profiles.active>uat</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+```
+全局设置源码下载
+settings.xml
+```xml
+<profiles>
+<profile>
+        <id>downloadSources</id>
+        <properties>
+            <downloadSources>true</downloadSources>
+            <downloadJavadocs>true</downloadJavadocs>
+        </properties>
+    </profile>
+</profiles>
+<activeProfiles>
+      <activeProfile>downloadSources</activeProfile>
+  </activeProfiles>
+```
