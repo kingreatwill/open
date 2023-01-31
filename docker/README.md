@@ -443,3 +443,85 @@ https://github.com/Kaixhin/dockerfiles
 https://github.com/stilleshan/dockerfiles
 https://github.com/einverne/dockerfile
 https://github.com/vektorcloud
+
+### Dockerfile 多阶段构建多个镜像
+
+```
+#
+# BUILD ENVIRONMENT
+# -----------------
+ARG GO_VERSION
+FROM golang:${GO_VERSION} as builder
+
+RUN apt-get -y update && apt-get -y install upx
+
+WORKDIR /workspace
+COPY go.mod go.mod
+COPY go.sum go.sum
+RUN go mod download
+
+# Copy the go source
+COPY main.go main.go
+COPY api/ api/
+COPY controllers/ controllers/
+COPY internal/ internal/
+COPY webhooks/ webhooks/
+COPY version/ version/
+COPY cmd/ cmd/
+
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+ENV GOARCH=amd64
+ENV GO111MODULE=on
+
+# Do an initial compilation before setting the version so that there is less to
+# re-compile when the version changes
+RUN go build -mod=readonly "-ldflags=-s -w" ./...
+
+ARG VERSION
+
+# Compile all the binaries
+RUN go build -mod=readonly -o manager main.go
+RUN go build -mod=readonly -o proxy cmd/proxy/main.go
+RUN go build -mod=readonly -o backup-agent cmd/backup-agent/main.go
+RUN go build -mod=readonly -o restore-agent cmd/restore-agent/main.go
+
+RUN upx manager proxy backup-agent restore-agent
+
+#
+# IMAGE TARGETS
+# -------------
+FROM gcr.io/distroless/static:nonroot as controller
+WORKDIR /
+COPY --from=builder /workspace/manager .
+USER nonroot:nonroot
+ENTRYPOINT ["/manager"]
+
+FROM gcr.io/distroless/static:nonroot as proxy
+WORKDIR /
+COPY --from=builder /workspace/proxy .
+USER nonroot:nonroot
+ENTRYPOINT ["/proxy"]
+
+FROM gcr.io/distroless/static:nonroot as backup-agent
+WORKDIR /
+COPY --from=builder /workspace/backup-agent .
+USER nonroot:nonroot
+ENTRYPOINT ["/backup-agent"]
+
+FROM gcr.io/distroless/static as restore-agent
+WORKDIR /
+COPY --from=builder /workspace/restore-agent .
+USER root:root
+ENTRYPOINT ["/restore-agent"]
+```
+我们可以看到在这一个 Dockerfile 中我们使用多阶段构建定义了很多个 Targets，当我们在构建镜像的时候就可以通过 --target 参数来明确指定要构建的 Targets 即可，比如我们要构建 controller 这个目标镜像，则直接使用下面的命令构建即可：
+```
+docker build --target controller \
+  --build-arg GO_VERSION=${GO_VERSION} \
+  --build-arg VERSION=$(VERSION) \
+  --tag ${DOCKER_REPO}/${DOCKER_IMAGE_NAME_PREFIX}controller:${DOCKER_TAG} \
+  --file Dockerfile .
+```
+
+> `docker build --target proxy ...` or `--target backup-agent`,`--target restore-agent`
