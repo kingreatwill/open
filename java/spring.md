@@ -9,7 +9,10 @@
 [SpringBoot教程(7) @ConditionalOnProperty 详细讲解和示例](https://blog.csdn.net/winterking3/article/details/114822929)
 
 ## profile
-spring.profiles.active=@profiles.active@
+application.properties
+
+`spring.profiles.active=@profiles.active@`
+
 项目级别pom.xml
 ```xml
 <profiles>
