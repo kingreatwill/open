@@ -525,3 +525,56 @@ docker build --target controller \
 ```
 
 > `docker build --target proxy ...` or `--target backup-agent`,`--target restore-agent`
+>
+#### 使用 BuildKit 进行缓存
+Docker 版本 18.09 引入了 BuildKit 作为对现有构建系统的彻底检查。大修背后的想法是提高性能、存储管理和安全性。我们可以利用 BuildKit 来保持多个构建之间的状态。这样，Maven 不会每次都下载依赖项，因为我们有永久存储。要在我们的 Docker 安装中启用 BuildKit，我们需要编辑daemon.json文件：
+```
+...
+{
+"features": {
+    "buildkit": true
+}}
+...
+```
+
+> 在docker build命令前加上环境变量 `DOCKER_BUILDKIT=1 docker build .`
+
+
+启用 BuildKit 后，我​​们可以将 Dockerfile 更改为：
+```
+FROM maven:alpine as build
+ENV HOME=/usr/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
+ADD . $HOME
+RUN --mount=type=cache,target=/root/.m2 mvn -f $HOME/pom.xml clean package
+
+FROM openjdk:8-jdk-alpine
+COPY --from=build /usr/app/target/single-module-caching-1.0-SNAPSHOT-jar-with-dependencies.jar /app/runner.jar
+ENTRYPOINT java -jar /app/runner.jar
+```
+当我们更改代码或pom.xml文件时，Docker 将始终执行 ADD 和 RUN Maven 命令。首次运行时构建时间将是最长的，因为 Maven 必须下载依赖项。随后的运行将使用本地依赖项并执行得更快。
+
+这种方法需要维护 Docker 卷作为依赖项的存储。有时，我们必须强制 Maven 使用Dockerfile 中的-U标志更新我们的依赖项。
+
+
+前端
+```
+FROM node:alpine as builder
+
+WORKDIR /app
+
+COPY package.json /app/
+
+RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=locked \
+    --mount=type=cache,target=/root/.npm,id=npm_cache \
+    npm i --registry=https://registry.npm.taobao.org
+
+COPY src /app/src
+
+RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=locked \
+    npm run build
+```
+
+[使用 BuildKit 构建镜像](https://docker-practice.github.io/zh-cn/buildx/buildkit.html)
+[使用 BuildKit 构建镜像](https://vuepress.mirror.docker-practice.com/buildx/buildkit/#run-mount-type-cache)

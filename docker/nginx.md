@@ -145,6 +145,9 @@ server {
     rewrite ^(.*)$ https://$host$1 permanent;
 }
 ```
+
+[高性能 Nginx HTTPS 调优 - 如何为 HTTPS 提速 30%](https://www.toutiao.com/article/7197285537810514435/)
+
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
 ```
