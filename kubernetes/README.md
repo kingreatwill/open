@@ -214,9 +214,14 @@ https://github.com/k3s-io/k3s
 #### kubectl-debug
 https://github.com/aylei/kubectl-debug 这个是别人开发的插件
 
-另外k8s 1.20原生支持 kubectl debug （跟上面不是一个东西？）
+另外k8s 1.20原生支持 kubectl debug （跟上面不是一个东西）, Kubernetes v1.25 [stable]
 https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/#kubectl-debug-graduates-to-beta
+
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
+由于容器崩溃或容器镜像不包含调试程序而导致 kubectl exec 无法运行时，临时容器对于排除交互式故障很有用。
+具体方式见https://github.com/kubernetes/website/blob/main/content/zh-cn/docs/tasks/debug/debug-application/debug-running-pod.md
+
+
 
 #### Pixie
 Instant Kubernetes-Native Application Observability
