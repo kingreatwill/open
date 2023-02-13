@@ -209,6 +209,10 @@ https://github.com/k0sproject/k0s
 边缘计算
 https://github.com/k3s-io/k3s
 
+### kind
+[Kubernetes IN Docker - local clusters for testing Kubernetes](https://github.com/kubernetes-sigs/kind)
+
+
 ## 其它
 ### 监控工具
 #### kubectl-debug
