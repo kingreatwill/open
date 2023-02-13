@@ -201,6 +201,10 @@ helm 工具集合：https://github.com/helm/charts/tree/master/stable
 ### k0s
 k0s,一个单文件的kubernetes
 https://github.com/k0sproject/k0s
+
+### k3d
+[Little helper to run CNCF's k3s in Docker 在 Docker 中运行 k3s](https://github.com/k3d-io/k3d)
+
 ### k3s
 边缘计算
 https://github.com/k3s-io/k3s
