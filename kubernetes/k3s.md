@@ -1,4 +1,82 @@
-边缘计算
+# k3s
+轻量级Kubernetes
+k3s是经CNCF一致性认证的Kubernetes发行版，专为物联网及边缘计算设计。
+
+# k3d管理k3s
+## k3d: 在 Docker 中运行 k3s
+### 命令方式
+`k3d cluster create mycluster --api-port 127.0.0.1:6445 --servers 3 --agents 2 --volume '/home/me/mycode:/code@agent[*]' --port '8080:80@loadbalancer'`
+这条命令创建带有 6 个容器的 K3s 集群：
+
+- 1 个负载均衡器
+- 3 个服务器 (控制位面节点)
+- 2 个 agents (以前的工作节点)
+- 
+使用 --api-port 127.0.0.1:6445 参数，你可以告诉 k3d 将 Kubernetes API 端口映射到 127.0.0.1/localhost 的端口 6445。这意味着你可以在你的 Kubeconfig 中使用这个连接串 server:https://127.0.0.1:6445 来连接到集群。
+
+本端口也会将你的负载均衡器映射到你的宿主机。从这开始，请求将被代理到你的服务器节点。有效模拟生产环境的设置，这样你的服务器节点也可以下线，你会期望它故障转移到其它节点上。
+
+而 --volume /home/me/mycode:code@agent[*] 将你的本地目录 /home/me/mycode 绑定到你所有的 agent 节点的路径 /code 。将 * 替换为索引 (这里是 0 或者 1) 来仅仅绑定到其中之一。
+
+告诉 k3d 哪些节点应该挂载卷的规范被称为 节点过滤，它也被用于其它标志中，例如用于端口映射的 --port 标志。
+
+也就是说，--port 8080:80@loadbalancer 将你的本地端口 8080 映射到负载均衡器 (serverlb) 的 80 端口，它可以用来转发 HTTP 入口流量到你的集群中。例如，你现在可以部署一个 web 应用到集群中 (Deployment)，它可以通过类似于 myapp.k3d.localhost 向外部暴露出 (Service)。
+
+然后 (提供将域名解析到你的本地宿主 IP 的所有设置)，你可以使用浏览器访问 http://myapp.k3d.localhost:8080 来访问你的应用。访问流量通过你的宿主穿过 Docker 网桥界面到达负载均衡器。从这里 it 代理集群，将流量转发到你的应用所在 Pod 中的 Service。
+
+> 注意：你需要做一些设置来将你的 myapp.k3d.localhost 解析到你的本地宿主 IP (127.0.0.1)。最常用的方式是在你的 /etc/hosts 文件 (Windows 中是 C:\Windows\System32\drivers\etc\host) 中使用如下设置：
+
+`127.0.0.1 myapp.k3d.localhost`
+
+不过，这种方式不支持统配符 (*.localhost)，所以随后可能会变得琐碎，所以，你可能希望看一下这个工具 (https://en.wikipedia.org/wiki/Dnsmasq" dnsmasq (MacOS/UNIX) or https://stackoverflow.com/a/9695861/6450189" Acrylic (Windows)) 来简化一下。
+
+> 提示： 你可以在有些系统上安装包 libnss-myhostname (至少 Linux 操作系统，包括 SUSE 和 OpenSUSE) 来自动解析 *.localhost 域名到 127.0.01，这样你就不需要反复处理 /etc/hosts 文件，如果你倾向于通过 Ingress 测试，你需要设置一个域名。
+
+有趣的一件事需要提示一下：如果你创建了多于 1 个的服务器节点，K3s 将提供 --cluster-init 参数，这意味着它切换内部的数据存储 (默认是 SQLite) 用于 etcd。
+
+### 配置即代码方式
+从 k3d v4.0.0 ( 2021 年 1月) 开始，我们支持使用配置文件来通过代码配置所有你前面使用命令参数方式的配置。
+
+在本文编写的时候，用来验证配置文件有效性的 JSON Schema 可以在这里找到
+
+这里是一个配置文件示例：
+
+# k3d configuration file, saved as e.g. /home/me/myk3dcluster.yaml
+```yaml
+apiVersion: k3d.io/v1alpha2 # this will change in the future as we make everything more stable
+kind: Simple # internally, we also have a Cluster config, which is not yet available externally
+name: mycluster # name that you want to give to your cluster (will still be prefixed with `k3d-`)
+servers: 1 # same as `--servers 1`
+agents: 2 # same as `--agents 2`
+kubeAPI: # same as `--api-port 127.0.0.1:6445`
+ hostIP: "127.0.0.1"
+ hostPort: "6445"
+ports:
+ - port: 8080:80 # same as `--port 8080:80@loadbalancer
+ nodeFilters:
+ - loadbalancer
+options:
+ k3d: # k3d runtime settings
+   wait: true # wait for cluster to be usable before returining; same as `--wait` (default: true)
+   timeout: "60s" # wait timeout before aborting; same as `--timeout 60s`
+ k3s: # options passed on to K3s itself
+   extraServerArgs: # additional arguments passed to the `k3s server` command
+     - --tls-san=my.host.domain
+   extraAgentArgs: [] # addditional arguments passed to the `k3s agent` command
+ kubeconfig:
+   updateDefaultKubeconfig: true # add new cluster to your default Kubeconfig; same as `--kubeconfig-update-default` (default: true)
+   switchCurrentContext: true # also set current-context to the new cluster's context; same as `--kubeconfig-switch-context` (default: true)
+```
+假设我们将它保存为文件 /home/me/myk3dcluster.yaml，你可以如下使用它来配置一个集群。
+
+`k3d cluster create --config /home/me/myk3dcluster.yaml`
+注意，你仍然可以使用额外的参数，它们优先于配置文件中的配置使用。
+
+### 参考
+https://www.cnblogs.com/haogj/p/16397876.html
+
+
+# 边缘计算
 IOT
 
 ![](../img/k8s/edge-computing.jpg)
