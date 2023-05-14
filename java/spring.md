@@ -7,8 +7,12 @@
 [Spring容器获取Bean的9种方式，你能get几种？](https://www.toutiao.com/article/7187938000448635424/)
 
 [事务 @Transactional](https://mp.weixin.qq.com/s/AZr5i6FR9xwj_1nFQvX20g)
+[SpringBoot 多数据源及事务解决方案](https://mp.weixin.qq.com/s/e7ICGVN9jcGupNtYV-Labg)
 
 [SpringBoot教程(7) @ConditionalOnProperty 详细讲解和示例](https://blog.csdn.net/winterking3/article/details/114822929)
+[通过自定义starter，优雅实现接口统一返回和统一异常处理](https://www.toutiao.com/article/7223019919686943289/)
+
+[使用ImportSelector接口动态加载Bean](https://www.toutiao.com/article/7222132283204010508/)
 
 ## profile
 application.properties

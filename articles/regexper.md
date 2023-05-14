@@ -44,6 +44,9 @@ https://pan.baidu.com/s/1mENJB-YFUfkiM1-WC2-ycg
 [.NET Regex - 不更新了](http://regexstorm.net/)
 https://github.com/lonekorean/regex-storm
 
+[visualRegex](https://wangwl.net/static/projects/visualRegex#)
+
+[rubular](https://rubular.com/)
 
 [正则表达式-不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
 [工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
