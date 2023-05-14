@@ -201,18 +201,31 @@ helm 工具集合：https://github.com/helm/charts/tree/master/stable
 ### k0s
 k0s,一个单文件的kubernetes
 https://github.com/k0sproject/k0s
+
+### k3d
+[Little helper to run CNCF's k3s in Docker 在 Docker 中运行 k3s](https://github.com/k3d-io/k3d)
+
 ### k3s
 边缘计算
 https://github.com/k3s-io/k3s
+
+### kind
+[Kubernetes IN Docker - local clusters for testing Kubernetes](https://github.com/kubernetes-sigs/kind)
+
 
 ## 其它
 ### 监控工具
 #### kubectl-debug
 https://github.com/aylei/kubectl-debug 这个是别人开发的插件
 
-另外k8s 1.20原生支持 kubectl debug （跟上面不是一个东西？）
+另外k8s 1.20原生支持 kubectl debug （跟上面不是一个东西）, Kubernetes v1.25 [stable]
 https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/#kubectl-debug-graduates-to-beta
+
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/
+由于容器崩溃或容器镜像不包含调试程序而导致 kubectl exec 无法运行时，临时容器对于排除交互式故障很有用。
+具体方式见https://github.com/kubernetes/website/blob/main/content/zh-cn/docs/tasks/debug/debug-application/debug-running-pod.md
+
+
 
 #### Pixie
 Instant Kubernetes-Native Application Observability
