@@ -2,6 +2,40 @@
 
 ## 构建独立的Python应用程序
 目录对python程序进行打包方式主要有5种: py2exe、py2app，pyinstaller，cx_Freeze，nuitka
+
+### Nuitka
+[Nuitka](https://github.com/Nuitka/Nuitka)是一个用Python编写的Python编译器。它完全兼容Python 2.6、2.7、3.4、3.5、3.6、3.7、3.8、3.9、3.10和3.11版本。你将Python应用程序输入给它，它会执行许多聪明的操作，然后生成一个可执行文件或扩展模块。
+```scss
+├─utils //源码1文件夹
+├─src // 源码2文件夹
+├─logo.ico // demo的图标
+└─demo.py // main文件
+```
+`nuitka --standalone --show-memory --show-progress --nofollow-imports --plugin-enable=qt-plugins --follow-import-to=utils,src --output-dir=out --windows-icon-from-ico=./logo.ico demo.py`
+
+```
+--standalone：方便移植到其他机器，不用再安装python
+--show-memory --show-progress：展示整个安装的进度过程
+--nofollow-imports：不编译代码中所有的import，比如keras，numpy之类的。
+--plugin-enable=qt-plugins：我这里用到pyqt5来做界面的，这里nuitka有其对应的插件。
+--follow-import-to=utils,src：需要编译成C++代码的指定的2个包含源码的文件夹，这里用,来进行分隔。
+--output-dir=out：指定输出的结果路径为out。
+--windows-icon-from-ico=./logo.ico：指定生成的exe的图标为logo.ico这个图标，这里推荐一个将图片转成ico格式文件的网站（比特虫）。
+--windows-disable-console：运行exe取消弹框。这里没有放上去是因为我们还需要调试，可能哪里还有问题之类的。
+```
+
+当然这里你会发现真正运行exe的时候，会报错：no module named torch,cv2,tensorflow等等这些没有转成C++的第三方包。
+这里需要找到这些包（我的是在software\python3.7\Lib\site-packages下）复制（比如numpy,cv2这个文件夹）到demo.dist路径下。
+至此，exe能完美运行啦！
+
+- pyinstaller体验很差！
+    - 一个深度学习的项目最后转成的exe竟然有近3个G的大小（pyinstaller是将整个运行环境进行打包），对，你没听错，一个EXE有3个G！
+    - 打包超级慢，启动超级慢。
+
+- nuitka真香！
+    - 同一个项目，生成的exe只有7M！
+    - 打包超级快（1min以内），启动超级快。
+
 ### pyinstaller
 打包成单文件所使用的命令为：
 `pyinstaller -Fw --icon=h.ico auto_organize_gui.py --add-data="h.ico;/"`

@@ -92,6 +92,8 @@ https://github.com/fatedier/frp 41.1k
 
 [安装参考](../docker/frp.md)
 
+### NSmartProxy
+https://github.com/tmoonlight/NSmartProxy
 
 ### inlets
 开源

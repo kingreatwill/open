@@ -100,3 +100,27 @@ git fetch 只能一个一个 branch fetch，fetch 完，把 FETCH_HEAD checkout 
 
 
 [Git科普文，Git基本原理&各种骚操作](https://www.cnblogs.com/iisheng/p/13425658.html)
+
+## git commit提交类型规范
+init: 初始化
+feat: 新特性
+fix: 修改问题
+refactor: 代码重构
+docs: 文档修改
+style: 代码格式修改, 注意不是 css 修改
+test: 测试用例修改
+build: 构建项目
+chore: 其他修改, 比如依赖管理,构建过程或者辅助工具的变动
+ci: 对ci配置文件和脚本的改动
+scope: commit 影响的范围, 比如: route, component, utils, build...
+subject: commit 的概述
+format: 格式化代码
+perf: 提高性能/优化
+test: 增加测试代码
+patch: 添加重要补丁
+file: 新加文件
+publish: 发布新版本
+tag: 发布版本/添加标签
+config: 修改配置文件
+git: 修改.gitignore文件
+revert: 恢复,把这次提交的修改还原

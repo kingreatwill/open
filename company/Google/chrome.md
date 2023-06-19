@@ -1,5 +1,8 @@
 <!--toc-->
 [TOC]
+## chrome历史版本下载
+https://downzen.com/en/windows/google-chrome/versions/
+
 ## Chrome插件开发
 https://github.com/sxei/chrome-plugin-demo
 ## Chrome devtools
