@@ -2,6 +2,12 @@
 ![](https://github.com/polaris1119/golangweekly/raw/master/docs/imgs/issue054/history-of-go.png)
 
 
+## 安装
+1. 下载`wget -c https://dl.google.com/go/go1.20.5.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local`
+
+2. 环境变量
+这个可以通过添加下面的行到/etc/profile文件（系统范围内安装）或者$HOME/.profile文件（当前用户安装）：`export PATH=$PATH:/usr/local/go/bin`
+保存文件，并且重新加载新的PATH 环境变量到当前的 shell 会话：`source ~/.profile`
 
 ## 在现有go版本中安装其他版本
 https://pkg.go.dev/golang.org/dl
