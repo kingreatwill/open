@@ -3,6 +3,11 @@
 ## chrome历史版本下载
 https://downzen.com/en/windows/google-chrome/versions/
 
+## 常用插件下载
+https://chrome.zzzmh.cn/info/gppongmhjkpfnbhagpmjfkannfbllamg
+
+> 谷歌上网助手、igg谷歌助手
+
 ## Chrome插件开发
 https://github.com/sxei/chrome-plugin-demo
 ## Chrome devtools
