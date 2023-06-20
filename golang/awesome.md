@@ -484,6 +484,9 @@ https://github.com/samber/lo
 ### mapper
 https://github.com/petersunbag/coven
 
+这个也是很NB
+https://github.com/jinzhu/copier
+
 ### 字符串format
 
 https://github.com/sirkon/go-format 功能最强大
