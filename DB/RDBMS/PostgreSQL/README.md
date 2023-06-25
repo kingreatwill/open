@@ -75,3 +75,12 @@ Postgresql: B-tree
 ## Greenplum: 基于PostgreSQL的分布式数据库
 https://www.toutiao.com/i6827431495108395532/
 https://github.com/greenplum-db/gpdb
+
+
+## 其它
+### UNIQUE 约束中的空值
+PostgreSQL 15 开始支持在定义唯一索引或者唯一约束时指定多个 NULL 值是否相同。
+
+在此之前，多个 NULL 值被看作不同的数据，意味着唯一索引和唯一约束中可以存在多个 NULL 值。如果不允许唯一索引和唯一约束中存在多个 NULL 值可以通过 UNIQUE NULLS NOT DISTINCT 进行限制。
+
+默认选项为 UNIQUE NULLS DISTINCT。

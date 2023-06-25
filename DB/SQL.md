@@ -25,6 +25,9 @@ SQL意为结构化查询语言（Structured Query Language）。SQL用于和数�
 [原文](https://blog.csdn.net/horses/article/details/107185387)
 
 ## SQL发展的简要历史：
+为了在各个数据库厂商之间取得更大的统一性，美国国家标准学会（American NationalStandards Institute,ANSI）于1986年发布了第一个SQL标准。
+现在，SQL标准由ANSI和国际标准化组织（International Standards Organization,ISO）作为ISO/IEC 9075标准维护。
+
 1986年，ANSI X3.135-1986，ISO/IEC 9075:1986，SQL-86
 1989年，ANSI X3.135-1989，ISO/IEC 9075:1989，SQL-89
 1992年，ANSI X3.135-1992，ISO/IEC 9075:1992，SQL-92（SQL2）
@@ -32,7 +35,8 @@ SQL意为结构化查询语言（Structured Query Language）。SQL用于和数�
 2003年，ISO/IEC 9075:2003，SQL:2003
 2008年，ISO/IEC 9075:2008，SQL:2008
 2011年，ISO/IEC 9075:2011，SQL:2011
-
+2016年，ISO/IEC 9075:2016，SQL:2016
+2023年，ISO/IEC 9075:2023，SQL:2023
 
 从SQL:1999开始，标准简称中的短横线（-）被换成了冒号（:），而且标准制定的年份也改用四位数字了。前一个修改的原因是ISO标准习惯上采用冒号，ANSI标准则一直采用短横线。后一个修改的原因是标准的命名也遇到了2000年问题。
 
@@ -48,6 +52,23 @@ ISO/IEC 9075-11: Information and Definition Schemas (SQL/Schemata)
 ISO/IEC 9075-13: Java Routines and Types Using the Java Programming Language(SQL/JRT)
 ISO/IEC 9075-14: XML-Related Specifications (SQL/XML)
 
+
+> 国际标准化组织（ISO）于 2023 年 6 月 1 日正式发布了最新 SQL 标准，也就是 SQL:2023。
+[SQL:2023标准正式发布！](https://blog.csdn.net/horses/article/details/131008387)SQL 标准是一个公开资料，但是并不免费。最新标准包含 11 个部分的内容，具体如下：
+1. [ISO/IEC 9075-1:2023(en) Information technology — Database languages SQL — Part 1: Framework (SQL/Framework)](https://www.iso.org/standard/76583.html)
+[ISO/IEC 9075-1 信息技术 – 数据库语言 – SQL – 第 1 部分：框架（SQL/框架）](https://www.iso.org/standard/76583.html)
+1. [ISO/IEC 9075-2 信息技术 – 数据库语言 – SQL – 第 2 部分：基本原则（SQL/基本原则）](https://www.iso.org/standard/76584.html)
+1. [ISO/IEC 9075-3 信息技术 – 数据库语言 – SQL – 第 3 部分：调用级接口（SQL/CLI）](https://www.iso.org/standard/84803.html)
+1. [ISO/IEC 9075-4 信息技术 – 数据库语言 – SQL – 第 4 部分：持久存储模块（SQL/PSM）](https://www.iso.org/standard/76585.html)
+1. [ISO/IEC 9075-9 信息技术 – 数据库语言 – SQL – 第 9 部分：外部数据管理（SQL/MED）](https://www.iso.org/standard/84804.html)
+1. [ISO/IEC 9075-10 信息技术 – 数据库语言 – SQL – 第10 部分：对象语言绑定（SQL/OLB）](https://www.iso.org/standard/84805.html)
+1. [ISO/IEC 9075-11 信息技术 – 数据库语言 – SQL – 第 11 部分：信息与定义概要（SQL/Schemata）](https://www.iso.org/standard/76586.html)
+1. [ISO/IEC 9075-13 信息技术 – 数据库语言 – SQL – 第 13 部分：使用 Java 编程语言的 SQL 程序与类型（SQL/JRT）](https://www.iso.org/standard/84806.html)
+1. [ISO/IEC 9075-14 信息技术 – 数据库语言 – SQL – 第 14 部分：XML 相关规范（SQL/XML）](https://www.iso.org/standard/76587.html)
+1. [ISO/IEC 9075-15 信息技术 – 数据库语言 – SQL – 第 15 部分：多维数组（SQL/MDA）](https://www.iso.org/standard/84807.html)
+1. [ISO/IEC 9075-16 信息技术 – 数据库语言 – SQL – 第 16 部分：属性图查询（SQL/PGQ）](https://www.iso.org/standard/79473.html)
+
+
 **如果要了解标准的内容，比较推荐的方法是泛读SQL92**
 
 ## 参考文献
@@ -59,6 +80,8 @@ http://www.wiscorp.com
 [适用于SQL-92，SQL-99和SQL-2003的BNF语法](https://github.com/ronsavage/SQL)
 
 https://ronsavage.github.io/SQL/sql-92.bnf.html
+
+[An Introduction to SQL Standard（SQL标准简介）](https://zedware.github.io/SQL-Standard/)
 
 ## SQL统计
 ### mysql按日、月进行统计，不全的记录补0
