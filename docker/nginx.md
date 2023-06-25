@@ -148,6 +148,138 @@ server {
 
 [高性能 Nginx HTTPS 调优 - 如何为 HTTPS 提速 30%](https://www.toutiao.com/article/7197285537810514435/)
 
+### nginx负载均衡策略简介
+
+1、轮询（默认策略，nginx自带策略）：
+它是upstream模块默认的负载均衡默认策略。会将每个请求按时间顺序分配到不同的后端服务器。
+```
+http {
+    upstream my_load_balance {
+        server 192.168.1.12:80;
+        server 192.168.1.13:80;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+}
+```
+
+2、weight（权重，nginx自带策略）：
+指定轮询的访问几率，用于后端服务器性能不均时调整访问比例。权重越高，被分配的次数越多。
+```
+http {
+    upstream my_load_balance {
+        server 192.168.1.12:80 weight=7;
+        server 192.168.1.13:80 weight=2;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+}　
+```
+
+3、ip_hash（依据ip分配，nginx自带策略）：
+指定负载均衡器按照基于客户端IP的分配方式，这个方法确保了相同的客户端的请求一直发送到相同的服务器，可以解决session不能跨服务器的问题。
+```
+http {
+    upstream my_load_balance {
+        ip_hash;
+        server 192.168.1.12:80;
+        server 192.168.1.13:80;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+}
+```
+
+4、least_conn（最少连接，nginx自带策略）：
+把请求转发给连接数较少的后端服务器。
+```
+http {
+    upstream my_load_balance {
+        #把请求转发给连接数比较少的服务器
+        least_conn;
+        server 192.168.1.12:80;
+        server 192.168.1.13:80;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+}   
+```
+
+5、fair（第三方）：
+按照服务器端的响应时间来分配请求，响应时间短的优先分配。
+```
+http {
+    upstream my_load_balance {
+        fair;
+        server 192.168.1.12:80;
+        server 192.168.1.13:80;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+}  
+```
+6、url_hash（第三方）：
+该策略按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，需要配合缓存用。
+```
+http {
+    upstream my_load_balance {
+        hash $request_uri;
+        server 192.168.1.12:80;
+        server 192.168.1.13:80;
+    }
+  
+    server {
+        listen 81;
+        server_name www.laowubiji.com;
+  
+        location / {
+            proxy_pass http://my_load_balance;
+            proxy_set_header Host $proxy_host;
+        }
+    }
+} 
+```
+
 ## k8s
 kubectl create configmap confnginx --from-file nginx.conf
 ```
