@@ -52,3 +52,5 @@ GO
 ```
 docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=123456@lcb' --privileged=true -v /dockerv/mssql/data/:/var/opt/mssql/data/ -p 1433:1433 --name mssql --restart always -d microsoft/mssql-server-linux
 ```
+
+[构建高可用性的 SQL Server：Docker 容器下的主从同步实现](https://www.cnblogs.com/huaweiyun/p/17503054.html)
