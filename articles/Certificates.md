@@ -21,6 +21,8 @@ CA, Certificate Authority 证书颁发机构
 
 [证书](https://kubernetes.io/zh/docs/concepts/cluster-administration/certificates/)
 
+[OpenSSL Windows下载地址](https://slproweb.com/products/Win32OpenSSL.html) 一般默认安装，但安装步骤中有一步，“Select Additional Tasks”，让选择OpenSSL的dll拷贝到什么地方.
+设置环境变量,然后验证`openssl version`
 <!--toc-->
 
 [TOC]

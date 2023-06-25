@@ -9,6 +9,8 @@
 这个可以通过添加下面的行到/etc/profile文件（系统范围内安装）或者$HOME/.profile文件（当前用户安装）：`export PATH=$PATH:/usr/local/go/bin`
 保存文件，并且重新加载新的PATH 环境变量到当前的 shell 会话：`source ~/.profile`
 
+设置`go env -w GOPROXY=https://goproxy.cn,direct`
+
 ## 在现有go版本中安装其他版本
 https://pkg.go.dev/golang.org/dl
 go get golang.org/dl/go1.10.7

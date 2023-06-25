@@ -6,6 +6,7 @@ CDN将源站资源缓存到加速节点，当终端用户请求访问和获取�
 
 [阿里云CDN-管理控制台](https://cdn.console.aliyun.com/overview)
 
+抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
 
 ## DNS
 
