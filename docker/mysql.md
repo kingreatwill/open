@@ -33,7 +33,7 @@ mysql -u root -p
   use mysql;
  select host,user,plugin,authentication_string from mysql.user;
 
-得知：root的用户的加密方式为caching_sha2_passoword, 而navicat连接所用的方式为native_password。mysql为远程连接和本地连接提供了不同的密码验证方式。
+得知：root的用户的加密方式为caching_sha2_passoword, 而navicat连接所用的方式为native_password(新版Navicat支持caching_sha2_passoword)。mysql为远程连接和本地连接提供了不同的密码验证方式。
 
 备注：host为 % 表示不限制ip   localhost表示本机使用    plugin非mysql_native_password 则需要修改密码
 

@@ -190,6 +190,29 @@ DROP USER 'username'@'host';
 DROP USER 'local_user'@'localhost';
 ```
 
+## profiling
+
+`SHOW VARIABLES LIKE '%profiling%';`
+profiling=0 代表关闭，我们需要把 profiling 打开，即设置为 1：
+
+`SET profiling = 1;`  -- profiling = ON
+
+显示最近的几次查询：`SHOW PROFILES;`
+查看最后一个SQL的执行流程：`SHOW PROFILE;`
+查看指定SQL的执行流程：查询指定的 Query ID：`SHOW PROFILE FOR QUERY 3;`
+查询更丰富的内容：`SHOW PROFILE cpu,block io FOR QUERY 3;`
+
+SHOW PROFILE 的常用查询参数:
+- ALL：显示所有的开销信息。
+- BLOCK IO：显示块IO开销。
+- CONTEXT SWITCHES：上下文切换开销。
+- CPU：显示CPU开销信息。
+- IPC：显示发送和接收开销信息。
+- MEMORY：显示内存开销信息。
+- PAGE FAULTS：显示页面错误开销信息。
+- SOURCE：显示和Source_function，Source_file，Source_line相关的开销信息。
+- SWAPS：显示交换次数开销信息。
+
 # MySQL 架构总览->查询执行流程->SQL 解析顺序
 ## MySQL 架构总览
 ![](img/architecture_02.webp)
