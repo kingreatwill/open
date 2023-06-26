@@ -12,13 +12,13 @@ no-cache: 数据内容不能被缓存, 每次请求都重新访问服务器, 若
 no-store: 不仅不能缓存, 连暂存也不可以(即: 临时文件夹中不能暂存该资源).
 private(默认): 只能在浏览器中缓存, 只有在第一次请求的时候才访问服务器, 若有max-age, 则缓存期间不访问服务器.
 public: 可以被任何缓存区缓存, 如: 浏览器、服务器、代理服务器等.
-max-age: 相对过期时间, 即以秒为单位的缓存时间.
+max-age: 相对过期时间, 即以秒为单位的缓存时间(TTL).
 no-cache, private: 打开新窗口时候重新访问服务器, 若设置max-age, 则缓存期间不访问服务器.
     - private, 正数的max-age: 后退时候不会访问服务器.
     - no-cache, 正数的max-age: 后退时会访问服务器.
 
 
-### 2. Expires:
+### 2. Expires(绝对到期时间):
 设置以分钟为单位的绝对过期时间, 优先级比Cache-Control低, 同时设置Expires和Cache-Control则后者生效. 也就是说要注意一点:  Cache-Control的优先级高于Expires
 
 expires起到控制页面缓存的作用，合理配置expires可以减少很多服务器的请求, expires的配置可以在http段中或者server段中或者location段中.  比如控制图片等过期时间为30天, 可以配置如下:

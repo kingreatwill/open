@@ -6,6 +6,10 @@ CDN将源站资源缓存到加速节点，当终端用户请求访问和获取�
 
 [阿里云CDN-管理控制台](https://cdn.console.aliyun.com/overview)
 
+[CDN技术架构.pdf](https://developer.aliyun.com/ebook/7561) 60页开始介绍调度
+
+[CDN技术详解.pdf](链接: https://pan.baidu.com/s/1i4UIOcd 密码: 2yjh)
+
 抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
 
 ## DNS
@@ -22,7 +26,10 @@ Local DNS 是 DNS 查询中的第一个节点。Local DNS 作为客户端与 DNS
 
 > Local DNS 也是和我们日常上网接触最多的DNS包括你的服务提供商（ISP）分配给你的DNS, 又因为填写在你的本地电脑上，所以也称为Local DNS
 
+> Local DNS（LDNS）即本地域名服务器，由本地运营商提供。用户的解析请求，是由 LDNS 执行的。
 
+#### ClientIP
+ClientIP 指的是终端用户的 IP 地址，每个终端设备上都会配置 LDNS 的地址。在 DNS 调度中，只能识别 LDNS，识别不了用户的 IP 地址，所以用户流量是被 LDNS 所牵引的。
 
 #### 公共 DNS
 公共DNS，指面向所有互联网用户的全球公共递归域名解析服务。和仅使用本地 LocalDNS 的传统解析服务相比，公共解析服务，一般具备更加“快速”、“稳定”、“安全”互联网访问。
