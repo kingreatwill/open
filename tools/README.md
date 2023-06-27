@@ -607,7 +607,8 @@ Wise Folder Hider - 电脑文件隐藏与加密工具
 5.Wox：快速启动工具
 6.feem：免费全平台文件传输利器
 7.CC助手：快速收藏
-#### 文件文档在线预览项目
+
+#### 文件文档在线预览项目(在线文档)
 https://github.com/kekingcn/kkFileView
 
 - 支持 office, pdf, cad 等办公文档
@@ -617,6 +618,7 @@ https://github.com/kekingcn/kkFileView
 - 使用 spring-boot 开发，预览服务搭建部署非常简便
 - rest 接口提供服务，跨语言、跨平台特性(java,php,python,go,php，....)都支持，应用接入简单方便
 - 抽象预览服务接口，方便二次开发，非常方便添加其他类型文件预览支持
+
 
 #### zfile
 https://github.com/zhaojun1998/zfile

@@ -80,6 +80,11 @@ Rook|[2020.10.07](https://www.cncf.io/announcements/2020/10/07/cloud-native-comp
 Etcd | [2020.11.24](https://www.cncf.io/announcements/2020/11/24/cloud-native-computing-foundation-announces-etcd-graduation/)|[golang](https://github.com/etcd-io/etcd)| 分布式K-V存储系统
 Open Policy Agent(OPA)|[2021.02.04](https://www.cncf.io/announcements/2021/02/04/cloud-native-computing-foundation-announces-open-policy-agent-graduation/)|[golang](https://github.com/open-policy-agent/opa)|[通用策略引擎](https://zhuanlan.zhihu.com/p/353531134)
 Linkerd |[2021.07.28](https://www.cncf.io/announcements/2021/07/28/cloud-native-computing-foundation-announces-linkerd-graduation/)|[golang](https://github.com/linkerd/linkerd2)|服务网格
+SPIFFE|[2022.09.20](https://www.cncf.io/announcements/2022/09/20/spiffe-and-spire-projects-graduate-from-cloud-native-computing-foundation-incubator/)  |[golang](https://github.com/spiffe/spiffe)| 安全生产身份框架
+SPIRE | [2022.09.20](https://www.cncf.io/announcements/2022/09/20/spiffe-and-spire-projects-graduate-from-cloud-native-computing-foundation-incubator/) |[golang](https://github.com/spiffe/spire)|The SPIFFE Runtime Environment
+Flux|[2022.11.30](https://www.cncf.io/announcements/2022/11/30/flux-graduates-from-cncf-incubator/)|[golang](https://github.com/fluxcd/flux2)|持续交付工具
+Argo |[2022.12.06](https://www.cncf.io/announcements/2022/12/06/the-cloud-native-computing-foundation-announces-argo-has-graduated/)| [golang](https://github.com/argoproj) | Kubernetes-native tools to run workflows, manage clusters, and do GitOps right.
+
 ## Landscape介绍
 https://blog.csdn.net/liumiaocn/article/details/100713072
 
