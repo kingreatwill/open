@@ -20,7 +20,7 @@ https://coredns.io/plugins/etcd/
 
 
 ### 在docker环境中安装coredns
-`docker pull coredns/coredns`
+`docker pull coredns/coredns:1.10.1`
 创建配置文件
 ```
 mkdir -p /etc/coredns
@@ -50,7 +50,26 @@ vi /etc/coredns/corefile
 10.0.0.1 example1.org
 ```
 启动服务
-`docker run -it -d --name coredns --net=host -v /etc/coredns:/etc/coredns/ coredns/coredns:latest -conf /etc/coredns/corefile`
+`docker run -it -d --name coredns --net=host -v /e/dockerv/coredns/:/etc/coredns/ coredns/coredns:1.10.1 -conf /etc/coredns/corefile`
+
+
+
+```
+mkdir -p /etc/coredns
+
+cat >/etc/coredns/corefile<<EOF
+.:53 {
+    forward . 8.8.8.8:53
+    log
+}
+EOF
+
+docker run -d --name coredns \
+  --restart=always \
+  -v /e/dockerv/coredns/:/etc/coredns/ \
+  -p 53:53/udp \
+  coredns/coredns:1.10.1 -conf /etc/coredns/corefile
+```
 
 测试
 `dig @127.0.0.1 -p 53 my.host.com`
@@ -75,6 +94,7 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 ## tool
 
 ### DNS client
+#### nslookup
 #### dig
 `dig www.wcoder.com`
 #### dog 

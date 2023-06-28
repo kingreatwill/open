@@ -69,6 +69,19 @@ local/remote:   127.0.0.1:33499 <-> 0.0.0.0:0 (LISTEN)
 local/remote:   127.0.0.1:53974 <-> :0 ()
 ```
 
+## 流量回放工具
+
+### Goreplay
+https://github.com/buger/goreplay/
+
+[流量回放工具之 Goreplay 安装及初级使用](https://juejin.cn/post/6999586008698208263)
+
+### Sharingan
+https://kgithub.com/didi/sharingan
+
+### 其它
+- [tcpcopy](https://kgithub.com/session-replay-tools/tcpcopy)
+
 ## 分析网站使用的技术
 ### Wappalyzer
 分析网站使用的技术
