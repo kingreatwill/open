@@ -39,9 +39,51 @@ kubectl proxy
 
 访问：http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
 ```
+**kubectl proxy 让外部网络访问K8S service的ClusterIP**
+
+> 指定端口:`kubectl proxy --port=8009`, `kubectl proxy --address=0.0.0.0  --port=8009`
+
+> 设置API server接收所有主机的请求：`kubectl proxy --address='0.0.0.0'  --accept-hosts='^*$' --port=8009`
+
+> 访问规则:http://[k8s-master]:8009/api/v1/namespaces/[namespace-name]/services/[service-name]/proxy
 
 
-配置 kubeconfig 
+
+**配置 kubeconfig**
+
+> 新版的dashboard如果使用的是recommended.yaml创建的话,已经默认不创建ServiceAccount了, 所以以下的方法不再适用了, 需要自己创建ServiceAccount后再生产token:`kubectl -n kubernetes-dashboard create token admin-user` 然后用命令将token保存在config中`kubectl config set-credentials docker-desktop --token="xxx"` 然后登录时才能选择Kubeconfig方式登录dashboard
+https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+
+或者将一下内容手动添加至recommended.yaml
+```yaml
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+
+```
+
+
+
 ```powershell
 $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 kubectl config set-credentials docker-desktop --token="${TOKEN}"
@@ -55,7 +97,9 @@ config 路径
 1. 网上
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
-配置kube的config文件，将刚才生成的token: 放在最后。（ token: 后面有个空格 ，不然会报:错误）
+配置kube的config文件，将刚才生成的token: 放在最后。（ 格式,在user:下一级添加token可以,值是token; 如, token: xxxx,   后面有个空格 ，不然会报:错误）
+
+也可以用命令 kubectl config set-credentials docker-desktop --token="xxx"
 
 kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 2. 如果config文件中有token，则复制token，点击令牌登录
@@ -266,3 +310,41 @@ https://github.com/yonyoucloud/install_k8s
 https://github.com/unixhot/salt-k8s
 
 # 安装集群：工具安装
+
+# 其它
+
+## docker-desktop windows支持挂载hostpath
+docker-desktop在windows系统中支持容器方案主要采用两种方式:
+- Hyper-V
+- WSL（Windows Subsystem for Linux）
+
+**Hyper-V模式**
+点击Docker Desktop -> Settings->Resources->FILE SHARING,选择你要挂载的分区,点击 Apply&Restart
+
+> “文件共享”选项卡仅在Hyper-V模式下可用，因为在WSL 2模式和Windows容器模式下，Windows将自动共享所有文件。
+
+例子
+```
+...
+      volumes:
+        - hostPath:
+            path: /d/dockerv/kuboard/etcd # 要挂载的路径，/d 表示windows下的D盘
+          name: data
+```
+
+**WSL模式**
+路径映射关系：
+
+Windows |	WSL2 |	K8S-docker.io/hostpath
+---|---|---
+C:// |	/mnt/c	 | /run/desktop/mnt/host/c
+D:// |	/mnt/d	 | /run/desktop/mnt/host/d
+
+例子
+```
+...
+      volumes:
+        - hostPath:
+            path: /run/desktop/mnt/host/e/dockerv/kuboard/etcd
+          name: data
+```

@@ -5,6 +5,9 @@ Linux最常用命令：简单易学，但能解决95%以上的问题
 https://www.toutiao.com/a6763990899924926989/
 
 ### wget
+
+> windows [下载地址](https://eternallybored.org/misc/wget/)
+
 1. 使用 wget 命令下载文件`wget http://www.lxlinux.net` 默认情况下，下载的文件将保存到当前工作目录中的同名文件中。
 如果你不想将下载的文件保存在本地，而只是想将其显示在标准输出（stdout）里，可以使用 `--output-document` 选项，同时后面再跟上一个 `-` 号。
 `wget http://www.lxlinux.net --output-document - | head -n4`

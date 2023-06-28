@@ -626,6 +626,15 @@ Cabin为Kubernetes管理员提供了可从iOS或Android智能手机访问的Kube
 #### K9s
 全屏Kubernetes CLI UI
 
+其它UI
+- Kubernetes-Dashboard
+- Rancher
+- Kuboard
+- Lens(lens6开始收费了)
+- Octant
+- Kubenav
+- Infra.App
+
 #### Kube-ops-view
 多个Kubernetes集群的仪表板
 
