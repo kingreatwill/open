@@ -176,3 +176,5 @@ PEM转DER格式：openssl x509 -inform pem -in server.pem -outform der -out serv
 DER转PEM格式：openssl x509 -inform der -in server.der -outform pem -out server.pem0
 
 [原文](https://www.cnblogs.com/frisk/p/12628159.html)
+
+[https 原理分析进阶-模拟https通信过程](https://www.cnblogs.com/hobbybear/p/17511245.html)

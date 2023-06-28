@@ -240,6 +240,10 @@ docker push {Harbor地址}:{端口}/{自定义镜像名}:{自定义tag}
 docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 ```
 
+## docker sleep
+`docker run -d --name openresty-example openresty/openresty:1.13.6.2-2-xenial sleep 1234`
+`sleep inf`  代表无限期的sleep
+
 ## 不同网桥下的容器间通信
 1. 先手动建立一个 bridge 模式的新 网桥， docker network  create --driver  bridge  --subnet=172.18.0.0/16  --gateway=172.18.0.1  new_bridge
 
