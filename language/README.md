@@ -169,3 +169,9 @@ devd -ol .
 ```
 #### Swego
 https://github.com/nodauf/Swego
+
+#### algernon
+https://github.com/xyproto/algernon
+
+(代替我的Markdown server)
+纯 Go 语言开发的 Web 开发工具，内置 Lua，Markdown，模板和 HTTP / 2，Redis，Mysql，Postgresql 支持

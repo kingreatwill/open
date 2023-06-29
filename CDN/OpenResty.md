@@ -10,6 +10,8 @@
 
 > 2007年大学毕业，加入中国雅虎搜索技术部。当时的中国雅虎已经是阿里旗下的一家公司了。2009 年被调到淘宝数据产品与平台部，集中力量和同事们一起基于 OpenResty 开发淘宝量子统计这款产品，主要面向淘宝卖家。2011 年离开阿里，在家里全心从事 OpenResty 等开源项目的工作。 2012 年受 Cloudflare 公司邀请，举家来到美国湾区，全职从事 OpenResty 开源开发，以及基于 OpenResty 的全球 CDN 网络的软件系统的研发和完善。2016 年离开了 Cloudflare，并于 2017 年初在美国创办了 OpenResty Inc. 公司。
 
+
+OpenResty 在 1.5.8.1 版之后才默认使用 LuaJIT，之前使用的是标准 Lua 解析器。
 ## 安装
 
 http://openresty.org/cn/download.html
@@ -21,6 +23,8 @@ $ mkdir -p /data/openresty/conf/conf.d
 $ docker run -d --name openresty-example openresty/openresty:1.13.6.2-2-xenial sleep 1234
 $ docker cp openresty-example:/usr/local/openresty/nginx/conf/nginx.conf /data/openresty/conf/
 $ docker cp openresty-example:/etc/nginx/conf.d/. /data/openresty/conf/conf.d/
+
+$ docker rm -i openresty-example
 ```
 启动
 ```
@@ -70,6 +74,15 @@ location /hello {
 	content_by_lua_file lua/hello.lua;
 }
 ```
+> OpenResty 提供一个专门指令 “content_by_lua_block”，可以在配置文件里书写 Lua 代码，产生响应内容：
+```
+content_by_lua_block {                              -- 我们的第一个 OpenResty 应用
+    ngx.print("hello, world")                       -- 打印经典的 "hello world"
+}   
+```
+
+
+
 添加一下脚本\lua\hello.lua
 ```
 ngx.say('hello world!!!')
@@ -80,10 +93,85 @@ ngx.say('hello world!!!')
 nginx -s reload
 nginx -s stop
 
-linux指定文件
+- stop：强制立刻停止服务，未完成的请求会被直接关闭；
+- quit：停止服务，但必须在处理完当前所有请求之后；
+- reload：重启服务，重新加载配置文件和 Lua 代码，服务不会中断；
+- reopen：只重新打开日志文件，服务不会中断，常用于切分日志（retate）。
+
+
+
+linux写法指定文件
 ```
 nginx -p `pwd`/ -c conf/nginx.conf
 ```
+
+以下参数没有验证
+$ bin/openresty -t                                  # 检查默认的配置文件
+$ bin/openresty -T                                  # 检查默认的配置文件并打印输出
+$ bin/openresty -v                                  # 显示摘要的版本信息
+$ bin/openresty -V                                  # 显示完全的版本信息
+
+
+### 处理阶段
+
+OpenResty 提供了一些 “xxx_by_lua” 指令，开发 Web 应用时使用它们就可以在这些阶段里插入 Lua 代码，执行业务逻辑，常用的有：
+
+- init_by_lua：master-initing 阶段，初始化全局配置或模块；
+- init_worker_by_lua：worker-initing 阶段，初始化进程专用功能；
+- ssl_certificate_by_lua：ssl 阶段，在 “握手” 时设置安全证书；
+- set_by_lua：rewrite 阶段，改写 Nginx 变量。
+- rewrite_by_lua：rewrite 阶段，改写 URI，实现跳转/重定向。
+- access_by_lua：access 阶段，访问控制或限速；
+- content_by_lua：content 阶段，产生响应内容；
+- balancer_by_lua：content 阶段，反向代理时选择后端服务器；
+- header_filter_by_lua：filter 阶段，加工处理响应头；
+- body_filter_by_lua：filter 阶段，加工处理响应体；
+- log_by_lua：log 阶段，记录日志或其他的收尾工作。
+
+例子如下：
+```
+init_worker_by_lua_block {                              -- worker-initing 阶段
+    ...                                                 -- 启动定时器，定时从 Redis 里获取数据
+}
+ 
+ 
+rewrite_by_lua_block {                                  -- rewrite 阶段，通常是检查、改写 URI
+    ...                                                 -- 但也可以操作响应体，做编码解码工作
+}
+ 
+ 
+access_by_lua_block {                                   -- content 阶段，Lua 产生响应内容
+    ...                                                 -- 主要的业务逻辑，例如 IP 地址、访问次数
+}
+ 
+ 
+content_by_lua_block {                                  -- content 阶段，Lua 产生响应内容
+    ...                                                 -- 主要的业务逻辑，产生向客户端输出的内容
+}
+ 
+ 
+body_filter_by_lua_block {                              -- filter 阶段，加工处理响应数据
+    ...                                                 -- 可以对数据编码、加密或者附加额外数据
+}
+ 
+ 
+log_by_lua_block {                                      -- log 阶段，请求结束后的收尾工作
+    ...                                                 -- 可以向某个后端发送处理完毕的 "回执"
+}
+```
+
+content_by_lua_file的例子
+```
+localtion ~ ^/(\w+) {                                   # 使用正则表达式定义 location
+    content_by_lua_file service/http/$1.lua;            # 使用 URI 作为 Lua 文件名
+}
+```
+当执行 ”curl 127.0.0.1/xxx“ 时，OpenResty 就会运行 service/http 目录里对应的 Lua 程序。 
+
+
+![](https://wiki.shileizcc.com/confluence/download/attachments/47415936/image2018-11-28_12-36-1.png?version=1&modificationDate=1543379761000&api=v2)
+
+[参考](https://wiki.shileizcc.com/confluence/pages/viewpage.action?pageId=47415936)
 
 ## restydoc
 

@@ -68,7 +68,8 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 6080 -j DNAT --to-destination 10.0.0.100:6090
 ```
 
-## 内网穿透工具
+## 内网穿透工具(nat打洞技术)
+
 内网穿透系列——N2N（简单的P2P组网方案）
 
 刚毕业的时候自己做了一个，实现原理：
@@ -94,6 +95,11 @@ https://github.com/fatedier/frp 41.1k
 
 ### NSmartProxy
 https://github.com/tmoonlight/NSmartProxy
+
+### Headscale
+Headscale + Tailscale 
+
+WireGuard 是最新一代开源 VPN 工具，相较于IPsec和OpenVPN等大多数古老魔法，具有易于配置、快速且安全的特点。
 
 ### inlets
 开源
