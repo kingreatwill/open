@@ -173,6 +173,76 @@ localtion ~ ^/(\w+) {                                   # 使用正则表达式�
 
 [参考](https://wiki.shileizcc.com/confluence/pages/viewpage.action?pageId=47415936)
 
+### demo
+backend.lua
+```lua
+local ip_list_len = "255"
+local ip_header = "172.16.1"
+local a = {}
+ 
+# local SingleIP = "218.240.137.68"
+local isSingleIP = false
+ 
+if not isSingleIP then
+  for i=1,tonumber(ip_list_len) do
+    a[i] = ip_header.."."..i
+  end
+ 
+  for i,v in ipairs(a) do
+    if ngx.var.remote_addr == v then
+      ngx.var.group = "backend_02"
+    end
+  end
+end
+```
+局域网替换上游地址：默认的上游为 backend_default，当判断为真时则替换上游为 backend_02。
+
+```
+upstream backend_02 {
+    server cats-backend-Mars:80 max_fails=1 fail_timeout=10s weight=1;
+    server cats-backend-Jupiter:80 backup;
+}
+ 
+upstream backend_01 {
+    server cats-backend-Jupiter:80 max_fails=1 fail_timeout=10s weight=1;
+    server cats-backend-Mars:80 backup;
+}
+ 
+upstream backend_default {
+    server cats-backend-Jupiter:80 max_fails=1 fail_timeout=10s weight=1;
+    server cats-backend-Mars:80 backup;
+}
+ 
+server {
+    listen       8091;
+ 
+    access_log  logs/access.log  main;
+    set $resp_body "";
+    set $group backend_default;
+ 
+     location / {
+        access_by_lua_file /etc/nginx/conf.d/backend.lua;
+        proxy_pass http://$group;
+        index  index.html index.htm;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        client_max_body_size 50m;
+        client_body_buffer_size 256k;
+        proxy_connect_timeout 30;
+        proxy_send_timeout 30;
+        proxy_read_timeout 60;
+        proxy_buffer_size 256k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+        proxy_temp_file_write_size 256k;
+        proxy_max_temp_file_size 128m;
+  }
+}
+```
+
 ## restydoc
 
 ```

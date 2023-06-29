@@ -36,6 +36,8 @@ source ~/.profile
 
 搜索的策略跟上面的一样，只不过现在换成搜索的是 so 或 dll 类型的文件。如果找得到，那么 require 就会通过 package.loadlib 来加载它。
 
+> require 在加载模块的时候会执行文件里的代码（仅执行一次，所以多次 require 不会影响效率）
+
 ### C 包
 
 Lua和C是很容易结合的，使用 C 为 Lua 写包。
