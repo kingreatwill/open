@@ -37,6 +37,14 @@ source ~/.profile
 搜索的策略跟上面的一样，只不过现在换成搜索的是 so 或 dll 类型的文件。如果找得到，那么 require 就会通过 package.loadlib 来加载它。
 
 > require 在加载模块的时候会执行文件里的代码（仅执行一次，所以多次 require 不会影响效率）
+在形式上， require 的工作相当于(模块都会写return)：
+```lua
+local _tmp = function()	 -- 定义一个临时函数
+	...                  -- 里面是模块文件里的所有源码
+end
+
+local xxx = _tmp()       -- 执行临时函数，最后会返回模块的表
+```
 
 ### C 包
 

@@ -106,11 +106,12 @@ nginx -p `pwd`/ -c conf/nginx.conf
 ```
 
 以下参数没有验证
+```
 $ bin/openresty -t                                  # 检查默认的配置文件
 $ bin/openresty -T                                  # 检查默认的配置文件并打印输出
 $ bin/openresty -v                                  # 显示摘要的版本信息
 $ bin/openresty -V                                  # 显示完全的版本信息
-
+```
 
 ### 处理阶段
 
@@ -312,6 +313,34 @@ opm 包会下载到当前路径中, 实现本地包场景需求
 
 
 ## 配置文件
+### 模块加载
+可以配置`lua_package_path`和`lua_package_cpath`
+```
+    lua_package_path "/usr/local/openresty/nginx/lua_modules/?.lua;?.lua;/usr/local/openresty/lualib/?.lua";
+    lua_package_cpath "/usr/local/openresty/lualib/resty/?.so;";
+    server {
+        ...
+```
+
+### 使用lua额外处理
+```
+# 路径xxx,额外使用lua脚本处理
+        location ^~ /xxx {
+            include "/lua_include_conf/xxx.conf";
+            proxy_buffering          off;
+            proxy_request_buffering  off;
+            proxy_pass http://127.0.0.1:8080;
+        }
+```
+/lua_include_conf/xxx.conf
+```
+access_by_lua_file          "lua_modules/xxx.lua";
+```
+
+lua_modules/xxx.lua
+```
+代码记录日志到数据库等操作
+```
 
 ### http
 ```
@@ -400,3 +429,15 @@ stream {                    # stream 块开始，TCP/UDP 相关功能
 ```
 
 定义 TCP/UDP 服务同样需要使用 server 指令，然后再用 listen 指令确定服务使用的具体端口号。但因为 TCP/UDP 协议里没有 “HOST” “URI" 概念，所以 server 块里不能使用 server_name 和 location 指令，这是与 HTTP 服务明显不同的地方，需要注意。
+
+## 开发框架 (web framework)
+### lor
+https://github.com/sumory/lor
+### lapis
+https://github.com/leafo/lapis
+### openresty-smart-panda
+https://github.com/BBD-RD/openresty-smart-panda/
+openresty lua模块化开发的框架，用来简化nginx的配置、规范开发过程、降低开发难度、减少代码耦合性、提高多人协同工作等。
+
+## 资料
+[Redis、Lua、Nginx、OpenResty 笔记和资料](https://github.com/Tinywan/lua-nginx-redis)

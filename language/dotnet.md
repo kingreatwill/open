@@ -320,6 +320,12 @@ namespace daemon
 [linux系统编程之进程（八）：守护进程详解及创建，daemon()使用](https://www.cnblogs.com/mickole/p/3188321.html)
 [.NET跨平台实践：.NetCore、.Net5/6 Linux守护进程设计](https://www.cnblogs.com/yunei/p/15367709.html)
 
+## 反混淆和脱壳工具
+> 脱壳，是完全破除压缩后软件无法编辑的限制，去掉头部的解压缩指令，然后解压出加壳前的完整软件。
+
+[de4dot](https://github.com/de4dot/de4dot)
+[EazFixer](https://github.com/holly-hacker/EazFixer)
+
 ## dotnet tool
 https://docs.microsoft.com/zh-cn/dotnet/core/tools/global-tools#install-a-global-tool
 https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-tool-search

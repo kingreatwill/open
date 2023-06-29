@@ -244,6 +244,13 @@ docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 `docker run -d --name openresty-example openresty/openresty:1.13.6.2-2-xenial sleep 1234`
 `sleep inf`  代表无限期的sleep
 
+## docker build时使用host网络的方法
+使用Dockerfile来docker build镜像时，默认使用的bridge网络环境；而RUN等命令经常需要联网下载依赖，由于公司加密软件的限制，造成RUN命令使用bridge时无法联网
+
+于是想到使用host网络应该可以上网，host网络中，docker 容器没有自己的网卡和ip，不使用birdge网络，直接使用本机的网络;只要本机可以上网，docker build时的RUN命令就可以使用网络
+
+`docker build --network=host -t test .`
+
 ## 不同网桥下的容器间通信
 1. 先手动建立一个 bridge 模式的新 网桥， docker network  create --driver  bridge  --subnet=172.18.0.0/16  --gateway=172.18.0.1  new_bridge
 
