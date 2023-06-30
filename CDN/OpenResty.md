@@ -172,7 +172,13 @@ localtion ~ ^/(\w+) {                                   # 使用正则表达式�
 
 ![](https://wiki.shileizcc.com/confluence/download/attachments/47415936/image2018-11-28_12-36-1.png?version=1&modificationDate=1543379761000&api=v2)
 
+![](https://cloud.githubusercontent.com/assets/2137369/15272097/77d1c09e-1a37-11e6-97ef-d9767035fc3e.png)
+
 [参考](https://wiki.shileizcc.com/confluence/pages/viewpage.action?pageId=47415936)
+
+[Directives指令](https://www.nginx.com/resources/wiki/modules/lua/#directives)
+
+[Directives指令](https://github.com/openresty/lua-nginx-module#directives)
 
 ### demo
 backend.lua
@@ -438,6 +444,13 @@ https://github.com/leafo/lapis
 ### openresty-smart-panda
 https://github.com/BBD-RD/openresty-smart-panda/
 openresty lua模块化开发的框架，用来简化nginx的配置、规范开发过程、降低开发难度、减少代码耦合性、提高多人协同工作等。
+
+
+## OpenResty Edge
+### EdgeLang
+EdgeLang 是由 OpenResty Inc. 创建的一种领域特定语言，它让您可以为 OpenResty Edge 产品编写简洁而富有表达力的规则。
+https://blog.openresty.com.cn/cn/edgelang-intro/
+https://doc.openresty.com.cn/cn/edge/edgelang/
 
 ## 资料
 [Redis、Lua、Nginx、OpenResty 笔记和资料](https://github.com/Tinywan/lua-nginx-redis)

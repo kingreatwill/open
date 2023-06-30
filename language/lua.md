@@ -70,6 +70,22 @@ f()  -- 真正打开库
 
 将 stub 文件所在的目录加入到 LUA_PATH，这样设定后就可以使用 require 函数加载 C 库了。
 
+### 包管理工具LuaRocks 
+https://luarocks.org/
+
+```sh
+$ wget https://luarocks.org/releases/luarocks-3.9.2.tar.gz
+$ tar zxpf luarocks-3.9.2.tar.gz
+$ cd luarocks-3.9.2
+$ ./configure && make && sudo make install
+$ sudo luarocks install luasocket
+$ lua
+Lua 5.3.5 Copyright (C) 1994-2018 Lua.org, PUC-Rio
+> require "socket"
+```
+
+其它下载http://luarocks.github.io/luarocks/releases/
+
 ## 集成lua vm
 ### golang
 
