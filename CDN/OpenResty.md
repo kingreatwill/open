@@ -55,6 +55,36 @@ $ apt install -y openresty
 ```
 默认会安装到 `/usr/local/openresty` 下。
 
+### centos 7 在线安装nginx 查看gcc，pcre，zlib，openssl 等依赖是否安装
+1. gcc
+检查是否安装:`gcc -v`
+安装:`yum install -y gcc gcc-c++ kernel-devel`
+
+2. PCRE  安装
+PCRE(Perl Compatible Regular Expressions)是一个轻量级的Perl函数库，包括 perl 兼容的正则表达式库。它比Boost之类的正则表达式库小得多。PCRE十分易用，同时功能也很强大，性能超过了POSIX正则表达式库和一些经典的正则表达式库。
+
+查看是否安装:`rpm -qa pcre`
+安装:`yum install -y pcre pcre-devel`
+
+3. zlib 安装
+
+zlib是提供数据压缩用的函式库，由Jean-loup Gailly与Mark Adler所开发，初版0.9版在1995年5月1日发表。zlib使用DEFLATE算法，最初是为libpng函式库所写的，后来普遍为许多软件所使用。此函式库为自由软件，使用zlib授权。截至2007年3月，zlib是包含在Coverity的美国国土安全部赞助者选择继续审查的开源项目。
+
+zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。
+
+查看是否安装:`yum list installed | grep zlib*`
+安装:`yum install -y zlib zlib-devel`
+
+4. OpenSSL 安装
+openssl是多功能命令工具，用于生成密钥，创建数字证书，手动加密解密数据
+nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。
+
+查看是否安装:`rpm -qa openssl`
+安装:`yum install -y openssl openssl-devel`
+
+
+
+
 ### windows
 1. 下载后双击nginx.exe运行 
 2. 验证：
