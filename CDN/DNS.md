@@ -95,8 +95,31 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 
 ### DNS client
 #### nslookup
+安装`yum install -y bind-utils`
 #### dig
+安装`yum install -y bind-utils`
 `dig www.wcoder.com`
+
+我们可以使用 dig 命令追踪 www.wcoder.com 域名对应 IP 地址是如何被解析出来的，首先会向预置的 13 组根域名服务器发出请求获取顶级域名的地址：
+`dig -t A www.wcoder.com +trace`
+
+一般格式：
+`dig [@global-server] [domain] [q-type] [q-class] {q-opt} {d-opt}`
+参数说明：
+@global-server：默认是以/etc/resolv.conf作为DNS查询的主机，这里可以填入其它DNS主机IP。
+domain：要查询的域名。
+q-type：查询记录的类型，例如a、any、mx、ns、soa、hinfo、axfr、txt等，默认查询a。
+q-class：查询的类别，相当于nslookup中的set class。默认值为in（Internet）。
+q-opt：查询选项，可以有好几种方式，比如：-f file为通过批处理文件解析多个地址；-p port指定另一个端口（缺省的DNS端口为53），等等。
+d-opt：dig特有的选项。使用时要在参数前加上一个“+”号。
+
+d-opt常用选项：
++vc：使用TCP协议查询。
++time=###：设置超时时间。
++trace：从根域开始跟踪查询结果。
+
+> [详解 DNS 与 CoreDNS 的实现原理](https://juejin.cn/post/6844903709512564750)
+
 #### dog 
 https://kgithub.com/ogham/dog/
 #### doggo

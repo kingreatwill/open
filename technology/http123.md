@@ -11,3 +11,10 @@
 
 [HTTP3.0(QUIC的实现机制)](https://www.cnblogs.com/chenjinxinlove/p/10104854.html)
 [QUIC协议浅析与HTTP/3.0](https://www.jianshu.com/p/bb3eeb36b479)
+
+## 其它
+
+### http状态码
+
+401 Unauthorized(未登录)
+403 Forbidden (remove root user when auth is enabled) (没权限,这个状态类似于 401，但进入 403状态后即使重新验证也不会改变该状态。该访问是长期禁止的，并且与应用逻辑密切相关（例如没有足够的权限访问该资源）。)

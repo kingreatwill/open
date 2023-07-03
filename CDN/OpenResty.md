@@ -482,5 +482,50 @@ EdgeLang 是由 OpenResty Inc. 创建的一种领域特定语言，它让您可�
 https://blog.openresty.com.cn/cn/edgelang-intro/
 https://doc.openresty.com.cn/cn/edge/edgelang/
 
+## ATS(Apache Traffic Server)
+Apache Traffic Server（ATS或TS）是一个高性能的、模块化的HTTP代理和缓存服务器，与 Nginx 和 Squid 类似。
+
+参考[Apache Traffic Server服务搭建](https://www.cnblogs.com/Dev0ps/p/7891659.html)
+
+```
+#官网
+https://trafficserver.apache.org/
+安装环境
+yum install 'liblz*' -y
+yum install net-tools -y
+yum install gcc gcc-c++ glibc-devel -y
+yum install autoconf automake pkgconfig libtool -y
+yum install perl-ExtUtils-MakeMaker perl-URI.noarch -y
+yum install openssl-devel tcl-devel expat-devel -y
+yum install pcre pcre-devel zlib-devel xz-devel -y
+yum install libcap libcap-devel flex hwloc hwloc-devel -y
+yum install lua-devel curl curl-devel sqlite-devel bzip2 -y
+1.安装pcre
+[root@web_01 pcre-8.36]# wget http://ftp.exim.llorien.org/pcre/pcre-8.36.tar.gz
+[root@web_01 pcre-8.36]# tar xf pcre-8.36.tar.gz  
+[root@web_01 pcre-8.36]# cd pcre-8.36
+[root@web_01 pcre-8.36]# ./configure --prefix=/usr/local/trafficserver/pcre
+[root@web_01 pcre-8.36]# make && make instal
+2.安装trafficserver
+[root@web_01 ~]# cd /usr/local/src/
+[root@web_01 src]# wget https://mirrors.aliyun.com/apache/trafficserver/trafficserver-5.3.2.tar.bz2
+[root@web_01 pcre-8.36]# tar xf trafficserver-5.3.2.tar.bz2
+[root@web_01 pcre-8.36]# cd trafficserver-5.3.2 
+[root@web_01 trafficserver-5.3.2]# ./configure --prefix=/usr/local/trafficserver --with-pcre=/usr/local/trafficserver/pcre --enable-example-plugins --enable-experimental-plugins
+[root@web_01 trafficserver-5.3.2]# make  && make install
+ 注：--enable-example-plugins --enable-experimental-plugins 这两条指令是为了安装ATS官方集成的插件
+[root@web_01 trafficserver-5.3.2]# cd /usr/local/trafficserver/bin/
+[root@web_01 bin]# ./trafficserver start
+Starting Apache Traffic Server:                            [  Ok 
+
+```
+
+```
+[root@localhost ~]# ps aux|grep traffic
+root      7469  0.0  0.0 129628  7248 ?        Ssl  04:57   0:02 /usr/local/tcacheserver/bin/traffic_cop
+176       7472  0.0  0.0 501692 19660 ?        Sl   04:57   0:30 /usr/local/tcacheserver/bin/traffic_manager
+176       7482 19.8 20.8 15253324 10279168 ?   Sl   04:57 118:31 /usr/local/tcacheserver/bin/traffic_server
+```
+
 ## 资料
 [Redis、Lua、Nginx、OpenResty 笔记和资料](https://github.com/Tinywan/lua-nginx-redis)
