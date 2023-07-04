@@ -11,6 +11,7 @@ CDN将源站资源缓存到加速节点，当终端用户请求访问和获取�
 [CDN技术详解.pdf](链接: https://pan.baidu.com/s/1i4UIOcd 密码: 2yjh)
 
 抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
+可以`tcpdump -i any -vvvvnnA dst port 8899 -w file.cap` 保存文件中, 然后使用wireshark来查看数据包
 
 ## DNS
 

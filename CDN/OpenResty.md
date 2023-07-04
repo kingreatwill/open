@@ -529,3 +529,5 @@ root      7469  0.0  0.0 129628  7248 ?        Ssl  04:57   0:02 /usr/local/tcac
 
 ## 资料
 [Redis、Lua、Nginx、OpenResty 笔记和资料](https://github.com/Tinywan/lua-nginx-redis)
+
+[OpenResty学习指南（一）](https://www.cnblogs.com/luozhiyun/p/12267231.html)

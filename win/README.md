@@ -1,3 +1,6 @@
+
+
+## tool
 [29 个 Windows 必装神器](https://zhuanlan.zhihu.com/p/115649634)
 
 - Listary
@@ -19,6 +22,20 @@ AutoHotkey 是一个 windows 上的开源软件，用于做自动化的处理
 - 通过 WinLIRC client script.对外部设备的信号进行回应
 - 可以运行 AutoITv2 的脚本
 - 将自动化脚本转变成 exe 文件
+
+### portableapps
+https://portableapps.com/
+绿色软件（英语：portable application、portable software、portable apps）或称便携软件
+https://portableapps.com/apps
+https://alternativeto.net/
+http://ww1.thumbapps.org/
+http://portableappz.blogspot.com/
+
+搜索一般就是搜索的便携软件
+软件名 + paf.exe
+软件名 + portableapps
+
+可以使用PortableApps.com(这是一个软件)来管理所有的绿色软件
 
 ### PE Tools
 

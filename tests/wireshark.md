@@ -9,6 +9,13 @@ wireshark是捕获机器上的某一块网卡的网络包，当你的机器上�
 ## TODO
 深入TCP的时候需要学习
 
+## tcpdump
+
+抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
+可以`tcpdump -i any -vvvvnnA dst port 8899 -w file.cap` 保存文件中, 然后使用wireshark来查看数据包
+
+
+
 ## 其它
 ### Charles
 Charles是一个HTTP代理/ HTTP监视器/反向代理，它使开发人员能够查看他们的机器和Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求、响应和HTTP头(其中包含cookie和缓存信息)。

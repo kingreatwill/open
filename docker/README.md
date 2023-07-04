@@ -589,3 +589,23 @@ RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=loc
 
 [使用 BuildKit 构建镜像](https://docker-practice.github.io/zh-cn/buildx/buildkit.html)
 [使用 BuildKit 构建镜像](https://vuepress.mirror.docker-practice.com/buildx/buildkit/#run-mount-type-cache)
+
+## 流水线版本
+```
+
+GIT_COMMIT_ID=$(git rev-parse --short HEAD)
+
+GIT_BRANCH_OR_TAG=$(git symbolic-ref --short -q HEAD || git describe --tags --exact-match 2> /dev/null)
+GIT_BRANCH_OR_TAG=$(basename "$GIT_BRANCH_OR_TAG")
+
+DATETIME=$(date +"%Y%m%d%H%M%S")
+
+VERSION="${DATETIME}-${GIT_BRANCH_OR_TAG//_/-}-${GIT_COMMIT_ID}"
+echo ${VERSION} > .VERSION
+
+
+# echo "${DATETIME}-${GIT_BRANCH_OR_TAG//_/-}-${GIT_COMMIT_ID}" > .VERSION # 输出到.VERSION文件, 如果文件存在,会覆盖
+# VERSION=$(cat .VERSION) # 取版本信息到变量
+# VERSION=$(head -1 .VERSION) # 取版本信息到变量
+
+```
