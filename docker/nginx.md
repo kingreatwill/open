@@ -85,9 +85,50 @@ worker_processes 8;
 worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000;
 
 八核心系统，每个cpu绑定到一个work进程的写法。
+有多少个核，就有几位数，1表示该内核开启，0表示该内核关闭。
 
-### 如何构建高性能服务器（以Nginx为例）
-https://www.cnblogs.com/kukafeiso/p/13957174.html
+worker_processes  auto;
+worker_cpu_affinity   auto;
+
+### nginx最大并发连接数
+[worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
+
+连接数包含与代理服务器的连接以及与客户端的连接, 同时总连接数(worker_connections*worker_process)不能超过最大打开文件数,
+查看最大文件数`ulimit -a|grep "open files"` 或者 `ulimit -n`
+
+```
+客户端正向代理数 =   worker_rlimit_nofile / 2 >=  worker_connections * worker_process /2
+客户端可连反向代理数据 =  worker_rlimit_nofile /4  >=  worker_connections * worker_process /4
+
+nginx作为http服务器的时候：
+max_clients = worker_processes * worker_connections/2
+
+nginx作为反向代理服务器的时候：
+max_clients = worker_processes * worker_connections/4
+```
+
+> 修改linux的最大打开文件数`/etc/security/limits.conf 增加到65535` ;同时修改`worker_rlimit_nofile ` 和 `worker_connections  `
+
+**multi_accept**指令使得NGINX worker能够在获得新连接的通知时尽可能多的接受连接。 此指令的作用是立即接受所有连接放到监听队列中。 如果指令被禁用(	
+Default: multi_accept off;)，worker进程将逐个接受连接。
+```
+events{
+      multi_accept on;
+}
+
+
+如果use kqueue;, 则multi_accept无用
+events{
+    use kqueue;
+    multi_accept on;
+}
+```
+
+
+### Nginx 性能优化
+
+[如何构建高性能服务器（以Nginx为例）](https://www.cnblogs.com/kukafeiso/p/13957174.html)
+[Nginx 性能优化有这篇就够了](https://www.cnblogs.com/cheyunhua/p/10670070.html)
 
 ### ngx_http_auth_digest 模块进行登录认证
 

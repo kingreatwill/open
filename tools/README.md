@@ -219,6 +219,8 @@ Fluent Terminal
 Hyper
 Terminus
 
+> Windows Terminal [Windows下的Git Bash配置，提升你的终端操作体验](https://zhuanlan.zhihu.com/p/418321777)
+
 ### terminal
 https://github.com/lcomplete/TechShare/blob/master/docs/10x/terminal.md
 
@@ -634,6 +636,13 @@ https://filebrowser.org/installation
 #### QTTabBar
 #### Clover
 Clover 是 Windows Explorer 资源管理器的一个扩展，为其增加类似谷歌 Chrome 浏览器的多标签页功能。
+
+#### 其它
+docker pull linuxserver/wps-office
+docker run  -itd -p 3000:3000 -p 3001:3001 -v /e/dockerv/wps/config:/config --restart always --name wps  linuxserver/wps-office
+
+3000与3001，分别为http与https协议
+
 ### 文本编辑器(轻量级IDE)
 #### notepad++
 

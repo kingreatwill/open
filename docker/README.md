@@ -313,7 +313,18 @@ docker run -itd -p 6080:80 -p 5900:5900  -e HTTP_PASSWORD=mypassword  -e VNC_PAS
 docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e USER=zs -e PASSWORD=mypassword -e HTTP_PASSWORD=mypassword  -e VNC_PASSWORD=mypassword dorowu/ubuntu-desktop-lxde-vnc:bionic
 ```
 ### 名词解释
-VNC (Virtual Network Console)是虚拟网络控制台的缩写，优点像windows版本的远程桌面控制
+VNC (Virtual Network Console)是虚拟网络控制台的缩写，优点像windows版本的远程桌面控制，它是一款优秀的远程控制工具软件，由著名的 AT&T 的欧洲研究实验室开发的。VNC 是在基于 UNIX 和 Linux 操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 和 MAC 中的任何远程控制软件媲美。 在 Linux 中，VNC 包括以下四个命令：vncserver，vncviewer，vncpasswd，和 vncconnect。大多数情况下用户只需要其中的两个命令：vncserver 和 vncviewer。
+
+## bitnami
+bitnami快速部署开源软件
+BitNami是一个开源项目，专注于帮助开发人员快速部署和管理应用程序。
+
+看支持哪些docker/k8s/vm : https://bitnami.com/stacks
+https://github.com/bitnami/containers/tree/main/bitnami/
+
+比如: [使用 bitnami/postgresql-repmgr 镜像快速设置 PostgreSQL HA](https://www.cnblogs.com/hacker-linner/p/16183165.html)
+比如: [mysql主从](https://github.com/bitnami/containers/tree/main/bitnami/mysql) 也是非常方便的
+
 
 ## docker 分析
 ### docker image转dockerfile

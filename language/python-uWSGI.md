@@ -172,6 +172,12 @@ server {
 }
 ```
 
+> 问: 我在uginx后面运行uWSGI，并且一直在使用proxy_pass让Nginx击中uWSGI。 切换到uwsgi_pass有什么好处吗？ 如果是这样，那是什么？
+
+> 答: uwsgi_pass使用uwsgi协议。 proxy_pass使用普通的HTTP与uWSGI服务器联系。 uWSGI文档声称，这个协议更好，更快，可以受益于uWSGI的所有特殊功能。
+有没有真正的好处？ 是。 您可以向uWSGI信息发送您正在发送的数据类型以及应该调用哪个uWSGI插件来生成响应。 与http（ proxy_pass ）你不会得到。 更多关于你可以在uWSGI文档中找到。
+但是，即使没有为您使用uwsgi协议而不是http使用uwsgi协议，您应该使用uwsgi协议（如果可以的话），因为uwsgi是uWSGI服务器的主要协议，在这里更合适。
+如果要使用uwsgi协议，则必须将uWSGI启动脚本中的http-socket参数更改为socket 。
 
 #### uwsgi http、http-socket和socket配置项
 
