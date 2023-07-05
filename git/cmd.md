@@ -104,6 +104,30 @@ $ git commit --amend [file1] [file2]
 `git --work-tree=E:/xxx --git-dir=E:/xxx/.git pull`
 `git -C "E:/xxx" pull`
 
+### git 恢复&撤销&回滚
+1. 修改未本地提交和add, 直接 `git checkout .` 或者指定文件 `git checkout -- filename`
+2. 已经提交或者add
+- git reset修改HEAD的位置,`git reset --hard commitidxxx` 然后`git push -f`强制推送, 那么之前的提交会丢弃
+- git revert反做版本,`git revert -n commitidxxx`然后`git commit -m "xxx"`,最后`git push`
+
+> $ git reset HEAD^            # 回退所有内容到上一个版本  
+> $ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本 
+> --hard 参数撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交：`git reset --hard HEAD`
+
+> 还原工作区（文件内容）
+> git checkout – <file_name> 丢弃工作区的修改，并用最近一次的commit内容还原到当前工作区（对文件中内容的操作，无法对添加文件、删除文件起作用）
+> git checkout HEAD^ – <file_name> 将指定commit提交的内容(HEAD^表示上一个版本)还原到当前工作区
+> git checkout <branch_name> – <file_name> 将指定分支的指定提交内容还原到当前分支工作区
+
+> git restore 用法总结
+> git restore --staged <file_name> 将暂存区的修改重新放回工作区（包括对文件自身的操作，如添加文件、删除文件）
+> git restore <file_name> 丢弃工作区的修改（不包括对文件自身的操作，如添加文件、删除文件）
+
+[Git恢复之前版本的两种方法reset、revert（图文详解）](https://blog.csdn.net/yxlshk/article/details/79944535)
+
+[git reset 命令](https://www.runoob.com/git/git-reset.html)
+
+[一次搞清 git checkout，git restore 和 git reset](https://blog.csdn.net/Sweet_19BaBa/article/details/111950384)
 
 ### 新建仓库
 
