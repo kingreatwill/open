@@ -601,6 +601,39 @@ RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=loc
 [使用 BuildKit 构建镜像](https://docker-practice.github.io/zh-cn/buildx/buildkit.html)
 [使用 BuildKit 构建镜像](https://vuepress.mirror.docker-practice.com/buildx/buildkit/#run-mount-type-cache)
 
+## docker资源限制
+[docker对于CPU和内存的限制](https://www.cnblogs.com/renshengdezheli/p/16662622.html)
+
+限制512M内存
+`docker run -it --rm -m 512m -v /memload:/memload hub.c.163.com/library/centos:latest`
+
+--cpuset-cpus=0 设置容器里的进程都运行在0号CPU上
+`docker run -it --rm  --cpuset-cpus=0 -v /memload:/memload hub.c.163.com/library/centos:latest`
+
+限制一个半的 CPU
+`docker run -it --rm  --cpus="1.5" -v /memload:/memload hub.c.163.com/library/centos:latest`
+
+常用的参数有：
+参数	 |	参数解释
+---|---
+-m或者--memory=	 |	容器可以使用的最大内存量。如果设置此选项，则允许的最小值为6m（6 兆字节）。也就是说，您必须将该值设置为至少 6 兆字节。
+--memory-swap*	 |	允许此容器交换到磁盘的内存量。
+--memory-swappiness	 |	默认情况下，主机内核可以换出容器使用的一定百分比的匿名页面。您可以设置--memory-swappiness为 0 到 100 之间的值，以调整此百分比。
+--memory-reservation	 |	允许您指定一个小于--memory在 Docker 检测到主机上的争用或内存不足时激活的软限制。如果使用--memory-reservation，则必须将其设置为低于--memory它才能优先。因为是软限制，所以不保证容器不超过限制。
+--kernel-memory	 |	容器可以使用的最大内核内存量。允许的最小值是4m。因为内核内存不能被换出，内核内存不足的容器可能会阻塞主机资源，这会对主机和其他容器产生副作用。
+--oom-kill-disable	 |	默认情况下，如果发生内存不足 (OOM) 错误，内核会终止容器中的进程。要更改此行为，请使用该--oom-kill-disable选项。仅在您还设置了该-m/--memory选项的容器上禁用 OOM kill。如果-m未设置该标志，主机可能会耗尽内存，内核可能需要终止主机系统的进程以释放内存。
+
+参数 |	参数解释
+---|---
+--cpus=	 |	指定容器可以使用多少可用 CPU 资源。例如，如果主机有两个 CPU，并且您设置--cpus="1.5"了 ，则容器最多可以保证一个半的 CPU。这相当于设置--cpu-period="100000"和--cpu-quota="150000"。
+--cpu-period=	 |	指定 CPU CFS 调度程序周期，它与 --cpu-quota. 默认为 100000 微秒（100 毫秒）。大多数用户不会更改默认设置。对于大多数用例，--cpus是一种更方便的选择。
+--cpu-quota=	 |	对容器施加 CPU CFS 配额。--cpu-period容器在被限制之前被限制的每微秒数。因此充当有效上限。对于大多数用例，--cpus是一种更方便的选择。
+--cpuset-cpus	 |	限制容器可以使用的特定 CPU 或内核。如果您有多个 CPU，则容器可以使用的逗号分隔列表或连字符分隔的 CPU 范围。第一个 CPU 编号为 0。有效值可能是0-3（使用第一个、第二个、第三个和第四个 CPU）或1,3（使用第二个和第四个 CPU）。
+--cpu-shares	 |	将此标志设置为大于或小于默认值 1024 的值，以增加或减少容器的重量，并允许它访问或多或少比例的主机 CPU 周期。这仅在 CPU 周期受到限制时才会强制执行。当有足够多的 CPU 周期可用时，所有容器都会根据需要使用尽可能多的 CPU。这样，这是一个软限制。--cpu-shares不会阻止容器以 swarm 模式调度。它优先考虑可用 CPU 周期的容器 CPU 资源。它不保证或保留任何特定的 CPU 访问权限。
+
+> [cpu测试脚本](../linux/shell/cpuload.sh) ;  [内存测试脚本](../linux/shell/cpuload.sh)
+
+
 ## 流水线版本
 ```
 

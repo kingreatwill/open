@@ -5,6 +5,11 @@ CPU统计工具如topas、sar、vmstat、lparstat、iostat
 
 top执行一次:`top -n 1`
 
+## memory
+[内存测试工具](https://www.cnblogs.com/sunshine-blog/p/11903842.html)
+
+> [cpu测试脚本](../linux/shell/cpuload.sh) ;  [内存测试脚本](../linux/shell/cpuload.sh)
+
 ## I/O
 
 狭义讲，IO分两类：
@@ -77,6 +82,51 @@ IOPS (Input/Output Per Second)即每秒的输入输出量(或读写次数)，是
 
 sar -d, iostat, topas, nmon, iotop
 
+#### 硬盘IO读写速度测试
+**硬盘IO写速度测试**
+1. 测试磁盘速度:`hdparm -Tt /dev/sda3`
+2. dd
+测试逻辑速度【结果较快】
+表示 每次写入8k的数据，执行300000次
+`time dd if=/dev/zero of=test.dbf bs=8k count=300000`
+
+测试真实的IO速度，需要在后面加上参数oflag=direct 【这个过程较慢】
+`time dd if=/dev/zero of=test.dbf bs=8k count=300000 oflag=direct`
+上面操作会在当前路径留下一个test文件，记得删除啊
+```
+[root@centos-73-iso-100g-test data_vdb1]# du -sh * | tail -n1
+2.3G    test.dbf
+[root@centos-73-iso-100g-test data_vdb1]# rm -rf test.dbf 
+```
+
+**硬盘IO读速度测试**
+测试逻辑速度【结果较快】
+表示 每次读取8k的数据，执行300000次
+`dd if=test.dbf bs=8k count=300000 of=/dev/null `
+
+真实测试
+`dd if=test.dbf bs=8k count=300000 of=/root/test2.dbf oflag=direct`
+或者 创建一个3G的文件
+`dd if=/dev/zero of=test.txt bs=1M count=3000`
+
+一般它的常用参数有：
+
+- if=初始路径
+- of=目的路径
+- bs=n，block size，每次读取 n bytes 写入，可与 count 联用；
+- ibs=n，一次读入 bytes 个字节 (default is 512)；
+- obs=n，一次性写 n bytes 个字节 (default is 512)；
+- bs= 可以同时设置上边两个参数；
+- cbs=n，一次转换 n 个 bytes，即转换缓冲区大小。；
+- count=n， bs 操作的次数，仅拷贝 n 个块，如 dvd: - bs=1M count=4430；
+- skip=n，指 if 后面的原文件跳过 n bytes 再开始读取；
+- seek=n，指 of 后面的目标文件跳过 n bytes 再开始写入；
+
+查看目录下所有文件的大小并按照大小排序 : `du -sh * | sort -rh`
+统计当前目录的大小:`du -sh`
+查看当前目录下所有一级子目录文件夹大小 并排序: `sudo du -h --max-depth=1 |sort`
+以人性化的方式显示文件大小:`du -h Debian.iso`
+查看当前目录下一级子文件和子目录占用的磁盘容量:`du -lh --max-depth=1`
 
 #### iostat
 iostat，对系统的磁盘操作活动进行监视。它的特点是汇报磁盘活动统计情况，同时也会汇报出CPU使用情况。**iostat也有一个弱点，就是它不能对某个进程进行深入分析，仅对系统的整体情况进行分析。**
