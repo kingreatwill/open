@@ -65,6 +65,9 @@ https://github.com/transloadit/uppy
 ### 图片处理
 https://github.com/nhn/tui.image-editor
 
+去除背景
+https://github.com/imgly/background-removal-js
+
 ### SQL
 #### 解析sql、sql2ast
 https://github.com/DTStack/dt-sql-parser

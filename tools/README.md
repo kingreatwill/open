@@ -399,7 +399,7 @@ ZIP 压缩包管理器 - 免费版含广告
 -  NoteCase、KeepNote、Knowit、Tomboy、TuxCards、Treepad、Leo
 - 知识管理工具 typora、Notion Web Clipper、Scapple、Things 3、Anki、redmine、Xwiki、confluence
 - takenote 基于 Web 的 Markdown 笔记应用
-
+- [AFFiNE](https://github.com/toeverything/AFFiNE)
 - [开源笔记本软件 Joplin](https://github.com/laurent22/joplin)
 ### 笔记/知识管理软件
 - [印象笔记](https://www.yinxiang.com/)（[Evernote](https://evernote.com) ）

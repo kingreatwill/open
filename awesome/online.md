@@ -64,6 +64,8 @@ online
     那么如果是vscode.dev： https://vscode.dev/github/openjw/open
     > [以上内容来自2021-10-20](https://code.visualstudio.com/blogs/2021/10/20/vscode-dev)
 
+- [devpod](https://github.com/loft-sh/devpod) Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker. [docs](https://devpod.sh/docs/getting-started/quickstart-ssh)
+
 - [github1s](https://github.com/conwnet/github1s)
 Just add 1s after github and press Enter in the browser address bar for any repository you want to read. eg: https://github1s.com/microsoft/vscode
 
