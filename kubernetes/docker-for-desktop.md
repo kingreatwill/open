@@ -47,6 +47,11 @@ kubectl proxy
 
 > 访问规则:http://[k8s-master]:8009/api/v1/namespaces/[namespace-name]/services/[service-name]/proxy
 
+`kubectl port-forward` 端口转发
+将 localhost:3000 的请求转发到 nginx-pod Pod 的 80 端口
+`kubectl port-forward nginx-po 3000:80`
+将 localhost:3201 的请求转发到 nginx-web service 的 3201 端口
+`kubectl port-forward svc/nginx-web 3201`
 
 
 **配置 kubeconfig**

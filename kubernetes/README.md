@@ -340,6 +340,9 @@ kubectl set env deploy <DEPLOYMENT_NAME> OC_XXX_HOST=bbb
 将 localhost:3201 的请求转发到 nginx-web service 的 3201 端口
 `kubectl port-forward svc/nginx-web 3201`
 
+kubectl proxy
+
+
 - 配置默认storageclass
 ```
 kubectl patch storageclass <your-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
