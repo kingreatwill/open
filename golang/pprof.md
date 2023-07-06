@@ -38,6 +38,14 @@ https://github.com/parca-dev/parca
 https://github.com/profefe/profefe
 ### fgprof
 https://github.com/felixge/fgprof
+
+### go-torch
+https://github.com/uber/go-torch
+使用go-torch来生成golang程序的火焰图
+```
+go-torch -alloc_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
+go-torch -inuse_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
+```
 ### pprof
 https://github.com/google/pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
@@ -46,8 +54,109 @@ https://github.com/google/pprof
 
 https://github.com/golang/go/wiki/Performance
 
+https://go.dev/doc/diagnostics
 
 
+[profile类型](https://pkg.go.dev/runtime/pprof#Profile)：
+```
+goroutine    - stack traces of all current goroutines
+heap         - a sampling of memory allocations of live objects
+allocs       - a sampling of all past memory allocations
+threadcreate - stack traces that led to the creation of new OS threads
+block        - stack traces that led to blocking on synchronization primitives
+mutex        - stack traces of holders of contended mutexes
+```
+BlockProfile和MutexProfile需要设置采集频率才能采集到数据，因为它们默认不采集，相关文档如下：
+```
+$ go doc runtime.SetBlockProfileRate
+
+$ go doc runtime.SetMutexProfileFraction
+```
+MemoryProfile频率也是可以设置的（默认是开启的，因此可以不动），同时GODEBUG=memprofilerate=X也可以控制这个参数：
+```
+$ go doc runtime.MemProfileRate
+```
+#### 自测试testing
+
+
+我们可以先使用go test 内置的参数生成pprof数据，然后借助go tool pprof/go-torch来分析。
+生成cpu、mem的pprof文件([相关flag](https://golang.org/cmd/go/#hdr-Testing_flags))
+
+
+```
+go test -bench=BenchmarkStorageXXX -cpuprofile cpu.out -memprofile mem.out
+```
+此时会生成一个二进制文件和2个pprof数据文件，例如
+`storage.test cpu.out mem.out`
+然后使用go-torch来分析，二进制文件放前面
+```
+#分析cpu
+go-torch storage.test cpu.out
+#分析内存
+go-torch --colors=mem -alloc_space storage.test mem.out
+go-torch --colors=mem -inuse_space storage.test mem.out
+```
+
+> go test -cpuprofile=cpu.out
+go test -blockprofile=block.out
+go test -memprofile=mem.out
+
+CPU profile：报告程序的 CPU 使用情况，按照一定频率去采集应用程序在 CPU 和寄存器上面的数据
+Memory Profile（Heap Profile）：报告程序的内存使用情况
+Block Profile：报告导致阻塞的同步原语的情况，可以用来分析和查找锁的性能瓶颈
+Goroutine Profile：报告 goroutines 的使用情况，有哪些 goroutine，它们的调用关系是怎样的
+
+
+```
+-benchmem
+    Print memory allocation statistics for benchmarks.
+
+-blockprofile block.out
+    Write a goroutine blocking profile to the specified file
+    when all tests are complete.
+    Writes test binary as -c would.
+
+-blockprofilerate n
+    Control the detail provided in goroutine blocking profiles by
+    calling runtime.SetBlockProfileRate with n.
+    See 'go doc runtime.SetBlockProfileRate'.
+    The profiler aims to sample, on average, one blocking event every
+    n nanoseconds the program spends blocked. By default,
+    if -test.blockprofile is set without this flag, all blocking events
+    are recorded, equivalent to -test.blockprofilerate=1.
+
+-cpuprofile cpu.out
+    Write a CPU profile to the specified file before exiting.
+    Writes test binary as -c would.
+
+-memprofile mem.out
+    Write an allocation profile to the file after all tests have passed.
+    Writes test binary as -c would.
+
+-memprofilerate n
+    Enable more precise (and expensive) memory allocation profiles by
+    setting runtime.MemProfileRate. See 'go doc runtime.MemProfileRate'.
+    To profile all memory allocations, use -test.memprofilerate=1.
+
+-mutexprofile mutex.out
+    Write a mutex contention profile to the specified file
+    when all tests are complete.
+    Writes test binary as -c would.
+
+-mutexprofilefraction n
+    Sample 1 in n stack traces of goroutines holding a
+    contended mutex.
+```
+
+##### go test时产生trace
+[相关flag](https://golang.org/cmd/go/#hdr-Testing_flags)
+```
+$ go test -trace=trace.out pkg
+
+-trace trace.out
+    Write an execution trace to the specified file before exiting.
+```
+#### 详细
 
 gops 分析机器上运行了哪些go进程
 https://shockerli.net/post/golang-tool-gops/
@@ -114,19 +223,23 @@ go tool pprof --http :9090 http://localhost:8080/debug/pprof/heap
 
 
 方法一：
-$ go tool pprof -http=:8080 cpu.prof
+`$ go tool pprof -http=:8080 cpu.prof`
 方法二：
+```
 $ go tool pprof cpu.prof 
 $ (pprof) web
+```
 
 #### 另一种可视化数据的方法是火焰图，需手动安装原生 PProf 工具：
 
 （1） 安装 PProf
 
-$ go get -u github.com/google/pprof
+`$ go get -u github.com/google/pprof`
+
 （2） 启动 PProf 可视化界面:
 
-$ pprof -http=:8080 cpu.prof
+`$ pprof -http=:8080 cpu.prof`
+
 （3） 查看 PProf 可视化界面
 
 打开 PProf 的可视化界面时，你会明显发现比官方工具链的 PProf 精致一些，并且多了 Flame Graph（火焰图）
@@ -134,6 +247,7 @@ $ pprof -http=:8080 cpu.prof
 它就是本次的目标之一，它的最大优点是动态的。调用顺序由上到下（A -> B -> C -> D），每一块代表一个函数，越大代表占用 CPU 的时间更长。同时它也支持点击块深入进行分析！
 
 #### go tool trace trace.out
+
 ```
 	f, _ := os.Create("trace.out")
 	defer f.Close()
@@ -196,7 +310,38 @@ https://github.com/hatlonely/easygolang/blob/master/pprof/pprof.go
 [通过实例理解Go Execution Tracer](https://tonybai.com/2021/06/28/understand-go-execution-tracer-by-example/)
 
 
-## 内存不归还系统
+## 具体问题
+
+### 优化建议
+- 小对象合并
+对象合并成更大的对象。比如，使用 bytes.Buffer 代替 *bytes.Buffer 结构（后面你可以通过调用 bytes.Buffer.Grow 预先分配 buffer ）。这将降低内存的分配数量（更快），同时降低垃圾回收器的压力（更快的垃圾回收）。
+
+- 局部变量逃逸时，将其聚合起来
+```go
+for k, v := range m {
+	k, v := k, v   // copy for capturing by the goroutine
+	go func() {
+		// use k and v
+	}()
+}
+```
+可以修改为:
+```go
+for k, v := range m {
+	x := struct{ k, v string }{k, v}   // copy for capturing by the goroutine
+	go func() {
+		// use x.k and x.v
+	}()
+}
+```
+修改后，逃逸的对象变为了x，将k，v2个对象减少为1个对象。
+这会把两个内存分配变为一个内存分配。尽管如此，该优化会影响代码的可读性，所以请合理使用它。
+
+### 解读pprof报告
+[解读pprof报告](https://chanjarster.github.io/post/go/pprof-explained/)
+
+[Go Debug Cheatsheet](https://chanjarster.github.io/post/go/go-debug-cheatsheet/)
+### 内存不归还系统
 
 ```
 package main
