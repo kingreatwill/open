@@ -220,6 +220,12 @@ Hyper
 Terminus
 
 > Windows Terminal [Windows下的Git Bash配置，提升你的终端操作体验](https://zhuanlan.zhihu.com/p/418321777)
+> [Powershell + clink整合cmd教程](https://blog.csdn.net/m0_46439571/article/details/123969447)
+
+### clink
+cmd命令行增强工具https://github.com/chrisant996/clink
+http://mridgers.github.io/clink/
+
 
 ### terminal
 https://github.com/lcomplete/TechShare/blob/master/docs/10x/terminal.md

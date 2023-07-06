@@ -4,6 +4,10 @@
 ## dive
 https://github.com/wagoodman/dive 22.5k
 工具探究Docker 镜像的世界
+
+[Play-with-docker（PWD）是一个Docker的演练场](https://labs.play-with-docker.com/)
+PS: 如果有pull不下来的镜像, 登录上去pull 下来,推送到自己的docker hub上去, 然后再下载
+
 # docker私有仓库
 ## Harbor
 Habor是由VMWare公司开源的容器镜像仓库。事实上，Habor是在Docker Registry上进行了相应的企业级扩展，从而获得了更加广泛的应用，这些新的企业级特性包括：管理用户界面，基于角色的访问控制 ，AD/LDAP集成以及审计日志等，足以满足基本企业需求。
