@@ -45,6 +45,8 @@ https://github.com/Eugeny/terminus
 ### finalshell
 https://fishshell.com/
 ### Putty、telnet
+### Tabby
+https://github.com/Eugeny/tabby
 
 ### OpenSSH
 ### WinSCP

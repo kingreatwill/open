@@ -175,3 +175,24 @@ https://github.com/xyproto/algernon
 
 (代替我的Markdown server)
 纯 Go 语言开发的 Web 开发工具，内置 Lua，Markdown，模板和 HTTP / 2，Redis，Mysql，Postgresql 支持
+
+## 内存泄露/内存错误检测工具
+### Address Sanitizer(ASan)
+Address Sanitizer是谷歌的快速的内存错误检测工具，它非常快只拖慢程序2倍左右的速度，在这次使用过程中，也是深有体会。在GCC 4.9版本以上，就可以很好的使用了。
+
+Sanitizers是谷歌发起的开源工具集，包括了AddressSanitizer, MemorySanitizer, ThreadSanitizer, LeakSanitizer，Sanitizers项目本是LLVM项目的一部分，但GNU也将该系列工具加入到了自家的GCC编译器中。GCC从4.8版本开始支持Address和Thread Sanitizer，4.9版本开始支持Leak Sanitizer和UB Sanitizer，这些都是查找隐藏Bug的利器。
+
+
+编译时候添加选项：`-fsanitize=address  -fno-omit-frame-pointer -fno-optimize-sibling-calls  -O0`
+```
+g++  -fsanitize=address  -fno-omit-frame-pointer -fsanitize=leak    -use-after-free  -g main.c -o t1
+
+gcc -g main.c -o t1  -fsanitize=leak -fsanitize=address  -fno-omit-frame-pointer
+
+clang    -fsanitize=address  -fno-omit-frame-pointer -fsanitize=leak    -use-after-free  -g main.c -o t1
+ASAN_OPTIONS=detect_leaks=1 ./t1
+```
+
+> yum install libasan -y
+> yum install centos-release-scl-rh
+> yum --enablerepo=centos-sclo-rh-testing install libasan5

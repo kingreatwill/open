@@ -1,5 +1,10 @@
 [TOC]
 # NAS（Network Attached Storage：网络附属存储）
+
+光猫地址: 192.168.1.1/cu.html
+管理账号: CUAdmin
+超级密码: cuadmin00259e
+
 ## 群辉 Synology
 黑群辉安装引导:https://github.com/fbelavenuto/arpl
 
