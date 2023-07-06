@@ -46,6 +46,12 @@ https://github.com/uber/go-torch
 go-torch -alloc_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
 go-torch -inuse_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
 ```
+
+### trace
+单单使用 PProf 有时候不一定足够完整，因为在真实的程序中还包含许多的隐藏动作，例如 Goroutine 在执行时会做哪些操作？执行/阻塞了多长时间？在什么时候阻止？在哪里被阻止的？谁又锁/解锁了它们？GC 是怎么影响到 Goroutine 的执行的？这些东西用 PProf 是很难分析出来的，但如果你又想知道上述的答案的话，你可以用 `go tool trace` 。
+
+https://blog.csdn.net/u013474436/article/details/105232768
+
 ### pprof
 https://github.com/google/pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
@@ -253,6 +259,37 @@ $ (pprof) web
 	defer f.Close()
 	trace.Start(f)
 	defer trace.Stop()
+```
+
+也可以输出到 标准错误
+```
+import (
+	"os"
+	"runtime/trace"
+)
+
+func main() {
+	trace.Start(os.Stderr)
+	defer trace.Stop()
+
+	ch := make(chan string)
+	go func() {
+		ch <- "EDDYCJY"
+	}()
+
+	<-ch
+}
+
+```
+生成跟踪文件：( 2> 就是Stderr)
+```
+$ go run main.go 2> trace.out
+```
+
+当然pprof中也有
+```
+curl http://127.0.0.1:6060/debug/pprof/trace?seconds=20 > trace.out
+go tool trace trace.out
 ```
 
 #### 也可以写入文件
