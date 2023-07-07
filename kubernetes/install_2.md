@@ -49,10 +49,10 @@ sealos已经不紧紧是可以安装k8s
 安装
 ```sh
 # Run a single node kubernetes
-$ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1
+$ sealos run labring/kubernetes:v1.25.0 labring/calico:v3.24.1
 
 # Run a HA kubernetes cluster
-$ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1
+$ sealos run labring/kubernetes:v1.25.0 labring/calico:v3.24.1
       --masters 192.168.64.2,192.168.64.22,192.168.64.20 
       --nodes 192.168.64.21,192.168.64.19 -p [your-ssh-passwd]
 # helm

@@ -178,6 +178,69 @@ func main() {
 `go run -gcflags=all=-G=3 main.go`
 `go run -gcflags=-G=3 main.go`
 
-## go1.18
+# go1.18
 
 [工作区模式](https://mp.weixin.qq.com/s/pR2rOWM2cgOk191IbifwGQ)
+
+# go1.21
+
+- 低版本的go编译器将拒绝编译高版本的go module(go.mod中go version标识最低版本) 
+
+- 支持WASI(WebAssembly System Interface)
+Go从1.11版本就开始支持将Go源码编译为wasm二进制文件，并在支持wasm的浏览器环境中运行。
+
+不过WebAssembly绝不仅仅被设计为仅限于在Web浏览器中运行，核心的WebAssembly语言是独立于其周围环境的，WebAssembly完全可以通过API与外部世界互动。在Web上，它自然使用浏览器提供的现有Web API。然而，在浏览器之外，之前还没有一套标准的API可以让WebAssembly程序使用。这使得创建真正可移植的非Web WebAssembly程序变得困难。WebAssembly System Interface(WASI)是一个填补这一空白的倡议，它有一套干净的API，可以由多个引擎在多个平台上实现，并且不依赖于浏览器的功能（尽管它们仍然可以在浏览器中运行）。
+
+Go 1.21将增加对WASI的支持，初期先支持WASI Preview1版本，之后会支持WASI Preview2版本，直至最终WASI API版本发布！目前我们可以使用GOOS=wasip1 GOARCH=wasm将Go源码编译为支持WASI的wasm程序，下面是一个例子：
+```go
+// main.go
+package main            
+                        
+func main() {           
+    println("hello")    
+}   
+```
+
+```
+$ GOARCH=wasm GOOS=wasip1 gotip build -o main.wasm main.go
+```
+
+开源的wasm运行时有很多，[wazero](https://wazero.io/)是目前比较火的且使用纯Go实现的wasm运行时程序，安装wazero后，可以用来执行上面编译出来的main.wasm：
+```
+$curl https://wazero.io/install.sh
+$wazero run main.wasm
+hello 
+```
+
+- 增加$GOROOT/go.env
+Go 1.21将增加一个全局层次上的go.env，放在$GOROOT下面，目前默认的go.env为：
+```
+// $GOROOT/go.env
+
+# This file contains the initial defaults for go command configuration.
+# Values set by 'go env -w' and written to the user's go/env file override these.
+# The environment overrides everything else.
+
+# Use the Go module mirror and checksum database by default.
+# See https://proxy.golang.org for details.
+GOPROXY=https://proxy.golang.org,direct
+GOSUMDB=sum.golang.org
+```
+我们仍然可以通过go env -w命令修改user级的env文件来覆盖上述配置，当然最高优先级的是OS用户环境变量，如果在OS用户环境变量文件(比如.bash_profile、.bashrc)中设置了Go的环境变量值，比如GOPROXY等，那么以OS用户环境变量为优先。
+
+- **在 1.20 中处于预览阶段的启用配置文件引导优化 (PGO) 功能现已正式 GA。**
+Profile-guided optimization (PGO) 是计算机编程中的一种编译器优化技术, 使用配置文件引导的优化。
+如果主软件包目录中存在名为default.pgo的文件，go命令将使用它来启用 PGO 构建。
+
+PGO的原理很简单，那就是先把程序跑起来，收集程序运行过程中的数据。然后编译器再根据收集到的程序运行时数据来分析程序的行为，进而做针对性的性能优化。
+
+```
+$ curl -o cpu.pprof "http://localhost:8080/debug/pprof/profile?seconds=30"
+$ mv cpu.pprof default.pgo
+$ go build -pgo=auto -o withpgo
+```
+
+> -pgo既可以支持指定的profiling文件，也可以支持auto模式。
+如果是auto模式，会自动寻找程序主目录下名为default.pgo的profiling文件。
+Go 1.20版本里，-pgo选项的默认值是off，我们必须添加-pgo=auto来开启PGO优化。
+https://go.dev/doc/pgo
