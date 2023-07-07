@@ -56,6 +56,21 @@ https://github.com/financial-times/polyfill-service
 [基于H5的录屏工具开发](https://juejin.cn/post/6915287057795874824)
 
 ## 工具
+### doc
+https://github.com/dolanmiu/docx
+
+https://products.fileformat.com/word-processing/javascript/docx/
+
+https://medium.com/geekculture/create-dynamic-word-documents-using-docx-js-file-saver-and-data-from-an-excel-or-json-dbd5e4ec823f
+
+https://github.com/open-xml-templating/docxtemplater
+
+https://github.com/guigrpa/docx-templates
+
+https://github.com/VolodymyrBaydalka/docxjs
+
+https://github.com/lalalic/docx4js
+
 ### 上传
 #### FilePond
 https://github.com/pqina/filepond

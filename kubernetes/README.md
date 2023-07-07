@@ -176,8 +176,8 @@ kubectl get pods --all-namespaces -o wide | grep Error | awk '{print $1,$2}' | x
 kubectl get pods --all-namespaces -o wide | grep Completed | awk '{print $1,$2}' | xargs -L1 kubectl delete pod -n 
 ```
 
-- 强制删除指定namespace下Terminating状态的pod
-`kubectl get pod -n $namespace |grep Terminating|awk '{print $1}'|xargs kubectl delete pod --grace-period=0 --force`
+- 批量强制删除指定namespace下Terminating状态的pod
+`kubectl get pod -n $namespace |grep Terminating|awk '{print $1}'|xargs kubectl delete pod -n $namespace --grace-period=0 --force`
 
 - 批量强制删除集群内Terminating状态的pod
 ```
