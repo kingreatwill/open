@@ -244,3 +244,10 @@ $ go build -pgo=auto -o withpgo
 如果是auto模式，会自动寻找程序主目录下名为default.pgo的profiling文件。
 Go 1.20版本里，-pgo选项的默认值是off，我们必须添加-pgo=auto来开启PGO优化。
 https://go.dev/doc/pgo
+https://golang.google.cn/doc/pgo
+
+Merging profiles合并pprof文件
+The pprof tool can merge multiple profiles like this:
+```
+$ go tool pprof -proto a.pprof b.pprof > merged.pprof
+```
