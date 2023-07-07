@@ -24,7 +24,7 @@
 
 运维自动化工具：Jenkins、GitLab CI/CD、CircleCI、Travis CI、Bamboo
 
-虚拟化工具：VMware、VirtualBox、Hyper-V、Xen、KVM
+虚拟化工具：VMware、VirtualBox、Hyper-V、Xen、KVM、multipass 
 
 容灾备份工具：Veeam Backup、Veritas Backup Exec、Acronis Backup、CloudBerry Backup、BackupAssist
 

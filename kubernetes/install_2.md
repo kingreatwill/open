@@ -35,6 +35,45 @@ sealer run prometheus:2.26.0
 [骚操作，这款工具可以把Kubernetes集群打包成一个镜像](https://mp.weixin.qq.com/s/goa9LuKS5HdJC8Q03XNKyA)
 
 ## sealos安装k8s
+https://github.com/labring/sealos
+
+sealos已经不紧紧是可以安装k8s
+
+下载
+```
+ # 下载并安装 sealos, sealos 是个 golang 的二进制工具，直接下载拷贝到 bin 目录即可, release 页面也可下载 
+ yum install wget && yum install tar &&\
+ wget  https://github.com/labring/sealos/releases/download/v4.2.3/sealos_4.2.3_linux_amd64.tar.gz  && \
+ tar -zxvf sealos_4.2.3_linux_amd64.tar.gz sealos &&  chmod +x sealos && mv sealos /usr/bin
+```
+安装
+```sh
+# Run a single node kubernetes
+$ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1
+
+# Run a HA kubernetes cluster
+$ sealos run labring/kubernetes:v1.24.0 labring/calico:v3.22.1
+      --masters 192.168.64.2,192.168.64.22,192.168.64.20 
+      --nodes 192.168.64.21,192.168.64.19 -p [your-ssh-passwd]
+# helm
+$ sealos run labring/kubernetes:v1.25.0 labring/helm:v3.8.2 labring/calico:v3.24.1 \
+      --masters 192.168.0.2,192.168.0.3\
+      --nodes 192.168.0.4 -p [your-ssh-passwd]
+
+# 使用 docker 作为 runtime：
+$ sealos run labring/kubernetes-docker:v1.20.5-4.1.3 labring/calico:v3.24.1 \
+      --masters 192.168.64.2,192.168.64.22,192.168.64.20 \
+      --nodes 192.168.64.21,192.168.64.19 -p [your-ssh-passwd]
+
+
+# Add masters or nodes
+$ sealos add --masters 192.168.64.20 --nodes 192.168.64.21,192.168.64.22
+
+# Delete your cluster
+$ sealos reset
+```
+
+### sealos安装k8s - old
 https://github.com/fanux/sealos 4.1k golang
 
 kubernetes高可用安装（kubernetes install）工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.8 v1.15.11 v1.17.4 v1.18.0! https://sealyun.com

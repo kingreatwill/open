@@ -1,5 +1,5 @@
 
-
+虚拟化工具：VMware、VirtualBox、Hyper-V、Xen、KVM、multipass 
 
 ## Windows10 wsl2 开启Hype-v后如何兼容Virtualbox和VMware
 
@@ -18,3 +18,18 @@ https://download3.vmware.com/software/wkst/file/VMware-workstation-full-e.x.p-15
 https://blogs.vmware.com/workstation/2020/05/vmware-workstation-now-supports-hyper-v-mode.html
 
 [VMware Workstation 16 发布](https://sysin.org/article/Download-VMware-Workstation-16/) 支持Hype-V
+
+
+## VMware
+付费, 好用
+
+## VirtualBox
+免费
+## multipass
+https://multipass.run/
+Multipass 是一个轻量虚拟机管理器，是由 Ubuntu 运营公司 Canonical 所推出的开源项目。运行环境支持 Linux、Windows、macOS。在不同的操作系统上，使用的是不同的虚拟化技术。
+在 Linux 上使用的是 KVM、
+Window 上使用 Hyper-V、
+macOS 中使用 HyperKit 以最小开销运行VM，支持在笔记本模拟小型云。
+
+> 官网上最新描述: Multipass 在 Windows 上使用 Hyper-V，在 macOS 上使用 QEMU 和 HyperKit，在 Linux 上使用 LXD，以实现最小的开销和最快的启动时间。将虚拟机管理程序切换到Virtualbox是一件轻而易举的事。
