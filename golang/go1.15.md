@@ -251,3 +251,11 @@ The pprof tool can merge multiple profiles like this:
 ```
 $ go tool pprof -proto a.pprof b.pprof > merged.pprof
 ```
+
+go test 使用PGO
+```
+go test -run=none -tags='' -timeout=9m0s -gcflags="-m -m" # 不使用 PGO 的情况
+
+go test -run=none -tags='' -timeout=9m0s -gcflags="-m -m -pgoprofile inline_hot.pprof" # 使用 PGO 的情况
+# 主要参数 -gcflags="-pgoprofile inline_hot.pprof"
+```
