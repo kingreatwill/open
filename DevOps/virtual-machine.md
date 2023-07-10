@@ -33,3 +33,11 @@ Window 上使用 Hyper-V、
 macOS 中使用 HyperKit 以最小开销运行VM，支持在笔记本模拟小型云。
 
 > 官网上最新描述: Multipass 在 Windows 上使用 Hyper-V，在 macOS 上使用 QEMU 和 HyperKit，在 Linux 上使用 LXD，以实现最小的开销和最快的启动时间。将虚拟机管理程序切换到Virtualbox是一件轻而易举的事。
+
+
+
+# "Windows Emulator"，即Windows模拟器
+
+## Wine
+Wine其实为"Wine Is Not anEmulator"的递归缩写,Wine不是Windows模拟器，而是运用API转换技术实做出Linux对应到Windows相对应的函数来调用DLL以运行Windows程序。
+`wine 软件全名.exe`
