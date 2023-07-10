@@ -138,3 +138,37 @@ A: 会被抓包，HTTPS 只防止用户在不知情的情况下通信被监听�
 
 [HTTPS 原理分析——带着疑问层层深入](https://blog.leapmie.com/archives/418)
 
+
+
+## 案列分析
+
+### How does HTTPS work?
+我们以curl请求HTTPS为例, 主要步骤:
+
+1. curl命令发送HTTP请求：curl命令使用HTTP协议向HTTPS服务器发送请求。请求中包括请求方法（GET、POST等）、请求头、请求体和URL地址等信息。
+
+2. HTTPS服务器响应请求：HTTPS服务器接收到curl命令发送的请求后，会进行解析并返回响应结果。响应结果包括状态码、响应头和响应体等信息。
+
+3. SSL握手过程：在发送HTTPS请求之前，curl命令会与HTTPS服务器进行SSL握手过程。该过程包括以下步骤：
+
+   a. curl命令向HTTPS服务器发送Client Hello消息，该消息包括curl命令支持的加密算法和协议版本等信息。
+
+   b. HTTPS服务器收到Client Hello消息后，会向curl命令发送Server Hello消息，该消息包括HTTPS服务器选择的加密算法和协议版本等信息。
+
+   c. HTTPS服务器向curl命令发送Certificate消息，该消息包括HTTPS服务器的公钥和证书等信息。
+
+   d. curl命令验证证书：curl命令使用证书颁发机构（CA）的公钥验证证书的合法性，并从证书中提取HTTPS服务器的公钥。
+
+   e. curl命令生成随机数：curl命令生成一个随机数，用于生成对称密钥。
+
+   f. curl命令使用HTTPS服务器的公钥加密随机数，并将加密后的随机数发送给HTTPS服务器。
+
+   g. HTTPS服务器收到加密后的随机数后，使用自己的私钥解密该随机数，并使用该随机数生成对称密钥。
+
+4. curl命令发送加密请求：在SSL握手过程完成后，curl命令使用对称密钥加密HTTP请求，并将加密后的请求发送给HTTPS服务器。
+
+5. HTTPS服务器解密请求并返回响应：HTTPS服务器使用对称密钥解密curl命令发送的请求，并返回响应结果。响应结果同样使用对称密钥加密后发送给curl命令。
+
+6. curl命令解密响应：curl命令使用对称密钥解密HTTPS服务器返回的响应结果，并将解密后的响应结果显示在终端上。
+
+![https://blog.bytebytego.com/p/how-does-https-work-episode-6](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F0e18db0d-f511-4f85-bb58-388fce70d42e_2631x2103.png)

@@ -16,16 +16,52 @@
 
 ### freeNAS
 
-### openmediavault
-简称 OMV
+### OpenMediaVault
+简称 OMV https://www.openmediavault.org/
+它是由原 FreeNAS 核心开发成员 Volker Theile 发起的基于 Debian Linux 的开源 NAS 操作系统，主要面向家庭用户和小型办公环境。
+
+这个系统最大的优点就是定位轻量级，对硬件要求不高，而且功能简单，刚好够用，非常适合小白们上手。
+
+> 安装教程: https://docs.openmediavault.org/en/latest/installation/via_iso.html
+Web界面端口80
+用户：admin
+密码：openmediavault
 
 ### U-NAS
 国产免费
 
 ### XigmaNAS
+https://xigmanas.com/xnaswp/
+你可以把这个系统当作TrueNAS的精简版，因为它们都是由原 FreeNAS 系统开发者创建的，它的配置要求没有 FreeNAS 高，并且还长久有人维护，但现在仍然在更新。
+
 ### TrueNAS
+https://www.truenas.com/
+TrueNAS的前身就是曾经非常火的FreeNAS，也是目前最受欢迎的开源免费 NAS 操作系统之一，基于以安全和稳定著称的 FreeBSD 系统开发，在2010年被 iXsystems公司收购。不过良心的是收购之后也一直是开源，只不过提供了两套方案，TrueNAS CORE为开源版本并且持续免费，TrueNAS Enterprise为商业版本需要付费购买额外的授权码。
+
+该NAS系统功能强大，同时对硬件的要求也比较高，适合NAS进阶用户。
+
 ### openfiler
 
+### RockStor
+https://rockstor.com/
+
+一款基于 Linux 的开源 NAS 系统，采用企业级文件系统 BTRFS，提供 SMB/CIFS、NFS 以及 SFTP 常见的共享方式。虽说定位于企业用户NAS系统，但是它的配置要求不是很高，2GB内存基本就能满足安装需求，所以个人用户也是可以玩玩的。
+
+### NexentaStor
+https://nexenta.com/
+一款基于 OpenSolaris 开发，与 FreeNAS 一样采用强大的 ZFS 文件系统。该系统由 Nexenta Systems 公司技术团队维护，同时提供社区开原版和商业付费版本，官网有免费试用版本
+
+### EasyNAS
+https://easynas.org/
+从名字上就能得知，它和OMV一样，是一款轻量级的简易NAS操作系统。但是它的体验还不错，具有稳定，高性能，高可用和其他你不常见的特性，并且还和RockStor 一样，同样采用企业级文件系统 BTRFS，安全性也是没有问题的。
+
+### NASLite-2
+http://www.serverelements.com/?target=NASLite-2
+一款售价29.95刀的NAS 操作系统，它是少数基于 Linux 的商用 NAS 操作系统，由 Server Elements 公司出品。
+
+### NanoNAS
+http://www.serverelements.com/?target=NanoNAS
+同样是 Server Elements 公司的NAS 操作系统，简单来说它其实就是上面 NASLite-2 的精简版，不过也是一样需要付费购买，价格为 9.95 刀。
 
 ## ONVIF
 
