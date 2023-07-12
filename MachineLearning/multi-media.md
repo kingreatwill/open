@@ -227,7 +227,240 @@ rtmp://58.200.131.2:1935/livetv/hunantv # 湖南卫视
 rtmp://media3.scctv.net/live/scctv_800  # CCTV
 
 ### HLS
-HLS (HTTP Live Streaming)
+[HLS (HTTP Live Streaming)](https://datatracker.ietf.org/doc/html/rfc8216)
+
+[HTTP Streaming Architecture](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/HTTPStreamingArchitecture/HTTPStreamingArchitecture.html)
+
+[M3U8 文件示例](https://developer.apple.com/library/archive/technotes/tn2288/_index.html)
+
+#### M3U
+M3U 文件是一种纯文本文件，可以指定一个或多个多媒体文件的位置。它的设计初衷是为了播放音频文件，但后来越来越多的用于播放视频文件列表。
+
+多个m3u8的索引文件
+
+
+#### m3u8
+ts文件索引`playlist.m3u8`
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:5
+#EXT-X-MEDIA-SEQUENCE:1
+#EXTINF:4.042667,
+/m3u8/seg1.ts
+#EXTINF:4.000000,
+/m3u8/seg2.ts
+#EXTINF:4.000000,
+/m3u8/seg3.ts
+#EXTINF:4.000000,
+/m3u8/seg4.ts
+#EXTINF:4.000000,
+/m3u8/seg5.ts
+#EXTINF:4.000000,
+/m3u8/seg6.ts
+#EXT-X-ENDLIST
+
+```
+ts可以是相对路径, 也可以是绝对路径(http/https)
+
+- #EXTM3U：文件头（必须放在第一行）
+- #EXT-X-VERSION：版本号
+- #EXT-X-TARGETDURATION：每个分片的最大时长（单位是秒）
+- #EXT-X-MEDIA-SEQUENCE：首个分片的序列号（默认为0）
+- #EXTINF：分片的信息，例如时长等
+- #EXT-X-ENDLIST：文件结束符
+
+用下面命令将其合并成一个大的 ts 文件，然后转成一个 mp4 文件：
+```
+$ ffmpeg -f concat -safe 0 -i playlist.m3u8 -c copy output.ts
+$ ffmpeg -i output.ts -acodec copy -vcodec copy output.mp4
+```
+
+下面的命令直接将其保存为 mp4 文件：
+```
+$ ffmpeg -i http://cdn.zlib.cn/m3u8/test.m3u8 -c copy output.mp4
+```
+
+**为了保护数字版权，大部分的视频网站会对 ts 片段进行加密，例如下面的数据源：**
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:1
+#EXT-X-ALLOWCACHE:1
+#EXT-X-KEY:METHOD=AES-128,URI="seg1.key"
+#EXTINF:4.458667,
+seg1.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="seg2.key"
+#EXTINF:4.010000,
+seg2.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="seg3.key"
+#EXTINF:4.468667,
+seg3.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="seg4.key"
+#EXTINF:3.893000,
+seg4.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="seg5.key"
+#EXTINF:4.007333,
+seg5.ts.enc
+#EXT-X-TARGETDURATION:5
+#EXT-X-ENDLIST
+```
+发现多了一些字段，例如：
+
+- EXT-X-ALLOWCACHE：是否允许缓存
+- #EXT-X-KEY：加密解析
+
+EXT-X-KEY 就是表示经过加密的，基本格式形如：
+```
+#EXT-X-KEY:METHOD=AES-128,URI=”http://example.com/key",IV=0x0123456789abcdef0123456789abcdef
+```
+AES-128 且有 iv 填充的是 aes-cbc 算法，解码需要 iv (偏移量）和 key (秘钥），EXT-X-KEY 那一行记录了密钥的获取路径和偏移量的值，如果拿到正确的 key 和 iv 的话，可以用下面的命令进行解密：
+```
+$ openssl aes-128-cbc -d -in seg0.ts -out seg0.decode.ts -nosalt -iv xxx -K xxx
+```
+也可以用 ffmpeg 来进行快速处理：
+```
+$ ffmpeg -allowed_extensions ALL -i http://cdn.zlib.cn/m3u8/test.enc.m3u8 -c copy video5.mp4
+```
+
+
+**但是为了防止用户下载，一般会在 js 中对 key 进行动态处理，以气球云为例，它的 m3u8 播放源文件格式如下：**
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:20
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-KEY:METHOD=AES-128,URI="https://play.qiqiuyun.net/sdk_api/video/hls_clef/shd?resNo=xxx&token=xxx&ssl=1",IV=xxx
+#EXTINF:10.200,
+https://xxx-pub.pubssl.qiqiuyun.net/xxx/xxx?schoolId=xxx&fileGlobalId=xxx
+#EXT-X-KEY:METHOD=
+```
+
+有的是直接
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:5
+#EXT-X-MEDIA-SEQUENCE:1
+#EXTINF:4.042667,
+/m3u8/seg1.ts?auth_key=xxxxxx
+#EXT-X-ENDLIST
+```
+
+#### HLS 的直播请求详情(直播不可以回看)
+1. 先通过循环的加载m3u8文件
+2. 加载最新一次m3u8中包含的最新的ts切片，达到直播的效果的。之所以能循环加载，就是因为： 直播的m3u8文件中，没有 #EXT-X-ENDLIST 参数，也就是说，没有结束，需要一直加载。
+
+第一次加载m3u8 的内容如下：
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:31
+#EXT-X-TARGETDURATION:5
+#EXTINF:5.079,
+31.ts
+#EXTINF:5.083,
+32.ts
+#EXTINF:5.201,
+33.ts
+```
+第二次加载m3u8 的内容是：
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:32
+#EXT-X-TARGETDURATION:5
+#EXTINF:5.083,
+32.ts
+#EXTINF:5.201,
+33.ts
+#EXTINF:5.100,
+34.ts
+```
+我们能看到，第一次加载m3u8时，ts切片，最后一个切片，名字是 33.ts；第二次加载m3u8时，ts切片，最后一个切片，名字是 34.ts ；
+并且，m3u8文件中没有 #EXT-X-ENDLIST; 就是通过这种循环加载的方式，这个直播，能一直循环加载下去。
+
+#### EVENT 播放列表(直播且可以回看)
+> EXT-X-PLAYLIST-TYPE 标签（可选）值为 VOD，表示播放列表不可变。
+
+刚开始时，对应的 M3U8 文件内容如下所示：
+```
+#EXTM3U
+#EXT-X-PLAYLIST-TYPE:EVENT
+#EXT-X-TARGETDURATION:10
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:10,
+fileSequence0.ts
+#EXTINF:10,
+fileSequence1.ts
+#EXTINF:10,
+fileSequence2.ts
+#EXTINF:10,
+fileSequence3.ts
+```
+> EXT-X-PLAYLIST-TYPE 标签值为 EVENT，表示播放列表内容可变，不过只能在文件末尾改变。
+
+结束时，M3U8 文件内容如下所示：
+```
+#EXTM3U
+#EXT-X-PLAYLIST-TYPE:EVENT
+#EXT-X-TARGETDURATION:10
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:10,
+fileSequence0.ts
+#EXTINF:10,
+fileSequence1.ts
+#EXTINF:10,
+fileSequence2.ts
+#EXTINF:10,
+fileSequence3.ts
+...
+#EXTINF:10,
+fileSequence120.ts
+#EXTINF:10,
+fileSequence121.ts
+#EXT-X-ENDLIST
+```
+> **EVENT 播放列表可以用在直播中，通常用于晚会和体育赛事场景，用户一方面可以观看直播，一方面还能做 seek 操作回退到之前的时间点去回放。**
+
+
+#### 其它
+- EXT-X-BYTERANGE 我只想用一个ts来构建一个类似M3U8的分片索引, 这时候EXT-X-BYTERANGE就派上用场了.当然只有VERSION版本不低于4才可以应用这个属性
+
+- EXT-X-DISCONTINUITY 标签
+在一些场景下，我们需要在点播或直播中插入其他内容，比如广告
+```
+#EXTM3U
+#EXT-X-TARGETDURATION:10
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:10.0,
+ad0.ts
+#EXTINF:8.0,
+ad1.ts
+#EXT-X-DISCONTINUITY
+#EXTINF:10.0,
+movieA.ts
+#EXTINF:10.0,
+movieB.ts
+```
+
+- EXT-X-STREAM-INF 标签
+```
+#EXTM3U
+#EXT-X-STREAM-INF:BANDWIDTH=1280000,AVERAGE-BANDWIDTH=1000000
+http://example.com/low.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2560000,AVERAGE-BANDWIDTH=2000000
+http://example.com/mid.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=7680000,AVERAGE-BANDWIDTH=6000000
+http://example.com/hi.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=65000,CODECS="mp4a.40.5"
+http://example.com/audio-only.m3u8
+```
+通过 3 个不同码率的视频流和 1 个音频流来描述一个内容。
+
+
 ### RTP
 ### RTCP 
 ### HTTP-FLV
