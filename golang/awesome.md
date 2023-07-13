@@ -1,10 +1,25 @@
 <!--toc-->
 [TOC]
 [awesome-go](https://github.com/avelino/awesome-go)
-## x
+
+## 限流熔断降级
+[【GO】golang 降级|熔断|限流实战](https://www.jianshu.com/p/be5c139c11e3)
+### sentinel-golang 限流熔断
+https://github.com/alibaba/sentinel-golang 2.5k
+
+### ratelimit 限流
+https://github.com/uber-go/ratelimit 3.7k
+
+### gobreaker 熔断降级
+https://github.com/sony/gobreaker 2.5k
+
+### hystrix-go 熔断降级
+https://github.com/afex/hystrix-go 4k
+
+### x/time/rate 限流
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
-
+golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
 
 ## 分析/debug
 ### pprof
@@ -161,13 +176,6 @@ Windows
 
 ## eval
 github.com/Knetic/govaluate
-
-## 限流熔断
-https://github.com/alibaba/sentinel-golang
-
-https://github.com/afex/hystrix-go
-
-golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
 
 ## 微服务
 https://github.com/douyu/jupiter
