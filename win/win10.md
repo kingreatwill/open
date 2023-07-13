@@ -24,3 +24,18 @@ Windows设置>设备>鼠标>"当我悬停在非活动窗口上方时对其进行
 Alt +1：查看文件/文件夹属性；Alt +2是新建文件夹
 
 Win + Q 快速打开搜索
+
+### 禁用路径长度限制
+
+环境变量PATH的最大长度是有限制的, 最大260个字符
+https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry
+
+https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation?tabs=registry
+
+将注册表的如下键值，从 0 改成 1 即可（本选项实际上是修改了 NTFS filesystem 的默认显示。在 windows 系统上，该限制是默认开启的。0 代表开启限制，即 false，1 代表关闭限制，即 true）
+`Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled`
+
+```powershell
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+-Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+```

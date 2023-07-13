@@ -60,6 +60,8 @@ Turing-NLG 有17000M个参数(17B)
 GPT-3 有175000M个参数(175B)
 （光训练好的model有700GB - GPT-2 才6GB）
 
+> 有消息称GPT-4在120层中总共包含了1.8万亿参数
+
 https://lambdalabs.com/blog/demystifying-gpt-3/
 
 ELMo paper  - 15 pages
