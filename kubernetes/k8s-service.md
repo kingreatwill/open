@@ -4,6 +4,10 @@ https://kuboard.cn/learning/k8s-intermediate/service/service-details.html
 [kubernetes系列08—service资源详解](https://www.cnblogs.com/along21/p/10330076.html)
 [浅谈 Kubernetes Service 负载均衡实现机制](https://www.infoq.cn/article/P0V9D4br7UDzWTgIHuYq)
 
+## 创建服务
+有时不想写yaml文件, 可以基于deployment直接创建一个服务来暴露 Deployment
+`kubectl expose deployment hello-world --type=NodePort --name=example-service`
+example-service是服务名称
 
 ## session affinity
 session affinity， 会话亲和性，又称会话保持

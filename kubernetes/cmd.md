@@ -233,5 +233,7 @@ kubectl autoscale deployment.v1.apps/nginx-deployment --min=1 --max=15 --cpu-per
 kubectl -n tracing port-forward svc/jaeger 16686 --address=0.0.0.0 &
 #kubectl -n emojivoto port-forward svc/web-svc 8080:80
 
+文档: https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
+
 ## 查看具体容器
 kubectl logs deployment/oc-collector -c oc-collector -n tracing

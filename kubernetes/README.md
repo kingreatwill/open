@@ -147,6 +147,11 @@ Readiness 探测失败是应用程序特有的错误，因此您应该检查 kub
 切换context/设置当前context
 `kubectl config use-context docker-desktop`
 
+
+> kubectl config --help
+可以存在多个KUBECONFIG, 只需要配置环境变量KUBECONFIG,文件名用冒号隔开
+[配置对多集群的访问](https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+
 #### 日常运维常用命令
 - 根据启动时间降序（descending order）
 `kubectl get pods --sort-by=.metadata.creationTimestamp`

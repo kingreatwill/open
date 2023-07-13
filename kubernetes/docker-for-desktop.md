@@ -40,6 +40,7 @@ kubectl proxy
 访问：http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
 ```
 **kubectl proxy 让外部网络访问K8S service的ClusterIP**
+文档:https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
 
 > 指定端口:`kubectl proxy --port=8009`, `kubectl proxy --address=0.0.0.0  --port=8009`
 
