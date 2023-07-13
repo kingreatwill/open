@@ -139,6 +139,13 @@ Mi表示（1Mi=1024x1024）,M表示（1M=1000x1000）
 
 Readiness 探测失败是应用程序特有的错误，因此您应该检查 kubectl describe 中的Events部分来识别错误。
 
+#### context
+显示当前context
+`kubectl config current-context`
+显示所有context
+`kubectl config get-contexts`
+切换context/设置当前context
+`kubectl config use-context docker-desktop`
 
 #### 日常运维常用命令
 - 根据启动时间降序（descending order）

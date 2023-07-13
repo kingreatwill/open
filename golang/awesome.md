@@ -4,6 +4,7 @@
 
 ## 限流熔断降级
 [【GO】golang 降级|熔断|限流实战](https://www.jianshu.com/p/be5c139c11e3)
+[Go实现各类限流](https://juejin.cn/post/6959436201443426311) 推荐看看
 ### sentinel-golang 限流熔断
 https://github.com/alibaba/sentinel-golang 2.5k
 
@@ -20,6 +21,11 @@ https://github.com/afex/hystrix-go 4k
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
 golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
+https://pkg.go.dev/golang.org/x/time/rate
+
+### tollbooth
+Simple middleware to rate-limit HTTP requests.
+https://github.com/didip/tollbooth 2.4k
 
 ## 分析/debug
 ### pprof
