@@ -171,6 +171,24 @@ https://github.com/openstf/stf
 http://mathquill.com/
 https://github.com/mathquill/mathquill
 
+## 播放器
+### video.js
+https://videojs.com/
+https://github.com/videojs/video.js 35.9k
+
+### xgplayer(西瓜播放器)
+https://v2.h5player.bytedance.com/
+https://github.com/bytedance/xgplayer 6.6k
+
+### DPlayer
+https://dplayer.diygod.dev/zh/guide.html
+https://github.com/DIYgod/DPlayer 14.2k
+
+
+### Android/iOS video player 手机端播放器
+https://github.com/bilibili/ijkplayer
+
+
 ## state
 ### xstate
 https://github.com/davidkpiano/xstate

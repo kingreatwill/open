@@ -1,4 +1,6 @@
 ## ChatGPT
+https://chatgpt.com/
+
 ### awesome
 https://github.com/xtekky/gpt4free
 https://github.com/xiangsx/gpt4free-ts
