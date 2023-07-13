@@ -84,7 +84,7 @@ SPIFFE|[2022.09.20](https://www.cncf.io/announcements/2022/09/20/spiffe-and-spir
 SPIRE | [2022.09.20](https://www.cncf.io/announcements/2022/09/20/spiffe-and-spire-projects-graduate-from-cloud-native-computing-foundation-incubator/) |[golang](https://github.com/spiffe/spire)|The SPIFFE Runtime Environment
 Flux|[2022.11.30](https://www.cncf.io/announcements/2022/11/30/flux-graduates-from-cncf-incubator/)|[golang](https://github.com/fluxcd/flux2)|持续交付工具
 Argo |[2022.12.06](https://www.cncf.io/announcements/2022/12/06/the-cloud-native-computing-foundation-announces-argo-has-graduated/)| [golang](https://github.com/argoproj) | Kubernetes-native tools to run workflows, manage clusters, and do GitOps right.
-
+Istio |[2022.07.12](https://www.cncf.io/announcements/2023/07/12/cloud-native-computing-foundation-reaffirms-istio-maturity-with-project-graduation/)| [golang](https://github.com/istio/istio) | 服务网格service mesh
 ## Landscape介绍
 https://blog.csdn.net/liumiaocn/article/details/100713072
 
