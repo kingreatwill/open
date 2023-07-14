@@ -41,6 +41,105 @@ CoreDNS 插件编写目前有两种方式：
 [基于etcd插件(自带的)的CoreDNS动态域名添加](https://www.cnblogs.com/boshen-hzb/p/7541901.html)
 https://coredns.io/plugins/etcd/
 
+### 本地编译
+```
+git clone https://github.com/coredns/coredns
+cd coredns/
+make
+
+
+$ file coredns
+coredns: PE32+ executable (console) x86-64 (stripped to external PDB), for MS Windows, 6 sections
+
+$ ./coredns -version
+CoreDNS-1.10.1
+windows/amd64, go1.20.5, 5b5a6ac6-dirty
+
+```
+> windows编译出来的也是不带exe后缀的可执行文件
+
+#### 插件
+coredns官方对于插件的分类基本可以分为三种：[Plugins](https://coredns.io/plugins/)、[External Plugins](https://coredns.io/explugins/)和其他。
+其中Plugins一般都会被默认编译到coredns的预编译版本中，而External Plugins则不会。
+[Corefile](https://coredns.io/2017/07/23/corefile-explained/)
+
+查看编译的插件` ./coredns -plugins`
+
+编译插件基本可以分为:修改源码和修改编译的配置文件这两种方式
+源码根目录下有个文件: `plugin.cfg`
+部分内容如下
+```
+...
+forward:forward
+grpc:grpc
+erratic:erratic
+whoami:whoami
+on:github.com/coredns/caddy/onevent
+...
+```
+
+例如这里我们需要额外多添加一个dump插件到coredns中，只需要在plugin.cfg中加入插件的名称和地址
+
+```
+dump:github.com/miekg/dump
+```
+对于在plugin目录下已经存在的插件，则可以直接写成plugin中的目录名：
+```
+forward:forward
+```
+
+**开始编译**
+```
+go get github.com/miekg/dump
+go generate
+go build
+make
+```
+
+**代码测试**
+```go
+// go get github.com/miekg/dns
+func main() {
+	c := dns.Client{
+		Timeout: 5 * time.Second,
+	}
+
+	m := dns.Msg{}
+	m.SetQuestion("www.baidu.com.", dns.TypeA)
+	r, _, err := c.Exchange(&m, "127.0.0.1:53") // 192.168.220.2:53
+	if err != nil {
+		fmt.Println("dns error", err)
+		return
+	}
+
+	var dst []string
+	for _, ans := range r.Answer {
+		record, isType := ans.(*dns.A)
+		if isType {
+			fmt.Println("type A:", record.A)
+			dst = append(dst, record.A.String())
+		}
+
+		record1, isType := ans.(*dns.CNAME)
+		if isType {
+			fmt.Println("type cname:", record1.Target)
+		}
+	}
+
+	for _, v := range dst {
+		fmt.Println("ok:", v)
+	}
+}
+```
+
+**命令行**
+
+```
+doggo www.baidu.com @127.0.0.1
+
+dig www.baidu.com @192.168.1.5
+```
+
 
 ### 在docker环境中安装coredns
 `docker pull coredns/coredns:1.10.1`
@@ -48,7 +147,7 @@ https://coredns.io/plugins/etcd/
 ```
 mkdir -p /etc/coredns
 
-vi /etc/coredns/corefile
+vi /etc/coredns/Corefile
 
 .:53 {
     hosts {
@@ -73,14 +172,14 @@ vi /etc/coredns/corefile
 10.0.0.1 example1.org
 ```
 启动服务
-`docker run -it -d --name coredns --net=host -v /e/dockerv/coredns/:/etc/coredns/ coredns/coredns:1.10.1 -conf /etc/coredns/corefile`
+`docker run -it -d --name coredns --net=host -v /e/dockerv/coredns/:/etc/coredns/ coredns/coredns:1.10.1 -conf /etc/coredns/Corefile`
 
 
 
 ```
 mkdir -p /etc/coredns
 
-cat >/etc/coredns/corefile<<EOF
+cat >/etc/coredns/Corefile<<EOF
 .:53 {
     forward . 8.8.8.8:53
     log
@@ -91,7 +190,7 @@ docker run -d --name coredns \
   --restart=always \
   -v /e/dockerv/coredns/:/etc/coredns/ \
   -p 53:53/udp \
-  coredns/coredns:1.10.1 -conf /etc/coredns/corefile
+  coredns/coredns:1.10.1 -conf /etc/coredns/Corefile
 ```
 
 测试
@@ -117,9 +216,20 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 ## tool
 
 ### DNS client
+
+更多可以在这里找到: https://www.isc.org/dns-tools/
+
 #### nslookup
 安装`yum install -y bind-utils`
 #### dig
+Dig 工具全称为域名信息搜索器（Domain Information Groper）
+> dig 作为 bind 的一部分
+> win版本下载: https://www.isc.org/bind/
+> win版本下载2：ttp://www.bind9.net/download
+> ftp地址: ftp://ftp.nominum.com/pub/isc/bind9/
+> ftp地址: ftp://ftp.isc.org/isc/
+> https://downloads.isc.org/isc/bind9/9.16.42/BIND9.16.42.x64.zip
+
 安装`yum install -y bind-utils`
 `dig www.wcoder.com`
 
