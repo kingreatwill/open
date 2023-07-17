@@ -1,3 +1,8 @@
+
+# RDBMS
+> 关系性数据库管理系统（Relational database management system，RDBMS）
+> 数据库管理系统 (database management system, DBMS)
+
 SQL查询语句的执行顺序解析
 https://www.jianshu.com/p/1628e47a598a
 
