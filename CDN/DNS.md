@@ -221,6 +221,13 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 
 #### nslookup
 安装`yum install -y bind-utils`
+
+`nslookup www.baidu.com`
+
+#### host
+`host www.baidu.com`
+> host,nslookup,dig 作为 bind 的一部分,windows 下载: https://www.isc.org/bind/
+
 #### dig
 Dig 工具全称为域名信息搜索器（Domain Information Groper）
 > dig 作为 bind 的一部分
@@ -267,3 +274,50 @@ $ mv doggo /usr/local/bin
 ```
 
 `doggo www.wcoder.com`
+
+#### tcpdump
+`tcpdump` 是一个网络协议分析工具，可以用于捕获和分析网络数据包。它可以用于检查 DNS 查询和响应数据包，以及其他网络流量。
+抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
+可以`tcpdump -i any -vvvvnnA dst port 8899 -w file.cap` 保存文件中, 然后使用wireshark来查看数据包
+
+`tcpdump -i eth0 udp port 53` 命令来捕获通过 eth0 网卡发送到 UDP 端口 53 的 DNS 数据包。
+
+#### wireshark
+`wireshark` 是一个网络协议分析器，可以用于分析网络数据包的详细信息。它可以用于检查 DNS 查询和响应数据包，以及其他网络流量。例如，使用 `wireshark` 命令来打开捕获的 DNS 数据包文件并进行分析。
+
+Sniffer(嗅探器)就是利用计算机的网络接口截获目的地为其他计算机的数据报文的一种技术。
+> sniffnet
+
+#### 网络监控工具
+- GlassWire
+- Nutty
+- Portmaster
+- sniffnet
+https://github.com/GyulyVGC/sniffnet
+
+#### systemd-resolve
+
+`systemd-resolve` 是一个 systemd 系统服务,是 Ubuntu下 DNS 解析相关的命令，可用于解析 DNS 名称。它可以用于查询本地 DNS 缓存和配置文件中指定的 DNS 服务器。例如，使用 `systemd-resolve www.baidu.com` 命令来查询 www.baidu.com 的 DNS 记录。帮助`systemd-resolve --help`
+
+systemd-resolve 命令可以用来设置指定网卡的 DNS Server，如下
+```
+sudo systemd-resolve --set-dns '8.8.8.8' --interface ens3
+
+# 查看
+systemd-resolve --status | grep 'DNS Servers'
+         DNS Servers: 8.8.8.8
+
+# 重置网卡的 DNS 设置
+systemd-resolve --revert --interface {ITERFACE_NAME}
+
+# 刷新本地 DNS 缓存
+systemd-resolve --flush-caches
+```
+
+#### systemd-resolved
+https://cloud-atlas.readthedocs.io/zh_CN/latest/linux/redhat_linux/systemd/systemd_resolved.html
+
+(centos安装:`yum -y install systemd-resolved`) 
+systemctl status systemd-resolved
+systemctl enable systemd-resolved
+systemctl start systemd-resolved

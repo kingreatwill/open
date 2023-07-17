@@ -24,6 +24,16 @@ https://nginx-playground.wizardzines.com/
 [nginxWebUI nginx网页配置工具](https://gitee.com/cym1102/nginxWebUI)
 [Nginx Formatter / Nginx 格式化工具](https://github.com/soulteary/nginx-formatter) 一款 10MB 左右的，小巧、简洁的 Nginx 格式化工具，支持命令行、WebUI、Docker、x86、ARM、macOS、Linux。
 
+#### Nginx与其它语言结合
+Nginx和java: [Nginx-Clojure](https://github.com/nginx-clojure/nginx-clojure)
+Nginx和lua: [Nginx-lua](https://github.com/openresty/lua-nginx-module)
+JavaScript: nginScript
+PHP: https://github.com/rryqszq4/ngx_php
+
+
+
+> 第三方模块: https://www.nginx.com/resources/wiki/modules/
+
 ## docker 安装nginx
 
 docker run -d -p 8080:80 --name nginx  nginx:1.17.4

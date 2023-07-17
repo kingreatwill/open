@@ -111,6 +111,16 @@ git diff HEAD~8 --stat | fpp
 提供更美观、更方便的进程监控工具，替代top命令。
 https://hisham.hm/htop/
 
+#### atop
+https://www.atoptool.nl/index.php
+#### vtop
+https://github.com/MrRio/vtop
+#### bashtop
+https://github.com/aristocratos/bashtop
+#### gtop
+https://github.com/aksakalli/gtop
+
+
 #### htop 和 glances
 glances 是htop的补充工具。除了列出所有进程及其 CPU 和内存使用情况之外，它还可以显示有关系统的其他信息，比如：
 - 网络及磁盘使用情况
@@ -130,6 +140,10 @@ https://github.com/raboof/nethogs
 [root@localhost nethogs]# make && make install 
 [root@localhost nethogs]# nethogs eth0
 ```
+
+### nmon
+https://nmon.sourceforge.net/pmwiki.php?n=Main.HomePage&ref=itsfoss.com
+
 ### 硬盘读取性能测试-IOZone
 ```
 下载：http://www.iozone.org/src/current/
