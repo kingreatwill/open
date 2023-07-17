@@ -226,7 +226,7 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 
 #### host
 `host www.baidu.com`
-> host,nslookup,dig 作为 bind 的一部分,windows 下载: https://www.isc.org/bind/
+> host,nslookup,dig,named 作为 bind 的一部分,windows 下载: https://www.isc.org/bind/
 
 #### dig
 Dig 工具全称为域名信息搜索器（Domain Information Groper）
@@ -295,6 +295,28 @@ Sniffer(嗅探器)就是利用计算机的网络接口截获目的地为其他�
 - sniffnet
 https://github.com/GyulyVGC/sniffnet
 
+
+#### named
+named（也称为BIND）： 
+named是一个功能强大的、广泛使用的DNS服务器软件。它是Internet上最常用的DNS软件之一，被用于管理大型网络和互联网域名解析。 
+named支持完整的DNS功能，包括支持区域传输、反向解析、安全扩展（如DNSSEC）等。 
+named可以作为一个权威DNS服务器，用于管理和提供域名解析服务，也可以作为一个递归DNS服务器，用于向客户端提供域名解析查询。
+
+> yum -y install bind
+
+#### dnsmasq
+dnsmasq是一个轻量级的DNS服务器和DHCP服务器软件，它主要用于小型网络和家庭网络环境中。 
+dnsmasq具有简单易用的特点，配置简单且占用资源较少。 
+dnsmasq不支持权威DNS功能，主要用于提供本地区域网络（LAN）内的域名解析服务，为局域网上的设备提供DNS解析和DHCP服务。
+
+> sudo yum install dnsmasq
+> sudo systemctl status dnsmasq
+> systemctl restart dnsmasq -- 缓存存储在内存中，所有现有的 DNS 条目将从缓存中删除。
+
+- chrome dns缓存
+您经常使用的 Web 浏览器也会缓存 DNS 记录。输入 URL 时，系统会在本地浏览器缓存中搜索缓存条目。如果未找到，它将检查本地系统缓存中的记录。清除 Web 浏览器的 DNS 缓存至关重要，因为它的优先级高于系统范围的缓存。
+> chrome://net-internals/#dns
+
 #### systemd-resolve
 
 `systemd-resolve` 是一个 systemd 系统服务,是 Ubuntu下 DNS 解析相关的命令，可用于解析 DNS 名称。它可以用于查询本地 DNS 缓存和配置文件中指定的 DNS 服务器。例如，使用 `systemd-resolve www.baidu.com` 命令来查询 www.baidu.com 的 DNS 记录。帮助`systemd-resolve --help`
@@ -314,10 +336,16 @@ systemd-resolve --revert --interface {ITERFACE_NAME}
 systemd-resolve --flush-caches
 ```
 
+> resolvectl是一个用于管理系统DNS解析配置的命令行工具，它通常与systemd-resolved服务一起使用。
+> resolvectl query www.baidu.com
+
 #### systemd-resolved
 https://cloud-atlas.readthedocs.io/zh_CN/latest/linux/redhat_linux/systemd/systemd_resolved.html
 
-(centos安装:`yum -y install systemd-resolved`) 
+yum -y install systemd-resolved systemd-networkd
+
 systemctl status systemd-resolved
 systemctl enable systemd-resolved
 systemctl start systemd-resolved
+
+> Ubuntu 、centos 8以上

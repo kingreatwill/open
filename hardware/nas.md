@@ -5,12 +5,19 @@
 管理账号: CUAdmin
 超级密码: cuadmin00259e
 
+易用性+实用型由高到低依次是：
+绿联=极空间>海康==联想>群晖>爱速特>威联通
+
 ## 群辉 Synology
 黑群辉安装引导:https://github.com/fbelavenuto/arpl
+在线演示: https://demo.synology.cn/zh-cn/dsm
 
 ## 威联通
+在线演示: https://www.qnap.com.cn/zh-cn/live-demo
 
 ## 铁威马（TerraMaster）
+## 华硕 爱速特
+在线演示: https://www.asustor.com/zh-cn/live_demo
 
 ## 开源
 
