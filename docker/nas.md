@@ -1,8 +1,28 @@
 
 ## Private Tracker(PT)
 PT站（Private Tracker）是一种私有的种子分享站点，和公共BT站点不同，只有在站内注册且满足一定门槛的用户才能相互分享和下载资源。因此，PT站点一般资源更加丰富，但门槛也更高。
-### pt-manage-plugin(PT管理宝)
-不开源, 很危险
+### IYUU
+1. 网页管理、辅种、转移、下载、定时访问URL、动态域名ddns等常用功能，提供完善的插件机制。
+
+1. IYUUPlus客户端完全开源。
+
+1. IYUU自动辅种工具，目前能对国内大部分的PT站点自动辅种，支持下载器集群，支持多盘位，支持多下载目录，支持连接远程下载器等。
+> https://www.bilibili.com/read/cv13055302/
+> https://github.com/ledccn/IYUUPlus
+> https://github.com/ledccn/IYUUAutoReseed
+
+
+docker : https://gitee.com/ledc/IYUUAutoReseed/tree/master/docker
+把你的配置文件放在/root/config.php
+```
+docker run -d \
+--name IYUUAutoReseed \
+-e cron='0 9 * * 0' \
+-v /root/config.php:/config.php \
+--restart=always \
+iyuucn/iyuuautoreseed:latest
+```
+
 
 ### Transdroid
 手机远程控制qbittorrent bt qb
@@ -13,7 +33,9 @@ Transdroid下载地址：https://f-droid.org/repo/org.transdroid.lite_241.apk
 Transdroid远程管理NAS下qBittorrent和Transmission套件
 
 https://github.com/erickok/transdroid
-### PtManagePlugin
+### PtManagePlugin(PT管理宝)
+> 不开源, 很危险, 初始密码 admin admin
+
 PT管理辅助程序是通过微信小程序搜索PT资源，并推送到下载器。
 
 ```
@@ -24,6 +46,16 @@ docker run \
 --restart=always \
 zht39635371/pt-manage-plugin:latest
 ```
+
+### 参考
+https://zhuanlan.zhihu.com/p/394520776
+1、qBittorrent安装教程
+2、Transmission安装教程
+3、玩物下载安装教程
+4、Download Station设置教程
+
+
+
 
 ## OS IN docker
 
@@ -39,3 +71,7 @@ docker run -it --rm -p 5000:5000 --device=/dev/kvm --cap-add NET_ADMIN --stop-ti
 
 ## app
 mix文件管理
+
+## 迷你主机
+铭凡UM790 Pro
+零刻GTR7
