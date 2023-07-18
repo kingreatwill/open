@@ -131,6 +131,8 @@ sar -d, iostat, topas, nmon, iotop
 #### iostat
 iostat，对系统的磁盘操作活动进行监视。它的特点是汇报磁盘活动统计情况，同时也会汇报出CPU使用情况。**iostat也有一个弱点，就是它不能对某个进程进行深入分析，仅对系统的整体情况进行分析。**
 
+`yum -y install sysstat`
+
 - 展示所有的磁盘I/O指标:`iostat -d -x 1` ; 间隔1秒，总共显示3次: `iostat -d -x 1 3`
 • %util ，就是我们前面提到的磁盘 I/O 使用率；
 • r/s+ w/s ，就是 IOPS；
@@ -271,6 +273,8 @@ pidstat，用于监控全部或指定进程的cpu、内存、线程、设备IO�
 #### iotop
 iotop是一个用来监视磁盘I/O使用状况的 top 类工具，可监测到哪一个程序使用的磁盘IO的信息。
 
+`yum -y install iotop`
+
 命令参数说明：
 - -o, --only只显示正在产生I/O的进程或线程。除了传参，可以在运行过程中按o生效。
 - -b, --batch非交互模式，一般用来记录日志。
@@ -308,3 +312,45 @@ iotop是一个用来监视磁盘I/O使用状况的 top 类工具，可监测到�
 
 4. 输出PID为8382的进程的磁盘IO信息（非交互式）
 `iotop -botq -p 8382`
+
+#### pt-ioprofile
+https://github.com/percona/percona-toolkit/
+
+pt-ioprofile工具是Percona-toolkit工具包中用来分析MySQL各个文件IO活动的小工具，pt-ioprofile工具需要用root用户执行且依赖于lsof和strace命令,该工具的基本逻辑如下
+    1. 使用lsof和strace采集数据
+    2. 汇聚采集的结果，汇聚规则可以是sum或avg
+
+```
+yum install lsof strace -y
+wget https://www.percona.com/downloads/percona-toolkit/3.1.0/binary/redhat/7/x86_64/percona-toolkit-3.1.0-2.el7.x86_64.rpm
+yum install -y percona-toolkit-3.1.0-2.el7.x86_64.rpm
+pt-ioprofile --version
+```
+因strace在CentOS6和CentOS7上输出的头信息格式变化，导致该工具在CentOS7下目前存在BUG需要修改脚本，详细BUG信息可查看以下链接
+https://jira.percona.com/browse/PT-1631
+```
+## 修改脚本中574行对strace的匹配语法
+shell> vim /usr/bin/pt-ioprofile +573
+## 修改前
+573    /^COMMAND/ { mode = "lsof";   }
+574    /^Process/ { mode = "strace"; }  
+ 
+## 修改后
+573    /^COMMAND/ { mode = "lsof";   }
+574    /^(strace: )?Process/ { mode = "strace"; } 
+```
+
+在3.5.1版本中已经修复
+```
+yum install lsof strace -y
+wget https://www.percona.com/downloads/percona-toolkit/3.5.4/binary/redhat/7/x86_64/percona-toolkit-3.5.4-2.el7.x86_64.rpm
+yum install -y percona-toolkit-3.5.4-2.el7.x86_64.rpm
+pt-ioprofile --version
+```
+
+
+`pt-ioprofile --profile-pid=1236 --cell=sizes`
+ 
+`pt-ioprofile --profile-pid=$(pidof mysqld) --cell=count --run-time=5`
+
+> pt-ioprofile会冻结服务器，并可能使进程崩溃，或在分离后使其性能下降，或使其处于睡眠状态,pt-ioprofile是一种侵入性工具，不应在生产服务器上使用pt-ioprofile。

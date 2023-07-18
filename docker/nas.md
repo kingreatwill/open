@@ -1,0 +1,41 @@
+
+## Private Tracker(PT)
+PT站（Private Tracker）是一种私有的种子分享站点，和公共BT站点不同，只有在站内注册且满足一定门槛的用户才能相互分享和下载资源。因此，PT站点一般资源更加丰富，但门槛也更高。
+### pt-manage-plugin(PT管理宝)
+不开源, 很危险
+
+### Transdroid
+手机远程控制qbittorrent bt qb
+使用手机管理pt下载，不用电脑了，方便，还可以订阅pt网站资源更新
+
+Transdroid下载网站：https://f-droid.org/zh_Hans/packages/org.transdroid.lite/
+Transdroid下载地址：https://f-droid.org/repo/org.transdroid.lite_241.apk
+Transdroid远程管理NAS下qBittorrent和Transmission套件
+
+https://github.com/erickok/transdroid
+### PtManagePlugin
+PT管理辅助程序是通过微信小程序搜索PT资源，并推送到下载器。
+
+```
+docker run \
+--name=PtManagePlugin \
+-v /share/docker/PtManagePlugin/db:/app/db \
+-p 7001:7001 \
+--restart=always \
+zht39635371/pt-manage-plugin:latest
+```
+
+## OS IN docker
+
+### Virtual DSM
+Virtual DSM 是一个可以在 Docker 里安装黑群晖的项目，甚至可以在 DSM 中再安装一个 DSM，无限套娃。
+Virtual DSM in a docker container.
+https://github.com/kroese/virtual-dsm
+
+```
+docker run -it --rm -p 5000:5000 --device=/dev/kvm --cap-add NET_ADMIN --stop-timeout 60 kroese/virtual-dsm:latest
+```
+
+
+## app
+mix文件管理
