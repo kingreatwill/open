@@ -69,8 +69,33 @@ docker run -it --rm -p 5000:5000 --device=/dev/kvm --cap-add NET_ADMIN --stop-ti
 ```
 
 
+
 ## app
 mix文件管理
+
+## 其它
+- 电子书库 hectorqin/reader
+
+https://www.toutiao.com/article/7257138465949614607/
+```
+version: "3" 
+services:  
+     reader:    
+        image: hectorqin/reader:latest
+        container_name: reader    
+        environment:   
+         - JAVA_ALPINE_VERSION=8.212.04-r0
+         - JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+         - JAVA_VERSION=8u212
+         - LANG=C.UTF-8
+         - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+         - TZ=Asia/Shanghai
+        volumes:      
+         - /share/Container/reader/config:/config      
+        ports:     
+         - 33333:8080
+```
+
 
 ## 迷你主机
 铭凡UM790 Pro
