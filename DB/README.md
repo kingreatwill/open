@@ -167,6 +167,7 @@ OLAP是一种自上而下、不断深入的分析工具；用户提出问题或�
 
 联机事务处理 OLTP（Online Transaction Processing）
 联机分析处理 OLAP（OnLine Analytical Processing）
+混合事务分析处理 HTAP (Hybrid Transactional/Analytical Processing)
 
 [开源 OLAP 引擎测评报告(SparkSql、Presto、Impala、HAWQ、ClickHouse、GreenPlum)](https://blog.csdn.net/oDaiLiDong/article/details/86570211)
 

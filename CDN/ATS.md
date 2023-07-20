@@ -11,6 +11,10 @@ https://github.com/apache/trafficserver
 sudo apt-get install build-essential libtool openssl libssl-dev automake autoconf zlib1g zlib1g-dev libpcre3 libpcre3-dev
 ```
 
+```
+sudo apt install automake libtool pkg-config libmodule-install-perl gcc g++ libssl-dev tcl-dev libpcre3-dev libcap-dev libhwloc-dev libncurses5-dev libcurl4-openssl-dev flex autotools-dev bison debhelper dh-apparmor gettext intltool-debian libbison-dev libexpat1-dev libfl-dev libsigsegv2 libsqlite3-dev m4 po-debconf tcl8.6-dev zlib1g-dev
+```
+
 ## 命令行工具
 
 ### traffic_top
@@ -37,3 +41,5 @@ Apache Traffic Control 是一个分布式、可扩展的冗余解决方案，实
 ## 参考
 [Apache Traffic Server 教程](https://www.cnblogs.com/ColoFly/p/16230167.html)
 [官方文档](https://trafficserver.apache.org/)
+
+[自建CDN系列：Traffic Server](https://www.blueskyxn.com/202007/1666.html)
