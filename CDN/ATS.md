@@ -15,6 +15,16 @@ sudo apt-get install build-essential libtool openssl libssl-dev automake autocon
 sudo apt install automake libtool pkg-config libmodule-install-perl gcc g++ libssl-dev tcl-dev libpcre3-dev libcap-dev libhwloc-dev libncurses5-dev libcurl4-openssl-dev flex autotools-dev bison debhelper dh-apparmor gettext intltool-debian libbison-dev libexpat1-dev libfl-dev libsigsegv2 libsqlite3-dev m4 po-debconf tcl8.6-dev zlib1g-dev
 ```
 
+### 一键安装脚本
+https://github.com/Har-Kuun/OneClickCDN
+
+```
+#原版（英文界面）：
+wget https://raw.githubusercontent.com/Har-Kuun/OneClickCDN/master/OneClickCDN.sh && sudo bash OneClickCDN.sh
+#中文版：
+wget https://raw.githubusercontent.com/Har-Kuun/OneClickCDN/master/translation/translated_scripts/OneClickCDN_zh-CN.sh && sudo bash OneClickCDN_zh-CN.sh
+```
+
 ## 命令行工具
 
 ### traffic_top

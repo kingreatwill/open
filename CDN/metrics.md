@@ -1,3 +1,4 @@
+[TOC]
 ## CPU
 CPU统计工具如topas、sar、vmstat、lparstat、iostat
 
@@ -354,3 +355,38 @@ pt-ioprofile --version
 `pt-ioprofile --profile-pid=$(pidof mysqld) --cell=count --run-time=5`
 
 > pt-ioprofile会冻结服务器，并可能使进程崩溃，或在分离后使其性能下降，或使其处于睡眠状态,pt-ioprofile是一种侵入性工具，不应在生产服务器上使用pt-ioprofile。
+
+### 网络IO
+#### 服务器网络流量监控工具：Ntopng
+http://www.ntop.org/
+
+```
+sudo apt-get install ntopng
+
+sudo vim /etc/ntopng.conf
+```
+
+/etc/ntopng.conf
+```
+# DO NOT REMOVE the following option, required for daemonization.
+-e=
+
+# * Interfaces to sniff on: one interface per line, prefix with -i=
+# If none is specified, ntopng will try to auto-detect the best interface.
+
+-i=eth0
+
+# * Port on which ntopng will listen for the web-UI.
+-w=3000
+```
+
+`sudo systemctl restart ntopng`
+
+防火墙中开启相应的端口: `sudo ufw allow 3000`
+
+#### 服务器网络流量监控工具：Munin
+http://munin-monitoring.org/
+Munin可以说是一个综合性的服务器性能监控平台，除了可以得到网络流量等信息，还可以看到硬盘容量、IO读写、CPU使用、内存占用等各类信息，比较适合用于服务器的全方位监控。
+
+Debian或者Ubuntu系统：`apt-get install munin munin-node`
+如果是Redhat或者CentOS系统：`yum install munin munin-node`。
