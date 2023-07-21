@@ -2,6 +2,9 @@
 (1).Termux(终端模拟器)
 https://termux.com/
 
+Termux 是一个 Android 下一个高级的终端模拟器，开源且不需要 root
+[app下载](https://github.com/termux/termux-app)
+
 移动端JuiceSSH  free SSH client for Android
 https://www.juicessh.com/
 

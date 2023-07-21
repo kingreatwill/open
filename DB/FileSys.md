@@ -184,6 +184,13 @@ https://github.com/dboxshare/dboxShare
 https://github.com/cloudreve/Cloudreve
 
 DEMO演示站：https://drive.aoaoao.me
+
+#### 离线下载
+- aria2 c++ 30.9k
+aria2.github.io/
+https://github.com/aria2/aria2
+可以通过jsonrpc控制aria2
+
 ##### 目前已经实现的功能：
 - 快速对接多家云存储，支持七牛、又拍云、阿里云OSS、AWS S3、Onedrive、自建远程服务器，当然，还有本地存储
 - 可限制单文件最大大小、MIMEType、文件后缀、用户可用容量
