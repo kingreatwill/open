@@ -67,6 +67,14 @@ coredns官方对于插件的分类基本可以分为三种：[Plugins](https://c
 
 编译插件基本可以分为:修改源码和修改编译的配置文件这两种方式
 源码根目录下有个文件: `plugin.cfg`
+> 编译后会自动在`core/plugin/zplugin.go`文件中引用该插件, 从而调用init函数
+> 以及把名字添加到`core/dnsserver/zdirectives.go` 
+> directives 里插件的顺序非常的重要，这个顺序，决定了CoreDNS处理DNS请求时所执行的插件顺序(实际上是`plugin.cfg`的顺序编译出来的)
+> 所以Corefile中定义顺序是没有关系的
+
+> 执行 `go generate coredns.go` 即可自动生成上面说的文件。然后执行`go build -o coredns coredns.go`构建即可。
+> 当然也可以直接执行`make`
+
 部分内容如下
 ```
 ...
