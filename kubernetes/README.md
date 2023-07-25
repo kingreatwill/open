@@ -147,10 +147,52 @@ Readiness 探测失败是应用程序特有的错误，因此您应该检查 kub
 切换context/设置当前context
 `kubectl config use-context docker-desktop`
 
+设置默认上下文的默认命名空间: `kubectl config set-context docker-desktop --namespace=${work_namespace}`
 
 > kubectl config --help
 可以存在多个KUBECONFIG, 只需要配置环境变量KUBECONFIG,文件名用冒号隔开
 [配置对多集群的访问](https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+
+
+#### kubeconfig 文件合并
+通过 [kubecm](https://github.com/sunny0826/kubecm) 工具合并多个 kubeconfig 文件
+
+```
+$ export VERSION=v0.25.0
+
+# linux x86_64 安装包
+$ curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v${VERSION}/kubecm_${VERSION}_Linux_x86_64.tar.gz
+
+# macos 安装包
+$ curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v${VERSION}/kubecm_${VERSION}_Darwin_x86_64.tar.gz
+
+# windows 安装包
+$ curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v${VERSION}/kubecm_${VERSION}_Windows_x86_64.tar.gz
+
+# # linux & macos 安装
+$ tar -zxvf kubecm.tar.gz kubecm
+$ cd kubecm
+$ sudo mv kubecm /usr/local/bin/
+
+# windows 安装
+# Unzip kubecm.tar.gz
+# Add the binary in to your $PATH
+```
+
+
+```
+# 把需要合并的 Kubeconfig 文件放到 all_kubeconfig 目录下，执行命令后会在当前路径下产生一个新的 kubeconfig 文件
+
+$ kubecm merge -f all_kubeconfig
+
+# 直接把新生成的 kubeconfig 文件替换 $HOME/.kube/config 文件
+$ kubecm merge -f all_kubeconfig -c
+
+# 集群切换命令
+$ kubecm switch
+
+```
+
 
 #### 日常运维常用命令
 - 根据启动时间降序（descending order）

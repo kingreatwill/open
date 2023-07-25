@@ -15,3 +15,11 @@ https://github.com/OUCMachineLearning/OUCML/tree/master/%E4%BB%A3%E7%A0%81%E9%80
 
 ## opensource
 https://opensource.com/downloads/cheat-sheets
+
+
+
+
+## Developer Roadmaps
+https://roadmap.sh/roadmaps
+### JWT
+![https://roadmap.sh/guides/jwt-authentication](https://roadmap.sh/guides/jwt-authentication.png)
