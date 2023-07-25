@@ -390,3 +390,42 @@ Munin可以说是一个综合性的服务器性能监控平台，除了可以得
 
 Debian或者Ubuntu系统：`apt-get install munin munin-node`
 如果是Redhat或者CentOS系统：`yum install munin munin-node`。
+
+
+#### mtr网络链路路由测试工具
+mtr（My traceroute）集合ping、tracerouted的特性，功能更强大。mtr默认发送ICMP数据包进行链路探测，用户还可以通过-u参数来指定使用UDP数据包用于探测。相比traceroute只会做一次链路跟踪测试，mtr会对链路上的相关节点做持续探测并给出相应的统计信息。mtr能避免节点波动对测试结果的影响，所以其测试结果更正确。
+
+WinMTR下载地址：https://sourceforge.net/projects/winmtr/files/WinMTR-v092.zip/download
+
+指标:
+Interval（sec）：每次探测的间隔（过期）时间，默认为1秒
+ping size(bytes)：ping探测所使用的数据包大小，默认为64字节
+Max hosts in LRU list：LRU列表支持的最大主机数，默认值为128
+Resolve names：通过反查IP地址，以域名显示相关节点。
+
+Linux下使用mtr命令
+命令也很简单：mtr 服务器ip或者域名
+mtr命令可选参数：
+-r或—report：以报告模式显示输出；
+-p或—split：将每次追踪的结果分别列出来，而非如 —report统计整个结果；
+-s或—psize：指定ping数据包的大小；
+-n或—no-dns：不对IP地址做域名反解析；
+-a或—address：设置发送数据包的IP地址，用于主机有多个IP时；
+-4：只使用IPv4协议；
+-6：只使用IPv6协议；
+
+mtr在运行过程中，可以通过输入相应字母来快速切换模式：
+？或h：显示帮助菜单；
+d：切换显示模式；
+n：切换启用或禁用DNS域名解析；
+u：切换使用ICMP或UDP数据包进行探测；
+
+mtr测试结果每列数值的说明如下：
+Host：节点IP地址和域名（按n键可以切换显示）；
+Loss%：节点丢包率；
+Snt：每秒发送数据包数，默认值是10，可以通过参数-c指定；
+Last：最近一次的探测延迟值；
+Avg：探测延迟的平均值；
+Best：探测延迟的最小值；
+Wrst：探测延迟到最大值；
+StDev：标准偏差值，越大说明相应节点越不稳定。

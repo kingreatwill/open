@@ -14,6 +14,8 @@ https://www.kaggle.com/
 [Apache Spark](https://github.com/apache/spark)|scala，java|v3.0.0|24.6k
 [Apache Flink](https://github.com/apache/flink) |java，scala |V1.9.1|11.5k
 [Apache Storm](https://github.com/apache/storm)|java |V2.1.0|6k
+[RisingWave ](https://github.com/risingwavelabs/risingwave) |Rust | RisingWave is a distributed SQL streaming database. |4.9k
+
 
 Hadoop(第一代) - > Spark(第二代) - > Flink(第三代)
 
