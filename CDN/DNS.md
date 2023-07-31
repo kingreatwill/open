@@ -147,6 +147,35 @@ doggo www.baidu.com @127.0.0.1
 
 dig www.baidu.com @192.168.1.5
 ```
+#### 获取配置的Tracer(调用链)
+
+```
+func setup(c *caddy.Controller) error {
+	c.OnStartup(func() error {
+		conf := dnsserver.GetConfig(c)
+		for _, h := range conf.Handlers() {
+			if h.Name() == "trace" {
+				// we have to stash away the plugin, not the
+				// Tracer object, because the Tracer won't be initialized yet
+				if t, ok := h.(trace.Trace); ok {
+					print(t) // t就是当前server的Tracer
+				}
+			}
+		}
+		return nil
+	})
+	dnsserver.GetConfig(c).AddPlugin(func(next plugin.Handler) plugin.Handler {
+		r.Next = next
+		return r
+	})
+
+	return nil
+}
+```
+
+> sql driver wrapper(OpenTelemetry):  https://github.com/nhatthm/otelsql
+> sql driver wrapper: https://github.com/inkbe/opentracing-sql
+> sql driver wrapper: https://kgithub.com/luna-duclos/instrumentedsql/
 
 
 ### 在docker环境中安装coredns

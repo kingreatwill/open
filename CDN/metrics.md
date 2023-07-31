@@ -429,3 +429,12 @@ Avg：探测延迟的平均值；
 Best：探测延迟的最小值；
 Wrst：探测延迟到最大值；
 StDev：标准偏差值，越大说明相应节点越不稳定。
+
+
+
+### http请求耗时
+[httpstat](https://github.com/davecheney/httpstat)
+`httpstat https://example.com/ `
+可以看到 `DNS Lookup`, `TCP Connection`, `TLS Handshake`(http没有, 其它的顺序一样), `Server Processing`, `Content Transfer`
+
+原理就是利用httptrace.ClientTrace来做各个阶段的监控
