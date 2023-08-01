@@ -178,6 +178,20 @@ func setup(c *caddy.Controller) error {
 > sql driver wrapper: https://kgithub.com/luna-duclos/instrumentedsql/
 
 
+##### gorm mysql 报错 driver skip fast-path; continue as if unimplemented
+
+目前我们使用v1.9.16的gorm（github.com/jinzhu/gorm v1.9.16），不支持在初始化配置中设置开启[prepared statement](https://gorm.io/docs/performance.html#Caches-Prepared-Statement)。
+
+这样在我们使用sql hook替换默认mysql driver的时候，经常会有报错driver skip fast-path; continue as if unimplemented。
+
+解决方案
+可以查看[interpolateparams的官方文档](https://github.com/go-sql-driver/mysql#interpolateparams)，只需要在创建数据库连接时，连接dsn中添加`interpolateParams=true`作为参数。
+
+> 注意interpolateParams, Params的P是大写的
+
+参考: [Go: go-sql-driver interpolateparams参数优化](https://wklken.me/posts/2021/01/22/golang-sql-driver-interpolateparams.html)
+
+
 ### 在docker环境中安装coredns
 `docker pull coredns/coredns:1.10.1`
 创建配置文件
