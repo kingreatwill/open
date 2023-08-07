@@ -24,3 +24,11 @@ java -jar swagger-codegen-cli-3.0.21.jar config-help -l python
 https://gitee.com/api/v5/doc_json
 
 java -jar swagger-codegen-cli-3.0.21.jar  generate -i doc_json.json -l python -o client -DpackageName=gitee -DprojectName=pygitee -DpackageName=gitee -DprojectName=pygitee
+
+## tool
+### postman
+### Apifox
+### Insomnia
+The open-source, cross-platform API client for GraphQL, REST, WebSockets and gRPC.
+https://insomnia.rest/
+https://github.com/Kong/insomnia

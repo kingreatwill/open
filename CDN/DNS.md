@@ -180,6 +180,8 @@ func setup(c *caddy.Controller) error {
 
 ##### gorm mysql 报错 driver skip fast-path; continue as if unimplemented
 
+自己实现OpenTelemetry标准: https://github.com/nhatthm/otelsql
+
 目前我们使用v1.9.16的gorm（github.com/jinzhu/gorm v1.9.16），不支持在初始化配置中设置开启[prepared statement](https://gorm.io/docs/performance.html#Caches-Prepared-Statement)。
 
 这样在我们使用sql hook替换默认mysql driver的时候，经常会有报错driver skip fast-path; continue as if unimplemented。
@@ -191,6 +193,8 @@ func setup(c *caddy.Controller) error {
 
 参考: [Go: go-sql-driver interpolateparams参数优化](https://wklken.me/posts/2021/01/22/golang-sql-driver-interpolateparams.html)
 
+
+> 也可以使用otelsql.DisableErrSkip(),忽略错误
 
 ### 在docker环境中安装coredns
 `docker pull coredns/coredns:1.10.1`
