@@ -305,6 +305,9 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 
 `nslookup www.baidu.com`
 
+> windows下, 直接nslookup可以查看默认dns解析
+
+
 #### host
 `host www.baidu.com`
 > host,nslookup,dig,named 作为 bind 的一部分,windows 下载: https://www.isc.org/bind/
@@ -368,6 +371,12 @@ $ mv doggo /usr/local/bin
 
 Sniffer(嗅探器)就是利用计算机的网络接口截获目的地为其他计算机的数据报文的一种技术。
 > sniffnet
+
+#### NetLimiter
+NetLimiter是专为Windows设计的终极Internet 流量控制和监视工具。您可以使用NetLimiter设置应用程序甚至单个连接的下载/上传传输速率限制，并监视其Internet流量。除了此独特功能外，Netlimiter还提供了全面的Internet统计工具集。它包括实时流量测量和按应用程序的长期互联网流量统计。为任何应用程序设置确切的下载/上传速度限制，或为它们指定更高的优先级，以确保它们始终获得所需的足够带宽。您将不会错过任何一个连接到互联网的应用程序。
+您还将监视其从Internet传输或向Internet传输的数据量。所有这些都还显示在可自定义的图表中。使用这个简单且互动的规则系统，您将可以指定哪些应用程序可以连接到互联网以及在哪些条件下连接。使您可以设置所选应用程序/过滤器的数据传输配额。如果达到配额-限制，则可以启用阻止程序规则或其他规则。
+
+也可以禁止一个dns的解析
 
 #### 网络监控工具
 - GlassWire
