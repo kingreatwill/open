@@ -178,6 +178,32 @@ func setup(c *caddy.Controller) error {
 > sql driver wrapper: https://kgithub.com/luna-duclos/instrumentedsql/
 
 
+```
+import (
+	"context"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	"net/http"
+	"net/http/httptrace"
+)
+
+var DefaultClient = &http.Client{
+	Transport: otelhttp.NewTransport(
+		http.DefaultTransport,
+		otelhttp.WithClientTrace(func(ctx context.Context) *httptrace.ClientTrace {
+			return otelhttptrace.NewClientTrace(ctx)
+		}),
+	),
+}
+
+func DoRequest(ctx context.Context, req *http.Request) (*http.Response, error) {
+	req = req.WithContext(ctx)
+	return DefaultClient.Do(req)
+}
+```
+
+
+
 ##### gorm mysql 报错 driver skip fast-path; continue as if unimplemented
 
 自己实现OpenTelemetry标准: https://github.com/nhatthm/otelsql
