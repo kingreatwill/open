@@ -120,3 +120,6 @@ min-slaves-max-lag 10
 slave-announce-ip 5.5.5.5
 slave-announce-port 1234
 ```
+
+#### 从节点提升为主节点
+当一个从节点被提升为主节点时，其它的从节点必须与新主节点重新同步。在Redis 4.0 之前，因为master_replid发生了变化，所以这个过程是一个全量同步。在Redis 4.0之后，新主节点会记录旧主节点的master_replid和offset，因为能够接受来自其它从节点的增量同步请求，即使请求中的master_replid不同。在底层实现上，当执行slaveof no one时，会将master_replid，master_repl_offset+1复制为master_replid，second_repl_offset。
