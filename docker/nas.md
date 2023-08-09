@@ -74,7 +74,7 @@ docker run -it --rm -p 5000:5000 --device=/dev/kvm --cap-add NET_ADMIN --stop-ti
 mix文件管理
 
 ## 其它
-- 电子书库 hectorqin/reader
+### 电子书库 hectorqin/reader
 
 https://www.toutiao.com/article/7257138465949614607/
 ```
@@ -96,6 +96,12 @@ services:
          - 33333:8080
 ```
 
+### GPS轨迹追踪Traccar
+https://www.traccar.org/
+
+app下载:https://www.traccar.org/client/
+
+[NAS还能这么玩！搭建在线追踪功能的开源GPS追踪工具 『Traccar』](https://www.toutiao.com/article/7264853678673101351/)
 
 ## 迷你主机
 铭凡UM790 Pro
