@@ -52,3 +52,12 @@ docker run -p 6379:6379 --restart always  -d redis:3.2 redis-server --appendonly
 ```
  docker run -p 6379:6379 redislabs/redisearch:latest
 ```
+
+### Redis Client On Error: Error: write ECONNABORTED Config right?
+如果出现连接不上,需要修改
+```
+注释掉bind 127.0.0.1, 或者修改bind 0.0.0.0,表示允许所有ip地址访问
+
+修改peotected-mode yes
+改为：protected-mode no.
+```
