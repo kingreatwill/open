@@ -481,7 +481,10 @@ openresty lua模块化开发的框架，用来简化nginx的配置、规范开�
 ## 分析和诊断工具
 
 ### openresty-systemtap-toolkit
+[文档](https://github.com/openresty/openresty-systemtap-toolkit/blob/master/README-CN.markdown)
+
 https://github.com/openresty/openresty-systemtap-toolkit
+
 Real-time analysis and diagnostics tools for OpenResty (including NGINX, LuaJIT, ngx_lua, and more) based on SystemTap
 
 
