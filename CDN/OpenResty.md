@@ -16,6 +16,9 @@ OpenResty 在 1.5.8.1 版之后才默认使用 LuaJIT，之前使用的是标准
 
 http://openresty.org/cn/download.html
 
+nginx文档:
+https://nginx.org/en/docs/
+
 ### docker
 复制配置文件到宿主机：
 ```
@@ -474,6 +477,80 @@ https://github.com/leafo/lapis
 ### openresty-smart-panda
 https://github.com/BBD-RD/openresty-smart-panda/
 openresty lua模块化开发的框架，用来简化nginx的配置、规范开发过程、降低开发难度、减少代码耦合性、提高多人协同工作等。
+
+## 分析和诊断工具
+
+### openresty-systemtap-toolkit
+https://github.com/openresty/openresty-systemtap-toolkit
+Real-time analysis and diagnostics tools for OpenResty (including NGINX, LuaJIT, ngx_lua, and more) based on SystemTap
+
+
+- [ngx-lua-bt](https://github.com/openresty/openresty-systemtap-toolkit#ngx-lua-bt)
+- [sample-bt](https://github.com/openresty/openresty-systemtap-toolkit#sample-bt)
+
+#### systemtap
+systemtap是内核开发者必须要掌握的一个工具
+
+systemtap 官网给出了自学教程及相关论文，选择看这个已经足够了：https://sourceware.org/systemtap/documentation.html
+IBM 编写的systemtap 指南也是很不错的： http://www.redbooks.ibm.com/abstracts/redp4469.html
+
+### 火焰图工具 FlameGraph
+https://github.com/brendangregg/FlameGraph
+火焰图（flame graph）是性能分析的利器，通过它可以快速定位性能瓶颈点。
+perf 命令（performance 的缩写）是 Linux 系统原生提供的性能分析工具，会返回 CPU 正在执行的函数名以及调用栈（stack）。
+
+`yum install perf -y`
+
+里面大部分是perf语言写的脚本，生成火焰图后续会用到(直接执行.pl后缀的脚本文件, 对采集的数据进行各种处理)
+`git clone https://github.com/brendangregg/FlameGraph.git`
+
+#### perf 采集数据
+`perf record -F 99 -a -g -- sleep 60` //对CPU所有进程以99Hz采集,它的执行频率是 99Hz（每秒99次），如果99次都返回同一个函数名，那就说明 CPU 这一秒钟都在执行同一个函数，可能存在性能问题。执行60秒后会弹出如下图提示表示采集完成，在当前目录会生成一个perf.data的文件
+
+```
+# perf record -F 99 -p 181 -g -- sleep 60        //对进程ID为181的进程进行采集，采集时间为60秒，执行期间不要退出
+
+
+上述代码中perf record
+表示记录，
+-F 99
+表示每秒99次，
+-p 13204
+是进程号，即对哪个进程进行分析，
+-g
+表示记录调用栈，
+sleep 30
+则是持续30秒，-a 表示记录所有cpu调用。更多参数可以执行
+上述代码中perf record
+-F 99
+-p 13204
+-g
+sleep 30
+perf --help查看。
+```
+
+#### 生成火焰图
+```
+# perf script -i perf.data &> perf.unfold                        //生成脚本文件
+
+# ./FlameGraph/stackcollapse-perf.pl perf.unfold &> perf.folded              
+
+# ./FlameGraph/flamegraph.pl perf.folded > perf.svg                       //执行完成后生成perf.svg图片，可以下载到本地，用浏览器打开 perf.svg，如下图
+```
+
+#### 火焰图的含义
+y 轴表示调用栈，每一层都是一个函数。调用栈越深，火焰就越高，顶部就是正在执行的函数，下方都是它的父函数。
+
+x 轴表示抽样数，如果一个函数在 x 轴占据的宽度越宽，就表示它被抽到的次数多，即执行的时间长。注意，x 轴不代表时间，而是所有的调用栈合并后，按字母顺序排列的。
+
+火焰图就是看顶层的哪个函数占据的宽度最大。只要有"平顶"（plateaus），就表示该函数可能存在性能问题。
+
+颜色没有特殊含义，因为火焰图表示的是 CPU 的繁忙程度，所以一般选择暖色调。
+
+
+
+#### 参考
+[火焰图（Flame Graphs）的安装和基本用法](https://www.cnblogs.com/wx170119/p/11459995.html)
 
 
 ## OpenResty Edge
