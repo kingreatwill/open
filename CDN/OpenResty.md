@@ -162,6 +162,19 @@ OpenResty 提供了一些 “xxx_by_lua” 指令，开发 Web 应用时使用�
 - body_filter_by_lua：filter 阶段，加工处理响应体；
 - log_by_lua：log 阶段，记录日志或其他的收尾工作。
 
+
+OpenResty 中常用的 HTTP 请求处理阶段：
+
+- init 阶段：这是 OpenResty 处理请求的第一个阶段。在这个阶段，可以执行全局初始化操作，例如加载和初始化一些全局的 Lua 模块、初始化共享内存等。通常情况下，不需要在用户级别的请求处理中使用该阶段。
+- ​set​ 阶段：在该阶段，OpenResty 提供的事件钩子 set_by_lua*​ 允许开发人员在处理请求之前设置变量。这个阶段通常用于设置一些全局变量或请求特定的变量，这些变量可以在后续阶段中使用。
+- rewrite​ 阶段：在 rewrite​ 阶段，OpenResty 提供的事件钩子 rewrite_by_lua*​ 允许开发人员修改请求的 URI 或其他请求相关的参数。在这个阶段，可以根据特定规则重写请求的路径、添加查询参数、进行重定向等操作。
+- ​access​ 阶段：access​ 阶段是处理请求访问权限的阶段。在该阶段，OpenResty 提供的事件钩子 access_by_lua*​ 允许开发人员对请求进行访问控制、鉴权、限流等操作。可以检查用户的身份、验证 API 密钥、对请求进行频率限制等。
+- ​content​ 阶段：content​ 阶段是处理请求内容的主要阶段。在该阶段，OpenResty 提供的事件钩子 content_by_lua*​ 允许开发人员编写 Lua 脚本来处理请求、生成响应内容、与后端服务交互等。这个阶段是实现业务逻辑的主要场所。
+- ​header_filter​ 阶段：在 header_filter​ 阶段，OpenResty 提供的事件钩子 header_filter_by_lua*​ 允许开发人员修改响应头。可以添加、修改或删除响应头信息，对响应进行进一步处理。
+- ​body_filter​ 阶段：body_filter​ 阶段是对响应体进行处理的阶段。在该阶段，OpenResty 提供的事件钩子 body_filter_by_lua*​ 允许开发人员对响应进行修改、过滤或其他操作。可以对响应进行内容转换、压缩、加密等。
+- ​log​ 阶段：在 log​ 阶段，OpenResty 提供的事件钩子 log_by_lua*​ 允许开发人员记录请求和响应的日志信息。可以将请求信息、响应信息、自定义日志等写入日志文件或其他日志存储。
+
+
 例子如下：
 ```
 init_worker_by_lua_block {                              -- worker-initing 阶段
@@ -621,3 +634,5 @@ root      7469  0.0  0.0 129628  7248 ?        Ssl  04:57   0:02 /usr/local/tcac
 [Redis、Lua、Nginx、OpenResty 笔记和资料](https://github.com/Tinywan/lua-nginx-redis)
 
 [OpenResty学习指南（一）](https://www.cnblogs.com/luozhiyun/p/12267231.html)
+
+[apigateway技术选型必须要考虑的技术之一OpenResty](https://www.toutiao.com/article/7266448451595076096)

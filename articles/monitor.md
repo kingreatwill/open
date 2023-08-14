@@ -129,6 +129,15 @@ location ~ /netdata/(?<ndpath>.*) {
 
 ## Prometheus
 
+## OpenObserve
+https://github.com/openobserve/openobserve
+OpenObserve是一个可以替代Elasticsearch/Splunk/Datadog的开源项目
+- 简单易用：与Elasticsearch相比，OpenObserve的操作非常简单，几乎不需要理解和调整大量参数即可快速上手。您只需花费不到2分钟的时间，即可开始使用OpenObserve。
+- 降低存储成本：通过使用OpenObserve，您可以将日志存储成本降低约140倍，相比于Elasticsearch，这是一个巨大的节省。
+- 高性能：OpenObserve提供高性能的日志、指标和跟踪处理能力，能够处理宠字节级规模的数据，满足大规模应用的需求。
+- 丰富的功能：OpenObserve提供了多种功能，包括日志、指标、跟踪的处理、警报和仪表盘等。它还提供了丰富的内置功能，如数据增强、数据脱敏、日志压缩等，无需学习额外的查询语言。
+- 开源兼容：OpenObserve是一个开源项目，您可以自由地修改和定制，满足自己的特定需求。
+
 ## Zabbix
 
 https://www.zabbix.com/

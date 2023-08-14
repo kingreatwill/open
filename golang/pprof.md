@@ -25,6 +25,11 @@ https://github.com/pyroscope-io/pyroscope
 - PHP (via phpspy)
 - .NET (via dotnet trace)
 - Java (coming soon)
+
+> eBPF 是一项革命性的技术，可以在 Linux 内核中运行沙盒程序，而无需更改内核源代码或加载内核模块。通过使 Linux 内核可编程，基础架构软件可以利用现有的层，从而使它们更加智能和功能丰富，而无需继续为系统增加额外的复杂性层。
+
+> eBPF 导致了网络，安全性，应用程序配置/跟踪和性能故障排除等领域的新一代工具的开发，这些工具不再依赖现有的内核功能，而是在不影响执行效率或安全性的情况下主动重新编程运行时行为。
+
 ### statsview
 A real-time Golang runtime stats visualization profiler
 https://github.com/go-echarts/statsview
