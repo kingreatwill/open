@@ -480,6 +480,8 @@ openresty lua模块化开发的框架，用来简化nginx的配置、规范开�
 
 ## 分析和诊断工具
 
+### OpenResty XRay
+openresty-systemtap-toolkit已经不维护了, 重点开发OpenResty XRay (商业收费)
 ### openresty-systemtap-toolkit
 [文档](https://github.com/openresty/openresty-systemtap-toolkit/blob/master/README-CN.markdown)
 
@@ -490,6 +492,14 @@ Real-time analysis and diagnostics tools for OpenResty (including NGINX, LuaJIT,
 
 - [ngx-lua-bt](https://github.com/openresty/openresty-systemtap-toolkit#ngx-lua-bt)
 - [sample-bt](https://github.com/openresty/openresty-systemtap-toolkit#sample-bt)
+
+
+#### 前提条件
+你的 Linux 系统需要 systemtap 2.1+ 和 perl 5.6.1+ 及以上的版本。如果要从源码编译最新版本的 systemtap，你可以参考这个文档：http://openresty.org/#BuildSystemtap
+
+另外，如果你不是从源码编译的 NGINX，你需要保证你的 NGINX 和其他依赖组件的 （DWARF）调试信息已经打开了（或者单独安装了）。
+
+最后，你也需要安装 kernel debug symbols 和 kernel headers。通常只用在你的 Linux 系统中，安装和 kernel 包匹配的 kernel-devel 和 kernel-debuginfo 就可以了。
 
 #### systemtap
 systemtap是内核开发者必须要掌握的一个工具
