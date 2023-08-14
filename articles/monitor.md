@@ -138,6 +138,8 @@ OpenObserve是一个可以替代Elasticsearch/Splunk/Datadog的开源项目
 - 丰富的功能：OpenObserve提供了多种功能，包括日志、指标、跟踪的处理、警报和仪表盘等。它还提供了丰富的内置功能，如数据增强、数据脱敏、日志压缩等，无需学习额外的查询语言。
 - 开源兼容：OpenObserve是一个开源项目，您可以自由地修改和定制，满足自己的特定需求。
 
+https://openobserve.ai/docs/quickstart/
+
 ## Zabbix
 
 https://www.zabbix.com/

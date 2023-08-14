@@ -655,6 +655,15 @@ docker run  -itd -p 3000:3000 -p 3001:3001 -v /e/dockerv/wps/config:/config --re
 3000与3001，分别为http与https协议
 
 ### 文本编辑器(轻量级IDE)
+#### EmEditor
+号称"全球最快的文本编辑器"
+
+大文件编辑器(好用, 大文件秒开), 免费和付费的可以自由切换
+
+
+https://www.emeditor.com
+https://zh-cn.emeditor.com/
+
 #### notepad++
 
 #### Geany
