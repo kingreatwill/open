@@ -27,6 +27,15 @@ https://pkg.go.dev/golang.org/x/time/rate
 Simple middleware to rate-limit HTTP requests.
 https://github.com/didip/tollbooth 2.4k
 
+## 缓存
+### singleflight
+缓存击穿
+将一组相同的请求合并成一个请求，实际上只会去请求一次，然后对所有的请求返回相同的结果。
+"golang.org/x/sync/singleflight"
+"github.com/zeromicro/go-zero/core/syncx"的 syncx.SingleFlight
+
+> 如果第一个请求在执行了, 后面的请求阻塞等待获取结果(会指定key, 相同的key才会)
+
 ## 分析/debug
 ### pprof
 [Profiling](./pprof.md)
