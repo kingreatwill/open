@@ -531,6 +531,12 @@ https://github.com/jinzhu/copier
 ### 类型转换cast
 github.com/spf13/cast
 
+### 比较两个值是否相等go-cmp
+github.com/com/google/go-cmp/cmp
+github.com/com/google/go-cmp
+
+### Pretty printing for Go values
+github.com/kr/pretty 
 ### 字符串format
 
 https://github.com/sirkon/go-format 功能最强大
