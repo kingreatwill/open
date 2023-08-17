@@ -36,6 +36,11 @@ https://github.com/didip/tollbooth 2.4k
 
 > 如果第一个请求在执行了, 后面的请求阻塞等待获取结果(会指定key, 相同的key才会)
 
+## Goroutine
+### Goroutine 泄漏防治神器 goleak
+goroutine 作为 golang 并发实现的核心组成部分，非常容易上手使用，但却很难驾驭得好。我们经常会遭遇各种形式的 goroutine 泄漏，这些泄漏的 goroutine 会一直存活直到进程终结。它们的占用的栈内存一直无法释放、关联的堆内存也不能被 GC 清理，系统的可用内存会随泄漏 goroutine 的增多越来越少，直至崩溃！
+https://github.com/uber-go/goleak
+
 ## 分析/debug
 ### pprof
 [Profiling](./pprof.md)
@@ -522,6 +527,9 @@ https://github.com/petersunbag/coven
 
 这个也是很NB
 https://github.com/jinzhu/copier
+
+### 类型转换cast
+github.com/spf13/cast
 
 ### 字符串format
 
