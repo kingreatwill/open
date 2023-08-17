@@ -5,6 +5,138 @@
 
 # docker安装kong DB-less
 
+## 安装kong
+```
+docker network create kong-net
+
+docker run -d --name kong-database \
+               --network=kong-net \
+               -p 5432:5432 \
+               -v $HOME/kong/postgres-data:/var/lib/postgresql/data \
+               -e "POSTGRES_USER=kong" \
+               -e "POSTGRES_DB=kong" \
+               -e "POSTGRES_PASSWORD=kong" \
+               postgres:9.6
+
+# 初始化数据
+docker run --rm \
+     --network=kong-net \
+     -e "KONG_DATABASE=postgres" \
+     -e "KONG_PG_HOST=kong-database" \
+     -e "KONG_PG_USER=kong" \
+     -e "KONG_PG_PASSWORD=kong" \
+     kong:latest kong migrations bootstrap
+
+
+# 导入Kong配置
+docker run --rm \
+    --network=kong-net \
+    -e "KONG_DATABASE=postgres" \
+    -e "KONG_PG_HOST=kong-database" \
+    -e "KONG_PG_USER=kong" \
+    -e "KONG_PG_PASSWORD=kong" \
+    -v $HOME/kong/config:/home/kong \
+    kong:latest kong config db_import /home/kong/kong.yml
+
+# 启动Kong
+docker run -d --name kong \
+     --network=kong-net \
+     -e "KONG_DATABASE=postgres" \
+     -e "KONG_PG_HOST=kong-database" \
+     -e "KONG_PG_USER=kong" \
+     -e "KONG_PG_PASSWORD=kong" \
+     -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+     -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+     -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+     -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+     -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+     -p 8000:8000 \
+     -p 8443:8443 \
+     -p 127.0.0.1:8001:8001 \
+     -p 127.0.0.1:8444:8444 \
+     kong:latest
+
+
+# 初始化数据konga数据库
+docker run --rm \
+             --network=kong-net \
+             pantsel/konga:latest \
+             -c prepare \
+             -a "postgres" \
+             -u "postgres://kong:kong@kong-database:5432/konga"
+
+# 启动Konga
+docker run -d --name konga \
+             --network kong-net \
+             -e "TOKEN_SECRET=secret123" \
+             -e "DB_ADAPTER=postgres" \
+             -e "DB_URI=postgres://kong:kong@kong-database:5432/konga" \
+             -e "NODE_ENV=development" \
+             -p 1337:1337 \
+             pantsel/konga
+
+```
+
+这里创建数据库需要两个, 一个kong,一个konga
+把shell/sql脚本放入/docker-entrypoint-initdb.d/目录中，让容器启动的时候自动执行创建；
+shell脚本create-multiple-postgresql-databases.sh
+```bash
+#!/bin/bash
+
+set -e
+set -u
+
+function create_user_and_database() {
+    local database=$1
+    echo "  Creating user and database '$database'"
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+        CREATE USER $database;
+        CREATE DATABASE $database;
+        GRANT ALL PRIVILEGES ON DATABASE $database TO $database;
+EOSQL
+}
+
+if [ -n "$POSTGRES_MULTIPLE_DATABASES" ]; then
+    echo "Multiple database creation requested: $POSTGRES_MULTIPLE_DATABASES"
+    for db in $(echo $POSTGRES_MULTIPLE_DATABASES | tr ',' ' '); do
+        create_user_and_database $db
+    done
+    echo "Multiple databases created"
+fi
+```
+或者sql脚本create-multiple-postgresql-databases.sql
+```sql
+CREATE USER pkslowuser;
+
+CREATE DATABASE logdata;
+GRANT ALL PRIVILEGES ON DATABASE logdata TO pkslowuser;
+
+CREATE DATABASE orderdata;
+GRANT ALL PRIVILEGES ON DATABASE orderdata TO pkslowuser;
+
+CREATE DATABASE userdata;
+GRANT ALL PRIVILEGES ON DATABASE userdata TO pkslowuser;
+```
+
+准备Dockerfile，把shell/sql脚本文件放入镜像中去：
+```Dockerfile
+FROM postgres:10
+COPY create-multiple-postgresql-databases.sh /docker-entrypoint-initdb.d/
+COPY create-multiple-postgresql-databases.sql /docker-entrypoint-initdb.d/
+```
+# 启动
+```sh
+docker run -itd \
+    --name pkslow-postgres \
+    -e POSTGRES_MULTIPLE_DATABASES=db1,db2 \
+    -e POSTGRES_USER=pkslow \
+    -e POSTGRES_PASSWORD=pkslow \
+    -p 5432:5432 \
+    pkslow/postgresql-multiple-databases:1.0
+```
+> https://github.com/LarryDpk/pkslow-samples
+
+
 # 一个典型的 Nginx 配置
 ```
 upstream helloUpstream {

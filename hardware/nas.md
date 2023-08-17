@@ -20,6 +20,10 @@
 在线演示: https://www.asustor.com/zh-cn/live_demo
 
 ## 开源
+### casaos(严格不算nas)
+https://casaos.io/
+CasaOS是一个基于Docker生态系统的开源家庭云系统
+https://github.com/IceWhaleTech/CasaOS
 
 ### freeNAS
 
