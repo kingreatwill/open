@@ -308,8 +308,15 @@ https://github.com/NickeManarin/ScreenToGif
 动画GIF软件-免费版限制多
 
 ## 截图
-https://github.com/lupoDharkael/flameshot
-老牌截图工具Snagit
+- [flameshot](https://github.com/lupoDharkael/flameshot)
+
+- [Snagit] 老牌商业截图软件(Camtasia录屏是一家公司)
+
+- [ScreenCapture](https://github.com/xland/ScreenCapture)
+
+- [Snipaste](https://zh.snipaste.com/) 也是超级好用
+
+- FastStoneCapture
 
 ### 代码截图：carbon
 https://carbon.now.sh/
@@ -348,10 +355,10 @@ https://github.com/rrweb-io/rrweb
 
 ### ShareX
 免费的 Windows 截屏录制工具。功能强大支持全屏截图、滚动截图、检测窗口截图、GIF 录制等，截图后还支持在图片上增加文字、水印、特效、马赛克等
-https://github.com/ShareX/ShareX 15k
+https://github.com/ShareX/ShareX 25k
 ## 图片处理
 ### ShareX
-https://github.com/ShareX/ShareX 15k
+https://github.com/ShareX/ShareX 25k
 ### Imagine 
 Imagine 是一款开源免费的 图片压缩 程序，用于压缩 PNG、JPEG、WebP 格式的图片。
 https://github.com/meowtec/Imagine
