@@ -61,3 +61,19 @@ docker run -p 6379:6379 --restart always  -d redis:3.2 redis-server --appendonly
 修改peotected-mode yes
 改为：protected-mode no.
 ```
+
+### Redis 绑定 CPU
+Redis 在 6.0 版本，我们可以通过以下配置，对主线程、后台线程、后台 RDB 进程、AOF rewrite 进程，绑定固定的 CPU 逻辑核心：
+```
+# Redis Server 和 IO 线程绑定到 CPU核心 0,2,4,6
+server_cpulist 0-7:2
+
+# 后台子线程绑定到 CPU核心 1,3
+bio_cpulist 1,3
+
+# 后台 AOF rewrite 进程绑定到 CPU 核心 8,9,10,11
+aof_rewrite_cpulist 8-11
+
+# 后台 RDB 进程绑定到 CPU 核心 1,10,11
+# bgsave_cpulist 1,10-1
+```

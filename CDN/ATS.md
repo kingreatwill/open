@@ -53,3 +53,5 @@ Apache Traffic Control 是一个分布式、可扩展的冗余解决方案，实
 [官方文档](https://trafficserver.apache.org/)
 
 [自建CDN系列：Traffic Server](https://www.blueskyxn.com/202007/1666.html)
+
+[AlmaLinux 使用ATS搭建CDN](https://apad.pro/traffic-server-cdn/)
