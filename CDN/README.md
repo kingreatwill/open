@@ -13,6 +13,13 @@ CDN将源站资源缓存到加速节点，当终端用户请求访问和获取�
 抓包命令: `tcpdump -i any -vvvvnnA dst port 8899`
 可以`tcpdump -i any -vvvvnnA dst port 8899 -w file.cap` 保存文件中, 然后使用wireshark来查看数据包
 
+## CDN架构
+Nginx=>Varnish=>ATS的架构后，稳定性大大的加强了。
+
+Nginx通过hash解决了cache抖动的问题，Varnish的内存缓存非常的强大，可定制性太强了，很方便设置content-length不等于0时，则不缓存对象。
+
+[varnish / squid / nginx cache 有什么不同](https://www.zhihu.com/question/20143441)
+
 ## DNS
 
 ### 权威DNS、Local DNS、公共DNS有什么区别？
