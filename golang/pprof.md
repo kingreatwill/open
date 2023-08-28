@@ -14,6 +14,32 @@ https://github.com/dgryski/go-perfbook
 ### go-profiler-notes
 https://github.com/DataDog/go-profiler-notes
 
+### gperftools
+https://github.com/gperftools/gperftools
+采用gperftools 工具集中的CPU profiler 来对C++程序进行性能分析
+gperftools 是 Google开源的一款包含 多线程下高性能内存分配器 tcmalloc 实现和 其他性能分析工具的集合。用户可以单独使用其中的某项工具，也可以全部使用。
+
+```
+git clone https://github.com/gperftools/gperftools.git
+ ​
+ cd gperftools
+ mkdir build
+ cd build
+ cmake -DCMAKE_INSTALL_PREFIX=/opt/software ..
+ make -j8
+ make install
+```
+or
+```
+# 全部安装(gperftools-devel 是头文件)
+yum install -y gperftools gperftools-devel
+# 安装依赖 
+yum install -y libunwind graphviz
+# 安装pprof(其本身是一个perl 脚本)
+yum install -y pprof
+```
+
+
 ## Profiling相关库
 ### pyroscope/性能监控
 https://github.com/pyroscope-io/pyroscope
