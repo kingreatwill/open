@@ -34,6 +34,12 @@ PHP: https://github.com/rryqszq4/ngx_php
 
 > 第三方模块: https://www.nginx.com/resources/wiki/modules/
 
+### nginx替代品
+- [Caddy](https://caddyserver.com/)采用Go语言编写, 是一款功能强大，扩展性高的Web服务器(coredns就是使用它)
+- [Tengine](http://tengine.taobao.org/) 阿里CDN使用的它
+- [Traefik](https://doc.traefik.io/traefik/) 云原生
+- [Pingora](https://github.com/cloudflare/pingora) 是Cloudflare使用Rust开发
+
 ## docker 安装nginx
 
 docker run -d -p 8080:80 --name nginx  nginx:1.17.4

@@ -491,6 +491,13 @@ https://github.com/leafo/lapis 2.9k
 https://github.com/BBD-RD/openresty-smart-panda/
 openresty lua模块化开发的框架，用来简化nginx的配置、规范开发过程、降低开发难度、减少代码耦合性、提高多人协同工作等。
 
+### nginx替代品
+- [Caddy](https://caddyserver.com/)采用Go语言编写, 是一款功能强大，扩展性高的Web服务器(coredns就是使用它)
+- [Tengine](http://tengine.taobao.org/) 阿里CDN使用的它
+- [Traefik](https://doc.traefik.io/traefik/) 云原生
+- [Pingora](https://github.com/cloudflare/pingora) 是Cloudflare使用Rust开发
+
+
 ## 分析和诊断工具
 
 ### OpenResty XRay
