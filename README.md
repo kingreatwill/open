@@ -141,3 +141,51 @@ Google Scholar（谷歌学术搜索）
 
 [欢迎参加 Istio 系列课程](https://developer.ibm.com/cn/os-academy-istio/)
 
+### 免费软件下载站
+1. [Ninite](https://ninite.com/)
+WOT可信得分： 94%
+URLVoid评级： 24/25
+SiteAdvisor验证： 安全
+
+2. [Softpedia](https://www.softpedia.com/)
+WOT可信得分： 93%
+URLVoid评级： 25/25
+SiteAdvisor验证： 安全
+
+Softpedia有一种说法是互联网上最大的文件托管库，当然是否如此还不能定论，不过它的数据库中的文件确实有超过85万份之多。每天都会有成百上千的文件在Softpedia上进行更新，因此可以肯定的是从Softpedia下载的程序不仅安全可靠，而且是最新更新的。
+最重要的是，Softpedia不仅声誉好，而且它的界面也非常易于使用，适用于任何类型的平台和驱动-无论是Windows、Mac、Linux、Android、iOS或是Windows Mobile。
+
+3. [MajorGeeks](https://www.majorgeeks.com/)
+WOT可信得分： 93%
+URLVoid评级： 25/25
+SiteAdvisor验证： 安全
+
+4. [FileHippo](https://filehippo.com/)
+WOT可信得分： 93%
+URLVoid评级： 24/25
+SiteAdvisor验证： 安全
+
+5. [FilePuma](https://www.filepuma.com/)
+WOT可信得分： 91%
+URLVoid评级： 25/25
+SiteAdvisor验证： 安全
+
+6. [Download Crew](https://www.downloadcrew.com/)
+WOT可信得分： 91%
+URLVoid评级： 25/25
+SiteAdvisor验证： 安全
+
+7. [FileHorse](https://www.filehorse.com/)
+WOT可信得分： 91%
+URLVoid评级： 24/25
+SiteAdvisor验证： 安全
+
+8. [SnapFiles](https://www.snapfiles.com/)
+WOT可信得分： 90%
+URLVoid评级： 24/25
+SiteAdvisor验证： 安全
+
+9. [DonationCoder](https://www.donationcoder.com/)
+WOT可信得分： 92%
+URLVoid评级： 25/25
+SiteAdvisor验证： 安全

@@ -484,9 +484,9 @@ stream {                    # stream 块开始，TCP/UDP 相关功能
 
 ## 开发框架 (web framework)
 ### lor
-https://github.com/sumory/lor
+https://github.com/sumory/lor 1k
 ### lapis
-https://github.com/leafo/lapis
+https://github.com/leafo/lapis 2.9k
 ### openresty-smart-panda
 https://github.com/BBD-RD/openresty-smart-panda/
 openresty lua模块化开发的框架，用来简化nginx的配置、规范开发过程、降低开发难度、减少代码耦合性、提高多人协同工作等。
