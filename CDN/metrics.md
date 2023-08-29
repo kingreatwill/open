@@ -357,6 +357,12 @@ pt-ioprofile --version
 > pt-ioprofile会冻结服务器，并可能使进程崩溃，或在分离后使其性能下降，或使其处于睡眠状态,pt-ioprofile是一种侵入性工具，不应在生产服务器上使用pt-ioprofile。
 
 ### 网络IO
+
+`ss`命令查看socket连接数量
+ss是Socket Statistics的缩写。顾名思义，ss命令可以用来获取socket统计信息，它可以显示和netstat类似的内容。ss的优势在于它能够显示更多更详细的有关TCP和连接状态的信息，而且比netstat更快速更高效。
+
+`lsof`命令可以查看所有已经打开了的文件，比如: 普通文件，目录，特殊的块文件，管道，socket套接字，设备，Unix域套接字等等(lsof是List Open File(List Open File), 在Linux中，一切皆文件)
+
 #### 服务器网络流量监控工具：Ntopng
 http://www.ntop.org/
 
