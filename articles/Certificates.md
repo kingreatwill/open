@@ -178,3 +178,72 @@ DER转PEM格式：openssl x509 -inform der -in server.der -outform pem -out serv
 [原文](https://www.cnblogs.com/frisk/p/12628159.html)
 
 [https 原理分析进阶-模拟https通信过程](https://www.cnblogs.com/hobbybear/p/17511245.html)
+
+
+### 域名证书文件包含两段证书
+
+- 证书内容(pem文件和crt文件内容是一样的)
+```
+cat 2048227_www.xxx.com.pem 
+-----BEGIN CERTIFICATE-----
+MIIFmDCCBICgAwIBAgIQCEZS6MCdneB/9dgvdbLKLDANBgkqhkiG9w0BAQsFADBu
+......
+q9kYr+G8Ga0ILktc0/kgDeEEYCiMj0GCdKfAdEBCWsmSo9LFMqcSCr+zUSw=
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIEqjCCA5KgAwIBAgIQAnmsRYvBskWr+YBTzSybsTANBgkqhkiG9w0BAQsFADBh
+......
+rMKWaBFLmfK/AHNF4ZihwPGOc7w6UHczBZXH5RFzJNnww+WnKuTPI0HfnVH8lg==
+-----END CERTIFICATE-----
+```
+
+- 将这两段证书分别写入到文件查看
+第一段证书
+这段证书是Encryption Everywhere DV TLS CA - G1颁发给www.xxx.com的
+`openssl x509 -in ssl.wcoder.com_bundle_1.crt -text`
+
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            ......
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = DigiCert Inc, OU = www.digicert.com, CN = Encryption Everywhere DV TLS CA - G1
+        Validity
+            Not Before: Apr 11 00:00:00 2019 GMT
+            Not After : Apr 10 12:00:00 2020 GMT
+        Subject: CN = www.xxx.com.cn
+        Subject Public Key Info:
+            ......
+        X509v3 extensions:
+            ......
+    Signature Algorithm: sha256WithRSAEncryption
+         ......
+```
+
+第二段证书
+
+这段证书是DigiCert Global Root CA颁发给Encryption Everywhere DV TLS CA - G1的
+`openssl x509 -in 2.pem -text`
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            02:79:ac:45:8b:c1:b2:45:ab:f9:80:53:cd:2c:9b:b1
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA
+        Validity
+            Not Before: Nov 27 12:46:10 2017 GMT
+            Not After : Nov 27 12:46:10 2027 GMT
+        Subject: C = US, O = DigiCert Inc, OU = www.digicert.com, CN = Encryption Everywhere DV TLS CA - G1
+        Subject Public Key Info:
+             ......
+        X509v3 extensions:
+             ......
+    Signature Algorithm: sha256WithRSAEncryption
+         ......
+```
+
+所以DigiCert Global Root CA是根CA；Encryption Everywhere DV TLS CA - G1是小弟，中级CA；中级CA给www.xxx.com.cn域名办法域名证书
