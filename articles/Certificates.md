@@ -247,3 +247,13 @@ Certificate:
 ```
 
 所以DigiCert Global Root CA是根CA；Encryption Everywhere DV TLS CA - G1是小弟，中级CA；中级CA给www.xxx.com.cn域名办法域名证书
+
+![](./img/证书链信息.png)
+
+可以参考[gworg](https://www.gworg.com/)
+
+[ssllabs](https://www.ssllabs.com/ssltest/)
+
+[在线cdn检测网站](https://myssl.com/cdn_check.html)
+
+或者命令`openssl s_client -connect ssl.wcoder.com:443`
