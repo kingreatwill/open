@@ -124,3 +124,11 @@ tag: 发布版本/添加标签
 config: 修改配置文件
 git: 修改.gitignore文件
 revert: 恢复,把这次提交的修改还原
+
+## 导入一个已有的代码仓库到新的代码仓库
+```
+git clone --bare https://git.example.com/your/project.git your_path
+cd your_path
+git remote set-url origin https://new.example.com/new.git
+git push origin --tags && git push origin --all
+```
