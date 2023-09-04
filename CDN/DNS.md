@@ -22,6 +22,11 @@ echo nameserver 8.8.4.4 > /etc/resolv.conf
 > 114DNS在其官网上标榜纯净无劫持，背后却向广告主提供了多达几十项的劫持插入广告服务。https://www.114dns.com/
 > 信风精确广告营销系统
 
+
+
+### 其它DNS
+BIND，Knot，PowerDNS 和 Unbound
+
 ## CoreDNS
 使用CoreDNS作为内网DNS服务器
 CoreDNS是Golang编写的一个插件式DNS服务器，是Kubernetes 1.13 后所内置的默认DNS服务器
@@ -293,6 +298,90 @@ rm -rf /etc/coredns && mkdir -p /etc/coredns && echo "
 }
 ">> /etc/coredns/corefile && docker run -it -d --name dns --net=host -v /etc/coredns:/etc/coredns/ coredns/coredns:latest -conf /etc/coredns/corefile
 ```
+
+### server
+
+server 以什么协议监听在哪个端口（可以同时定义多个 server 监听不同端口）
+也就是说有多少个端口就有多少个server
+
+如Corefile:
+```
+coredns.io:5300 {
+    file db.coredns.io
+}
+
+example.io:53 {
+    log
+    errors
+    file db.example.io
+}
+
+example.net:53 {
+    file db.example.net
+}
+
+.:53 {
+    kubernetes
+    proxy . 8.8.8.8
+    log
+    health
+    errors
+    cache
+}
+```
+从配置文件来看，我们定义了两个 server（尽管有 4 个区块），分别监听在 5300 和 53 端口。其逻辑图可如下所示：
+![](https://ask.qcloudimg.com/http-save/yehe-2002950/2q8yw9b0y3.jpeg)
+
+### zone
+如： `www.allen.ayunw.cn.` (而通常最后的点可以不写)，其中最后的点被称为 根域(TLD)，cn被称为顶级域(一级域名)，ayunw被称为二级域名，allen被称为三级域名，www被称为主机名。
+
+所以配置文件Corefile中的zone, `.`表示根域, 也可以`wcoder.com` 或者`com` 来定义这个zone的解析
+
+### Reverse Zone
+Reverse Zone（反向解析 IP 地址对应的域名）
+```
+10.0.0.0/24 {
+    whoami
+}
+
+0.0.10.in-addr.arpa {
+    whoami
+}
+```
+可以通过 dig 进行反向查询：`dig -x 10.0.0.1`
+
+
+### 协议支持
+CoreDNS 除了支持 DNS 协议，也支持 TLS 和 gRPC，即 DNS-over-TLS 和 DNS-over-gRPC 模式：
+```
+tls://example.org:1443 {
+...
+}
+```
+
+### 参考
+
+[别看 DNS 污染闹得欢，现在我用 CoreDNS 将它拉清单](https://cloud.tencent.com/developer/article/1766299)
+
+
+- dnsmasq反DNS劫持、DNS污染、去广告
+DNS反劫持：
+bogus-nxdomain=x.x.x.x
+x.x.x.x是劫持域名的服务器地址，可以通过ping一个不存在的域名得到。如ping fanjiechixxxxxx.com。
+DNS反污染：
+将会被污染的域名发送到不会污染的域名服务器
+server=/talk.google.com/8.8.4.4
+番羽蔷：
+将被蔷的域名本地解析
+address=/google.cn/103.1.139.227
+如果蔷的是ip就没办法了
+去广告：
+把广告域名解析为空：
+address=/yx.guanggao.com/0.0.0.0
+
+> 改善DNS解析速度: https://github.com/felixonmars/dnsmasq-china-list
+> https://gitee.com/felixonmars/dnsmasq-china-list
+> google.china.conf
 
 ## tool
 
