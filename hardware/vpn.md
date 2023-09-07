@@ -17,6 +17,10 @@ https://github.com/gfwlist/gfwlist
 ### Clash
 https://github.com/Dreamacro/clash
 
+购买了:账号 king...@q
+使用说明: https://portal.shadowsocks.au/knowledgebase/151/
+https://portal.shadowsocks.nz/clientarea.php
+https://portal.shadowsocks.au/clientarea.php
 
 ### 付费VPN
 #### tlyvpn
