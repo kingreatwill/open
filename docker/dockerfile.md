@@ -47,3 +47,32 @@ CMD ["-h"] # 为 ENTRYPOINT 指令指定的程序提供默认参数；只要dock
 当使用docker run --name test -it test_nginx 不传递任何参数时，此时启动容器会使用cmd 指令后的命令作为默认参数，打印nginx的帮助信息。此时cmd 后的内容并不是一个完整的指令，而是参数，如果其内容是一个完整的指令，那么它将覆盖掉ENTRYPOINT 中的内容。
 
 如果使用docker run --name test -it test_nginx -g "daemon off" 启动时，此时给定的运行参数会覆盖掉CMD 指令对应的内容，此时nginx将作为前台进程运行，作为一个web服务器使用，通过browser可以看到hello world
+
+
+## Here-Documents
+https://docs.docker.com/engine/reference/builder/#here-documents
+
+在多行内容中 首行 指定解释器 `#!/bin/bash`， 则所有内容整体被看作一个 Shell 脚本。
+```
+RUN <<EOT
+#!/bin/bash
+dist=$(uname -s)
+wget -O example.com/app-${dist} app-${dist}
+EOT
+```
+如果bash 直接跟在 EOT 后面。第一行的变量 dist 在第二行 wget 中无法使用。
+```
+RUN <<EOT bash
+dist=$(uname -s)
+wget -O example.com/app-${dist} app-${dist}
+EOT
+```
+
+也可以使用其它解释器
+```
+FROM python:3.6
+RUN <<EOT
+#!/usr/bin/env python
+print("hello world")
+EOT
+```

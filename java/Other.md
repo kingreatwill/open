@@ -14,3 +14,6 @@
 此参数则会使应用运行得更稳定。
 
 > 参考: [一次Java内存占用高的排查案例，解释了我对内存问题的所有疑问](https://www.cnblogs.com/codelogs/p/17659370.html)
+
+### HttpClient
+[高并发场景下的 HttpClient 优化方案，QPS 大大提升！](https://www.toutiao.com/article/7277373712322822693/)

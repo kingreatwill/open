@@ -109,6 +109,10 @@ Headscale + Tailscale
 
 WireGuard 是最新一代开源 VPN 工具，相较于IPsec和OpenVPN等大多数古老魔法，具有易于配置、快速且安全的特点。
 ### tailscale
+在用户态实现了WireGuard协议, 无法使用WireGuard原生的命令行工具来进行管理
+
+### NetBird
+直接使用了内核态的WireGuard, 可使用命令行工具wg来查看和管理
 ### twingate
 ### zerotier
 ### inlets
