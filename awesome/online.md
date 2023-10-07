@@ -114,6 +114,8 @@ Just add 1s after github and press Enter in the browser address bar for any repo
 
 - [CloudPebble](https://cloudpebble.net/)无需 Linux、虚拟机、编译器或 Python 来编写应用
 
+- [行云创新TitanIDE](https://www.cloudtogo.cn/titanideinstall) 有社区版本, 非开源
+
 ### 在线运行前端/playground
 - CodingGround
 - CodePen https://codepen.io/
