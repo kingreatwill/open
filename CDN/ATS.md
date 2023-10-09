@@ -44,8 +44,11 @@ Apache Traffic Control is an Open Source implementation of a Content Delivery Ne
 Traffic Control以Apache Traffic Server作为缓存软件构建，实现了现代CDN的所有核心功能。
 Apache Traffic Control 是一个分布式、可扩展的冗余解决方案，实现了现代 CDN 的所有核心功能，可用于构建、监视和配置大型内容交付网络。项目起源于 Traffic Server ，于 2015 年 4 月作为开源项目发布，并于 2016 年 7 月捐赠给 Apache 孵化器。
 
+[安装 构建](https://traffic-control-cdn.readthedocs.io/en/latest/development/building.html)
 
+[Install Traffic Ops](https://traffic-control-cdn.readthedocs.io/en/latest/admin/traffic_ops.html#system-requirements)
 
+[Install Traffic Portal](https://traffic-control-cdn.readthedocs.io/en/latest/admin/traffic_portal/index.html#installing)
 
 
 ## 参考
