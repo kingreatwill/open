@@ -326,6 +326,10 @@ namespace daemon
 [de4dot](https://github.com/de4dot/de4dot)
 [EazFixer](https://github.com/holly-hacker/EazFixer)
 
+## 混淆工具
+[ConfuserEx](https://github.com/mkaring/ConfuserEx)
+[obfuscar](https://github.com/obfuscar/obfuscar)
+
 ## dotnet tool
 https://docs.microsoft.com/zh-cn/dotnet/core/tools/global-tools#install-a-global-tool
 https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-tool-search
