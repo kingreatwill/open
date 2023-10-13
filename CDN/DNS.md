@@ -152,6 +152,23 @@ doggo www.baidu.com @127.0.0.1
 
 dig www.baidu.com @192.168.1.5
 ```
+
+##### hosts插件
+
+```
+.{
+	hosts {
+		49.16.5.28     host.wcoder.com
+		fallthrough
+	}
+}
+
+```
+
+https://coredns.io/plugins/hosts/
+
+此处配置不能遗漏fallthrough字段，fallthrough表示当在hosts找不到要解析的域名时，会将解析任务传递给CoreDNS的下一个插件。如果不写fallthrough的话，任务就此结束，不会继续解析，会导致集群内部域名解析失败的情况。
+
 #### 获取配置的Tracer(调用链)
 
 ```
