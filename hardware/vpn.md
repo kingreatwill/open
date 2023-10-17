@@ -101,6 +101,11 @@ https://github.com/fatedier/frp 41.1k
 
 [安装参考](../docker/frp.md)
 
+### nps/npc
+https://github.com/ehang-io/nps
+npc - 客户端
+安装 https://ehang-io.github.io/nps/#/install
+
 ### NSmartProxy
 https://github.com/tmoonlight/NSmartProxy
 
