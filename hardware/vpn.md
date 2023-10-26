@@ -12,7 +12,16 @@ https://github.com/gfwlist/gfwlist
 [Shadowsocks + GfwList 实现 OpenWRT / LEDE 路由器自动科学上网](https://cokebar.info/archives/962)
 
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
+### OpenVPN
 
+```
+https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh
+```
+[openvpn一键安装](https://github.com/Nyr/openvpn-install)
+
+一键安装(科学):`wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh`
+
+参考[OpenVPN的简易搭建流程](https://blog.csdn.net/weixin_43343127/article/details/132709366)
 
 ### Clash
 https://github.com/Dreamacro/clash
@@ -21,6 +30,10 @@ https://github.com/Dreamacro/clash
 使用说明: https://portal.shadowsocks.au/knowledgebase/151/
 https://portal.shadowsocks.nz/clientarea.php
 https://portal.shadowsocks.au/clientarea.php
+
+clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
+
+参考[yml文件](./Clash_DIY_node.yml)
 
 ### 付费VPN
 #### tlyvpn
@@ -113,6 +126,8 @@ https://github.com/tmoonlight/NSmartProxy
 Headscale + Tailscale 
 
 WireGuard 是最新一代开源 VPN 工具，相较于IPsec和OpenVPN等大多数古老魔法，具有易于配置、快速且安全的特点。
+
+[WireGuard一键安装](https://github.com/Nyr/wireguard-install)
 ### tailscale
 在用户态实现了WireGuard协议, 无法使用WireGuard原生的命令行工具来进行管理
 

@@ -46,6 +46,8 @@ Apache Traffic Control 是一个分布式、可扩展的冗余解决方案，实
 
 [安装 构建](https://traffic-control-cdn.readthedocs.io/en/latest/development/building.html)
 
+[安装 构建](https://traffic-control-cdn.readthedocs.io/en/latest/admin/index.html)
+
 [Install Traffic Ops](https://traffic-control-cdn.readthedocs.io/en/latest/admin/traffic_ops.html#system-requirements)
 
 [Install Traffic Portal](https://traffic-control-cdn.readthedocs.io/en/latest/admin/traffic_portal/index.html#installing)

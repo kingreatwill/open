@@ -168,6 +168,14 @@ docker pause :暂停容器中所有的进程。
 
 docker unpause :恢复容器中所有的进程。
 
+
+清理无用镜像和容器:
+```
+docker rmi $(docker images -f "dangling=true" -q)
+
+docker rm -v $(docker ps -a -q -f status=exited)
+```
+
 ### docker删除未使用的容器、镜像
 linux
 ```
