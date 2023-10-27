@@ -1,0 +1,45 @@
+## Caddy
+
+Caddy有下面这些开箱即用的特性:
+
+- 全自动支持HTTP/2协议，无需任何配置。
+- Caddy 使用 Let’s Encrypt 让你的站点全自动变成HTTPS，无需任何配置。
+- 合理使用多核多核 得益于go的特性
+- 完全支持IPv6环境
+- Caddy 对WebSockets有很好的支持
+- 自动把Markdown转成 HTML
+- Caddy 对log格式的定义很容易
+- 易于部署 得益于go的特性，caddy只是一个小小的二进制文件，没有依赖，很好部署
+- 得益于Go的跨平台特性，Caddy很容易的支持了三大主流系统：Windows、 Linux、Mac
+
+> “几乎所有的功能在Caddy里的都是插件，HTTP服务器是插件，高级的TLS特性也是插件，每一行命令实现的功能都是一个插件”
+
+caddy源码: https://github.com/caddyserver/caddy
+
+caddy 插件: https://caddyserver.com/docs/extending-caddy
+
+caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
+
+我们可以使用源码编译:
+```
+git clone git@github.com:caddyserver/caddy.git
+
+cd caddy/cmd/caddy
+go build
+```
+> 如果自己编译, 当需要插件的时候,需要在caddy/cmd/caddy/main.go中import _ "github.com/example/mymodule"
+
+也可以使用xcaddy编译:
+```
+go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+xcaddy build
+
+#也可以指定版本
+xcaddy build v2.0.1
+xcaddy build master
+xcaddy build a58f240d3ecbb59285303746406cab50217f8d24
+
+#指定插件
+xcaddy build v2.0.1 --with github.com/caddyserver/ntlm-transport@v0.1.1
+```
+xcaddy会自动下载源码和插件源码进行编译
