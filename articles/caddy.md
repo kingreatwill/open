@@ -20,6 +20,10 @@ caddy 插件: https://caddyserver.com/docs/extending-caddy
 
 caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
 
+> watch参数可以动态加载配置文件
+
+### 编译
+
 我们可以使用源码编译:
 ```
 git clone git@github.com:caddyserver/caddy.git
@@ -43,3 +47,39 @@ xcaddy build a58f240d3ecbb59285303746406cab50217f8d24
 xcaddy build v2.0.1 --with github.com/caddyserver/ntlm-transport@v0.1.1
 ```
 xcaddy会自动下载源码和插件源码进行编译
+
+
+
+### 在Go程序中中嵌入Caddy
+
+
+### docker
+https://github.com/kingreatwill/caddy-modules
+
+Caddyfile
+```
+{
+    order markdown before file_server
+}
+:2019 {
+    root * /srv
+    encode gzip
+    markdown {
+        template /markdown.tmpl
+    }
+    file_server browse {
+        hide .git
+        index README.md index.html index.htm
+    }
+}
+```
+
+```
+docker run -d -p 2019:2019 \
+    -v /data/dockerv/caddy/srv:/srv \
+    -v /data/dockerv/caddy/data:/data \
+    -v /data/dockerv/caddy/config:/config \
+    -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
+    -v /data/dockerv/caddy/index.html:/usr/share/caddy/index.html \
+    kingreatwill/caddy:v2.7.5
+```
