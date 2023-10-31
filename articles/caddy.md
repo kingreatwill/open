@@ -1,3 +1,9 @@
+---
+Title: Caddy
+Summary: Caddy
+Tags:
+    - Caddy
+---
 ## Caddy
 
 Caddy有下面这些开箱即用的特性:
@@ -82,4 +88,44 @@ docker run -d -p 2019:2019 \
     -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
     -v /data/dockerv/caddy/index.html:/usr/share/caddy/index.html \
     kingreatwill/caddy:v2.7.5
+```
+
+```
+{
+    order markdown before file_server
+}
+www.wcoder.com {
+    root * /srv/www
+    file_server browse {
+        hide .git
+        index index.html
+    }
+    log {
+        output file /log/access.log
+    }
+}
+note.wcoder.com open.wcoder.com record.ren {
+    root * /srv/note.wcoder.com
+    encode gzip
+    markdown {
+        template /markdown.tmpl
+    }
+    file_server browse {
+        hide .git
+        index README.md index.html index.htm
+    }
+    log {
+        output file /log/note.wcoder.com.log
+    }
+}
+
+docker run -d --cap-add=NET_ADMIN --restart=always --network host \
+    -v /data/dockerv/caddy/srv:/srv \
+    -v /data/dockerv/caddy/data:/data \
+    -v /data/dockerv/caddy/log:/log \
+    -v /data/dockerv/caddy/config:/config \
+    -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
+    --name caddy caddy-markdown:v0.0.1
+
+caddy-markdown:v0.0.1
 ```
