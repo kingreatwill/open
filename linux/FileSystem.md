@@ -39,6 +39,8 @@ cmd 2> stderr.txt 1>stdout.txt
 ps aux | grep "xx"  2>&1 1>/dev/null
 ```
 
+> `command > file 2>&1  == command 1> file 2>&1`
+
 > /dev/null 伪设备，回收站.写该文件不会产生IO
 > /dev/zero 伪设备，会产生空字符流，对它不会产生IO
 
