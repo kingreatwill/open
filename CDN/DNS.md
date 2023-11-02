@@ -22,7 +22,26 @@ echo nameserver 8.8.4.4 > /etc/resolv.conf
 > 114DNS在其官网上标榜纯净无劫持，背后却向广告主提供了多达几十项的劫持插入广告服务。https://www.114dns.com/
 > 信风精确广告营销系统
 
+### 生效时间相关
+解析记录变更后，将实时同步至 DNS 服务器，但可能不会立即生效。
+因为各地网络运营商存在缓存，需要等待运营商刷新本地缓存之后，解析才会实际生效。这个过程不会太长，最快在 30 分钟内生效，一般需要 24~48 小时
 
+[生效时间相关](https://docs.dnspod.cn/dns/faq-effective-time/?source=DNSPod&page=console&from=toast)
+
+域名解析生效时间取决于什么因素？
+DNSpod 域名的解析生效，首先DNSPod DNS 必须生效，然后等待世界各地 Local DNS 生效（可以通俗的理解为各大电信运营管理的 DNS 需要及时同步DNSpod DNS 解析记录），才能最终生效。 网站能否访问直接相关的是 Local DNS，DNSPod 的解析都是实时生效的，一般只需几秒即可同步到各地 Local DNS 上，但各地 Local DNS 均有缓存机制，解析的最终生效取决于各运营商刷新时间。
+
+新增解析记录生效需要多长时间？
+使用 DNSpod DNS 解析新增解析记录，在 DNSPod 服务器上实时生效。若在您本地的计算机上不存在的该记录的 localDNS 可以实时查询生效结果，若有该记录需 localDNS 缓存更新才可成功查询生效结果。localDNS 缓存更新时间理论上是您域名记录之前设置的 TTL 时间。
+
+修改解析记录生效需要多长时间？
+修改域名记录，各地生效时间理论上是您域名记录之前设置的 TTL 时间，不过也存在地方运营商有强制延长域名记录的情况，导致未按照 TTL 时间生效。
+
+修改域名 DNS 生效需要多长时间？
+修改域名 DNS 指向 DNSPod 的域名，虽然 DNSPod 服务器的生效时间是实时的，但因各地 ISP 服务商刷新域名 DNS 的时间不一致，所以导致解析在全球生效一般需要0 - 72小时，请您耐心等待。
+
+> 缓存可能在 Windows（只要是 Windows 都会缓存, ipconfig /flushdns清空缓存）、路由器（通过路由上网）、当地 ISP 的 DNS 服务器（DNS 服务器采用递归方式）。
+ Linux、Unix 系统不会缓存 DNS 记录，Mac OS X 系统可以通过执行 killall lookupd 命令来清空 DNS 缓存。
 
 ### 其它DNS
 BIND，Knot，PowerDNS 和 Unbound

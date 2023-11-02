@@ -119,6 +119,12 @@ note.wcoder.com open.wcoder.com record.ren {
         output file /log/note.wcoder.com.log
     }
 }
+frp.wcoder.com {
+    reverse_proxy 127.0.0.1:7500
+    log {
+        output file /log/frp.wcoder.com.log
+    }
+}
 
 docker run -d --cap-add=NET_ADMIN --restart=always --network host \
     -v /data/dockerv/caddy/srv:/srv \

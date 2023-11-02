@@ -144,6 +144,10 @@ about:gpu -是否有硬件加速
 about:flags -开启一些插件 //使用后弹出这么些东西：“请小心，这些实验可能有风险”，不知会不会搞乱俺的配置啊！
 chrome://extensions/ - 查看已经安装的扩展
 
+### 显示tab占用内存大小
+chrome://flags/ 
+
+搜索 Show memory usage in hovercards. 并开启
 ## chrome插件
 https://github.com/zhaoolee/ChromeAppHeroes
 
