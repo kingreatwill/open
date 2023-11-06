@@ -435,7 +435,7 @@ git log 的常用选项
 --pretty |使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和
 format（后跟指定格式）。
 
-查看文件历史
+##### 查看文件历史
 ```shell
 # see the changes of a file, works even
 # if the file was deleted
@@ -453,6 +453,24 @@ git log --full-history -1 -- x\xx\.gitkeep
 # deleted
 git log --full-history -1 --stat -- x\xx\.gitkeep
 ```
+
+##### 获取 git 仓库中所有文件的最新修改时间
+
+```bash
+# 获取 git 仓库中所有文件的最新修改时间
+$ git ls-tree -r --name-only HEAD | while read filename; do
+> echo "$(git log -1 --pretty=format:"%ad" -- $filename) $filename";
+> done
+# 获取 git 仓库中所有文件的最初创建时间
+$ git ls-tree -r --name-only HEAD | while read filename; do
+> echo "$(git log --pretty=format:"%ad" -- $filename | tail -1) $filename";
+> done
+```
+
+> [How to retrieve the last modification date of all files in a Git repository](https://serverfault.com/questions/401437/how-to-retrieve-the-last-modification-date-of-all-files-in-a-git-repository/401450#401450)
+
+> [Finding the date/time a file was first added to a Git repository](https://stackoverflow.com/questions/2390199/finding-the-date-time-a-file-was-first-added-to-a-git-repository/2390382#2390382)
+
 ### 撤销
 ```
 # 撤销工作目录中所有未提交文件的修改内容 
