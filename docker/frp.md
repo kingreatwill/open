@@ -11,6 +11,7 @@
 配置文件格式ini变成了toml
 `docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps:0.52.3`
 
+使用frps_full_example.toml文件修改
 主要修改:
 ```
 webServer.password = "xxxx"
@@ -19,6 +20,22 @@ vhostHTTPPort = 7080
 vhostHTTPSPort = 7443
 subDomainHost = "frp.wcoder.com"
 ```
+
+注释掉
+```
+# [[httpPlugins]]
+# name = "user-manager"
+# addr = "127.0.0.1:9000"
+# path = "/handler"
+# ops = ["Login"]
+
+# [[httpPlugins]]
+# name = "port-manager"
+# addr = "127.0.0.1:9001"
+# path = "/handler"
+# ops = ["NewProxy"]
+```
+
 #### frp client
 `docker run --restart=always --network host -d -v /share/Public/frp/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc:0.52.3`
 
@@ -84,7 +101,11 @@ ps aux | grep frps
 
 通过在 frps 的配置文件中配置 `subdomainHost`，就可以启用该特性。之后在 frpc 的 http、https 类型的代理中可以不配置 customDomains，而是配置一个 `subdomain` 参数。
 
-只需要将 `*.{subdomainHost}` 解析到 frps 所在服务器。之后用户可以通过 subdomain 自行指定自己的 web 服务所需要使用的二级域名，通过 `{subdomain}.{subdomainHost}` 来访问自己的 web 服务。
+只需要将 `*.{subdomainHost}` 解析到 frps 所在服务器。之后用户可以通过 subdomain 自行指定自己的 web 服务所需要使用的二级域名，通过 `{subdomain}.{subdomainHost}:{vhostHTTPPort}` 来访问自己的 web 服务。
+
+> 需要加端口
+> vhostHTTPPort = 7080
+> vhostHTTPSPort = 7443
 
 ```
 # frps.toml
