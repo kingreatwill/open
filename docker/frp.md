@@ -4,13 +4,31 @@
 
 [frp 中文文档](https://gofrp.org/docs/examples/ssh/)
 
+
+
+### frp 0.52.3
+#### frp server
+配置文件格式ini变成了toml
+`docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps:0.52.3`
+
+主要修改:
+```
+webServer.password = "xxxx"
+auth.token = "xxx"
+vhostHTTPPort = 7080
+vhostHTTPSPort = 7443
+subDomainHost = "frp.wcoder.com"
+```
+#### frp client
+`docker run --restart=always --network host -d -v /share/Public/frp/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc:0.52.3`
+
 ### frp server
 在公网服务器上安装frps(网络使用host模式)
 配置文件`frps.ini`使用`./frp/conf/frps_full.ini`
 `docker run --restart=always --network host -d -v /data/dockerv/frp/frps.ini:/etc/frp/frps.ini --name frps snowdreamtech/frps:0.46.0`
 
 ### frp client
-在公网服务器上安装frpc
+在NAS服务器上安装frpc
 配置文件`frpc.ini`使用`./frp/conf/frpc.ini`
 `docker run --restart=always --network host -d -v /share/Public/frp/frpc.ini:/etc/frp/frpc.ini --name frpc snowdreamtech/frpc:0.46.0`
 
@@ -59,3 +77,35 @@ ps aux | grep frps
 > centos7 查看启动服务项
 使用 systemctl list-unit-files 可以查看启动项
 左边是服务名称，右边是状态，enabled是开机启动，disabled是开机不启动
+
+### 自定义二级域名(0.52.3版本)
+
+在多人同时使用一个 frps 时，通过自定义二级域名的方式来使用会更加方便。
+
+通过在 frps 的配置文件中配置 `subdomainHost`，就可以启用该特性。之后在 frpc 的 http、https 类型的代理中可以不配置 customDomains，而是配置一个 `subdomain` 参数。
+
+只需要将 `*.{subdomainHost}` 解析到 frps 所在服务器。之后用户可以通过 subdomain 自行指定自己的 web 服务所需要使用的二级域名，通过 `{subdomain}.{subdomainHost}` 来访问自己的 web 服务。
+
+```
+# frps.toml
+subdomainHost = "frps.com"
+```
+
+将泛域名 `*.frps.com` 解析到 frps 所在服务器的 IP 地址。
+
+```
+# frpc.toml
+[[proxies]]
+name = "web"
+type = "http"
+localPort = 80
+subdomain = "test"
+```
+frps 和 frpc 都启动成功后，通过 `test.frps.com` 就可以访问到内网的 web 服务。
+
+注：如果 frps 配置了 `subdomainHost`，则 `customDomains` 中不能是属于 `subdomainHost` 的子域名或者泛域名。
+
+同一个 HTTP 或 HTTPS 类型的代理中 `customDomains` 和 `subdomain` 可以同时配置。
+
+
+[参考 自定义二级域名](https://gofrp.org/zh-cn/docs/features/http-https/subdomain/)

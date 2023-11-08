@@ -1,0 +1,18 @@
+serverAddr = "43.155.152.66"
+serverPort = 7000
+auth.token = "12345678"
+
+[[proxies]]
+name = "nas-ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 6000
+
+[[proxies]]
+name = "nas-web"
+type = "http"
+localIP = "127.0.0.1"
+localPort = 8000
+remotePort = 7080
+custom_domains = nas.wcoder.com
