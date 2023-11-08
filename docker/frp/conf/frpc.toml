@@ -9,10 +9,11 @@ localIP = "127.0.0.1"
 localPort = 22
 remotePort = 6000
 
+# 当配置了customDomains, remotePort没有用, 会使用frps的配置 vhostHTTPPort = 8080
 [[proxies]]
 name = "nas-web"
 type = "http"
 localIP = "127.0.0.1"
 localPort = 8000
-remotePort = 7080
-custom_domains = nas.wcoder.com
+subdomain = "nas"
+customDomains = ["nas.wcoder.com"]
