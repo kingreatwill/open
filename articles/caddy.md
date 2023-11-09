@@ -94,6 +94,7 @@ docker run -d -p 2019:2019 \
 ```
 {
     order markdown before file_server
+    order forward_proxy before markdown
 }
 www.wcoder.com {
     root * /srv/www
@@ -125,6 +126,30 @@ frp.wcoder.com {
         output file /log/frp.wcoder.com.log
     }
 }
+http://*.frp.wcoder.com {
+    reverse_proxy 127.0.0.1:7080
+    log {
+        output file /log/http.frp.wcoder.com.log
+    }
+}
+https://*.frp.wcoder.com {
+    reverse_proxy 127.0.0.1:7443
+    log {
+        output file /log/https.frp.wcoder.com.log
+    }
+}
+
+proxy.wcoder.com {
+    forward_proxy {
+        basic_auth xx xxx
+        ports     80 443
+        hide_ip
+        hide_via
+    }
+    log {
+        output file /log/proxy.wcoder.com.log
+    }
+}
 
 docker run -d --cap-add=NET_ADMIN --restart=always --network host \
     -v /data/dockerv/caddy/srv:/srv \
@@ -136,3 +161,54 @@ docker run -d --cap-add=NET_ADMIN --restart=always --network host \
 
 caddy-markdown:v0.0.1
 ```
+
+
+禁用https
+```
+{▾
+	"disable": false,
+	"disable_redirects": false,
+	"disable_certificates": false,
+	"skip": [""],
+	"skip_certificates": [""],
+	"ignore_loaded_certificates": false
+}
+```
+
+### forwardproxy
+利用Caddy的插件forwardproxy快速搭建HTTP/HTTPS正向代理
+https://github.com/caddyserver/forwardproxy/tree/caddy2
+
+
+`xcaddy build --with github.com/caddyserver/forwardproxy@caddy2`
+
+```
+{
+	order forward_proxy before file_server
+}
+proxy.wcoder.com {
+    forward_proxy {
+        basic_auth xx xx
+        ports     80 443
+        hide_ip
+        hide_via
+    }
+    log {
+        output file /log/proxy.wcoder.com.log
+    }
+}
+```
+
+设置代理
+```
+export http_proxy=http://user123:hahapwd@47.113.67.125:18888
+export https_proxy=http://user123:hahapwd@47.113.67.125:18888
+```
+测试
+```
+curl -I --proxy https://wcoder:a350840291@proxy.wcoder.com  https://www.baidu.com
+
+
+curl -x https://proxy.wcoder.com --proxy-user x:x -L https://www.baidu.com
+```
+

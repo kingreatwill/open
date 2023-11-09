@@ -12,6 +12,104 @@ https://github.com/gfwlist/gfwlist
 [Shadowsocks + GfwList 实现 OpenWRT / LEDE 路由器自动科学上网](https://cokebar.info/archives/962)
 
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
+
+### HTTP/HTTPS代理服务器 (正向代理)
+#### Squid、Privoxy、Varnish、Polipo
+#### tinyproxy
+https://github.com/tinyproxy
+
+centos8
+```
+cd /opt/
+git clone https://github.com/tinyproxy/tinyproxy.git
+
+
+./autogen.sh
+./configure
+make
+make install
+
+cp etc/tinyproxy.conf /etc/
+
+vim /etc/tinyproxy.conf
+
+```
+/etc/tinyproxy.conf
+```
+ 
+#修改下面配置，允许所有地址，添加basic授权
+ 
+Port 18888
+ 
+#Allow 127.0.0.1
+#Allow ::1
+ 
+# BasicAuth: HTTP "Basic Authentication" for accessing the proxy.
+# If there are any entries specified, access is only granted for authenticated
+# users.
+BasicAuth user123 hahapwd
+```
+
+```
+vim /usr/lib/systemd/system/tinyproxy.service
+```
+
+```
+[Unit]
+Description=Tinyproxy Server Service
+After=network.target
+ 
+[Service]
+Type=simple
+User=nobody
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/local/bin/tinyproxy -c etc/tinyproxy.conf -d
+```
+
+```
+
+systemctl start tinyproxy
+systemctl status tinyproxy
+
+# restart：重启服务，可启动服务
+# reload：服务重新加载配置文件
+# status：查看服务状态
+# start：启动服务
+# stop：停止服务
+# enable：开启自启
+# disable：关闭自启
+```
+
+
+```
+export https_proxy=http://user123:hahapwd@47.113.67.125:18888
+```
+#### caddy forwardproxy
+
+[正向代理 forwardproxy](../articles/caddy.md#forwardproxy)
+
+
+#### nginx proxy
+[nginx forward proxy](https://www.cnblogs.com/yanjieli/p/15229907.html)
+
+核心配置
+```
+server {
+
+    listen 8888;
+
+    location / {
+
+        resolver 8.8.8.8;
+
+        proxy_pass http://$http_host$uri$is_args$args;
+
+    }
+
+}
+```
+
 ### OpenVPN
 
 ```
@@ -34,6 +132,8 @@ https://portal.shadowsocks.au/clientarea.php
 clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 参考[yml文件](./Clash_DIY_node.yml)
+
+[下载地址](https://dl.trojan-cdn.com/trojan/windows/)
 
 ### 付费VPN
 #### tlyvpn
