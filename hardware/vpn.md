@@ -138,6 +138,10 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 [下载地址](https://dl.trojan-cdn.com/trojan/windows/)
 
+[免费节点](https://rss.uk.to/#/register?code=srOLpruw)
+
+[V2Ray 收费节点](https://v2sx.com/cart.php)
+
 ### 付费VPN
 #### tlyvpn
 https://www.ebay.com/usr/tlyvpn
