@@ -206,7 +206,7 @@ export https_proxy=http://user123:hahapwd@47.113.67.125:18888
 ```
 测试
 ```
-curl -I --proxy https://wcoder:a350840291@proxy.wcoder.com  https://www.baidu.com
+curl -I --proxy https://xx:xx@proxy.wcoder.com  https://www.baidu.com
 
 
 curl -x https://proxy.wcoder.com --proxy-user x:x -L https://www.baidu.com

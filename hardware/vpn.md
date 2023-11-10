@@ -110,6 +110,9 @@ server {
 }
 ```
 
+[docker 部署openresty](../docker/openresty.md)
+
+
 ### OpenVPN
 
 ```

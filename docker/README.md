@@ -176,7 +176,7 @@ docker rmi $(docker images -f "dangling=true" -q)
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
-### docker删除未使用的容器、镜像
+### docker删除未使用的容器、镜像/删除无用
 linux
 ```
 # 删除 exited container
