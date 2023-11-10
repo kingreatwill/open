@@ -104,7 +104,7 @@ cloudflare: `xcaddy build --with github.com/caddy-dns/cloudflare`
 ```
 
 #### cloudflare   
-将cloudflare_key替换为自己的key， 从[这里](https://dash.cloudflare.com/profile/api-tokens)创建一个dns api令牌即可
+将cloudflare_key替换为自己的key， 从[这里](https://dash.cloudflare.com/profile/api-tokens)创建一个dns api令牌即可(Edit zone DNS)
 ```
 *.my.com {
     tls {       dns cloudflare cloudflare_apikey    }
