@@ -74,6 +74,11 @@ https://github.com/freenas
 openmediavault is the next generation network attached storage (NAS) solution based on Debian Linux.
 https://github.com/openmediavault/openmediavault
 
+## U盘工具
+
+### 全能维护 U 盘工具：Ventoy
+https://github.com/ventoy/Ventoy
+
 # 硬件知识
 ## 指令集CISC和RISC
 CISC：主要是两家，包括IntelCPU（非安腾系列）、AMD CPU。
