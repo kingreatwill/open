@@ -173,7 +173,7 @@ docker run -d -p 2019:2019 \
     order markdown before file_server
     order forward_proxy before markdown
 }
-www.wcoder.com {
+www.wcoder.com wcoder.com gantt.wang dotnet.wang weidian.faith {
     root * /srv/www
     file_server browse {
         hide .git
