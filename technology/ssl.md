@@ -7,6 +7,10 @@
 
 
 ### ACME 协议
+
+ACME (自动证书管理环境 - Automatic Certificate Management Environment) 
+ACME 客户端 (ACME Client) : 能够与 ACME 服务器通信以获取证书的程序。
+
 Let’s Encrypt 使用 ACME 协议来验证您对给定域名的控制权并向您颁发证书。要获得 Let’s Encrypt 证书，您需要选择一个要使用的 ACME 客户端软件。
 
 https://letsencrypt.org/zh-cn/docs/client-options/
