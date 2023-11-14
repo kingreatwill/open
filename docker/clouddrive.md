@@ -8,11 +8,22 @@ WebDAV 基于 HTTP 协议的通信协议，在GET、POST、HEAD等几个HTTP标�
 - Samba是Linux下CIFS协议的实现，优势在于对于小白使用简章，和Windows系统文件共享访问一样，不需要安装第三方软件，而且移动端也有大量APP支持。苹果手机文件APP中添加网络存储用的就是这种方式。Windows下文件共享使用445端口，且不能更改。445端口常常受黑客关照，在广域网上大多运营封掉了访端口，所以这种文件共享只适合在内网使用。
 - WebDAV 基于 HTTP 协议的通信协议，在GET、POST、HEAD等几个HTTP标准方法以外添加了一些新的方法，使应用程序可对Web Server直接读写，并支持写文件锁定(Locking)及解锁(Unlock)，还可以支持文件的版本控制。因为基于HTTP，在广域网上共享文件有天然的优势，移动端文件管理APP也大多支持WebDAV协议。使用HTTPS还能保安全性。Apache和Nginx支持WebDAV，可作为WebDAV文件共享服务器软件。也可以使用专门的WebDAV软件部署。
 
-## clouddrive
+
+clouddrive和alist两者最重要的功能都是挂载云盘为本地磁盘，clouddrive出来时间早，挂载出来是smb协议，兼容性高但支持网盘有限，仅支持阿里云盘、天翼云盘、115等几个；
+alist出来时间较晚，挂在出来是webdav协议，支持网盘数量丰富，且支持直接挂载阿里云盘共享内容，不需要转存占用自己网盘空间，缺点是webdav协议在电视端支持有限，kodi支持但操作反人类，其余当贝播放器和专业的播放机z9x支持较差（Z9X连接webdav速度较慢，无法流畅播放4k原盘）。因此，对于webdav支持不好的终端，需要将alist挂载的webdav协议内容通过clouddrive二次挂载为smb协议使用。
+
+## clouddrive(非开源)
 https://hub.docker.com/r/cloudnas/clouddrive
 ```
 docker run -d --name clouddrive --restart unless-stopped -v /share/Public/dockerv/clouddrive/CloudNAS:/CloudNAS:shared  -v /share/Public/dockerv/clouddrive/Config:/Config -v /share/Public/dockerv/clouddrive/media:/media:shared --privileged --device /dev/fuse:/dev/fuse -p 9798:9798 cloudnas/clouddrive
 ```
+
+## RaiDrive
+RaiDrive为国外软件，对国内网盘支持并不好。如果有挂载阿里云盘、天翼网盘的需要，推荐使用替代品CloudDrive。
+RaiDrive 基于开源项目开发，承诺不保存用户的账号密码。
+
+## NetDrive
+NetDrive 支持将网络文件夹映射到本地，体验相当不错。唯一遗憾的是这款软件价格不菲，并从 NetDrive 3 开始转为订阅制
 
 ## alist
 一个支持多种存储，支持网页浏览和 WebDAV 的文件列表程序，由 gin 和 Solidjs 驱动。
