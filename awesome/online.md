@@ -230,6 +230,18 @@ https://github.com/seatable/seatable
 - json 可视化 https://github.com/AykutSarac/jsoncrack.com
 也可以安装vs code插件JSON CRACK
 
+### 开发工具箱it-tools
+各种在线工具, [体验](https://it-tools.tech/)
+
+
+https://github.com/CorentinTh/it-tools
+
+### teamide
+Team IDE 工具 集成MySql、Oracle、金仓、达梦、神通等数据库、SSH、FTP、Redis、Zookeeper、Kafka、Elasticsearch等管理工具
+
+https://github.com/team-ide/teamide
+
+
 ### 流程图
 [flowchat](http://flowchart.js.org/)
 [Sequence](https://bramp.github.io/js-sequence-diagrams/)
