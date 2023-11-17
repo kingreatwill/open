@@ -279,7 +279,7 @@ https://github.com/caddyserver/forwardproxy/tree/caddy2
 {
 	order forward_proxy before file_server
 }
-proxy.wcoder.com {
+:8888 {
     forward_proxy {
         basic_auth xx xx
         ports     80 443
@@ -299,8 +299,9 @@ export https_proxy=http://user123:hahapwd@47.113.67.125:18888
 ```
 测试
 ```
-curl -I --proxy https://xx:xx@proxy.wcoder.com  https://www.baidu.com
+curl -I --proxy https://xx:xx@proxy.wcoder.com  https://www.cnblogs.com/
 
+curl -Lv --proxy http://xx:xx@43.155.152.66:8888  http://www.cnblogs.com/
 
 curl -x https://proxy.wcoder.com --proxy-user x:x -L https://www.baidu.com
 ```
