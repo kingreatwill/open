@@ -1,4 +1,12 @@
 
+
+
+## 威联通docker-compose
+docker-compose.yml文件位于以下目录
+/share/Container/container-station-data/application/applicationname/docker-compose.yml
+
+注意docker-compose.yml 后缀一定是yml, 以及applicationname需要完全匹配
+
 ## Private Tracker(PT)
 PT站（Private Tracker）是一种私有的种子分享站点，和公共BT站点不同，只有在站内注册且满足一定门槛的用户才能相互分享和下载资源。因此，PT站点一般资源更加丰富，但门槛也更高。
 ### IYUU

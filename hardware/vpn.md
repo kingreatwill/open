@@ -14,6 +14,8 @@ https://github.com/gfwlist/gfwlist
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
 
 ### HTTP/HTTPS代理服务器 (正向代理)
+`curl -Lv --proxy http://xx:xx@43.155.152.66:8888  http://www.cnblogs.com/`
+
 #### Squid、Privoxy、Varnish、Polipo
 #### tinyproxy
 https://github.com/tinyproxy
@@ -112,6 +114,25 @@ server {
 
 [docker 部署openresty](../docker/openresty.md)
 
+#### frp
+
+[最新配置参见](../docker/frp.md)
+
+```
+[proxy]
+type = tcp
+remote_port = 6000
+plugin = http_proxy
+plugin_http_user = abc
+plugin_http_passwd = abc
+
+[socks5_proxy]
+type = tcp
+remote_port = 6005
+plugin = socks5
+plugin_user = abc
+plugin_passwd = abc
+```
 
 ### OpenVPN
 

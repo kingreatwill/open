@@ -17,3 +17,12 @@ type = "http"
 localIP = "127.0.0.1"
 localPort = 8000
 subdomain = "nas"
+
+[[proxies]]
+name = "plugin_http_proxy"
+type = "tcp"
+remotePort = 8889
+[proxies.plugin]
+type = "http_proxy"
+httpUser = "abc"
+httpPassword = "abc"

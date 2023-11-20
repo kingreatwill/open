@@ -7,6 +7,9 @@
 - Emby
 - Plex
 - https://github.com/jellyfin/jellyfin
+- https://github.com/ossrs/srs
+https://ossrs.net/lts/zh-cn/docs/v5/doc/getting-started
+
 ## 视频 Video
 - 画面更新率
 每秒6或8张（frame per second，简称fps）至现今的每秒120张不等
