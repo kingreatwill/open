@@ -6,6 +6,16 @@
 - Zipkin
 - OpenCensus
 
+## Sentry 
+这个监控也很好用, 支持的client很丰富
+https://github.com/getsentry/sentry
+
+https://docs.sentry.io/
+
+opentelemetry浏览器侧支持不完善, [Sentry+opentelemetry](https://sentry.io/for/opentelemetry/)支持前后端链路打通
+
+> 可以理解调用链+性能监控
+
 # APM
 ## SigNoz
 是一个完整的解决方案, 是一款集日志、指标及追踪一体的开源平台
