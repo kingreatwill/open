@@ -296,6 +296,12 @@ Ionic 类似 React Native 的跨平台框架，支持vue等
 https://github.com/ionic-team/ionic-framework 42.9k
 
 ### vue3
+
+#### nuxt
+[nuxt框架](https://github.com/nuxt/nuxt) 48.5k
+
+[nuxt ui](https://github.com/nuxt/ui) 2.3k
+
 #### quasar
 https://github.com/quasarframework/quasar 19.2k
 

@@ -178,6 +178,29 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 插件支持： V2Ray 支持插件系统，可以通过插件实现更多的功能，如流量伪装、混淆等。
 开源项目： V2Ray 是一个开源项目，具有透明的代码，用户可以审查和定制代码来满足自己的需求。
 
+
+
+#### Trojan 一键脚本
+CentOS
+`yum update -y && yum install wget -y && yum install curl -y`
+
+Debian / Ubuntu
+`apt-get update -y && apt-get install wget -y && apt-get install curl -y`
+
+```
+curl -O https://raw.githubusercontent.com/atrandys/trojan/master/trojan_mult.sh && chmod +x trojan_mult.sh && ./trojan_mult.sh
+```
+
+https://github.com/atrandys/trojan
+https://github.com/jinwyp/one_click_script
+
+
+#### 客户端安装
+[V2RayNG	Android](https://github.com/2dust/v2rayNG)
+[v2rayN	Windows](https://github.com/2dust/v2rayN)
+
+[trojan-android](https://github.com/xxf098/shadowsocksr-v2ray-trojan-android)
+
 ### 付费VPN
 #### tlyvpn
 https://www.ebay.com/usr/tlyvpn

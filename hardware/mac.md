@@ -11,3 +11,16 @@
 
 
 > MAC 地址第二位数字必须是偶数(a是10,b是11,c是12)，如果是奇数，为组播地址，只能作为目的地址，不能作为源地址。
+
+## IEEE的分配标准
+
+https://standards-oui.ieee.org/oui/oui.txt
+
+前6位可以固定到一个厂商(如:00-1B-21 代表 Intel)
+```
+00-1B-21   (hex)		Intel Corporate
+001B21     (base 16)		Intel Corporate
+				Lot 8, Jalan Hi-Tech 2/3 
+				Kulim  Kedah  09000
+				MY
+```

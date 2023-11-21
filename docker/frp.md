@@ -39,7 +39,7 @@ subDomainHost = "frp.wcoder.com"
 
 https://github.com/fatedier/frp/
 - httpPlugins
-可以理解为钩子插件, 可以用来记录/拒绝/替换返回内容等操作, 需要一个外部服务来侦听9000端口
+可以理解为钩子插件, 可以用来记录/拒绝/替换返回内容等操作(这样可以记录一些非法访问), 需要一个外部服务来侦听9000端口
 可以参考`frp/test/e2e/v1/plugin/server.go` 和 `frp/test/e2e/pkg/plugin/plugin.go`中的代码
 
 #### frp client
