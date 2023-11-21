@@ -16,6 +16,11 @@ opentelemetry浏览器侧支持不完善, [Sentry+opentelemetry](https://sentry.
 
 > 可以理解调用链+性能监控
 
+## highlight
+[highlight.io](https://github.com/highlight/highlight)：开源的全栈监控平台。包括错误监控、会话回放、日志记录等功能。
+
+支持的client后端数量一般, 前端常用的框架基本上都支持
+
 # APM
 ## SigNoz
 是一个完整的解决方案, 是一款集日志、指标及追踪一体的开源平台
@@ -26,6 +31,13 @@ SigNoz在很多地方是基于OpenTelemetry体系的，他的collector是基于O
 代码：https://github.com/SigNoz/signoz
 
 官网站点：https://signoz.io/
+
+## skywalking
+## cat
+## Sentry
+## pinpoint
+## DataDog
+## OpenObserve 
 
 # opentelemetry
 
