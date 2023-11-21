@@ -285,6 +285,12 @@ https://github.com/ehang-io/nps
 npc - 客户端
 安装 https://ehang-io.github.io/nps/#/install
 
+### Cloudflare Tunnel
+
+https://github.com/louislam/uptime-kuma/wiki/Reverse-Proxy-with-Cloudflare-Tunnel
+
+
+
 ### NSmartProxy
 https://github.com/tmoonlight/NSmartProxy
 

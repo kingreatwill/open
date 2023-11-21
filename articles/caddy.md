@@ -3,6 +3,7 @@ Title: Caddy
 Summary: Caddy
 Tags:
     - Caddy
+    - Traefik
 ---
 
 ## Caddy
@@ -28,6 +29,9 @@ caddy 插件: https://caddyserver.com/docs/extending-caddy
 caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
 
 > watch参数可以动态加载配置文件
+
+### Traefik
+这个也很多人使用
 
 ### 编译
 
