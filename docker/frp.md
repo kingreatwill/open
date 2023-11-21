@@ -35,6 +35,12 @@ subDomainHost = "frp.wcoder.com"
 # path = "/handler"
 # ops = ["NewProxy"]
 ```
+[服务端插件](https://gofrp.org/zh-cn/docs/features/common/server-plugin/)
+
+https://github.com/fatedier/frp/
+- httpPlugins
+可以理解为钩子插件, 可以用来记录/拒绝/替换返回内容等操作, 需要一个外部服务来侦听9000端口
+可以参考`frp/test/e2e/v1/plugin/server.go` 和 `frp/test/e2e/pkg/plugin/plugin.go`中的代码
 
 #### frp client
 `docker run --restart=always --network host -d -v /share/Public/frp/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc:0.52.3`
