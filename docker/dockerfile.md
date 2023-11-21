@@ -30,6 +30,7 @@ https://docs.docker.com/engine/reference/commandline/dockerd/
 > -H后面就是指定连接的服务端地址 info表示查看服务端daemon的信息
 
 ## Dockerfile 中 RUN, CMD, ENTRYPOINT 的区别
+
 RUN 指令：用于指定 docker build 过程中要运行的命令。
 CMD 在docker run 时运行，而非docker build;
 CMD 指令的首要目的在于为启动的容器指定默认要运行的程序，程序运行结束，容器也就结束；
@@ -50,6 +51,7 @@ CMD ["-h"] # 为 ENTRYPOINT 指令指定的程序提供默认参数；只要dock
 
 
 ## Here-Documents
+
 https://docs.docker.com/engine/reference/builder/#here-documents
 
 在多行内容中 首行 指定解释器 `#!/bin/bash`， 则所有内容整体被看作一个 Shell 脚本。
@@ -75,4 +77,19 @@ RUN <<EOT
 #!/usr/bin/env python
 print("hello world")
 EOT
+```
+
+## HEALTHCHECK监控检查
+```
+FROM nginx:1.23
+HEALTHCHECK --interval=5s --timeout=3s  --retries=3 \
+    CMD curl -fs http://localhost/ || exit 1
+
+```
+
+docker ps 查看, 在STATUS列会看到健康检查的状态
+```
+CONTAINER ID   IMAGE                         COMMAND                  CREATED              STATUS                        PORTS                                       NAMES
+49f844ec25bc   louislam/uptime-kuma:1.23.6   "/usr/bin/dumb-init …"   About a minute ago   Up About a minute (healthy)   0.0.0.0:3001->3001/tcp, :::3001->3001/tcp   uptime-kuma
+
 ```
