@@ -31,7 +31,18 @@ caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
 > watch参数可以动态加载配置文件
 
 ### Traefik
-这个也很多人使用
+https://github.com/traefik/traefik 45.5k golang
+
+https://plugins.traefik.io/plugins
+
+
+### Envoy
+https://github.com/envoyproxy/envoy 23k c++
+
+虽然是C++但是可以使用Envoy WASM插件来进行扩展, 当前也是支持lua的
+
+### YARP reverse-proxy
+[YARP reverse-proxy](https://github.com/microsoft/reverse-proxy) 7.1k C#
 
 ### 编译
 

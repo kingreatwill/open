@@ -285,6 +285,19 @@ docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 ## Docker之Cgroup对于CPU，内存，磁盘资源的限制
 https://blog.csdn.net/boyuser/article/details/110487436
 
+
+## docker-compose安装
+
+```
+$ sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+
+[Install Compose standalone](https://docs.docker.com/compose/install/standalone/)
+
+> docker compose也可以作为docker插件来安装 [Install the Compose plugin](https://docs.docker.com/compose/install/linux/)
+
+
 # docker三剑客  docker-machine compose swarm
 
 # 有趣的docker项目

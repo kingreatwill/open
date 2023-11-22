@@ -14,6 +14,17 @@ https://docs.sentry.io/
 
 opentelemetry浏览器侧支持不完善, [Sentry+opentelemetry](https://sentry.io/for/opentelemetry/)支持前后端链路打通
 
+[self-hosted](https://github.com/getsentry/self-hosted)
+
+```
+git clone https://github.com/getsentry/self-hosted.git
+cd self-hosted
+./install.sh
+
+docker-compose up -d
+```
+访问 http://localhost:9000
+
 > 可以理解调用链+性能监控
 
 ## highlight
@@ -38,6 +49,8 @@ SigNoz在很多地方是基于OpenTelemetry体系的，他的collector是基于O
 ## pinpoint
 ## DataDog
 ## OpenObserve 
+## Elastic APM
+https://github.com/elastic/apm
 
 # opentelemetry
 

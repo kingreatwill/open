@@ -104,6 +104,63 @@ local/remote:   127.0.0.1:33499 <-> 0.0.0.0:0 (LISTEN)
 local/remote:   127.0.0.1:53974 <-> :0 ()
 ```
 
+## goreleaser 二进制包分发工具
+go install github.com/goreleaser/goreleaser@latest
+
+添加git 支持同时添加tag
+```
+git tag markdown/v1.0.5
+git push -u origin main
+git push -u origin markdown/v1.0.5
+```
+or
+```
+git tag -a markdown/v1.0.5 -m "markdown/v1.0.5"
+git push origin markdown/v1.0.5
+```
+
+添加goreleaser 支持
+```
+goreleaser init
+```
+
+获取 Github Token
+访问 [Settings / Developer Settings / Personal access tokens](https://github.com/settings/tokens)，点击 Generate new token 按钮，生成一个新的 Token，将 Token 保存到 `~/.config/goreleaser/github_token` 文件中 或者 `export GITHUB_TOKEN="YOUR_GH_TOKEN"`。
+
+```
+goreleaser release
+```
+
+
+goreleaser 的功能还是很强大的，同时支持github 的release，同时我们也可以配置docker
+
+
+## 网络代理
+- [**Caddy**](https://github.com/mholt/caddy) - 类似 Nginx 的 Web 服务器
+- [Traefik](https://github.com/containous/traefik) - 反向代理&负载均衡
+- [snail007/goproxy](https://github.com/snail007/goproxy) - golang 实现的高性能代理服务器
+- [ProxyPool](https://github.com/henson/proxypool) - 采集免费的代理资源为爬虫提供有效的IP代理
+- [frp](https://github.com/fatedier/frp) - 可用于内网穿透的高性能的反向代理应用
+- [nps](https://github.com/cnlh/nps) - 一款轻量级、高性能、功能强大的内网穿透代理服务器
+- [Pomerium](https://github.com/pomerium/pomerium) - 基于身份的反向代理
+- [V2Ray](https://github.com/v2ray/v2ray-core)
+- [V2Fly](https://github.com/v2fly/v2ray-core) - V2Ray 的社区版本
+- [Tailscale](https://github.com/tailscale/tailscale) - WireGuard 解决方案
+- [Clash](https://github.com/Dreamacro/clash) - 支持多种协议的多平台代理客户端
+- [elazarl/goproxy](https://github.com/elazarl/goproxy) - HTTP 代理
+- [oxy](https://github.com/vulcand/oxy) - Go middlewares for HTTP servers & proxies
+- [ouqiang/goproxy](https://github.com/ouqiang/goproxy) - Go HTTP(S)代理库, 支持中间人代理解密HTTPS
+- [pgrok](https://github.com/pgrok/pgrok) - 提供给穷人的内网穿透
+
+
+## HTTP压测
+- [Vegeta](https://github.com/tsenart/vegeta) - HTTP 负载压测工具
+- [hey](https://github.com/rakyll/hey) - Web 压测工具
+- [bombardier](https://github.com/codesenberg/bombardier) - Web 压测工具
+- [go-wrk](https://github.com/tsliwowicz/go-wrk)
+- [plow](https://github.com/six-ddc/plow)
+- [Ddosify](https://github.com/ddosify/ddosify)
+
 ## 流量回放工具
 
 ### Goreplay
