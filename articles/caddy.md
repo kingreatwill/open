@@ -30,18 +30,19 @@ caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
 
 > watch参数可以动态加载配置文件
 
-### Traefik
+### 其它代理
+#### Traefik
 https://github.com/traefik/traefik 45.5k golang
 
 https://plugins.traefik.io/plugins
 
 
-### Envoy
+#### Envoy
 https://github.com/envoyproxy/envoy 23k c++
 
 虽然是C++但是可以使用Envoy WASM插件来进行扩展, 当前也是支持lua的
 
-### YARP reverse-proxy
+#### YARP reverse-proxy
 [YARP reverse-proxy](https://github.com/microsoft/reverse-proxy) 7.1k C#
 
 ### 编译
@@ -254,6 +255,10 @@ proxy.wcoder.com {
 }
 
 docker run -d --cap-add=NET_ADMIN --restart=always --network host \
+    -e OTEL_SERVICE_NAME=caddy
+    -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317" \
+    -e OTEL_TRACES_SAMPLER="always_on" \
+    -e OTEL_EXPORTER_OTLP_INSECURE=true \
     -v /data/dockerv/caddy/srv:/srv \
     -v /data/dockerv/caddy/data:/data \
     -v /data/dockerv/caddy/log:/log \
@@ -321,3 +326,31 @@ curl -Lv --proxy http://xx:xx@43.155.152.66:8888  http://www.cnblogs.com/
 curl -x https://proxy.wcoder.com --proxy-user x:x -L https://www.baidu.com
 ```
 
+### tracing opentelemetry(只支持grpc)
+
+https://caddyserver.com/docs/caddyfile/directives/tracing#tracing
+
+```
+export OTEL_EXPORTER_OTLP_HEADERS="myAuthHeader=myToken,anotherHeader=value"
+export OTEL_SERVICE_NAME=caddy
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317"
+export OTEL_TRACES_SAMPLER="always_on"
+export OTEL_EXPORTER_OTLP_INSECURE=true
+
+handle /example* {
+	tracing {
+		span {path}
+	}
+	reverse_proxy 127.0.0.1:8081
+}
+```
+
+frp内网穿透需要使用tcp来代理grpc的端口
+
+```
+# https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/
+gRPC: export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://my-api-endpoint:443"
+HTTP: export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://my-api-endpoint/v1/traces"
+```
+
+日志字段`traceID`
