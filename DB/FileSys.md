@@ -245,7 +245,8 @@ docker run -p 80:80 -v /cloudreve:/cloudreve -e CLOUDREVE_URL="http://你的域�
 docker pull xavierniu/cloudreve:3.1.1
 
 #### z-file
-https://github.com/zhaojun1998/zfile
+https://github.com/zfile-dev/zfile
+
 #### dzzoffice
 https://github.com/zyx0814/dzzoffice
 
