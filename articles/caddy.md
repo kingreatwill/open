@@ -186,6 +186,7 @@ docker run -d -p 2019:2019 \
 
 ```
 {
+    order sentry first
     order markdown before file_server
     order forward_proxy before markdown
 }
@@ -259,16 +260,15 @@ docker run -d --cap-add=NET_ADMIN --restart=always --network host \
     -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317" \
     -e OTEL_TRACES_SAMPLER="always_on" \
     -e OTEL_EXPORTER_OTLP_INSECURE=true \
+    -e SENTRY_DSN="https://5851bf0c021cfb2f29e370483922200c@o4506274015936512.ingest.sentry.io/4506274021507072" \
     -v /data/dockerv/caddy/srv:/srv \
     -v /data/dockerv/caddy/data:/data \
     -v /data/dockerv/caddy/log:/log \
     -v /data/dockerv/caddy/config:/config \
     -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
     --name caddy caddy-markdown:v0.0.1
-
-caddy-markdown:v0.0.1
 ```
-
+`-e SENTRY_DEBUG="true" \`
 
 禁用https
 ```
@@ -354,3 +354,4 @@ HTTP: export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://my-api-endpoint/v1/trace
 ```
 
 日志字段`traceID`
+
