@@ -17,6 +17,10 @@ https://github.com/OUCMachineLearning/OUCML/tree/master/%E4%BB%A3%E7%A0%81%E9%80
 https://opensource.com/downloads/cheat-sheets
 
 
+## Common Ports Cheat Sheet
+
+[Common Ports Cheat Sheet](https://www.stationx.net/common-ports-cheat-sheet/)
+![](img/commonports.jpg)
 
 
 ## Developer Roadmaps
