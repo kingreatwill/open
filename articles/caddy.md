@@ -355,3 +355,20 @@ HTTP: export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://my-api-endpoint/v1/trace
 
 日志字段`traceID`
 
+### Dynamic upstreams
+
+[Dynamic upstreams](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy#dynamic-upstreams)
+
+[什么是 DNS SRV 记录？](https://www.cloudflare.com/zh-cn/learning/dns/dns-records/dns-srv-record/)
+SRV记录（英语：Service Record，中文又名服务定位记录）是域名系统中用于指定服务器提供服务的位置（如主机名和端口）数据。此数据于RFC 2782中定义，类型代码为33。部分协议，如会话发起协议（SIP）及可扩展消息与存在协议（XMPP）通常需要服务记录的支持。
+
+#### SRV DNS records
+consul 是支持SRV DNS的, 也就是我们可以使用consul来动态获取上游地址
+
+> 标准的 DNS 默认端口为 53, 而 consul 默认的 DNS 端口为 8600.
+> `dig @192.168.1.11 -p 8600 consul.service.consul SRV`
+> 标准的 consul 服务写法(最常用): `[tag.]<your_service>.service[.your_datacenter].consul`
+
+> RFC2782 的写法是: `_<service>._<protocol>.service[.datacenter][.domain]` , 知道有这么一种方法就行
+
+参考[Consul 域名服务](https://www.cnblogs.com/harrychinese/p/consul_dns.html)
