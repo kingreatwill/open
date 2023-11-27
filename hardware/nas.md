@@ -15,6 +15,14 @@
 ## 威联通
 在线演示: https://www.qnap.com.cn/zh-cn/live-demo
 
+### 威联通docker-compose
+docker-compose.yml文件位于以下目录
+/share/Container/container-station-data/application/applicationname/docker-compose.yml
+
+注意docker-compose.yml 后缀一定是yml, 以及applicationname需要完全匹配
+
+> [dockge](https://github.com/louislam/dockge) 可以自己开发一个docker 运行和管理的面板, 可以将docker run转换成docker-compose文件
+
 ## 铁威马（TerraMaster）
 ## 华硕 爱速特
 在线演示: https://www.asustor.com/zh-cn/live_demo

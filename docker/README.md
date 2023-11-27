@@ -297,6 +297,7 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 
 > docker compose也可以作为docker插件来安装 [Install the Compose plugin](https://docs.docker.com/compose/install/linux/)
 
+> [dockge](https://github.com/louislam/dockge) 可以自己开发一个docker 运行和管理的面板, 可以将docker run转换成docker-compose文件
 
 # docker三剑客  docker-machine compose swarm
 
