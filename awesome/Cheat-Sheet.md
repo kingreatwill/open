@@ -22,6 +22,11 @@ https://opensource.com/downloads/cheat-sheets
 [Common Ports Cheat Sheet](https://www.stationx.net/common-ports-cheat-sheet/)
 ![](img/commonports.jpg)
 
+## cheat 命令行
+
+https://github.com/cheat/cheat
+
+一款交互式的“小抄”命令行工具。该项目可以创建、编辑、查看 *nix 系统命令的备忘录，比如常用命令的示例和解释。
 
 ## Developer Roadmaps
 https://roadmap.sh/roadmaps

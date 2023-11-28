@@ -173,8 +173,9 @@ https://github.com/nodauf/Swego
 #### algernon
 https://github.com/xyproto/algernon
 
-(代替我的Markdown server)
 纯 Go 语言开发的 Web 开发工具，内置 Lua，Markdown，模板和 HTTP / 2，Redis，Mysql，Postgresql 支持
+
+小型、独立的 Go Web 服务器。该项目是用 Go 编写的“快餐” Web 服务器，采用 BoltDB、Redis、MySQL 或 PostgreSQL 作为数据库，内置 Lua 解释器。所有功能全在一个独立可执行文件中，支持 Markdown 渲染、Lua 脚本、请求限制、用户和权限等。
 
 ## 内存泄露/内存错误检测工具
 ### Address Sanitizer(ASan)
