@@ -13,15 +13,22 @@ https://github.com/go-shiori/shiori
 
 测试
 ```
-docker run -d --rm --name shiori -p 8080:8080 -v $(pwd):/shiori ghcr.io/go-shiori/shiori
+docker run -d --rm --name shiori -p 8080:8080 -v $(pwd):/shiori ghcr.io/go-shiori/shiori:dev
 ```
-
+`openssl rand -hex 32`可以生产随机值(SHIORI_HTTP_SECRET_KEY)
 ```
+SHIORI_HTTP_SECRET_KEY=xx
 SHIORI_DIR=/shiori
 SHIORI_DATABASE_URL="postgres://pqgotest:password@hostname/database?sslmode=verify-full"
 SHIORI_DATABASE_URL="mysql://username:password@(hostname:port)/database?charset=utf8mb4"
 ```
 
+创建数据库:`shiori`
+```
+docker run -d -p 10001:8080 -v /data/dockerv/shiori/data:/shiori -e SHIORI_HTTP_SECRET_KEY=xx  -e SHIORI_DIR=/shiori  -e SHIORI_DATABASE_URL="postgres://postgres:pwd@postgresql/shiori?sslmode=disable"  --name shiori --link postgresql --restart always ghcr.io/go-shiori/shiori:dev
+```
+
+> 如果密码中包含特殊字符 `fmt.Println(url.QueryEscape("^"))  print: %5E`
 
 ### linkding
 https://github.com/sissbruecker/linkding
@@ -42,7 +49,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
   linkwarden:
-    env_file: .env
+    # env_file: .env
     environment:
       - POSTGRES_PASSWORD=pgsql2023
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
