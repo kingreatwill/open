@@ -132,3 +132,6 @@ cd your_path
 git remote set-url origin https://new.example.com/new.git
 git push origin --tags && git push origin --all
 ```
+
+## 从 Git 历史记录中生成 Changelog 文件
+https://github.com/orhun/git-cliff
