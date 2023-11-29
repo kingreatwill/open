@@ -7,6 +7,8 @@ https://github.com/topics/bookmark-manager
 https://github.com/go-shiori/shiori
 
 [chrome 插件](https://github.com/go-shiori/shiori-web-ext)
+> chrome 点击"扩展程序选项"设置用户名和站点
+
 
 [配置参考](https://github.com/go-shiori/shiori/blob/master/docs/Configuration.md)
 `shiori.exe server --portable`
@@ -29,6 +31,13 @@ docker run -d -p 10001:8080 -v /data/dockerv/shiori/data:/shiori -e SHIORI_HTTP_
 ```
 
 > 如果密码中包含特殊字符 `fmt.Println(url.QueryEscape("^"))  print: %5E`
+
+
+默认用户
+username: shiori
+password: gopher
+
+
 
 ### linkding
 https://github.com/sissbruecker/linkding
