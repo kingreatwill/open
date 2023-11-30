@@ -292,7 +292,23 @@ https://github.com/snail007/goproxy
 
 https://github.com/louislam/uptime-kuma/wiki/Reverse-Proxy-with-Cloudflare-Tunnel
 
+### Localtunnel
+https://github.com/localtunnel/localtunnel
 
+### Chisel
+https://github.com/jpillora/chisel
+
+### Rathole
+https://github.com/rapiz1/rathole
+
+### sshuttle
+https://github.com/sshuttle/sshuttle
+
+### Bore
+https://github.com/ekzhang/bore
+
+### Zrok
+https://github.com/openziti/zrok
 
 ### NSmartProxy
 https://github.com/tmoonlight/NSmartProxy

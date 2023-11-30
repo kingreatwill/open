@@ -267,6 +267,21 @@ docker run -d --cap-add=NET_ADMIN --restart=always --network host \
     -v /data/dockerv/caddy/config:/config \
     -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
     --name caddy caddy-markdown:v0.0.1
+
+-- 开启Sentry后流量飙升
+
+docker run -d --cap-add=NET_ADMIN --restart=always --network host \
+    -e OTEL_SERVICE_NAME=caddy \
+    -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317" \
+    -e OTEL_TRACES_SAMPLER="always_on" \
+    -e OTEL_EXPORTER_OTLP_INSECURE=true \
+    -v /data/dockerv/caddy/srv:/srv \
+    -v /data/dockerv/caddy/data:/data \
+    -v /data/dockerv/caddy/log:/log \
+    -v /data/dockerv/caddy/config:/config \
+    -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile \
+    --name caddy caddy-markdown:v0.0.1
+
 ```
 `-e SENTRY_DEBUG="true" \`
 
