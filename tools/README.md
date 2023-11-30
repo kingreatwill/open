@@ -421,6 +421,7 @@ ZIP 压缩包管理器 - 免费版含广告
 - [开源笔记本软件 Joplin](https://github.com/laurent22/joplin)
 ### 笔记/知识管理软件
 - [notesnook](https://github.com/streetwriters/notesnook)
+- [Focalboard](https://github.com/mattermost/focalboard)
 - [印象笔记](https://www.yinxiang.com/)（[Evernote](https://evernote.com) ）
 - [我来 wolai](https://www.wolai.com/)
 - [Notion](https://www.notion.so/zh-cn)
