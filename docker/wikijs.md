@@ -178,4 +178,5 @@ git config --global user.name "kingreatwill"
 git config --global user.email "350840291@qq.com"
 
 ssh-keygen -t rsa -C "350840291@qq.com"
+ssh-keygen -t rsa -b 4096 -C "350840291@qq.com"
 ```
