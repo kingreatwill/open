@@ -21,6 +21,8 @@ git clone
 ```
 git config --global user.name "kingreatwill"
 git config --global user.email "350840291@qq.com"
+
+ssh-keygen -t rsa -C "350840291@qq.com"
 ```
 配置存放在.gitconfig文件中
 ```
