@@ -510,27 +510,9 @@ https://www.dokuwiki.org/dokuwiki
 #### Wiki.js
 https://github.com/Requarks/wiki
 
-Install
-```
-docker run -d -p 8080:3000 --name wiki --restart unless-stopped -e "DB_TYPE=postgres" -e "DB_HOST=db" -e "DB_PORT=5432" -e "DB_USER=wikijs" -e "DB_PASS=wikijsrocks" -e "DB_NAME=wiki" requarks/wiki:2
+[详情](../docker/wikijs.md)
 
-docker run -d -p 8080:3000 --name wiki --restart unless-stopped -e "DB_TYPE=mysql" -e "DB_HOST=db" -e "DB_PORT=3306" -e "DB_USER=wikijs" -e "DB_PASS=wikijsrocks" -e "DB_NAME=wiki" requarks/wiki:2
 
-# Mount the config file https://docs.requarks.io/install/config
-docker run -d -p 8080:3000 --name wiki --restart unless-stopped -v YOUR-FILE.yml:/wiki/config.yml requarks/wiki:2
-```
-Upgrade
-```
-# Stop and remove container named "wiki"
-docker stop wiki
-docker rm wiki
-
-# Pull latest image of Wiki.js
-docker pull requarks/wiki:2
-
-# Create new container of Wiki.js based on latest image
-docker run -d -p 8080:3000 --name wiki --restart unless-stopped -e "DB_TYPE=mysql" -e "DB_HOST=db" -e "DB_PORT=3306" -e "DB_USER=wikijs" -e "DB_PASS=wikijsrocks" -e "DB_NAME=wiki" requarks/wiki:2
-```
 ### CMS/内容管理系统
 
 #### Strapi
@@ -541,6 +523,8 @@ https://github.com/TryGhost/Ghost 44.5k
 https://github.com/directus/directus 23.9k
 #### Wiki.js
 https://github.com/Requarks/wiki 22.5k
+[详情](../docker/wikijs.md)
+
 #### Outline
 https://github.com/outline/outline 21.1k
 #### Payload

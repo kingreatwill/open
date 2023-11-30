@@ -5,13 +5,18 @@ docker run -d -p 5432:5432 -v /data/dockerv/postgresql13/data:/var/lib/postgresq
 
 docker run -d -p 3000:3000 --name wiki --restart always --link postgresql:postgresql -e "DB_TYPE=postgres" -e "DB_HOST=postgresql" -e "DB_PORT=5432" -e "DB_USER=postgres" -e "DB_PASS=jw@zll" -e "DB_NAME=wiki" requarks/wiki:2.5
 
+> -e "WIKI_ADMIN_EMAIL=350840291@qq.com"
+> 默认登录邮箱: admin@example.com
+> 默认密码: admin123
+> Wiki.js首次安装，需要填写账号、密码等信息。
 ## Wiki.js 2 sqlite
+
 docker run -d -p 3000:3000 --name wiki --restart always -v /d/dockerv/wikijs2/config.yml:/wiki/config.yml -v /d/dockerv/wikijs2/data/:/wiki/db/ requarks/wiki:2.5
 
 > Wiki.js runs as user wiki. docker启动时可以指定-u="root"
 升级只需要更新docker镜像版本就可以了.
 
-config.yml
+[config.yml](https://docs.requarks.io/install/config)
 ```
 #######################################################################
 # Wiki.js - CONFIGURATION                                             #
@@ -145,6 +150,23 @@ dataPath: ./data
 ## Wiki.js 3
 将使用Quasar Vue framework
 支持PDF导出
+
+
+```
+
+docker run -d -p 10002:3000 --name wiki --link postgresql --restart unless-stopped -e "DB_TYPE=postgres" -e "DB_HOST=postgresql" -e "DB_PORT=5432" -e "DB_USER=postgres" -e "DB_PASS=xx" -e "DB_NAME=wiki" ghcr.io/requarks/wiki:3.0.0-alpha.334
+```
+> -v [YOUR-FILE.yml](https://github.com/Requarks/wiki/blob/main/config.sample.yml):/wiki/config.yml
+
+
+
+### 手动重置管理员密码
+1. 生成HASH-PASSWORD, https://bcrypt-generator.com/ (Rounds必须是12)
+2. `UPDATE users SET password = 'HASH-PASSWORD' WHERE email = 'YOUR-EMAIL';`
+
+Wiki.js首次安装，需要填写账号、密码等信息。但是版本3.0.0-alpha.334没有让我安装, 只能手动重置管理员密码了, 并且字段是auth字段不是password字段
+> https://docs.requarks.io/en/troubleshooting
+
 ## Wiki.js 4
 将PostgreSQL 作为唯一的数据库
 
