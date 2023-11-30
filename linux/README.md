@@ -167,3 +167,22 @@ export PATH
 - `set ff=dos`  #强制转化为dos格式，如果是要转化成unix格式就是   `set ff=unix`
 - `w!` 保存
 
+## 释放磁盘空间
+`df -h`
+
+- 查找文件型
+进入根目录查找最大的文件: `du -a|sort -rn|head -5`
+进入根目录查找大于300M的文件:`find . -type f -size +300M`
+
+- docker
+释放docker无用空间(镜像,容器,缓存): 
+`docker system prune -a` --Remove all unused containers, networks, images (both dangling and unreferenced), and optionally, volumes. 这个命令直接释放了我35G的空间
+```
+docker container prune -a
+docker image prune -a
+```
+
+- 软件源
+centos7,8: `yum clean all` -- 一般也能释放几个G
+centos8: `dnf clean all`
+Debian 和 Ubuntu: `apt-get clean`

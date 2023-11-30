@@ -177,6 +177,10 @@ docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
 ### docker删除未使用的容器、镜像/删除无用
+删除无用镜像,容器,缓存,释放空间
+`docker image prune -a`
+`docker system prune -a` -- 这个命令直接释放了我35G的空间
+
 linux
 ```
 # 删除 exited container
