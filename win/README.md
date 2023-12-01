@@ -23,6 +23,11 @@ AutoHotkey 是一个 windows 上的开源软件，用于做自动化的处理
 - 可以运行 AutoITv2 的脚本
 - 将自动化脚本转变成 exe 文件
 
+### Process Lasso
+https://bitsum.com/
+
+任务管理器,资源管理器
+
 ### portableapps
 https://portableapps.com/
 绿色软件（英语：portable application、portable software、portable apps）或称便携软件
