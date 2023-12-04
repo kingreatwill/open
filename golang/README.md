@@ -11,6 +11,16 @@
 
 设置`go env -w GOPROXY=https://goproxy.cn,direct`
 
+安装 & 升级
+```
+wget https://golang.google.cn/dl/go1.21.4.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
+vi /etc/profile
+export PATH=$PATH:/usr/local/go/bin
+source /etc/profile
+```
+
+
 ## 在现有go版本中安装其他版本
 https://pkg.go.dev/golang.org/dl
 go get golang.org/dl/go1.10.7

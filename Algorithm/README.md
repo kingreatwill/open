@@ -22,3 +22,15 @@
 ![https://www.bigocheatsheet.com/](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
 [可视化数据结构网站](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+
+[《Hello 算法》：动画图解](https://github.com/krahets/hello-algo)
+```
+#!/bin/bash
+
+# git clone git@github.com:krahets/hello-algo.git
+
+git -C "/root/code/hello-algo" pull
+docker build -f /root/code/hello-algo/Dockerfile -t algo:v0.01 /root/code/hello-algo
+
+# docker run -d -p 10003:8000 --name algo --restart always algo:v0.01
+```
