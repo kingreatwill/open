@@ -20,6 +20,15 @@ Anthropic 正式发布了全新的 Claude 2
 ### OpenAI
 https://openai.com/
 
+### LocalAI
+https://github.com/go-skynet/LocalAI
+
+[doc](https://localai.io/basics/getting_started/index.html)
+
+docker: https://quay.io/repository/go-skynet/local-ai?tab=info
+`docker pull quay.io/go-skynet/local-ai`
+
+免费、开源的 OpenAI 替代方案。自托管、社区驱动、本地优先。在消费级硬件上运行的 OpenAI 的直接替代品。无需 GPU。运行 ggml、gguf、GPTQ、onnx、TF 兼容模型：llama、llama2、rwkv、whisper、vicuna、koala、cerebras、falcon、dolly、starcoder 等
 
 ### 其它
 #### 参考

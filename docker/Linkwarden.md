@@ -3,6 +3,9 @@
 https://github.com/topics/bookmarks-manager
 https://github.com/topics/bookmark-manager
 
+### wallabag
+https://github.com/wallabag/wallabag 
+
 ### shiori
 https://github.com/go-shiori/shiori
 
