@@ -683,3 +683,66 @@ echo ${VERSION} > .VERSION
 # VERSION=$(head -1 .VERSION) # 取版本信息到变量
 
 ```
+
+## docker时区
+清理缓存
+centos7,8: `yum clean all`
+centos8: `dnf clean all`
+Debian 和 Ubuntu: `apt-get clean`
+
+- 基于Debian的镜像,直接添加环境变量即可
+```
+#dockerfile
+ENV TZ=Asia/Shanghai
+```
+- 基于Alpine的镜像(此类镜像中并没有包含tzdata,因此需要安装tzdata)
+```
+#dockerfile
+ENV TZ=Asia/Shanghai
+RUN apk update \
+    && apk add tzdata \
+    && echo "${TZ}" > /etc/timezone \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && rm /var/cache/apk/*
+```
+- 基于ubuntu的镜像(此类镜像中并没有包含tzdata,因此需要安装tzdata)
+```
+
+ENV TZ=Asia/Shanghai 
+RUN echo "${TZ}" > /etc/timezone \ 
+&& ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \ 
+&& apt update \ 
+&& apt install -y tzdata \ 
+&& rm -rf /var/lib/apt/lists/*
+```
+
+```
+FROM ubuntu
+ 
+MAINTAINER fastjrun
+ 
+ENV TIME_ZONE Asia/Shanghai
+ 
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y tzdata \
+    && ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/cache/* /usr/share/doc/* /usr/share/man/* /var/lib/apt/lists/*
+```
+
+- 使用CentOS作为基础镜像
+```
+# 使用CentOS作为基础镜像
+FROM centos:latest
+
+# 安装tzdata包
+RUN yum update -y && yum install -y tzdata
+
+# 设置时区环境变量
+ENV TZ=Asia/Shanghai
+
+# 配置系统时区
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+```

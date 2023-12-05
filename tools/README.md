@@ -688,6 +688,10 @@ docker run  -itd -p 3000:3000 -p 3001:3001 -v /e/dockerv/wps/config:/config --re
 https://www.emeditor.com
 https://zh-cn.emeditor.com/
 
+#### klogg
+快速智能日志浏览器
+https://github.com/variar/klogg
+
 #### notepad++
 
 #### Geany

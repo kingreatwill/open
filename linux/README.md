@@ -167,7 +167,7 @@ export PATH
 - `set ff=dos`  #强制转化为dos格式，如果是要转化成unix格式就是   `set ff=unix`
 - `w!` 保存
 
-## 释放磁盘空间
+## 清理/释放磁盘空间
 `df -h`
 
 - 查找文件型

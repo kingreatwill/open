@@ -473,7 +473,8 @@ DeepFaceLab 是一种工具，可以创建深层假图像和视频，它允许�
 ### ORC
 - https://pypi.org/project/muggle-ocr
 - https://gitee.com/raoyutian/paddle-ocrsharp
-- https://gitee.com/paddlepaddle/PaddleOCR
+- https://gitee.com/paddlepaddle/PaddleOCR 
+- https://github.com/PaddlePaddle/PaddleOCR
 
 ## 机器学习
 ### 机器学习UI框架Streamlit - 好东西
