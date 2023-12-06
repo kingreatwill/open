@@ -155,3 +155,18 @@ DLNA将其整个应用规定成5个功能组件。从下到上依次为：网络
 由于Emby 3.6开始闭源后，引起了一些核心开发人员的不满，所以最近在Emby的基础上单独开发了Jellyfin媒体服务器，致力于让所有用户都能访问最好的媒体系统。并且可以将Emby版本3.5.2及之前的数据无缝迁移过来。
 
 Jellyfin是一个自由软件媒体系统，可让您控制媒体的管理和流媒体。它是专有的Emby和Plex的替代品，可通过多个应用程序从专用服务器向终端用户设备提供媒体。Jellyfin是Emby 3.5.2版本的后代，移植到.NET Core框架以支持完整的跨平台支持。没有任何附加条件，只是一个团队想要更好地构建更好的东西并共同努力实现它，致力于让所有用户都能访问最好的媒体系统。
+
+### 照片和视频
+#### Photoprism
+https://github.com/photoprism/photoprism golang 30.1k 推荐
+#### Immich
+Immich是一款自托管的照片和视频备份解决方案，可以直接从手机上备份媒体内容到自己的服务器上。
+https://github.com/immich-app/immich ts 22k 推荐
+
+#### LibrePhotos
+https://github.com/LibrePhotos/librephotos python 6.7k
+
+#### Piwigo & Lychee
+https://github.com/Piwigo/Piwigo php 2.8k
+https://github.com/LycheeOrg/Lychee php 2.9k
+https://github.com/photoview/photoview ts 4.4k
