@@ -48,9 +48,17 @@ https://github.com/uber-go/goleak
 https://visualgdb.com/gdbreference/commands/x
 
 ### goweight 分析模块大小
+https://github.com/jondot/goweight
 ```
+$ go get github.com/jondot/goweight
 $ cd current-project
 $ goweight
+```
+### go-binsize-treemap 二进制大小分析
+只支持linux的二进制, 可以看到每个包的大小(与goweight类似, 但是以图的形式展示)
+```
+$ go install github.com/nikolaydubina/go-binsize-treemap@latest
+$ go tool nm -size <binary finename> | go-binsize-treemap > binsize.svg
 ```
 
 ### godebug:一个跨平台的Go程序调试工具
@@ -71,9 +79,12 @@ https://github.com/cosmtrek/air
 
 https://github.com/topics/live-reload?l=go
 
-### gops 分析机器上运行了哪些go进程
-go get -u github.com/google/gops
+### 监控分析
+https://github.com/nikolaydubina/go-recipes#monitoring
 
+### gops 分析机器上运行了哪些go进程(类似jps)
+go get -u github.com/google/gops
+go install github.com/google/gops@latest
 ```
 C:\Users\35084>gops tree
 ...
@@ -92,6 +103,8 @@ C:\Users\35084>gops
 12080 5172  gopls.exe               go1.14.1  D:\go\bin\gopls.exe
 3708  4728  com.docker.proxy.exe    go1.12.16 C:\Program Files\Docker\Docker\resources\com.docker.proxy.exe
 
+> 依次PID,PPID,进程名称,编译版本,进程路径
+
 C:\Users\35084>gops 3708
 parent PID:     4728
 threads:        12
@@ -103,6 +116,44 @@ elapsed time:   02:45:26
 local/remote:   127.0.0.1:33499 <-> 0.0.0.0:0 (LISTEN)
 local/remote:   127.0.0.1:53974 <-> :0 ()
 ```
+
+gops还有大量其它的功能
+
+### assembly
+
+SSA
+Go 1.7开始，Go将原来的IR（Intermediate Representation，中间代码）转换成SSA（Static Single Assignment，静态单赋值）形式的IR
+https://golang.design/gossa https://github.com/golang-design/ssaplayground
+
+https://silverrainz.me/go-ssaviz/ https://github.com/SilverRainZ/go-ssaviz
+
+汇编
+https://godbolt.org/  https://github.com/compiler-explorer/compiler-explorer
+https://github.com/loov/lensm
+https://github.com/mmcloughlin/avo
+
+
+AST
+官方`go/ast`
+```
+package main
+
+import (
+  "go/ast"
+  "go/parser"
+  "go/token"
+)
+
+func main() {
+  fs := token.NewFileSet()
+  tr, _ := parser.ParseExpr("(3-1) * 5")
+  ast.Print(fs, tr)
+}
+```
+
+https://github.com/reflog/go2ast
+https://github.com/xiazemin/ast_graph
+
 
 ## goreleaser 二进制包分发工具
 go install github.com/goreleaser/goreleaser@latest

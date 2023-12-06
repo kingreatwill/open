@@ -264,14 +264,20 @@ WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
 
 ## playground
-
+### 获取语言汇编
+https://godbolt.org/
+https://github.com/compiler-explorer/compiler-explorer
 ### go
 https://github.com/x1unix/go-playground
+
+https://golang.design/gossa https://github.com/golang-design/ssaplayground
 
 https://play.golang.org
 https://play.studygolang.com
 https://goplay.space    https://github.com/iafan/goplayspace
 https://goplay.tools/   https://github.com/x1unix/go-playground
+
+> [更多](https://github.com/nikolaydubina/go-recipes#execution)
 
 ### 可视化在线编写运行Python的神器：PythonTutor
 http://www.pythontutor.com/
