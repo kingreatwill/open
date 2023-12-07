@@ -173,7 +173,7 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 ## 逆向工程的十六进制编辑器 rehex
 https://github.com/solemnwarning/rehex
 
-## 密码管理工具
+## 密码管理工具/密码管理器
 ### KeePass 
 KeePass的插件
 - KeeAnywhere  - cloud storage providers 解压整个目录放入Plugins目录
@@ -187,7 +187,8 @@ KeePass的插件
     - OneDrive
 - KeePassRPC - Firefox和chrome数据同步  将KeePassRPC.plgx文件放入Plugins目录
     - 需要安装chrome插件https://github.com/pfn/passifox（chrome:chromeIPass（改名了KeePassHttp-Connector）   Firefox:PassIFox ）和https://github.com/pfn/keepasshttp/
-
+### Bitwarden
+https://github.com/bitwarden
 ### Passbolt
 https://github.com/passbolt
 
