@@ -291,6 +291,9 @@ https://github.com/facebook/watchman
 ### UDP/TCP网络调试助手NetAssist
 http://free.cmsoft.cn/download/cmsoft/netassist.zip
 
+### clumsy模拟各种网络状态
+https://github.com/jagt/clumsy
+
 ## 屏幕画笔工具
 
 - Pointofix
