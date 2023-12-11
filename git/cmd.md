@@ -539,6 +539,23 @@ Git revert和git reset都可以进行版本的回退，将工作区回退到历�
 https://blog.csdn.net/yxlshk/article/details/79944535
 https://git-scm.com/docs/git-revert
 
+#### 修改提交信息
+```
+git filter-branch --commit-filter '
+        if [ "$GIT_AUTHOR_NAME" = "kingreatwill" ];
+        then
+                GIT_AUTHOR_NAME="wcoder";
+                GIT_AUTHOR_EMAIL="350840291@qq.com";
+                git commit-tree "$@";
+        else
+                git commit-tree "$@";
+        fi' HEAD
+```
+> 用户名为kingreatwill的提交记录，将该提交记录的用户名和邮箱修改为wcoder和350840291@qq.com。
+> 清除缓存即可再次执行`git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch Rakefile' HEAD`
+
+修改最近一次的信息:`git commit --amend --author="程序员小富 <515361725@qq.com>" --no-edit`
+
 ### Git stash
 Git stash用来暂存当前正在进行的工作， 将工作区还没加入索引库的内容压入本地的Git栈中，在需要应用的时候再弹出来。比如想pull 最新代码，又不想加新commit；或者为了修复一个紧急的bug，先stash，使返回到自己上一个commit，改完bug之后再stash pop，继续原来的工作。Git stash可以让本地仓库返回到上一个提交状态，而本地的还未提交的内容则被压入Git栈。Git stash的基本使用流程如下：
 ```

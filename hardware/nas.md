@@ -170,3 +170,8 @@ https://github.com/LibrePhotos/librephotos python 6.7k
 https://github.com/Piwigo/Piwigo php 2.8k
 https://github.com/LycheeOrg/Lychee php 2.9k
 https://github.com/photoview/photoview ts 4.4k
+
+### 人工智能监控摄像头:frigate
+https://github.com/blakeblackshear/frigate
+
+[doc](https://docs.frigate.video/frigate/installation)
