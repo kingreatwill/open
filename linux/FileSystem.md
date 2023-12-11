@@ -44,6 +44,8 @@ ps aux | grep "xx"  2>&1 1>/dev/null
 > /dev/null 伪设备，回收站.写该文件不会产生IO
 > /dev/zero 伪设备，会产生空字符流，对它不会产生IO
 
+![](./img/linux重定向.webp)
+
 
 - Linux中获取已后台运行进程的输出
 `strace -p {pid} -ewrite`
