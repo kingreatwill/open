@@ -285,6 +285,27 @@ https://github.com/ehang-io/nps
 npc - 客户端
 安装 https://ehang-io.github.io/nps/#/install
 
+### Microsoft dev tunnels
+https://github.com/microsoft/dev-tunnels
+
+[安装文档](https://learn.microsoft.com/zh-cn/azure/developer/dev-tunnels/get-started?tabs=windows)
+
+```
+登录账号：
+devtunnel.exe user login -g -d    （如果电脑有浏览器优先调起浏览器实现登陆授权）
+
+启用转发端口：
+devtunnel.exe host -p 8000
+浏览器访问：https://601tvmcl.inc1.devtunnels.ms:8000  或者  https://601tvmcl-8000.inc1.devtunnels.ms 使用授权的Github账号登陆即可访问！
+
+启动匿名访问：
+devtunnel.exe host -p 8000 --allow-anonymous
+任何人浏览器访问 https://sc42hdl7.inc1.devtunnels.ms:8000  或者  https://sc42hdl7-8000.inc1.devtunnels.ms 即可！
+
+为使用 HTTPS 协议的端口 8443 上的服务器托管临时开发隧道。
+devtunnel host -p 8443 --protocol https
+```
+
 ### goproxy
 https://github.com/snail007/goproxy
 

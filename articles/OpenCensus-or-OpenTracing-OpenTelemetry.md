@@ -51,6 +51,8 @@ SigNoz在很多地方是基于OpenTelemetry体系的，他的collector是基于O
 ## OpenObserve 
 ## Elastic APM
 https://github.com/elastic/apm
+## New Relic
+https://github.com/newrelic
 
 # opentelemetry
 
