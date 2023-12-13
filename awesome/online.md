@@ -266,6 +266,15 @@ Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
 
+### DocuSeal文档签署平台/电子签
+https://github.com/docusealco/docuseal
+
+```
+docker run -d --name docuseal -e DATABASE_URL="postgres://postgres:pwd@postgresql/docuseal?sslmode=disable" -p 10004:3000 -v /data/dockerv/docuseal/data:/data --link postgresql --restart always docuseal/docuseal:1.3.2
+```
+默认用户名: admin@docuseal.co
+密码: admin
+
 ## playground
 ### 获取语言汇编
 https://godbolt.org/
