@@ -104,10 +104,13 @@ https://github.com/pbatard/rufus
 软碟通
 
 
-
+### 网速监控
+https://github.com/zhongyang219/TrafficMonitor
 
 ### 腾讯管家国际版
 https://www.pcmgr-global.com/
+### 微软电脑管家
+https://pcmanager.microsoft.com/zh-cn
 
 ### 下载工具
 #### IDM破解版
