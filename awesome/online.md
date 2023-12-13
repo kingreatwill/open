@@ -203,12 +203,16 @@ https://github.com/tldraw/tldraw
 
 > Excalidraw和tldraw的合集:https://github.com/revezone/revezone
 
-### 协作办公
+### 协作办公/协同
 明道、teambition、http://Tower.im、Worktile、trello、SeaTable、Airtable
 
 https://github.com/seatable/seatable
 
 [Etherpad](https://github.com/ether/etherpad-lite)
+
+#### mattermost
+https://github.com/mattermost/mattermost
+Mattermost 是一款开源的团队协作工具，旨在提供实时聊天、文件共享和集成等功能，与 Slack 类似。
 
 ## Excel
 - https://github.com/mengshukeji/Luckysheet
