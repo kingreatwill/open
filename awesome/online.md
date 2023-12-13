@@ -266,7 +266,7 @@ Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
 
-### DocuSeal文档签署平台/电子签
+### DocuSeal文档签署平台/电子签/数字签名
 https://github.com/docusealco/docuseal
 
 ```
@@ -274,6 +274,31 @@ docker run -d --name docuseal -e DATABASE_URL="postgres://postgres:pwd@postgresq
 ```
 默认用户名: admin@docuseal.co
 密码: admin
+
+集成的我们的程序中
+docuseal 提供了 JS、Vue 和 React 三种语言的兼容方式。了不起这里列举VUE的添加方式：
+```vue
+<template>
+    <DocusealForm
+      :src="'https://docuseal.co/d/LEVGR9rhZYf86M'"
+      :email="'signer@example.com'"
+    />
+  </template>
+
+  <script>
+  import { DocusealForm } from '@docuseal/vue'
+
+  export default {
+    name: 'App',
+    components: {
+      DocusealForm
+    }
+  }
+  </script>
+```
+#### 其它类似 DocuSign
+https://github.com/OpenSignLabs/OpenSign
+https://github.com/documenso/documenso
 
 ## playground
 ### 获取语言汇编
