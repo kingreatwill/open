@@ -214,6 +214,9 @@ https://github.com/seatable/seatable
 https://github.com/mattermost/mattermost
 Mattermost 是一款开源的团队协作工具，旨在提供实时聊天、文件共享和集成等功能，与 Slack 类似。
 
+#### 类似JIRA
+https://github.com/makeplane/plane
+
 ## Excel
 - https://github.com/mengshukeji/Luckysheet
 - （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/

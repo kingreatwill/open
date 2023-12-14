@@ -451,6 +451,9 @@ https://github.com/nexdrew/rekcod 237
 
 ### Portainer
 https://github.com/portainer/portainer 19.7k
+```
+docker run -d -p 10006:9000 -p 11006:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /data/dockerv/portainer/data:/data portainer/portainer-ce:2.19.4-alpine
+```
 
 ### DockStation
 桌面应用程序

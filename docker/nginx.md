@@ -10,6 +10,8 @@ https://github.com/digitalocean/nginxconfig.io
 
 https://github.com/digitalocean/nginxconfig.io
 
+### Nginx Proxy Manager
+https://github.com/NginxProxyManager/nginx-proxy-manager
 ### playground
 曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 https://play.golang.org/，Rust 发布也有 https://play.rust-lang.org/。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。
 
