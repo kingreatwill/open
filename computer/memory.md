@@ -16,6 +16,34 @@ cat /prox/PID/maps
 https://www.toutiao.com/i6844780093961667084/
 https://juejin.im/post/5efadf48f265da2304062e51
 
+## 云主机内存
+最近购买了2G内存的腾讯云主机, 发现总内存只有1.7G (`free -h`)
+
+```
+# 查看真实内存
+dmidecode -t memory
+
+# 查看 kdump 占用的内存, 这个是为了防止系统崩溃而保留的内存
+kdumpctl showmem
+# 输出 kdump: Reserved 256MB memory for crash kernel
+
+
+# 关闭 kdump(设置完参数后需要重启系统)
+grubby --update-kernel ALL --args crashkernel=0M
+
+# 也可以修改小一点
+grubby --update-kernel ALL --args crashkernel=64M
+```
+
+如果系统内存总量为 512 MB 和 2 GB，则命令保留 64 MB 内存。如果内存量超过 2 GB，则内存保留为 128 MB。
+```
+grubby --update-kernel=ALL --args="crashkernel=512M-2G:64M,2G-:128M"
+```
+
+
+> 要让 kdump 捕获内核崩溃转储，并保存它以便进一步分析，应该为捕获内核永久保留系统内存的一部分。保留时，主内核无法使用系统内存的这一部分
+> [配置 kdump 内存用量](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/configuring-kdump-memory-usage_configuring-kdump-on-the-command-line)
+
 # Linux 内核如何管理内存
 Windows在默认情况下，将高地址的2GB空间分配给内核（也可配置1GB），而Linux默认情况下，将高地址的1GB空间分配给内核。这些分配给内核的空间叫内和空间，用户使用剩下的空间称为用户空间。
 

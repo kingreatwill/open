@@ -17,9 +17,12 @@ docker run -d --name homepage \
 ```
 
 > -v /var/run/docker.sock:/var/run/docker.sock:ro  `:ro` [read-only volume](https://docs.docker.com/storage/volumes/#use-a-read-only-volume)
-> 已内置icons:https://github.com/walkxcode/dashboard-icons
-> https://gethomepage.dev/v0.8.3/configs/settings/#card-background-blur
+> 已内置icons: https://github.com/walkxcode/dashboard-icons
+https://materialdesignicons.com/ `mdi-XX`
+https://simpleicons.org/ `si-XX`
+颜色: `mdi-XX-#f0d453` or `si-XX-#a712a2`; 当然url也可以
 
+> 配置: https://gethomepage.dev/v0.8.3/configs/settings/#card-background-blur
 > 小部件: https://github.com/gethomepage/homepage/blob/main/docs/widgets/services/caddy.md
 > 小部件: https://github.com/gethomepage/homepage/blob/main/docs/widgets/services/portainer.md
 

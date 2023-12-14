@@ -13,6 +13,12 @@
 [aria2](https://github.com/aria2/aria2) BT client,还支持其它类型离线下载 c++ 30.9k
 可以通过jsonrpc控制aria2
 
+[Gopeed](https://github.com/GopeedLab/gopeed) supports (HTTP, BitTorrent, Magnet) protocol, 支持各大平台
+
+```
+docker run -d --restart always --name gopeed -p 10007:9999 -v /data/dockerv/gopeed/download:/root/Downloads -v /data/dockerv/gopeed/storage:/app/storage liwei2633/gopeed:v1.5.2
+```
+
 ## BT种子文件结构（.torrent）
 BitTorrent协议的种子文件（英语：Torrent file）可以保存一组文件的元数据。这种格式的文件被BitTorrent协议所定义。扩展名一般为“.torrent”。
 
