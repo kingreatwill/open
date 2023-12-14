@@ -186,6 +186,7 @@ docker run -d -p 2019:2019 \
 
 ```
 {
+    admin 10.0.0.11:2019
     order sentry first
     order markdown before file_server
     order forward_proxy before markdown
@@ -256,6 +257,7 @@ proxy.wcoder.com {
 }
 
 docker run -d --cap-add=NET_ADMIN --restart=always --network host \
+    -e CADDY_ADMIN="10.0.0.11:2019" \
     -e OTEL_SERVICE_NAME=caddy \
     -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317" \
     -e OTEL_TRACES_SAMPLER="always_on" \
@@ -275,7 +277,6 @@ docker run -d --cap-add=NET_ADMIN --restart=always --network host \
     -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://43.155.152.66:4317" \
     -e OTEL_TRACES_SAMPLER="always_on" \
     -e OTEL_EXPORTER_OTLP_INSECURE=true \
-    -e CADDY_ADMIN="10.0.0.11:2019" \
     -v /data/dockerv/caddy/srv:/srv \
     -v /data/dockerv/caddy/data:/data \
     -v /data/dockerv/caddy/log:/log \

@@ -268,8 +268,27 @@ Apache Doris 可以满足多种数据分析需求，例如固定历史报表，�
 
 ## 其它
 ### 数据库监控
+#### DBA Dash
+SQL Server监控工具
+https://github.com/trimble-oss/dba-dash
+
 #### sqlwatch
 [SQL Server Performance Monitor](https://github.com/marcingminski/sqlwatch)
+
+#### MySQL
+MySQLTuner-perl: https://github.com/major/MySQLTuner-perl
+Anemometer慢SQL查询监控：https://github.com/box/Anemometer
+MySQL监控工具: https://github.com/charles-001/dolphie
+Blip MySQL Monitor: https://github.com/cashapp/blip
+
+#### PostgreSQL
+https://github.com/thumbtack/pgdoctor 没有更新了
+
+https://github.com/lob/pg_insights 只读了
+
+https://github.com/mfvanek/pg-index-health-sql
+
+https://github.com/cybertec-postgresql/pgwatch2
 
 #### Percona Monitoring and Management
 [Percona Monitoring and Management, PMM](https://github.com/percona)
