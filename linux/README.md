@@ -186,3 +186,81 @@ docker image prune -a
 centos7,8: `yum clean all` -- 一般也能释放几个G
 centos8: `dnf clean all`
 Debian 和 Ubuntu: `apt-get clean`
+
+## 查看端口占用
+
+```
+netstat -tunlp | grep 80
+netstat -anp | grep 80
+lsof -i:80
+ss -tnlp | grep 80
+ss -tunlp | grep 80
+```
+
+### netstat
+-a或--all：显示所有连线中的Socket； 
+-t或--tcp：显示TCP传输协议的连线状况； 
+-u或--udp：显示UDP传输协议的连线状况；
+-n或--numeric：直接使用ip地址，而不通过域名服务器；
+-p或--programs：显示正在使用Socket的程序识别码和程序名称；
+-l或--listening：显示监控中的服务器的Socket； 
+
+### lsof(list open files)
+lsof(list open files)是一个列出当前系统打开的文件
+
+### ss(Socket Statistics)
+`ss -tnlp | grep 80`
+`ss -tunlp | grep 80`
+`ss -anlp | grep 80`
+Socket统计；ss命令可以获取socket统计信息。它的功能和netstat类似。
+```
+[root@example opt]# ss --help
+Usage: ss [ OPTIONS ]
+       ss [ OPTIONS ] [ FILTER ]
+   -h, --help          this message #帮助信息
+   -V, --version       output version information # 版本信息
+   -n, --numeric       don't resolve service names  #不解析服务名称
+   -r, --resolve       resolve host names   # 解析主机名，把 IP 解释为域名，把端口号解释为协议名称
+   -a, --all           display all sockets   #显示所有Socket
+   -l, --listening     display listening sockets #显示监听的Socket
+   -o, --options       show timer information 
+   -e, --extended      show detailed socket information #显示详细的Socket信息
+   -m, --memory        show socket memory usage #显示Socket内存使用
+   -p, --processes     show process using socket #显示Socket 使用进程
+   -i, --info          show internal TCP information #显示内部TCP信息
+   -s, --summary       show socket usage summary  #显示socket使用总数
+   -b, --bpf           show bpf filter socket information
+   -E, --events        continually display sockets as they are destroyed
+   -Z, --context       display process SELinux security contexts #显示进程SELinux 安全山下文
+   -z, --contexts      display process and socket SELinux security contexts #显示进程和Socket 的SELinux 安全山下文
+   -N, --net           switch to the specified network namespace name
+
+   -4, --ipv4          display only IP version 4 sockets  #显示ipv4 的Sockets
+   -6, --ipv6          display only IP version 6 sockets  #显示ipv6 的Sockets
+   -0, --packet        display PACKET sockets   #显示packet 的Sockets
+   -t, --tcp           display only TCP sockets  #显示TCP 协议 的Sockets
+   -S, --sctp          display only SCTP sockets  #显示STCP 的Sockets
+   -u, --udp           display only UDP sockets   #显示UDP 的Sockets
+   -d, --dccp          display only DCCP sockets
+   -w, --raw           display only RAW sockets
+   -x, --unix          display only Unix domain sockets
+       --vsock         display only vsock sockets
+   -f, --family=FAMILY display sockets of type FAMILY
+       FAMILY := {inet|inet6|link|unix|netlink|vsock|help}
+
+   -K, --kill          forcibly close sockets, display what was closed
+   -H, --no-header     Suppress header line
+
+   -A, --query=QUERY, --socket=QUERY
+       QUERY := {all|inet|tcp|udp|raw|unix|unix_dgram|unix_stream|unix_seqpacket|packet|netlink|vsock_stream|vsock_dgram}[,QUERY]
+
+   -D, --diag=FILE     Dump raw information about TCP sockets to FILE
+   -F, --filter=FILE   read filter information from FILE
+       FILTER := [ state STATE-FILTER ] [ EXPRESSION ]
+       STATE-FILTER := {all|connected|synchronized|bucket|big|TCP-STATES}
+         TCP-STATES := {established|syn-sent|syn-recv|fin-wait-{1,2}|time-wait|closed|close-wait|last-ack|listen|closing}
+          connected := {established|syn-sent|syn-recv|fin-wait-{1,2}|time-wait|close-wait|last-ack|closing}
+       synchronized := {established|syn-recv|fin-wait-{1,2}|time-wait|close-wait|last-ack|closing}
+             bucket := {syn-recv|time-wait}
+                big := {established|syn-sent|fin-wait-{1,2}|closed|close-wait|last-ack|listen|closing}
+```
