@@ -42,7 +42,8 @@ SigNoz在很多地方是基于OpenTelemetry体系的，他的collector是基于O
 代码：https://github.com/SigNoz/signoz
 
 官网站点：https://signoz.io/
-
+## Odigos
+https://github.com/keyval-dev/odigos
 ## skywalking
 ## cat
 ## Sentry

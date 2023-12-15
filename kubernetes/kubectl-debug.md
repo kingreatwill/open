@@ -3,6 +3,10 @@ https://github.com/aylei/kubectl-debug/releases
 
 [简化 Pod 故障诊断: kubectl-debug 介绍](https://aleiwu.com/post/kubectl-debug-intro/)
 
+[kubectl plugin manager](https://github.com/kubernetes-sigs/krew)
+
+[kubectl superdebug](https://github.com/JonMerlevede/kubectl-superdebug)
+
 ## 背景
 容器技术的一个最佳实践是构建尽可能精简的容器镜像。但这一实践却会给排查问题带来麻烦：精简后的容器中普遍缺失常用的排障工具，部分容器里甚至没有 shell (比如 FROM scratch ）。 在这种状况下，我们只能通过日志或者到宿主机上通过 docker-cli 或 nsenter 来排查问题，效率很低。Kubernetes 社区也早就意识到了这个问题，在 16 年就有相关的 [Issue Support for troubleshooting distroless containers](https://github.com/kubernetes/kubernetes/issues/27140) 并形成了对应的 [Proposal](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node/troubleshoot-running-pods.md)。 遗憾的是，由于改动的涉及面很广，相关的实现至今还没有合并到 Kubernetes 上游代码中。而在 一个偶然的机会下（PingCAP 一面要求实现一个 kubectl 插件实现类似的功能），我开发了 [kubectl-debug](https://github.com/aylei/kubectl-debug): 通过启动一个安装了各种排障工具的容器，来帮助诊断目标容器 。
 

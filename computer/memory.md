@@ -19,9 +19,14 @@ https://juejin.im/post/5efadf48f265da2304062e51
 ## 云主机内存
 最近购买了2G内存的腾讯云主机, 发现总内存只有1.7G (`free -h`)
 
+
 ```
 # 查看真实内存
 dmidecode -t memory
+# 查看真实内存
+lsmem
+# 更准一点(以1000为单位)
+free --mega
 
 # 查看 kdump 占用的内存, 这个是为了防止系统崩溃而保留的内存
 kdumpctl showmem
@@ -40,6 +45,7 @@ grubby --update-kernel ALL --args crashkernel=64M
 grubby --update-kernel=ALL --args="crashkernel=512M-2G:64M,2G-:128M"
 ```
 
+> [What is the difference between megabytes and mebibytes](https://www.gbmb.org/blog/what-is-the-difference-between-megabytes-and-mebibytes-32)
 
 > 要让 kdump 捕获内核崩溃转储，并保存它以便进一步分析，应该为捕获内核永久保留系统内存的一部分。保留时，主内核无法使用系统内存的这一部分
 > [配置 kdump 内存用量](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/configuring-kdump-memory-usage_configuring-kdump-on-the-command-line)

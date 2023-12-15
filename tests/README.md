@@ -49,6 +49,9 @@ Sitespeed.io 是开源的Web性能测试工具，用来衡量Web网站的综合�
 该命令将会在chrome浏览器下调起URL为https://www.baidu.com 5次，产出了一个分析文件夹，打开index.html文件后，我们可以看到关于页面性能的相关总结。
 
 ## Web性能
+### Web-Check
+Web-Check 是一款功能强大的一体化工具，用于发现网站/主机的相关信息。用于检查网页的工具，用于确保网页的正确性和可访问性。它可以帮助开发人员和网站管理员检测网页中的错误和问题，并提供修复建议。
+https://github.com/Lissy93/web-check
 ### Matomo
 https://github.com/matomo-org/matomo
 
