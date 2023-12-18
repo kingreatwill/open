@@ -8,6 +8,8 @@
 
 ![](img/LKM.svg)
 
+[Linux命令大全搜索工具](https://github.com/jaywcjlove/linux-command)
+
 查看centos版本
 cat /etc/redhat-release
 
