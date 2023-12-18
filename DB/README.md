@@ -290,6 +290,12 @@ https://github.com/mfvanek/pg-index-health-sql
 
 https://github.com/cybertec-postgresql/pgwatch2
 
+https://github.com/ankane/pghero
+
+```
+docker run -itd -e DATABASE_URL=postgres://user:password@hostname:5432/pgherodbname -p 8080:8080 ankane/pghero
+```
+
 #### Percona Monitoring and Management
 [Percona Monitoring and Management, PMM](https://github.com/percona)
 **PMM Client**

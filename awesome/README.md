@@ -2,6 +2,8 @@
 ## awesome 集合
 https://github.com/sindresorhus/awesome
 
+https://github.com/GrowingGit/GitHub-Chinese-Top-Charts
+
 ## 序列化
 
 
