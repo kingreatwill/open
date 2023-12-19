@@ -163,8 +163,20 @@ SAN提供一个专用的、高可靠性的基于光通道的存储网络，SAN�
 
 
 
-## 云盘系统
+## 云盘系统/网盘/文件管理
+java    1k           https://github.com/KOHGYLW/kiftd
+go      5k           https://github.com/cloudreve/Cloudreve
+https://github.com/zhimengzhe/iBarn
+https://github.com/zyx0814/dzzoffice
+https://github.com/kalcaddle/KODExplorer
+go 2k  https://github.com/eyebluecn/tank
 
+c 英文  8k     https://github.com/haiwen/seafile
+php 英文  7k https://github.com/owncloud/core
+php 英文 11k  https://github.com/nextcloud/server
+
+### Docspell - Document Management System (DMS)
+https://github.com/eikek/docspell
 
 ### ownCloud
 https://github.com/owncloud/

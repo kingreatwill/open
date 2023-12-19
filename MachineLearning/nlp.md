@@ -29,7 +29,7 @@ https://chinesenlp.xyz/#/zh/
 ChineseSemanticKB,chinese semantic knowledge base, 面向中文处理的12类、百万规模的语义常用词典，包括34万抽象语义库、34万反义语义库、43万同义语义库等，可支持句子扩展、转写、事件抽象与泛化等多种应用场景。
 https://github.com/liuhuanyong/ChineseSemanticKB
 
-## xx
+## Large Language Model(LLM)
 http://rowanzellers.com/advice/
 https://openai.com/blog/image-gpt/
 
@@ -39,6 +39,47 @@ ERNIE:https://arxiv.org/abs/1904.09223
 Grover:https://arxiv.org/abs/1905.12616
 KERMIT:https://arxiv.org/abs/1906.01604
 Big Bird:https://arxiv.org/abs/2007.14062
+
+### Mistral 8x7B
+
+87GB的模型种子下载：
+https://twitter.com/MistralAI/status/1733150512395038967
+```
+magnet:?xt=urn:btih:5546272da9065eddeb6fcd7ffddeef5b75be79a7&dn=mixtral-8x7b-32kseqlen&tr=udp%3A%2F%http://2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=http%3A%2F%http://2Ftracker.openbittorrent.com%3A80%2Fannounce
+```
+
+玩法: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+device = "cuda" # the device to load the model onto
+
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
+tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
+
+messages = [
+    {"role": "user", "content": "What is your favourite condiment?"},
+    {"role": "assistant", "content": "Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!"},
+    {"role": "user", "content": "Do you have mayonnaise recipes?"}
+]
+
+encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
+
+model_inputs = encodeds.to(device)
+model.to(device)
+
+generated_ids = model.generate(model_inputs, max_new_tokens=1000, do_sample=True)
+decoded = tokenizer.batch_decode(generated_ids)
+print(decoded[0])
+```
+使用的库: https://github.com/huggingface/transformers
+
+试用:
+https://replicate.com/nateraw/mixtral-8x7b-32kseqlen
+https://poe.com/
+https://app.fireworks.ai/models/fireworks/mixtral-8x7b-fw-chat
+https://labs.perplexity.ai/
 
 ### BERT
 [BERT Rediscovers the Classical NLP Pipeline](https://arxiv.org/abs/1905.05950)
