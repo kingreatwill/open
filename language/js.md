@@ -1,7 +1,5 @@
 [JavaScript modules 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)
 
-## 开源项目管理工具
-https://github.com/JordanKnott/taskcafe
 
 ## Can I use 一款前端兼容性自查工具
 https://caniuse.com/
@@ -17,3 +15,4 @@ npm  install -g caniuse-cmd
 如运行：caniuse websocket
 caniuse 默认查看的是PC浏览器的兼容性，它也提供了查看在移动端的数据。
 执行命令：caniuse -m websocket
+

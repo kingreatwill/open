@@ -30,15 +30,21 @@ nano ~/.ssh/authorized_keys     # Ctrl+O 保存   Ctrl+X 退出
 [家庭/学校免费](https://www.netsarang.com/zh/free-for-home-school/)
 
 [公测版 7 免费 - 公测版本可以一直试用到正式版上线。](https://www.netsarang.com/zh/version-7-open-beta/)
+
+
+### Tabby Terminal
+https://github.com/Eugeny/tabby 52K
+原[Terminus](https://github.com/Eugeny/terminus)
+
 ### WindTerm
 https://github.com/kingToolbox/WindTerm
+
 ### MobaXterm
 全能终端神器
 ### electerm
 Terminal/ssh/sftp client(linux, mac, win)
 https://github.com/electerm/electerm
-### terminus
-https://github.com/Eugeny/terminus
+
 
 ### SecureCRT
 

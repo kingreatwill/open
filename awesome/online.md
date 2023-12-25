@@ -217,6 +217,14 @@ Mattermost 是一款开源的团队协作工具，旨在提供实时聊天、文
 #### 类似JIRA
 https://github.com/makeplane/plane
 
+### 开源项目管理工具/类似JIRA
+https://github.com/topics/project-management
+
+#### taskcafe
+https://github.com/JordanKnott/taskcafe
+#### Leantime
+https://github.com/Leantime/leantime
+
 ## Excel
 - https://github.com/mengshukeji/Luckysheet
 - （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/
