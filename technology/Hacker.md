@@ -44,6 +44,31 @@ https://github.com/sundowndev/hacker-roadmap 3.8k
 hacker-roadmap 是一份爱好者指南，并收集了黑客工具、资源和参考资料，以实践黑客道德准则和网络安全。
 
 
+## 暴力破解
+暴力破解一般看密码库
+密码库: 
+https://github.com/danielmiessler/SecLists/tree/master/Passwords
+https://github.com/berzerk0/Probable-Wordlists
+https://wiki.skullsecurity.org/index.php/Passwords
+https://weakpass.com/
+
+### SSH暴力破解防护-Fail2ban
+### Brutus ：一款网络验证暴力破解器
+### Legba
+https://github.com/evilsocket/legba
+
+Supported Protocols/Features:
+AMQP (ActiveMQ, RabbitMQ, Qpid, JORAM and Solace), Cassandra/ScyllaDB, DNS subdomain enumeration, FTP, HTTP (basic authentication, NTLMv1, NTLMv2, multipart form, custom requests with CSRF support, files/folders enumeration, virtual host enumeration), IMAP, Kerberos pre-authentication and user enumeration, LDAP, MongoDB, MQTT, Microsoft SQL, MySQL, Oracle, PostgreSQL, POP3, RDP, Redis, Samba, SSH / SFTP, SMTP, Socks5, STOMP (ActiveMQ, RabbitMQ, HornetQ and OpenMQ), TCP port scanning, Telnet, VNC.
+
+### Hydra
+https://github.com/vanhauser-thc/thc-hydra
+
+目前该工具支持以下协议的爆破：
+AFP，Cisco AAA，Cisco身份验证，Cisco启用，CVS，Firebird，FTP，HTTP-FORM-GET，HTTP-FORM-POST，HTTP-GET，HTTP-HEAD，HTTP-PROXY，HTTPS-FORM- GET，HTTPS-FORM-POST，HTTPS-GET，HTTPS-HEAD，HTTP-Proxy，ICQ，IMAP，IRC，LDAP，MS-SQL，MYSQL，NCP，NNTP，Oracle Listener，Oracle SID，Oracle，PC-Anywhere， PCNFS，POP3，POSTGRES，RDP，Rexec，Rlogin，Rsh，SAP / R3，SIP，SMB，SMTP，SMTP枚举，SNMP，SOCKS5，SSH（v1和v2），Subversion，Teamspeak（TS2），Telnet，VMware-Auth ，VNC和XMPP。
+
+## 打卡神器
+### 在PC上控制Android设备
+https://github.com/pdone/FreeControl
 ## 参考
 
 https://github.com/topics/hacking
