@@ -207,7 +207,12 @@ https://github.com/facebook/jest
 https://github.com/timkindberg/jest-when
 
 ## doc
+
+提取文档,然后进行灰度化, 就是一个扫描件了: https://github.com/danielgatis/docscan
+图片扫描
 ### PDF
+#### PDF扫描
+https://github.com/rwv/lookscanned.io
 #### jsPDF
 生成PDF
 https://github.com/MrRio/jsPDF 20.3k
