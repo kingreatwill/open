@@ -131,6 +131,27 @@ chrome 插件
 ## 内存
 [Cheat Engine 内存修改器](https://www.cheatengine.org/)
 
+## CPU和内存
+PerfView是一个CPU和内存性能分析工具
+https://github.com/microsoft/perfview
+
+查看分配物理内存：
+https://learn.microsoft.com/zh-cn/sysinternals/downloads/rammap
+
+
+### Sysinternals Suite
+Sysinternals Suite 整合了许多 Windows 实用程序，其中包括进程资源管理器（Process Explorer）、进程监视器（Process Monitor）、系统监测（Sysmon）、自动运行（Autoruns）、进程转储（ProcDump）等。
+
+AccessChk、AccessEnum、ADExplorer、ADInsight、ADRestore、Autologon、Autoruns、BGInfo、CacheSet、ClockRes、Contig、Coreinfo、CPU Stress、DebugView、Desktops、Disk2vhd、DiskExt、DiskMon、DiskView、DU（磁盘使用率）、EFSDump、FindLinks、Handle、Hex2dec、Junction、ListDLLs、LiveKd、LoadOrder、LogonSessions、MoveFile、NotMyFault、NTFSInfo、PendMoves、PipeList、ProcDump、Process Explorer、Process Monitor、PsExec、PsFile、PsGetSid、PsInfo、PsKill、PsList、PsLoggedOn、PsLogList、PsPasswd、PsPing、PsService、PsShutdown、PsSuspend、RamMap、RDCMan、RegDelNull、Regjump、RU（注册表使用）、SDelete、ShareEnum、ShellRunas、Sigcheck、Streams、Strings、Sync、Sysmon、TCPView、Testlimit、VMMap、VolumeID、WhoIs、WinObj、以及 ZoomIt 。
+
+
+Microsoft Store中安装
+#### Sysinternals 网络实用工具
+https://learn.microsoft.com/zh-cn/sysinternals/downloads/networking-utilities
+#### Process Explorer
+#### Process Hacker
+#### Process Monitor
+
 ## X64Dbg
 x64_dbg是一款windows系统下非常优秀的64位调试器，与目前热门的“OllyDbg”十分相似，使用过OllyDbg调试工具的朋友应该很容易上手操作。
 https://x64dbg.com/
@@ -574,9 +595,6 @@ https://github.com/blender/blender
 - 其他应用（3D打印、虚拟现实等）：如果涉及开发，3D软件用哪一个就看需求匹配了，以及是否涉及授权费用和法律相关问题了。
 
 
-## CPU和内存
-PerfView是一个CPU和内存性能分析工具
-https://github.com/microsoft/perfview
 
 ## 填补Win10缺失功能
 ### 全局鼠标手势
@@ -1096,18 +1114,6 @@ EV录屏
 迅捷PDF转换器
 Poppler ，PDF 生成工具
 
-### Sysinternals Suite
-Sysinternals Suite 整合了许多 Windows 实用程序，其中包括进程资源管理器（Process Explorer）、进程监视器（Process Monitor）、系统监测（Sysmon）、自动运行（Autoruns）、进程转储（ProcDump）等。
-
-AccessChk、AccessEnum、ADExplorer、ADInsight、ADRestore、Autologon、Autoruns、BGInfo、CacheSet、ClockRes、Contig、Coreinfo、CPU Stress、DebugView、Desktops、Disk2vhd、DiskExt、DiskMon、DiskView、DU（磁盘使用率）、EFSDump、FindLinks、Handle、Hex2dec、Junction、ListDLLs、LiveKd、LoadOrder、LogonSessions、MoveFile、NotMyFault、NTFSInfo、PendMoves、PipeList、ProcDump、Process Explorer、Process Monitor、PsExec、PsFile、PsGetSid、PsInfo、PsKill、PsList、PsLoggedOn、PsLogList、PsPasswd、PsPing、PsService、PsShutdown、PsSuspend、RamMap、RDCMan、RegDelNull、Regjump、RU（注册表使用）、SDelete、ShareEnum、ShellRunas、Sigcheck、Streams、Strings、Sync、Sysmon、TCPView、Testlimit、VMMap、VolumeID、WhoIs、WinObj、以及 ZoomIt 。
-
-
-Microsoft Store中安装
-#### Sysinternals 网络实用工具
-https://learn.microsoft.com/zh-cn/sysinternals/downloads/networking-utilities
-#### Process Explorer
-#### Process Hacker
-#### Process Monitor
 ## PPT
 [OfficePlus - Office模板网站](http://www.officeplus.cn/Template/Home.shtml)
 [Sway - 在线制作PPT](https://sway.office.com/)

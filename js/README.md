@@ -213,6 +213,8 @@ https://github.com/timkindberg/jest-when
 ### PDF
 #### PDF扫描
 https://github.com/rwv/lookscanned.io
+#### PDF工具
+https://github.com/Frooodle/Stirling-PDF
 #### jsPDF
 生成PDF
 https://github.com/MrRio/jsPDF 20.3k
