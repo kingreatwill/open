@@ -1084,6 +1084,11 @@ https://github.com/taojy123/KeymouseGo
 ### Stirling-PDF
 https://github.com/Frooodle/Stirling-PDF
 
+## 远程连接/远程管理
+https://github.com/quasar/Quasar
+https://github.com/amidaware/tacticalrmm
+
+
 ## 其它
 有一个文件管理器叫FreeCommander
 有一款高效浏览器叫CentBrowser

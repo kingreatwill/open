@@ -22,3 +22,14 @@ BCC（BPF Compiler Collection）是一套开源的工具集，可以在 Linux �
 
 
 eBPF 有一些类似的工具。例如，SystemTap 是一种开源工具，可以帮助用户收集 Linux 内核的运行时数据。它通过动态加载内核模块来实现这一功能，类似于 eBPF。另外，DTrace 是一种动态跟踪和分析工具，可以用于收集系统的运行时数据，类似于 eBPF 和 SystemTap。
+
+## eBPF 相关的知名的开源项目
+### Katran
+Facebook 高性能 4 层负载均衡器 [Katran](https://github.com/facebookincubator/katran) ；
+### Cilium
+[Cilium](https://github.com/cilium/cilium) 为下一代微服务 ServiceMesh 打造了具备API感知和安全高效的容器网络方案；底层主要使用 eBPF 中 XDP 和 TC；
+### IO Visor
+IO Visor 项目开源的 [BCC](https://github.com/iovisor/bcc) 、 [BPFTrace](https://github.com/iovisor/bpftrace) 和 [Kubectl-Trace](https://github.com/iovisor/kubectl-trace) ： BCC 提供了更高阶的抽象，可以让用户采用 Python、C++ 和 Lua 等高级语言快速开发 BPF 程序； BPFTrace 采用类似于 awk 语言快速编写 eBPF 程序； Kubectl-Trace 则提供了在 kubernetes 集群中使用 BPF 程序调试的方便操作；
+
+### CloudFlare
+CloudFlare 公司开源的 [eBPF Exporter](https://github.com/cloudflare/ebpf_exporter) 和 [bpf-tools](https://github.com/cloudflare/bpftools) ： eBPF Exporter 将 eBPF 技术与监控 Prometheus 紧密结合起来； bpf-tools 可用于网络问题分析和排查；

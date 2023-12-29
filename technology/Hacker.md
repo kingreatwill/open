@@ -70,6 +70,8 @@ AFP，Cisco AAA，Cisco身份验证，Cisco启用，CVS，Firebird，FTP，HTTP-
 ### 在PC上控制Android设备
 https://github.com/pdone/FreeControl
 
+https://github.com/karma9874/AndroRAT
+
 ## 参考
 
 https://github.com/topics/hacking
