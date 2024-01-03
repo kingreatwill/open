@@ -2,11 +2,11 @@
 https://github.com/twbs/bootstrap 148k
 
 ## Tailwind
-https://github.com/tailwindlabs/tailwindcss 35.5k
+https://github.com/tailwindlabs/tailwindcss 35.5k->75k
 
-https://github.com/Semantic-Org/Semantic-UI 48.9k
+https://github.com/Semantic-Org/Semantic-UI 48.9k->51k 停更
 
-https://github.com/foundation/foundation-sites 28.9k
+https://github.com/foundation/foundation-sites 28.9k->30k
 
 ## 可视化 CSS 工具
 - [Neumorphism](https://neumorphism.io/)
