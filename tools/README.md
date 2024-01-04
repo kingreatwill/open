@@ -667,7 +667,7 @@ Wise Folder Hider - 电脑文件隐藏与加密工具
 6.feem：免费全平台文件传输利器
 7.CC助手：快速收藏
 
-#### 文件文档在线预览项目(在线文档)
+#### 文件文档在线预览项目(在线文档)/文档管理
 https://github.com/kekingcn/kkFileView
 
 - 支持 office, pdf, cad 等办公文档
@@ -678,7 +678,11 @@ https://github.com/kekingcn/kkFileView
 - rest 接口提供服务，跨语言、跨平台特性(java,php,python,go,php，....)都支持，应用接入简单方便
 - 抽象预览服务接口，方便二次开发，非常方便添加其他类型文件预览支持
 
-
+#### view.officeapps.live.com
+实际调用: https://view.officeapps.live.com/op/view.aspx?src=（文档URL的urlencode编码encodeURIComponent()）
+如：https://view.officeapps.live.com/op/view.aspx?src=newteach.pbworks.com%2Ff%2Fele%2Bnewsletter.docx
+#### Paperless-ngx
+https://github.com/paperless-ngx/paperless-ngx
 #### zfile
 https://github.com/zhaojun1998/zfile
 
@@ -1083,6 +1087,10 @@ https://github.com/taojy123/KeymouseGo
 ## PDF工具
 ### Stirling-PDF
 https://github.com/Frooodle/Stirling-PDF
+
+### PDFgear
+阅读、编辑、转换、合并和跨设备签署PDF文件
+https://www.pdfgear.com/zh/
 
 ## 远程连接/远程管理
 https://github.com/quasar/Quasar
