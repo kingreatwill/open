@@ -30,7 +30,9 @@ nano ~/.ssh/authorized_keys     # Ctrl+O 保存   Ctrl+X 退出
 [家庭/学校免费](https://www.netsarang.com/zh/free-for-home-school/)
 
 [公测版 7 免费 - 公测版本可以一直试用到正式版上线。](https://www.netsarang.com/zh/version-7-open-beta/)
-
+#### PortX
+NetSarang旗下已经有Xshell/Xftp/Xmanager等产品，用过的同学可能知道，他家的软件之前仅支持Windows平台，可能是为了进一步扩大市场，NetSarang公司最近推出了一款跨平台的SSH客户端PortX，支持Mac、Windows、Linux三大平台，目前可以免费下载使用
+https://portx.online/zh/
 
 ### Tabby Terminal
 https://github.com/Eugeny/tabby 52K

@@ -1,4 +1,10 @@
 # hacker
+
+## 密码显示
+```
+javascript:"use strict";!function(){var e,t;e=document.getElementsByTagName("input");for(var a=0;a<e.length;a++)if(t=e[a],"password"==t.type.toLowerCase())try{t.type="text"}catch(e){var r,n;r=document.createElement("input"),n=t.attributes;for(var o=0;o<n.length;o++){var i,c,d;i=n[o],c=i.nodeName,d=i.nodeValue,"type"!=c.toLowerCase()&&"height"!=c&&"width"!=c&!!d&&(r[c]=d)}t.parentNode.replaceChild(r,t)}}();
+```
+
 ## 常见网站攻击技术
 SQL 注入、XSS 攻击、CSRF 攻击、DDoS 攻击、DNS劫持、XXE 漏洞、JSON 劫持、暴力破解、HTTP 报头追踪漏洞、信息泄露、目录遍历漏洞、命令执行漏洞、文件上传漏洞、SSLStrip 攻击、OpenSSL Heartbleed 安全漏洞、CCS 注入漏洞、证书有效性验证漏洞、业务漏洞、框架或应用漏洞
 

@@ -25,6 +25,72 @@ L.marker([51.5, -0.09]).addTo(map)
 瓦片/tile [下载](http://wmksj.com/)
 为何叫瓦片，一般是服务端根据数据生成一张大图，然后切片成一张张小图，一般大小是256x256的图片
 
+### GIS 3D
+#### CesiumJS
+https://github.com/CesiumGS/cesium
+
+### 图表工具
+
+#### Highcharts
+https://www.highcharts.com/
+#### 数据地图 Power Map
+https://support.office.com/en-us/article/get-started-with-power-map-88a28df6-8258-40aa-b5cc-577873fb0f4a
+#### Echarts
+https://echarts.apache.org/zh/index.html
+#### AntV
+https://antv.vision/zh
+
+### 数据可视化工具
+[30个值得推荐的数据可视化工具（2020年更新）](https://zhuanlan.zhihu.com/p/51695598)
+
+图表
+- https://rawgraphs.io/
+- https://www.chartblocks.com/
+- https://www.tableau.com/
+- https://powerbi.microsoft.com/zh-cn/
+- https://www.qlik.com/us/products/qlikview
+- https://www.datawrapper.de/
+- https://www.visme.co/
+- https://www.grow.com/
+- https://www.icharts.in/
+
+信息图
+- https://infogram.com/
+- https://visual.ly/
+
+地图
+- https://www.instantatlas.com/
+- https://leafletjs.com/
+- https://openlayers.org/
+- https://kartograph.org/
+- https://carto.com/
+
+关系网络图
+- https://gephi.org/
+- http://sigmajs.org/
+
+数学图形
+- https://www.wolframalpha.com/
+
+开发者工具
+- https://www.echartsjs.com/zh/index.html
+- https://d3js.org/
+- https://plotly.com/
+- https://www.chartjs.org/
+- https://developers.google.com/chart
+- https://opensource.addepar.com/ember-charts/
+- https://gionkunz.github.io/chartist-js/
+- https://www.highcharts.com/
+- https://www.fusioncharts.com/
+- https://www.zingchart.com/
+
+金融图表
+- http://dygraphs.com/  https://github.com/danvk/dygraphs
+- https://cn.tradingview.com/  https://github.com/tradingview/lightweight-charts
+- WijmoJS
+
+
+
 ## 地理体系
 [bing map 地图体系](https://msdn.microsoft.com/en-us/library/bb259689.aspx)<br>
 [地理概念初步](http://www.cnblogs.com/beniao/archive/2010/04/18/1714544.html)<br>

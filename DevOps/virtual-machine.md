@@ -37,7 +37,13 @@ macOS 中使用 HyperKit 以最小开销运行VM，支持在笔记本模拟小�
 
 > 官网上最新描述: Multipass 在 Windows 上使用 Hyper-V，在 macOS 上使用 QEMU 和 HyperKit，在 Linux 上使用 LXD，以实现最小的开销和最快的启动时间。将虚拟机管理程序切换到Virtualbox是一件轻而易举的事。
 
+## KVM、webKVM
+- [Virtual Machine for the Web](https://github.com/leaningtech/webvm)
+基于内核的虚拟机（KVM）是一种内建于 Linux® 的开源虚拟化技术。具体而言，KVM 可帮助您将 Linux 转变为虚拟机监控程序，使主机计算机能够运行多个隔离的虚拟环境，即虚拟客户机或虚拟机（VM）。
 
+KVM 是 Linux 的一部分。Linux 2.6.20 或更新版本包括 KVM。KVM 于 2006 年首次公布，并在一年后合并到主流 Linux 内核版本中。
+### Barrier
+https://github.com/debauchee/barrier
 
 # "Windows Emulator"，即Windows模拟器
 

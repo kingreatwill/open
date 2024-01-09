@@ -146,6 +146,22 @@ events{
 }
 ```
 
+### 关闭 nginx
+
+进入 nginx 下的 sbin 目录下执行命令：
+快速停止 nginx 命令：./nginx -s stop
+完整有序的停止 nginx：./nginx -s quit；这个命令会等待所有请求结束后再关闭 nginx。
+
+使用 kill 命令关闭 nginx
+
+先查看 nginx 进程，找到主进程号。然后再使用 kill 命令杀死 nginx 进程。
+查看 nginx 进程号命令：ps -ef | grep nginx
+从容停止 nginx 命令：kill -QUIT 主进程号
+快速停止 nginx 命令：kill -TERM 主进程号
+强制停止 nginx 命令：kill -HUP 主进程号
+平滑重启 nginx 命令：kill -9 nginx
+查找并杀死所有 nginx 进程：ps aux | grep nginx |awk '{print $2}' | xargs kill -9
+
 
 ### Nginx 性能优化
 
