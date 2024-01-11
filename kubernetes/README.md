@@ -1,3 +1,5 @@
+[TOC]
+
 ![](../img/k8s/pod-info.jpeg)
 
 [Rancher](https://profile.zjurl.cn/rogue/ugc/profile/?version_code=769&version_name=70609&user_id=52042300867)
@@ -533,7 +535,27 @@ https://github.com/k3s-io/k3s
 k8s in docker/k8s in pod
 
 ## 其它
+### 安全工具
+#### Falco
+Falco 容器安全系统
+https://github.com/falcosecurity
+
 ### 监控工具
+#### Kubeshark
+[Kubeshark](https://github.com/kubeshark/kubeshark) 是一款用于 Kubernetes 的 API 流量分析器，可提供对Kubernetes 内部网络的实时、协议级可视性，捕获并监控进出和跨容器、pod、节点和集群的所有流量和有效载荷。
+
+Kubeshark 采用各种数据包捕获技术（如 eBPF、AF_XDP、PF_RING），并利用自定义内核模块捕获整个集群的 L4（TCP 和 UDP）流量，将其导入分布式 PCAP 存储，并剖析以下应用层协议：
+HTTP/1.0
+HTTP/1.1
+HTTP/2
+AMQP
+Apache Kafka
+Redis
+DNS
+ICMP
+TCP
+
+
 #### kubectl-debug
 https://github.com/aylei/kubectl-debug 这个是别人开发的插件
 

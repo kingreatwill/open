@@ -338,6 +338,14 @@ https://the.exa.website/
 litecli 下载地址：https://litecli.com/
 pgcli 下载地址：https://www.pgcli.com/
 
+## troubleshooting/linux 调试工具
+### sysdig
+https://github.com/draios/sysdig
+可以看网络,CPU,磁盘I/O,进程等
+### Falco
+Falco 容器安全系统
+https://github.com/falcosecurity
+
 ## netstat -lntup  
 说明： l:listening   n:num   t:tcp  u:udp  p:process
 
