@@ -2,6 +2,11 @@
 [TOC]
 
 # shell脚本
+
+shell脚本静态分析 [ShellCheck](https://www.shellcheck.net/)
+
+https://github.com/koalaman/shellcheck
+
 ## 变量&环境变量
 ```
 子shell ，在当前shell，运行一个新的shell（如：在当前shell运行bash）
