@@ -851,6 +851,7 @@ https://share.weiyun.com/P63B9Qyy
 https://github.com/jitsi
 
 ## 数据库管理工具
+
 - dbeaver 
     - https://github.com/dbeaver/dbeaver 
 - navicat
@@ -867,6 +868,31 @@ https://github.com/jitsi
 - phpMyAdmin
 
 > MDF Viewer， MDF Open File Tool 
+
+### Bytebase
+https://github.com/bytebase/bytebase
+
+```
+docker run --init \
+  --name bytebase \
+  --restart always \
+  --publish 8080:8080 \
+  --volume ~/.bytebase/data:/var/opt/bytebase \
+  bytebase/bytebase:2.13.1
+```
+```
+docker run -d --init \
+  --name bytebase \
+  --restart always \
+  --publish 10008:8080 \
+  --health-cmd "curl --fail http://localhost:8080/healthz || exit 1" \
+  --health-interval 5m \
+  --health-timeout 10s \
+  --volume /data/dockerv/bytebase/data:/var/opt/bytebase \
+  bytebase/bytebase:2.13.1 \
+  --data /var/opt/bytebase \
+  --port 8080
+```
 
 ## Web 调试神器
 https://github.com/microsoft/playwright-cli
