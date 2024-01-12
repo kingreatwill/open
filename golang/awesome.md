@@ -650,6 +650,31 @@ https://github.com/petersunbag/coven
 这个也是很NB
 https://github.com/jinzhu/copier
 
+### collection
+https://github.com/zyedidia/generic
+
+- array2d: a 2-dimensional array.
+- avl: an AVL tree.
+- bimap: a bi-directional map; a map that allows lookups on both keys and values.
+- btree: a B-tree.
+- cache: a wrapper around map[K]V that uses a maximum size and evicts elements using LRU when full.
+- hashmap: a hashmap with linear probing. The main feature is that the hashmap can be efficiently copied, using copy-on-write under the hood.
+- hashset: a hashset that uses the hashmap as the underlying storage.
+- heap: a binary heap.
+- interval: an interval tree, implemented as an augmented AVL tree.
+- list: a doubly-linked list.
+- mapset: a set that uses Go's built-in map as the underlying storage.
+- multimap: an associative container that permits multiple entries with the same key.
+- queue: a First In First Out (FIFO) queue.
+- rope: a generic rope, which is similar to an array but supports efficient insertion and deletion from anywhere in the array. Ropes are typically used for arrays of bytes, but this rope is generic.
+- prope: a persistent version of the rope, which allows for keeping different versions of the rope with only a little extra time or memory.
+- stack: a LIFO stack.
+- trie: a ternary search trie.
+- ulist: an un-rolled doubly-linked list.
+
+- [字典树 (Trie)](https://github.com/dghubble/trie)
+
+
 ### 类型转换cast
 github.com/spf13/cast
 
