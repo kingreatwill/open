@@ -225,6 +225,9 @@ https://github.com/JordanKnott/taskcafe
 #### Leantime
 https://github.com/Leantime/leantime
 
+#### Super Productivity
+[Super Productivity](https://github.com/johannesjo/super-productivity/)
+
 ## Excel
 - https://github.com/mengshukeji/Luckysheet
 - （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/

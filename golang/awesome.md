@@ -622,9 +622,15 @@ https://www.amcharts.com
 https://github.com/urfave/negroni
 https://github.com/urfave/negroni#third-party-middleware
 
-## web
-- gin
-https://github.com/gocopper/copper
+## web框架
+- [gin](https://github.com/gin-gonic/gin)
+- [Iris](https://github.com/kataras/iris)
+- [echo](https://github.com/labstack/echo)
+- [macaron](https://github.com/go-macaron/macaron)
+- [mux](github.com/gorilla/mux)
+- [Copper](https://github.com/gocopper/copper)
+- [beego](https://github.com/beego/beego)
+- [restful](https://github.com/emicklei/go-restful)
 
 ## 扩展
 ### net/mem/cpu/disk
