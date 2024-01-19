@@ -501,3 +501,10 @@ issue中选中文字，R键快速引用
 
 
 
+## github hosts
+https://github.com/maxiaof/github-hosts
+https://github.com/ineo6/hosts
+https://gitlab.com/ineo6/hosts/-/raw/master/next-hosts
+https://gitlab.com/ineo6/hosts/-/raw/master/hosts
+
+可以安装[SwitchHosts](https://github.com/oldj/SwitchHosts/releases), 然后自动更新hosts
