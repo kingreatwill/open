@@ -502,6 +502,8 @@ issue中选中文字，R键快速引用
 
 
 ## github hosts
+https://ineo6.github.io/hosts/
+
 https://github.com/maxiaof/github-hosts
 https://github.com/ineo6/hosts
 https://gitlab.com/ineo6/hosts/-/raw/master/next-hosts
