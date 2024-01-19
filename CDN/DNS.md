@@ -75,6 +75,67 @@ DNSpod 域名的解析生效，首先DNSPod DNS 必须生效，然后等待世�
 ### 其它DNS
 BIND，Knot，PowerDNS 和 Unbound
 
+
+### 中文域名/国际化域名
+国际化域名（英语：Internationalized Domain Name，缩写：IDN）又称特殊字符域名
+应用程序中的国际化域名IDNA(英语：Internationalized Domain Name in Applications)
+在IDNA中，“国际化域名”特指可以成功将IDNA转化为 ASCII 编码的域名。
+
+国际化域名编码（英语：Punycode）是一种表示Unicode码和ASCII码的有限的字符集。
+Punycode是一个根据[RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492)标准而制定的编码系统，主要用于把域名从地方语言所采用的Unicode编码转换成为可用于DNS系统的编码。
+
+IETF RFC 1034 域名的概念与应用
+IETF RFC 1035 域名的实现与规范
+IETF RFC 1122 互联网主机传输层要求
+IETF RFC 1123 互联网主机的应用与支持要求
+IETF RFC 3454 国际化字符串预处理
+IETF RFC 3490 国际化域名与应用
+IETF RFC 3491 国际化域名预处理
+IETF RFC 3492 一种适用于国际化域名应用的对统一码的编码方法：Punycode
+
+RFC 3492 — 编码方案 (Punycode)
+RFC 5890 – IDNA 框架
+RFC 5891 – IDNA 协议
+RFC 5892 – IDNA Unicode
+RFC 5893 – IDNA 脚本（从右至左）
+RFC 5894 – IDNA 基本原理
+
+CDL ：中文域名字段(Chinese Domain Label)
+CDN：中文域名 (Chinese Domain Name)
+CDNA：中文域名与应用 (Chinese Domain Names in Applications)
+DNS：域名系统 (Domain Name System)
+LDH ：字母、数字、连接符(Letters Digits Hyphen )
+
+> golang.org/x/net/idna
+idna提供了“对 [RFC 5891](https://datatracker.ietf.org/doc/html/rfc5891) 中指定的应用程序中国际化域名（IDNA）协议的支持。”
+```go
+func main() {
+
+	if len(os.Args) != 2 {
+		fmt.Println(usage)
+		os.Exit(1)
+	}
+
+	domain := os.Args[1]
+	var re = regexp.MustCompile(`^xn--`)
+
+	switch {
+	case domain == "-h", domain == "--help":
+		fmt.Println(usage)
+	case re.Match([]byte(domain)):
+		//punycode was provided, convert to Unicode
+		unidomain, _ := idna.ToUnicode(domain)
+		fmt.Printf("%s\n", unidomain)
+	default:
+		//convert to ASCII punycode
+		asciidomain, _ := idna.ToASCII(domain)
+		fmt.Printf("%s\n", asciidomain)
+	}
+
+}
+```
+
+
 ## CoreDNS
 使用CoreDNS作为内网DNS服务器
 CoreDNS是Golang编写的一个插件式DNS服务器，是Kubernetes 1.13 后所内置的默认DNS服务器
