@@ -148,6 +148,10 @@ https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh
 ### Clash
 https://github.com/Dreamacro/clash
 
+https://github.com/clash-verge-rev/clash-verge-rev
+https://github.com/keiko233/clash-nyanpasu
+https://github.com/MetaCubeX/mihomo
+
 购买了:账号 king...@q
 使用说明: https://portal.shadowsocks.au/knowledgebase/151/
 https://portal.shadowsocks.nz/clientarea.php
