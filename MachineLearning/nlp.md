@@ -130,6 +130,28 @@ https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-
 ![](img/TurningNGL_Model.png)
 
 
+### Llama
+https://ai.meta.com/llama/
+https://github.com/facebookresearch/llama
+
+
+### 其它
+试用:
+https://replicate.com/nateraw/mixtral-8x7b-32kseqlen
+https://poe.com/
+https://app.fireworks.ai/models/fireworks/mixtral-8x7b-fw-chat
+https://labs.perplexity.ai/
+#### PPT生成
+https://gamma.app/
+
+#### 通义
+https://tongyi.aliyun.com/
+#### 文心一言
+https://yiyan.baidu.com/
+
+#### 讯飞星火
+https://passport.xfyun.cn/
+
 ## 翻译
 Facebook开源了M2M-100源代码，这是首个可以不依赖英语数据而可以实现100个语言对互相翻译的机器翻译模型（如中文-法文互译为一个语言对）。在训练2200种语言对后，该单一多语言模型不仅与传统的双语模型性能相当，同时也比以英语为中心的多语模型在机器翻译评价指标BLEU上提高了10%。
 
