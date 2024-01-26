@@ -559,6 +559,15 @@ go tool cover -mode=count -var=CoverageVariableName xxxx.go
     - 实现机制基于rpc调用，基于本地网络调用，调用性能高效
     - 插件可用多种语言实现，跨语言支持良好
 
+## modules
+https://github.com/nikolaydubina/go-recipes?tab=readme-ov-file#dependencies
+### modgraphviz
+golang.org/x/exp/cmd/modgraphviz
+https://github.com/nikolaydubina/go-recipes?tab=readme-ov-file#-make-graph-of-upstream-modules-with-modgraphviz
+
+### gmchart
+github.com/PaulXu-cn/go-mod-graph-chart/gmchart
+
 ## mock
 - https://github.com/golang/mock
 - https://github.com/brianvoe/gofakeit
@@ -572,6 +581,7 @@ https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md
 https://github.com/blushft/go-diagrams
 可以生成graphviz DOT file
 go-diagrams实现了[diagrams](https://github.com/mingrammer/diagrams)的部分接口
+
 
 ## img/image
 ### Imagor
@@ -785,6 +795,8 @@ https://github.com/WnP/go-sfmt
 
 
 ## 其它
+### Tools工具
+[Tools for Go projects](https://github.com/nikolaydubina/go-recipes)
 ### 隔离环境的命令行工具
 https://github.com/jetpack-io/devbox
 
