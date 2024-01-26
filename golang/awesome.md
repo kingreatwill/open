@@ -568,6 +568,9 @@ https://github.com/nikolaydubina/go-recipes?tab=readme-ov-file#-make-graph-of-up
 ### gmchart
 github.com/PaulXu-cn/go-mod-graph-chart/gmchart
 
+### import-graph
+https://github.com/nikolaydubina/go-recipes?tab=readme-ov-file#-scrape-details-about-upstream-modules-and-make-graph-with-import-graph
+
 ## mock
 - https://github.com/golang/mock
 - https://github.com/brianvoe/gofakeit

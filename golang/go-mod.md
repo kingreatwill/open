@@ -266,7 +266,8 @@ go install github.com/cch123/gomod-conflict-detect
 执行
 go mod graph | gomod-conflict-detect
 
-
+## go mod相关工具
+https://github.com/nikolaydubina/go-recipes?tab=readme-ov-file#dependencies
 ### go mod graph 可视化
 安装 graphviz
 choco install graphviz.portable
