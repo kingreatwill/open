@@ -600,6 +600,8 @@ NetLimiter是专为Windows设计的终极Internet 流量控制和监视工具。
 - sniffnet
 https://github.com/GyulyVGC/sniffnet
 
+#### 路由跟踪工具
+https://github.com/nxtrace/NTrace-core
 
 #### named
 named（也称为BIND）： 

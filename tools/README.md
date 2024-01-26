@@ -315,6 +315,10 @@ http://free.cmsoft.cn/download/cmsoft/netassist.zip
 ### clumsy模拟各种网络状态
 https://github.com/jagt/clumsy
 
+### 路由跟踪工具
+https://github.com/nxtrace/NTrace-core
+
+
 ## 屏幕画笔工具
 
 - Pointofix
