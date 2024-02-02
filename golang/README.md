@@ -49,6 +49,7 @@ https://godoc.org/
 
 GolangCI-Lint 检查代码
 自带go vet命令 检查代码
+> https://github.com/timakin/bodyclose
 
 更严格的gofmt https://github.com/mvdan/gofumpt
 
