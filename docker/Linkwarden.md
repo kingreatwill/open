@@ -6,6 +6,9 @@ https://github.com/topics/bookmark-manager
 ### wallabag
 https://github.com/wallabag/wallabag 
 
+### memos笔记
+https://github.com/usememos/memos
+
 ### shiori
 https://github.com/go-shiori/shiori
 
