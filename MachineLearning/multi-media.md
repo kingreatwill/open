@@ -236,6 +236,7 @@ rtmp://media3.scctv.net/live/scctv_800  # CCTV
 
 [M3U8 文件示例](https://developer.apple.com/library/archive/technotes/tn2288/_index.html)
 
+
 #### M3U
 M3U 文件是一种纯文本文件，可以指定一个或多个多媒体文件的位置。它的设计初衷是为了播放音频文件，但后来越来越多的用于播放视频文件列表。
 
@@ -243,6 +244,12 @@ M3U 文件是一种纯文本文件，可以指定一个或多个多媒体文件�
 
 [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV)
 [电视直播](https://github.com/lizongying/my-tv)
+
+##### .ts文件
+transport stream 的缩写，全称为 “MPEG2-TS”：
+
+
+MPEG2-TS 传输流（MPEG-2 Transport Stream；又称 MPEG-TS、MTS、TS）是一种标准数字封装格式，用来传输和存储视频、音频与频道、节目信息，应用于数字电视广播系统，如 DVB、ATSC、ISDB:118、IPTV 等。
 
 #### m3u8
 ts文件索引`playlist.m3u8`
