@@ -10,6 +10,10 @@ https://chrome.zzzmh.cn/info/gppongmhjkpfnbhagpmjfkannfbllamg
 
 ## Chrome插件开发
 https://github.com/sxei/chrome-plugin-demo
+
+### Chrome 插件开发模板
+https://github.com/PlasmoHQ/plasmo
+https://github.com/wxt-dev/wxt
 ## Chrome devtools
 
 ### 命令（Command） 菜单
