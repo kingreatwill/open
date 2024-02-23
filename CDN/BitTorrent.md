@@ -139,6 +139,13 @@ path	|文件的路径和名字，是一个列表结构，如\test\test。txt 列
 -|piece length	|与单文件结构中相同；
 -|pieces|	与单文件结构中相同。
 
+### Tracker列表
+https://github.com/XIU2/TrackersListCollection
+https://github.com/ngosang/trackerslist
+
+> https://cf.trackerslist.com/best.txt
+> https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
+
 ### 下载基本原理
 1. 下载软件拿到.torrent文件后，先进行打开，读取里面的这些信息，载入内存。
 1. torrent中有Tracker的地址，下载软件拿到后，会去跟Tracker进行通讯，告诉Tracker：我要下载这个文件（通过hash值作为标记）； Tracker收到请求后，会记录这个客户端的公网IP（记录这厮在下载这个文件），同时呢，会返回给他：我这边还知道哪些人也在下载这个文件，一般是会返回200个IP（如果不够，当然就有多少返回多少）。当然了，如果下载过程中，协议要求你必须5分钟跟tracker通讯一次，如果太久不通讯，tracker就认为你下线了，会把你从节点列表中删除的。
