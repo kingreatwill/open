@@ -21,6 +21,101 @@ https://xorro-p2p.github.io/
 https://github.com/xorro-p2p/xorro
 
 
+### NAT1 打洞
+github.com/libp2p/go-reuseport
+
+
+demo:
+https://github.com/xhyonline/p2p-demo
+https://github.com/xhyonline/nat3p2p
+
+client
+```
+package main
+
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/libp2p/go-reuseport"
+	"time"
+)
+
+func main() {
+	localAddr := "0.0.0.0:8222"
+	remoteAddr := "云端serverIP:8555"
+	listener, err := reuseport.Listen("tcp", localAddr)
+	if err != nil {
+		panic(err)
+	}
+	go func() {
+		r := gin.Default()
+		r.Static("/static", "./static/")
+		r.RunListener(listener)
+	}()
+	conn, err := reuseport.Dial("tcp", localAddr, remoteAddr) // ip:port/static/1.zip
+	if err != nil {
+		panic(err)
+	}
+	for {
+		conn.Write([]byte("ping"))
+		time.Sleep(time.Second)
+	}
+}
+
+```
+云端server
+```
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"net"
+)
+
+func main() {
+	address := "0.0.0.0:8555"
+	listen, err := net.Listen("tcp", address)
+	if err != nil {
+		fmt.Println("Listen() failed, err: ", err)
+		return
+	}
+	fmt.Println("Listen(): ", address)
+	for {
+		conn, err := listen.Accept() // 监听客户端的连接请求
+		if err != nil {
+			fmt.Println("Accept() failed, err: ", err)
+			continue
+		}
+		go process(conn) // 启动一个goroutine来处理客户端的连接请求
+	}
+}
+
+// TCP Server端测试
+// 处理函数
+func process(conn net.Conn) {
+	fmt.Println("RemoteAddr：", conn.RemoteAddr())
+	fmt.Println("LocalAddr：", conn.LocalAddr())
+
+	defer conn.Close() // 关闭连接
+	for {
+		reader := bufio.NewReader(conn)
+		var buf [128]byte
+		n, err := reader.Read(buf[:]) // 读取数据
+		if err != nil {
+			fmt.Println("read from client failed, err: ", err)
+			break
+		}
+		recvStr := string(buf[:n])
+		fmt.Println("RemoteAddr：", conn.RemoteAddr(), " 收到：", recvStr)
+		conn.Write([]byte(recvStr)) // 发送数据
+	}
+}
+
+```
+
+[Golang TCP Server and Client Example [Tutorial]](https://www.golinuxcloud.com/golang-tcp-server-client/#google_vignette)
+
+[Golang UDP Server and Client Example [Tutorial]](https://www.golinuxcloud.com/golang-udp-server-client/#google_vignette)
 ## NAT
 NAT（Network Address Translator，网络地址转换）是用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。NAT实际上是为解决IPv4地址短缺而开发的技术。
 
