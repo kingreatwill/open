@@ -27,6 +27,8 @@ systemctl stop firewalld & systemctl disable firewalld
 iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 2379 -j ACCEPT
 iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 3000 -j ACCEPT
 
+开放UDP端口范围
+iptables -I INPUT -p udp --match multiport --dport 8100:8110 -j ACCEPT
 
 3. 关闭selinux
 ```
