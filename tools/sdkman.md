@@ -1,3 +1,10 @@
+
+## vm/vfox
+https://github.com/gvcgo/version-manager/blob/main/docs/readmeCN.md
+支持多语言的vm管理
+
+
+## sdkman
 前提：
 - 安装WLS
 - 安装git
