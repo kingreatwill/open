@@ -28,6 +28,9 @@ online
 - [在线运行Android](https://github.com/openstf/stf)
 - [Virtual Machine for the Web](https://github.com/leaningtech/webvm)
 - [windows 12](https://tjy-gitnub.github.io/win12/desktop.html)
+- [Internet OS](https://github.com/HeyPuter/puter) - [体验](https://puter.com/)
+- [Web Desktop OS](https://github.com/tobychui/arozos)
+
 ## IDE
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) A browser based code editor.[open](https://github.com/microsoft/monaco-editor)
 

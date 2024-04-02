@@ -111,6 +111,9 @@ app下载:https://www.traccar.org/client/
 
 [NAS还能这么玩！搭建在线追踪功能的开源GPS追踪工具 『Traccar』](https://www.toutiao.com/article/7264853678673101351/)
 
+### Internet OS
+- [Internet OS](https://github.com/HeyPuter/puter) - [体验](https://puter.com/)
+
 ## 迷你主机
 铭凡UM790 Pro
 零刻GTR7
