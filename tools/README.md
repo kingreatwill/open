@@ -473,7 +473,7 @@ ZIP 压缩包管理器 - 免费版含广告
 ### Monica 一个很棒的开源个人关系管理系统
 https://www.toutiao.com/article/7088293362721178147/
 
-### Wiki  知识库
+### Wiki  知识库问答
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
 [wiki比较](https://www.wikimatrix.org/) https://github.com/topics/wiki
 - DokuWiki 
@@ -520,6 +520,12 @@ https://www.toutiao.com/article/7088293362721178147/
 - Obie  https://obie.ai/
 - Vaticle   https://docs.vaticle.com/docs/general/quickstart
 - Grakn COSMOS  https://docs.vaticle.com/docs/general/quickstart
+#### QAnything
+https://github.com/netease-youdao/QAnything
+
+把自己的文档整理成知识进行问答
+
+提供api
 
 #### Xwiki
 #### confluence

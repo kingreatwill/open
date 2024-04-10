@@ -163,6 +163,10 @@ ping /n 10 127.0.0.1  # ping10次
 ping /l 1000 127.0.0.1 # ping发送1000字节，默认32字节
 ping /t 127.0.0.1  # 一直ping
 ```
+
+#### tcping
+https://elifulkerson.com/projects/tcping.php#google_vignette
+
 ### netstat
 显示处于活动状态的 TCP 连接、计算机正在侦听的端口、以太网统计信息、IP 路由表、用于 IP、ICMP、TCP 和 UDP 协议的 IPv4 统计信息 () 和 ipv6 统计信息 (ipv6、ICMPv6、TCP over IPv6 和 UDP over IPv6 协议) 。 使用没有参数的情况下，此命令显示活动 TCP 连接。
 > 仅当在 "网络连接" 中网络适配器的属性中将 "Internet 协议" (TCP/IP) 协议安装为组件时，此命令才可用。
