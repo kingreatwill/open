@@ -93,7 +93,24 @@ go-torch -inuse_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
 ### trace
 单单使用 PProf 有时候不一定足够完整，因为在真实的程序中还包含许多的隐藏动作，例如 Goroutine 在执行时会做哪些操作？执行/阻塞了多长时间？在什么时候阻止？在哪里被阻止的？谁又锁/解锁了它们？GC 是怎么影响到 Goroutine 的执行的？这些东西用 PProf 是很难分析出来的，但如果你又想知道上述的答案的话，你可以用 `go tool trace` 。
 
+
+**不合适**
+- 运行缓慢的函数，或者找到大部分CPU时间花费在哪里，术业有专攻，看CPU时间花费，是有专门的工具的 `go tool pprof`
+
+**合适**
+- 找出程序在一段时间内正在做什么
+- `go tool trace` 可以通过 view trace链接提供的其他可视化功能，对于诊断争用问题帮助极大
+
+**参考**
+
 https://blog.csdn.net/u013474436/article/details/105232768
+https://zhuanlan.zhihu.com/p/377145725
+https://pkg.go.dev/cmd/trace#section-documentation
+
+#### gotraceui
+https://gotraceui.dev/
+https://github.com/dominikh/gotraceui
+![](https://gotraceui.dev/img/screenshot.webp)
 
 ### pprof
 https://github.com/google/pprof
