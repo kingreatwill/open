@@ -645,6 +645,16 @@ https://github.com/urfave/negroni#third-party-middleware
 - [beego](https://github.com/beego/beego)
 - [restful](https://github.com/emicklei/go-restful)
 
+## 实时消息
+https://github.com/topics/websocket?l=go
+### centrifugo
+https://github.com/centrifugal/centrifugo
+
+> (WebSocket, HTTP-streaming, SSE/EventSource, GRPC, SockJS, WebTransport)
+
+### melody
+https://github.com/olahol/melody
+
 ## 扩展
 ### net/mem/cpu/disk
 https://github.com/shirou/gopsutil
