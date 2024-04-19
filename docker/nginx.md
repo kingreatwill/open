@@ -471,3 +471,23 @@ spec:
           
 
 ```
+
+
+## 四层代理
+
+```
+stream{
+    upstream backend_coredns_udp {
+        server xxxx:53;
+        server xxx:53 backup;
+    }
+
+    server {
+        listen 53 udp;
+        listen 53; #tcp
+        proxy_pass backend_coredns_udp;
+        # proxy_protocol      on;
+    }
+}
+
+```
