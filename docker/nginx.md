@@ -488,6 +488,20 @@ stream{
         proxy_pass backend_coredns_udp;
         # proxy_protocol      on;
     }
+
+    upstream dns {
+       server 192.168.0.1:53535;
+       server dns.example.com:53;
+    }
+
+    server {
+        listen 127.0.0.1:53 udp reuseport;
+        proxy_timeout 20s;
+        proxy_pass dns;
+    }
 }
+
+
+
 
 ```

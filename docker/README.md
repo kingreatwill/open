@@ -581,6 +581,30 @@ docker build --target controller \
 
 > `docker build --target proxy ...` or `--target backup-agent`,`--target restore-agent`
 >
+
+
+#### Docker cache mount
+使用 --mount 标志与 Dockerfile 中的 RUN 指令一起创建缓存挂载。要使用缓存挂载，标志的格式为 --mount=type=cache,target=，其中是希望挂载到容器中的缓存目录的位置。
+```
+FROM golang:1.21-bullseye as builder
+
+WORKDIR /app
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+COPY . .
+ENV GOCACHE=/root/.cache/go-build
+RUN --mount=type=cache,target="/root/.cache/go-build" go build -o app
+
+FROM ubuntu:22.04
+RUN mkdir /app
+WORKDIR /app
+COPY --from=builder /app/app .
+ENTRYPOINT ["./app"]
+```
+> https://pkg.go.dev/cmd/go#hdr-Build_and_test_caching
+> https://docs.docker.com/build/guide/mounts/
+
 #### 使用 BuildKit 进行缓存
 Docker 版本 18.09 引入了 BuildKit 作为对现有构建系统的彻底检查。大修背后的想法是提高性能、存储管理和安全性。我们可以利用 BuildKit 来保持多个构建之间的状态。这样，Maven 不会每次都下载依赖项，因为我们有永久存储。要在我们的 Docker 安装中启用 BuildKit，我们需要编辑daemon.json文件：
 ```
