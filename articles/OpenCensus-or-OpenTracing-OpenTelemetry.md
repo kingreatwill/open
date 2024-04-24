@@ -32,6 +32,20 @@ docker-compose up -d
 
 支持的client后端数量一般, 前端常用的框架基本上都支持
 
+开源监控工具
+- Highlight.io
+- Checkmk
+- HyperDX
+- Streamdal
+- Quickwit
+- Zabbix
+- LibreNMS
+- HealthChecks.io
+- SensuGo
+- SigNoz
+
+
+
 # APM
 ## DeepFlow
 https://github.com/deepflowio/deepflow
