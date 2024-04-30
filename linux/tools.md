@@ -469,7 +469,8 @@ xDev提供与xDroid、xWin等适配接口,基于xDev开发的安卓应用、Wind
 #### 终端应用程序Xterm.js
 https://github.com/xtermjs/xterm.js
 
-## 系统监控
+## 系统监控/linux 监控
+
 ### hegemon
 https://github.com/p-e-w/hegemon
 
@@ -481,6 +482,7 @@ macOS status monitoring app written in SwiftUI.
 https://github.com/gao-sun/eul
 
 ### glances、dstat、pidstat
+https://github.com/nicolargo/glances
 Glances 是一个由 Python 编写，使用 psutil 库来从系统抓取信息的基于 curses 开发的跨平台命令行系统监视工具。
 
 dstat命令是一个用来替换vmstat、iostat、netstat、nfsstat和ifstat这些命令的工具，是一个全能系统信息统计工具。
