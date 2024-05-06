@@ -121,3 +121,10 @@ $ mv /var/folders/bw/8yw8h4yj2vb6mxtb6t8t41f00000gn/T/go-build149627400b001/exe/
 ```
 可以执行下hello看看和我们预期的是否一样。
 
+## x
+### 未用代码消除(dead code elimination)
+这些直接依赖包和间接依赖包中的所有代码是否会进入到最终的可执行文件中呢？即便我们只是使用了某个依赖包中的一个导出函数。
+
+答案: 不会
+
+[Go未用代码消除与可执行文件瘦身](https://mp.weixin.qq.com/s?__biz=MzIyNzM0MDk0Mg==&mid=2247496838&idx=1&sn=4025c57b8cd5f50226e96e8935018105&chksm=e8601367df179a71d70b9230c1a0f2c73b124b38dd48c0ae91a812f78a04ee40bae04a09e6ab&mpshare=1&scene=1&srcid=0506OTnLVUjiqwQlK2RN3WaQ&sharer_shareinfo=fcb81d68d51027af2d1a6714384880b9&sharer_shareinfo_first=fcb81d68d51027af2d1a6714384880b9&from=industrynews&version=4.1.22.6014&platform=win#rd)
