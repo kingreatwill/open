@@ -22,11 +22,28 @@ https://github.com/xorro-p2p/xorro
 
 
 ### NAT1 打洞
-> 
+
+```
+func Control() func(network, address string, c syscall.RawConn) error {
+	return c.Control(func(fd uintptr) {
+		unix.BindToDevice(int(fd), interfaceName)
+		unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_REUSEADDR, 1)
+		unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_REUSEPORT, 1)
+	})
+}
+
+d := net.Dialer{
+		Control:   Control(), //sockopt.Control(sockopt.ReuseAddr(), sockopt.Bind(&_interface)), //reuseport.Control,
+		LocalAddr: nla,
+		Timeout:   timeout,
+	}
+``` 
 
 github.com/nadoo/glider
-> 端口复用:sockopt.ReuseAddr()
-> 指定网卡: sockopt.Bind(&_interface)
+> 端口复用:sockopt.ReuseAddr(), 设置SO_REUSEADDR, SO_REUSEPORT
+> 指定网卡: sockopt.Bind(&_interface) 设置SO_BINDTODEVICE
+
+
 
 ```golang
 d := net.Dialer{
