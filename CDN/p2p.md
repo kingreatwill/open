@@ -22,8 +22,36 @@ https://github.com/xorro-p2p/xorro
 
 
 ### NAT1 打洞
-github.com/libp2p/go-reuseport
+> 
 
+github.com/nadoo/glider
+> 端口复用:sockopt.ReuseAddr()
+> 指定网卡: sockopt.Bind(&_interface)
+
+```golang
+d := net.Dialer{
+		Control:   sockopt.Control(sockopt.ReuseAddr(), sockopt.Bind(&_interface)),
+		LocalAddr: nla,
+		Timeout:   timeout,
+	}
+
+
+c := &http.Client{
+						Transport: &http.Transport{
+							DialContext: (&net.Dialer{
+								Control:   sockopt.Control(sockopt.Bind(&_interface)),
+								LocalAddr: addr,
+							}).DialContext,
+							DisableKeepAlives: true,
+						},
+					}
+
+```
+
+
+
+github.com/libp2p/go-reuseport
+> 端口复用:
 
 demo:
 https://github.com/xhyonline/p2p-demo
