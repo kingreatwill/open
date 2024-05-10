@@ -161,6 +161,13 @@ func process(conn net.Conn) {
 [Golang TCP Server and Client Example [Tutorial]](https://www.golinuxcloud.com/golang-tcp-server-client/#google_vignette)
 
 [Golang UDP Server and Client Example [Tutorial]](https://www.golinuxcloud.com/golang-udp-server-client/#google_vignette)
+
+
+
+### 多网口UDP发包无法收到回包排查与解决-CSDN博客 
+
+https://blog.51cto.com/dog250/1270967?tt_force_outside=1
+
 ## NAT
 NAT（Network Address Translator，网络地址转换）是用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。NAT实际上是为解决IPv4地址短缺而开发的技术。
 
