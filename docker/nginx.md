@@ -505,3 +505,24 @@ stream{
 
 
 ```
+
+## 同一location块中同时直接使用proxy_pass和root指令
+```
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        root /var/www/html;
+        try_files $uri @backend;
+    }
+
+    location @backend {
+        proxy_pass http://backend_server;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+- 首先尝试使用root指令指定的目录来响应请求（/var/www/html）。try_files $uri @backend;语句会检查请求的文件是否存在，如果存在则直接提供，不存在则转到命名的location @backend。
+- @backend是一个命名的location，用于将请求代理到后端服务器。
