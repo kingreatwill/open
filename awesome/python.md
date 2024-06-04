@@ -243,6 +243,10 @@ https://github.com/facebookresearch/hiplot
 
 ### 数据可视化工具
 
+#### 数据分析可视化
+
+[PyGWalker](https://github.com/Kanaries/pygwalker) 还可以提供交互式界面
+
 #### 开源的可视化数据管道构建工具：Orchest
 
 #### 缺失值可视化
