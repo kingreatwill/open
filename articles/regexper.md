@@ -48,6 +48,10 @@ https://github.com/lonekorean/regex-storm
 
 [rubular](https://rubular.com/)
 
+[cyrilex](https://extendsclass.com/regex-tester.html)
+
+[pyrexp](https://pythonium.net/regex)
+
 [正则表达式-不同语言之间的差别](https://www.regular-expressions.info/refcharacters.html)
 [工具和教程](http://www.regexlab.com/zh/mtracer/download.htm)
 [.NET regular expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
