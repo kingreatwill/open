@@ -257,3 +257,33 @@ Certificate:
 [在线cdn检测网站](https://myssl.com/cdn_check.html)
 
 或者命令`openssl s_client -connect ssl.wcoder.com:443`
+
+
+
+### 为 localhost 生成私钥和自签名证书
+```
+openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
+
+### minica快速为域名生成证书
+https://github.com/jsha/minica
+```
+
+go install github.com/jsha/minica@latest
+
+cd /ANY/PATH
+git clone https://github.com/jsha/minica.git
+go build
+## or
+# go install
+
+# Generate a root key and cert in minica-key.pem, and minica.pem, then
+# generate and sign an end-entity key and cert, storing them in ./foo.com/
+$ minica --domains foo.com
+
+# Wildcard
+$ minica --domains '*.foo.com'
+```
