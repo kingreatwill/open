@@ -83,6 +83,13 @@ lc := net.ListenConfig{Control: func(network, address string, c syscall.RawConn)
 		})
 }}
 
+or
+
+lc := net.ListenConfig{
+		Control: sockopt.Control(sockopt.ReuseAddr(), sockopt.Bind(&_interface)),
+	}
+	lc.ListenPacket()
+
 ```
 
 
