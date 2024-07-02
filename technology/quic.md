@@ -1,5 +1,11 @@
 
 
+```
+curl --http3 https://nghttp2.org:8443/
+```
+检查浏览器是否支持http3协议：https://http3.is https://http3check.net/?host=http3check.net
+
+
 ## QUIC
 **采用UDP传输层**： QUIC 使用UDP（用户数据报协议）作为传输层协议，与传统的TCP相比，UDP减少了连接建立的延迟。TCP需要经历三次握手来建立连接，这会引入1个往返时间（1-RTT）的延迟。相比之下，QUIC的UDP传输层减少了这个握手过程，从而减少了建立连接的时间。这有助于提高网络通信的效率，尤其是对于那些对延迟要求较高的应用程序。
 
@@ -44,12 +50,26 @@ add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; prelo
 
 > HSTS 是 HTTP 严格传输安全（HTTP Strict Transport Security） 的缩写。 这是一种网站用来声明他们只能使用安全连接（HTTPS）访问的方法。
 
-[Alt-Svc 全称为“Alternative-Service”](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Alt-Svc)
+[Alt-Svc 全称为“Alternative-Service”](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Alt-Svc), 实际是在告诉客户端可以升级到备选服务(h3)协议上。这时再刷新页面，chrome会切换到h3协议上去。这样就实现了新旧协议的过渡升级。
 
 **HSTS 工作原理**:
 通常，当您在 Web 浏览器中输入 URL 时，您会跳过协议部分。 例如，你输入的是 www.acunetix.com，而不是 http://www.acunetix.com。 在这种情况下，浏览器假设你想使用 HTTP 协议，所以它在这个阶段发出一个 HTTP 请求 到 www.acunetix.com，同时，Web Server 会返回 301 状态码将请求重定向到 HTTPS 站点。 接下来浏览器使用 HTTPS 连接到 www.acunetix.com。 这时 HSTS 安全策略保护开始使用 HTTP 响应头：`Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
 响应头的 Strict-Transport-Security 给浏览器提供了详细的说明。 从现在开始，每个连接到该网站及其子域的下一年（31536000秒）从这个头被接收的时刻起必须是一个 HTTPS 连接。 HTTP 连接是完全不允许的。 如果浏览器接收到使用 HTTP 加载资源的请求，则必须尝试使用 HTTPS 请求替代。 如果 HTTPS 不可用，则必须直接终止连接。
 
+
+
+
 ## 术语
 ### RTT
 往返时间（Round-Trip Time，RTT）是一个网络性能指标，用于衡量数据包从发送端到接收端再返回发送端所需的时间。
+### 一些相关规范草案：
+0-RTT
+H3-29
+H3-27
+H3-Q050
+H3-T051
+H3-T050
+H3-Q046
+H3-Q043
+Q046
+Q043
