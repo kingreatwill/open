@@ -31,6 +31,25 @@ QUIC 协议的核心特性
 - QUIC 使用序列号来唯一标识数据包，并在接收方接收到数据包后发送确认。如果发送方没有收到确认，它会重新发送数据包，但只会重传丢失的数据包。这种机制确保了可靠的数据传输，而不会引入不必要的重传，从而提高了效率。
 - 此外，QUIC 还支持拥塞控制，它可以根据网络条件调整数据包的发送速率，以避免网络拥塞。这有助于保持网络的稳定性和性能。
 
+
+## openresty支持quic
+```
+add_header Alt-Svc 'quic=":443"; h3-27=":443";h3-25=":443"; h3-T050=":443"; h3-Q050=":443";h3-Q049=":443";h3-Q048=":443"; h3-Q046=":443"; h3-Q043=":443"'; # Advertise that QUIC is available
+```
+or
+```
+add_header Alt-Svc 'h3=":443"; ma=86400'; # Quic或HTTP/3响应头
+add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"; # HSTS
+```
+
+> HSTS 是 HTTP 严格传输安全（HTTP Strict Transport Security） 的缩写。 这是一种网站用来声明他们只能使用安全连接（HTTPS）访问的方法。
+
+[Alt-Svc 全称为“Alternative-Service”](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Alt-Svc)
+
+**HSTS 工作原理**:
+通常，当您在 Web 浏览器中输入 URL 时，您会跳过协议部分。 例如，你输入的是 www.acunetix.com，而不是 http://www.acunetix.com。 在这种情况下，浏览器假设你想使用 HTTP 协议，所以它在这个阶段发出一个 HTTP 请求 到 www.acunetix.com，同时，Web Server 会返回 301 状态码将请求重定向到 HTTPS 站点。 接下来浏览器使用 HTTPS 连接到 www.acunetix.com。 这时 HSTS 安全策略保护开始使用 HTTP 响应头：`Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`
+响应头的 Strict-Transport-Security 给浏览器提供了详细的说明。 从现在开始，每个连接到该网站及其子域的下一年（31536000秒）从这个头被接收的时刻起必须是一个 HTTPS 连接。 HTTP 连接是完全不允许的。 如果浏览器接收到使用 HTTP 加载资源的请求，则必须尝试使用 HTTPS 请求替代。 如果 HTTPS 不可用，则必须直接终止连接。
+
 ## 术语
 ### RTT
 往返时间（Round-Trip Time，RTT）是一个网络性能指标，用于衡量数据包从发送端到接收端再返回发送端所需的时间。
