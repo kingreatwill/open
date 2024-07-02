@@ -26,6 +26,20 @@ https://github.com/niXman/yas
 https://github.com/USCiLab/cereal
 
 
+## 远程
+### mRemoteNG 
+https://github.com/mRemoteNG/mRemoteNG
+
+- RDP (Remote Desktop Protocol)
+- VNC (Virtual Network Computing)
+- SSH (Secure Shell)
+- Telnet (TELecommunication NETwork)
+- HTTP/HTTPS (Hypertext Transfer Protocol)
+- rlogin (Remote Login)
+- Raw Socket Connections
+- Powershell remoting
+
+
 ## Javascript Engine
 JS的标准是ECMAScript。ECMA是一个标准化组织，下面有好多标准。ECMAScript是形成JavaScript语言基础的脚本语言。ECMAScript是由Ecma国际标准组织以ECMA-262和ECMA-402规范的形式进行标准化的。
 https://bellard.org/quickjs/bench.html
