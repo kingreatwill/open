@@ -1,9 +1,5 @@
 
 
-```
-curl --http3 https://nghttp2.org:8443/
-```
-检查浏览器是否支持http3协议：https://http3.is https://http3check.net/?host=http3check.net
 
 
 ## QUIC
@@ -58,6 +54,64 @@ add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; prelo
 
 
 
+> https://nginx.org/en/docs/quic.html
+> https://nginx.org/en/docs/http/ngx_http_v3_module.html#quic_retry
+
+```
+server {
+    listen 443 ssl http2;              # TCP listener for HTTP/2
+    listen 443 http3 reuseport;  # UDP listener for QUIC+HTTP/3
+ 
+    ssl_protocols       TLSv1.3; # QUIC requires TLS 1.3
+    ssl_certificate     ssl/www.example.com.crt;
+    ssl_certificate_key ssl/www.example.com.key;
+ 
+    add_header Alt-Svc 'quic=":443"; h3-27=":443";h3-25=":443"; h3-T050=":443"; h3-Q050=":443";h3-Q049=":443";h3-Q048=":443"; h3-Q046=":443"; h3-Q043=":443"'; # Advertise that QUIC is available
+}
+
+server {
+    listen 443 ssl;  # 启用 ssl
+    listen 443 quic; # 启用 HTTP/3
+    http2 on;  # 启用 HTTP/2
+    add_header Alt-Svc 'h3=":443"; ma=86400'; # Quic或HTTP/3响应头
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"; # HSTS
+
+    server_name www.jansora.com;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;  # 必须开启 TLSv1.3
+    ssl_certificate     /etc/openresty/certs/jansora.com/www.jansora.com.pem;
+    ssl_certificate_key /etc/openresty/certs/jansora.com/www.jansora.com.key;
+
+    location / {
+        proxy_pass_header Server;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection upgrade;
+        proxy_pass http://192.168.36.100:3000;
+    }
+
+}
+```
+
+### curl
+```
+curl --http3 https://nghttp2.org:8443/
+```
+检查浏览器是否支持http3协议：https://http3.is https://http3check.net/?host=http3check.net
+
+```
+Use only HTTP/3:
+
+curl --http3-only https://example.org:4433/
+Use HTTP/3 with fallback to HTTP/2 or HTTP/1.1 (see "HTTPS eyeballing" below):
+
+curl --http3 https://example.org:4433/
+Upgrade via Alt-Svc:
+
+curl --alt-svc altsvc.cache https://curl.se/
+```
 
 ## 术语
 ### RTT
