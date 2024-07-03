@@ -316,6 +316,36 @@ powershell -noprofile -command "ls -r | measure -s Length"
 ```
 
 ### 网路相关
+#### ip
+获取所有的IPv4
+ip -4 addr show | grep -oE 'inet ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' | cut -d' ' -f2
+ip addr | grep -oE 'inet ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' | cut -d' ' -f2
+ip -4 addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
+
+
+IP写入文件
+```
+#!/bin/bash
+
+# 文件名
+filename="/etc/nginx/conf.d/listen.config"
+
+
+# "listen 127.0.0.1:8312 quic sndbuf=10240k reuseport;"
+prefix="listen "
+suffix=":8312 quic sndbuf=10240k reuseport;"
+
+# 使用ip命令获取所有IPv4地址，去掉子网掩码部分，然后为每个IP添加附加内容
+ips=$(ip -4 addr show | grep -oE 'inet ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' | cut -d' ' -f2 | sort | awk -v prefix="$prefix" -v suffix="$suffix" '{print prefix $0 suffix}')
+
+# 将格式化后的IP地址列表写入文件
+echo "$ips" > "$filename"
+
+# /usr/local/openresty/bin/openresty -s reload
+# kill -HUP `cat /usr/local/openresty/nginx/logs/nginx.pid`
+```
+
+
 #### netstat
 #### ss
 SS命令可以提供如下信息：

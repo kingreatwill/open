@@ -54,8 +54,6 @@ add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; prelo
 
 
 
-> https://nginx.org/en/docs/quic.html
-> https://nginx.org/en/docs/http/ngx_http_v3_module.html#quic_retry
 
 ```
 server {
@@ -101,14 +99,14 @@ server {
 ### nginx quic
 
 ```shell
-docker run -d --name pcdn-nginx-quic --restart always --network=host \
- -v /usr/local/pcdn/nginx-quic/conf/nginx.conf:/etc/nginx/nginx.conf:rw \
- -v /usr/local/pcdn/nginx-quic/conf.d:/etc/nginx/conf.d:rw \
- -v /usr/local/pcdn/nginx-quic/logs:/var/log/nginx:rw \
+docker run -d --name nginx-quic --restart always --network=host \
+ -v /usr/local/nginx-quic/conf/nginx.conf:/etc/nginx/nginx.conf:rw \
+ -v /usr/local/nginx-quic/conf.d:/etc/nginx/conf.d:rw \
+ -v /usr/local/nginx-quic/logs:/var/log/nginx:rw \
  nginx:1.27-alpine3.19
 ```
 
-/usr/local/pcdn/nginx-quic/conf/nginx.conf
+/usr/local/nginx-quic/conf/nginx.conf
 ```shell
 
 user  nginx;
@@ -147,7 +145,7 @@ http {
 ```
 
 
-/usr/local/pcdn/nginx-quic/conf.d/http3.conf
+/usr/local/nginx-quic/conf.d/http3.conf
 ```shell
 server {
     listen 8313 quic reuseport;
@@ -170,19 +168,21 @@ server {
 }
 ```
 
+> https://nginx.org/en/docs/quic.html
+> https://nginx.org/en/docs/http/ngx_http_v3_module.html#http3_stream_buffer_size
 
 ### openresty quic
 
 ```shell
-docker run -d --name pcdn-openresty-quic --restart always --network=host \
- -v /usr/local/pcdn/openresty-quic/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:rw \
- -v /usr/local/pcdn/openresty-quic/conf.d:/etc/nginx/conf.d:rw \
- -v /usr/local/pcdn/openresty-quic/logs:/var/log/nginx:rw \
+docker run -d --name openresty-quic --restart always --network=host \
+ -v /usr/local/openresty-quic/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:rw \
+ -v /usr/local/openresty-quic/conf.d:/etc/nginx/conf.d:rw \
+ -v /usr/local/openresty-quic/logs:/var/log/nginx:rw \
  openresty/openresty:1.25.3.1-alpine-fat
 ```
 
 
-/usr/local/pcdn/openresty-quic/conf/nginx.conf
+/usr/local/openresty-quic/conf/nginx.conf
 ```shell
 # nginx.conf  --  docker-openresty
 #
@@ -281,11 +281,13 @@ http {
 
 ```
 
-/usr/local/pcdn/openresty-quic/conf.d/http3.conf
+/usr/local/openresty-quic/conf.d/http3.conf
 ```shell
 server {
     listen 8312 quic reuseport;
     ssl_protocols       TLSv1.3;
+    http3 on;
+    http3_stream_buffer_size 10240k;
     ssl_certificate     /etc/nginx/conf.d/localhost.crt;
     ssl_certificate_key /etc/nginx/conf.d/localhost.key; 
     add_header Alt-Svc 'h3=":443"; ma=86400'; 
@@ -296,6 +298,7 @@ server {
         proxy_redirect off;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Scheme $scheme;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection upgrade;
@@ -304,8 +307,47 @@ server {
 }
 ```
 
+### go-quic
 
 
+> https://nginx.org/en/docs/quic.html
+> https://nginx.org/en/docs/http/ngx_http_v3_module.html#http3_stream_buffer_size
+
+设置一下缓冲区大小 对应nginx的http3_stream_buffer_size
+failed to sufficiently increase receive buffer size (was: 208 kiB, wanted: 7168 kiB, got: 416 kiB). See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details.
+
+linux socket 缓存: 
+默认的 Linux buffer size 的最大值是非常小的，tcp 的内存是基于系统的内存自动计算的，你能通过键入以下命令找到实际的值：
+```
+ $ cat /proc/sys/net/ipv4/tcp_mem
+
+默认的和最大的接收数据包内存大小：
+$ cat /proc/sys/net/core/rmem_default
+$ cat /proc/sys/net/core/rmem_max
+
+默认的和最大的发送数据包内存的大小：
+$ cat /proc/sys/net/core/wmem_default
+$ cat /proc/sys/net/core/wmem_max
+
+最大的内存 buffers 的选项：
+$ cat /proc/sys/net/core/optmem_max
+```
+
+```
+sysctl -w net.core.rmem_max=7500000
+sysctl -w net.core.wmem_max=7500000
+```
+
+```shell
+docker run -itd \
+--restart=always \
+--name=quic \
+--sysctl net.core.rmem_max=10240000 --sysctl net.core.wmem_max=10240000 \
+--network=host \
+-e env=pro \
+-v /usr/local/pcdn/quic/config:/app/manifest/config/:rw \
+quic:v1.0
+```
 
 ### curl
 ```
