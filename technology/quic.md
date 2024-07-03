@@ -95,6 +95,218 @@ server {
 }
 ```
 
+
+
+
+### nginx quic
+
+```shell
+docker run -d --name pcdn-nginx-quic --restart always --network=host \
+ -v /usr/local/pcdn/nginx-quic/conf/nginx.conf:/etc/nginx/nginx.conf:rw \
+ -v /usr/local/pcdn/nginx-quic/conf.d:/etc/nginx/conf.d:rw \
+ -v /usr/local/pcdn/nginx-quic/logs:/var/log/nginx:rw \
+ nginx:1.27-alpine3.19
+```
+
+/usr/local/pcdn/nginx-quic/conf/nginx.conf
+```shell
+
+user  nginx;
+worker_processes  auto;
+worker_cpu_affinity   auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    use epoll;
+    worker_connections  32767;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}
+```
+
+
+/usr/local/pcdn/nginx-quic/conf.d/http3.conf
+```shell
+server {
+    listen 8313 quic reuseport;
+    ssl_protocols       TLSv1.3;
+    ssl_certificate     /etc/nginx/conf.d/localhost.crt;
+    ssl_certificate_key /etc/nginx/conf.d/localhost.key; 
+    add_header Alt-Svc 'h3=":443"; ma=86400'; 
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+
+    location / {
+        proxy_pass_header Server;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection upgrade;
+        proxy_pass http://127.0.0.1:12346;
+    }
+}
+```
+
+
+### openresty quic
+
+```shell
+docker run -d --name pcdn-openresty-quic --restart always --network=host \
+ -v /usr/local/pcdn/openresty-quic/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:rw \
+ -v /usr/local/pcdn/openresty-quic/conf.d:/etc/nginx/conf.d:rw \
+ -v /usr/local/pcdn/openresty-quic/logs:/var/log/nginx:rw \
+ openresty/openresty:1.25.3.1-alpine-fat
+```
+
+
+/usr/local/pcdn/openresty-quic/conf/nginx.conf
+```shell
+# nginx.conf  --  docker-openresty
+#
+# This file is installed to:
+#   `/usr/local/openresty/nginx/conf/nginx.conf`
+# and is the file loaded by nginx at startup,
+# unless the user specifies otherwise.
+#
+# It tracks the upstream OpenResty's `nginx.conf`, but removes the `server`
+# section and adds this directive:
+#     `include /etc/nginx/conf.d/*.conf;`
+#
+# The `docker-openresty` file `nginx.vh.default.conf` is copied to
+# `/etc/nginx/conf.d/default.conf`.  It contains the `server section
+# of the upstream `nginx.conf`.
+#
+# See https://github.com/openresty/docker-openresty/blob/master/README.md#nginx-config-files
+#
+
+#user  nobody;
+#worker_processes 1;
+worker_processes  auto;
+worker_cpu_affinity   auto;
+worker_shutdown_timeout 1h;
+
+# Enables the use of JIT for regular expressions to speed-up their processing.
+pcre_jit on;
+
+
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    use epoll;
+    worker_connections  32767;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    # Enables or disables the use of underscores in client request header fields.
+    # When the use of underscores is disabled, request header fields whose names contain underscores are marked as invalid and become subject to the ignore_invalid_headers directive.
+    # underscores_in_headers off;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+        # Log in JSON Format
+        # log_format nginxlog_json escape=json '{ "timestamp": "$time_iso8601", '
+        # '"remote_addr": "$remote_addr", '
+        #  '"body_bytes_sent": $body_bytes_sent, '
+        #  '"request_time": $request_time, '
+        #  '"response_status": $status, '
+        #  '"request": "$request", '
+        #  '"request_method": "$request_method", '
+        #  '"host": "$host",'
+        #  '"upstream_addr": "$upstream_addr",'
+        #  '"http_x_forwarded_for": "$http_x_forwarded_for",'
+        #  '"http_referrer": "$http_referer", '
+        #  '"http_user_agent": "$http_user_agent", '
+        #  '"http_version": "$server_protocol", '
+        #  '"nginx_access": true }';
+        # access_log /dev/stdout nginxlog_json;
+
+    # See Move default writable paths to a dedicated directory (#119)
+    # https://github.com/openresty/docker-openresty/issues/119
+    client_body_temp_path /var/run/openresty/nginx-client-body;
+    proxy_temp_path       /var/run/openresty/nginx-proxy;
+    fastcgi_temp_path     /var/run/openresty/nginx-fastcgi;
+    uwsgi_temp_path       /var/run/openresty/nginx-uwsgi;
+    scgi_temp_path        /var/run/openresty/nginx-scgi;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+
+    # Don't reveal OpenResty version to clients.
+    # server_tokens off;
+}
+
+```
+
+/usr/local/pcdn/openresty-quic/conf.d/http3.conf
+```shell
+server {
+    listen 8312 quic reuseport;
+    ssl_protocols       TLSv1.3;
+    ssl_certificate     /etc/nginx/conf.d/localhost.crt;
+    ssl_certificate_key /etc/nginx/conf.d/localhost.key; 
+    add_header Alt-Svc 'h3=":443"; ma=86400'; 
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+
+    location / {
+        proxy_pass_header Server;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection upgrade;
+        proxy_pass http://127.0.0.1:12346;
+    }
+}
+```
+
+
+
+
 ### curl
 ```
 curl --http3 https://nghttp2.org:8443/
