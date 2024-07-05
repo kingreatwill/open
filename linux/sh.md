@@ -32,6 +32,9 @@ unset age2
 https://github.com/dylanaraps/pure-bash-bible
 [101个shell脚本](https://blog.51cto.com/zero01/2046242)
 
+### Shell if 条件判断
+https://blog.csdn.net/boyemachao/article/details/112904013
+
 ### $0、$1、$2、$#、$@、$*、$? 的含义
 假设执行 ./test.sh a b c 这样一个命令，则可以使用下面的参数来获取一些值：
 $0 对应 "./test.sh" 这个值。如果执行的是 ./work/test.sh， 则对应 ./work/test.sh 这个值，而不是只返回文件名本身的部分。
