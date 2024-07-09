@@ -1,6 +1,32 @@
 
 
+
+## RTT(Round Trip Time)
+![](./img/tcp-1RT.png)
+![](./img/https-3RT.png)
+
+
+
+-|HTTP/2 OVER  TLS1.2首次连接	|HTTP/2 OVER TLS1.2连接复用	|HTTP/2 OVER TLS1.3首次连接	|HTTP/2 OVER TLS1.3连接复用
+---|---|---|---|---|
+DNS解析	|1-RTT	|0-RTT	|1-RTT	|0-RTT
+TCP握手	|1-RTT	|0-RTT	|1-RTT	|0-RTT
+TLS握手	|2-RTT	|1-RTT	|1-RTT	|0-RTT
+HTTP Request	|1-RTT	|1-RTT	|1-RTT	|1-RTT
+总计	|5RTT	|2-RTT	|4-RTT|	1-RTT
+
+
+-|QUIC 首次连接 | QUIC 连接复用
+---|---|---
+QUIC握手|	1-RTT|0-RTT
+HTTP Request|	1-RTT	|1-RTT
+总计|3-RTT	|1-RTT
+## 参考
 [谷歌出品!读懂 QUIC 协议:更快、更高效的通信协议](https://developer.aliyun.com/article/1508757)
+
+[QUIC协议是如何做到0RTT加密传输的(addons)](https://blog.csdn.net/dog250/article/details/80935534)
+
+[TLS1.2 和 TLS1.3的简要区别](https://www.cnblogs.com/ToTigerMountain/articles/18220849)
 
 ## QUIC
 **采用UDP传输层**： QUIC 使用UDP（用户数据报协议）作为传输层协议，与传统的TCP相比，UDP减少了连接建立的延迟。TCP需要经历三次握手来建立连接，这会引入1个往返时间（1-RTT）的延迟。相比之下，QUIC的UDP传输层减少了这个握手过程，从而减少了建立连接的时间。这有助于提高网络通信的效率，尤其是对于那些对延迟要求较高的应用程序。
