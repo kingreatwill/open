@@ -1,6 +1,6 @@
 
 
-
+[谷歌出品!读懂 QUIC 协议:更快、更高效的通信协议](https://developer.aliyun.com/article/1508757)
 
 ## QUIC
 **采用UDP传输层**： QUIC 使用UDP（用户数据报协议）作为传输层协议，与传统的TCP相比，UDP减少了连接建立的延迟。TCP需要经历三次握手来建立连接，这会引入1个往返时间（1-RTT）的延迟。相比之下，QUIC的UDP传输层减少了这个握手过程，从而减少了建立连接的时间。这有助于提高网络通信的效率，尤其是对于那些对延迟要求较高的应用程序。
@@ -32,6 +32,36 @@ QUIC 协议的核心特性
 - 无歧义重传是 QUIC 的重要特性，用于确保数据的可靠传输。在不稳定的网络环境中，数据包可能会丢失或损坏，因此需要一种机制来恢复丢失的数据而不引入重复数据。
 - QUIC 使用序列号来唯一标识数据包，并在接收方接收到数据包后发送确认。如果发送方没有收到确认，它会重新发送数据包，但只会重传丢失的数据包。这种机制确保了可靠的数据传输，而不会引入不必要的重传，从而提高了效率。
 - 此外，QUIC 还支持拥塞控制，它可以根据网络条件调整数据包的发送速率，以避免网络拥塞。这有助于保持网络的稳定性和性能。
+
+
+### Connection ID
+相较于TCP/IP使用五元组标识一条连接，QIUC在Connection层采用客户端随机产生的64位随机数作为Connection ID标识连接，这样IP或者端口发生变化时，只要ID 不变，这条连接依然维持，可以做到连接平滑迁移。
+连接建立时使用UDP端口号来识别指定机器上的特定server，而一旦建立，连接通过其connection ID关联。
+
+
+连接迁移  
+QUIC通过连接ID实现了连接迁移。
+
+我们经常需要在WiFi和4G之间进行切换，比如我们在家里时使用WiFi，出门在路上，切换到4G或5G，到了商场，又连上了商场的WiFi，到了餐厅，又切换到了餐厅的WiFi，所以我们的日常生活中需要经常性的切换网络，那每一次的切换网络，都将导致我们的IP地址发生变化。
+
+传统的TCP协议是以四元组（源IP地址、源端口号、目的ID地址、目的端口号）来标识一条连接，那么一旦四元组的任何一个元素发生了改变，这条连接就会断掉，那么这条连接中正在传输的数据就会断掉，切换到新的网络后可能需要重新去建立连接，然后重新发送数据。这将会导致用户的网络会“卡”一下。    
+
+但是，QUIC不再以四元组作为唯一标识，QUIC使用连接ID来标识一条连接，无论你的网络如何切换，只要连接ID不变，那么这条连接就不会断，这就叫连接迁移！
+
+
+[一文读懂QUIC 协议：更快、更稳、更高效的网络通信](https://blog.csdn.net/feelabclihu/article/details/140061154)
+
+在一个keepalive周期内, Connection ID是不会变的, 比如60s, 也就是连接空闲60s就会生成新的Connection ID, 或者quic server重启, quic client重启
+
+
+
+### 4元组，5元组，7元组
+4元组即用4个维度来确定唯一连接，这4个维度分别是源Ip (source IP), 源端口(source port),目标Ip (destination IP), 目标端口(destination port)。
+
+5元组是一个通信术语，英文名称为five-tuple,或5-tuple，通常指由源Ip (source IP), 源端口(source port),目标Ip (destination IP), 目标端口(destination port),4层通信协议 (the layer 4 protocol)等5个字段来表示一个会话，是会话哦。
+
+
+7元组即用7个字段来确定网络流量，即源Ip (source IP), 源端口(source port),目标Ip (destination IP), 目标端口(destination port),4层通信协议 (the layer 4 protocol),服务类型(ToS byte)，接口索引(Input logical interface (ifIndex))
 
 
 ## openresty支持quic
