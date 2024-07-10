@@ -41,6 +41,20 @@ https://github.com/didip/tollbooth 2.4k
 goroutine 作为 golang 并发实现的核心组成部分，非常容易上手使用，但却很难驾驭得好。我们经常会遭遇各种形式的 goroutine 泄漏，这些泄漏的 goroutine 会一直存活直到进程终结。它们的占用的栈内存一直无法释放、关联的堆内存也不能被 GC 清理，系统的可用内存会随泄漏 goroutine 的增多越来越少，直至崩溃！
 https://github.com/uber-go/goleak
 
+
+## io
+### io
+io.Reader and io.Writer
+### bufio
+bufio.Reader或bufio.Writer
+### Metered
+
+io.Reader and io.Writer的替代品, 支持统计字节数
+https://github.com/samber/go-metered-io
+- 性能监控: 实时监控数据传输量,及时发现性能问题
+- 流量监控: 可实现精细化流量控制
+
+
 ## 分析/debug
 ### pprof
 [Profiling](./pprof.md)
