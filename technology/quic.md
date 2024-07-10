@@ -427,26 +427,6 @@ curl --alt-svc altsvc.cache https://curl.se/
 ### 自己编译
 [使用 QuicTLS 编译 Nginx 并开启 Quic 或 HTTP/3](https://cloud.tencent.com/developer/article/2404093)
 
-QuicTLS 安装
-```
-wget https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.5-quic1.tar.gz && \
-      tar -xzf openssl-3.1.5-quic1.tar.gz && \
-      cd openssl-openssl-3.1.5-quic1 && \
-      ./config --prefix=/usr/local/openresty/quictls/build no-shared && \
-      make && \
-      make install_sw
-```
-
-```
-        --with-http_slice_module \
-        --with-http_stub_status_module \
-        --with-stream \
-        --with-stream_ssl_module \
-        --with-http_v3_module \
-        --with-http_ssl_module \
-        --with-cc-opt='-I../quictls/build/include' \
-        --with-ld-opt='-L../quictls/build/lib'
-```
 
 ## 术语
 ### RTT
