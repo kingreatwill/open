@@ -471,6 +471,10 @@ Cronet
 而 Cronet 核心网络引擎完全基于C/C++，所以它除了可以在 Android 中使用之外，也可以通过 FFI 的方式被 Dart 使用
 
 ## 术语
+### HTTP-over-QUIC
+HTTP/3 在2018年前叫HTTP-over-QUIC
+2018年 IETF（Internet Engineering Task Force，定义互联网协议的标准机构）提议将HTTP-over-QUIC 更名为HTTP/3
+
 ### RTT
 往返时间（Round-Trip Time，RTT）是一个网络性能指标，用于衡量数据包从发送端到接收端再返回发送端所需的时间。
 ### 一些相关规范草案：
