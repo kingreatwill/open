@@ -428,6 +428,26 @@ curl --alt-svc altsvc.cache https://curl.se/
 [使用 QuicTLS 编译 Nginx 并开启 Quic 或 HTTP/3](https://cloud.tencent.com/developer/article/2404093)
 
 
+```
+cd wget https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.5-quic1.tar.gz && \
+      tar -xzf openssl-3.1.5-quic1.tar.gz && \
+      cd openssl-openssl-3.1.5-quic1 && \
+      ./config --prefix=/usr/local/openresty/quictls/build no-shared && \
+      make && \
+      make install_sw
+```
+
+--with-openssl 是源码路径
+```
+ --with-stream \
+        --with-stream_ssl_module \
+        --with-http_v3_module \
+        --with-http_ssl_module \
+        --with-openssl='../openssl-openssl-3.1.5-quic1' \
+        --with-cc-opt='-I/usr/local/openresty/quictls/build/include' \
+        --with-ld-opt='-L/usr/local/openresty/quictls/build/lib'
+```
+
 ## 术语
 ### RTT
 往返时间（Round-Trip Time，RTT）是一个网络性能指标，用于衡量数据包从发送端到接收端再返回发送端所需的时间。
