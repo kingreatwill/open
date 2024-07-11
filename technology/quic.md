@@ -448,6 +448,27 @@ cd wget https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.5-quic1
         --with-ld-opt='-L/usr/local/openresty/quictls/build/lib'
 ```
 
+### http/3 client
+java
+https://bitbucket.org/pjtr/flupke
+
+https://jetty.org/docs/jetty/11/programming-guide/client/http.html#transport-http3
+
+golang
+quic-go
+
+python
+https://github.com/aiortc/aioquic
+
+dart
+https://pub.dev/packages/http
+https://pub.dev/packages/cronet_http
+
+Cronet
+既然我们知道 HTTP/3 和 QUIC 可以得到更好的体验，那就不得不说 Cronet，因为 Cronet 是 Chromium 网络堆栈，所以才被称为 Cronet ，它和 Chromium 使用相同的网络引擎。
+
+而 Cronet 核心网络引擎完全基于C/C++，所以它除了可以在 Android 中使用之外，也可以通过 FFI 的方式被 Dart 使用
+
 ## 术语
 ### RTT
 往返时间（Round-Trip Time，RTT）是一个网络性能指标，用于衡量数据包从发送端到接收端再返回发送端所需的时间。
