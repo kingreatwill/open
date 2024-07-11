@@ -451,6 +451,7 @@ cd wget https://github.com/quictls/openssl/archive/refs/tags/openssl-3.1.5-quic1
 ### http/3 client
 java
 https://bitbucket.org/pjtr/flupke
+https://github.com/ptrd/flupke
 
 https://jetty.org/docs/jetty/11/programming-guide/client/http.html#transport-http3
 
