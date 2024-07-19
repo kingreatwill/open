@@ -192,7 +192,11 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 [逆向神器之IDA的使用](https://www.cnblogs.com/aikongmeng/articles/10657479.html)
 
 ## 逆向工程的十六进制编辑器 rehex
-https://github.com/solemnwarning/rehex
+https://github.com/solemnwarning/rehex 2.3k
+
+### 逆向工程的十六进制编辑器 ImHex
+它支持各种高级功能，比如模式定义、数据分析、脚本编写等等。用它来分析文件、逆向工程，那真是如虎添翼。
+https://github.com/WerWolv/ImHex 41.3k
 
 ## 密码管理工具/密码管理器
 ### KeePass 
@@ -715,6 +719,13 @@ docker run  -itd -p 3000:3000 -p 3001:3001 -v /e/dockerv/wps/config:/config --re
 3000与3001，分别为http与https协议
 
 ### 文本编辑器(轻量级IDE)
+#### 逆向工程的十六进制编辑器 rehex
+https://github.com/solemnwarning/rehex
+
+#### 逆向工程的十六进制编辑器 ImHex
+它支持各种高级功能，比如模式定义、数据分析、脚本编写等等。用它来分析文件、逆向工程，那真是如虎添翼。
+https://github.com/WerWolv/ImHex
+
 #### EmEditor
 号称"全球最快的文本编辑器"
 
