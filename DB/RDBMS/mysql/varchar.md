@@ -2,6 +2,7 @@
 
 ### MySQL中Varchar(50)和varchar(500)区别是什么？
 https://www.toutiao.com/article/7391749141468086821/
+https://juejin.cn/post/7350228838151847976
 
 [Mysql 建表总长度限制（所有字段）学习总结 以及 所有字段长度计算方式](https://blog.csdn.net/weixin_44131922/article/details/122131467)
 

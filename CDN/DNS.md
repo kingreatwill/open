@@ -606,6 +606,11 @@ https://github.com/GyulyVGC/sniffnet
 #### 路由跟踪工具
 https://github.com/nxtrace/NTrace-core
 
+```
+go install github.com/nxtrace/NTrace-core@latest
+```
+
+
 #### named
 named（也称为BIND）： 
 named是一个功能强大的、广泛使用的DNS服务器软件。它是Internet上最常用的DNS软件之一，被用于管理大型网络和互联网域名解析。 
