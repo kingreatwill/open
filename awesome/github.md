@@ -50,6 +50,10 @@ GitHub：https://github.com/merico-dev/lake
 
 #### 在线P2P文件传输工具
 https://github.com/fanchangyong/deershare
+
+#### PairDrop
+https://github.com/schlagmichdoch/PairDrop
+PairDrop是一款创新的本地文件共享工具，它以浏览器为平台，实现了类似于苹果AirDrop的便捷文件传输功能。它不仅能够跨操作系统工作，还支持通过互联网进行文件传输，极大地提升了用户在不同设备间分享文件的效率。
 #### 短链接
 https://github.com/thedevs-network/kutt
 #### 网站测试工具
