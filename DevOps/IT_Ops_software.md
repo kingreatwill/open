@@ -2,7 +2,7 @@
 
 监控工具：Nagios、Zabbix、Cacti、PRTG、SolarWinds、Datadog
 
-配置管理工具：Puppet、Chef、Ansible、SaltStack
+配置管理工具：Puppet、Chef、Ansible、[SaltStack](https://github.com/saltstack/salt)
 
 日志管理工具：Logstash、Graylog、ELK Stack、Splunk
 
