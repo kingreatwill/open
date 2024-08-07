@@ -8,13 +8,22 @@ https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html
 https://help.aliyun.com/zh/sls/user-guide/grok-patterns
 ## 收集容器标准输出
 
+如果logstash是通过docker启动的,那么挂载目录/var/lib/docker/containers可能没有权限,需要通过`-u root`启动容器
+
 ```
 docker run --name my-container \
     --log-driver json-file \
     --log-opt max-size=10m \
     --log-opt max-file=3 \
+    --label service-name=xxx --log-opt labels=service-name
     your-image
 ```
+日志里面会多打出
+```
+"attrs":{"service-name":"xxx"}
+```
+
+
 收集容器标准输出
 ```
 input {
@@ -73,8 +82,17 @@ filter {
         mutate {
             remove_field => ["message", "@version", "path"]
         }
-        date {
-            match => [ "time", "ISO8601" ]
+        if [type] == "docker_log" {
+            json {
+            source => "message"
+            }
+            if [attrs.service-name] =~ /^(mf-logstash|cdn-other)$/ {
+            date {
+                match => [ "time", "ISO8601" ]
+            }
+            } else {
+            drop {}
+            }
         }
     }
 }
