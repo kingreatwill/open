@@ -86,6 +86,19 @@ go install
 https://grpc.io/docs/languages/go/quickstart/
 `--plugin=protoc-gen-go`
 
+```
+go install github.com/golang/protobuf/protoc-gen-go
+protoc --go_out=plugins=grpc:E:/pbgo/ --proto_path=E:/protobuf xxxx.proto
+```
+
+
+官网例子跟上面的protoc-gen-go不是一样的
+```
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
+
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+```
+
 ## grpc负载均衡问题
 
 
