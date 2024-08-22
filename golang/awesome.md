@@ -367,6 +367,14 @@ https://github.com/mgechev/revive
 它是一个 Golang 命令行工具，它根据目标源文件的功能和方法签名生成表驱动测试。
 https://github.com/cweill/gotests
 
+## 优雅升级/平滑升级
+https://lrita.github.io/2019/06/06/golang-graceful-upgrade/#so_reuseport-%E5%A4%9A%E8%BF%9B%E7%A8%8B
+
+- facebookarchive/grace
+- rcrowley/goagain
+- jpillora/overseer
+- cloudflare/tableflip
+
 ## grpc
 ### grpcui
 他是一个 gRPC 的 Web 页面调试工具，提供交互式的调试界面。
