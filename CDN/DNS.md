@@ -596,12 +596,15 @@ NetLimiter是专为Windows设计的终极Internet 流量控制和监视工具。
 
 也可以禁止一个dns的解析
 
-#### 网络监控工具
+#### 网络监控工具/网络工具
 - GlassWire
 - Nutty
 - Portmaster
 - sniffnet
 https://github.com/GyulyVGC/sniffnet
+
+- iperf3 网络性能测试工具
+https://github.com/esnet/iperf
 
 #### 路由跟踪工具
 https://github.com/nxtrace/NTrace-core
