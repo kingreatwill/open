@@ -707,7 +707,7 @@ https://github.com/petersunbag/coven
 这个也是很NB
 https://github.com/jinzhu/copier
 
-### collection
+### collection/集合
 https://github.com/zyedidia/generic
 
 - array2d: a 2-dimensional array.

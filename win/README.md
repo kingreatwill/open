@@ -23,6 +23,14 @@ AutoHotkey 是一个 windows 上的开源软件，用于做自动化的处理
 - 可以运行 AutoITv2 的脚本
 - 将自动化脚本转变成 exe 文件
 
+TinyTask 自动化工具
+zTasker 网速,任务管理
+[TrafficMonitor](https://github.com/zhongyang219/TrafficMonitor) 流量网速显示
+
+Caesium Image Compressor 图片压缩工具
+FFRenamePro 文件重命名
+
+
 ### Process Lasso
 https://bitsum.com/
 
