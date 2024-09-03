@@ -72,8 +72,11 @@ https://github.com/elastic/apm
 ## New Relic
 https://github.com/newrelic
 
-# opentelemetry
 
+
+# opentelemetry
+[golang自动注入描点](https://github.com/alibaba/opentelemetry-go-auto-instrumentation)
+只需要将`go build` 替换成 `otelbuild`
 ## OpenTelemetry Collector
 
 ### 介绍
