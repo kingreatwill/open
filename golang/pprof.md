@@ -114,6 +114,9 @@ https://github.com/dominikh/gotraceui
 
 ### Goref
 https://github.com/cloudwego/goref
+
+### fgprof
+https://github.com/felixge/fgprof
 ### pprof
 https://github.com/google/pprof
 [深度解密Go语言之 pprof](https://qcrao.com/2019/11/10/dive-into-go-pprof/)
