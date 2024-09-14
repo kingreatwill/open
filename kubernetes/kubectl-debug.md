@@ -7,6 +7,56 @@ https://github.com/aylei/kubectl-debug/releases
 
 [kubectl superdebug](https://github.com/JonMerlevede/kubectl-superdebug)
 
+## 其它工具
+- nsenter 
+`yum -y install util-linux`
+nsenter 命令可以很方便的进入指定容器的网络命名空间，使用宿主机的命令调试容器网络。
+
+除此以外，nsenter 还可以进入 mnt、uts、ipc、pid、user 等命名空间，以及指定根目录和工作目录。
+
+```
+nsenter [options] [program [arguments]]
+
+options:
+-t, --target pid：指定被进入命名空间的目标进程的pid
+-m, --mount[=file]：进入mount命令空间。如果指定了file，则进入file的命令空间
+-u, --uts[=file]：进入uts命令空间。如果指定了file，则进入file的命令空间
+-i, --ipc[=file]：进入ipc命令空间。如果指定了file，则进入file的命令空间
+-n, --net[=file]：进入net命令空间。如果指定了file，则进入file的命令空间
+-p, --pid[=file]：进入pid命令空间。如果指定了file，则进入file的命令空间
+-U, --user[=file]：进入user命令空间。如果指定了file，则进入file的命令空间
+-G, --setgid gid：设置运行程序的gid
+-S, --setuid uid：设置运行程序的uid
+-r, --root[=directory]：设置根目录
+-w, --wd[=directory]：设置工作目录
+
+如果没有给出program，则默认执行$SHELL。
+```
+
+```
+nsenter --target <PID> -n
+
+进入容器的网络命名空间后，就可以使用tcpdump进行抓包了
+tcpdump -i any  -w /tmp/pod.pcap
+```
+也可以直接执行命令
+```
+# 获取相应的 Dokcer 容器的 PID
+$ PID=$(docker inspect --format {{.State.Pid}} <container_name_or_ID>)
+# 使用相应参数进入程序所在的不同 NameSpace
+$ nsenter -m -u -i -n -p -t $PID <command>
+```
+
+如果是在 Kubernetes 中，在得到容器 Pid 之前，你还需先获取容器的 ID，可以使用如下命令获取：
+```
+$ kubectl get pod nginx -n web -o yaml|grep containerID
+  - containerID: docker://cf0873782d587dbca6aa32f49605229da3748600a9926e85b36916141597ec85
+
+$ kubectl get pod nginx -n web -o template --template='{{range .status.containerStatuses}}{{.containerID}}{{end}}'
+docker://cf0873782d587dbca6aa32f49605229da3748600a9926e85b36916141597ec85
+```
+
+
 ## 背景
 容器技术的一个最佳实践是构建尽可能精简的容器镜像。但这一实践却会给排查问题带来麻烦：精简后的容器中普遍缺失常用的排障工具，部分容器里甚至没有 shell (比如 FROM scratch ）。 在这种状况下，我们只能通过日志或者到宿主机上通过 docker-cli 或 nsenter 来排查问题，效率很低。Kubernetes 社区也早就意识到了这个问题，在 16 年就有相关的 [Issue Support for troubleshooting distroless containers](https://github.com/kubernetes/kubernetes/issues/27140) 并形成了对应的 [Proposal](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node/troubleshoot-running-pods.md)。 遗憾的是，由于改动的涉及面很广，相关的实现至今还没有合并到 Kubernetes 上游代码中。而在 一个偶然的机会下（PingCAP 一面要求实现一个 kubectl 插件实现类似的功能），我开发了 [kubectl-debug](https://github.com/aylei/kubectl-debug): 通过启动一个安装了各种排障工具的容器，来帮助诊断目标容器 。
 

@@ -191,6 +191,31 @@ centos7,8: `yum clean all` -- 一般也能释放几个G
 centos8: `dnf clean all`
 Debian 和 Ubuntu: `apt-get clean`
 
+
+## util-linux
+```
+git clone https://github.com/util-linux/util-linux.git
+cd util-linux
+./configure
+make HAVE_SLN=yes
+make HAVE_SLN=yes install
+```
+
+```
+wget https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz
+tar -zxf-cd util-linux-2.24
+./configure –without-ncurses
+make
+cp nsenter /usr/local/bin/
+```
+
+```
+
+# 如果是ubuntu的换成apt-get指令即可
+yum -y install util-linux
+```
+
+
 ## 查看端口占用
 
 ```
