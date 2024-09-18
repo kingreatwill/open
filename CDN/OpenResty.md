@@ -508,6 +508,9 @@ openresty-systemtap-toolkit已经不维护了, 重点开发OpenResty XRay (商�
 
 > [已逐渐不被支持了](https://github.com/openresty/stapxx?tab=readme-ov-file#lj-lua-stacks)
 
+[OpenResty 火焰图工具](https://blog.csdn.net/qq_42353939/article/details/107491914)
+
+
 [文档](https://github.com/openresty/openresty-systemtap-toolkit/blob/master/README-CN.markdown)
 
 https://github.com/openresty/openresty-systemtap-toolkit
