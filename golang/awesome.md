@@ -17,17 +17,21 @@ https://github.com/uber-go/ratelimit 3.7k
 https://github.com/juju/ratelimit 2.8k
 功能更丰富
 
-### gobreaker 熔断降级
-https://github.com/sony/gobreaker 2.5k
-
-### hystrix-go 熔断降级
-https://github.com/afex/hystrix-go 4k
 
 ### x/time/rate 限流
 golang.org/x/time/rate
 该限流器是基于Token Bucket(令牌桶)实现的。
 golang 提供了拓展库(golang.org/x/time/rate)提供了限流器组件
 https://pkg.go.dev/golang.org/x/time/rate
+
+功能更丰富
+
+### gobreaker 熔断降级
+https://github.com/sony/gobreaker 2.5k
+
+### hystrix-go 熔断降级
+https://github.com/afex/hystrix-go 4k
+
 
 ### tollbooth
 Simple middleware to rate-limit HTTP requests.
