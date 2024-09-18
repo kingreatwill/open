@@ -529,6 +529,23 @@ Real-time analysis and diagnostics tools for OpenResty (including NGINX, LuaJIT,
 
 最后，你也需要安装 kernel debug symbols 和 kernel headers。通常只用在你的 Linux 系统中，安装和 kernel 包匹配的 kernel-devel 和 kernel-debuginfo 就可以了。
 
+```
+$ uname -r
+
+3.10.0-327.28.2.el7.x86_64
+
+# 安装内核开发包和调试包
+
+$ wget "http://debuginfo.centos.org/7/x86_64/kernel-debuginfo-($version).rpm"
+
+$ wget "http://debuginfo.centos.org/7/x86_64/kernel-debuginfo-common-($version).rpm"
+
+$ sudo rpm -ivh kernel-debuginfo-common-($version).rpm
+$ sudo rpm -ivh kernel-debuginfo-($version).rpm
+$ sudo yum install kernel-devel-($version)
+$ sudo yum install systemtap
+```
+
 #### systemtap
 systemtap是内核开发者必须要掌握的一个工具
 
