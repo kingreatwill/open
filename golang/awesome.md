@@ -11,6 +11,12 @@ https://github.com/alibaba/sentinel-golang 2.5k
 ### ratelimit 限流
 https://github.com/uber-go/ratelimit 3.7k
 
+> 把请求数平均到耗时, 比如QPS=10/s 那么两个请求间隔100ms; 缺点是只能阻塞获取
+
+### ratelimit 限流
+https://github.com/juju/ratelimit 2.8k
+功能更丰富
+
 ### gobreaker 熔断降级
 https://github.com/sony/gobreaker 2.5k
 

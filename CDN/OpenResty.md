@@ -502,7 +502,12 @@ openresty lua模块化开发的框架，用来简化nginx的配置、规范开�
 
 ### OpenResty XRay
 openresty-systemtap-toolkit已经不维护了, 重点开发OpenResty XRay (商业收费)
+
+
 ### openresty-systemtap-toolkit
+
+> [已逐渐不被支持了](https://github.com/openresty/stapxx?tab=readme-ov-file#lj-lua-stacks)
+
 [文档](https://github.com/openresty/openresty-systemtap-toolkit/blob/master/README-CN.markdown)
 
 https://github.com/openresty/openresty-systemtap-toolkit
