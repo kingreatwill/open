@@ -708,8 +708,6 @@ psutil是一个开源且跨平台的库，其提供了便利的函数用来获�
 
 [日期管理](https://github.com/golang-module/carbon)
 
-### samber/lo 
-https://github.com/samber/lo
 
 ### mapper
 https://github.com/petersunbag/coven
@@ -740,6 +738,19 @@ https://github.com/zyedidia/generic
 - ulist: an un-rolled doubly-linked list.
 
 - [字典树 (Trie)](https://github.com/dghubble/trie)
+
+
+### 工具库
+
+#### samber/lo 
+https://github.com/samber/lo
+#### lancet
+https://github.com/duke-git/lancet
+
+### hash
+
+github.com/dchest/siphash
+github.com/cespare/xxhash/v2
 
 
 ### 类型转换cast
