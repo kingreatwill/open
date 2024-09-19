@@ -29,6 +29,7 @@ https://blogs.vmware.com/workstation/2020/05/vmware-workstation-now-supports-hyp
 ## VirtualBox
 免费
 ## multipass
+https://github.com/canonical/multipass
 https://multipass.run/
 Multipass 是一个轻量虚拟机管理器，是由 Ubuntu 运营公司 Canonical 所推出的开源项目。运行环境支持 Linux、Windows、macOS。在不同的操作系统上，使用的是不同的虚拟化技术。
 在 Linux 上使用的是 KVM、
@@ -37,6 +38,11 @@ macOS 中使用 HyperKit 以最小开销运行VM，支持在笔记本模拟小�
 
 > 官网上最新描述: Multipass 在 Windows 上使用 Hyper-V，在 macOS 上使用 QEMU 和 HyperKit，在 Linux 上使用 LXD，以实现最小的开销和最快的启动时间。将虚拟机管理程序切换到Virtualbox是一件轻而易举的事。
 
+## QEMU 
+https://github.com/qemu/qemu
+https://gitlab.com/qemu-project/qemu.git
+https://www.qemu.org/contribute/
+
 ## KVM、webKVM
 - [Virtual Machine for the Web](https://github.com/leaningtech/webvm)
 基于内核的虚拟机（KVM）是一种内建于 Linux® 的开源虚拟化技术。具体而言，KVM 可帮助您将 Linux 转变为虚拟机监控程序，使主机计算机能够运行多个隔离的虚拟环境，即虚拟客户机或虚拟机（VM）。
@@ -44,6 +50,10 @@ macOS 中使用 HyperKit 以最小开销运行VM，支持在笔记本模拟小�
 KVM 是 Linux 的一部分。Linux 2.6.20 或更新版本包括 KVM。KVM 于 2006 年首次公布，并在一年后合并到主流 Linux 内核版本中。
 ### Barrier
 https://github.com/debauchee/barrier
+
+## lxcfs容器资源视图隔离 for k8s/docker
+https://github.com/lxc/lxcfs
+比如我们代码获取runtime.CPU() 获取的是主机上的CPU核数, 而不是pod的限制的CPU核数, 需要使用lxcfs进行隔离
 
 # "Windows Emulator"，即Windows模拟器
 
