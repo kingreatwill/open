@@ -718,6 +718,16 @@ docker run  -itd -p 3000:3000 -p 3001:3001 -v /e/dockerv/wps/config:/config --re
 
 3000与3001，分别为http与https协议
 
+#### LocalSend
+跨平台的文件传输工具https://github.com/localsend/localsend
+
+#### 快传/空投
+https://www.wenshushu.cn/
+https://im.iamtsm.cn/file
+https://airportal.cn/
+https://cowtransfer.com/
+
+
 ### 文本编辑器(轻量级IDE)
 #### 逆向工程的十六进制编辑器 rehex
 https://github.com/solemnwarning/rehex
