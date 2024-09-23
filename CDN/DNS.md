@@ -667,3 +667,18 @@ systemctl enable systemd-resolved
 systemctl start systemd-resolved
 
 > Ubuntu 、centos 8以上
+
+#### dns缓存
+- chrome
+`chrome://net-internals/#dns` -> Clear host cache
+`chrome://net-internals/#sockets` -> Plush socket pools
+
+- Windows
+查看DNS缓存：`ipconfig /displaydns`
+清除DNS缓存：`ipconfig /flushdns`
+
+- Linux:
+查看DNS缓存：`sudo systemd-resolve --statistics`
+清除DNS缓存：`sudo systemd-resolve --flush-caches`
+
+https://root-servers.org/
