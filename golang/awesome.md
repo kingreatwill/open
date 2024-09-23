@@ -710,10 +710,13 @@ psutil是一个开源且跨平台的库，其提供了便利的函数用来获�
 
 
 ### mapper
-https://github.com/petersunbag/coven
+https://github.com/petersunbag/coven 27 (有用于生产经验)
 
 这个也是很NB
-https://github.com/jinzhu/copier
+https://github.com/jinzhu/copier  5.5k (有用于生产经验)
+
+
+github.com/imdario/mergo  2.9k
 
 ### collection/集合
 https://github.com/zyedidia/generic
