@@ -20,6 +20,7 @@ https://juejin.im/post/5efadf48f265da2304062e51
 https://github.com/edsrzf/mmap-go
 https://pkg.go.dev/golang.org/x/exp/mmap
 https://github.com/dilfish/awdb-golang/blob/master/awdb-golang/mmap_unix.go
+https://github.com/xujiajun/mmap-go
 
 ## 云主机内存
 最近购买了2G内存的腾讯云主机, 发现总内存只有1.7G (`free -h`)

@@ -356,6 +356,11 @@ https://github.com/chai2010/go-ast-book
 ## log
 https://github.com/grafana/loki
 
+- 变量调试神器
+github.com/davecgh/go-spew
+
+- wal(Write Ahead Log)
+https://github.com/rosedblabs/wal
 
 ## 流媒体
 monibuca  丰富的内置插件提供了流媒体服务器的常见功能，例如rtmp server、http-flv、视频录制、QoS等
