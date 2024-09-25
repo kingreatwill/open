@@ -385,6 +385,7 @@ github.com/davecgh/go-spew
 
 - wal(Write Ahead Log)
 https://github.com/rosedblabs/wal
+https://github.com/tidwall/wal
 
 ## 流媒体
 monibuca  丰富的内置插件提供了流媒体服务器的常见功能，例如rtmp server、http-flv、视频录制、QoS等
