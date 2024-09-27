@@ -138,7 +138,7 @@ A: 会被抓包，HTTPS 只防止用户在不知情的情况下通信被监听�
 
 [HTTPS 原理分析——带着疑问层层深入](https://blog.leapmie.com/archives/418)
 
-
+[重磅！图文详解HTTPS协议通信全过程，结合抓包实战分析，带你一次看透HTTPS！](https://mp.weixin.qq.com/s?__biz=MzkyMTYyOTQ5NA==&mid=2247485189&idx=1&sn=8863060e62a3f3b13e67f4fadde2b704&chksm=c059bc76f0b7a2c2a33406317ae9d93e053a113ede92ee39f2f85236e07b2008f08d6082f9eb&mpshare=1&scene=1&srcid=0927ozvGDzoRDVFfGunGrv8b&sharer_shareinfo=7ad30ab36913b9c904b469ae4718aa57&sharer_shareinfo_first=7ad30ab36913b9c904b469ae4718aa57&from=industrynews&version=4.1.28.6010&platform=win&nwr_flag=1#wechat_redirect)
 
 ## 案列分析
 
