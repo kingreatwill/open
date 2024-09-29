@@ -27,6 +27,15 @@ docker-compose up -d
 
 > 可以理解调用链+性能监控
 
+## 采样率设计
+fraction=采样率(0,1]
+得到int64最大值: traceIDUpperBound: uint64(fraction * (1 << 63))
+```
+x := binary.BigEndian.Uint64(p.TraceID[8:16]) >> 1
+if x < ts.traceIDUpperBound {
+}
+```
+
 ## highlight
 [highlight.io](https://github.com/highlight/highlight)：开源的全栈监控平台。包括错误监控、会话回放、日志记录等功能。
 
