@@ -750,7 +750,9 @@ https://github.com/petersunbag/coven 27 (有用于生产经验)
 https://github.com/jinzhu/copier  5.5k (有用于生产经验)
 
 
-github.com/imdario/mergo  2.9k
+https://github.com/imdario/mergo  2.9k
+
+https://github.com/mitchellh/mapstructure 7.9k
 
 ### collection/集合
 https://github.com/zyedidia/generic
