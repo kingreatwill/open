@@ -540,7 +540,7 @@ k8s in docker/k8s in pod
 Falco 容器安全系统
 https://github.com/falcosecurity
 
-### 监控工具
+### 监控工具/调试
 #### Kubeshark
 [Kubeshark](https://github.com/kubeshark/kubeshark) 是一款用于 Kubernetes 的 API 流量分析器，可提供对Kubernetes 内部网络的实时、协议级可视性，捕获并监控进出和跨容器、pod、节点和集群的所有流量和有效载荷。
 
@@ -554,7 +554,10 @@ Redis
 DNS
 ICMP
 TCP
+#### anteon
+https://github.com/getanteon/anteon
 
+Anteon 是一个全功能的平台，它自动为您的集群创建服务地图，提供实时性能洞察，并通过集成的性能测试功能，让您能够在发现问题时立即进行验证。这款工具设计简洁，无需代码修改或添加额外组件，即可实现对 Kubernetes 系统的深入理解。
 
 #### kubectl-debug
 https://github.com/aylei/kubectl-debug 这个是别人开发的插件
