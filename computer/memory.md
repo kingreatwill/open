@@ -25,6 +25,12 @@ https://github.com/xujiajun/mmap-go
 ## 云主机内存
 最近购买了2G内存的腾讯云主机, 发现总内存只有1.7G (`free -h`)
 
+> 腾讯云的云镜(YDService)如何卸载: 
+> sh /usr/local/qcloud/YunJing/uninst.sh
+> if [ -w '/usr' ]; then /usr/local/qcloud/YunJing/uninst.sh ; else /var/lib/qcloud/YunJing/uninst.sh ; fi
+
+> 安装: wget http://u.yd.qcloud.com/ydeyes_linux64.tar.gz -O ydeyes_linux64.tar.gz && tar -zxvf ydeyes_linux64.tar.gz && ./self_cloud_install_linux64.sh
+
 
 ```
 # 查看真实内存
