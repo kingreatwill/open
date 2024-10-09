@@ -56,6 +56,14 @@ https://github.com/pyroscope-io/pyroscope
 
 > eBPF 导致了网络，安全性，应用程序配置/跟踪和性能故障排除等领域的新一代工具的开发，这些工具不再依赖现有的内核功能，而是在不影响执行效率或安全性的情况下主动重新编程运行时行为。
 
+### expvar
+https://pkg.go.dev/expvar
+https://github.com/divan/expvarmon
+
+expvar 是 exposed variable的简写
+
+expvar包是 Golang 官方为暴露Go应用内部指标数据所提供的标准对外接口，可以辅助获取和调试全局变量。
+
 ### statsview
 A real-time Golang runtime stats visualization profiler
 https://github.com/go-echarts/statsview
