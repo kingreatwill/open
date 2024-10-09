@@ -109,6 +109,11 @@ https://github.com/TuiQiao/CBoard
 [16 个免费和开源商业智能工具](https://blog.csdn.net/qiansg123/article/details/80129400)
 
 [Awesome Data Science](https://github.com/academic/awesome-datascience)
+
+### Seal Report
+https://github.com/ariacom/Seal-Report
+Seal Report 是一个开源框架，可以根据数据库中的信息生成报告和仪表板。功能包括本机数据透视表，HTML 5 或 Microsoft 格式的图表，Web 报表服务器和动态 SQL 源。用户还可以提前安排报告生成并在文件夹中生成或通过电子邮件发送。
+
 ### Orange Data Mining
 https://github.com/biolab/orange3
 
@@ -160,9 +165,6 @@ RapidMiner 允许数据科学家在数据科学和商业智能项目中构建完
 
 ReportServer 将各种 BI 报告引擎集成到一个用户界面中，目的是允许人们在正确的时间使用正确的分析工具。有一个免费的社区层和一个企业层，软件的动态列表功能允许临时生成类似列表的报告。
 
-### Seal Report
-
-Seal Report 是一个开源框架，可以根据数据库中的信息生成报告和仪表板。功能包括本机数据透视表，HTML 5 或 Microsoft 格式的图表，Web 报表服务器和动态 SQL 源。用户还可以提前安排报告生成并在文件夹中生成或通过电子邮件发送。
 
 ### Spagobi
 
