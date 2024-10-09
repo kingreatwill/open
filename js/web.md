@@ -24,3 +24,6 @@ https://clarity.microsoft.com/projects
 5.性能分析：除了用户行为分析，Clarity还提供了网站性能数据，包括加载时间和渲染性能。
 
 6.隐私保护：Clarity非常注重用户隐私，所有数据都经过匿名化处理，不会追踪个人身份或敏感信息。
+
+### hotjar
+https://www.hotjar.com/
