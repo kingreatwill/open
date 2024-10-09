@@ -47,13 +47,24 @@ https://www.qemu.org/contribute/
 - [Virtual Machine for the Web](https://github.com/leaningtech/webvm)
 基于内核的虚拟机（KVM）是一种内建于 Linux® 的开源虚拟化技术。具体而言，KVM 可帮助您将 Linux 转变为虚拟机监控程序，使主机计算机能够运行多个隔离的虚拟环境，即虚拟客户机或虚拟机（VM）。
 
-KVM 是 Linux 的一部分。Linux 2.6.20 或更新版本包括 KVM。KVM 于 2006 年首次公布，并在一年后合并到主流 Linux 内核版本中。
+[KVM](https://www.linux-kvm.org/page/Main_Page) 是 Linux 的一部分。Linux 2.6.20 或更新版本包括 KVM。KVM 于 2006 年首次公布，并在一年后合并到主流 Linux 内核版本中。
 ### Barrier
 https://github.com/debauchee/barrier
 
 ## lxcfs容器资源视图隔离 for k8s/docker
 https://github.com/lxc/lxcfs
 比如我们代码获取runtime.CPU() 获取的是主机上的CPU核数, 而不是pod的限制的CPU核数, 需要使用lxcfs进行隔离
+
+
+## 其它
+https://github.com/tiny-pilot/tinypilot
+
+### proxmox
+https://www.proxmox.com/en/
+https://sysin.org/blog/proxmox-ve-8/
+
+https://git.proxmox.com/
+
 
 # "Windows Emulator"，即Windows模拟器
 
