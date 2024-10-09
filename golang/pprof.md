@@ -64,6 +64,12 @@ expvar 是 exposed variable的简写
 
 expvar包是 Golang 官方为暴露Go应用内部指标数据所提供的标准对外接口，可以辅助获取和调试全局变量。
 
+http使用方法,访问path: `/debug/vars`
+```
+import _ "expvar"
+```
+
+
 ### statsview
 A real-time Golang runtime stats visualization profiler
 https://github.com/go-echarts/statsview
