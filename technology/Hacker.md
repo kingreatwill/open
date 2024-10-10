@@ -21,6 +21,20 @@ h4cker 是包含数千个与网络安全相关的参考资料和资源的项目�
 Maltrail是一款功能强大免费的开源恶意流量检测系统, 它利用公开的黑名单以及从各种AV报告和自定义用户特征来识别恶意流量, 同时,该系统还拥有可选的高级启发式机制, 可以帮助使用者发现一些未知的威胁。
 https://github.com/stamparm/maltrail?tab=readme-ov-file#suspicious-http-requests
 
+构建镜像
+```
+cd docker
+docker build -t maltrail .
+```
+
+```
+wget https://raw.githubusercontent.com/stamparm/maltrail/master/docker/Dockerfile
+wget https://raw.githubusercontent.com/stamparm/maltrail/master/maltrail.conf
+
+docker run -d --name maltrail --privileged -p 8337:8337/udp -p 8338:8338 -v /data/dockerv/maltrail/log/:/var/log/maltrail/ -v /data/dockerv/maltrail/config/maltrail.conf:/opt/maltrail/maltrail.conf:ro kingreatwill/maltrail:v0.74
+```
+访问IP:8338 , 用户名密码:`admin:changeme!`, 也可以在maltrail.conf中查看和修改`echo -n 'changeme!' | sha256sum | cut -d " " -f 1`
+
 ## TheFatRat
 https://github.com/Screetsec/TheFatRat 4.5k
 
