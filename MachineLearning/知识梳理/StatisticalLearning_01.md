@@ -1,5 +1,5 @@
 [TOC]
-
+<!-- {% raw %} -->
 # 统计学习方法
 
 [第一版](https://github.com/kingreatwill/files/tree/main/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/book/Lihang-first_edition)
@@ -1737,3 +1737,4 @@ $$\argmax ELBO(q,x) = \argmin KL(q_j(Z_j) \| \tilde{p}(X,Z_j))$$
 [9-6] Radford N,Geoffrey H,Jordan MI. A view of the EM algorithm that justifiesincremental,sparse,and other variants. In: Learning in Graphical Models. Cambridge,MA: MITPress,1999,355–368
 
 
+<!-- {% endraw %} -->

@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # 数据挖掘
 ## 分析方法
 ### 关联分析
@@ -190,3 +191,5 @@ mlxtend主要包括以下模块：
 [How to segment your customers and increase sales with RFM analysis](https://joaocorreia.io/blog/rfm-analysis-increase-sales-by-segmenting-your-customers.html)
 
 [RFM模型](https://wiki.mbalib.com/wiki/RFM%E6%A8%A1%E5%9E%8B)
+
+<!-- {% endraw %} -->

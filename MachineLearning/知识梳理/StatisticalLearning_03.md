@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 [TOC]
 ## 第 13 章 无监督学习概论
 **基本问题**：
@@ -425,3 +426,4 @@ K-中心点轮换算法也存有以下缺点：
 
 [14-8] Dhillon I S. Co-clustering documents and words using bipartite spectral graph partitioning. Proceedings of ACM SIGKDD, pp. 269-274. 2001.
 
+<!-- {% endraw %} -->
