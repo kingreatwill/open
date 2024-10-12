@@ -4,5 +4,4 @@ remote_theme: benbalter/retlab
 markdown: kramdown
 
 plugins:
-  - jekyll-spaceship
   - jekyll-remote-theme
