@@ -2,6 +2,7 @@
 title: 统计学习方法
 render_with_liquid: false
 ---
+<!-- {% raw %} -->
 [TOC]
 
 # 统计学习方法
@@ -1131,10 +1132,10 @@ $$\begin{gathered}
 [Generalized Linear Models](https://www.stat.cmu.edu/~ryantibs/advmethods/notes/glm.pdf)
 
 在线性回归模型中的假设中，有两点需要提出：
-<!-- {% raw %} -->
+
 1. 假设因变量服从高斯分布：$Y={\theta }^{T}x+\xi$，其中误差项 $\xi \sim N(0,{ {\sigma }^{2}})$，那么因变量 $Y\sim N({\theta }^{T}x,{{\sigma }^{2}})$
 2. 模型预测的输出为$E[Y]$，根据 $Y={\theta }^{T}x+\xi$，$E[Y]=E[{\theta }^{T}x+\xi ]={\theta }^{T}x$,记 $\eta ={\theta }^{T}x$，则$\eta =E[Y]$
-<!-- {% endraw %} -->
+
 广义线性模型可以认为在以上两点假设做了扩展：
 
 1. 因变量分布不一定是高斯分布，服从一个指数分布族（[Exponential family](https://en.jinzhao.wiki/wiki/Exponential_family)）即可。
@@ -1321,7 +1322,9 @@ $${\displaystyle {\begin{aligned}&{\underset {\mathbf {x} }{\operatorname {minim
 其中$\mathbf {x} \in \mathbb {R} ^{n}$为优化变量，**目标函数**（objective function）${\displaystyle f:{\mathcal {D}}\subseteq \mathbb {R} ^{n}\to \mathbb {R} }$是凸的，**不等式约束**${\displaystyle g_{i}:\mathbb {R} ^{n}\to \mathbb {R} }$也是凸的，**等式约束**${\displaystyle h_{i}:\mathbb {R} ^{n}\to \mathbb {R} }$是**仿射**（[affine](https://en.jinzhao.wiki/wiki/Affine_transformation)）的
 
 **二次约束二次规划**（[Quadratically constrained quadratic program](https://en.jinzhao.wiki/wiki/Quadratically_constrained_quadratic_program)）：
+
 $${\begin{aligned}&{\text{minimize}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{0}x+q_{0}^{{\mathrm  {T}}}x\\&{\text{subject to}}&&{\tfrac  12}x^{{\mathrm  {T}}}P_{i}x+q_{i}^{{\mathrm  {T}}}x+r_{i}\leq 0\quad {\text{for }}i=1,\dots ,m,\\&&&Ax=b,\end{aligned}}$$
+
 其中$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$,$\mathbf {x} \in \mathbb {R} ^{n}$为优化变量
 如果$P_0以及P_1,..,P_m \in \mathbb{R}^{n \times n}$是半正定矩阵，那么问题是凸的，如果$P_1,..,P_m$为 0，那么约束是线性的，就是**二次规划**（[Quadratic programming](https://en.jinzhao.wiki/wiki/Quadratic_programming)）,即目标函数是二次的，不等式以及等式约束也是线性的；二次规划的前提下，如果$P_0$是半正定矩阵那么就是**凸二次规划**；如果$P_0$为 0，就是**不标准的线性规划**（[Linear programming](https://en.jinzhao.wiki/wiki/Linear_programming)），即目标函数是线性的，不等式以及等式约束也是线性的。
 **标准的线性规划**：即目标函数是线性的，非负约束（优化变量是非负的），等式约束也是线性的。
@@ -3973,3 +3976,5 @@ EM， MCMC，HMM， LDA, 变分推断， 指数族分布等讲的都非常好，
 ### 参考文献
 [22-1] Singh A P, Gordon G J. A unified view of matrix factorization models. In: Daelemans W, Goethals B, Morik K,(eds) Machine Learning and Knowledge Discovery in Databases. ECML PKDD 2008. Lecture Notes in Computer Science, vol 5212. Berlin: Springer, 2008.
 [22-2] Wang Q, Xu J, Li H, et al. Regularized latent semantic indexing:a new approach to large-scale topic modeling. ACM Transactions on Information Systems (TOIS), 2013, 31(1), 5.
+
+<!-- {% endraw %} -->

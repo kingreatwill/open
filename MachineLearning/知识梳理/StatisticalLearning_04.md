@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 ## 第 15 章 奇异值分解
 奇异值分解([Singular Value Decomposition, SVD](https://en.jinzhao.wiki/wiki/Singular_value_decomposition))是在机器学习领域广泛应用的算法，它不光可以用于降维算法中的特征分解，还可以用于推荐系统，以及自然语言处理等领域。是很多机器学习算法的基石。也是矩阵分解（[Matrix decomposition](https://en.jinzhao.wiki/wiki/Category:Matrix_decompositions)）的一种。
 
@@ -583,3 +584,4 @@ $n(d_j) = \sum_{i=1}^M n(w_i,d_j)$表示文本$d_j$中的单词个数，$n(w_i,d
 [18-3] Hofmann T. [Unsupervised learning by probabilistic latent semantic analysis](https://link.springer.com/content/pdf/10.1023%2FA%3A1007617005950.pdf). Machine Learning, 2001, 42: 177-196.
 [18-4] Ding C, Li T, Peng W. On the equivalence between non-negative matrix factorization and probabilistic latent semantic indexing. Computational Statistics & Data Analysis, 2008, 52(8): 3913-3927.
 
+<!-- {% endraw %} -->
