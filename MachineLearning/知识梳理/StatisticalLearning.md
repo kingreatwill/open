@@ -1,3 +1,7 @@
+---
+title: 统计学习方法
+render_with_liquid: false
+---
 [TOC]
 
 # 统计学习方法
