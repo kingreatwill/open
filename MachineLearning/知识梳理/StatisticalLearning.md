@@ -1132,8 +1132,8 @@ $$\begin{gathered}
 
 在线性回归模型中的假设中，有两点需要提出：
 
-1. 假设因变量服从高斯分布：$Y={\theta }^{T}x+\xi$，其中误差项$\xi \sim N(0,{{\sigma }^{2}})$，那么因变量$Y\sim N({\theta }^{T}x,{{\sigma }^{2}})$
-2. 模型预测的输出为$E[Y]$，根据$Y={\theta }^{T}x+\xi$，$E[Y]=E[{\theta }^{T}x+\xi ]={\theta }^{T}x$,记$\eta ={\theta }^{T}x$，则$\eta =E[Y]$
+1. 假设因变量服从高斯分布：$Y={\theta }^{T}x+\xi$，其中误差项 $\xi \sim N(0,{{\sigma }^{2}})$，那么因变量 $Y\sim N({\theta }^{T}x,{{\sigma }^{2}})$
+2. 模型预测的输出为$E[Y]$，根据 $Y={\theta }^{T}x+\xi$，$E[Y]=E[{\theta }^{T}x+\xi ]={\theta }^{T}x$,记 $\eta ={\theta }^{T}x$，则$\eta =E[Y]$
 
 广义线性模型可以认为在以上两点假设做了扩展：
 
