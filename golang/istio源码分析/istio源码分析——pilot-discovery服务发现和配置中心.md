@@ -1,4 +1,4 @@
-
+<!-- {% raw %} -->
 ![image](https://upload.cc/i1/2018/06/22/g6TwvS.png)
 
 ## 声明
@@ -544,3 +544,5 @@ func (eventBroadcaster *eventBroadcasterImpl) StartEventWatcher(eventHandler fun
 
 
   [1]: https://upload.cc/i1/2018/06/21/maUVCA.png
+
+<!-- {% endraw %} -->
