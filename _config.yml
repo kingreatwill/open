@@ -1,5 +1,6 @@
 # theme: jekyll-theme-architect
-remote_theme: jeffreytse/jekyll-theme-yat
+# remote_theme: jeffreytse/jekyll-theme-yat
+remote_theme: benbalter/retlab
 markdown: kramdown
 
 plugins:
