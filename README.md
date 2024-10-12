@@ -1,7 +1,7 @@
 ---
-Title: kingreatwill's 学习笔记
-Summary: 学习笔记
-Tags:
+title: kingreatwill's 学习笔记
+summary: 学习笔记
+tags:
     - kingreatwill
     - wcoder
     - 笔记
