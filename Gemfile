@@ -25,3 +25,4 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 # if you run ruby3.0, you need run cmd : bundle add webrick
 # from ruby3.0 ,the webrick not in bundled ruby:https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/
 gem "webrick", "~> 1.7"
+gem "jekyll-remote-theme"

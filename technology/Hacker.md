@@ -35,6 +35,9 @@ docker run -d --name maltrail --privileged -p 8337:8337/udp -p 8338:8338 -v /dat
 ```
 访问IP:8338 , 用户名密码:`admin:changeme!`, 也可以在maltrail.conf中查看和修改`echo -n 'changeme!' | sha256sum | cut -d " " -f 1`
 
+> docker部署无法探测宿主机上的流量
+
+
 ## TheFatRat
 https://github.com/Screetsec/TheFatRat 4.5k
 

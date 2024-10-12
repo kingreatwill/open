@@ -140,6 +140,9 @@ Hadoop 批处理
 1NB(NonaByte )=2(10)BB=1024YB=2(90)B
 1DB(DoggaByte)=NB(10)NB=1024NB=2(100)B
 
+const BytesPerGibibyte = 1 << 30 // 1024 * 1024 * 1024
+const BytesPerMebibyte = 1 << 20 // 1024 * 1024
+
 
 ## 珠宝行业应用
 
