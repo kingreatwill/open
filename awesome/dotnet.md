@@ -106,6 +106,54 @@ Microsoft.Diagnostics.Runtime is a set of APIs for introspecting processes and d
 
 https://github.com/microsoft/clrmd
 
+
+### 在.NET程序崩溃时自动创建Dump
+#### Windows 平台
+对所有程序都有效果，不仅仅是.NET 程序
+- 打开`regedit.exe`
+- 打开目录`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps`
+- 创建 KEY `DumpFolder` 类型为 `REG_EXPAND_SZ` 用于配置存放 Dump 文件的目录
+- 另外可以创建 KEY `DumpCount` 类型为 `REG_DWORD` 配置 Dump 的总数量
+
+```PowerShell
+New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "LocalDumps"
+
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "%LOCALAPPDATA%\CrashDumps" -PropertyType ExpandString
+
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpCount" -Value 10 -PropertyType DWord
+```
+按照上面的配置，如果程序发生了异常退出，那么就会在`%LOCALAPPDATA%\CrashDumps`目录创建程序的 Dump。
+
+#### .NET Core 全平台
+https://github.com/dotnet/runtime/blob/main/docs/design/coreclr/botr/xplat-minidump-generation.md
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/aspnetcore/practice-troubleshoot-linux/lab-1-3-capture-core-crash-dumps
+
+- COMPlus_DbgEnableMiniDump  或  DOTNET_DbgEnableMiniDump: 如果设置为 1，则发生故障时启用 CoreDump 生成。默认值为：0
+- COMPlus_DbgMiniDumpType  或  DOTNET_DbgMiniDumpType: 要收集的转储类型。有关详细信息，请看下文的说明。默认值为：2
+- COMPlus_DbgMiniDumpName  或  DOTNET_DbgMiniDumpName: 写入转储的文件路径。确保运行 dotnet 进程的用户具有指定目录的写入权限。默认值为：/tmp/coredump.<pid>
+- COMPlus_CreateDumpDiagnostics  或  DOTNET_CreateDumpDiagnostics: 如果设置为 1，则启用转储进程的诊断日志记录。默认值为：0
+- COMPlus_EnableCrashReport  或  DOTNET_EnableCrashReport：（需要.NET 6 或更高版本，目前仅 Linux 和 MacOS 可用）如果设为 1，运行时会生成 JSON 格式的故障报表，其中包括有关故障应用程序的线程和堆栈帧的信息。故障报表名称是追加了 .crashreport.json 的转储路径/名称。
+- COMPlus_CreateDumpVerboseDiagnostics  或  DOTNET_CreateDumpVerboseDiagnostics：（需要 .NET 7 或更高版本）如果设为 1，则启用转储进程的详细诊断日志记录。
+- COMPlus_CreateDumpLogToFile  或  DOTNET_CreateDumpLogToFile：（需要 .NET 7 或更高版本）应写入诊断消息的文件路径。如果未设置，则将诊断消息写入故障应用程序的控制台。
+
+> 对于这些环境变量，.NET 7 标准化前缀  DOTNET_，而不是  COMPlus_。但是，COMPlus_  前缀仍将继续正常工作。如果使用的是早期版本的 .NET 运行时，则环境变量仍应该使用  COMPlus_  前缀。
+
+关于DOTNET_DbgMiniDumpType的说明如下所示：
+
+1: Mini 小型 Dump，其中包含模块列表、线程列表、异常信息和所有堆栈。
+2: Heap 大型且相对全面的 Dump，其中包含模块列表、线程列表、所有堆栈、异常信息、句柄信息和除映射图像以外的所有内存。
+3: Triage 与  Mini  相同，但会删除个人用户信息，如路径和密码。
+4: Full 最大的转储，包含所有内存（包括模块映像）。
+
+参考环境变量配置:
+```
+DOTNET_DbgEnableMiniDump = 1
+DOTNET_DbgMiniDumpName = [有权限的Path目录] # "G:\Temp\dotnet\Debug\dump.dmp"
+DOTNET_CreateDumpDiagnostics = 1
+DOTNET_EnableCrashReport = 1
+```
+
+
 ## code analyzer
 A source code analyzer built for surfacing features of interest and other characteristics to answer the question 'what's in it' using static analysis with a json based rules engine. Ideal for scanning components before use or detecting feature level changes.
 https://github.com/microsoft/ApplicationInspector

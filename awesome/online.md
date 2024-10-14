@@ -158,6 +158,8 @@ https://repl.it/languages/csharp
 ## Other
 
 - [webssh](https://github.com/huashengdun/webssh)
+- [Nexterm](https://github.com/gnmyt/Nexterm) ssh的web管理系统
+
 - https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run
 
 - 这是一个在线的 VIM 指令交互工具，你可以在上面练习很多的 VIM 快捷键。在这里一边解释如何使用，一边让你直接操作，实在是方便：https://www.openvim.com/
