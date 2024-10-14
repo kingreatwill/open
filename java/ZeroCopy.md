@@ -1,4 +1,12 @@
 # 零拷贝(zero copy)
+
+零拷贝技术:
+- mmap(mmap+write实现的零拷贝)
+- sendfile
+- sendfile+DMA scatter/gather实现的零拷贝
+- MSG_ZEROCOPY 
+- splice
+
 ## Linux系统内存管理知识补充
 Linux系统是虚拟内存系统，虚拟内存并不是真正的物理内存，而是虚拟的连续内存地址空间。虚拟内存又分为内核空间和用户空间，内核空间是内核程序运行的地方，用户空间是用户进程代码运行的地方，只有内核才能直接访问物理内存并为用户空间映射物理内存(MMU)。内核会为每个进程分配独立的连续的虚拟内存空间，并且在需要的时候映射物理内存，为了完成内存映射，内核为每个进程都维护了一张页表，记录虚拟地址与物理地址的映射关系，这个页表就是存在于MMU中；用户进程访问内存的时候，通过页表把虚拟内存地址转换为物理内存地址进而访问数据；其实对于用户进程而言，虚拟内存就是内存一般的存在(当作内存看待就好)。这样的设计可以把用户程序和系统程序分开，互不影响；内核可以对所有的用户程序进行管理，比如限制内存滥用等。
 
@@ -102,3 +110,6 @@ https://github.com/modouxiansheng/Doraemon
 
 # Linux中零拷贝原理 | NIO零拷贝技术实践
 https://blog.csdn.net/david_lua/article/details/102735550
+
+# 零拷贝Zero-Copy：高效数据传输的利器
+https://mp.weixin.qq.com/s?__biz=Mzg4NDQ0OTI4Ng==&mid=2247489932&idx=1&sn=db63484ad8293d0d7f4eb20d86b22410&chksm=ceee07da2f37a63c19152cdaa04365d88330b4fb71ce82b95587b10ea6ff3aeb96d957477597&mpshare=1&scene=1&srcid=1013GV6WKhBVcsfdYkO0jDPx&sharer_shareinfo=69c965a035ba1fc195109b6887dddb6b&sharer_shareinfo_first=69c965a035ba1fc195109b6887dddb6b&from=industrynews&version=4.1.30.6008&platform=win&nwr_flag=1#wechat_redirect

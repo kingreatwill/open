@@ -64,3 +64,7 @@ https://pypi.org/project/webssh/
 在linux机器上安装python环境，并且使用命令pip3 install webssh,装上这个模块
 
 我们就可以在浏览器web页面登录我们的linux机器
+
+
+### cubeshell
+https://gitee.com/cubeiic-hanxuan/cube-shell

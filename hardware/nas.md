@@ -106,6 +106,9 @@ rtsp://admin:lierdalux@192.168.1.108:554/cam/realmonitor?channel=1&subtype=1
 - VLC
 - shinobi
 
+### 网络视频录像机
+https://github.com/TomHumphries/simple-nvr
+
 ## NFS、FTP、SMB、WebDav、DLNA协议
 
 

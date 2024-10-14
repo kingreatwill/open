@@ -24,6 +24,11 @@
 [可视化数据结构网站](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
 
 [《Hello 算法》：动画图解](https://github.com/krahets/hello-algo)
+
+[数学动画](https://github.com/3b1b/manim)
+
+[图解数学](../MachineLearning/图解数学)
+
 ```
 #!/bin/bash
 
