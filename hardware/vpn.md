@@ -266,10 +266,13 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 6080 -j DNAT --to-destinatio
 刚毕业的时候自己做了一个，实现原理：
 内网写个服务获取外网IP，存储到一个外网的某个地方（定时获取外网IP有变化就更新），然后外网就能获取到内网的访问IP啦，开启端口映射（当然路由器要支持端口映射啦）转发到内网服务器的IP上.
 
+
 ### ngrok
 
 Ngrok 实现内网穿透（Ngrok 和 Sunny-Ngrok ） 这个之前用到微信开发上面
 https://ngrok.com/
+
+https://github.com/inconshreveable/ngrok
 
 ### natapp
 https://natapp.cn/
@@ -280,7 +283,7 @@ https://www.ngrok.cc/
 ### nat123 : 内网穿透
 ### frp: 内网穿透
 开源
-https://github.com/fatedier/frp 41.1k
+https://github.com/fatedier/frp
 
 [安装参考](../docker/frp.md)
 
@@ -289,7 +292,7 @@ https://github.com/ehang-io/nps
 npc - 客户端
 安装 https://ehang-io.github.io/nps/#/install
 
-### rathole
+### Rathole
 https://github.com/rapiz1/rathole
 
 ### Microsoft dev tunnels
@@ -326,8 +329,6 @@ https://github.com/localtunnel/localtunnel
 ### Chisel
 https://github.com/jpillora/chisel
 
-### Rathole
-https://github.com/rapiz1/rathole
 
 ### sshuttle
 https://github.com/sshuttle/sshuttle

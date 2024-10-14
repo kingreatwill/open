@@ -45,7 +45,7 @@ https://github.com/fatedier/frp/
 #### frp client
 `docker run --restart=always --network host -d -v /share/Public/frp/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc:0.52.3`
 
-#### frp正向代理
+#### frp正向代理/反向代理
 `docker run --restart=always --network host -d -v /data/dockerv/frp/frpc.toml:/etc/frp/frpc.toml --name frpc snowdreamtech/frpc:0.52.3`
 
 `curl -Lv --proxy http://abc:abc@43.155.152.66:8889  http://www.cnblogs.com/`
