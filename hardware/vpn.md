@@ -13,6 +13,37 @@ https://github.com/gfwlist/gfwlist
 
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
 
+### 搭建shadowsocks
+1. 安装谷歌 BBR 加速
+`wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh`
+
+显示 “Press any key to start…” 按回车确认。回车后会出现一列内核版本让我们选择，输入序号 61 并回车开始安装。
+安装完后，按提示重启 VPS，输入 Y 回车重启。稍候 1min 等待重启完成，再重新连接 Xshell。
+重启后输入
+`lsmod | grep bbr`
+出现 tcp_bbr 即说明 BBR 已经启动。
+
+2. 安装SS
+依次运行下面三行命令，如下图所示按要求输入相应信息。（建议：端口选择大于 30000 的。）
+
+```sh
+wget — no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
+chmod +x shadowsocks.sh
+./shadowsocks.sh 2>&1 | tee shadowsocks.log
+```
+
+输入和记录IP,端口,密码和加密方式
+
+3. 使用方法
+https://github.com/shadowsocks/shadowsocks-windows/releases
+https://github.com/shadowsocks/shadowsocks-android/releases
+
+可以选择合适的代理模式。
+PAC： 只代理国外网站；
+全局： 所有网站都通过SS。
+
+> 参考: [搭建自己的科学上网服务器](https://github.com/xiaoming-ssr/FanQiang-Book/wiki/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8)
+
 ### HTTP/HTTPS代理服务器 (正向代理)
 `curl -Lv --proxy http://xx:xx@43.155.152.66:8888  http://www.cnblogs.com/`
 
