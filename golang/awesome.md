@@ -769,7 +769,7 @@ https://github.com/imdario/mergo  2.9k
 
 https://github.com/mitchellh/mapstructure 7.9k
 
-### collection/集合
+### collection/集合/容器
 https://github.com/zyedidia/generic
 
 - array2d: a 2-dimensional array.
@@ -795,6 +795,8 @@ https://github.com/zyedidia/generic
 
 
 ### 工具库
+#### 优秀的实验库
+https://github.com/smallnest/exp/
 
 #### samber/lo 
 https://github.com/samber/lo

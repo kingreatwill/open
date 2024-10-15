@@ -131,5 +131,7 @@ https://www.freedownloadmanager.org/zh/download.htm
 #### FileCentipede
 [File centipede](https://github.com/filecxx/FileCentipede)
 
+#### AB Download Manager
+https://github.com/amir1376/ab-download-manager
 
 
