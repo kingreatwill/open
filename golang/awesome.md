@@ -277,10 +277,19 @@ https://github.com/gofiber/fiber
 ### hertz
 https://github.com/cloudwego/hertz
 
-## 文件上传
+## 文件
+### 文件上传
 tus（Terminated Uploads）
 https://github.com/tus/tusd/tree/main
 
+### vfs(Virtual File System)
+https://github.com/rainycape/vfs
+https://github.com/avfs/avfs
+https://github.com/C2FO/vfs
+https://github.com/spf13/afero
+
+### 文件缓存
+https://github.com/peterbourgon/diskv
 
 
 ## HTTP压测
