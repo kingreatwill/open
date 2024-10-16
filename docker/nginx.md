@@ -3,6 +3,8 @@
 
 ## 在线进行配置
 
+### nginx-ui/WebUI
+https://github.com/0xJacky/nginx-ui
 ### nginxconfig
 https://nginxconfig.io/
 https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN

@@ -3,6 +3,9 @@
 #### AdminLTE
 https://github.com/almasaeed2010/AdminLTE
 
+#### Vuestic Admin
+https://github.com/epicmaxco/vuestic-admin
+
 #### tabler
 https://github.com/tabler/tabler
 

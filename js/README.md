@@ -161,6 +161,9 @@ https://app.wireflow.co/
 -zwibbler
 https://zwibbler.com/
 
+- poster-design/在线图片编辑器/在线海报设计器
+https://github.com/palxiao/poster-design
+
 - [Gitmind 在线思维导图](https://gitmind.com/) https://gitmind.cn/
 
 

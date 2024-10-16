@@ -244,3 +244,11 @@ https://github.com/EbookFoundation/free-programming-books/blob/master/free-progr
 ### GCompris 
 支持 Windows、Android、GNU/Linux 和 macOS 平台，可安装到台式机、笔记本电脑、平板电脑和移动设备上。
 https://gcompris.net/downloads-en.html
+
+## 社交网络
+### Mastodon
+https://github.com/mastodon/mastodon
+
+### Elk
+https://github.com/elk-zone/elk
+Mastodon 网页客户端

@@ -92,6 +92,11 @@ Android 包| Soon |No
 没有本地服务选项 |Yes| No
 桌面文件盒 |Soon |No
 
+#### Pake
+套壳网页打包,可将任意网页转换为轻量级的桌面应用
+https://github.com/tw93/Pake
+
+
 ## 终端工具
 ### Conemu
 Conemu是windows下的一个终端工具,类似于cmder

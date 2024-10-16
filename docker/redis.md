@@ -77,3 +77,9 @@ aof_rewrite_cpulist 8-11
 # 后台 RDB 进程绑定到 CPU 核心 1,10,11
 # bgsave_cpulist 1,10-1
 ```
+
+### redis desktop manager(RDM)/Redis GUI
+[Tiny RDM](https://github.com/tiny-craft/tiny-rdm) 8.6k
+[Redis Insight](https://github.com/RedisInsight/RedisInsight) 6.2k
+[Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager) 30.4k
+[Redis Desktop Manager](https://github.com/RedisInsight/RedisDesktopManager) 22.9k
