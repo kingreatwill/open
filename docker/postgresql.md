@@ -35,6 +35,16 @@ pg_dumpall –h 127.0.0.1 –p 5432 -U postgres –c  -C –f db_bak.sql
 恢复方式很简单。执行恢复命令即可：
 psql –h 127.0.0.1 -p 5432 -U postgres –f db_bak.sql
 
+## 升级
+https://github.com/tianon/docker-postgres-upgrade
+
+```
+docker run --rm \
+	-v /data/dockerv/postgresql/16/data:/var/lib/postgresql/16/data \
+	-v /data/dockerv/postgresql/17/data:/var/lib/postgresql/17/data \
+	tianon/postgres-upgrade:16-to-17
+```
+
 ## 分词器
 ### pg_jieba
 
@@ -428,3 +438,6 @@ local   replication     postgres                                peer
 host    replication     postgres        127.0.0.1/32            md5
 host    replication     postgres        ::1/128                 md5
 ```
+
+外网访问, 可以加上所以IP
+host all all 127.0.0.1/32 md5

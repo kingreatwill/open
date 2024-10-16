@@ -58,14 +58,16 @@ https://github.com/petoolse/petools
 
 ### Electron
 
-https://github.com/electron/electron 86.5k C++
+https://github.com/electron/electron  C++ 86.5k -> 114k
 
 ### TAURI
 
-https://github.com/tauri-apps/tauri rust 7k
+https://github.com/tauri-apps/tauri rust 7k -> 83.5k
 
-tauri 与 electron 的对比
-. |Tauri |Electron
+TAURI 打包出来的基本上就是一个可执行文件, tauri 2.0支持移动端
+
+tauri v1 与 electron 的对比
+. |Tauri v1 |Electron
 ---|---|---
 MacOS 的包大小| 0.6 MB| 47.7 MB
 MacOS 的内存消耗 |13 MB| 34.1 MB
