@@ -1,7 +1,7 @@
 ---
-Title: Caddy
-Summary: Caddy
-Tags:
+title: Caddy
+summary: Caddy
+tags:
     - Caddy
     - Traefik
 ---
@@ -29,6 +29,11 @@ caddy 插件: https://caddyserver.com/docs/extending-caddy
 caddy 辅助编译工具(xcaddy): https://github.com/caddyserver/xcaddy
 
 > watch参数可以动态加载配置文件
+
+### NGINX Config Adapter
+https://github.com/caddyserver/nginx-adapter
+
+`caddy run|start --config nginx.conf --adapter nginx`
 
 ### 其它代理
 #### Traefik
