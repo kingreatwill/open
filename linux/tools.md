@@ -4,6 +4,26 @@
 Linux最常用命令：简单易学，但能解决95%以上的问题
 https://www.toutiao.com/a6763990899924926989/
 
+
+### Asciinema
+终端录制工具
+
+输出文件格式[asciicast](https://docs.asciinema.org/manual/asciicast/v2/) format (.cast)
+
+```
+# exit退出录制
+asciinema rec demo.cast
+
+
+# 要一致回车进行回放
+asciinema play demo.cast
+
+# 分享, 会生成临时分享地址
+asciinema upload demo.cast 
+
+asciinema auth
+```
+
 ### wget
 
 > windows [下载地址](https://eternallybored.org/misc/wget/)
