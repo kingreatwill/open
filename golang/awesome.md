@@ -372,14 +372,24 @@ https://github.com/iancoleman/strcase
 
 ## GUI
 
+### Fyne
+
 
 Cross platform GUI in Go based on Material Design https://fyne.io/
 https://github.com/fyne-io/fyne
 
 
+
+跨平台支持手机端: `go run -tags mobile main.go`
+```
+fyne package -os android -appID my.domain.appname
+fyne install -os android
+
+fyne package -os ios -appID my.domain.appname
+fyne package -os iossimulator -appID my.domain.appname
+```
+
 请注意，默认情况下，Windows应用程序是从命令提示符加载的，这意味着，如果单击图标，则可能会看到命令窗口。 要解决此问题，请在运行或构建命令中添加参数-ldflags -H = windowsgui。
-
-
 
 Prerequisites
 https://fyne.io/develop/
@@ -390,6 +400,13 @@ Windows
     - TDM-GCC - tdm-gcc.tdragon.net
     - Cygwin - cygwin.com
 3. In Windows your graphics driver will already be installed, but it is recommended to ensure they are up to date.
+
+环境安装
+- Install Go
+- Install Gcc
+- `go get fyne.io/fyne/v2@latest` (or, if using Go before 1.16, then `go get fyne.io/fyne/v2`)
+- You can test your installation using the [Fyne Setup](https://geoffrey-artefacts.fynelabs.com/github/andydotxyz/fyne-io/setup/latest/) app (检查你的环境是否可以进行fyne开发)
+
 
 
 ## eval
