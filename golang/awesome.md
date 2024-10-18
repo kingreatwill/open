@@ -405,7 +405,10 @@ fyne install -icon myapp.png
 ```
 
 
-请注意，默认情况下，Windows应用程序是从命令提示符加载的，这意味着，如果单击图标，则可能会看到命令窗口。 要解决此问题，请在运行或构建命令中添加参数-ldflags -H = windowsgui。
+请注意，默认情况下，Windows应用程序是从命令提示符加载的，这意味着，如果单击图标，则可能会看到命令窗口。 要解决此问题，请在运行或构建命令中添加参数`-ldflags="-H windowsgui"`。
+
+避免出现控制台:
+`go run -ldflags="-H windowsgui"`
 
 Prerequisites
 https://fyne.io/develop/
@@ -451,6 +454,13 @@ https://git.sr.ht/~eliasnaur/gio
 https://gioui.org/
 
 支持移动端和web端
+
+`go install gioui.org/cmd/gogio@latest`
+默认使用appicon.png做icon
+
+开发: 
+`go get gioui.org`
+
 
 ### webview
 https://github.com/webview/webview 12.6k

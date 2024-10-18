@@ -402,6 +402,8 @@ https://github.com/mingrammer/diagrams
 ## 翻译
 https://github.com/UlionTse/translators
 
+https://github.com/LibreTranslate/LibreTranslate
+
 
 ## 文档
 https://github.com/scanny/python-pptx
