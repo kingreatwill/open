@@ -141,4 +141,8 @@ https://www.freedownloadmanager.org/zh/download.htm
 #### AB Download Manager
 https://github.com/amir1376/ab-download-manager
 
+#### imFile
+
+https://imfile.io/
+
 

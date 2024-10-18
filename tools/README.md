@@ -30,6 +30,9 @@ https://pdf2md.morethan.io/
 ### MarkDown 网页编辑器StackEdit
 https://github.com/benweet/stackedit 17.2k
 
+### 简历生成工具
+https://github.com/unexcellent/rsume
+
 ## mysql
 [my.cnf自动生成工具](https://imysql.com/my-cnf-wizard.html)
 

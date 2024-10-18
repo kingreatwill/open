@@ -12,6 +12,9 @@ https://github.com/usememos/memos
 docker run -d --name memos --link postgresql --restart always -p 10009:5230 -v /data/dockerv/memos/data:/var/opt/memos neosmemo/memos:stable --driver postgres --dsn 'postgresql://postgres:PASSWORD@postgresql:5432/memos?sslmode=disable'
 ```
 
+### flomo
+非开源
+
 ### shiori
 https://github.com/go-shiori/shiori
 

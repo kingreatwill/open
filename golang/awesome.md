@@ -331,6 +331,8 @@ https://github.com/TrueFurby/go-callvis
 github.com/liamylian/json-hashids
 
 序列化自动加密
+### yaml/json转结构体
+https://github.com/twpayne/go-jsonstruct
 
 ## orm
 facebook开源的新的go语言orm模块，An entity framework for Go
