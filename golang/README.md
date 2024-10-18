@@ -58,6 +58,19 @@ GolangCI-Lint 检查代码
 ## Gopher China
 https://github.com/fanjindong/GopherChina
 
+## 字节对齐/内存对齐
+
+[在线查看内存对齐](https://github.com/kingreatwill/go-sizeof-tips) 在线[查看](https://golang-sizeof.wcoder.com/)
+
+
+[Go的内存对齐和指针运算详解和实践](https://www.cnblogs.com/sy270321/p/12205435.html)
+
+[Go 的内存对齐和指针运算详解和实践](https://learnku.com/articles/39255)
+
+[深挖Go系列之聊聊struct的内存对齐](https://mp.weixin.qq.com/s/TzY7aWbKtikQpfIySkJeQQ)
+
+[内存对齐工具](https://github.com/dominikh/go-tools)
+
 ## 待整理
 
 [推荐算法、相似度算法、布隆过滤器、均值算法、一致性Hash、数据结构、leetcode练习](https://github.com/hwholiday/algorithm_coding)
@@ -83,17 +96,11 @@ https://github.com/fanjindong/GopherChina
 
 [高频 golang 服务接口超时排查&性能调优](https://mp.weixin.qq.com/s/rDjTqqR0q4VTSQrYFzbR7w)
 
-[Go 的内存对齐和指针运算详解和实践](https://learnku.com/articles/39255)
-
-[深挖Go系列之聊聊struct的内存对齐](https://mp.weixin.qq.com/s/TzY7aWbKtikQpfIySkJeQQ)
-
-[内存对齐工具](https://github.com/dominikh/go-tools)
 
 [内存布局](https://gfw.go101.org/article/memory-layout.html)
 
 [Memory Blocks](https://go101.org/article/memory-block.html)
 
-[Go的内存对齐和指针运算详解和实践](https://www.cnblogs.com/sy270321/p/12205435.html)
 
 [[译]Go：内存管理与内存分配](https://juejin.im/post/5ddcdc5df265da05c33fcad2)
 
