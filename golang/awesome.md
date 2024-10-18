@@ -373,12 +373,9 @@ https://github.com/iancoleman/strcase
 ## GUI
 
 ### Fyne
-
+https://github.com/fyne-io/fyne 24.9k
 
 Cross platform GUI in Go based on Material Design https://fyne.io/
-https://github.com/fyne-io/fyne
-
-
 
 跨平台支持手机端: `go run -tags mobile main.go`
 ```
@@ -388,6 +385,25 @@ fyne install -os android
 fyne package -os ios -appID my.domain.appname
 fyne package -os iossimulator -appID my.domain.appname
 ```
+支持web
+> If you’re using an older version of Go (<1.16), you should install fyne using `go get fyne.io/fyne/v2/cmd/fyne`
+```
+go install fyne.io/fyne/v2/cmd/fyne@latest
+fyne serve # 在线运行
+
+fyne package -os web
+```
+
+```
+go install fyne.io/fyne/v2/cmd/fyne@latest
+fyne package -os darwin -icon myapp.png
+fyne package -os linux -icon myapp.png
+fyne package -os windows -icon myapp.png
+
+# 在当前系统安装应用
+fyne install -icon myapp.png
+```
+
 
 请注意，默认情况下，Windows应用程序是从命令提示符加载的，这意味着，如果单击图标，则可能会看到命令窗口。 要解决此问题，请在运行或构建命令中添加参数-ldflags -H = windowsgui。
 
@@ -405,8 +421,42 @@ Windows
 - Install Go
 - Install Gcc
 - `go get fyne.io/fyne/v2@latest` (or, if using Go before 1.16, then `go get fyne.io/fyne/v2`)
-- You can test your installation using the [Fyne Setup](https://geoffrey-artefacts.fynelabs.com/github/andydotxyz/fyne-io/setup/latest/) app (检查你的环境是否可以进行fyne开发)
+- You can test your installation using the [Fyne Setup](https://geoffrey-artefacts.fynelabs.com/github/andydotxyz/fyne-io/setup/latest/) app (检查环境: 检查你的环境是否可以进行fyne开发)
 
+### wails
+https://github.com/wailsapp/wails/ 25k
+
+`go install github.com/wailsapp/wails/v2/cmd/wails@latest`
+
+C/S模式，一个后端服务，一个前端页面作为UI。前端可以使用 Vue / React / Angular，可以说很适合偏前端的选手。
+
+环境安装: https://wails.io/docs/gettingstarted/installation/
+- Go 1.20+
+- NPM (Node 15+)
+
+> 可以运行`wails doctor`检查环境
+
+创建项目: https://wails.io/docs/gettingstarted/firstproject
+vue+ts: `wails init -n myproject -t vue-ts`
+
+
+编译运行: https://wails.io/docs/guides/manual-builds/
+`wails build` or `wails dev`
+参数:
+https://wails.io/docs/reference/cli/#build
+
+
+### webview
+https://github.com/webview/webview 12.6k
+
+Tiny cross-platform webview library for C/C++. Uses WebKit (GTK/Cocoa) and Edge WebView2 (Windows).
+
+### 非go
+#### Electron
+https://github.com/electron/electron  C++ 86.5k -> 114k
+
+#### TAURI
+https://github.com/tauri-apps/tauri rust 7k -> 83.5k
 
 
 ## eval
