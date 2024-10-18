@@ -66,7 +66,7 @@ func Test_segmentfault(t *testing.T) {
 }
 
 func Test_cnblogs(t *testing.T) {
-	do("https://www.cnblogs.com/coder-programming/p/12604799.html", "", "")
+	do("https://www.cnblogs.com/davygeek/p/6399967.html", "", "")
 	// html2md.exe https://www.cnblogs.com/chenyishi/p/12586512.html
 }
 
