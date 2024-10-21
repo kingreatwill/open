@@ -146,9 +146,9 @@ https://khan.github.io/KaTeX/docs/supported.html
 
 #### 块公式：`$$...$$`
 
-$$e^{x^2}\neq{e^x}^2$$
+$$ e^{x^2}\neq{e^x}^2 $$
 
-来个 *"复杂点"* 的:
+来个复杂点的:
 
 $$H(D_2) = -(\frac{2}{4}\ log_2 \frac{2}{4} + \frac{2}{4}\ log_2 \frac{2}{4}) = 1$$
 
@@ -162,6 +162,7 @@ $$\begin{pmatrix}
     \end{pmatrix}$$
 
 对应“一键排版”的css样式关键字为：`.katex`
+
 #### Latex复制到公众号等各平台的特别说明
 ##### 复杂的行内公式（顶部和底部突出很多那种），转换后，如果显示不完整，请改为块公式
 有些比较复杂的行内公式,转换后，可能会出现顶部和底部很突出的部分看不见的情况，把它改成块公式就OK。
@@ -411,7 +412,8 @@ Graphviz 有 6 个引擎，分别是：
 6. circo - 圆形布局，after Six and Tollis 99, Kauffman and Wiese 02。这适用于多个循环结构的某些图，例如某些电信网络。
 
 https://github.com/structurizr/dotnet
-可以导出到PlantUML和[DGML](https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/modeling/directed-graph-markup-language-dgml-reference.md)
+可以导出到PlantUML和 [DGML](https://github.com/MicrosoftDocs/visualstudio-docs/blob/master/docs/modeling/directed-graph-markup-language-dgml-reference.md)
+
   DGML是Directed Graph Markup Language的缩写，中文应该翻译为“有向图标记语言”。 DGML是微软在Visual Studio 2010中开始引入的一种完全符合XML格式语言，它主要是用来描述循环（cyclical）和非循环（acyclic）的有向图。有向图是由一系列的由边（link/edge）进行互联的节点（node）组成。
 
 [flowchat](http://flowchart.js.org/)
