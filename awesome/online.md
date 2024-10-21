@@ -30,6 +30,9 @@ online
 - [windows 12](https://tjy-gitnub.github.io/win12/desktop.html)
 - [Internet OS](https://github.com/HeyPuter/puter) - [体验](https://puter.com/)
 - [Web Desktop OS](https://github.com/tobychui/arozos)
+- [copy.sh](https://github.com/copy/v86)
+- [Webminal](https://webminal.org/)
+- [JS/UIX](https://www.masswerk.at/jsuix/index.html)
 
 ## IDE
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) A browser based code editor.[open](https://github.com/microsoft/monaco-editor)

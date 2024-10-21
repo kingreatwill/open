@@ -57,3 +57,7 @@ sudo passwd wcoder #为wcoder用户设置密码
 
 ### 查看日志
 journalctl -u cockpit
+
+
+## webmin 
+https://github.com/webmin/webmin
