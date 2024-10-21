@@ -295,15 +295,15 @@ $$\begin{pmatrix}
 </p>
 
 请参考"一键排版"中的"标题首字突出"样式的提示修改,可把此标题首字突出:
-###<span class="firstletter">1</span>试试首字突出
+<span class="firstletter">1</span>试试首字突出
 
 注:理论上Md2All是支持所有标准的html和css，但问题是公众号很多都不支持，所以上面只演示了部分支持的。
 
 <a id="footnote-1"></a>
 <a id="jump_20"></a>
-###赞赏Md2All
+### 赞赏Md2All
 
-###版本更新记录
+### 版本更新记录
 ***
 版本号：V2.8.4
 更新日期：2019-06-13 
@@ -319,7 +319,7 @@ dart,r,delphi,vb(vbnet),vbs(vbscript),vbscript-html
 1:结合云图床，解决了Latex公式复制到公众号时有可能报“图片粘贴失败的问题”;
 2:结合云图床，解决了Latex公式复制到知乎的问题;
 3:点“图片”图标时，在云图床设置上新增了：“需要转换为图片的内容,会自动上传到云图床”选项
-4:在“一键排版”的各样式文件中更新了Latex的样式，主要是显示的大小，你可能需要**“恢复预设值”**才能看到新的样式.
+4:在“一键排版”的各样式文件中更新了Latex的样式，主要是显示的大小，你可能需要 **“恢复预设值”**才能看到新的样式.
 
 **更多请参考**：
 [Md2All版本更新记录](https://www.cnblogs.com/garyyan/p/9238405.html)
@@ -422,8 +422,9 @@ Structurizr DSL ：https://structurizr.com/dsl  https://github.com/structurizr/d
 Asciidoctor Diagram：https://github.com/asciidoctor/asciidoctor-diagram
 WebSequenceDiagrams： https://www.websequencediagrams.com/
 ilograph：http://app.ilograph.com/
-、
+
 ### flowchart.js
+
 ```flow
 st=>start: 开始
 e=>end: 结束
