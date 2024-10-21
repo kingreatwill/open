@@ -37,8 +37,18 @@ JavaScript: nginScript
 PHP: https://github.com/rryqszq4/ngx_php
 
 
-
 > 第三方模块: https://www.nginx.com/resources/wiki/modules/
+
+### Nginx管理系统
+https://github.com/0xJacky/nginx-ui
+https://github.com/alexazhou/VeryNginx
+https://github.com/stefanpejcic/OpenPanel
+https://github.com/ajenti/ajenti
+https://github.com/schenkd/nginx-ui
+https://github.com/EasyEngine/easyengine
+https://github.com/caprover/caprover
+https://github.com/nginx/agent
+
 
 ### nginx替代品
 - [Caddy](https://caddyserver.com/)采用Go语言编写, 是一款功能强大，扩展性高的Web服务器(coredns就是使用它)
