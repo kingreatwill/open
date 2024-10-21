@@ -270,10 +270,10 @@ $$\begin{pmatrix}
 注：只要放置:`[TOC]`,就能把其后面的标题如：`#,##,...######`自动生成目录树，注意，`[TOC]`要独立一行，并前面和后面都要空一行
 
 
-###直接支持html,css
+### 直接支持html,css
 如果你懂html和css，那下面这些效果就不在话下了：
 
-<a href="#jump_1">来个页内跳转</a>，跳转到文未的：`<a id="jump_1">我是页内跳转到的位置</a>` ,对应：`id="jump_1"`
+<a href="#jump_1">来个页内跳转</a>，跳转到文未的： `<a id="jump_1">我是页内跳转到的位置</a>` ,对应：`id="jump_1"`
 <span  style="color: #5bdaed; ">先给点颜色你看看</span>
 <span  style="color: #AE87FA; ">再给点颜色你看看</span> 
 <span  style="font-size:1.3em;">试试改变字体大小</span>
