@@ -1,4 +1,16 @@
+[TOC]
 # Markdown
+
+
+[Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
+[GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+
+[Markdown: Syntax 语法](https://daringfireball.net/projects/markdown/syntax)
+
+Setext, atx, Textile, reStructuredText, Grutatext, and EtText
+
+[emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md)
+
 还有更NB的[R-markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) 当然需要RStudio(可以直接转换为html，pdf和word)，就像jupyter一样
 
 同理也有[Python-Markdown](https://python-markdown.github.io/), haha,错了，这只是一个Markdown 转换的库
@@ -33,35 +45,19 @@ param = 5
 
 ## 上标、下标
 
-- 
-X<sub>i</sub>
-H<sub>2</sub>O  CO<sub>2</sub>
-益达<sup>TM</sup>
+- X<sub>i</sub>
+- H<sub>2</sub>O  CO<sub>2</sub>
+- 益达<sup>TM</sup>
+- 输入上标 x^2^
+- 输入下标 x~0~
 
-- 
-
-输入上标 x^2^
-输入下标 x~0~
-
-[TOC]
-
-
-[Github Flavored Markdown语法介绍](https://github.com/guodongxiaren/README)
-[GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-
-[Markdown: Syntax 语法](https://daringfireball.net/projects/markdown/syntax)
-
-Setext, atx, Textile, reStructuredText, Grutatext, and EtText
-
-[emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md)
 
 > 微信公众号：**[颜家大少](#jump_10)**
 > 关注可了解更多的教程及排版技巧。问题或建议，请公众号留言;
 > **[如果你觉得Md2All对你有帮助，欢迎赞赏](#jump_20)[^1]**
 
-###内容目录（由[TOC]自动生成）
+### 内容目录（由[TOC]自动生成）
 
-[TOC]
 
 ###Md2All 简介
 Markdown排版利器，支持 **"一键排版"** 、自定义css、80多种代码高亮。
@@ -71,9 +67,9 @@ Markdown排版利器，支持 **"一键排版"** 、自定义css、80多种代�
 支持生成带样式的html文件;
 甚至支持直接用原生的html,css排版。
 
-####详细教程
+#### 详细教程
 [Md2All详细教程,请参考：https://www.cnblogs.com/garyyan/p/8329343.html](https://www.cnblogs.com/garyyan/p/8329343.html )
-####对公众号、博客的优化
+#### 对公众号、博客的优化
 支持代码块，并解决常见的代码块换行不正确,特别是iPone、iPad上不能滚动的问题;
 解决把内容粘贴到公众号时，图片、或样式丢失的问题;
 
@@ -83,7 +79,7 @@ Markdown排版利器，支持 **"一键排版"** 、自定义css、80多种代�
 [请参考此博文：https://juejin.im/post/5a1bcc6ef265da431f4acb09](https://juejin.im/post/5a1bcc6ef265da431f4acb09)
 支持直接把页面"复制"到 **"知乎"** 、51CTO、worpress ,hex......中。
 
-###代码块显示效果
+### 代码块显示效果
 注：markdown对代码块的语法是开始和结束行都要添加：\`\`\`,其中 \` 为windows键盘左上角那个，如下：
 
 ```
@@ -114,7 +110,7 @@ function DisplayWindowSize(){
 如果所有的"代码主题"都不符合你的要求，你可以参考"一键排版"下的"代码块样式"自定义自己喜欢的代码高亮
 
 <a id="jump_10"></a>
-###图片显示
+### 图片显示
 
 下面的是我的公众号二维码图片，欢迎关注。
 
@@ -122,7 +118,7 @@ function DisplayWindowSize(){
 可直接把网络图片地址添加到markdown中，
 默认为图片居中，如果想居左时，请打开"一键排版"下的css样式中的`img{margin:0 0;}`,
 `[这里写图片描述]`中对图片的描述内容会自动生成在图片的底部，对应样式`figcaption{}`
-###云图床功能
+### 云图床功能
 Md2All支持云图床，设置好云图床后，能把本地图片自动上传到云图床，并自动生成markdown.
 [请参考云图床教程:https://www.cnblogs.com/garyyan/p/9181809.html](https://www.cnblogs.com/garyyan/p/9181809.html)
 
