@@ -88,5 +88,4 @@ aof_rewrite_cpulist 8-11
 https://github.com/DiceDB/dice golang 6.4k
 https://github.com/microsoft/Garnet .net 10.2k
 https://github.com/dragonflydb/dragonfly C++ 25.6k
-https://github.com/Snapchat/KeyDB  C++ 11.4k
-Dragonfly C++、KeyDB
+https://github.com/Snapchat/KeyDB  C++ 11.4k(redis分支而来)

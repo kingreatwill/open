@@ -1,4 +1,4 @@
-
+[TOC]
 ## 解析器构建库(正则解析)
 [Sprache](https://github.com/sprache/Sprache)
 [superpower](https://github.com/datalust/superpower)
@@ -277,6 +277,8 @@ OUTPUT:
 https://docs.microsoft.com/en-us/dotnet/api/system.string.format?view=net-5.0
 
 
+
+
 ## plugins
 ### OrchardCore
 https://github.com/OrchardCMS/OrchardCore 4.7k
@@ -410,3 +412,7 @@ https://github.com/Squidex/squidex squidex是无头CMS和内容管理中心，�
 ### blog
 https://github.com/madskristensen/Miniblog.Core
 https://github.com/piranhacms/piranha.core
+
+## 其它
+计算方法执行时间
+https://github.com/Fody/MethodTimer

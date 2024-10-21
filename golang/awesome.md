@@ -475,6 +475,10 @@ https://github.com/electron/electron  C++ 86.5k -> 114k
 https://github.com/tauri-apps/tauri rust 7k -> 83.5k
 
 
+## 脚手架/CLI tool
+https://github.com/create-go-app/cli
+https://github.com/go-nunu/nunu
+
 ## eval
 github.com/Knetic/govaluate
 

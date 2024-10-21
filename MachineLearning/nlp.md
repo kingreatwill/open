@@ -40,6 +40,10 @@ Grover:https://arxiv.org/abs/1905.12616
 KERMIT:https://arxiv.org/abs/1906.01604
 Big Bird:https://arxiv.org/abs/2007.14062
 
+### Llama Coder/ 生成应用(前端)
+https://llamacoder.together.ai/
+https://github.com/nutlope/llamacoder
+
 ### Mistral 8x7B
 
 87GB的模型种子下载：
