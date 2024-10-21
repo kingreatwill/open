@@ -706,6 +706,48 @@ RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=loc
 > [cpu测试脚本](../linux/shell/cpuload.sh) ;  [内存测试脚本](../linux/shell/cpuload.sh)
 
 
+#### 直接读取stdin来当作dockerfile
+
+```
+docker run --rm -p8090:8090 $(
+  docker build --quiet -<<-EOD
+    FROM golang:1.23.1 as builder
+    WORKDIR /
+    COPY <<-EOF server.go
+      package main
+
+      import "fmt"
+      import "net/http"
+
+      func main() {
+        fmt.Println("Starting HTTP Server...")
+        http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+          fmt.Fprint(w, "hello")
+        })
+        http.ListenAndServe(":8090", nil)
+      }
+EOF
+
+    RUN CGO_ENABLED=0 go build -o server server.go
+
+    FROM gcr.io/distroless/static
+    COPY --from=builder /server /server
+    CMD ["/server"]
+EOD
+)
+```
+
+> 考虑到可能需要使用 glibc libssl openssl，我们使用 base 镜像
+> 如果不需要使用上述依赖，可以切换为 static 镜像，让产物尺寸更小巧
+> FROM gcr.io/distroless/base
+
+
+#### 直接修补容器镜像
+https://github.com/project-copacetic/copacetic
+
+
+镜像安全扫描工具[Trivy](https://github.com/aquasecurity/trivy)
+
 ## 流水线版本
 ```
 

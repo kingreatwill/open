@@ -539,6 +539,8 @@ k8s in docker/k8s in pod
 #### Falco
 Falco 容器安全系统
 https://github.com/falcosecurity
+#### Trivy
+https://github.com/aquasecurity/trivy
 
 ### 监控工具/调试
 #### Retina 
