@@ -541,6 +541,11 @@ Falco 容器安全系统
 https://github.com/falcosecurity
 
 ### 监控工具/调试
+#### Retina 
+https://github.com/microsoft/retina
+
+这是由微软开源的基于 eBPF 的云原生容器网络可观测性平台，支持 Linux、Windows 等多种操作系统。它提供了一个集中查看、监控、分析应用和网络运行状况的中心平台，能够将收集的网络可观测性数据发送到 Prometheus 进行可视化，适用于调试 Pod 无法互连的问题、监控网络健康状况、收集遥测数据等场景。
+
 #### Kubeshark
 [Kubeshark](https://github.com/kubeshark/kubeshark) 是一款用于 Kubernetes 的 API 流量分析器，可提供对Kubernetes 内部网络的实时、协议级可视性，捕获并监控进出和跨容器、pod、节点和集群的所有流量和有效载荷。
 

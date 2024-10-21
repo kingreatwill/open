@@ -108,7 +108,7 @@ https://github.com/topxeq/gotx
 
 ### 热更新
 https://github.com/cosmtrek/air
-
+https://github.com/air-verse/air
 
 https://github.com/topics/live-reload?l=go
 
@@ -699,6 +699,7 @@ https://github.com/go-bindata/go-bindata
 ## 视频下载
 
 https://github.com/iawia002/annie
+https://github.com/iawia002/lux
 
 抖音	    https://www.douyin.com	✓			
 哔哩哔哩	https://www.bilibili.com	✓		✓	✓
