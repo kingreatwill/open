@@ -8,6 +8,12 @@
 
 ### frp 0.52.3
 #### frp server
+
+`docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps ghcr.io/fatedier/frps:v0.61.0 -c /etc/frp/frps.toml`
+
+Since v0.50.0, the default value of transport.tls.enable and transport.tls.disableCustomTLSFirstByte has been changed to true, and tls is enabled by default.
+
+
 配置文件格式ini变成了toml
 `docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps snowdreamtech/frps:0.52.3`
 
