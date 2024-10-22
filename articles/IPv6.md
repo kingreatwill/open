@@ -17,6 +17,10 @@ https://www.ipip.net/support/code.html
 
 https://github.com/metowolf/qqwry.ipdb
 
+#### IPdb格式转换
+https://github.com/sjzar/ips
+https://github.com/qiniu/uip
+
 #### DATX 格式
 
 ### 全球IP属地/离线IP库

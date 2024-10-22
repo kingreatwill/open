@@ -108,9 +108,9 @@ time tracking / code time
 - 习惯养成：代表产品HabitMinder、iBetter
 
 ### 数据收集表单
-数据收集表单的用途是在于意见征询、问卷调查等方面。
+数据收集表单的用途是在于意见征询、问卷调查,调研系统等方面。
 - [麦克CRM](https://www.mikecrm.com/)
-
+- [XIAOJUSURVEY](https://github.com/didi/xiaoju-survey)
 
 ## 视频下载
 
@@ -363,6 +363,9 @@ Subtitle Edit - 开源字幕编辑器
 [17 Best Free Screenshot Tools for Windows 10](https://thegeekpage.com/17-best-free-screenshot-tools-for-windows-10/)
 [17 Best Free Screen Recording Software for Windows 10](https://thegeekpage.com/screen-recording-software-for-windows-10/)
 
+
+### Screenity
+https://github.com/alyssaxuu/screenity
 
 ### Camtasia 收费的
 Camtasia Studio是TechSmith旗下的一套专业屏幕录像软件，同时包含Camtasia 录像器、Camtasia Studio（编辑器）、Camtasia 菜单制作器、Camtasia 剧场、Camtasia 播放器和Screencast的内置功能。

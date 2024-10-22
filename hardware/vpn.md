@@ -122,6 +122,8 @@ export https_proxy=http://user123:hahapwd@47.113.67.125:18888
 
 [正向代理 forwardproxy](../articles/caddy.md#forwardproxy)
 
+#### dumbproxy/HTTP proxy
+https://github.com/SenseUnit/dumbproxy
 
 #### nginx proxy
 [nginx forward proxy](https://www.cnblogs.com/yanjieli/p/15229907.html)

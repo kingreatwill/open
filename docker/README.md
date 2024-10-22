@@ -369,7 +369,8 @@ https://github.com/bitnami/containers/tree/main/bitnami/
 
 比如: [使用 bitnami/postgresql-repmgr 镜像快速设置 PostgreSQL HA](https://www.cnblogs.com/hacker-linner/p/16183165.html)
 比如: [mysql主从](https://github.com/bitnami/containers/tree/main/bitnami/mysql) 也是非常方便的
-
+## docker-mirror/docker 镜像
+https://github.com/seatgeek/docker-mirror
 
 ## docker 分析
 ### docker image转dockerfile
