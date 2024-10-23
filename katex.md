@@ -5,6 +5,9 @@
 https://www.mathjax.org/
 https://github.com/mathjax/MathJax
 ### KaTeX
+https://katex.org/
+
+https://github.com/KaTeX/KaTeX
 
 ### Latex数学公式(能正确复制到公众号等平台）:
 
