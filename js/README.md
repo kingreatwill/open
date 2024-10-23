@@ -169,6 +169,11 @@ https://github.com/palxiao/poster-design
 
 > [10款最佳HTML5绘图工具](https://www.cnblogs.com/jackyWHJ/p/3872098.html)
 
+### 流程图
+https://github.com/antvis/G6
+https://github.com/antvis/X6
+https://github.com/didi/LogicFlow
+
 ### 终端应用程序Xterm.js
 https://github.com/xtermjs/xterm.js
 
@@ -369,6 +374,8 @@ https://github.com/hql7/wl-gantt
 
 ### 其它
 https://github.com/robicch/jQueryGantt
+
+
 
 ## 数据分析
 [原CNZZ站长工具 - 被阿里收购](https://www.umeng.com/)
