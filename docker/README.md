@@ -674,6 +674,31 @@ RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=loc
 [使用 BuildKit 构建镜像](https://docker-practice.github.io/zh-cn/buildx/buildkit.html)
 [使用 BuildKit 构建镜像](https://vuepress.mirror.docker-practice.com/buildx/buildkit/#run-mount-type-cache)
 
+
+### upx进一步压缩程序大小
+https://github.com/upx/upx
+
+UPX（全称: Ultimate Packer for eXecutables），是一个开源的可执行文件压缩工具。它的主要目的是将可执行文件和共享库（通常是二进制文件）压缩为更小的尺寸，从而减少磁盘占用空间和下载时间。
+
+UPX 采用无损压缩技术，可以在不影响可执行文件的功能的情况下（压缩后的文件仍可直接执行）减小文件的大小。它通常用于减小应用程序、二进制文件或脚本的大小，特别是在需要分发或传输这些文件时，以减少带宽和存储成本。
+
+
+```
+FROM golang:1.23.1-alpine AS builder
+RUN apk add --no-cache upx
+WORKDIR /app
+COPY go.* ./
+RUN go mod download && go mod verify
+COPY . .
+RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -o main -a --trimpath --ldflags="-s -w" --installsuffix cgo
+RUN upx --ultra-brute -qq main && upx --t main
+
+# 最终镜像
+FROM scratch
+COPY --from=builder /app /
+CMD ["./main"]
+```
+
 ## docker资源限制
 [docker对于CPU和内存的限制](https://www.cnblogs.com/renshengdezheli/p/16662622.html)
 

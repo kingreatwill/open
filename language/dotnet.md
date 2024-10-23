@@ -326,6 +326,14 @@ namespace daemon
 [de4dot](https://github.com/de4dot/de4dot)
 [EazFixer](https://github.com/holly-hacker/EazFixer)
 
+### PECompact
+PECompact 压缩壳，脱壳
+
+PECompact是一款专业的资源压缩工具，他可以压缩你开发软件或者代码的体积，中文版由大眼仔旭汉化。
+
+PECompact 是一个能压缩可执行文件的工具，通过压缩代码、数据、相关资源使压缩能达到100%，由于在运行时不需要恢复磁盘上压缩后的数据，所以与没有压缩的程序在运行时没有明显的速度差异，在某种程度上还有所改善。
+你要压缩，但需要选择一个压缩机。有UPX ， ASPACK和PECompact 。这些是前3名的PE （ 32位）本地EXE压缩机。 UPX具有减压开关，是开源的（通常由恶意软件编写者滥用） ， ASPACK不能压缩以及PECompact ，也没有插件支持的。它也缺乏PECompact的其他主要功能。
+
 ## 混淆工具
 [ConfuserEx](https://github.com/mkaring/ConfuserEx)
 [obfuscar](https://github.com/obfuscar/obfuscar)
