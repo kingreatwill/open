@@ -7,6 +7,19 @@ docker-compose.yml文件位于以下目录
 
 注意docker-compose.yml 后缀一定是yml, 以及applicationname需要完全匹配
 
+### 安装HomeAssistant
+1. 下载[HA OS](https://www.home-assistant.io/installation/alternative)镜像包, 选择.ova格式的镜像文件
+2. 在Virtualization Station应用主界面选择【虚拟机】然后选择【导入】。
+3. 启动虚拟机,端口8123(大概要20分钟左右)
+4. 设置账号
+5. 安装HACS(Home Assistant Community Store)相当于是一个插件的应用商店，比如米家、美的、格力、特斯拉等待
+   1. 首先点击左下角的个人用户名，页面设置里打开高级模式
+   2. 然后在配置-加载项-加载项商店，找到Terminal & SHH，点击安装。
+   3. 安装完成后选择启动，并打开WEB UI。
+   4. 使用命令行安装`wget -O - https://hacs.vip/get | bash -`
+
+> [如何用威联通NAS部署HomeAssistant，让苹果Homekit接入所有智能家电](https://post.smzdm.com/p/a4po0qex/)
+
 ## Private Tracker(PT)
 PT站（Private Tracker）是一种私有的种子分享站点，和公共BT站点不同，只有在站内注册且满足一定门槛的用户才能相互分享和下载资源。因此，PT站点一般资源更加丰富，但门槛也更高。
 ### IYUU
