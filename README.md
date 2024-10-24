@@ -45,6 +45,7 @@ tags:
     * [Spark](BigData/Spark.md)
 * [机器学习](MachineLearning/README.md)
     * [tensorflow](MachineLearning/tensorflow.md)
+    * [统计学习方法](MachineLearning/知识梳理/StatisticalLearning.md)
 * [文件](files/README.md)
     * [分布式一致性协议](files/paxos_raft_protocol/README.md)
         * [raft](files/paxos_raft_protocol/raft/raft.md)
