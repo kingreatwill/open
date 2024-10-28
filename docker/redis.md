@@ -77,6 +77,10 @@ aof_rewrite_cpulist 8-11
 # 后台 RDB 进程绑定到 CPU 核心 1,10,11
 # bgsave_cpulist 1,10-1
 ```
+### Redis内存分析
+Redis Data Reveal (RDR) 是一个用于解析 Redis RDB 文件的工具。与其他工具相比（如 redis-rdb-tools），RDR 使用 Golang 实现，具有更高的性能。
+https://github.com/xueqiu/rdr
+
 
 ### redis desktop manager(RDM)/Redis GUI
 [Tiny RDM](https://github.com/tiny-craft/tiny-rdm) 8.6k

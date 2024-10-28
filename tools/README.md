@@ -474,11 +474,12 @@ ZIP 压缩包管理器 - 免费版含广告
 - Remnote
 - RoamResearch
 
-### 协作办公
+### 协作办公/在线协作/知识库
 明道、teambition、http://Tower.im、Worktile、trello、、Airtable
 
 - 在线协作沟通工具 - [miro](https://miro.com/)
 - [SeaTable](https://github.com/seatable/seatable)
+- [Docmost](https://github.com/Docmost/docmost)
 
 ### Monica 一个很棒的开源个人关系管理系统
 https://www.toutiao.com/article/7088293362721178147/
@@ -536,6 +537,11 @@ https://github.com/netease-youdao/QAnything
 把自己的文档整理成知识进行问答
 
 提供api
+
+#### RAG(Retrieval-Augmented Generation) /检索增强生成
+[RAGFlow](https://github.com/infiniflow/ragflow) 
+搭建更好的知识库
+
 
 #### Xwiki
 #### confluence
