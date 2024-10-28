@@ -539,8 +539,11 @@ https://github.com/netease-youdao/QAnything
 提供api
 
 #### RAG(Retrieval-Augmented Generation) /检索增强生成
-[RAGFlow](https://github.com/infiniflow/ragflow) 
+- [RAGFlow](https://github.com/infiniflow/ragflow) 
 搭建更好的知识库
+
+- [FastGPT](https://github.com/labring/FastGPT)
+
 
 
 #### Xwiki
