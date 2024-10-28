@@ -26,6 +26,79 @@ docker login --username=xx --password=xx xx.com
 UI
 https://hub.docker.com/r/joxit/docker-registry-ui
 
+
+## docker 代理
+
+
+
+docker 代理有两种理解:
+1. docker本身使用代理下载,如: docker pull, 有两种方式 ; https://docs.docker.com/engine/daemon/proxy/#httphttps-proxy
+2. docker 容器里面的程序使用代理: https://docs.docker.com/engine/cli/proxy/#configure-proxy-settings-per-daemon
+
+
+
+
+下面的配置能使docker pull走代理: 
+方式一[参考](https://docs.docker.com/engine/daemon/proxy/#daemon-configuration):
+
+`docker pull --http-proxy="xxx" --https-proxy="https://xxx.com" image:version`
+
+或者修改daemon.json(一般在`/etc/docker/daemon.json`)
+```
+{
+  "proxies": {
+    "http-proxy": "http://proxy.example.com:3128",
+    "https-proxy": "https://proxy.example.com:3129",
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+  }
+}
+```
+`systemctl restart docker`
+
+方式二[参考]:(https://docs.docker.com/engine/daemon/proxy/#systemd-unit-file)
+
+1、创建 dockerd 相关的 systemd 目录，这个目录下的配置将覆盖 dockerd 的默认配置
+```
+$ sudo mkdir -p /etc/systemd/system/docker.service.d
+```
+
+新建配置文件 `/etc/systemd/system/docker.service.d/http-proxy.conf`，这个文件中将包含环境变量
+```
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:80"
+Environment="HTTPS_PROXY=https://proxy.example.com:443"
+```
+如果你自己建了私有的镜像仓库，需要 dockerd 绕过代理服务器直连，那么配置 `NO_PROXY` 变量：
+```
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:80"
+Environment="HTTPS_PROXY=https://proxy.example.com:443"
+Environment="NO_PROXY=your-registry.com,10.10.10.10,*.example.com"
+```
+多个 `NO_PROXY` 变量的值用逗号分隔，而且可以使用通配符（*），极端情况下，如果 `NO_PROXY=*`，那么所有请求都将不通过代理服务器。
+
+> HTTPS_PROXY也可以放入单独的文件
+> /etc/systemd/system/docker.service.d/https-proxy.conf
+> ```
+> [Service]
+> Environment="HTTPS_PROXY=http://127.0.0.1:8118"
+> ```
+
+
+重新加载配置文件，重启 dockerd
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
+检查确认环境变量已经正确配置：
+```
+$ sudo systemctl show --property=Environment docker
+```
+从 `docker info` 的结果中查看配置项。
+
+这样配置后，应该可以正常拉取 docker 镜像。
+
+
 # centos7 安装docker
 yum 包更新到最新:
 ```
