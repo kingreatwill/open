@@ -26,7 +26,19 @@ https://github.com/niXman/yas
 https://github.com/USCiLab/cereal
 
 
-## 远程
+## 远程/VNC
+
+### VNC
+- [TigerVNC](https://github.com/TigerVNC/tigervnc)
+
+
+```
+root@master:~# dnf install  -y  tigervnc-server
+root@master:~# vncserver
+```
+
+- [TightVNC](https://github.com/chenall/tightvnc)
+
 ### mRemoteNG 
 https://github.com/mRemoteNG/mRemoteNG
 
