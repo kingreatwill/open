@@ -100,6 +100,9 @@ time tracking / code time
 [RescueTime](https://www.rescuetime.com/)
 与上面两个不同的是，不需要在每个IDE上安装插件；手机和电脑都可使用
 
+[solidtime](https://github.com/solidtime-io/solidtime) 
+
+
 
 时间管理工具按功能不同主要分为三大类
 
