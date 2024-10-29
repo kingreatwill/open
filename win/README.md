@@ -148,3 +148,8 @@ https://imfile.io/
 #### cobalt
 https://github.com/imputnet/cobalt
 
+#### aMule/eDonkey 
+https://github.com/amule-project/amule
+
+https://github.com/ngosang/docker-amule
+
