@@ -7,22 +7,150 @@ docker-compose.yml文件位于以下目录
 
 注意docker-compose.yml 后缀一定是yml, 以及applicationname需要完全匹配
 
-#### 虚拟机安装HomeAssistant
-1. 下载[HA OS](https://www.home-assistant.io/installation/alternative)镜像包, 选择.ova格式的镜像文件
-2. 在Virtualization Station应用主界面选择【虚拟机】然后选择【导入】。
-3. 启动虚拟机,端口8123(大概要20分钟左右)
-4. 设置账号
-5. 安装HACS(Home Assistant Community Store)相当于是一个插件的应用商店，比如米家、美的、格力、特斯拉等待
-   1. 首先点击左下角的个人用户名，页面设置里打开高级模式
-   2. 然后在配置-加载项-加载项商店，找到Terminal & SHH，点击安装。
-   3. 安装完成后选择启动，并打开WEB UI。
-   4. 使用命令行安装`wget -O - https://hacs.vip/get | bash -`
+### paperless-ngx/无纸化
+```docker-compose.yml
+# Docker Compose file for running paperless from the docker container registry.
+# This file contains everything paperless needs to run.
+# Paperless supports amd64, arm and arm64 hardware.
+#
+# All compose files of paperless configure paperless in the following way:
+#
+# - Paperless is (re)started on system boot, if it was running before shutdown.
+# - Docker volumes for storing data are managed by Docker.
+# - Folders for importing and exporting files are created in the same directory
+#   as this file and mounted to the correct folders inside the container.
+# - Paperless listens on port 8000.
+#
+# In addition to that, this Docker Compose file adds the following optional
+# configurations:
+#
+# - Instead of SQLite (default), PostgreSQL is used as the database server.
+# - Apache Tika and Gotenberg servers are started with paperless and paperless
+#   is configured to use these services. These provide support for consuming
+#   Office documents (Word, Excel, Power Point and their LibreOffice counter-
+#   parts.
+#
+# To install and update paperless with this file, do the following:
+#
+# - Copy this file as 'docker-compose.yml' and the files 'docker-compose.env'
+#   and '.env' into a folder.
+# - Run 'docker compose pull'.
+# - Run 'docker compose run --rm webserver createsuperuser' to create a user.
+# - Run 'docker compose up -d'.
+#
+# For more extensive installation and update instructions, refer to the
+# documentation.
 
-> [如何用威联通NAS部署HomeAssistant，让苹果Homekit接入所有智能家电](https://post.smzdm.com/p/a4po0qex/)
+services:
+  broker:
+    image: docker.io/library/redis:7
+    restart: unless-stopped
+    volumes:
+      - redisdata:/data
 
-#### docker安装HomeAssistant
-https://www.home-assistant.io/installation/alternative#qnap-nas
+  db:
+    image: docker.io/library/postgres:16
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
 
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+      - broker
+      - gotenberg
+      - tika
+    ports:
+      - "8000:8000"
+    volumes:
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    env_file: docker-compose.env
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:8.7
+    restart: unless-stopped
+
+    # The gotenberg chromium route is used to convert .eml files. We do not
+    # want to allow external content like tracking pixels or even javascript.
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+
+  tika:
+    image: docker.io/apache/tika:latest
+    restart: unless-stopped
+
+volumes:
+  data:
+  media:
+  pgdata:
+  redisdata:
+```
+
+```docker-compose.env
+# The UID and GID of the user used to run paperless in the container. Set this
+# to your UID and GID on the host so that you have write access to the
+# consumption directory.
+#USERMAP_UID=1000
+#USERMAP_GID=1000
+
+# Additional languages to install for text recognition, separated by a
+# whitespace. Note that this is
+# different from PAPERLESS_OCR_LANGUAGE (default=eng), which defines the
+# language used for OCR.
+# The container installs English, German, Italian, Spanish and French by
+# default.
+# See https://packages.debian.org/search?keywords=tesseract-ocr-&searchon=names&suite=buster
+# for available languages.
+#PAPERLESS_OCR_LANGUAGES=tur ces
+
+###############################################################################
+# Paperless-specific settings                                                 #
+###############################################################################
+
+# All settings defined in the paperless.conf.example can be used here. The
+# Docker setup does not use the configuration file.
+# A few commonly adjusted settings are provided below.
+
+# This is required if you will be exposing Paperless-ngx on a public domain
+# (if doing so please consider security measures such as reverse proxy)
+#PAPERLESS_URL=https://paperless.example.com
+
+# Adjust this key if you plan to make paperless available publicly. It should
+# be a very long sequence of random characters. You don't need to remember it.
+#PAPERLESS_SECRET_KEY=change-me
+
+# Use this variable to set a timezone for the Paperless Docker containers. If not specified, defaults to UTC.
+#PAPERLESS_TIME_ZONE=America/Los_Angeles
+
+# The default language to use for OCR. Set this to the language most of your
+# documents are written in.
+#PAPERLESS_OCR_LANGUAGE=eng
+
+# Set if accessing paperless via a domain subpath e.g. https://domain.com/PATHPREFIX and using a reverse-proxy like traefik or nginx
+#PAPERLESS_FORCE_SCRIPT_NAME=/PATHPREFIX
+#PAPERLESS_STATIC_URL=/PATHPREFIX/static/ # trailing slash required
+```
+
+```.env
+COMPOSE_PROJECT_NAME=paperless
+```
 
 ## Private Tracker(PT)
 PT站（Private Tracker）是一种私有的种子分享站点，和公共BT站点不同，只有在站内注册且满足一定门槛的用户才能相互分享和下载资源。因此，PT站点一般资源更加丰富，但门槛也更高。
@@ -131,6 +259,29 @@ app下载:https://www.traccar.org/client/
 ### Internet OS
 - [Internet OS](https://github.com/HeyPuter/puter) - [体验](https://puter.com/)
 
+
+
+
+### HomeAssistant
+#### 虚拟机安装HomeAssistant
+1. 下载[HA OS](https://www.home-assistant.io/installation/alternative)镜像包, 选择.ova格式的镜像文件
+2. 在Virtualization Station应用主界面选择【虚拟机】然后选择【导入】。
+3. 启动虚拟机,端口8123(大概要20分钟左右)
+4. 设置账号
+5. 安装HACS(Home Assistant Community Store)相当于是一个插件的应用商店，比如米家、美的、格力、特斯拉等待
+   1. 首先点击左下角的个人用户名，页面设置里打开高级模式
+   2. 然后在配置-加载项-加载项商店，找到Terminal & SHH，点击安装。
+   3. 安装完成后选择启动，并打开WEB UI。
+   4. 使用命令行安装`wget -O - https://hacs.vip/get | bash -`
+
+> [如何用威联通NAS部署HomeAssistant，让苹果Homekit接入所有智能家电](https://post.smzdm.com/p/a4po0qex/)
+
+#### docker安装HomeAssistant
+https://www.home-assistant.io/installation/alternative#qnap-nas
+
+
+
 ## 迷你主机
 铭凡UM790 Pro
 零刻GTR7
+mac mini
