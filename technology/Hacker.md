@@ -16,8 +16,8 @@ https://github.com/The-Art-of-Hacking/h4cker 7k
 
 h4cker 是包含数千个与网络安全相关的参考资料和资源的项目，项目由 Omar Santos 维护，资料中包括：渗透测试，数字取证和事件响应（DFIR），漏洞研究，漏洞利用开发，逆向工程等内容。 ​​​​
 
-
-## Maltrail
+## 安全监控
+### Maltrail
 Maltrail是一款功能强大免费的开源恶意流量检测系统, 它利用公开的黑名单以及从各种AV报告和自定义用户特征来识别恶意流量, 同时,该系统还拥有可选的高级启发式机制, 可以帮助使用者发现一些未知的威胁。
 https://github.com/stamparm/maltrail?tab=readme-ov-file#suspicious-http-requests
 
@@ -37,6 +37,9 @@ docker run -d --name maltrail --privileged -p 8337:8337/udp -p 8338:8338 -v /dat
 
 > docker部署无法探测宿主机上的流量
 
+
+### Wazuh 
+https://github.com/wazuh/wazuh
 
 ## TheFatRat
 https://github.com/Screetsec/TheFatRat 4.5k

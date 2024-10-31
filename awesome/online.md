@@ -228,6 +228,22 @@ Mattermost 是一款开源的团队协作工具，旨在提供实时聊天、文
 #### 类似JIRA
 https://github.com/makeplane/plane
 
+### 无纸化办公/扫描文档
+#### Paperless-ngx
+https://github.com/paperless-ngx/paperless-ngx
+
+#### Papermerge DMS/文档扫描
+https://github.com/ciur/papermerge
+
+#### 图片扫描
+提取文档,然后进行灰度化, 就是一个扫描件了: 
+https://github.com/danielgatis/docscan
+
+
+#### PDF扫描
+https://github.com/rwv/lookscanned.io
+
+
 ### 开源项目管理工具/类似JIRA
 https://github.com/topics/project-management
 
