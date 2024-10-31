@@ -1166,6 +1166,9 @@ https://github.com/taojy123/KeymouseGo
 ### Stirling-PDF
 https://github.com/Frooodle/Stirling-PDF
 
+### PDF Web Edit
+https://github.com/luke-browning/pdf-web-edit
+
 ### PDFgear
 阅读、编辑、转换、合并和跨设备签署PDF文件
 https://www.pdfgear.com/zh/
