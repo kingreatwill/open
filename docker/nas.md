@@ -1,5 +1,5 @@
 
-
+[NAS](../hardware/nas.md)
 
 ## 威联通docker-compose
 docker-compose.yml文件位于以下目录
@@ -39,6 +39,406 @@ export no_proxy= "192.168.168.0/24,localhost,127.0.0.1"
 `/etc/init.d/container-station.sh restart`
 > 权限不足加sudo
 
+#### Clash
+https://github.com/wnlen/clash-for-linux
+
+##### docker
+
+1. https://github.com/LaoYutang/clash-and-dashboard
+
+2. https://github.com/vernesong/OpenClash
+
+`docker run -d –name clash -p 7890:7890 -p 9090:9090 -v /path/to/config:/root/.config/clash ghcr.io/vernesong/openclash:latest`
+
+- 访问 Clash Dashboard
+http://192.168.0.1:9090/ui
+在Secret(optional)一栏中输入启动成功后输出的Secret。
+
+
+- 代理模式, 环境变量: -e CLASH_MODE=rule
+CLASH_MODE=rule: 根据规则进行代理
+CLASH_MODE=global: 全局代理
+CLASH_MODE=direct: 直连模式
+
+- 自动更新订阅
+```
+#!/bin/bash
+
+subscribe_url=”https://example.com/subscribe”
+
+curl -o /path/to/config/proxy.yaml $subscribe_url
+
+docker restart clash
+```
+
+3. https://github.com/haishanh/yacd
+
+
+- 在获取到 Clash 配置文件（config.yaml）后，需要确认以下配置：
+```
+# config.yaml
+
+port: 7890
+socks-port: 7891
+allow-lan: true
+
+# rule / global / direct (default is rule)
+mode: rule
+
+# set log level to stdout (default is info)
+# info / warning / error / debug / silent
+log-level: info
+
+# RESTful API(基于 API，可以打造自己的可视化操作部分，也是实现 Clash GUI 的重要组成部分。)
+external-controller: 127.0.0.1:9090
+# external-controller = 127.0.0.1:8080
+
+# 你可以加入 secret 进行 API 鉴权
+# 鉴权的方式为在 Http Header 中加入 Authorization: Bearer ${secret}
+# secret = thisisyoursecret
+```
+> 7890 为 http/https 监听端口，7891 为 socks5 监听端口，9090 为 UI 监听端口，allow-lan 为允许局域网访问。
+> 如果不是为了特殊需求，请尽量不要把 API 暴露在 0.0.0.0，如果真的要这么做，一定要加上 secret 进行鉴权
+> https://clash.gitbook.io/doc/restful-api
+
+- 完整example 
+```
+# port of HTTP
+port: 7890
+
+# port of SOCKS5
+socks-port: 7891
+
+# redir port for Linux and macOS
+# redir-port: 7892
+
+allow-lan: false
+
+# Only applicable when setting allow-lan to true
+# "*": bind all IP addresses
+# 192.168.122.11: bind a single IPv4 address
+# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
+# bind-address: "*"
+
+# rule / global / direct (default is rule)
+mode: rule
+
+# set log level to stdout (default is info)
+# info / warning / error / debug / silent
+log-level: info
+
+# RESTful API for clash
+external-controller: 127.0.0.1:9090
+
+# you can put the static web resource (such as clash-dashboard) to a directory, and clash would serve in `${API}/ui`
+# input is a relative path to the configuration directory or an absolute path
+# external-ui: folder
+
+# Secret for RESTful API (Optional)
+# secret: ""
+
+# experimental feature
+experimental:
+  ignore-resolve-fail: true # ignore dns resolve fail, default value is true
+  # interface-name: en0 # outbound interface name
+
+# authentication of local SOCKS5/HTTP(S) server
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+# # hosts, support wildcard (e.g. *.clash.dev Even *.foo.*.example.com)
+# # static domain has a higher priority than wildcard domain (foo.example.com > *.example.com > .example.com)
+# # +.foo.com equal .foo.com and foo.com
+# hosts:
+#   '*.clash.dev': 127.0.0.1
+#   '.dev': 127.0.0.1
+#   'alpha.clash.dev': '::1'
+#   '+.foo.dev': 127.0.0.1
+
+# dns:
+  # enable: true # set true to enable dns (default is false)
+  # ipv6: false # default is false
+  # listen: 0.0.0.0:53
+  # # default-nameserver: # resolve dns nameserver host, should fill pure IP
+  # #   - 114.114.114.114
+  # #   - 8.8.8.8
+  # enhanced-mode: redir-host # or fake-ip
+  # # fake-ip-range: 198.18.0.1/16 # if you don't know what it is, don't change it
+  # fake-ip-filter: # fake ip white domain list
+  #   - '*.lan'
+  #   - localhost.ptlogin2.qq.com
+  # nameserver:
+  #   - 114.114.114.114
+  #   - tls://dns.rubyfish.cn:853 # dns over tls
+  #   - https://1.1.1.1/dns-query # dns over https
+  # fallback: # concurrent request with nameserver, fallback used when GEOIP country isn't CN
+  #   - tcp://1.1.1.1
+  # fallback-filter:
+  #   geoip: true # default
+  #   ipcidr: # ips in these subnets will be considered polluted
+  #     - 240.0.0.0/4
+
+proxies:
+  # shadowsocks
+  # The supported ciphers(encrypt methods):
+  #   aes-128-gcm aes-192-gcm aes-256-gcm
+  #   aes-128-cfb aes-192-cfb aes-256-cfb
+  #   aes-128-ctr aes-192-ctr aes-256-ctr
+  #   rc4-md5 chacha20-ietf xchacha20
+  #   chacha20-ietf-poly1305 xchacha20-ietf-poly1305
+  - name: "ss1"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    # udp: true
+
+  # old obfs configuration format remove after prerelease
+  - name: "ss2"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    plugin: obfs
+    plugin-opts:
+      mode: tls # or http
+      # host: bing.com
+
+  - name: "ss3"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: websocket # no QUIC now
+      # tls: true # wss
+      # skip-cert-verify: true
+      # host: bing.com
+      # path: "/"
+      # mux: true
+      # headers:
+      #   custom: value
+
+  # vmess
+  # cipher support auto/aes-128-gcm/chacha20-poly1305/none
+  - name: "vmess"
+    type: vmess
+    server: server
+    port: 443
+    uuid: uuid
+    alterId: 32
+    cipher: auto
+    # udp: true
+    # tls: true
+    # skip-cert-verify: true
+    # servername: example.com # priority over wss host
+    # network: ws
+    # ws-path: /path
+    # ws-headers:
+    #   Host: v2ray.com
+  
+  - name: "vmess-http"
+    type: vmess
+    server: server
+    port: 443
+    uuid: uuid
+    alterId: 32
+    cipher: auto
+    # udp: true
+    # network: http
+    # http-opts:
+    #   # method: "GET"
+    #   # path:
+    #   #   - '/'
+    #   #   - '/video'
+    #   # headers:
+    #   #   Connection:
+    #   #     - keep-alive
+
+  # socks5
+  - name: "socks"
+    type: socks5
+    server: server
+    port: 443
+    # username: username
+    # password: password
+    # tls: true
+    # skip-cert-verify: true
+    # udp: true
+
+  # http
+  - name: "http"
+    type: http
+    server: server
+    port: 443
+    # username: username
+    # password: password
+    # tls: true # https
+    # skip-cert-verify: true
+
+  # snell
+  - name: "snell"
+    type: snell
+    server: server
+    port: 44046
+    psk: yourpsk
+    # obfs-opts:
+      # mode: http # or tls
+      # host: bing.com
+
+  # trojan
+  - name: "trojan"
+    type: trojan
+    server: server
+    port: 443
+    password: yourpsk
+    # udp: true
+    # sni: example.com # aka server name
+    # alpn:
+    #   - h2
+    #   - http/1.1
+    # skip-cert-verify: true
+
+proxy-groups:
+  # relay chains the proxies. proxies shall not contain a relay. No UDP support.
+  # Traffic: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> Internet
+  - name: "relay"
+    type: relay
+    proxies:
+      - http
+      - vmess
+      - ss1
+      - ss2
+
+  # url-test select which proxy will be used by benchmarking speed to a URL.
+  - name: "auto"
+    type: url-test
+    proxies:
+      - ss1
+      - ss2
+      - vmess1
+    # tolerance: 150
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # fallback select an available policy by priority. The availability is tested by accessing an URL, just like an auto url-test group.
+  - name: "fallback-auto"
+    type: fallback
+    proxies:
+      - ss1
+      - ss2
+      - vmess1
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # load-balance: The request of the same eTLD will be dial on the same proxy.
+  - name: "load-balance"
+    type: load-balance
+    proxies:
+      - ss1
+      - ss2
+      - vmess1
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # select is used for selecting proxy or proxy group
+  # you can use RESTful API to switch proxy, is recommended for use in GUI.
+  - name: Proxy
+    type: select
+    proxies:
+      - ss1
+      - ss2
+      - vmess1
+      - auto
+  
+  - name: UseProvider
+    type: select
+    use:
+      - provider1
+    proxies:
+      - Proxy
+      - DIRECT
+
+proxy-providers:
+  provider1:
+    type: http
+    url: "url"
+    interval: 3600
+    path: ./hk.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  test:
+    type: file
+    path: /test.yaml
+    health-check:
+      enable: true
+      interval: 36000
+      url: http://www.gstatic.com/generate_204
+
+rules:
+  - DOMAIN-SUFFIX,google.com,auto
+  - DOMAIN-KEYWORD,google,auto
+  - DOMAIN,google.com,auto
+  - DOMAIN-SUFFIX,ad.com,REJECT
+  # rename SOURCE-IP-CIDR and would remove after prerelease
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  # optional param "no-resolve" for IP rules (GEOIP IP-CIDR)
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - GEOIP,CN,DIRECT
+  - DST-PORT,80,DIRECT
+  - SRC-PORT,7777,DIRECT
+  # FINAL would remove after prerelease
+  # you also can use `FINAL,Proxy` or `FINAL,,Proxy` now
+  - MATCH,auto
+
+```
+
+
+- 运行clash: docker pull dreamacro/clash:v1.18.0
+```
+docker run --name clash \
+    -p 5090:9090 -p 5890:7890 -p 5891:7891 \
+    -v ~/clash/config.yaml:/root/.config/clash/config.yaml -d dreamacro/clash
+```
+- 运行 Clash UI
+```
+docker run --name clash-ui -p 5080:80 -d haishanh/yacd
+```
+- 通过 Clash UI 管理、监控 Clash 服务
+使用浏览器打开地址：`http://[主机IP]:5080`，然后在输入框内输入 `http://[主机IP]:5090`，再点击 ADD 按钮，然后点击下方新增的 `http://[主机IP]:5090` 链接进入监控界面。
+
+- docker-compose
+```
+# docker-compose.yml
+
+version: '3.7'
+services:
+  clash-server:
+    image: dreamacro/clash
+    container_name: clash
+    ports:
+      - "5090:9090"
+      - "5890:7890"
+      - "5891:7891"
+    volumes:
+      - ./config.yaml:/root/.config/clash/config.yaml
+
+  clash-ui:
+    image: haishanh/yacd
+    container_name: clash-ui
+    ports:
+      - 5080:80
+```
+
+
+
 #### 修改Docker仓库镜像
 `/share/CACHEDEV1_DATA/.qpkg/container-station/etc/docker.json`
 
@@ -50,6 +450,7 @@ export no_proxy= "192.168.168.0/24,localhost,127.0.0.1"
 重启: `/etc/init.d/container-station.sh restart`
 
 > [docker 代理](./README.md)
+
 
 ### paperless-ngx/无纸化
 ```docker-compose.yml
