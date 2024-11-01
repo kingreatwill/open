@@ -7,6 +7,50 @@ docker-compose.yml文件位于以下目录
 
 注意docker-compose.yml 后缀一定是yml, 以及applicationname需要完全匹配
 
+### nas控制台-网络访问-代理
+这样设置的代理仅能command命令使用
+
+#### docker pull 代理
+sudo -i 切换成 admin 操作
+也可以在遇到权限不足的时候使用sudo
+
+1. 进入到docker配置目录 （默认是CACHEDEC1_DATA）
+
+cd /share/CACHEDEV1_DATA/.qpkg/container-station/script
+
+2. 编辑run-docker.sh
+
+vi run-docker.sh
+
+3. 切换到最下面倒数第二行，新增以下环境（ip改成代理局域网电脑IP与设置端口）：
+
+```
+# rm -rf ...
+
+export http_proxy="http://192.168.168.89:7890"
+export https_proxy="http://192.168.168.89:7890"
+export no_proxy= "192.168.168.0/24,localhost,127.0.0.1"
+
+# exec dockerd ..
+```
+
+4. 重启container station使之生效
+
+`/etc/init.d/container-station.sh restart`
+> 权限不足加sudo
+
+#### 修改Docker仓库镜像
+`/share/CACHEDEV1_DATA/.qpkg/container-station/etc/docker.json`
+
+```
+{
+ "registry-mirrors": ["http://hub-mirror.c.163.com"] 
+}
+```
+重启: `/etc/init.d/container-station.sh restart`
+
+> [docker 代理](./README.md)
+
 ### paperless-ngx/无纸化
 ```docker-compose.yml
 # Docker Compose file for running paperless from the docker container registry.

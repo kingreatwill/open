@@ -39,6 +39,10 @@ PHP: https://github.com/rryqszq4/ngx_php
 
 > 第三方模块: https://www.nginx.com/resources/wiki/modules/
 
+#### httpsok/SSL证书自动续期
+[httpsok](https://github.com/httpsok/httpsok) 是一个专为 Nginx、OpenResty 服务器设计的HTTPS证书自动续签工具。它旨在帮助中小企业稳定、安全、可靠地管理SSL证书，让证书续期变得简单高效。
+
+
 ### Nginx管理系统
 https://github.com/0xJacky/nginx-ui
 https://github.com/alexazhou/VeryNginx
