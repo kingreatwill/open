@@ -329,6 +329,10 @@ docker push {Harbor地址}:{端口}/{自定义镜像名}:{自定义tag}
 docker pull 192.168.2.108：5000/test/harbor-adminserver:v1.1.0
 ```
 
+### docker push 到github的packages中
+https://docs.github.com/zh/packages/working-with-a-github-packages-registry/working-with-the-container-registry
+
+
 ## docker sleep
 `docker run -d --name openresty-example openresty/openresty:1.13.6.2-2-xenial sleep 1234`
 `sleep inf`  代表无限期的sleep
