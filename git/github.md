@@ -176,7 +176,10 @@ https://www.ipaddress.com/
 
 [GitHub 镜像访问](https://code.pingbook.top/blog/2020/How-To-Speed-Github.html)
 
+### 加速github
+https://github.com/dotnetcore/FastGithub
 
+https://github.com/521xueweihan/GitHub520
 
 ## GitHub 镜像访问
 这里提供两个最常用的镜像地址：

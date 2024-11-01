@@ -238,6 +238,8 @@ https://github.com/justjavac/ReplaceGoogleCDN
 FastGithub工具也代理了很多Google 资源 以及stackoverflow（https://github.com/dotnetcore/FastGithub/releases/tag/1.1.4）
 https://github.com/dotnetcore/FastGithub
 
+https://github.com/521xueweihan/GitHub520
+
 
 Gravatar，全称Globally Recognized Avatar。翻译成中文为全球通用头像。
 [Gravatar头像 镜像地址大全](https://zhuanlan.zhihu.com/p/115248957)
