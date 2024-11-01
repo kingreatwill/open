@@ -454,6 +454,15 @@ services:
 > [docker 代理](./README.md)
 
 
+### docker 浏览器
+https://github.com/linuxserver/docker-firefox
+https://github.com/linuxserver/docker-chromium
+https://github.com/linuxserver/docker-msedge
+https://github.com/m1k1o/neko
+https://github.com/jlesage/docker-firefox
+
+> 威联通自带Browser Station
+
 ### paperless-ngx/无纸化
 ```docker-compose.yml
 # Docker Compose file for running paperless from the docker container registry.
