@@ -409,7 +409,7 @@ docker run --name clash \
 ```
 - 运行 Clash UI
 ```
-docker run --name clash-ui -p 5080:80 -d haishanh/yacd
+docker run --name clash-ui -p 5080:80 -d ghcr.io/haishanh/yacd:master
 ```
 - 通过 Clash UI 管理、监控 Clash 服务
 使用浏览器打开地址：`http://[主机IP]:5080`，然后在输入框内输入 `http://[主机IP]:5090`，再点击 ADD 按钮，然后点击下方新增的 `http://[主机IP]:5090` 链接进入监控界面。
@@ -421,7 +421,7 @@ docker run --name clash-ui -p 5080:80 -d haishanh/yacd
 version: '3.7'
 services:
   clash-server:
-    image: dreamacro/clash
+    image: ghcr.io/kingreatwill/docker.io/dreamacro/clash:v1.18.0
     container_name: clash
     ports:
       - "5090:9090"
@@ -431,7 +431,7 @@ services:
       - ./config.yaml:/root/.config/clash/config.yaml
 
   clash-ui:
-    image: haishanh/yacd
+    image: ghcr.io/haishanh/yacd:master
     container_name: clash-ui
     ports:
       - 5080:80
