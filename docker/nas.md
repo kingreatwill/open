@@ -422,19 +422,21 @@ version: '3.7'
 services:
   clash-server:
     image: ghcr.io/kingreatwill/docker.io/dreamacro/clash:v1.18.0
+    restart: unless-stopped
     container_name: clash
     ports:
-      - "5090:9090"
-      - "5890:7890"
-      - "5891:7891"
+      - "17990:9090"
+      - "17890:7890"
+      - "17891:7891"
     volumes:
-      - ./config.yaml:/root/.config/clash/config.yaml
+      - /share/Public/clash/config.yaml:/root/.config/clash/config.yaml
 
   clash-ui:
     image: ghcr.io/haishanh/yacd:master
+    restart: unless-stopped
     container_name: clash-ui
     ports:
-      - 5080:80
+      - 17080:80
 ```
 
 
