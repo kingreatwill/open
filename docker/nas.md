@@ -461,7 +461,8 @@ https://github.com/linuxserver/docker-msedge
 https://github.com/m1k1o/neko
 https://github.com/jlesage/docker-firefox
 
-> 威联通自带Browser Station
+> 威联通自带Browser Station, http://nas.frp.wcoder.com/browser-station
+> 支持Chrome和SeaMonkey
 
 ### paperless-ngx/无纸化
 ```docker-compose.yml
@@ -715,7 +716,8 @@ app下载:https://www.traccar.org/client/
 ### Internet OS
 - [Internet OS](https://github.com/HeyPuter/puter) - [体验](https://puter.com/)
 
-
+### 内网办公操作系统
+https://github.com/phpk/godoos
 
 
 ### HomeAssistant
