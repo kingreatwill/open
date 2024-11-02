@@ -464,6 +464,9 @@ https://github.com/jlesage/docker-firefox
 > 威联通自带Browser Station, http://nas.frp.wcoder.com/browser-station
 > 支持Chrome和SeaMonkey
 
+### docker office
+https://github.com/linuxserver/docker-wps-office
+
 ### paperless-ngx/无纸化
 ```docker-compose.yml
 # Docker Compose file for running paperless from the docker container registry.
