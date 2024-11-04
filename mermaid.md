@@ -39,9 +39,10 @@ https://github.com/dundalek/markmap
 https://markmap.js.org/docs/markmap
 
 demo:https://free-for-dev.wcoder.com/
-<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.16"></script>
+```<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.16"></script>
 <div class="markmap">
       <script type="text/template">
+        
         ---
         markmap:
           maxWidth: 300
@@ -69,9 +70,9 @@ demo:https://free-for-dev.wcoder.com/
         - `inline code`
         - Katex - $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
         - This is a very very very very very very very very very very very very very very very long line.
-        
+
       </script>
-</div>
+</div>```
 
 ### flowchart.js
 
