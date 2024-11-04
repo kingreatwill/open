@@ -38,7 +38,10 @@ ilograph：http://app.ilograph.com/
 https://github.com/dundalek/markmap
 https://markmap.js.org/docs/markmap
 
+vs code: https://marketplace.visualstudio.com/items?itemName=gera2ld.markmap-vscode
+
 demo:https://free-for-dev.wcoder.com/
+
 ```<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.16"></script>
 <div class="markmap">
       <script type="text/template">
