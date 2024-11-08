@@ -436,6 +436,15 @@ ImageMagick 可被用于图片切割、颜色替换、各种效果的应用，�
 开源矢量图形编辑软件
 https://gitlab.com/inkscape/inkscape
 
+## URL
+### url-shortener/短连接
+#### Sink
+https://github.com/ccbikai/Sink
+
+### URL-friendly/URL优化
+#### slug
+https://github.com/gosimple/slug
+
 ## 投屏
 ### Deskreen
 电脑投屏到手机或者pad上
