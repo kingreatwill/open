@@ -547,6 +547,10 @@ https://github.com/netease-youdao/QAnything
 
 - [FastGPT](https://github.com/labring/FastGPT)
 
+#### papermark
+https://github.com/mfts/papermark
+
+文档分享,docsend的开源版本
 
 
 #### Xwiki
