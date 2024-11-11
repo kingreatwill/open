@@ -496,6 +496,10 @@ ZIP 压缩包管理器 - 免费版含广告
 ### Monica 一个很棒的开源个人关系管理系统
 https://www.toutiao.com/article/7088293362721178147/
 
+### AFFiNE
+AFFiNE - All In One KnowledgeOS
+https://github.com/toeverything/AFFiNE
+
 ### Wiki  知识库问答
 [WIKI系统](https://www.oschina.net/project/tag/69/wiki)
 [wiki比较](https://www.wikimatrix.org/) https://github.com/topics/wiki
