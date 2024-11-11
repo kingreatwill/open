@@ -11,3 +11,6 @@ http://idea.javatiku.cn/
 [IDEA 2020.3激活到2089年方法jetbrains-agent-latest.jar](http://googlevip8.com/post/145)
 
 https://github.com/search?q=jetbrains-agent
+
+
+https://github.com/JetBrains/intellij-community

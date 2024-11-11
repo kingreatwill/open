@@ -254,3 +254,6 @@ https://www.library.ac.cn/
 https://github.yaojiu.us/
 
 ### markoob书签启动器
+
+### Automa: 一款超强大的 Chrome 自动化神器
+[Automa](https://github.com/AutomaApp/automa) 是一个用于 Chrome 浏览器自动化的插件，从自动填写表格、执行重复性任务、截屏、抓取网站数据等等，完全可以根据你自己的需求来决定如何使用。
