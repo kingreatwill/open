@@ -296,10 +296,10 @@ scriptreplay -t time.txt session.typescript
 https://www.vanheusden.com/multitail/
 
 ### HTTP benchmarking tool压测工具
-wrk : https://github.com/wg/wrk 29.7k c
+wrk : https://github.com/wg/wrk 38k c
 ab : apachebench,Apache 网站服务器自带的
-hey : https://github.com/rakyll/hey 11.5k  golang
-vegeta: https://github.com/tsenart/vegeta 17.7k golang
+hey : https://github.com/rakyll/hey 18.2k  golang
+vegeta: https://github.com/tsenart/vegeta 23.6k golang
 ali: https://github.com/nakabonne/ali 2.8k golang (这款工具基于 vegeta，但使用起来更傻瓜式，而且实时进行分析，图形化展示。)
 plow: https://github.com/six-ddc/plow 2.3k golang 内部采用了性能出色的fasthttp而不是 Go 的默认net/http, 支持实时WebUI数据展示
 
