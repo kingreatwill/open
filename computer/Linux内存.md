@@ -114,8 +114,9 @@
 
  6、用户态地址空间
 
+![Executable file](img/Executable-file.jpg)
 
- ![None](img/Linux内存_10.jpg)
+![None](img/Linux内存_10.jpg)
 
 
 - TEXT：代码段可执行代码、字符串字面值、只读变量
