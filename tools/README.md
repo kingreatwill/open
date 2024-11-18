@@ -766,6 +766,8 @@ https://airportal.cn/
 https://cowtransfer.com/
 
 
+
+
 ### 文本编辑器(轻量级IDE)
 #### 逆向工程的十六进制编辑器 rehex
 https://github.com/solemnwarning/rehex
@@ -806,7 +808,7 @@ everything 也支持全文本文档搜索
 #### filelocator
 #### grepWin
 https://github.com/stefankueng/grepWin
-#### anytxt
+#### anytxt/AnyTXT Searcher
 支持快速**文件内容搜索**，支持结果预览和高亮显示
 据说比everything还快
 https://anytxt.net/
@@ -1190,9 +1192,18 @@ https://github.com/luke-browning/pdf-web-edit
 阅读、编辑、转换、合并和跨设备签署PDF文件
 https://www.pdfgear.com/zh/
 
+### SumatraPDF
+格式最全的PDF阅读器
+
 ## 远程连接/远程管理
 https://github.com/quasar/Quasar
 https://github.com/amidaware/tacticalrmm
+
+
+## PPT
+[OfficePlus - Office模板网站](http://www.officeplus.cn/Template/Home.shtml)
+[Sway - 在线制作PPT](https://sway.office.com/)
+[Bing wallpaper - 高清壁纸](https://www.microsoft.com/en-us/bing/bing-wallpaper)
 
 
 ## 其它
@@ -1225,10 +1236,22 @@ EV录屏
 迅捷PDF转换器
 Poppler ，PDF 生成工具
 
-## PPT
-[OfficePlus - Office模板网站](http://www.officeplus.cn/Template/Home.shtml)
-[Sway - 在线制作PPT](https://sway.office.com/)
-[Bing wallpaper - 高清壁纸](https://www.microsoft.com/en-us/bing/bing-wallpaper)
+### 剪贴板工具
+- Ditto
+
+### 截图工具
+- Snagit
+- Snipaste
+
+### 自动护眼
+- f.lux
+
+
+### Photoshop 竞品/替代
+#### GIMP （GNU Image Manipulation Program）
+https://www.gimp.org/news/2024/11/06/gimp-3-0-RC1-released/
+
+https://www.gimp.org/source/
 
 ## 手机App
 ### 浏览器
