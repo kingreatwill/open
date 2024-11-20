@@ -1,6 +1,13 @@
 
 > [Caddy](https://github.com/caddyserver/caddy) 是一个 Go 编写的 Web 服务器,类似于 Nginx
 
+## 文档
+
+[官方文档](http://nginx.org/en/docs)
+
+[NGINX缓存原理及源码分析(一)](https://www.nginx.org.cn/article/detail/403)
+[NGINX缓存原理及源码分析(二)](https://www.nginx.org.cn/article/detail/406)
+
 ## 在线进行配置
 
 ### nginx-ui/WebUI
