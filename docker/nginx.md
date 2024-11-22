@@ -8,6 +8,48 @@
 [NGINX缓存原理及源码分析(一)](https://www.nginx.org.cn/article/detail/403)
 [NGINX缓存原理及源码分析(二)](https://www.nginx.org.cn/article/detail/406)
 
+### parsing nginx cache header files/解析缓存文件头部信息
+https://github.com/kroemeke/ngcls
+```
+dft:/cache/nginx/0/00# ngcls 9eacc540a431495f5ae408412e60f000 
+version       : 3
+valid_sec     : 1443784216 2015-10-02 12:10:16
+last_modified : 1443559345 2015-09-29 21:42:25
+date          : 1443697816 2015-10-01 12:10:16
+etag          : "f3016c-6bb-520e8d9f88e40"
+vary_len      : 15
+vary          : Accept-Encoding
+variant(md5)  : 9eacc540a431495f5ae408412e60f000
+key           : httpkroemeke.eu/
+HEADERS       : 
+HTTP/1.1 200 OK
+Date: Thu, 01 Oct 2015 11:10:16 GMT
+Server: Apache
+Last-Modified: Tue, 29 Sep 2015 20:42:25 GMT
+ETag: "f3016c-6bb-520e8d9f88e40"
+Accept-Ranges: bytes
+Content-Length: 1723
+Vary: Accept-Encoding
+Cache-Control: proxy-revalidate
+Connection: close
+Content-Type: text/html
+```
+
+less filename 可以查看
+```
+KEY: xx.com/xx//bytes=94371840-94633983/0
+HTTP/1.1 206 Partial Content
+Cache-Control: max-age=2592000
+Connection: keep-alive
+Content-Length: 262144
+Content-Range: bytes 94371840-94633983/250537903
+Content-Type: video/mp4
+Date: Sun, 17 Nov 2024 15:34:21 GMT
+Last-Modified: Sun, 17 Nov 2024 14:48:20 GMT
+Server: openresty/1.19.1
+```
+
+
 ## 在线进行配置
 
 ### nginx-ui/WebUI

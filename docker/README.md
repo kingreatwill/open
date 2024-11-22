@@ -776,6 +776,11 @@ COPY --from=builder /app /
 CMD ["./main"]
 ```
 
+### docker镜像瘦身
+
+#### slim
+https://github.com/slimtoolkit/slim/
+
 ## docker资源限制
 [docker对于CPU和内存的限制](https://www.cnblogs.com/renshengdezheli/p/16662622.html)
 
