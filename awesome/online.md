@@ -226,6 +226,7 @@ https://github.com/mattermost/mattermost
 Mattermost 是一款开源的团队协作工具，旨在提供实时聊天、文件共享和集成等功能，与 Slack 类似。
 
 #### 类似JIRA
+JIRA、Linear、Monday 和 Asana 开源替代品
 https://github.com/makeplane/plane
 
 ### 无纸化办公/扫描文档
