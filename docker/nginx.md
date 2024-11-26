@@ -49,6 +49,74 @@ Last-Modified: Sun, 17 Nov 2024 14:48:20 GMT
 Server: openresty/1.19.1
 ```
 
+```
+package main
+
+import (
+	"encoding/binary"
+	"fmt"
+	"io"
+	"os"
+	"unsafe"
+)
+
+// 定义与C结构体对应的Go结构体
+type NgxHttpFileCacheHeaderT struct {
+	Version      uint64
+	ValidSec     uint64
+	UpdatingSec  uint64
+	ErrorSec     uint64
+	LastModified uint64
+	Date         uint64
+	Crc32        uint32
+	ValidMsec    uint16
+	HeaderStart  uint16
+	BodyStart    uint16
+	EtagLen      uint8
+	Etag         [NGX_HTTP_CACHE_ETAG_LEN]byte
+	VaryLen      uint8
+	Vary         [NGX_HTTP_CACHE_VARY_LEN]byte
+	Variant      [NGX_HTTP_CACHE_KEY_LEN]byte
+}
+
+const (
+	NGX_HTTP_CACHE_ETAG_LEN = 128
+	NGX_HTTP_CACHE_VARY_LEN = 128
+	NGX_HTTP_CACHE_KEY_LEN  = 16
+)
+const LF byte = 10
+
+var key = []byte{LF, 'K', 'E', 'Y', ':', ' '}
+
+func main() {
+	file, err := os.Open("/proxy_cache/5000d8850218e7862fdd631725636595")
+	if err != nil {
+		return
+	}
+	defer file.Close()
+
+	// 读取文件开头的结构体部分
+	header := NgxHttpFileCacheHeaderT{}
+	err = binary.Read(file, binary.LittleEndian, &header)
+	if err != nil && err != io.EOF {
+		return
+	}
+
+	fmt.Println(unsafe.Sizeof(header))
+	fmt.Println(uintptr(len(key)))
+	fmt.Println(unsafe.Sizeof(header) + uintptr(len(key)))
+
+	end := int64(header.HeaderStart)
+	start := int64(337)
+	file.Seek(int64(start), 0)
+	keySize := end - start
+	keyData := make([]byte, keySize)
+	file.Read(keyData)
+	fmt.Printf("Key: %s\n", string(keyData[:keySize]))
+}
+
+```
+
 
 ## 在线进行配置
 
