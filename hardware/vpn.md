@@ -12,6 +12,10 @@ https://github.com/gfwlist/gfwlist
 [Shadowsocks + GfwList 实现 OpenWRT / LEDE 路由器自动科学上网](https://cokebar.info/archives/962)
 
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
+### v2rayA
+https://github.com/v2rayA/v2rayA
+#### gg
+https://github.com/mzz2017/gg
 
 ### 搭建shadowsocks
 1. 安装谷歌 BBR 加速
