@@ -334,6 +334,10 @@ github.com/liamylian/json-hashids
 ### yaml/json转结构体
 https://github.com/twpayne/go-jsonstruct
 
+### encoding/json
+https://github.com/bytedance/sonic
+https://github.com/goccy/go-json
+
 ## orm
 facebook开源的新的go语言orm模块，An entity framework for Go
 Simple, yet powerful ORM for modeling and querying data.
