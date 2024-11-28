@@ -264,3 +264,7 @@ https://github.com/mastodon/mastodon
 ### Elk
 https://github.com/elk-zone/elk
 Mastodon 网页客户端
+
+
+## 404StarLink - 推荐优质、有意义、有趣、坚持维护的安全开源项目
+https://github.com/knownsec/404StarLink

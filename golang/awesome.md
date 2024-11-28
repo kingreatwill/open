@@ -33,6 +33,9 @@ https://github.com/sony/gobreaker 2.5k
 https://github.com/afex/hystrix-go 4k
 
 
+### bytedance Circuitbreaker/熔断
+https://github.com/bytedance/gopkg/blob/develop/cloud/circuitbreaker/README_ZH.MD
+
 ### tollbooth
 Simple middleware to rate-limit HTTP requests.
 https://github.com/didip/tollbooth 2.4k
@@ -896,6 +899,8 @@ https://github.com/zyedidia/generic
 
 - [字典树 (Trie)](https://github.com/dghubble/trie)
 
+
+- [collection](https://github.com/bytedance/gopkg/tree/main/collection)
 ### 文档处理
 #### 转PDF
 ##### Gotenberg 
