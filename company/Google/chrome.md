@@ -14,6 +14,20 @@ https://github.com/sxei/chrome-plugin-demo
 ### Chrome 插件开发模板
 https://github.com/PlasmoHQ/plasmo
 https://github.com/wxt-dev/wxt
+
+### 浏览器插件开发框架
+#### Plasmo
+https://github.com/PlasmoHQ/plasmo
+一次开发，兼容 Chrome、Firefox、Edge 等多平台
+
+```
+npm install -g plasmo  
+plasmo init my-extension  
+cd my-extension  
+npm install  
+npm run dev  
+```
+
 ## Chrome devtools
 
 ### 命令（Command） 菜单

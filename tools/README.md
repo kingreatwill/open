@@ -1182,6 +1182,10 @@ WinSCP是一个免费的Windows SFTP、SCP、Amazon S3、WebDAV和FTP客户端�
 https://github.com/taojy123/KeymouseGo
 
 ## PDF工具
+### docling
+Reads popular document formats (PDF, DOCX, PPTX, XLSX, Images, HTML, AsciiDoc & Markdown) and exports to Markdown and JSON
+https://github.com/DS4SD/docling
+
 ### Stirling-PDF
 https://github.com/Frooodle/Stirling-PDF
 
