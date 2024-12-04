@@ -26,3 +26,23 @@ https://github.com/foundation/foundation-sites 28.9k->30k
 - Free Icon Library
     - [Flaticons](https://www.flaticon.com/)
     - [icons8](https://icons8.com/)
+
+ 
+## 技巧
+### 引号
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/contenteditable
+```
+<blockquote contenteditable="true">
+  <p>Edit this dd your own quote</p>
+</blockquote>
+```
+
+ ```
+ blockquote p::before {
+  content: '\201C';
+}
+
+blockquote p::after {
+  content: '\201D';
+}
+ ```
