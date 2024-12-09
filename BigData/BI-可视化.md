@@ -125,6 +125,10 @@ Microsoft Power BI 提供该平台的免费版本，每个用户数据容量限�
 
 Tableau Public 是免费的 BI 软件，允许人们创建交互式图表和实时仪表板，然后在 Internet 上发布，嵌入网站或在社交媒体上共享。还可以自定义材料以在桌面，平板电脑或移动设备上显示。Tableau 还可以连接到 Google 表格，每天可以自动刷新一次数据。
 
+### Graphic Walker
+Tableau的开源替代品
+https://github.com/Kanaries/graphic-walker
+
 ### BIRT
 
 BIRT 是一种开源 BI 软件，可用于创建数据可视化和报告，这些都可以嵌入到 Web 应用程序中。主要组件是可视化报表设计器，用于生成设计的运行时组件以及图表引擎。

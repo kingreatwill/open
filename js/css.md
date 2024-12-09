@@ -37,8 +37,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/contentedita
 </blockquote>
 ```
 
- ```
- blockquote p::before {
+```
+blockquote p::before {
   content: '\201C';
 }
 
