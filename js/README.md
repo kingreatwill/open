@@ -245,6 +245,32 @@ https://github.com/pipwerks/PDFObject 1.7k
 #### html2pdf
 https://github.com/eKoopmans/html2pdf.js
 
+#### MarkItDown/转markdown
+PDF (.pdf)
+PowerPoint (.pptx)
+Word (.docx)
+Excel (.xlsx)
+Images (EXIF metadata, and OCR)
+Audio (EXIF metadata, and speech transcription)
+HTML (special handling of Wikipedia, etc.)
+Various other text-based formats (csv, json, xml, etc.)
+```
+pip install markitdown
+
+from markitdown import MarkItDown
+markitdown = MarkItDown()
+result = markitdown.convert("test.xlsx")
+print(result.text_content)
+
+
+from markitdown import MarkItDown
+from openai import OpenAI
+client = OpenAI()
+md = MarkItDown(mlm_client=client, mlm_model="gpt-4o")
+result = md.convert("example.jpg")
+print(result.text_content)
+```
+
 ### excel
 https://github.com/mengshukeji/Luckysheet
 
