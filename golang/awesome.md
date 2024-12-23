@@ -912,6 +912,17 @@ https://github.com/smallnest/exp/
 
 #### samber/lo 
 https://github.com/samber/lo
+
+
+DI依赖注入
+https://github.com/samber/do
+
+
+Functional Programming
+https://github.com/samber/mo
+https://github.com/TeaEntityLab/fpGo
+https://github.com/IBM/fp-go
+
 #### lancet
 https://github.com/duke-git/lancet
 
