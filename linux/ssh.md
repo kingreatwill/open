@@ -38,6 +38,9 @@ https://portx.online/zh/
 https://github.com/Eugeny/tabby 52K
 原[Terminus](https://github.com/Eugeny/terminus)
 
+### Wave Terminal
+https://github.com/wavetermdev/waveterm
+
 ### WindTerm
 https://github.com/kingToolbox/WindTerm
 
