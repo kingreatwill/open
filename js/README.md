@@ -404,6 +404,9 @@ https://www.bryntum.com/
 https://github.com/neuronetio/gantt-elastic
 https://github.com/neuronetio/gantt-schedule-timeline-calendar
 
+### VTable/vtable-gantt
+https://github.com/VisActor/VTable
+
 ### 国产
 https://github.com/w1301625107/Vue-Gantt-chart
 https://github.com/hql7/wl-gantt
