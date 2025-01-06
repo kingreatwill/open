@@ -432,3 +432,120 @@ func main() {
 
 
 ```
+
+检查IPv4
+```go
+// IPv4Checker IPv4地址检查器
+type IPv4Checker struct {
+    privateIPRanges []*net.IPNet
+}
+
+// NewIPv4Checker 创建新的IPv4检查器
+func NewIPv4Checker() *IPv4Checker {
+    checker := &IPv4Checker{}
+    // 初始化内网IP范围
+    privateRanges := []string{
+        "10.0.0.0/8",     // RFC1918
+        "172.16.0.0/12",  // RFC1918
+        "192.168.0.0/16", // RFC1918
+        "169.254.0.0/16", // RFC3927 Link-Local
+        "127.0.0.0/8",    // RFC1122 Loopback
+        "100.64.0.0/10",  // RFC6598 Shared Address Space
+        "192.0.0.0/24",   // RFC6890
+        "192.0.2.0/24",   // RFC5737 TEST-NET-1
+        "198.18.0.0/15",  // RFC2544 Benchmark
+        "198.51.100.0/24",// RFC5737 TEST-NET-2
+        "203.0.113.0/24", // RFC5737 TEST-NET-3
+        "224.0.0.0/4",    // RFC5771 Multicast
+        "240.0.0.0/4",    // RFC1112 Reserved
+    }
+    
+    for _, cidr := range privateRanges {
+        _, network, _ := net.ParseCIDR(cidr)
+        if network != nil {
+            checker.privateIPRanges = append(checker.privateIPRanges, network)
+        }
+    }
+    return checker
+}
+
+// IsPrivateIP 判断是否为内网IP
+func (c *IPv4Checker) IsPrivateIP(ipStr string) bool {
+    ip := net.ParseIP(ipStr)
+    if ip == nil {
+        return false
+    }
+    
+    // 检查是否在内网范围内
+    for _, privateRange := range c.privateIPRanges {
+        if privateRange.Contains(ip) {
+            return true
+        }
+    }
+    return false
+}
+```
+
+```
+// 定义所有内网IPv4网段
+	networks := []struct {
+		CIDR string
+		Type string
+	}{
+		// RFC 1918 私有网络
+		{"10.0.0.0/8", "Private-A"},
+		{"172.16.0.0/12", "Private-B"},
+		{"192.168.0.0/16", "Private-C"},
+		// 回环地址
+		{"127.0.0.0/8", "Loopback"},
+		// Link-Local
+		{"169.254.0.0/16", "Link-Local"},
+		// 组播地址
+		{"224.0.0.0/4", "Multicast"},
+		// 广播地址
+		{"255.255.255.255/32", "Broadcast"},
+		// 保留地址
+		{"0.0.0.0/8", "Reserved"},
+		{"100.64.0.0/10", "Shared-Address-Space"},
+		{"192.0.0.0/24", "IETF-Protocol"},
+		{"192.0.2.0/24", "TEST-NET-1"},
+		{"198.18.0.0/15", "Benchmark"},
+		{"198.51.100.0/24", "TEST-NET-2"},
+		{"203.0.113.0/24", "TEST-NET-3"},
+		{"240.0.0.0/4", "Reserved"},
+	}
+
+
+// 定义所有内网IPv6网段
+	networks := []struct {
+		CIDR string
+		Type string
+	}{
+		// Unique Local Address (ULA)
+		{"fc00::/7", "ULA"},
+		// Link-Local
+		{"fe80::/10", "Link-Local"},
+		// Site-Local (已弃用，但仍需检查)
+		{"fec0::/10", "Site-Local-Deprecated"},
+		// Loopback
+		{"::1/128", "Loopback"},
+		// 组播地址
+		{"ff00::/8", "Multicast"},
+		// 本地组播
+		{"ff01::/16", "Interface-Local-Multicast"},
+		{"ff02::/16", "Link-Local-Multicast"},
+		{"ff03::/16", "Realm-Local-Multicast"},
+		{"ff04::/16", "Admin-Local-Multicast"},
+		{"ff05::/16", "Site-Local-Multicast"},
+		// 文档示例地址
+		{"2001:db8::/32", "Documentation"},
+		// 6to4地址
+		{"2002::/16", "6to4"},
+		// Teredo隧道
+		{"2001::/32", "Teredo"},
+		// 保留地址
+		{"::/128", "Unspecified"},
+		{"100::/64", "Discard-Only"},
+		{"64:ff9b::/96", "IPv4-IPv6-Translation"},
+	}	
+```
