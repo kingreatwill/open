@@ -672,6 +672,8 @@ https://zhuanlan.zhihu.com/p/394520776
 
 ## OS IN docker
 
+### windows in docker
+https://github.com/dockur/windows
 ### Virtual DSM
 Virtual DSM 是一个可以在 Docker 里安装黑群晖的项目，甚至可以在 DSM 中再安装一个 DSM，无限套娃。
 Virtual DSM in a docker container.

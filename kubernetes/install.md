@@ -7,7 +7,8 @@ kainstall = kubeadm install kubernetes
 https://github.com/kubernetes-sigs/kind
 kind：是一种使用Docker容器节点运行本地Kubernetes集群的工具。该类型主要用于测试Kubernetes，但可用于本地开发或CI。
 https://kind.sigs.k8s.io/docs/user/quick-start/#installation
-
+### windows in docker
+https://github.com/dockur/windows
 ### 下载
 ```
 $ curl -Lo ./kind "https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64"
