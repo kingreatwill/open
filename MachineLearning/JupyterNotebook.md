@@ -5,6 +5,9 @@
 - [jupytext](https://github.com/mwouts/jupytext) 提供内容管理器，允许 Jupyter 将 notebook 保存为你喜欢的格式，来补充或替代传统的.ipynb 文件。
 
 
+### Jupyter Notebook IDE
+https://github.com/zasper-io/zasper
+
 ### nteract
 nteract可以直接打开本地ipynb文件，可以直接双击ipynb文件直接打开笔记进行编辑，再不需要像以前一样，要先运行jupyter notebook，然后在浏览器中打开ipynb文件。
 
