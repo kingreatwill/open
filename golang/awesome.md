@@ -244,6 +244,10 @@ goreleaser 的功能还是很强大的，同时支持github 的release，同时�
 网络唤醒
 https://github.com/seriousm4x/UpSnap
 
+### tcpw
+eBPF Talk: 使用 tcpw 获取 curl 的五元组信息
+https://github.com/Asphaltt/tcpw/blob/main/README.md
+
 ### 抓包
 https://github.com/google/gopacket
 https://github.com/gopacket/gopacket
