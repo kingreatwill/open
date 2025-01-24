@@ -1,6 +1,7 @@
 <!-- toc -->
 [TOC]
 # Kafka
+[kafka 29.3k](https://github.com/apache/kafka)
 ## Tools
 [kafka tool 可视化](https://www.kafkatool.com/download.html)
 [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
@@ -10,8 +11,9 @@
 
 ## 其它相似
 [性能测试：Kafka、Pulsar和Pravega哪个强？](https://www.toutiao.com/i6890835822057095692/)
-- [Pulsar 6.7k](https://github.com/apache/pulsar)
-- [Pravega 1.3k](https://github.com/pravega/pravega)
+- [Pulsar 14.4k](https://github.com/apache/pulsar)
+- [Pravega 2k](https://github.com/pravega/pravega)
+- [Redpanda 9.9k](https://github.com/redpanda-data/redpanda) C++兼容Kafka
 
 ## News
 
