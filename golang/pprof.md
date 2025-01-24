@@ -299,7 +299,12 @@ go tool pprof http://localhost:6060/debug/pprof/profile?seconds=60
 
 
 go tool pprof -svg    http://localhost:8080/debug/pprof/heap > cpu.svg
+#### 指定源码路径
+go tool pprof -source_path=$(go env GOMODCACHE)
 
+`-source_path` should be set to the absolute path to your source code.
+
+`-trim_path` should be set to the path that go tool pprof is saying the code should be at.
 
 #### 安装 Graphviz 
 https://graphviz.gitlab.io/_pages/Download/Download_windows.html
