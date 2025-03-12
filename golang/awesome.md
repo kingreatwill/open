@@ -905,6 +905,12 @@ https://github.com/zyedidia/generic
 
 
 - [collection](https://github.com/bytedance/gopkg/tree/main/collection)
+
+
+- [concurrent-map](github.com/orcaman/concurrent-map/v2)
+
+- [set k8s.io/utils/set](https://github.com/kubernetes/utils)
+
 ### 文档处理
 #### 转PDF
 ##### Gotenberg 
