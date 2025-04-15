@@ -10,7 +10,7 @@ https://github.com/orbstack/orbstack
 [macwk](https://macwk.com.cn/)
 
 ### 工具
-hapigo
+
 snipaste
 pastenow
-utools
+hapigo/utools / Raycast就像是升级版的Spotlight搜索
