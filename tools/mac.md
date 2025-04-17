@@ -13,4 +13,4 @@ https://github.com/orbstack/orbstack
 
 snipaste
 pastenow
-hapigo/utools / Raycast就像是升级版的Spotlight搜索
+hapigo/utools /Alfred 5/ Raycast就像是升级版的Spotlight搜索
