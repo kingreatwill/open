@@ -50,6 +50,10 @@ https://github.com/kingToolbox/WindTerm
 Terminal/ssh/sftp client(linux, mac, win)
 https://github.com/electerm/electerm
 
+### Termius
+Termius是目前平台支持最全，体验一致性最好的SSH客户端。在Windows、Linux、macOS、Android、iOS均可用，而且所有设备之前支持无缝同步。
+有免费版本， 商业收费
+https://www.termius.com/
 
 ### SecureCRT
 
