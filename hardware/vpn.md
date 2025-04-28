@@ -11,7 +11,6 @@ https://github.com/gfwlist/gfwlist
 
 [Shadowsocks + GfwList 实现 OpenWRT / LEDE 路由器自动科学上网](https://cokebar.info/archives/962)
 
-[免费节点](https://topvpnlist.github.io/)
 
 [科学上网的有趣项目集锦](https://github.com/udpsec/awesome-vpn)
 ### v2rayA
@@ -221,6 +220,9 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 插件支持： V2Ray 支持插件系统，可以通过插件实现更多的功能，如流量伪装、混淆等。
 开源项目： V2Ray 是一个开源项目，具有透明的代码，用户可以审查和定制代码来满足自己的需求。
 
+
+[免费节点](https://topvpnlist.github.io/)
+[龙夫山泉15-200G](https://www.nfsq.us/#/plan) 3...@qq.com, qq3..
 
 
 #### Trojan 一键脚本
