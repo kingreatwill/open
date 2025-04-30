@@ -222,7 +222,7 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 
 [免费节点](https://topvpnlist.github.io/)
-[龙夫山泉15-200G](https://www.nfsq.us/#/plan) 3...@qq.com, qq3..
+[龙夫山泉15-200G](https://www.nfsq.us/#/plan)
 
 
 #### Trojan 一键脚本
