@@ -344,7 +344,10 @@ disconnected no supported authentication methods available(server sent: publicke
 > codechina
 > `git remote set-url --add origin git@codechina.csdn.net:kingreatwill/open.git`
 
-8. 其它
+8. cnb.cool
+`git remote set-url --add origin https://cnb.cool/wcoder/open.git`
+
+9. 其它
 百度效率云：http://xiaolvyun.baidu.com
 
 阿里云Code托管平台：https://code.aliyun.com
