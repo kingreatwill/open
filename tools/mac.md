@@ -15,6 +15,8 @@ snipaste
 pastenow
 hapigo/utools /Alfred 5/ Raycast就像是升级版的Spotlight搜索
 
+#### 录屏
+https://github.com/lihaoyun6/QuickRecorder
 
 ### 虚拟机
 #### Multipass
