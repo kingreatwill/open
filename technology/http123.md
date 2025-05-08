@@ -56,3 +56,11 @@ srv := &http.Server{
 }
 log.Println(srv.ListenAndServe())
 ```
+
+用 netcat (nc) 观察连接关闭时间
+```
+nc localhost 8080
+
+不要关闭 nc，保持连接。
+等待一段时间（比如 60 秒），如果服务端设置了 IdleTimeout: 60s，大约 60 秒后连接会被服务端关闭，nc 会自动退出。
+```
