@@ -44,3 +44,15 @@ Client 和 Server 的 keep-alive（心跳/保活）时间设置一致，可能�
 正确做法
 - client 的 keep-alive 时间要小于 server 的超时时间，比如 client 30 秒，server 60 秒。
 - 这样 server 检测超时前，client 至少会发一次心跳包，server 能及时收到，避免误判。
+
+> golang默认的http client的keep alive默认是30s
+> http server是IdleTimeout, 说明如下:
+> IdleTimeout is the maximum amount of time to wait for the next request when keep-alives are enabled. 
+If zero, the value of ReadTimeout is used. If negative, or if zero and ReadTimeout is zero or negative, there is no timeout.
+```
+srv := &http.Server{  
+    ReadTimeout: 5 * time.Second,
+    WriteTimeout: 10 * time.Second,
+}
+log.Println(srv.ListenAndServe())
+```
