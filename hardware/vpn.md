@@ -439,3 +439,29 @@ h5/wap端调试、移动端调试
 
 - https://github.com/liriliri/eruda
 和vconsole 相似
+
+## VPS
+1. LowEndBox
+https://lowendbox.com/
+全球最知名的VPS促销/测评/优惠信息站点，主要面向低价VPS，更新频繁。
+2. Hostloc（全球主机交流论坛）
+https://hostloc.com/
+国内最大的主机/VPS交流论坛，用户分享VPS测评、优惠、经验等（需注册）。
+3. VPS侦探
+https://www.vpszt.com/
+国内VPS资讯、测评、优惠信息站点。
+4. VPS推荐网
+https://www.vps123.top/
+国内VPS推荐、评测、优惠信息站点。
+5. LET (LowEndTalk)
+https://lowendtalk.com/
+LowEndBox 旗下社区，用户交流VPS、云服务器、主机等信息。
+6. VPSGO
+https://www.vpsgo.com/
+国内VPS测评、教程、优惠信息站点。
+7. VPS大玩家
+https://www.vpsdawanjia.com/
+国内VPS资讯、教程、优惠信息站点。
+8. 主机测评
+https://www.zhujiceping.com/
+国内主机、VPS测评、优惠信息站点。

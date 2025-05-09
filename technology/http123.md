@@ -64,3 +64,98 @@ nc localhost 8080
 不要关闭 nc，保持连接。
 等待一段时间（比如 60 秒），如果服务端设置了 IdleTimeout: 60s，大约 60 秒后连接会被服务端关闭，nc 会自动退出。
 ```
+
+### 安装支持http3的curl
+curl --http3 https://http3check.net/ -I
+curl --http3 https://cloudflare-quic.com -I
+
+brew install curl --with-c-ares
+brew install curl-openssl
+
+支持--dns-servers
+brew install c-ares
+brew install autoconf automake libtool pkg-config cmake
+
+
+curl -LO https://curl.se/download/curl-8.8.0.tar.gz
+tar xzf curl-8.8.0.tar.gz
+cd curl-8.8.0
+./configure --with-ares=$(brew --prefix c-ares)
+make -j4
+sudo make install
+
+
+或者直接以下安装方式:
+```
+# Clean up any old version of curl you may have already tried to install
+brew remove -f curl
+
+# Download the curl ruby install script provided by cloudflare
+wget https://raw.githubusercontent.com/cloudflare/homebrew-cloudflare/master/curl.rb
+
+# Install curl via that script from the latest git repos
+brew install --HEAD -s curl.rb
+
+# Tell your cli to use the curl version just installed (if you're using zsh, othwerise you might need `~/.bashrc`)
+# echo 'export PATH="/usr/local/opt/curl/bin:$PATH"' >> ~/.zshrc #老版本
+# FYI, /opt/homebrew can be replaced with $(brew --prefix)
+# echo 'export PATH="$(brew --prefix)/opt/curl/bin:$PATH"' >> ~/.zshrc #老版本
+
+echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> ~/.zshrc
+# Reload your config
+source ~/.zshrc
+
+# Double check it's using the right curl
+which curl # Should output "/usr/local/opt/curl/bin/curl"
+
+# Double check http3
+$ curl --version | grep HTTP3
+  Features: alt-svc AsynchDNS brotli HTTP2 HTTP3 IDN IPv6 Largefile libz MultiSSL NTLM NTLM_WB SSL UnixSockets zstd
+
+# Try curl on any HTTP/3 enabled sites.
+curl --http3 https://blog.cloudflare.com -I
+```
+
+也可以直接:
+
+```
+brew remove -f curl
+brew install cloudflare/homebrew-cloudflare/curl
+echo 'export PATH="/usr/local/opt/curl/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# mac M2
+brew remove -f curl
+brew install cloudflare/homebrew-cloudflare/curl
+echo 'export PATH="/opt/homebrew/opt/curl/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+
+
+这里安装带c-ares(推荐)
+https://github.com/stunnel/static-curl/tree/main
+```
+ARCHES="x86_64 arm64" \
+    TLS_LIB=openssl \
+    CURL_VERSION="" \
+    QUICTLS_VERSION="" \
+    OPENSSL_VERSION="" \
+    NGTCP2_VERSION="" \
+    NGHTTP3_VERSION="" \
+    NGHTTP2_VERSION="" \
+    LIBIDN2_VERSION="" \
+    LIBUNISTRING_VERSION="" \
+    ZLIB_VERSION="" \
+    BROTLI_VERSION="" \
+    ZSTD_VERSION="" \
+    LIBSSH2_VERSION="" \
+    LIBPSL_VERSION="" \
+    ARES_VERSION="" \
+    bash curl-static-mac.sh
+```
+或者直接下载可执行文件
+```
+echo 'export PATH="/Users/jinwei/tools/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
