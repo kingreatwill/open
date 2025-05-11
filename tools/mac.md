@@ -20,6 +20,12 @@ https://github.com/brona/iproute2mac
 snipaste
 pastenow
 hapigo/utools /Alfred 5/ Raycast就像是升级版的Spotlight搜索
+#### dock
+- ubar
+- ActiveDock 2
+- HyperDock
+- cDock
+- Dragthins
 #### 解压工具
 - keka
 - maczip
