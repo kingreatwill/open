@@ -20,7 +20,11 @@ https://github.com/brona/iproute2mac
 snipaste
 pastenow
 hapigo/utools /Alfred 5/ Raycast就像是升级版的Spotlight搜索
-
+#### 解压工具
+- keka
+- maczip
+#### 彻底卸载应用
+https://github.com/alienator88/Pearcleaner
 #### 录屏
 https://github.com/lihaoyun6/QuickRecorder
 
