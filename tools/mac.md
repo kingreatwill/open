@@ -63,7 +63,7 @@ multipass purge vm01
 ```
 
 #### CrossOver
-类虚拟机
+类虚拟机-在 macOS 和 Linux 上运行 Windows 应用程序，使用最成熟的游戏转译层Wine
 
 #### 超级右键
 - iRightMouse(功能丰富)
