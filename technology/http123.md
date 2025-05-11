@@ -84,7 +84,6 @@ cd curl-8.8.0
 make -j4
 sudo make install
 
-
 或者直接以下安装方式:
 ```
 # Clean up any old version of curl you may have already tried to install

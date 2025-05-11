@@ -14,6 +14,9 @@ Fiddler 开放了他的FiddlerCoreAPI  提供给开发者调用，来处理所�
 ## 其它工具
 ### 代理抓包工具 Charles
 Charles是一个HTTP代理/ HTTP监视器/反向代理，它使开发人员能够查看他们的机器和Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求、响应和HTTP头(其中包含cookie和缓存信息)。
+
+计算Charles激活码
+https://www.zzzmode.com/mytools/charles/
 ### Arkime（以前叫做Moloch）
 最新版本的Arkime可以通过PolarProxy接收抓包并解密HTTPS流。
 ### AnyProxy

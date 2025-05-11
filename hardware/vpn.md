@@ -465,3 +465,6 @@ https://www.vpsdawanjia.com/
 8. 主机测评
 https://www.zhujiceping.com/
 国内主机、VPS测评、优惠信息站点。
+
+9. 国外VPS vultr
+https://www.vultr.com/pricing/
