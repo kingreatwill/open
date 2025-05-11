@@ -61,3 +61,13 @@ multipass delete vm01
 # 释放实例（彻底删除）
 multipass purge vm01
 ```
+
+#### CrossOver
+类虚拟机
+
+#### 超级右键
+- iRightMouse(功能丰富)
+- New File Menu
+- Easy New File
+- MouseBoost Pro(功能丰富)
+- RClick(免费)
