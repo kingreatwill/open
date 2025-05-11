@@ -9,6 +9,12 @@ https://github.com/orbstack/orbstack
 ### 网址
 [macwk](https://macwk.com.cn/)
 
+
+### 命令行
+#### ip
+在linux系统上ip命令很常用，但是在Mac系统上并没有这个命令，我们可以安装 iproute2mac 使用类似ip功能的命令。
+https://github.com/brona/iproute2mac
+
 ### 工具
 
 snipaste
