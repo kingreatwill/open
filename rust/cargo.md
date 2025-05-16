@@ -42,6 +42,36 @@ publish     打包发布
 install     安装cargo相关可执行文件，默认路径为 $HOME/.cargo/bin
 uninstall   卸载相关可执行文件
 ```
+### 交叉编译/Cross-compilation
+Rust 内置了交叉编译支持。你只需要安装目标工具链即可。rustup
+`rustup target add aarch64-apple-darwin`
+并使用 构建您的程序--target。
+`cargo build --target aarch64-apple-darwin`
+一旦涉及C的时候都比较麻烦
+
+https://github.com/rust-cross/cargo-zigbuild
+
+除了 cargo-zigbuild 和 Rust 之外，我们还提供了预装了 macOS SDK 的 Docker 镜像，例如为 x86_64 macOS 构建：
+
+Linux docker 镜像（ghcr.io，Docker Hub）：
+```
+docker run --rm -it -v $(pwd):/io -w /io ghcr.io/rust-cross/cargo-zigbuild \
+  cargo zigbuild --release --target x86_64-apple-darwin
+```
+
+Windows docker 映像（ghcr.io、Docker Hub）：
+```
+docker run --rm -it -v ${pwd}:c:\io -w c:\io ghcr.io/rust-cross/cargo-zigbuild.windows `
+  cargo zigbuild --target x86_64-apple-darwin
+```
+
+
+### golang 交叉编译/Cross-compilation
+Go 使用 Zig 来编译 C/C++ 代码。https://dev.to/kristoff/zig-makes-go-cross-compilation-just-work-29ho
+```
+CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC="zig cc -target x86_64-linux" CXX="zig c++ -target x86_64-linux" go build --tags extended
+```
+
 ## 建议项目结构
 ```
 .

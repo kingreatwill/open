@@ -1,5 +1,12 @@
 # cgo
 
+## 交叉编译
+### golang 交叉编译/Cross-compilation
+Go 使用 Zig 来编译 C/C++ 代码。https://dev.to/kristoff/zig-makes-go-cross-compilation-just-work-29ho
+```
+CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC="zig cc -target x86_64-linux" CXX="zig c++ -target x86_64-linux" go build --tags extended
+```
+
 ## cgo 和共享对象
 构建命令 go build 有一个参数可以[把你的 Go 包编进 C shared library](https://golang.org/pkg/cmd/go/internal/help/#pkg-variables)
 ```
