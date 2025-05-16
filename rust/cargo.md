@@ -42,6 +42,14 @@ publish     打包发布
 install     安装cargo相关可执行文件，默认路径为 $HOME/.cargo/bin
 uninstall   卸载相关可执行文件
 ```
+
+安装cargo相关可执行文件
+```
+cargo install --path /path/to/fish # if you have a git clone
+cargo install --git https://github.com/fish-shell/fish-shell --tag 4.0.0 # to build from git with a specific version
+cargo install --git https://github.com/fish-shell/fish-shell # to build the current development snapshot without cloning
+```
+
 ### 交叉编译/Cross-compilation
 Rust 内置了交叉编译支持。你只需要安装目标工具链即可。rustup
 `rustup target add aarch64-apple-darwin`
@@ -64,6 +72,18 @@ Windows docker 映像（ghcr.io、Docker Hub）：
 docker run --rm -it -v ${pwd}:c:\io -w c:\io ghcr.io/rust-cross/cargo-zigbuild.windows `
   cargo zigbuild --target x86_64-apple-darwin
 ```
+
+zigbuild 仅支持部分 rustup 的target （例如在 macOS 中仅支持以下 target ）
+x86_64-unknown-linux-gnu \
+x86_64-unknown-linux-musl \
+aarch64-unknown-linux-gnu \
+aarch64-unknown-linux-musl \
+arm-unknown-linux-gnueabihf \
+arm-unknown-linux-musleabihf \
+x86_64-apple-darwin \
+aarch64-apple-darwin \
+x86_64-pc-windows-gnu \
+aarch64-pc-windows-gnullvm
 
 
 ### golang 交叉编译/Cross-compilation
