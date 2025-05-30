@@ -20,6 +20,10 @@ https://github.com/brona/iproute2mac
 snipaste
 pastenow
 hapigo/utools /Alfred 5/ Raycast就像是升级版的Spotlight搜索
+
+#### 文件管理 finder/访达
+- QSpace Pro
+
 #### dock
 - ubar
 - ActiveDock 2
