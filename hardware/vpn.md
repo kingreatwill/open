@@ -197,6 +197,11 @@ https://portal.shadowsocks.au/clientarea.php
 
 clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
+
+[免费节点](https://topvpnlist.github.io/)
+[龙夫山泉15-200G](https://www.nfsq.us/#/plan)
+[流量包-好用(高速4K)-推荐-38.8-260G](https://sakura-cat-cdn2.com/register?code=c7pvmlAV)
+
 参考[yml文件](./Clash_DIY_node.yml)
 
 [下载地址](https://dl.trojan-cdn.com/trojan/windows/)
@@ -220,9 +225,6 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 插件支持： V2Ray 支持插件系统，可以通过插件实现更多的功能，如流量伪装、混淆等。
 开源项目： V2Ray 是一个开源项目，具有透明的代码，用户可以审查和定制代码来满足自己的需求。
 
-
-[免费节点](https://topvpnlist.github.io/)
-[龙夫山泉15-200G](https://www.nfsq.us/#/plan)
 
 
 #### Trojan 一键脚本
