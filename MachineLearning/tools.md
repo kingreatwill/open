@@ -61,3 +61,8 @@ Spyder (前身是 Pydee) 是一个强大的交互式 Python 语言开发环境�
 https://www.lobe.ai/
 Lobe桌面应用程序 助你轻松创建机器学习模型
 2018 年的时候，微软收购了一家名叫 Lobe 的人工智能初创企业。Lobe 加入到微软之后，仍以独立服务存在。两年过后，微软终于宣布了 Lobe 的公开预览。
+
+### AI网站/视频生成/图片处理
+Kerlin 
+viggle   
+magic eraser 
