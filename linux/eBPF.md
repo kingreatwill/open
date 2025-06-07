@@ -611,12 +611,30 @@ PID    COMM               FD ERR PATH
 Facebook 高性能 4 层负载均衡器 [Katran](https://github.com/facebookincubator/katran) ；
 ### Cilium
 [Cilium](https://github.com/cilium/cilium) 为下一代微服务 ServiceMesh 打造了具备API感知和安全高效的容器网络方案；底层主要使用 eBPF 中 XDP 和 TC；
+
+Cilium 是一个基于 eBPF 的 Kubernetes CNI 插件，实现了高性能的网络连接和负载均衡。Hubble 是 Cilium 的网络可观测性解决方案，能展示服务通信、策略执行、监控和告警等。
+
 ### IO Visor
 IO Visor 项目开源的 [BCC](https://github.com/iovisor/bcc) 、 [BPFTrace](https://github.com/iovisor/bpftrace) 和 [Kubectl-Trace](https://github.com/iovisor/kubectl-trace) ： BCC 提供了更高阶的抽象，可以让用户采用 Python、C++ 和 Lua 等高级语言快速开发 BPF 程序； BPFTrace 采用类似于 awk 语言快速编写 eBPF 程序； Kubectl-Trace 则提供了在 kubernetes 集群中使用 BPF 程序调试的方便操作；
 
 ### CloudFlare
 CloudFlare 公司开源的 [eBPF Exporter](https://github.com/cloudflare/ebpf_exporter) 和 [bpf-tools](https://github.com/cloudflare/bpftools) ： eBPF Exporter 将 eBPF 技术与监控 Prometheus 紧密结合起来； bpf-tools 可用于网络问题分析和排查；
 
+### Prometheus eBPF Exporter
+Cloudflare 开源了 eBPF Exporter，可以把 eBPF 采集到的指标导出为 Prometheus 格式，方便用 Grafana 可视化。例如可以采集 CPU、内存、Cgroup 等“每服务”级别的指标。
+
+### Sysdig 的 Falco
+Falco 是 Kubernetes 运行时安全工具，基于 eBPF 实现。它能实时检测容器和主机的异常行为，比如监控进程启动、监听端口等，及时发现安全风险。
+
+还有 Facebook、Netflix 等公司在内部用 eBPF/XDP 替代 iptables 做防火墙，主要用于网络可观测和控制。
+
+### 其他案例
+• Datadog 的 TCP tracer
+• Flowmill
+• Weave Scope
+• ntopng
+• Inspektor Gadget
+• Instana
 
 ### tcpw
 eBPF Talk: 使用 tcpw 获取 curl 的五元组信息
