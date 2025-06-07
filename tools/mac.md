@@ -81,6 +81,37 @@ multipass delete vm01
 # 释放实例（彻底删除）
 multipass purge vm01
 ```
+#### lima
+纯命令行Linux虚拟工具 
+开源仓库地址：https://github.com/lima-vm/lima
+
+根据已有的模版创建虚拟机,可以在本地的/usr/local/share/lima/templates目录查看，或者去lima的这个网页查看：https://lima-vm.io/docs/templates/
+
+```
+brew install lima
+
+# 创建
+limactl create --name=ubuntu-lts template://ubuntu-lts
+
+# 启动
+limactl start ubuntu-lts
+
+# 查看现在虚拟机的列表及状态。
+limactl list
+
+# 进入linux终端
+limactl shell ubuntu-lts
+
+# 停止虚拟机
+limactl stop ubuntu-lts
+# 删除虚拟机
+limactl delete ubuntu-lts
+# 保护一个虚拟机，防止误删除
+limactl protect ubuntu-lts
+# 取消对虚拟机的保护，允许删除
+limactl unprotect ubuntu-lts
+```
+
 
 #### CrossOver
 类虚拟机-在 macOS 和 Linux 上运行 Windows 应用程序，使用最成熟的游戏转译层Wine
