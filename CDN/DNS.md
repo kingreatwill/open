@@ -760,11 +760,38 @@ DoH 全称 DNS over HTTPS，它使用 HTTPS 来传输 DNS 协议。
 > https://dns.alidns.com/dns-query
 > https://223.5.5.5/dns-query
 
+coredns可以通过[TLS插件](https://coredns.io/plugins/tls/)进行支持
+```
+Start a DNS-over-TLS server that picks up incoming DNS-over-TLS queries on port 5553 and uses the nameservers defined in /etc/resolv.conf to resolve the query. This proxy path uses plain old DNS.
+tls://.:5553 {
+	tls cert.pem key.pem ca.pem
+	forward . /etc/resolv.conf
+}
+
+Start a DNS-over-gRPC server that is similar to the previous example, but using DNS-over-gRPC for incoming queries.
+grpc://. {
+	tls cert.pem key.pem ca.pem
+	forward . /etc/resolv.conf
+}
+
+Start a DoH server on port 443 that is similar to the previous example, but using DoH for incoming queries.
+https://. {
+	tls cert.pem key.pem ca.pem
+	forward . /etc/resolv.conf
+}
+```
+> tls 插件让 CoreDNS 监听 853 端口（默认 DoT 端口），并使用你指定的证书和私钥。
+> DoH使用443端口
+
+#### DoQ
+[RFC 9250](https://datatracker.ietf.org/doc/rfc9250)
+
+DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协议发送DNS查询和响应。QUIC结合了TCP和UDP的特点，同时还集成了类似于TLS的内置加密
 #### DoT
-RFC 7858
+[RFC 7858](https://datatracker.ietf.org/doc/rfc7858)
 
 #### DoH
-RFC 8484
+[RFC 8484](https://datatracker.ietf.org/doc/rfc8484)
 
 开发者使用DoH服务
 ```
