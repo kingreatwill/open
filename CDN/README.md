@@ -20,6 +20,10 @@ Nginx通过hash解决了cache抖动的问题，Varnish的内存缓存非常的�
 
 [varnish / squid / nginx cache 有什么不同](https://www.zhihu.com/question/20143441)
 
+## 调度算法
+动态规划: 
+线性规划: https://scipopt.org/doc/html/
+
 ## DNS
 
 ### 权威DNS、Local DNS、公共DNS有什么区别？
