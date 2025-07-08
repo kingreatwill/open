@@ -562,6 +562,8 @@ perf 命令（performance 的缩写）是 Linux 系统原生提供的性能分�
 里面大部分是perf语言写的脚本，生成火焰图后续会用到(直接执行.pl后缀的脚本文件, 对采集的数据进行各种处理)
 `git clone https://github.com/brendangregg/FlameGraph.git`
 
+#### perf-tools
+https://github.com/brendangregg/perf-tools
 #### perf 采集数据
 `perf record -F 99 -a -g -- sleep 60` //对CPU所有进程以99Hz采集,它的执行频率是 99Hz（每秒99次），如果99次都返回同一个函数名，那就说明 CPU 这一秒钟都在执行同一个函数，可能存在性能问题。执行60秒后会弹出如下图提示表示采集完成，在当前目录会生成一个perf.data的文件
 
