@@ -584,6 +584,10 @@ $ mv doggo /usr/local/bin
 
 `tcpdump -i eth0 udp port 53` 命令来捕获通过 eth0 网卡发送到 UDP 端口 53 的 DNS 数据包。
 
+#### kyanos
+Kyanos 是一个网络流量采集和分析工具
+https://github.com/hengyoush/kyanos
+
 #### wireshark
 `wireshark` 是一个网络协议分析器，可以用于分析网络数据包的详细信息。它可以用于检查 DNS 查询和响应数据包，以及其他网络流量。例如，使用 `wireshark` 命令来打开捕获的 DNS 数据包文件并进行分析。
 
