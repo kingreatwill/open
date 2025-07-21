@@ -879,6 +879,8 @@ https://github.com/imdario/mergo  2.9k
 
 https://github.com/mitchellh/mapstructure 7.9k
 
+https://github.com/stretchr/objx 对象转换/不是mapper
+
 ### collection/集合/容器
 https://github.com/zyedidia/generic
 
