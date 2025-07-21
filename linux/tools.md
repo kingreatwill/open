@@ -471,6 +471,9 @@ bashtop 是一个 Linux 资源监视器，显示处理器、内存、磁盘、�
 菜单直接显示是否有新版本可用
 GitHub 地址→https://github.com/aristocratos/bashtop
 
+### NeoHtop
+https://github.com/Abdenasser/neohtop/releases
+
 ## UI
 ### cockpit   
 web管理页面 连接linux
