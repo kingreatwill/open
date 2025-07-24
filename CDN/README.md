@@ -24,6 +24,9 @@ Nginx通过hash解决了cache抖动的问题，Varnish的内存缓存非常的�
 动态规划: 
 线性规划: https://scipopt.org/doc/html/
 
+mcmf
+最小费用最大流（Minimum Cost Maximum Flow）
+
 ## DNS
 
 ### 权威DNS、Local DNS、公共DNS有什么区别？
