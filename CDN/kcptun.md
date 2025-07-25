@@ -50,3 +50,25 @@ https://github.com/Chion82/kcptun-raw
 
 ## 参考
 https://zhuanlan.zhihu.com/p/453349832
+
+## stun/TURN
+https://github.com/jselbie/stunserver
+```
+Docker
+
+1. `docker image build -t=stun-server-image .`
+2. `docker container run -d -p 3478:3478/tcp -p 3478:3478/udp
+--name=stun-container stun-server-image`
+```
+
+
+https://www.stunprotocol.org/
+
+ICE - Interactive Connectivity Establishment. A protocol for establishing direct connectivity once STUN or TURN address candidates are obtained.
+TURN - Traversal Using Relays around NAT. A relay solution and protocol for when direct connectivity can not be established. Can be used in conjunction or seperate from STUN.
+WebRTC - ICE data and video conferencing in web browsers
+Pion - Implementation of WebRTC in the Go programming language
+libnice - libnice is an open-source C source code library that implements the ICE protocol for establishing P2P connectivity.
+JSTUN - JSTUN is an implementation of STUN using Java implemented by Thomas King. JSTUN client libraries are compatible with STUNTMAN server.
+C# Stun Client code - Implemented by by Ivar Lumi. Compatible with STUNTMAN.
+PJNATH - An implementation of ICE for multiple platforms
