@@ -72,3 +72,7 @@ libnice - libnice is an open-source C source code library that implements the IC
 JSTUN - JSTUN is an implementation of STUN using Java implemented by Thomas King. JSTUN client libraries are compatible with STUNTMAN server.
 C# Stun Client code - Implemented by by Ivar Lumi. Compatible with STUNTMAN.
 PJNATH - An implementation of ICE for multiple platforms
+
+### nat类型检测
+https://github.com/oneclickvirt/gostun/tree/main
+https://github.com/HMBSbige/NatTypeTester
