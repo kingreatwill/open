@@ -76,3 +76,26 @@ PJNATH - An implementation of ICE for multiple platforms
 ### nat类型检测
 https://github.com/oneclickvirt/gostun/tree/main
 https://github.com/HMBSbige/NatTypeTester
+
+### 解释
+1. 标准STUN协议是否支持TCP？
+STUN（RFC 5389）协议本身是支持TCP传输的，即STUN消息可以通过UDP或TCP发送到STUN服务器。
+但——
+绝大多数STUN实现和NAT类型检测工具只用UDP，因为NAT类型的判别（Full Cone/Restricted/Symmetric等）主要是为P2P UDP打洞服务设计的。
+NAT对TCP和UDP的处理方式不同，TCP是有连接的，UDP是无连接的，NAT的端口分配和映射策略也不同。
+2. 为什么很少有“TCP STUN” NAT类型检测工具？
+NAT类型的定义和判别方法（如RFC 3489/5389）是基于UDP的，TCP下的NAT行为和UDP下不同，且TCP打洞本身就很难实现。
+TCP连接建立时，NAT通常会为每个新连接分配新的端口，这导致用TCP做NAT类型判别意义不大。
+STUN的主要应用场景（如WebRTC、VoIP）都是基于UDP的。
+3. 现有STUN服务器/客户端是否支持TCP？
+协议上支持：RFC 5389 明确规定STUN消息可以通过TCP发送。
+实现上支持：如 coturn、pion/stun 等STUN服务器/库支持TCP传输。
+但：这些实现通常不会用TCP来检测NAT类型，而是用来做NAT穿透时的备用传输方式（如UDP被阻断时用TCP）。
+4. 你可以用TCP方式和STUN服务器通信吗？
+可以！你可以用TCP连接STUN服务器，发送STUN消息，获取公网IP和端口。但：
+你无法用TCP STUN检测UDP下的NAT类型。
+你也无法用TCP STUN检测TCP下的NAT类型，因为TCP连接的NAT行为和UDP完全不同，且没有标准的“TCP NAT类型”判别方法。
+5. 结论
+STUN协议本身支持TCP传输，但NAT类型检测的标准方法只适用于UDP。
+没有专门的“TCP STUN NAT类型检测”工具或标准，因为TCP NAT行为和UDP不同，且TCP打洞本身极难实现。
+你可以用TCP方式和STUN服务器通信，获取公网IP:端口，但这不能用来判别NAT类型。
