@@ -9,7 +9,7 @@ https://doc.rust-lang.org/std/index.html
 https://doc.rust-lang.org/cargo/index.html
 
 ## rustdoc
-https://doc.rust-lang.org/rustc/platform-support.html
+
 https://doc.rust-lang.org/rustdoc/index.html
 参数：https://doc.rust-lang.org/rustdoc/command-line-arguments.html
 ```
@@ -34,7 +34,7 @@ dependency=<path>/docs/target/debug/deps
 ```
 ## rustc
 https://doc.rust-lang.org/rustc/index.html
-
+https://doc.rust-lang.org/rustc/platform-support.html
 参数：https://doc.rust-lang.org/rustc/command-line-arguments.html
 ```
 如果main.rs中引用了foo.rs
