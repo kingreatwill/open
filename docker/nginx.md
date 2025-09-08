@@ -301,6 +301,189 @@ events{
 [如何构建高性能服务器（以Nginx为例）](https://www.cnblogs.com/kukafeiso/p/13957174.html)
 [Nginx 性能优化有这篇就够了](https://www.cnblogs.com/cheyunhua/p/10670070.html)
 
+#### Nginx性能优化 
+workerconnections调大到65535，配合系统ulimit调整文件描述符，让Nginx能同时处理更多连接。
+```
+// nginx
+worker_processes auto; # 自动匹配CPU核心数（推荐！）
+worker_connections 65535; # 单进程最大连接数
+worker_rlimit_nofile 100000; # 突破文件描述符限制
+```
+2025年Nginx 1.27.4版本推出SSL上下文复用技术，解决了证书重复加载的问题，直接把加载时间砍了82%！
+```
+// nginx
+ssl_protocols TLSv1.2 TLSv1.3; # 只保留安全协议
+ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256; # 现代密码套件
+ssl_session_cache shared:SSL:10m; # 会话复用（减少重复握手）
+ssl_stapling on; # OCSP stapling加速30%
+```
+静态资源压缩/静态资源缓存
+```
+// nginx
+gzip on;
+gzip_comp_level 6; # 压缩级别6（性能平衡点）
+gzip_types text/plain text/css application/json application/javascript image/svg+xml;
+gzip_min_length 1k; # 小文件不压缩（避免浪费CPU）
+gzip_vary on; # 支持CDN缓存
+
+// nginx
+location ~* \.(jpg|css|js)$ {
+proxy_cache my_cache; # 定义缓存区域
+proxy_cache_valid 200 302 7d; # 缓存7天
+proxy_cache_lock on; # 防止缓存惊群（同时大量请求回源）
+expires 30d; # 浏览器缓存30天
+access_log off; # 关闭日志减少IO
+}
+```
+
+零拷贝传输
+```
+// nginx
+sendfile on; # 启用零拷贝
+tcp_nopush on; # 合并小包（减少网络包数量）
+tcp_nodelay on; # 实时场景禁用Nagle算法（立即发小包）
+```
+
+负载均衡
+```
+// nginx
+upstream backend {
+least_conn; # 最少连接优先（谁闲给谁发）
+server srv1 weight=3; # 性能好的多干活（权重3）
+server srv2 weight=2; # 中等性能（权重2）
+server srv3 backup; # 热备节点（平时不用，故障时顶上）
+}
+```
+> 注意：加health_check模块（Nginx Plus）可主动检测后端健康状态，更靠谱！
+
+内核参数调优`/etc/sysctl.conf`
+```
+// bash
+net.core.somaxconn = 65535 # 最大待处理连接数（默认128）
+net.ipv4.tcp_tw_reuse = 1 # 复用TIME-WAIT连接（减少资源浪费）
+fs.file-max = 2097152 # 系统最大文件句柄数（默认10万）
+```
+> 改完执行sysctl -p生效，同时在/etc/security/limits.conf调大用户文件描述符：
+```
+* soft nofile 65535
+* hard nofile 65535
+```
+
+```
+#禁用ipv6
+net.ipv6.conf.all.disable_ipv6 = 0
+net.ipv6.conf.default.disable_ipv6 = 0
+net.ipv6.conf.lo.disable_ipv6 = 0
+
+#本地客户端端口范围
+net.ipv4.ip_local_port_range = 1024 65000 
+
+#当内存使用率大于97%时,开始使用swap
+vm.swappiness = 2  
+
+#每一个端口最大的listen队列的长度
+net.core.somaxconn=655350  
+
+
+#在高延迟的连接中，SACK 对于有效利用所有可用带宽尤其重要。高延迟会导致在任何给定时刻都有大量正在传送的包在等待应答。在 Linux 中，除非得到应答或不再需要，这些包将一直存放在重传队列中。这些包按照序列编号排队，但不存在任何形式的索引。当需要处理一个收到的 SACK 选项时，TCP 协议栈必须在重传队列中找到应用了 SACK 的包。重传队列越长，找到所需的数据就越困难。一般可关闭这个功能。选择性应答在高带宽延迟的网络连接上对性能的影响很大，但也可将其禁用，这不会牺牲互操作性。将其值设置为 0 即可禁用 TCP 协议栈中的 SACK 功能
+net.ipv4.tcp_sack = 1  
+
+##每个网络接口接收数据包的速率比内核处理这些包的速率快时,允许送到队列的数据包的最大数目 
+net.core.netdev_max_backlog = 262144
+
+##TCP窗口扩大因子支持. 如果TCP窗口最大超过65535(64K), 设置该数值为1 。Tcp窗口扩大因子是一个新选项，一些新的实现才会包含该选项，为了是新旧协议兼容，做了如下约定：1、只有主动连接方的第一个syn可以发送窗口扩大因子；2、被动连接方接收到带有窗口扩大因子的选项后，如果支持，则可以发送自己的窗口扩大因子，否则忽略该选项；3、如果双方支持该选项，那么后续的数据传输则使用该窗口扩大因子。如果对方不支持wscale，那么它不应该响应 wscale 0，而且在收到46的窗口时不应该发送1460的数据；如果对方支持wscale，那么它应该大量发送数据来增加吞吐量，不至于通过关闭wscale来解决问题，如果是使用普遍的协议实现，那么就需要关闭wscale来提高性能并以防万一。
+net.ipv4.tcp_window_scaling = 1
+
+#TCP读buffer 
+net.ipv4.tcp_rmem = 53687091 53687091 536870912
+
+#TCP写buffer
+net.ipv4.tcp_wmem = 53687091 53687091 536870912
+
+#系统中最多有多少个TCP套接字不被关联到任何一个用户文件句柄上。如果超过这个数字，孤儿连接将即刻被复位并打印出警告信息。这个限制仅仅是为了防止简单的DoS攻击，不能过分依靠它或者人为地减小这个值，更应该增加这个值(如果增加了内存之后)。
+net.ipv4.tcp_max_orphans = 3276800
+
+#意思是如果某个TCP连接在idle 2分钟后,内核才发起probe.如果probe 1次(每次2秒)不成功,内核才彻底放弃,认为该连接已失效. 
+net.ipv4.tcp_keepalive_intvl = 15
+net.ipv4.tcp_keepalive_probes = 3
+
+#表示如果套接字由本端要求关闭，这个参数决定了它保持在FIN-WAIT-2状态的时间
+net.ipv4.tcp_fin_timeout = 15
+
+#表示当keepalive起用的时候，TCP发送keepalive消息的频度。缺省是2小时，改为1分钟
+net.ipv4.tcp_keepalive_time = 600
+
+#1st低于此值,TCP没有内存压力,2nd进入内存压力阶段,3rdTCP拒绝分配socket(单位：内存页)
+net.ipv4.tcp_mem = 94500000 915000000 927000000
+
+#开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接。
+net.ipv4.tcp_tw_reuse = 1
+
+#时间戳可以避免序列号的卷绕。一个1Gbps 的链路肯定会遇到以前用过的序列号。时间戳能够让内核接受这种“异常”的数据包。这里需要将其关掉。
+net.ipv4.tcp_timestamps = 0
+
+#为了打开对端的连接，内核需要发送一个SYN 并附带一个回应前面一个SYN 的ACK。也就是所谓三次握手中的第二次握手。这个设置决定了内核放弃连接之前发送SYN+ACK 包的数量。
+net.ipv4.tcp_synack_retries = 1
+
+#对于一个新建连接，内核要发送多少个 SYN 连接请求才决定放弃。不应该大于255，默认值是5
+net.ipv4.tcp_syn_retries = 3
+
+
+# System default settings live in /usr/lib/sysctl.d/00-system.conf.
+# To override those settings, enter new settings here, or in an /etc/sysctl.d/<name>.conf file
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.pid_max = 4194303
+kernel.shmmax = 68719476736
+kernel.shmall = 4294967296
+kernel.sysrq = 0
+kernel.core_uses_pid = 1
+#增加watchdog 软死锁的超时时间,https://www.cnblogs.com/xingyunfashi/p/10710784.html
+kernel.watchdog_thresh = 10
+net.core.rmem_max = 536870912
+net.core.wmem_max = 536870912
+net.core.rmem_default = 53687091
+net.core.wmem_default = 53687091
+net.core.optmem_max = 536870912
+
+net.nf_conntrack_max = 600000000
+net.netfilter.nf_conntrack_tcp_timeout_established = 1200
+
+net.ipv4.ip_forward = 1
+net.ipv4.conf.default.rp_filter = 2
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_max_tw_buckets = 36000
+
+net.ipv4.tcp_retries2 = 5
+net.ipv4.tcp_max_syn_backlog = 262144
+
+#回收内存的阈值
+#vm.min_free_kbytes = 1048576
+
+fs.file-max = 13181532
+fs.inotify.max_queued_events = 99999999
+fs.inotify.max_user_watches = 99999999
+fs.inotify.max_user_instances = 65535
+
+#net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+net.bridge.bridge-nf-call-ip6tables=1
+net.bridge.bridge-nf-call-iptables=1
+```
+
+stub_status模块：
+```
+// nginx
+location /nginx_status {
+stub_status on;
+allow 127.0.0.1; # 只允许本地访问
+deny all;
+}
+```
+
 ### ngx_http_auth_digest 模块进行登录认证
 
 生成登录密码：
