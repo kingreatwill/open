@@ -9,6 +9,7 @@ https://doc.rust-lang.org/std/index.html
 https://doc.rust-lang.org/cargo/index.html
 
 ## rustdoc
+https://doc.rust-lang.org/rustc/platform-support.html
 https://doc.rust-lang.org/rustdoc/index.html
 参数：https://doc.rust-lang.org/rustdoc/command-line-arguments.html
 ```
