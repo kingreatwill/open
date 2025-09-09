@@ -123,6 +123,30 @@ https://github.com/prettier
 - YAML
 
 ## 命令行服务器(最小web服务器)/Simple Web Server
+### rust
+miniserve（最常用，功能全）
+https://github.com/svenstaro/miniserve
+cargo install miniserve
+miniserve . -p 8080
+
+
+simple-http-server（轻量）
+https://github.com/TheWaWaR/simple-http-server
+cargo install simple-http-server
+simple-http-server -p 8080 -i 0.0.0.0 folder-name
+
+mdBook（文档站点带内置 serve）
+https://github.com/rust-lang/mdBook
+https://rust-lang.github.io/mdBook/guide/installation.html
+cargo install mdbook
+mdbook serve
+
+
+Trunk（Yew/Leptos 等）：
+https://github.com/trunk-rs/trunk
+cargo install trunk
+trunk serve
+
 ### dotnet
 https://github.com/natemcmaster/dotnet-serve
 ```
