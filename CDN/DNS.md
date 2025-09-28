@@ -915,11 +915,37 @@ https://. {
 [RFC 9250](https://datatracker.ietf.org/doc/rfc9250)
 
 DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协议发送DNS查询和响应。QUIC结合了TCP和UDP的特点，同时还集成了类似于TLS的内置加密
+
+"doq" - DNS over QUIC (DoQ)
+含义：通过 QUIC 协议直接传输 DNS 查询
+协议：基于 UDP 的 QUIC
+特点：低延迟、高可靠性、内置加密
+用途：下一代 DNS 传输协议
+
 #### DoT
 [RFC 7858](https://datatracker.ietf.org/doc/rfc7858)
 
+"dot" - DNS over TLS (DoT)
+含义：通过 TLS 加密传输 DNS 查询
+端口：853
+特点：使用专用端口，提供加密的 DNS 解析
+用途：防止 DNS 查询被窃听或篡改
+
+#### DoH3
+"doh3" - DNS over HTTP/3 (DoH3)
+含义：基于 HTTP/3 协议的 DNS over HTTPS
+协议：使用 QUIC 传输层
+特点：结合了 HTTP/3 的性能优势和 DoH 的隐私保护
+用途：更快的 DNS 解析速度
+
 #### DoH
 [RFC 8484](https://datatracker.ietf.org/doc/rfc8484)
+
+"doh" - DNS over HTTPS (DoH)
+含义：通过 HTTPS 协议传输 DNS 查询
+端口：443（与普通 HTTPS 流量共享）
+特点：将 DNS 流量伪装成普通 HTTPS 流量
+用途：绕过网络限制，增强隐私保护
 
 开发者使用DoH服务
 ```
