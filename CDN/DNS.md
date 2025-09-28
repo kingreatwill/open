@@ -918,6 +918,7 @@ DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协
 
 "doq" - DNS over QUIC (DoQ)
 含义：通过 QUIC 协议直接传输 DNS 查询
+端口：853
 协议：基于 UDP 的 QUIC
 特点：低延迟、高可靠性、内置加密
 用途：下一代 DNS 传输协议
@@ -934,6 +935,7 @@ DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协
 #### DoH3
 "doh3" - DNS over HTTP/3 (DoH3)
 含义：基于 HTTP/3 协议的 DNS over HTTPS
+端口：443
 协议：使用 QUIC 传输层
 特点：结合了 HTTP/3 的性能优势和 DoH 的隐私保护
 用途：更快的 DNS 解析速度
