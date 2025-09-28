@@ -923,6 +923,8 @@ DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协
 特点：低延迟、高可靠性、内置加密
 用途：下一代 DNS 传输协议
 
+端口冲突：DoQ 和 DoT 都使用端口 853，但使用不同的传输协议（UDP vs TCP）
+
 #### DoT
 [RFC 7858](https://datatracker.ietf.org/doc/rfc7858)
 
@@ -931,6 +933,8 @@ DNS-over-QUIC（DoQ）：DoQ是一种新兴的安全协议，通过QUIC传输协
 端口：853
 特点：使用专用端口，提供加密的 DNS 解析
 用途：防止 DNS 查询被窃听或篡改
+
+端口冲突：DoQ 和 DoT 都使用端口 853，但使用不同的传输协议（UDP vs TCP）
 
 #### DoH3
 "doh3" - DNS over HTTP/3 (DoH3)
