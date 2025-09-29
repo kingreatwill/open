@@ -170,6 +170,8 @@ https://repl.it/languages/csharp
 
 - [在线浏览器](https://github.com/m1k1o/neko)
 
+- [ssh Termix](https://github.com/LukeGus/Termix/blob/main/README-CN.md)
+
 ### web terminal/WebTerminal
 - https://github.com/tsl0922/ttyd
 - https://github.com/butlerx/wetty
