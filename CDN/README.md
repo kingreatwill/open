@@ -24,6 +24,10 @@ Nginx通过hash解决了cache抖动的问题，Varnish的内存缓存非常的�
 动态规划: 
 线性规划: https://scipopt.org/doc/html/
 
+Google OR-Tools专门用于解决各种优化问题，包括MIP（混合整数规划）
+https://github.com/google/or-tools.git
+https://github.com/google/or-tools/tree/stable/ortools/linear_solver
+
 mcmf
 最小费用最大流（Minimum Cost Maximum Flow）
 
