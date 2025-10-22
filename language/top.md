@@ -2,6 +2,10 @@
 [TOC]
 # 排行榜
 
+## AI模型
+SWE-bench是专门用于评估 LLM 解决真实软件工程问题能力的 benchmark
+https://www.swebench.com/
+
 ## Stack Overflow Trends 趋势
 https://insights.stackoverflow.com/trends
 
