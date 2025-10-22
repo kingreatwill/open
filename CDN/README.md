@@ -127,3 +127,6 @@ https://github.com/squid-cache/squid
 ### cloudflare
 
 [学习中心](https://www.cloudflare.com/zh-cn/learning/)
+
+### 国家IPv6发展监测平台
+https://www.china-ipv6.cn/#/
