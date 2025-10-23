@@ -28,6 +28,23 @@ Google OR-Tools专门用于解决各种优化问题，包括MIP（混合整数�
 https://github.com/google/or-tools.git
 https://github.com/google/or-tools/tree/stable/ortools/linear_solver
 
+
+https://github.com/gonzojive/or-tools-go
+absl and or-tools:
+https://github.com/abseil/abseil-cpp.git
+https://github.com/google/or-tools.git
+
+其他MIP求解器
+
+开源的
+[GLPK](https://www.gnu.org/software/glpk/)（仅限 Linux 和 MacOS）
+
+商业的
+Gurobi
+[CPLEX](https://www.ibm.com/cn-zh/products/ilog-cplex-optimization-studio/cplex-optimizer)
+[XPRESS](https://www.fico.com/en/products/fico-xpress-optimization) 求解器
+
+
 mcmf
 最小费用最大流（Minimum Cost Maximum Flow）
 
