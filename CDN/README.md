@@ -21,6 +21,8 @@ Nginx通过hash解决了cache抖动的问题，Varnish的内存缓存非常的�
 [varnish / squid / nginx cache 有什么不同](https://www.zhihu.com/question/20143441)
 
 ## 调度算法
+
+> go 调用python脚本 github.com/YuminosukeSato/pyproc
 ### MIP
 https://www.gurobi.com/resources/mixed-integer-programming-mip-a-primer-on-the-basics/
 
@@ -173,3 +175,7 @@ https://github.com/squid-cache/squid
 
 ### 国家IPv6发展监测平台
 https://www.china-ipv6.cn/#/
+
+## 网络工具
+https://networkingtoolbox.net/
+https://github.com/Lissy93/networking-toolbox
