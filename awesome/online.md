@@ -262,6 +262,7 @@ https://github.com/Leantime/leantime
 [Super Productivity](https://github.com/johannesjo/super-productivity/)
 
 ## Excel
+- https://github.com/mathesar-foundation/mathesar
 - https://github.com/mengshukeji/Luckysheet
 - （https://github.com/DataGridXL/DataGridXL）https://www.datagridxl.com/
 - https://github.com/SheetJS/sheetjs

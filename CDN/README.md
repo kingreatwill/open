@@ -72,6 +72,15 @@ HiGHS - 中等
 SCIP - 较多
 Gurobi/CPLEX - 最多
 
+运筹学求解器
+国内: LEAVES和CMIP
+美国有GUROBI、CPLEX、SAS、MATLAB、CBC、SYMPHONY，
+德国有SCIP，
+俄罗斯有MIPCL和GLPK，
+英国有XPRESS（后被美国FICO公司收购），
+芬兰有LPSOLVE。
+
+
 
 ### mcmf
 最小费用最大流（Minimum Cost Maximum Flow）
