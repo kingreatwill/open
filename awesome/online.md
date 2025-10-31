@@ -14,6 +14,8 @@ online
 
 - [TiDB](http://play.pingcap.com/) - TiDB in your browser! [code](https://github.com/pingcap/tidb)
 
+- [Outerbase Studio](https://github.com/outerbase/studio)
+
 ### dbdoc
 把你的数据库生成文档，并且可以在线使用和分享。
 
