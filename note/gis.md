@@ -248,3 +248,93 @@ http://ditu.amap.com/service/poiInfo?query_type=TQUERY&city=xxx&keywords=yyy&pag
 
 
 
+## 3S
+早期"3S"是指遥感(Remote Sensing)、全球定位系统GPS (Global Position System) 和地理信息系统(Geographic Information System) 的简称，
+广义的说法则是遥感(Remote Sensing)、地理信息系统(Geographic Information System) 和全球导航卫星系统（ Global Navigation Satellite System），其中GNSS泛指所有卫星定位系统，包括GPS。
+“3s”是空间技术、传感器技术、卫星定位与导航技术和计算机技术、通信技术相结合，多学科高度集成的对空间信息进行采集、处理、管理、分析、表达、传播和应用的现代信息技术的总称。
+
+### GIS 地理信息系统(Geographic Information System) 
+
+arcpy开发python应用 
+
+#### OSRM (Open Source Routing Machine) 
+https://github.com/Project-OSRM
+
+### GPS 全球定位系统 (Global Position System) 
+火星坐标
+### RS  遥感(Remote Sensing)
+
+### MapServer
+GitHub：https://github.com/mapserver/mapserver
+文档：https://mapserver.org/documentation.html
+MapServer 是一个强大的开源 GIS 服务软件，适用于 web 地图发布、空间数据查询和格式转换。
+
+### Leaflet
+GitHub：https://github.com/Leaflet/Leaflet
+文档：https://leafletjs.com/reference.html
+Leaflet 是一个轻量级且功能强大的地图库，适用于开发各种交互式地图应用。
+
+### QGIS
+GitHub：https://github.com/qgis/QGIS
+文档：https://docs.qgis.org
+QGIS 是一个功能强大的开源 GIS 工具，适用于地理数据分析、地图制作以及空间数据处理等多种场景。
+
+### GeoServer
+GitHub：https://github.com/geoserver/geoserver
+文档：http://docs.geoserver.org
+GeoServer 是一个强大的开源 GIS 服务器，提供地图和空间数据服务，适用于各种地理信息共享和数据发布的场景。
+
+### GraphHopper
+GitHub：https://github.com/graphhopper/graphhopper
+API 文档：https://docs.graphhopper.com
+💡 GraphHopper 是一个高效的路线规划引擎，适用于多种导航应用，特别适合大规模路径计算和优化任务。
+
+### Navit
+GitHub：https://github.com/navit-gps/navit
+文档：https://wiki.navit-project.org
+Navit 是一个高效的开源离线导航系统，支持自定义 UI 和插件扩展，适用于各种设备和导航需求。
+
+### Bing Maps
+API 文档：https://docs.microsoft.com/en-us/bingmaps/
+开发者门户：https://www.microsoft.com/en-us/maps
+💡 Bing Maps 是微软提供的强大地图服务，适用于企业级 GIS、物流优化和智能导航应用。
+
+## 免费的GIS软件
+[14个免费的 GIS 软件：以开源的方式绘制地图](https://www.osgeo.cn/post/1b456)
+### QGIS
+> QGIS 3
+https://github.com/qgis/QGIS
+
+> QGIS 2
+https://gisgeography.com/open-source-qgis-review-guide/
+### GRASS GIS
+https://grass.osgeo.org/
+
+### Whitebox GAT
+https://www.whiteboxgeo.com/
+
+### gVSIG
+https://gisgeography.com/gvsig-software/
+
+### ILWIS 
+ILWIS(Integrated Land and Water Information System-陆地水体信息集成系统) 
+https://52north.org/news/ilwis-in-2016/
+
+### SAGA GIS
+https://saga-gis.sourceforge.io/en/index.html
+
+### GeoDa
+https://geodacenter.github.io/download.html
+
+### MapWindow
+https://www.mapwindow.org/
+
+### uDig
+http://udig.refractions.net/
+
+### OpenJump GIS
+http://www.openjump.org/
+### FalconView
+### OrbisGIS
+http://orbisgis.org/
+### Diva GIS
