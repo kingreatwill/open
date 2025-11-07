@@ -27,3 +27,8 @@ https://python.langchain.ac.cn/docs/introduction/
 ### agentic workflow 
 https://github.com/n8n-io/n8n
 https://github.com/langgenius/dify/
+
+### web ui
+[Open WebUI](https://github.com/open-webui/open-webui)
+[LobeChat](https://lobechat.com/chat)
+[Cherry Studio](https://www.cherry-ai.com/)

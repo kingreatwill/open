@@ -139,3 +139,6 @@ https://violentmonkey.github.io
 
 
 ### Greasemonkey 油猴
+### 脚本猫
+https://scriptcat.org/zh-CN
+https://github.com/scriptscat/scriptcat
