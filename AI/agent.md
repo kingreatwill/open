@@ -32,3 +32,8 @@ https://github.com/langgenius/dify/
 [Open WebUI](https://github.com/open-webui/open-webui)
 [LobeChat](https://lobechat.com/chat)
 [Cherry Studio](https://www.cherry-ai.com/)
+
+### ADK(Agent Development Kit )
+https://github.com/google/adk-go/blob/main/README.md
+https://adk.wiki/get-started/go/
+https://github.com/cloudwego/eino
