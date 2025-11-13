@@ -612,6 +612,8 @@ x 轴表示抽样数，如果一个函数在 x 轴占据的宽度越宽，就表
 #### 参考
 [火焰图（Flame Graphs）的安装和基本用法](https://www.cnblogs.com/wx170119/p/11459995.html)
 
+#### 性能监控
+https://github.com/wolfpld/tracy
 
 ## OpenResty Edge
 ### EdgeLang
