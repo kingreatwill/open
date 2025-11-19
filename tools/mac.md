@@ -44,6 +44,8 @@ Tabby
 electerm
 WindTerm
 ### 虚拟机
+手机跑操作系统
+https://github.com/xoureldeen/Vectras-VM-Android
 #### Multipass
 下载
 https://multipass.run/

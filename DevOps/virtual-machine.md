@@ -65,9 +65,13 @@ https://sysin.org/blog/proxmox-ve-8/
 
 https://git.proxmox.com/
 
+### Android
+手机跑操作系统
+https://github.com/xoureldeen/Vectras-VM-Android
 
 # "Windows Emulator"，即Windows模拟器
 
 ## Wine
 Wine其实为"Wine Is Not anEmulator"的递归缩写,Wine不是Windows模拟器，而是运用API转换技术实做出Linux对应到Windows相对应的函数来调用DLL以运行Windows程序。
 `wine 软件全名.exe`
+
