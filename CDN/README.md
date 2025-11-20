@@ -85,6 +85,9 @@ Gurobi/CPLEX - 最多
 ### mcmf
 最小费用最大流（Minimum Cost Maximum Flow）
 
+### 论文
+https://greenlv.github.io/files/2025_CoNEXT_Oceanus.pdf
+
 ## DNS
 
 ### 权威DNS、Local DNS、公共DNS有什么区别？
