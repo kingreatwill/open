@@ -87,6 +87,7 @@ Gurobi/CPLEX - 最多
 
 ### 论文
 https://greenlv.github.io/files/2025_CoNEXT_Oceanus.pdf
+![Oceanus](./file/2025_CoNEXT_Oceanus.pdf)
 
 ## DNS
 
