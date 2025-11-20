@@ -87,7 +87,15 @@ Gurobi/CPLEX - 最多
 
 ### 论文
 https://greenlv.github.io/files/2025_CoNEXT_Oceanus.pdf
-![Oceanus](./file/2025_CoNEXT_Oceanus.pdf)
+
+[Oceanus](./file/2025_CoNEXT_Oceanus.pdf)
+
+一种基于强化学习的CDN流量调度系统设计方法 [PDF](./file/一种基于强化学习的CDN流量调度系统设计方法.pdf)
+A Design Method of CDN Traffic Scheduling System Based on Reinforcement Learning
+
+针对传统的CDN流量调度系统大多采用启发式方法或规划方法，存在维护成本高，实时性不足等缺点，提出一种基于深度强化学习的CDN流量调度系统设计框架。该框架基于马尔科夫链设计了故障告警网络来触发调度，建立了基于stacking模型的质量评估奖励函数，并在此基础上对流量调度进行定义和建模，构建了基于DQN的深度强化学习模型。最后，通过仿真实验验证了该调度框架的有效性
+
+### 粒子群优化(Particle Swarm Optimization，PSO)和遗传算法(Genetic Algorithm，GA)
 
 ## DNS
 
