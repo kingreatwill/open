@@ -1192,6 +1192,11 @@ https://github.com/Frooodle/Stirling-PDF
 ### PDF Web Edit
 https://github.com/luke-browning/pdf-web-edit
 
+### bentopdf
+https://github.com/alam00000/bentopdf
+
+https://bentopdf.com/
+
 ### PDFgear
 阅读、编辑、转换、合并和跨设备签署PDF文件
 https://www.pdfgear.com/zh/
