@@ -175,3 +175,31 @@ ARCHES="x86_64 arm64" \
 echo 'export PATH="/Users/jinwei/tools/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 ```
+
+### curl支持DNS
+```
+# 指定DNS服务器
+curl --dns-servers 8.8.8.8,1.1.1.1 https://www.google.com
+
+# 显示详细的连接信息
+curl --trace-ascii - https://www.google.com 2>&1 | grep -A5 -B5 "DNS\|resolve"
+
+
+# 使用TCP进行DNS查询（而不是UDP）
+curl --doh-url https://dns.google/dns-query https://www.google.com
+
+# DoH (DNS over HTTPS)
+curl --doh-url https://cloudflare-dns.com/dns-query https://www.google.com
+
+
+# --doh-insecure - 跳过DoH证书验证
+curl --doh-insecure --doh-url https://doh.example.com https://example.com
+
+#  --doh-cert-status - 启用DoH证书状态验证
+curl --doh-cert-status --doh-url https://doh.example.com https://example.com
+
+
+#--doh-url: curl 7.62.0+
+#--doh-insecure: curl 7.76.0+
+#--doh-cert-status: curl 7.76.0+
+```
