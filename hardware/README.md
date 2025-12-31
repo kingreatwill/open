@@ -25,6 +25,10 @@ https://github.com/openwrt/openwrt c 5.8k
 
 > HyperWRT 是一个无线路由器的固件
 
+### wifi-densepose
+https://github.com/ruvnet/wifi-densepose
+根据WIFI的CSI检测出物体
+
 ## RT-Thread
 国产嵌入式实时操作系统
 RT-Thread是一个集实时操作系统（RTOS）内核、中间件组件和开发者社区于一体的技术平台，具有极小内核、稳定可靠、简单易用、高度可伸缩、组件丰富等特点。RT-Thread拥有一个国内最大的嵌入式开源社区，同时被广泛应用于能源、车载、医疗、消费电子等多个行业，累积装机量达数千万台，成为国人自主开发、国内最成熟稳定和装机量最大的开源RTOS。
