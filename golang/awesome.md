@@ -64,6 +64,11 @@ goroutine 作为 golang 并发实现的核心组成部分，非常容易上手�
 https://github.com/uber-go/goleak
 
 
+## SSO
+### authentik
+authentik is an open-source Identity Provider (IdP) for modern SSO. It supports SAML, OAuth2/OIDC, LDAP, RADIUS, and more, designed for self-hosting from small labs to large production clusters.
+https://github.com/goauthentik/authentik/
+
 ## io
 ### io
 io.Reader and io.Writer
