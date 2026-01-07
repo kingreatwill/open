@@ -9,6 +9,8 @@ https://www.swebench.com/
 ## Stack Overflow Trends 趋势
 https://insights.stackoverflow.com/trends
 
+![](img/Stack-overflow1.png)
+https://blog.pragmaticengineer.com/stack-overflow-is-almost-dead/
 
 ## google 趋势
 https://trends.google.com/
