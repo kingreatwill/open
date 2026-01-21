@@ -1,3 +1,4 @@
+[TOC]
 
 > [Caddy](https://github.com/caddyserver/caddy) 是一个 Go 编写的 Web 服务器,类似于 Nginx
 
@@ -483,6 +484,57 @@ allow 127.0.0.1; # 只允许本地访问
 deny all;
 }
 ```
+
+### OCSP Stapling
+目的：服务器定期从 CA 获取 OCSP（在线证书状态协议）响应，缓存后在 TLS 握手时直接发送给客户端，避免客户端单独查询 CA。
+
+• 优势：
+• 降低延迟：减少客户端验证证书吊销状态的往返时间。
+• 减轻 CA 负载：避免大量客户端直接查询 CA 服务器。
+• 增强隐私：隐藏客户端与 CA 的通信细节。
+
+```
+server {
+    listen 443 ssl http2;
+    server_name www.topssl.cn;
+ 
+    # 1. 证书与私钥配置
+    ssl_certificate /path/to/fullchain.pem; # 必须确立是包含中间证书的完整链
+    ssl_certificate_key /path/to/privkey.pem;
+ 
+    # 2. 开启 OCSP Stapling
+    ssl_stapling on;
+    ssl_stapling_verify on;
+ 
+    # 3. 指定根证书（用于验证 CA 的响应）# 指定 CA 证书路径（用于验证 OCSP 响应）
+    # 很多老兄漏掉这一步，确立了 Stapling 无法在服务端通过验证
+    ssl_trusted_certificate /path/to/root_and_intermediate.pem;
+ 
+    # 4. 优化 DNS 解析（重要！）
+    # 确立 Nginx 能快速找到 CA 的 OCSP 地址，建议用公共 DNS
+    resolver 8.8.8.8 1.1.1.1 valid=300s;
+    resolver_timeout 5s;
+ 
+
+    # 缓存 OCSP 响应（路径和超时时间）
+    ssl_stapling_file /var/lib/nginx/ocsp/example.com.ocsp;
+    ssl_stapling_cache_timeout 86400;  # 缓存 24 小时
+    # 其他安全配置...
+}
+```
+
+
+验证:
+1. https://www.topssl.cn/tools/check
+2. 使用 OpenSSL 命令检查
+`openssl s_client -connect example.com:443 -status -tlsextdebug < /dev/null 2>&1 | grep -i "OCSP response"`
+成功标志：输出包含 OCSP Response Status: successful
+
+3. 通过浏览器检查
+ 访问 https://example.com，点击地址栏锁图标 → 查看证书详细信息 → 检查 OCSP 字段是否显示 Response received。
+
+4. 使用在线工具（如 crt.sh）
+• 输入域名查询证书信息，检查 OCSP 状态是否为 Good。
 
 ### ngx_http_auth_digest 模块进行登录认证
 
