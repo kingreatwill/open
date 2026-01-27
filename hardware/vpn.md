@@ -199,7 +199,7 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 
 [免费节点](https://topvpnlist.github.io/)
-[龙夫山泉15-200G](https://www.nfsq.us/#/plan)
+[龙夫山泉15-200G](https://www.nfsq.us/#/plan)  www.nfsqttt.com
 [流量包-好用(高速4K)-推荐-38.8-260G](https://sakura-cat-cdn2.com/register?code=c7pvmlAV)
 
 参考[yml文件](./Clash_DIY_node.yml)
