@@ -10,13 +10,15 @@ localPort = 22
 remotePort = 6000
 
 # 配置了subdomain, 那么访问域名为: nas.frp.wcoder.com:7080, {subdomain}.{subdomainHost}:{vhostHTTPPort},subdomainHost是frps的配置
-# 当配置了customDomains, remotePort没有用, 会使用frps的配置 vhostHTTPPort = 8080 ; customDomains = ["nas.wcoder.com"]
+# 当配置了customDomains, remotePort没有用, 会使用frps的配置 vhostHTTPPort = 8080 ; customDomains = ["nas.wcoder.com"],customDomains 不能是nas.frp.wcoder.com
 [[proxies]]
 name = "nas-web"
 type = "http"
 localIP = "127.0.0.1"
 localPort = 8000
 subdomain = "nas"
+customDomains = ["localapi.wcoder.com"] 
+
 
 [[proxies]]
 name = "plugin_http_proxy"

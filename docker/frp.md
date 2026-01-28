@@ -4,10 +4,10 @@
 
 [frp 中文文档](https://gofrp.org/docs/examples/ssh/)
 
-
-
 ### frp 0.52.3
 #### frp server
+
+`docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps ghcr.io/fatedier/frps:v0.66.0 -c /etc/frp/frps.toml`
 
 `docker run --restart=always --network host -d -v /data/dockerv/frp/frps.toml:/etc/frp/frps.toml --name frps ghcr.io/fatedier/frps:v0.61.0 -c /etc/frp/frps.toml`
 
