@@ -295,4 +295,15 @@ go list -u -f '{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Vers
 安装go-mod-upgrade
 ![](img/go-mod-upgrade.jpg)
 
+### go依赖分析
+
+https://github.com/topics/dependency-analysis?l=go
+#### goda
+https://github.com/loov/goda
+
+```
+go install github.com/loov/goda@latest
+
+goda graph "github.com/loov/goda:mod" | dot -Tsvg -o graph.svg
+```
 
