@@ -197,6 +197,9 @@ https://github.com/squid-cache/squid
 ### 国家IPv6发展监测平台
 https://www.china-ipv6.cn/#/
 
+cloudflare IPv6使用情况
+https://radar.cloudflare.com/adoption-and-usage
+
 ## 网络工具
 https://networkingtoolbox.net/
 https://github.com/Lissy93/networking-toolbox
