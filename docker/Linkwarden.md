@@ -54,7 +54,7 @@ password: gopher
 源码编译
 ```
 FROM docker.io/golang:1.26-alpine AS builder
-ARG VERSION="v1.8.0"
+ARG VERSION="1.8.0"
 ARG COMMIT="585ea341aa59219b0477f991eadb545d24e3a121"
 ARG DATE="2026-02-11"
 
