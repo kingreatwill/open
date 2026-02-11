@@ -507,7 +507,7 @@ $$X \approx WH$$
 概率潜在语义分析（[Probabilistic latent semantic analysis, PLSA](https://en.jinzhao.wiki/wiki/Probabilistic_latent_semantic_analysis)）
 
 概率有向图模型：
-![](https://img-blog.csdnimg.cn/2020050116564379.png)
+![](./img/2020050116564379.png)
 阴影圆表示观测变量，空心圆表示隐变量；箭头表示概率关系；方框表示多次重复，方框内的字母表示重复次数；
 文档d是一个观测变量；话题变量z是隐变量(话题的个数是超参数)；单词变量w是一个观测变量；
 
@@ -539,7 +539,7 @@ $n(w,d)$表示（w，d）出现的次数;
 
 书中还讲到了等价的**共现模型（对称模型）**
 $$P(w,d)=\sum _{z}P(z)P(d|z)P(w|z)$$
-![](https://img-blog.csdnimg.cn/20200501171318598.png)
+![](./img/20200501171318598.png)
 
 - **策略**：
 $$ L =\log P(T) = \log \prod_{i=1}^{M} \prod_{j=1}^{N} {P\left(w_{i}, d_{j}\right)}^{n\left(w_{i}, d_{j}\right) } \\=\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \log P\left(w_{i}, d_{j}\right) \\ =\sum_{i=1}^{M} \sum_{j=1}^{N} n\left(w_{i}, d_{j}\right) \left[\log P(d)+\log \sum_{k=1}^{K} P\left(w_{i} \mid z_{k}\right) P\left(z_{k} \mid d_{j}\right)\right]$$
