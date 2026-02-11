@@ -51,6 +51,47 @@ docker run -d -p 10001:8080 -v /data/dockerv/shiori/data:/shiori -e SHIORI_HTTP_
 username: shiori
 password: gopher
 
+源码编译
+```
+FROM docker.io/golang:1.26-alpine AS builder
+ARG VERSION="v1.8.0"
+ARG COMMIT="585ea341aa59219b0477f991eadb545d24e3a121"
+ARG DATE="2026-02-11"
+
+WORKDIR /src/shiori
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+ENV CGO_ENABLED=0
+RUN go build -tags "osusergo,netgo,fts5" \
+    -ldflags "-s -w -X main.version=${VERSION} -X main.commit=${COMMIT} -X main.date=${DATE}" \
+    -o /out/shiori .
+
+FROM docker.io/library/alpine:3.22
+
+RUN apk add --no-cache ca-certificates tzdata
+
+ENV PORT=8080
+ENV SHIORI_DIR=/srv/shiori
+ENV SHIORI_HTTP_SERVE_WEB_UI_V2=true
+WORKDIR ${SHIORI_DIR}
+
+COPY --from=builder /out/shiori /usr/bin/shiori
+
+EXPOSE ${PORT}
+
+ENTRYPOINT ["/usr/bin/shiori"]
+CMD ["server"]
+
+# docker build -t shiori .
+# docker tag shiori kingreatwill/shiori:v1.8.0
+# docker login -u kingreatwill
+# docker push kingreatwill/shiori:v1.8.0
+```
+
 
 
 ### linkding

@@ -76,7 +76,92 @@ xcaddy build v2.0.1 --with github.com/caddyserver/ntlm-transport@v0.1.1
 ```
 xcaddy会自动下载源码和插件源码进行编译
 
+#### 源码Dockerfile编译 
+Dockerfile
+```
+FROM golang:1.26-alpine AS builder
 
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -trimpath -ldflags="-s -w" -o /app/caddy ./cmd/caddy
+RUN ./cmd/caddy/setcap.sh cap_net_bind_service=+ep /app/caddy; \
+	chmod +x /app/caddy;
+
+
+FROM caddy:2.11-alpine
+LABEL maintainer="wcoder <350840291@qq.com>"
+COPY --from=builder /app/caddy /usr/bin/caddy
+
+# docker build -t caddy .
+# docker tag caddy kingreatwill/caddy:v2.11.0
+# docker login -u kingreatwill
+# docker push kingreatwill/caddy:v2.11.0
+# docker run -d --cap-add=NET_ADMIN --restart=always --network host     -v /data/dockerv/caddy/srv:/srv     -v /data/dockerv/caddy/data:/data     -v /data/dockerv/caddy/log:/log     -v /data/dockerv/caddy/config:/config     -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile     --name caddy kingreatwill/caddy:v2.11.0
+# docker run -d --restart=always --network host     -v /data/dockerv/caddy/srv:/srv     -v /data/dockerv/caddy/data:/data     -v /data/dockerv/caddy/log:/log     -v /data/dockerv/caddy/config:/config     -v /data/dockerv/caddy/Caddyfile:/etc/caddy/Caddyfile     --name caddy kingreatwill/caddy:v2.11.0
+```
+Caddyfile
+```
+www.wcoder.com wcoder.com gantt.wang dotnet.wang weidian.faith wcoder.is-a.dev {
+    root * /srv/www
+    file_server browse {
+        hide .git
+        index index.html
+    }
+    log {
+        output file /log/access.log
+    }
+}
+
+record.ren shiori.wcoder.com {
+    reverse_proxy 127.0.0.1:10001
+    log {
+        output file /log/record.ren.log
+    }
+}
+
+frp.wcoder.com {
+    reverse_proxy 127.0.0.1:7500
+    log {
+        output file /log/frp.wcoder.com.log
+    }
+}
+
+http://*.frp.wcoder.com {
+    reverse_proxy 127.0.0.1:7080
+    log {
+        output file /log/http.frp.wcoder.com.log
+    }
+}
+
+https://*.frp.wcoder.com {
+    reverse_proxy https://127.0.0.1:7443 {
+        transport http {
+            tls_insecure_skip_verify
+            tls_server_name {host}
+        }
+    }
+    log {
+        output file /log/https.frp.wcoder.com.log
+    }
+}
+
+localapi.wcoder.com {
+    reverse_proxy 127.0.0.1:7080
+    log {
+        output file /log/localapi.wcoder.com.log
+    }
+}
+
+wxapi.wcoder.com {
+    reverse_proxy 127.0.0.1:10005
+    log {
+        output file /log/wxapi.wcoder.com.log
+    }
+}
+```
 
 ### 在Go程序中中嵌入Caddy
 
