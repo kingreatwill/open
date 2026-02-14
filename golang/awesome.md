@@ -81,6 +81,9 @@ https://github.com/samber/go-metered-io
 - 性能监控: 实时监控数据传输量,及时发现性能问题
 - 流量监控: 可实现精细化流量控制
 
+### 文件
+Go 通用文件系统抽象
+https://github.com/spf13/afero
 
 ## 分析/debug
 ### pprof
