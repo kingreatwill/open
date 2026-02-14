@@ -150,6 +150,8 @@ topology.le5le.com/
 - drawio
 draw.io
 
+https://github.com/plait-board/drawnix
+
 https://github.com/jgraph/drawio-desktop
 
 - Excalidraw: 虚拟白板，用于素描手绘图
