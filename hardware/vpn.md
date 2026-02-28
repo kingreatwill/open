@@ -212,6 +212,8 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 [V2Ray 收费节点](https://v2sx.com/cart.php)
 
+https://dog.ssrdog.com/
+https://mojie.app
 
 **Clash**：
 多协议支持： Clash 支持多种代理协议，如 Shadowsocks、Vmess、Trojan 等，这意味着您可以根据不同的使用场景和需求来选择合适的协议。
