@@ -179,3 +179,9 @@ func main() {
 }
 ```
 
+
+https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+
