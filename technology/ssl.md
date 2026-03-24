@@ -119,6 +119,9 @@ func main() {
 }
 ```
 
+#### Automatic HTTPS
+https://github.com/caddyserver/certmagic
+
 #### https://github.com/go-acme/lego
 
 #### certbot - ACME 客户端
