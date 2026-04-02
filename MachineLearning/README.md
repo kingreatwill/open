@@ -38,6 +38,18 @@ https://arxiv.org/pdf/2006.03511.pdf
 
 学术界：这东西有创新，有难度，能写出好文章，还能报奖！
 
+## 开源项目
+### TTS
+#### VibeVoice
+https://github.com/microsoft/VibeVoice
+
+Model	 |  Context Length   |	Generation Length |	Weight
+---|---|---|---
+VibeVoice-Realtime-0.5B	|8k	|~10 min	| [HF link](https://huggingface.co/microsoft/VibeVoice-Realtime-0.5B)
+VibeVoice-1.5B	|64K	|~90 min	|[HF link](https://huggingface.co/microsoft/VibeVoice-1.5B)
+VibeVoice-Large	|32K	|~45 min	|[HF link]https://huggingface.co/microsoft/VibeVoice-Large)
+
+
 ## 模型可解释工具（可解性模型/可解性工具）Interpretable
 ### imodels
 https://github.com/csinva/imodels
