@@ -199,8 +199,9 @@ clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
 
 [免费节点](https://topvpnlist.github.io/)
-[龙夫山泉15-200G](https://qqq.nfsq.us/#/register?code=9Ern4LFO)  www.nfsqttt.com  https://www.nfsq.us/#/plan
+[龙夫山泉15-200G-独立APP-推荐](https://qqq.nfsq.us/#/register?code=9Ern4LFO)  www.nfsqttt.com  https://www.nfsq.us/#/plan
 [流量包-好用(高速4K)-推荐-38.8-260G](https://sakura-cat-cdn3.com/register?code=S5piZWCC)
+[流量包-好用(高速4K)-推荐-19.8-100G](https://1-sakuracat.com/register?code=S5piZWCC)
 
 [流量包-1块2G](https://mojie.app/register?aff=sD54GV1f)
 
