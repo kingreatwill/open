@@ -9,6 +9,14 @@
 
 https://euicc-manual.osmocom.org/
 
+### LPA
+LPA 指 Local Profile Assistant，中文可理解为 本地配置文件助手。
+它是 eSIM 体系里的一个核心组件，负责在设备本地管理 eSIM 配置文件，也就是把运营商的 eSIM Profile 下载、安装、启用、禁用或删除。
+
+简单说：
+eSIM Profile：运营商给你的“虚拟 SIM 卡数据”
+eUICC：设备里的 eSIM 安全芯片/模块
+LPA：手机/设备里负责和 eUICC、运营商服务器交互的管理程序
 
 
 ## 开源写卡
