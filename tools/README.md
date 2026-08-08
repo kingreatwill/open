@@ -77,6 +77,31 @@ Postman for protobuf APIs
 [BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)
 
 [切换Hosts文件](https://github.com/oldj/SwitchHosts)
+### PE启动盘
+1. 做/启动 WinPE 的开源工具
+Ventoy：最推荐。开源 GPLv3，把 WinPE ISO/WIM 放进 U 盘即可启动，支持多 ISO、多系统、UEFI/Secure Boot。
+https://github.com/ventoy/Ventoy
+Rufus：开源 GPLv3，适合把单个 WinPE/Windows/Linux ISO 写成启动盘。
+https://github.com/pbatard/rufus
+YUMI exFAT / YUMI Py：开源多启动 U 盘工具，可放多个 ISO，也能放 Windows PE、恢复盘等。
+https://yumiusb.com/yumi-exfat/
+wimlib：开源 WIM 镜像处理工具，可创建、解包、修改 .wim，适合折腾 WinPE 镜像。
+https://wimlib.net/
+iPXE wimboot：开源，用于通过网络/PXE/HTTP 启动 WinPE 的 .wim。
+https://ipxe.org/wimboot
+PhoenixPE + PEBakery：偏“自制 Win10/Win11 PE 救援环境”的开源项目/构建器。
+https://github.com/PhoenixPE/PhoenixPE
+https://old.theoven.org/indexb04f.html?topic=2324.0
+2. WinPE 本体不是开源
+WinPE 是微软的 Windows Preinstallation Environment，标准做法是用 Windows ADK + WinPE Add-on 里的 copype、MakeWinPEMedia 生成启动介质；这些工具免费但不是开源。微软文档：
+https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive
+实用建议
+只是想做一个常用 PE 启动 U 盘：用 Ventoy，再放入你信任来源的 PE ISO。
+想自己做干净的 WinPE：用 微软 ADK，必要时配合 wimlib。
+想做带桌面、工具箱的救援 PE：看 PhoenixPE。
+如果不要求必须是 Windows PE，可以直接用开源救援系统：SystemRescue 或 Rescuezilla。
+https://www.system-rescue.org/
+https://rescuezilla.com/
 ### 压缩工具
 #### 7-Zip
 #### winrar

@@ -93,7 +93,37 @@ https://github.com/azukaar/Cosmos-Server
 ### lstoreNAS
 国产非开源
 
-## ONVIF
+## 音乐
+### navidrome/Jellyfin/Airsonic
+github.com/navidrome/navidrome
+
+Subsonic 兼容。支持 Subsonic API，现有 Subsonic App 都能连。DSub、Ultrasonic、Amperfy……
+
+
+## 视频
+### go2rtc
+https://github.com/AlexxIT/go2rtc
+
+智能家居开源软件：Frigate NVR
+
+go2rtc[1] 做的事就一件：把任何摄像头的视频流，实时转成任何客户端能播放的格式。 RTSP 进、 WebRTC 出。 MJPEG 进、 HLS 出。 ONVIF 进、 MP4 出。零秒延迟，零依赖，一个二进制文件跑在所有平台。
+
+```
+streams:
+  # 标准 RTSP 摄像头
+  garage: rtsp://admin:123456@192.168.1.50:554/cam/realmonitor?channel=1&subtype=0
+
+# TP-Link Tapo 私有协议（不需要知道 RTSP URL）
+  living_room: tapo://user:pass@192.168.1.51
+
+# 小米摄像头（走原生协议）
+  baby_room: xiaomi://192.168.1.52
+
+# 从 Home Assistant 配置中自动导入所有摄像头
+  import: hass
+```
+
+### ONVIF
 
 rtsp://192.168.31.183:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif
 
