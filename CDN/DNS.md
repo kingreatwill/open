@@ -1006,3 +1006,11 @@ www.taobao.com.danuoyi.tbcache.com.     15      IN      A       221.229.XXX.XXX
 ### 其它
 
 [免费公共 DNS 服务器大全](https://dns.icoa.cn/#china)
+
+https://dnschecker.org/
+https://www.whatsmydns.net/
+
+https://github.com/514-labs/dnsglobe
+DNS 传播检测的原理其实不复杂。你改了一条 DNS 记录，全球各地的 DNS 服务器不会立刻同步更新，需要时间逐级传播。你要确认的是：东京的服务器拿到新记录了没？伦敦的呢？悉尼的呢？
+传统做法是用网站去查，网站再一个个去问不同地区的 DNS 服务器，把结果汇总成表格给你看。
+dnsglobe 做的是同一件事，但它直接在本地发起 34 个并行 DNS 查询——你家宽带的出口 IP 直接去问 Google DNS、Cloudflare、Quad9、OpenDNS 这些公共解析器，看它们各自返回什么结果。没有中间商赚差价，看到的每一行都是那个服务器此时此刻的真实应答。
