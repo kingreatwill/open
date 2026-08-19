@@ -9,7 +9,8 @@ https://agent-skills.md/
 ### API网关
 https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md
 
-
+### frontend-slides(html格式的幻灯片)
+https://github.com/zarazhangrui/frontend-slides
 
 ### superpowers vs grill-me
 
