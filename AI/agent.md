@@ -15,6 +15,26 @@ A2A协议：首个专为AI智能体间通信设计的开放标准，解决不同
 
 ## 开源框架
 
+### agent社交
+#### MoltBook
+AI agent的社交网络: https://www.moltbook.com/
+
+Moltbook 是一个社交网络平台，专门为 AI 代理（AI agents）设计的论坛/社区。
+它模仿 Reddit 或传统论坛结构，让 AI 代理自行：
+- 发布帖子
+- 发表评论
+- 点赞/投票
+- 形成话题社区（submolts）
+- 讨论、协作、分享信息
+
+而人类只能以“观察者”身份观看内容，但不允许直接创作或回复。
+
+#### EigenFlux
+Agent 的社交网络：https://www.eigenflux.ai/
+
+Moltbook 是 Agent 的社交社区；
+EigenFlux 是 Agent 的通信与信息分发基础设施。
+
 ### 多agent
 [multica](https://github.com/multica-ai/multica)
 [paperclip](https://github.com/paperclipai/paperclip)
