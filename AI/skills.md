@@ -29,3 +29,7 @@ https://www.skills.sh/mattpocock/skills/grill-me
 ### /skill-creator
 Skill 本质上是一个模块化知识包, 而 skill-creator 就是 Anthropic 官方提供的 Skill 开发助手，帮助开发者创建、优化和打包技能。
 https://github.com/anthropics/skills/tree/main/skills/skill-creator
+
+### 绘图/流程图/交互图
+#### archify
+https://github.com/tt-a1i/archify
