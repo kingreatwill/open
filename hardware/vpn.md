@@ -197,9 +197,12 @@ https://portal.shadowsocks.au/clientarea.php
 
 clash 需要自建节点(或购买机场) 安装V2Ray/Trojan服务端
 
+自能下载自己的VPN
+https://app.zoog.pro/   2年 13/月
+https://surfshark.co.uk/  2年 20/月
+[龙夫山泉45-200G-独立APP-涨价了15->45](https://qqq.nfsq.us/#/register?code=9Ern4LFO)  www.nfsqttt.com  https://www.nfsq.us/#/plan
 
 [免费节点](https://topvpnlist.github.io/)
-[龙夫山泉45-200G-独立APP-涨价了15->45](https://qqq.nfsq.us/#/register?code=9Ern4LFO)  www.nfsqttt.com  https://www.nfsq.us/#/plan
 [流量包-好用(高速4K)-推荐-38.8-260G](https://sakura-cat-cdn3.com/register?code=S5piZWCC)
 [流量包-好用(高速4K)-推荐-19.8-100G](https://1-sakuracat.com/register?code=S5piZWCC)
 

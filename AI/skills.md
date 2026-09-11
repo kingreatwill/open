@@ -33,3 +33,9 @@ https://github.com/anthropics/skills/tree/main/skills/skill-creator
 ### 绘图/流程图/交互图
 #### archify
 https://github.com/tt-a1i/archify
+
+#### fireworks-tech-graph
+https://github.com/yizhiyanhua-ai/fireworks-tech-graph/blob/main/README.zh.md
+
+fireworks-tech-graph 是一份可由 Codex 和 Claude Code 共用的 Agent Skill。它将自然语言描述转化为经过几何校验的 SVG、高分辨率 PNG、经过媒体探测验证的 SVG 转 GIF 语义动效与离线交互 HTML。聚焦后的动效链路只接收生成器产出的语义 SVG，只输出一个紧凑、可验证的 GIF。项目内置 11 种生成器风格 + 1 种 AI 手绘风格（Dark Luxury）；新增的四种工程风格分别为 C4 评审、云部署、事件流和可靠性排查提供可执行语义契约，同时保留 AI/Agent Pattern 与全部 14 种 UML 图类型。
+
