@@ -4,7 +4,12 @@
 https://www.skills.sh/
 https://agent-skills.md/
 
+### 股票
+美股
+https://github.com/simonlin1212/global-stock-data
 
+A股
+https://github.com/simonlin1212/a-stock-data
 
 ### API网关
 https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md
