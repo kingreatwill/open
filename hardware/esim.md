@@ -36,3 +36,7 @@ https://github.com/BastelPichi/easyeuicc-9esim/releases
 - ESTKme
 - 9eSIM
 “EasyEUICC 兼容卡片” 是指符合 GSMA SGP.22 规范，且必须包含此特定 ARA-M SHA-1 值的产品：2A2FA878BC7C3354C2CF82935A5945A3EDAE4AFA。
+
+> [菲律宾海外手机号| Globe eSIM 一年 2.15 元](https://mp.weixin.qq.com/s/VotIERjksbNOWxu2arb_nA)
+> Own Bank是菲律宾的一家数字银行
+> Maya Bank 是菲律宾排名第一的纯数字银行

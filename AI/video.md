@@ -1,6 +1,9 @@
 ## 短视频制作
 https://github.com/calesthio/OpenMontage
 
+### 生成图
+https://github.com/yang0/handraw-style
+
 
 # 开源AI短视频制作全栈工具（本地部署、无付费、可商用，分4大类）
 ## 一、全自动一键成片（输入主题直接生成完整短视频，自媒体批量起号首选）
