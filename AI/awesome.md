@@ -28,6 +28,9 @@ https://github.com/firecrawl/firecrawl
 https://lovable.dev/
 https://github.com/firecrawl/open-lovable
 
+#### Craft Anything
+复刻网站、应用或游戏
+https://github.com/storytold/craft-anything
 
 ### OCR
 

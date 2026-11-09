@@ -11,6 +11,27 @@ https://github.com/simonlin1212/global-stock-data
 A股
 https://github.com/simonlin1212/a-stock-data
 
+
+#### OpenStock
+开源的股票市场平台
+https://github.com/Open-Dev-Society/OpenStock
+
+#### tickflow-stock-panel
+TickFlow Stock Panel 是一个开源的自托管量化工作台，支持 A 股（原版）以及 A 股/港股/美股（扩展版），提供选股、监控、回测等功能，可通过 Docker 一键部署，并允许接入 TickFlow 或第三方数据源。
+https://github.com/shy3130/tick-stock-panel
+
+#### TradingAgents
+原版 [TradingAgents](https://github.com/TauricResearch/TradingAgents) 是一个出色的多 Agent 投研框架，但它针对美股设计：数据走 Yahoo Finance / Alpha Vantage，分析师不懂 A 股制度，辩论和决策完全面向美股市场。
+
+本 [Fork](https://github.com/simonlin1212/TradingAgents-astock) 的目标：把 TradingAgents 的多 Agent 辩论架构真正落地到 A 股，不是简单翻译，而是从数据层、Agent 角色、交易规则三个维度做深度特化。
+
+#### 其它
+
+
+https://github.com/lzwme/finance-quant-skills
+https://github.com/clong365/easy_tdx
+
+
 ### API网关
 https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md
 

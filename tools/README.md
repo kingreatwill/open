@@ -230,6 +230,10 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 ### AI逆向工程工具REA
 https://github.com/morluto/rea
 
+### Craft Anything
+复刻网站、应用或游戏
+https://github.com/storytold/craft-anything
+
 ### 逆向工程的十六进制编辑器 rehex
 https://github.com/solemnwarning/rehex 2.3k
 
