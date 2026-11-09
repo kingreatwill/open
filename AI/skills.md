@@ -31,6 +31,16 @@ https://github.com/shy3130/tick-stock-panel
 https://github.com/lzwme/finance-quant-skills
 https://github.com/clong365/easy_tdx
 
+- 同花顺金融数据
+请帮我安装 hithink-finance Skill。
+
+优先在终端执行以下命令：
+npx skills add HiThink-Tech/Financial-API --skill hithink-finance -g --yes
+
+如果该命令因网络等原因无法完成，请根据
+https://skillhub.cn/install/skillhub.md
+安装 hithink-finance。
+
 
 ### API网关
 https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md

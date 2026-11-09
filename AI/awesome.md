@@ -15,7 +15,7 @@ LangGraph| python | 否 | 统一 | 图 | 10+ | MIT
 
 
 
-### 爬取网站
+### 爬取网站/复刻
 #### Moli
 为 AI Agent 重新设计的浏览器内核
 https://github.com/lexmount/moli
@@ -31,6 +31,9 @@ https://github.com/firecrawl/open-lovable
 #### Craft Anything
 复刻网站、应用或游戏
 https://github.com/storytold/craft-anything
+
+#### 逆向任何视频
+https://github.com/JuneYaooo/rea-video
 
 ### OCR
 
