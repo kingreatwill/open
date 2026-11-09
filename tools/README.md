@@ -52,6 +52,11 @@ https://github.com/nocodb/nocodb
 [语言在线](https://repl.it/languages)
 [rust](https://play.rust-lang.org/)
 
+## Adobe 代替品
+### ArtCraft
+ArtCraft 开源 Adobe 代替品
+https://github.com/storytold/artcraft
+
 ## 其它小工具
 [代码比较工具](https://blog.csdn.net/yueliang2100/article/details/82190257)
 
@@ -222,7 +227,10 @@ Ollydbg 通常称作OD，是反汇编工作的常用工具
 ## 交互式反汇编专业工具 IDA
 [逆向神器之IDA的使用](https://www.cnblogs.com/aikongmeng/articles/10657479.html)
 
-## 逆向工程的十六进制编辑器 rehex
+### AI逆向工程工具REA
+https://github.com/morluto/rea
+
+### 逆向工程的十六进制编辑器 rehex
 https://github.com/solemnwarning/rehex 2.3k
 
 ### 逆向工程的十六进制编辑器 ImHex

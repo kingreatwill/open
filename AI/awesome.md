@@ -16,7 +16,9 @@ LangGraph| python | 否 | 统一 | 图 | 10+ | MIT
 
 
 ### 爬取网站
-
+#### Moli
+为 AI Agent 重新设计的浏览器内核
+https://github.com/lexmount/moli
 
 #### firecrawl
 https://www.firecrawl.dev/
@@ -70,3 +72,8 @@ hf download SoMarkAI/OXR-1.0 --local-dir ./models/OXR-1.0
 # pip install -U modelscope-hub
 modelscope download SoMark/OXR-1.0 --local_dir ./models/OXR-1.0
 ```
+
+#### Xiaomi-OCR
+Xiaomi-OCR-0 是一个统一的 0.8B 视觉语言模型，面向文档解析与 OCR 中心理解。模型以 Qwen3.5-0.8B 为起点，在约 1.7 亿条 OCR 中心样本上训练，采用 Q-Mask 文本锚定、继续预训练（CPT）和混合任务强化学习（Mix-RL）。
+
+https://github.com/xiaomi-research/Xiaomi-OCR-0/blob/main/README_zh.md

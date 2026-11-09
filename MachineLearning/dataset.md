@@ -23,7 +23,26 @@
 标签格式包括，YOLO、PASCAL、COCO以及Segmentation。
 https://datasets.bifrost.ai/
 
-### 其它公开数据集
+### 其它公开数据集/开源数据集
+#### Chinese poetry
+最全中华古诗词数据库, 唐宋两朝近一万四千古诗人, 接近5.5万首唐诗加26万宋诗. 两宋时期1564位词人，21050首词。
+https://github.com/chinese-poetry/chinese-poetry
+
+#### 英语学习数据集
+https://github.com/designfuchen/word-atlas
+
+英语学习数据集，含7298个单词+例句，配套插画、英美发音，标注难度/话题
+
+#### 健身动作
+https://github.com/Devillmy/exercises-dataset-zh
+
+#### 地理数据集
+https://github.com/dr5hn/countries-states-cities-database
+
+#### 物理模拟数据集/物理仿真数据
+https://gimmnm.github.io/datasets/the-well/
+https://github.com/PolymathicAI/the_well
+
 #### tianchi天池
 https://tianchi.aliyun.com/dataset
 
