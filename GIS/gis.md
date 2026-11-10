@@ -30,6 +30,10 @@ L.marker([51.5, -0.09]).addTo(map)
 https://github.com/CesiumGS/cesium
 https://cesium.com/
 
+
+
+[God's Eye View](https://github.com/bilawalsidhu/gods-eye-view) 是一个完全运行在浏览器里的实时地理空间情报控制台：基于 CesiumJS 与 Google 真实感 3D 地球，叠加全球航班、船舶、卫星、地震、交通与公共摄像头等 13 个公开数据源，还支持用 OpenAI Realtime API 语音指挥。
+
 ### 图表工具
 
 #### Highcharts
