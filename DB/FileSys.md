@@ -276,6 +276,14 @@ https://github.com/kalcaddle/KODExplorer
 ## Web文件浏览器 、Web File Manager
 [Top 10 Javascript File Managers](https://hackernoon.com/top-10-javascript-file-managers-8o2p34vw)
 
+### kkFileView
+
+https://github.com/kekingcn/kkFileView
+
+### Open File Viewer
+
+https://github.com/xushanpei/open-file-viewer
+
 ### Photoview
 https://github.com/photoview/photoview
 ### filebrowser
