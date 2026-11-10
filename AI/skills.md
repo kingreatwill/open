@@ -4,6 +4,11 @@
 https://www.skills.sh/
 https://agent-skills.md/
 
+
+### 医药/科学
+覆盖生物信息、化学与药物发现、医学影像、机器学习、数据可视化和科研写作，并整理了上百个科学数据库的查询方法。
+https://github.com/K-Dense-AI/scientific-agent-skills
+
 ### 股票
 美股
 https://github.com/simonlin1212/global-stock-data
@@ -69,6 +74,7 @@ https://github.com/anthropics/skills/tree/main/skills/skill-creator
 ### 绘图/流程图/交互图
 #### archify
 https://github.com/tt-a1i/archify
+把你想理解、规划或分享的事(项目)，变成可以互动的可视化作品。
 
 #### fireworks-tech-graph
 https://github.com/yizhiyanhua-ai/fireworks-tech-graph/blob/main/README.zh.md
