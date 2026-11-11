@@ -17,6 +17,10 @@ docker run -d --name memos --link postgresql --restart always -p 10009:5230 -v /
 ### flomo
 非开源
 
+### Karakeep
+全能型自部署"收藏一切"工具，书签+笔记+图片+AI 自动标签
+https://github.com/karakeep-app/karakeep
+
 ### shiori
 https://github.com/go-shiori/shiori
 

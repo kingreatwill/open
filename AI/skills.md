@@ -9,6 +9,11 @@ https://agent-skills.md/
 覆盖生物信息、化学与药物发现、医学影像、机器学习、数据可视化和科研写作，并整理了上百个科学数据库的查询方法。
 https://github.com/K-Dense-AI/scientific-agent-skills
 
+### wx-cli
+读取微信本地消息
+https://github.com/pandorafuture/wx-cli
+https://github.com/jackwener/wx-cli-again
+
 ### 股票
 美股
 https://github.com/simonlin1212/global-stock-data
