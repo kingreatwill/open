@@ -38,6 +38,23 @@ https://github.com/alienator88/Pearcleaner
 #### 录屏
 https://github.com/lihaoyun6/QuickRecorder
 
+#### 系统监控（活动监视器开源替代）
+- [Stats](https://github.com/exelban/stats)（43k+ stars，MIT）
+  菜单栏监控老牌首选：CPU/GPU/内存/磁盘/网络/传感器/电池/蓝牙，每个模块可自定义样式（柱状/历史曲线/文本），支持 Intel + Apple Silicon，macOS 12.3+
+  ```
+  brew install stats
+  ```
+- [SiliconScope](https://github.com/kennss/SiliconScope)（1k+ stars，MIT，SwiftUI）
+  专为 Apple Silicon 打造的无 sudo 监控，能看到活动监视器和 Stats 看不到的指标：ANE 神经引擎、Media Engine、内存带宽、整机功耗（瓦特）、P/E 核心温度；支持负载类型识别（ANE/CoreML）、指标录制回放（DVR 式拖动）、本地 LLM 测速基准（tok/s · tokens/Wh）；4.0 的 Fleet 可远程监控其他 Mac/Linux GPU 机器/VPS（连远程 Mac 的神经引擎都能看）
+  仅支持 macOS 14+ Apple Silicon，适合跑本地 LLM/关注 AI 负载的场景
+- [macmon](https://github.com/vladkens/macmon)（7k stars，Rust TUI）
+  终端版 Apple Silicon 监控：CPU/GPU 占用、温度、功耗、风扇转速，适合 SSH 场景
+  ```
+  brew install macmon
+  ```
+
+对比：日常菜单栏监控选 Stats（成熟、兼容广）；跑本地 LLM/想看神经引擎和功耗带宽选 SiliconScope（更新激进，专精 Apple Silicon AI 负载），两者互补。
+
 #### 终端
 warp https://www.warp.dev/
 Tabby
