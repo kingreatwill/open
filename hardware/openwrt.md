@@ -12,6 +12,11 @@ https://github.com/istoreos
 
 
 ### 小米路由器
+小米路由器ROM和客户端下载
+https://www.miwifi.com/miwifi_download.html
+
+小米路由器（MiWiFi）开发者指南与工具
+https://miwifi.dev/ssh
 
 #### AX6000手动开启ssh权限
 Redmi AX6000固件版本：1.0.60
